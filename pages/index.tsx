@@ -1,10 +1,10 @@
-import styles from '../styles/MainMage.module.css';
-import { Button, Container, TextField } from '@mui/material';
-import Image from 'next/image';
+import styles from '../styles/WelcomePage.module.css';
+import { Button, TextField, Container } from '@mui/material';
+import Layout from '../src/Components/Layout';
 
-export default function Home() {
+export default function Welcome() {
     return (
-        <>
+        <Layout>
             <div className={styles.content}>
                 <div className={styles.name}>Friendly Carrier</div>
                 <div className={styles.description}>
