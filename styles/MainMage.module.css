@@ -6,7 +6,7 @@
   background-size: cover;
   background-repeat: no-repeat; */
 
-  background: url(/static/images/main_page_back_ground.png) no-repeat center center fixed;
+  background: url(/static/images/main_page_background.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -20,18 +20,16 @@
 }
 
 .name {
-  font-family: 'Montserrat';
   font-weight: 600;
   font-size: 80px;
-  line-height: 24px;
+  line-height: 80px;
   text-align: center;
   letter-spacing: 0.4px;
   text-transform: uppercase;
-  margin-bottom: 115px;
+  margin-bottom: 70px;
 }
 
 .description {
-  font-family: 'Montserrat';
   font-size: 46px;
   line-height: 60px;
   text-align: center;
@@ -43,4 +41,9 @@
   margin-left: 100px;
   padding: 11px 22px;
   background-color: #90afff;
+}
+
+.emailInput {
+  border-color: #fff;
+  color:#fff;
 }
