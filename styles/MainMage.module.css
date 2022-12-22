@@ -1,49 +1,68 @@
 .content {
-  width: 100%;
-  height: 700px;
+    width: 100%;
+    height: 700px;
 
-  /* background-image: url('/static/images/mainPageBackground.png');
+    /* background-image: url('/static/images/mainPageBackground.png');
   background-size: cover;
   background-repeat: no-repeat; */
 
-  background: url(/static/images/main_page_background.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    background: url(/static/images/main_page_background.jpg) no-repeat center
+        center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
 }
 
 .name {
-  font-weight: 600;
-  font-size: 80px;
-  line-height: 80px;
-  text-align: center;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
-  margin-bottom: 70px;
+    font-weight: 600;
+    font-size: 80px;
+    line-height: 80px;
+    text-align: center;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    margin-bottom: 70px;
 }
 
 .description {
-  font-size: 46px;
-  line-height: 60px;
-  text-align: center;
-  letter-spacing: 0.4px;
-  margin-bottom: 98px;
+    font-size: 46px;
+    line-height: 60px;
+    text-align: center;
+    letter-spacing: 0.4px;
+    margin-bottom: 98px;
 }
 
 .button {
-  margin-left: 100px;
-  padding: 11px 22px;
-  background-color: #90afff;
+    margin-left: 40px;
+    padding: 0 22px;
+    height: 48px;
+    background-color: #90afff;
 }
 
-.emailInput {
-  border-color: #fff;
-  color:#fff;
+.emailInput > label {
+    line-height: 20px;
+    color: #ffffff;
+}
+
+.emailInput > div {
+    height: 48px;
+    box-sizing: border-box;
+}
+
+.emailInput > div:hover > fieldset {
+    border-color: #fafafa !important;
+}
+
+.emailInput > div > input {
+    color: #ffffff;
+}
+
+.emailInput > div > fieldset {
+    border-color: #ffffff;
 }

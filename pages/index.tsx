@@ -11,7 +11,13 @@ export default function Home() {
                     <br /> Reliability is our most important advantage
                 </div>
                 <div className={styles.email}>
-                    <TextField id='email' label='Email' variant='standard' />
+                    <TextField
+                        id='email'
+                        label='Email'
+                        variant='outlined'
+                        color='primary'
+                        className={styles.emailInput}
+                    />
                     <Button
                         color='primary'
                         className={styles.button}
