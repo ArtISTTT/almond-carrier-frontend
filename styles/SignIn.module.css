@@ -53,6 +53,10 @@
     margin-bottom: 20px;
 }
 
+.loginInner :global .MuiInputBase-root {
+    border-radius: 15px;
+}
+
 @keyframes wave {
     from {
         transform: rotate(0deg);
@@ -64,4 +68,9 @@
 
 .nameInput {
     flex: 1;
+}
+
+.confirmButton {
+    height: 40px;
+    border-radius: 15px;
 }

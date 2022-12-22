@@ -64,7 +64,12 @@ const SignIn: React.FC = () => {
                             placeholder='Confirm password'
                             variant='outlined'
                         />
-                        <Button variant='contained'>Register</Button>
+                        <Button
+                            variant='contained'
+                            className={style.confirmButton}
+                        >
+                            Register
+                        </Button>
                     </Stack>
                 </form>
             </div>
