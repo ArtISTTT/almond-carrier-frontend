@@ -1,11 +1,6 @@
 .content {
     width: 100%;
     height: 700px;
-
-    /* background-image: url('/static/images/mainPageBackground.png');
-  background-size: cover;
-  background-repeat: no-repeat; */
-
     background: url(/static/images/mainPage/background.jpg) no-repeat center
         center fixed;
     -webkit-background-size: cover;
@@ -68,7 +63,7 @@
 
 .whiteBlockTitle {
     text-align: center;
-    margin-top: 150px;
+    margin-top: 60px;
     font-weight: 600;
     font-size: 60px;
     line-height: 50px;
@@ -77,10 +72,14 @@
 }
  
 .whiteBlockInfo {
-    margin-top: 80px;
+    margin-top: 60px;
     display: flex;
-   column-gap: 30px;
+    column-gap: 30px;
    /* column-gap: 20px; */
+}
+
+.whiteBlockInfo > img {
+    width: 50%;
 }
  
 .whiteBlockInfo > div {
@@ -89,21 +88,21 @@
 }
 
 .whiteBlockInfo > div > span {
-    font-weight: 300;
+    font-weight: 400;
     /* font-weight: 500; */
     font-size: 50px;
-    line-height: 50px;
+    /* line-height: 50px; */
     letter-spacing: 0.4px;
     color: #6690FD;
   
 }
  
 .whiteBlockInfo > div > div {
-    margin-top: 22px;
+    margin-top: 11px;
     /* font-weight: 300; */
     font-weight: 400;
-    font-size: 32px;
-    line-height: 50px;
+    font-size: 26px;
+    /* line-height: 50px; */
     /* letter-spacing: 0.4px; */
     color: #000000;
 }
@@ -117,21 +116,25 @@
     width: fit-content;
     margin: 0 auto;
     color: #ffffff;
-    margin-top: 53px;
+    margin-top: 100px;
     padding: 11px 22px;
     background-color: #6690FD;
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
     border-radius: 20px;
 }
 
+/* .whiteBlockInfo > div > Button:hover {
+    background-color: #6690FD;
+} */
+
 .blueBlock {
     background-color: #6690FD;
-    margin-top: 120px;
+    margin-top: 60px;
     color: #ffffff;
 }
 
 .blueBlock_title {
-    margin-top: 20px;
+    padding-top: 60px;
     font-weight: 600;
     font-size: 60px;
     /* line-height: 50px; */
@@ -141,59 +144,64 @@
 
 .blueBlock_content {
     display: flex;
-    margin-top: 80px;
+    margin-top: 60px;
     padding-bottom: 20px;
 }
 
 .content_part {
+    width: 33%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 10px;
 }
 
+.content_part > img {
+    width: 100%;
+}
+
 .content_firstText {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .content_firstText > span {
     font-weight: 400;
     /* font-weight: 500; */
-    font-size: 50px;
-    line-height: 50px;
-    letter-spacing: 0.4px;
-}
-
-.content_firstText > div {
-    margin-top: 30px;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 50px;
-    letter-spacing: 0.4px;
-    color: #000000;
+    font-size: 42px;
+    letter-spacing: 0.6px;
 }
 
 .content_secondText {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 110px;
 }
 
 .content_secondText > span {
     font-weight: 400;
     /* font-weight: 500; */
-    font-size: 50px;
-    line-height: 50px;
-    letter-spacing: 0.4px;
+    font-size: 42px;
+    letter-spacing: 0.6px;
 }
 
-.content_secondText > div {
-    margin-top: 30px;
+.content_firstText > div {
+    margin-top: 55px;
     font-weight: 500;
-    font-size: 32px;
-    line-height: 50px;
+    font-size: 28px;
+    line-height: 35px;
+    letter-spacing: 0.6px;
+    color: #000000;
+}
+
+
+.content_secondText > div {
+    margin-top: 55px;
+    margin-bottom: 40px;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 35px;
     text-align: center;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.6px;
     color: #000000;
 }
 
