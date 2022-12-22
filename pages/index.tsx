@@ -1,9 +1,10 @@
-import styles from '../styles/MainMage.module.css';
+import styles from '../styles/WelcomePage.module.css';
 import { Button, TextField } from '@mui/material';
+import Layout from '../src/Components/Layout';
 
-export default function Home() {
+export default function Welcome() {
     return (
-        <>
+        <Layout>
             <div className={styles.content}>
                 <div className={styles.name}>Friendly Carrier</div>
                 <div className={styles.description}>
@@ -27,6 +28,6 @@ export default function Home() {
                     </Button>
                 </div>
             </div>
-        </>
+        </Layout>
     );
 }
