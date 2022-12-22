@@ -34,6 +34,7 @@
 
 .loginInner {
     max-width: 450px;
+    width: 100%;
     background-color: #ffffff;
     padding: 60px 40px;
     border-radius: 20px;
@@ -73,4 +74,9 @@
 .confirmButton {
     height: 40px;
     border-radius: 15px;
+    margin-top: 20px !important;
+}
+
+.helpLink {
+    font-size: 14px;
 }

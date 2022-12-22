@@ -33,7 +33,10 @@ const SignIn: React.FC = () => {
                     src='/static/images/pre-logo.png'
                     alt='logo'
                 />
-                <h2>Sign in</h2>
+                <h2>
+                    Enter email <br />
+                    to recover password
+                </h2>
                 <form action='submit'>
                     <Stack direction='column' spacing={2}>
                         <TextField
@@ -41,33 +44,17 @@ const SignIn: React.FC = () => {
                             placeholder='Email'
                             variant='outlined'
                         />
-                        <TextField
-                            id='password'
-                            placeholder='Password'
-                            variant='outlined'
-                        />
                         <Button
                             variant='contained'
                             className={style.confirmButton}
                         >
-                            Sign in
+                            Restore password
                         </Button>
-                        <Stack
-                            direction='row'
-                            spacing={2}
-                            justifyContent='space-between'
-                        >
-                            <Link href='/signup'>
-                                <MUILink className={style.helpLink}>
-                                    Don't have an account?
-                                </MUILink>
-                            </Link>
-                            <Link href='/forgot-password'>
-                                <MUILink className={style.helpLink}>
-                                    Forgot your password?
-                                </MUILink>
-                            </Link>
-                        </Stack>
+                        <Link href='/signin'>
+                            <MUILink className={style.forgotPassword}>
+                                ← Retun to Sign in
+                            </MUILink>
+                        </Link>
                     </Stack>
                 </form>
             </div>

@@ -2,8 +2,8 @@ import {
     Avatar,
     Button,
     Input,
-    Link as MUILink,
     TextField,
+    Link as MUILink,
 } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';
@@ -33,7 +33,7 @@ const SignIn: React.FC = () => {
                     src='/static/images/pre-logo.png'
                     alt='logo'
                 />
-                <h2>Sign in</h2>
+                <h2>Create your account for free!</h2>
                 <form action='submit'>
                     <Stack direction='column' spacing={2}>
                         <TextField
@@ -41,33 +41,47 @@ const SignIn: React.FC = () => {
                             placeholder='Email'
                             variant='outlined'
                         />
+                        <Stack direction='row' spacing={2}>
+                            <TextField
+                                className={cn(style.input, style.nameInput)}
+                                id='name'
+                                placeholder='First Name'
+                                variant='outlined'
+                            />
+                            <TextField
+                                className={cn(style.input, style.nameInput)}
+                                id='lastName'
+                                placeholder='Last Name'
+                                variant='outlined'
+                            />
+                        </Stack>
+                        <TextField
+                            id='dateOfBirth'
+                            placeholder='Date of Birth'
+                            type='date'
+                            variant='outlined'
+                        />
                         <TextField
                             id='password'
                             placeholder='Password'
+                            variant='outlined'
+                        />
+                        <TextField
+                            id='confirmPassword'
+                            placeholder='Confirm password'
                             variant='outlined'
                         />
                         <Button
                             variant='contained'
                             className={style.confirmButton}
                         >
-                            Sign in
+                            Register
                         </Button>
-                        <Stack
-                            direction='row'
-                            spacing={2}
-                            justifyContent='space-between'
-                        >
-                            <Link href='/signup'>
-                                <MUILink className={style.helpLink}>
-                                    Don't have an account?
-                                </MUILink>
-                            </Link>
-                            <Link href='/forgot-password'>
-                                <MUILink className={style.helpLink}>
-                                    Forgot your password?
-                                </MUILink>
-                            </Link>
-                        </Stack>
+                        <Link href='/signin'>
+                            <MUILink className={style.helpLink}>
+                                Already have an account
+                            </MUILink>
+                        </Link>
                     </Stack>
                 </form>
             </div>
