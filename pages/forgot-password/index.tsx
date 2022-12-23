@@ -1,18 +1,11 @@
-import {
-    Avatar,
-    Button,
-    Input,
-    Link as MUILink,
-    TextField,
-} from '@mui/material';
+import { Button, Link as MUILink, TextField } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';
 import style from '../../styles/SignIn.module.css';
-import cn from 'classnames';
-import Link from 'next/link';
 import { LinkBehaviour } from '../../src/Components/Common/LinkBehaviour';
 import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
+import LoginLayout from '../../src/Components/Layouts/Login';
 
 type IForm = {
     email: string;
@@ -39,13 +32,8 @@ const SignIn: React.FC = () => {
     });
 
     return (
-        <div className={style.loginWrapper}>
-            <div className={style.loginInner}>
-                <Avatar
-                    sx={{ width: 120, height: 120 }}
-                    src='/static/images/pre-logo.png'
-                    alt='logo'
-                />
+        <LoginLayout>
+            <>
                 <h2>
                     Enter email <br />
                     to recover password
@@ -77,14 +65,8 @@ const SignIn: React.FC = () => {
                         </MUILink>
                     </Stack>
                 </form>
-            </div>
-            <svg viewBox='0 0 500 250' preserveAspectRatio='xMinYMin meet'>
-                <path
-                    d='M0,100 C150,200 350,0 500,100 L500,00 L0,0 Z'
-                    style={{ stroke: 'none', fill: '#87a9ff' }}
-                ></path>
-            </svg>
-        </div>
+            </>
+        </LoginLayout>
     );
 };
 

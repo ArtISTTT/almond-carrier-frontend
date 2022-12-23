@@ -1,6 +1,6 @@
 import styles from '../styles/WelcomePage.module.css';
 import { Button, TextField, Container } from '@mui/material';
-import Layout from '../src/Components/Layout';
+import Layout from '../src/Components/Layouts/Welcome';
 
 export default function Welcome() {
     return (
