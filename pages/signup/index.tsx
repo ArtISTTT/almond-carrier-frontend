@@ -65,6 +65,8 @@ const SignIn: React.FC = () => {
                                 variant='outlined'
                                 value={formik.values.firstName}
                                 onChange={formik.handleChange}
+                                error={formik.errors.firstName !== undefined}
+                                helperText={formik.errors.firstName}
                             />
                             <TextField
                                 className={cn(style.input, style.nameInput)}
@@ -74,6 +76,8 @@ const SignIn: React.FC = () => {
                                 variant='outlined'
                                 value={formik.values.lastName}
                                 onChange={formik.handleChange}
+                                error={formik.errors.lastName !== undefined}
+                                helperText={formik.errors.lastName}
                             />
                         </Stack>
                         <TextField
@@ -84,22 +88,29 @@ const SignIn: React.FC = () => {
                             variant='outlined'
                             value={formik.values.dateOfBirth}
                             onChange={formik.handleChange}
+                            error={formik.errors.dateOfBirth !== undefined}
                         />
                         <TextField
                             id='password'
                             name='password'
+                            type='password'
                             placeholder='Password'
                             variant='outlined'
                             value={formik.values.password}
                             onChange={formik.handleChange}
+                            error={formik.errors.password !== undefined}
+                            helperText={formik.errors.password}
                         />
                         <TextField
                             id='confirmPassword'
                             name='confirmPassword'
+                            type='password'
                             placeholder='Confirm password'
                             variant='outlined'
                             value={formik.values.confirmPassword}
                             onChange={formik.handleChange}
+                            error={formik.errors.confirmPassword !== undefined}
+                            helperText={formik.errors.confirmPassword}
                         />
                         <Button
                             variant='contained'
