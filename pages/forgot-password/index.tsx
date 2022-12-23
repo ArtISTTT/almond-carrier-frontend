@@ -6,6 +6,7 @@ import { LinkBehaviour } from '../../src/Components/Common/LinkBehaviour';
 import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import LoginLayout from '../../src/Components/Layouts/Login';
+import { ForgotPasswordSchema } from '../../src/schemas/ForgotPasswordSchema';
 
 type IForm = {
     email: string;
@@ -29,6 +30,9 @@ const SignIn: React.FC = () => {
             dateOfBirth: new Date(),
         },
         onSubmit: handleSignUp,
+        validationSchema: ForgotPasswordSchema,
+        validateOnBlur: false,
+        validateOnChange: false,
     });
 
     return (
@@ -47,6 +51,8 @@ const SignIn: React.FC = () => {
                             variant='outlined'
                             value={formik.values.email}
                             onChange={formik.handleChange}
+                            error={formik.errors.email !== undefined}
+                            helperText={formik.errors.email}
                         />
                         <Button
                             variant='contained'
