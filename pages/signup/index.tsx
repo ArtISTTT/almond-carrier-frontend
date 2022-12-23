@@ -30,6 +30,7 @@ const SignIn: React.FC = () => {
 
     const handleSignUp = (form: IForm) => {
         console.log(form);
+        router.push('/thanks-for-registration');
     };
 
     const formik = useFormik({
