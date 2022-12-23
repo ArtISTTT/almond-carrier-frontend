@@ -3,6 +3,7 @@ import { Button, TextField, Container } from '@mui/material';
 import Layout from '../src/Components/Layouts/Welcome';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
+import { EmailSchema } from '../src/schemas/EmailSchema';
 
 type IForm = {
     email: string;
@@ -23,6 +24,9 @@ export default function Welcome() {
             email: '',
         },
         onSubmit: handleSubmit,
+        validationSchema: EmailSchema,
+        validateOnBlur: false,
+        validateOnChange: false,
     });
 
     return (
@@ -43,6 +47,8 @@ export default function Welcome() {
                             className={styles.emailInput}
                             value={formik.values.email}
                             onChange={formik.handleChange}
+                            error={formik.errors.email !== undefined}
+                            helperText={formik.errors.email}
                         />
                         <Button
                             type='submit'

@@ -6,7 +6,7 @@ import { LinkBehaviour } from '../../src/Components/Common/LinkBehaviour';
 import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import LoginLayout from '../../src/Components/Layouts/Login';
-import { ForgotPasswordSchema } from '../../src/schemas/ForgotPasswordSchema';
+import { EmailSchema } from '../../src/schemas/EmailSchema';
 
 type IForm = {
     email: string;
@@ -30,7 +30,7 @@ const SignIn: React.FC = () => {
             dateOfBirth: new Date(),
         },
         onSubmit: handleSignUp,
-        validationSchema: ForgotPasswordSchema,
+        validationSchema: EmailSchema,
         validateOnBlur: false,
         validateOnChange: false,
     });
