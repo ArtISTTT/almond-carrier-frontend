@@ -21,6 +21,13 @@ type IForm = {
 const SignIn: React.FC = () => {
     const router = useRouter();
 
+    React.useEffect(() => {
+        if (!router.isReady) return;
+
+        typeof router.query.email === 'string' &&
+            formik.setValues({ ...formik.values, email: router.query.email });
+    }, [router.isReady]);
+
     const handleSignUp = (form: IForm) => {
         console.log(form);
     };
