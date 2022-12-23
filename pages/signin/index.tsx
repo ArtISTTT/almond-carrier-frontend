@@ -10,20 +10,31 @@ import React from 'react';
 import style from '../../styles/SignIn.module.css';
 import cn from 'classnames';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useFormik } from 'formik';
+import { LinkBehaviour } from '../../src/Components/Common/LinkBehaviour';
 
 type IForm = {
     email: string;
     password: string;
-    confirmPasswrod: string;
-    name: string;
-    lastName: string;
-    dateOfBirth: Date;
 };
 
 const SignIn: React.FC = () => {
+    const router = useRouter();
+
     const handleSignIn = (form: IForm) => {
         console.log(form);
+        formik.isSubmitting = false;
+        // router.push('/carrier/main');
     };
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        onSubmit: handleSignIn,
+    });
 
     return (
         <div className={style.loginWrapper}>
@@ -34,21 +45,31 @@ const SignIn: React.FC = () => {
                     alt='logo'
                 />
                 <h2>Sign in</h2>
-                <form action='submit'>
+                <form action='submit' onSubmit={formik.handleSubmit}>
                     <Stack direction='column' spacing={2}>
                         <TextField
                             id='email'
+                            name='email'
+                            type='email'
                             placeholder='Email'
                             variant='outlined'
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
                         />
                         <TextField
                             id='password'
+                            name='password'
+                            type='password'
                             placeholder='Password'
                             variant='outlined'
+                            value={formik.values.password}
+                            onChange={formik.handleChange}
                         />
                         <Button
                             variant='contained'
                             className={style.confirmButton}
+                            type='submit'
+                            disabled={formik.isSubmitting}
                         >
                             Sign in
                         </Button>
@@ -57,16 +78,20 @@ const SignIn: React.FC = () => {
                             spacing={2}
                             justifyContent='space-between'
                         >
-                            <Link href='/signup'>
-                                <MUILink className={style.helpLink}>
-                                    Don't have an account?
-                                </MUILink>
-                            </Link>
-                            <Link href='/forgot-password'>
-                                <MUILink className={style.helpLink}>
-                                    Forgot your password?
-                                </MUILink>
-                            </Link>
+                            <MUILink
+                                className={style.helpLink}
+                                href='/signup'
+                                component={LinkBehaviour}
+                            >
+                                Don't have an account?
+                            </MUILink>
+                            <MUILink
+                                className={style.helpLink}
+                                href='/forgot-password'
+                                component={LinkBehaviour}
+                            >
+                                Forgot your password?
+                            </MUILink>
                         </Stack>
                     </Stack>
                 </form>
