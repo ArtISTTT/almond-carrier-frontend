@@ -10,20 +10,33 @@ import React from 'react';
 import style from '../../styles/SignIn.module.css';
 import cn from 'classnames';
 import Link from 'next/link';
+import { LinkBehaviour } from '../../src/Components/Common/LinkBehaviour';
+import { useRouter } from 'next/router';
+import { useFormik } from 'formik';
 
 type IForm = {
     email: string;
-    password: string;
-    confirmPasswrod: string;
-    name: string;
-    lastName: string;
-    dateOfBirth: Date;
 };
 
 const SignIn: React.FC = () => {
-    const handleSignIn = (form: IForm) => {
+    const router = useRouter();
+
+    const handleSignUp = (form: IForm) => {
         console.log(form);
+        router.push('/carrier/main');
     };
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+            confirmPasswrod: '',
+            name: '',
+            lastName: '',
+            dateOfBirth: new Date(),
+        },
+        onSubmit: handleSignUp,
+    });
 
     return (
         <div className={style.loginWrapper}>
@@ -41,20 +54,27 @@ const SignIn: React.FC = () => {
                     <Stack direction='column' spacing={2}>
                         <TextField
                             id='email'
+                            name='email'
                             placeholder='Email'
                             variant='outlined'
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
                         />
                         <Button
                             variant='contained'
                             className={style.confirmButton}
+                            type='submit'
+                            disabled={formik.isSubmitting}
                         >
                             Restore password
                         </Button>
-                        <Link href='/signin'>
-                            <MUILink className={style.forgotPassword}>
-                                ← Retun to Sign in
-                            </MUILink>
-                        </Link>
+                        <MUILink
+                            className={style.helpLink}
+                            href='/signin'
+                            component={LinkBehaviour}
+                        >
+                            ← Retun to Sign in
+                        </MUILink>
                     </Stack>
                 </form>
             </div>
