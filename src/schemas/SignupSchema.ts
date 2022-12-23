@@ -15,7 +15,6 @@ export const SignupSchema = Yup.object().shape({
         .matches(/[0-9]/, 'Password requires a number')
         .matches(/[a-z]/, 'Password requires a lowercase letter')
         .matches(/[A-Z]/, 'Password requires an uppercase letter')
-        .matches(/[^\w]/, 'Password requires a symbol')
         .required('Required'),
     confitmPassword: Yup.string().oneOf(
         [Yup.ref('password'), null],
