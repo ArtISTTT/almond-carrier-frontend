@@ -7,12 +7,13 @@ import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import { LinkBehaviour } from '../../src/Components/Common/LinkBehaviour';
 import LoginLayout from '../../src/Components/Layouts/Login';
+import { SignupSchema } from '../../src/schemas/SignupSchema';
 
 type IForm = {
     email: string;
     password: string;
-    confirmPasswrod: string;
-    name: string;
+    confirmPassword: string;
+    firstName: string;
     lastName: string;
     dateOfBirth: Date;
 };
@@ -22,26 +23,28 @@ const SignIn: React.FC = () => {
 
     const handleSignUp = (form: IForm) => {
         console.log(form);
-        router.push('/carrier/main');
     };
 
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
-            confirmPasswrod: '',
-            name: '',
+            confirmPassword: '',
+            firstName: '',
             lastName: '',
             dateOfBirth: new Date(),
         },
         onSubmit: handleSignUp,
+        validationSchema: SignupSchema,
+        validateOnBlur: false,
+        validateOnChange: false,
     });
 
     return (
         <LoginLayout>
             <>
                 <h2>Create your account for free!</h2>
-                <form action='submit'>
+                <form onSubmit={formik.handleSubmit}>
                     <Stack direction='column' spacing={2}>
                         <TextField
                             id='email'
@@ -50,15 +53,17 @@ const SignIn: React.FC = () => {
                             variant='outlined'
                             value={formik.values.email}
                             onChange={formik.handleChange}
+                            error={formik.errors.email !== undefined}
+                            helperText={formik.errors.email}
                         />
                         <Stack direction='row' spacing={2}>
                             <TextField
                                 className={cn(style.input, style.nameInput)}
-                                id='name'
-                                name='name'
+                                id='firstName'
+                                name='firstName'
                                 placeholder='First Name'
                                 variant='outlined'
-                                value={formik.values.name}
+                                value={formik.values.firstName}
                                 onChange={formik.handleChange}
                             />
                             <TextField
@@ -93,7 +98,7 @@ const SignIn: React.FC = () => {
                             name='confirmPassword'
                             placeholder='Confirm password'
                             variant='outlined'
-                            value={formik.values.confirmPasswrod}
+                            value={formik.values.confirmPassword}
                             onChange={formik.handleChange}
                         />
                         <Button

@@ -38,7 +38,7 @@ const SignIn: React.FC = () => {
                     Enter email <br />
                     to recover password
                 </h2>
-                <form action='submit'>
+                <form onSubmit={formik.handleSubmit}>
                     <Stack direction='column' spacing={2}>
                         <TextField
                             id='email'

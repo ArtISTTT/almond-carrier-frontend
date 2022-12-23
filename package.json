@@ -29,7 +29,8 @@
     "redux": "^4.2.0",
     "redux-saga": "^1.2.2",
     "reselect": "^4.1.7",
-    "typescript": "4.9.4"
+    "typescript": "4.9.4",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.47.0",

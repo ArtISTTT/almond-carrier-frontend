@@ -33,7 +33,7 @@ const SignIn: React.FC = () => {
         <LoginLayout>
             <>
                 <h2>Sign in</h2>
-                <form action='submit' onSubmit={formik.handleSubmit}>
+                <form onSubmit={formik.handleSubmit}>
                     <Stack direction='column' spacing={2}>
                         <TextField
                             id='email'
