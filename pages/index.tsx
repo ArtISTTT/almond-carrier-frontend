@@ -1,9 +1,9 @@
-import styles from '../styles/WelcomePage.module.css';
 import { Button, TextField, Container } from '@mui/material';
 import Layout from '../src/Components/Layouts/Welcome';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import { EmailSchema } from '../src/schemas/EmailSchema';
+import styles from '../styles/WelcomePage.module.css';
 
 type IForm = {
     email: string;
@@ -54,7 +54,7 @@ export default function Welcome() {
                             type='submit'
                             color='primary'
                             disabled={formik.isSubmitting}
-                            className={styles.button}
+                            className={styles.submitButton}
                             variant='contained'
                         >
                             Register Now

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Avatar, Container, Button } from '@mui/material';
-import styles from '/styles/Header.module.css';
+import styles from '../../styles/Header.module.css';
 
 const Header = () => {
     return (

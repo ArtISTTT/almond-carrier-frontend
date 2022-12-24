@@ -1,13 +1,14 @@
 import { Button, TextField, Link as MUILink } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';
-import style from '../../styles/SignIn.module.css';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import { LinkBehaviour } from '../../src/Components/Common/LinkBehaviour';
 import LoginLayout from '../../src/Components/Layouts/Login';
 import { SignupSchema } from '../../src/schemas/SignupSchema';
+
+import style from '../../styles/SignIn.module.css';
 
 type IForm = {
     email: string;

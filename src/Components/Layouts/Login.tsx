@@ -1,8 +1,6 @@
 import { Avatar } from '@mui/material';
 import React from 'react';
 import style from '../../../styles/SignIn.module.css';
-import { useRouter } from 'next/router';
-import { useFormik } from 'formik';
 
 type IForm = {
     email: string;
