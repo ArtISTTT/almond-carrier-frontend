@@ -1,41 +1,49 @@
 .content {
     width: 100%;
     height: 700px;
-    background: url(/static/images/mainPage/background.jpg) no-repeat center
-        center fixed;
+    background: url(/static/images/mainPage/background2.png) no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
+    color: #6690fd;
 }
 
-.name {
-    font-weight: 600;
+.title {
+    font-weight: 500;
     font-size: 80px;
     line-height: 80px;
     text-align: center;
     letter-spacing: 0.4px;
     text-transform: uppercase;
-    margin-bottom: 70px;
 }
 
-.description {
-    font-size: 46px;
-    line-height: 60px;
+.description2 {
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 80px;
+    margin-top: 76px;
     text-align: center;
-    letter-spacing: 0.4px;
-    margin-bottom: 98px;
+    letter-spacing: 0.15px;
+}
+
+.fastSignUp {
+    margin-top: 140px;
+}
+
+.emailInput {
+    background-color: #6690fd;
+    color: #ffffff;
+    border-radius: 5px;
 }
 
 .button {
-    margin-left: 40px;
-    padding: 0 22px;
+    margin-left: 94px;
+    padding: 15 22px;
     height: 48px;
 }
 
@@ -61,6 +69,24 @@
     border-color: #ffffff;
 }
 
+.infoWrapper {
+    background: linear-gradient(180deg, #6690fd 0%, #ffffff 100%);
+    transform: rotate(-180deg);
+    height: 1215px;
+    color: #6690fd;
+}
+
+.roleBlock {
+    /* margin-top: 400px; */
+}
+
+.roleTitle {
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 50px;
+    letter-spacing: 0.4px;
+}
+
 .whiteBlockTitle {
     text-align: center;
     margin-top: 60px;
@@ -68,20 +94,20 @@
     font-size: 60px;
     line-height: 50px;
     letter-spacing: 0.4px;
-    color: #6690FD;
+    color: #6690fd;
 }
- 
+
 .whiteBlockInfo {
     margin-top: 60px;
     display: flex;
     column-gap: 30px;
-   /* column-gap: 20px; */
+    /* column-gap: 20px; */
 }
 
 .whiteBlockInfo > img {
     width: 50%;
 }
- 
+
 .whiteBlockInfo > div {
     display: flex;
     flex-direction: column;
@@ -93,10 +119,9 @@
     font-size: 50px;
     /* line-height: 50px; */
     letter-spacing: 0.4px;
-    color: #6690FD;
-  
+    color: #6690fd;
 }
- 
+
 .whiteBlockInfo > div > div {
     margin-top: 11px;
     /* font-weight: 300; */
@@ -106,7 +131,7 @@
     /* letter-spacing: 0.4px; */
     color: #000000;
 }
- 
+
 .whiteBlockInfo > div > Button {
     text-transform: uppercase;
     font-weight: 500;
@@ -118,8 +143,9 @@
     color: #ffffff;
     margin-top: 100px;
     padding: 11px 22px;
-    background-color: #6690FD;
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+    background-color: #6690fd;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
     border-radius: 20px;
 }
 
@@ -128,7 +154,7 @@
 } */
 
 .blueBlock {
-    background-color: #6690FD;
+    background-color: #6690fd;
     margin-top: 60px;
     color: #ffffff;
 }
@@ -193,7 +219,6 @@
     color: #000000;
 }
 
-
 .content_secondText > div {
     margin-top: 55px;
     margin-bottom: 40px;
@@ -204,4 +229,3 @@
     letter-spacing: 0.6px;
     color: #000000;
 }
-

@@ -54,6 +54,7 @@ const ReceiverPage: React.FC = () => {
     const columns: GridColDef[] = [
         {
             field: 'name',
+            headerAlign: 'center',
             headerName: 'Name',
             type: 'string',
             width: 250,
@@ -61,6 +62,7 @@ const ReceiverPage: React.FC = () => {
         },
         {
             field: 'departure',
+            headerAlign: 'center',
             headerName: 'Departure country',
             type: 'string',
             width: 180,
@@ -68,6 +70,7 @@ const ReceiverPage: React.FC = () => {
         },
         {
             field: 'arrival',
+            headerAlign: 'center',
             headerName: 'Arrival country',
             type: 'string',
             width: 180,
@@ -75,6 +78,7 @@ const ReceiverPage: React.FC = () => {
         },
         {
             field: 'weight',
+            headerAlign: 'center',
             // headerName: 'Permissible weight',
             headerName: 'Weight',
             type: 'number',
@@ -83,6 +87,7 @@ const ReceiverPage: React.FC = () => {
         },
         {
             field: 'date',
+            headerAlign: 'center',
             headerName: 'Departure date',
             type: 'date',
             width: 180,
@@ -90,6 +95,7 @@ const ReceiverPage: React.FC = () => {
         },
         {
             field: 'rating',
+            headerAlign: 'center',
             headerName: 'Rating',
             type: 'string',
             width: 180,
@@ -195,8 +201,7 @@ const ReceiverPage: React.FC = () => {
                                         srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
                                         alt=''
                                     />
-                                    {option.label} ({option.code}) +
-                                    {option.phone}
+                                    {option.label}
                                 </Box>
                             )}
                             renderInput={params => (
@@ -229,8 +234,7 @@ const ReceiverPage: React.FC = () => {
                                         srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
                                         alt=''
                                     />
-                                    {option.label} ({option.code}) +
-                                    {option.phone}
+                                    {option.label}
                                 </Box>
                             )}
                             renderInput={params => (
@@ -273,6 +277,13 @@ const ReceiverPage: React.FC = () => {
                 </div>
                 <div className={styles.table}>
                     <DataGrid
+                        sx={{
+                            '& .column': {
+                                display: 'flex',
+                                justifyContent: 'center',
+                            },
+                        }}
+                        getCellClassName={() => 'column'}
                         rows={rows}
                         columns={columns}
                         pageSize={10}

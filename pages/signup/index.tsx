@@ -8,6 +8,8 @@ import { useFormik } from 'formik';
 import { LinkBehaviour } from '../../src/Components/Common/LinkBehaviour';
 import LoginLayout from '../../src/Components/Layouts/Login';
 import { SignupSchema } from '../../src/schemas/SignupSchema';
+import { useAppDispatch } from '../../src/hooks';
+import { addUserData } from '../../src/redux/slices/userSlice';
 
 type IForm = {
     email: string;
@@ -20,16 +22,17 @@ type IForm = {
 
 const SignIn: React.FC = () => {
     const router = useRouter();
+    const dispatch = useAppDispatch();
 
     React.useEffect(() => {
         if (!router.isReady) return;
-
         typeof router.query.email === 'string' &&
             formik.setValues({ ...formik.values, email: router.query.email });
     }, [router.isReady]);
 
     const handleSignUp = (form: IForm) => {
         console.log(form);
+        dispatch(addUserData(form));
         router.push('/thanks-for-registration');
     };
 
