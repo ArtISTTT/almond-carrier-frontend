@@ -12,6 +12,7 @@ import {
 import React from 'react';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
 import styles from '../../../styles/CarierLayout.module.css';
+import { signOut } from '../../api/auth';
 
 const CarrierLayout: React.FC<{ children: React.ReactNode }> = ({
     children,
@@ -22,6 +23,16 @@ const CarrierLayout: React.FC<{ children: React.ReactNode }> = ({
     const handleToggle = () => setOpen(prevOpen => !prevOpen);
 
     const handleClose = () => setOpen(false);
+
+    const handleSignOut = async () => {
+        const data = await signOut();
+
+        if (data.ok) {
+            console.log('sign out');
+        } else {
+            console.log('Sign out error');
+        }
+    };
 
     const prevOpen = React.useRef(open);
 

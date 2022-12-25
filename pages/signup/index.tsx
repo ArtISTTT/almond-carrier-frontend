@@ -9,6 +9,7 @@ import LoginLayout from '../../src/Components/Layouts/Login';
 import { SignupSchema } from '../../src/schemas/SignupSchema';
 
 import style from '../../styles/SignIn.module.css';
+import { signUp } from '../../src/api/auth';
 
 type IForm = {
     email: string;
@@ -25,13 +26,17 @@ const SignIn: React.FC = () => {
     React.useEffect(() => {
         if (!router.isReady) return;
 
-        typeof router.query.email === 'string' &&
+        if (typeof router.query.email === 'string') {
             formik.setValues({ ...formik.values, email: router.query.email });
+        }
     }, [router.isReady]);
 
-    const handleSignUp = (form: IForm) => {
-        console.log(form);
-        router.push('/thanks-for-registration');
+    const handleSignUp = async (form: IForm) => {
+        const data = await signUp(form);
+
+        if (data.ok) {
+            router.push('/thanks-for-registration');
+        }
     };
 
     const formik = useFormik({

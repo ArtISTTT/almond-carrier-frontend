@@ -17,7 +17,6 @@ const SignIn: React.FC = () => {
     const router = useRouter();
 
     const handleSignUp = (form: IForm) => {
-        console.log(form);
         router.push('/carrier/main');
     };
 

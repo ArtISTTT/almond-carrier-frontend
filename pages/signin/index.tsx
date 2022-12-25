@@ -7,6 +7,7 @@ import { useFormik } from 'formik';
 import { LinkBehaviour } from '../../src/Components/Common/LinkBehaviour';
 import LoginLayout from '../../src/Components/Layouts/Login';
 import { SigninSchema } from '../../src/schemas/SigninSchema';
+import { signIn } from '../../src/api/auth';
 
 type IForm = {
     email: string;
@@ -16,10 +17,12 @@ type IForm = {
 const SignIn: React.FC = () => {
     const router = useRouter();
 
-    const handleSignIn = (form: IForm) => {
-        console.log(form);
-        formik.isSubmitting = false;
-        // router.push('/carrier/main');
+    const handleSignIn = async (form: IForm) => {
+        const data = await signIn(form);
+
+        if (data.ok) {
+            router.push('/carrier');
+        }
     };
 
     const formik = useFormik({
