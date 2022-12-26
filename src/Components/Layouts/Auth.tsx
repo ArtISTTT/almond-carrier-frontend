@@ -13,7 +13,6 @@ const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         getCurrentUser().then(data => {
             if (data.ok && data.user) {
                 dispath(addUserData(data.user));
-                router.push('/carrier');
             } else {
                 router.push('/');
             }
