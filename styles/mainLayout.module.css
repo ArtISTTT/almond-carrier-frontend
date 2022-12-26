@@ -1,0 +1,44 @@
+.header {
+    display: flex;
+    height: 80px;
+    justify-content: space-between;
+    background-color: #ffffff;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    -webkit-box-shadow: 0px 4px 5px -6px rgba(34, 60, 80, 0.6);
+    -moz-box-shadow: 0px 4px 5px -6px rgba(34, 60, 80, 0.6);
+    box-shadow: 0px 4px 5px -6px rgba(34, 60, 80, 0.6);
+}
+
+.leftMenu {
+    display: flex;
+    align-items: center;
+    margin-left: 24px;
+}
+
+.rightMenu {
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+}
+
+.link {
+    color: var(--cTextPrimary);
+    margin: 0px 8px;
+}
+
+.link:first-child {
+    margin-left: 16px;
+}
+
+.button {
+    border-radius: 20px;
+    margin: 0 10px;
+    padding: 6px 16px;
+    font-weight: 600;
+}
+
+.button:last-child {
+    margin-right: 20px;
+}

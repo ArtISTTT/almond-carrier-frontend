@@ -30,7 +30,7 @@ export default function Welcome() {
     });
 
     return (
-        <Layout>
+        <>
             <div className={styles.banner}>
                 <div className={styles.title}>Friendly Carrier</div>
                 <div className={styles.description}>
@@ -174,6 +174,6 @@ export default function Welcome() {
                     </div>
                 </div>
             </div>
-        </Layout>
+        </>
     );
 }
