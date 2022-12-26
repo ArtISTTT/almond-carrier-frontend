@@ -1,0 +1,127 @@
+.thanksForRegistrationWrapper {
+    min-height: 100vh;
+    width: 100%;
+    color: #6690fd;
+    background-repeat: no-repeat no-repeat no-repeat;
+    background-size: cover;
+    background-image: url('/static/images/thanks-for-registration/background.jpg');
+}
+
+.thanksForRegistrationWrapper::before {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+    width: 650px;
+    height: 650px;
+    background-image: url(/static/images/thanks-for-registration/thanks_photo.png);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: contain;
+}
+
+.selectWrapper > h3 {
+    /* margin-top: 35px; */
+    padding-top: 35px;
+    margin-left: 40px;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 75px;
+}
+
+.selectBlock {
+    color: #ffffff;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.selectCarrier {
+    width: 540px;
+    height: 306px;
+    display: flex;
+    flex-direction: column;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('/static/images/thanks-for-registration/carrier-background.png');
+}
+
+.selectCarrier > h3 {
+    font-weight: 600;
+    text-align: center;
+    font-size: 32px;
+    line-height: 30px;
+    margin-top: 45px;
+}
+
+.selectCarrier > span {
+    font-style: normal;
+    width: 460px;
+    margin: 0 auto;
+    margin-top: 25px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+}
+
+.selectCarrier > Button {
+    width: fit-content;
+    margin: 0 auto;
+    letter-spacing: 0.4px;
+    background-color: #ffffff;
+    color: #6690fd;
+    margin-top: 45px;
+    padding: 4px 43px;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+    border-radius: 15px;
+}
+
+.selectCarrier > Button:hover {
+    background-color: #d8dff2;
+}
+
+.selectReceiver {
+    margin-left: 405px;
+    margin-top: 30px;
+    width: 540px;
+    height: 306px;
+    display: flex;
+    flex-direction: column;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('/static/images/thanks-for-registration/receiver-background.png');
+}
+
+.selectReceiver > h3 {
+    font-weight: 600;
+    text-align: center;
+    font-size: 35px;
+    line-height: 30px;
+    margin-top: 60px;
+}
+
+.selectReceiver > span {
+    font-style: normal;
+    width: 450px;
+    margin: 0 auto;
+    margin-top: 25px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+}
+
+.selectReceiver > Button {
+    width: fit-content;
+    margin: 0 auto;
+    letter-spacing: 0.4px;
+    background-color: #ffffff;
+    color: #6690fd;
+    margin-top: 45px;
+    padding: 4px 43px;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+    border-radius: 15px;
+}
+
+.selectReceiver > Button:hover {
+    background-color: #d8dff2;
+}

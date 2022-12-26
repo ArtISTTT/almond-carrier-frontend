@@ -10,7 +10,6 @@
     "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx,json}"
   },
   "dependencies": {
-    "@date-io/date-fns": "^2.16.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@material-ui/pickers": "^3.3.10",

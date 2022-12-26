@@ -9,16 +9,7 @@ interface IUserData {
     confirmPassword?: string;
 }
 
-interface initialState {
-    email: string;
-    dateOfBirth: Date | null;
-    firstName: string;
-    lastName: string;
-    password: string;
-    confirmPassword?: string;
-}
-
-const initialState: initialState = {
+const initialState: IUserData = {
     email: '',
     dateOfBirth: null,
     firstName: '',

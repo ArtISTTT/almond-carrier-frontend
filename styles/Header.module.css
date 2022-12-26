@@ -1,6 +1,7 @@
 .wrapper {
     height: 100px;
     display: flex;
+    background-color: #ffffff;
 }
 
 .content {
