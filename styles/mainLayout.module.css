@@ -42,3 +42,65 @@
 .button:last-child {
     margin-right: 20px;
 }
+
+.footer {
+    background-color: #ffffff;
+    display: flex;
+    height: 358px;
+    justify-content: space-between;
+    color: #000000;
+}
+
+.leftBlock {
+    margin-top: 15px;
+    margin-left: 30px;
+}
+
+.leftBlock > div {
+    margin-bottom: 20px;
+}
+
+.centerBlock {
+    margin: auto 0;
+    display: flex;
+}
+
+.centerColumn {
+    display: flex;
+    flex-flow: column;
+    margin: 0 100px;
+}
+
+.centerLink {
+    color: #000000;
+    text-decoration: none;
+    margin-top: 15px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: justify;
+    letter-spacing: 0.4px;
+}
+
+.columnTitle {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 26px;
+    text-align: justify;
+    letter-spacing: 0.4px;
+}
+
+.rightBlock {
+    margin-top: auto;
+}
+
+.rightBlock > img {
+    margin: 15px;
+    margin-bottom: 30px;
+    width: 25px;
+    height: 30px;
+}
+
+.rightBlock > img:last-child {
+    margin-right: 30px;
+}
