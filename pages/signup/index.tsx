@@ -10,6 +10,8 @@ import { SignupSchema } from '../../src/schemas/SignupSchema';
 
 import style from '../../styles/SignIn.module.css';
 import { signUp } from '../../src/api/auth';
+import { addUserData } from '../../src/redux/slices/userSlice';
+import { useAppDispatch } from '../../src/redux/hooks';
 
 type IForm = {
     email: string;
@@ -22,6 +24,7 @@ type IForm = {
 
 const SignIn: React.FC = () => {
     const router = useRouter();
+    const dispatch = useAppDispatch();
 
     React.useEffect(() => {
         if (!router.isReady) return;
@@ -34,7 +37,8 @@ const SignIn: React.FC = () => {
     const handleSignUp = async (form: IForm) => {
         const data = await signUp(form);
 
-        if (data.ok) {
+        if (data.ok && data.user) {
+            dispatch(addUserData(data.user));
             router.push('/thanks-for-registration');
         }
     };

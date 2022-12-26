@@ -13,11 +13,17 @@ import React from 'react';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
 import styles from '../../../styles/CarierLayout.module.css';
 import { signOut } from '../../api/auth';
+import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../redux/hooks';
+import { selectUser } from '../../redux/selectors/user';
+import { useRouter } from 'next/router';
 
 const CarrierLayout: React.FC<{ children: React.ReactNode }> = ({
     children,
 }) => {
     const [open, setOpen] = React.useState(false);
+    const router = useRouter();
+    const user = useAppSelector(selectUser);
     const anchorRef = React.useRef(null);
 
     const handleToggle = () => setOpen(prevOpen => !prevOpen);
@@ -29,6 +35,7 @@ const CarrierLayout: React.FC<{ children: React.ReactNode }> = ({
 
         if (data.ok) {
             console.log('sign out');
+            router.push('/signin');
         } else {
             console.log('Sign out error');
         }
@@ -82,7 +89,7 @@ const CarrierLayout: React.FC<{ children: React.ReactNode }> = ({
                         onClick={handleToggle}
                         className={styles.userName}
                     >
-                        Person Name
+                        {user.firstName} {user.lastName}
                     </div>
                     <Avatar
                         className={styles.userAvatar}
@@ -125,10 +132,11 @@ const CarrierLayout: React.FC<{ children: React.ReactNode }> = ({
                                                     className={styles.emailItem}
                                                     onClick={handleClose}
                                                 >
-                                                    <span>Person name</span>
-                                                    <div>
-                                                        nspmSoul16@gmail.com
-                                                    </div>
+                                                    <span>
+                                                        {user.firstName}{' '}
+                                                        {user.lastName}
+                                                    </span>
+                                                    <div>{user.email}</div>
                                                 </MenuItem>
                                                 <MenuItem
                                                     className={
@@ -148,7 +156,7 @@ const CarrierLayout: React.FC<{ children: React.ReactNode }> = ({
                                                     className={
                                                         styles.logoutItem
                                                     }
-                                                    onClick={handleClose}
+                                                    onClick={handleSignOut}
                                                 >
                                                     Log out
                                                 </MenuItem>

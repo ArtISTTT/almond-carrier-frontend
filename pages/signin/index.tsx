@@ -8,6 +8,8 @@ import { LinkBehaviour } from '../../src/Components/Common/LinkBehaviour';
 import LoginLayout from '../../src/Components/Layouts/Login';
 import { SigninSchema } from '../../src/schemas/SigninSchema';
 import { signIn } from '../../src/api/auth';
+import { useAppDispatch } from '../../src/redux/hooks';
+import { addUserData } from '../../src/redux/slices/userSlice';
 
 type IForm = {
     email: string;
@@ -16,11 +18,13 @@ type IForm = {
 
 const SignIn: React.FC = () => {
     const router = useRouter();
+    const dispatch = useAppDispatch();
 
     const handleSignIn = async (form: IForm) => {
         const data = await signIn(form);
 
-        if (data.ok) {
+        if (data.ok && data.user) {
+            dispatch(addUserData(data.user));
             router.push('/carrier');
         }
     };
