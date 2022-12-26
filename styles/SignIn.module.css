@@ -13,7 +13,6 @@
 .loginWrapper::before {
     position: absolute;
     content: '';
-
     bottom: 0;
     left: 0;
     width: 750px;
@@ -22,7 +21,6 @@
     background-image: url(/static/images/signin-image.png);
     background-repeat: no-repeat, no-repeat, no-repeat;
     background-size: contain;
-
     z-index: 1;
 }
 
@@ -83,70 +81,4 @@
     font-size: 14px;
 }
 
-.thanksForRegistrationWrapper {
-    min-height: 100vh;
-    width: 100%;
-    position: relative;
-    padding: 80px;
-    background-color: var(--cBg);
-}
 
-.thanksForRegistrationWrapper::before {
-    position: absolute;
-    content: '';
-    right: 0;
-    top: 0;
-    width: 576px;
-    height: 500px;
-
-    background-image: url(/static/images/thanks_page_bg.png);
-    background-repeat: no-repeat, no-repeat, no-repeat;
-    background-size: contain;
-}
-
-.selectWrapper {
-    z-index: 2;
-    position: relative;
-}
-
-.selectWrapper h2 {
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
-
-.selectWrapper > h3 {
-    text-transform: uppercase;
-    margin-bottom: 40px;
-    color: #ffffff;
-}
-
-.accountTypeCard {
-    max-width: 350px;
-    height: 330px;
-    margin-right: 40px;
-    padding: 20px;
-    background-color: #fafafa;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.accountTypeCard h3 {
-    margin-bottom: 12px;
-    color: var(--cTextPrimary);
-}
-
-.accountTypeCard span {
-    display: block;
-    font-weight: 300px;
-    font-size: 16;
-    line-height: 24px;
-    margin-bottom: 20px;
-    color: var(--cTextPrimary);
-}
-
-.thankYouButton {
-    border-radius: 15px;
-    margin-top: auto;
-}

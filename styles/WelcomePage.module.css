@@ -1,47 +1,55 @@
-.content {
+.banner {
     width: 100%;
     height: 700px;
-    background: url(/static/images/mainPage/background.jpg) no-repeat center
-        center fixed;
+    background: url(/static/images/main-page/background2.png) no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
+    color: #6690fd;
 }
 
-.name {
-    font-weight: 600;
+.title {
+    font-weight: 500;
     font-size: 80px;
     line-height: 80px;
     text-align: center;
     letter-spacing: 0.4px;
     text-transform: uppercase;
-    margin-bottom: 70px;
 }
 
 .description {
-    font-size: 46px;
+    font-weight: 400;
+    font-size: 35px;
     line-height: 60px;
+    margin-top: 100px;
     text-align: center;
-    letter-spacing: 0.4px;
-    margin-bottom: 98px;
+    letter-spacing: 0.15px;
 }
 
-.submitButton {
+.fastSignUp {
+    margin-top: 140px;
+}
+
+.emailInput {
+    color: #6690fd;
+    border-radius: 5px;
+}
+
+.button {
     margin-left: 40px;
-    padding: 0 22px;
+    padding: 23px 23px;
     height: 48px;
 }
 
 .emailInput > label {
     line-height: 20px;
-    color: #ffffff;
+    color: #6690fd;
 }
 
 .emailInput > div {
@@ -50,156 +58,170 @@
 }
 
 .emailInput > div:hover > fieldset {
-    border-color: #fafafa !important;
+    border-color: #6690fd !important;
 }
 
 .emailInput > div > input {
-    color: #ffffff;
+    color: #6690fd;
 }
 
 .emailInput > div > fieldset {
-    border-color: #ffffff;
+    border-color: #6690fd;
 }
 
-.whiteBlockTitle {
+.rolesWrapper {
+    background: linear-gradient(180deg, #ffffff 0%, #6690fd 100%);
+    width: 100%;
+
+    color: #000000;
+}
+
+.roleBlock {
     text-align: center;
-    margin-top: 60px;
+}
+
+.rolesTitle {
+    padding-top: 120px;
     font-weight: 600;
-    font-size: 60px;
+    font-size: 50px;
     line-height: 50px;
     letter-spacing: 0.4px;
     color: #6690fd;
 }
 
-.whiteBlockInfo {
-    margin-top: 60px;
+.possibleRoles {
     display: flex;
-    column-gap: 30px;
-    /* column-gap: 20px; */
-}
-
-.whiteBlockInfo > img {
-    width: 50%;
-}
-
-.whiteBlockInfo > div {
-    display: flex;
-    flex-direction: column;
-}
-
-.whiteBlockInfo > div > span {
-    font-weight: 400;
-    /* font-weight: 500; */
-    font-size: 50px;
-    /* line-height: 50px; */
-    letter-spacing: 0.4px;
-    color: #6690fd;
-}
-
-.whiteBlockInfo > div > div {
-    margin-top: 11px;
-    /* font-weight: 300; */
-    font-weight: 400;
-    font-size: 26px;
-    /* line-height: 50px; */
-    /* letter-spacing: 0.4px; */
-    color: #000000;
-}
-
-.whiteBlockInfo > div > Button {
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 26px;
-    letter-spacing: 0.46px;
-    width: fit-content;
-    margin: 0 auto;
-    color: #ffffff;
-    margin-top: 100px;
-    padding: 11px 22px;
-    background-color: #6690fd;
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-        0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
-    border-radius: 20px;
-}
-
-/* .whiteBlockInfo > div > Button:hover {
-    background-color: #6690FD;
-} */
-
-.blueBlock {
-    background-color: #6690fd;
     margin-top: 60px;
-    color: #ffffff;
+    justify-content: center;
 }
 
-.blueBlock_title {
-    padding-top: 60px;
-    font-weight: 600;
-    font-size: 60px;
-    /* line-height: 50px; */
-    letter-spacing: 0.4px;
+.role {
     text-align: center;
+    width: 500px;
 }
 
-.blueBlock_content {
+.role > img {
+    height: 450px;
+}
+
+.roleInfo {
+    color: #ffffff;
+}
+
+.roleTitle {
+    margin-top: 25px;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 50px;
+    text-align: center;
+    letter-spacing: 0.6px;
+}
+
+.roleDescription {
+    margin: 0 35px;
+    margin-top: 25px;
+    margin-bottom: 120px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: justify;
+    letter-spacing: 0.4px;
+}
+
+.roleLeft {
+    margin-left: 80px;
+}
+
+.roleRight {
+    margin-right: 40px;
+}
+
+.stepsWrapper {
+    background: #6690fd;
+}
+
+.stepsTitle {
+    padding-top: 40px;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 50px;
+    text-align: center;
+    letter-spacing: 0.6px;
+    color: #ffffff;
+    position: relative;
+    z-index: 2;
+}
+
+.stepsBlock {
+    width: 1150px;
+    margin: 0 auto;
     display: flex;
-    margin-top: 60px;
-    padding-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 40px;
 }
 
-.content_part {
+.stepOne {
+    width: 483px;
+    height: 400px;
+    margin-top: 50px;
+}
+
+.stepTwo {
+    margin-top: 360px;
+    width: 450px;
+}
+
+.stepThree {
+    width: 600px;
+}
+
+.advantagesBlock {
+    background: linear-gradient(180deg, #6690fd 0%, #ffffff 100%);
+}
+
+.advantagesTitle {
+    padding-top: 40px;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 50px;
+    text-align: center;
+    letter-spacing: 0.6px;
+    color: #ffffff;
+}
+
+.advantage {
     width: 33%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 10px;
 }
 
-.content_part > img {
+.advantage > img {
     width: 100%;
 }
 
-.content_firstText {
-    text-align: center;
-    margin-top: 40px;
+.advantages {
+    display: flex;
+    margin: 0 25px;
+    margin-top: 60px;
+    color: #6690fd;
+    padding-bottom: 120px;
 }
 
-.content_firstText > span {
-    font-weight: 400;
-    /* font-weight: 500; */
-    font-size: 42px;
-    letter-spacing: 0.6px;
+.advantageText {
+    margin: 0 20px;
 }
-
-.content_secondText {
-    text-align: center;
-    margin-bottom: 110px;
-}
-
-.content_secondText > span {
-    font-weight: 400;
-    /* font-weight: 500; */
-    font-size: 42px;
-    letter-spacing: 0.6px;
-}
-
-.content_firstText > div {
-    margin-top: 55px;
+.advantageTitle {
     font-weight: 500;
-    font-size: 28px;
-    line-height: 35px;
-    letter-spacing: 0.6px;
-    color: #000000;
-}
-
-.content_secondText > div {
-    margin-top: 55px;
-    margin-bottom: 40px;
-    font-weight: 500;
-    font-size: 28px;
-    line-height: 35px;
+    font-size: 40px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    line-height: 50px;
     text-align: center;
-    letter-spacing: 0.6px;
-    color: #000000;
+    letter-spacing: 0.4px;
+}
+<<<<<<< HEAD ======= .advantageDescription {
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 36px;
+    text-align: justify;
+    letter-spacing: 0.4px;
 }

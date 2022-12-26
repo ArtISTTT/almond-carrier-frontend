@@ -1,9 +1,9 @@
-import { Button, TextField, Container } from '@mui/material';
+import styles from '../styles/WelcomePage.module.css';
+import { Button, TextField } from '@mui/material';
 import Layout from '../src/Components/Layouts/Welcome';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import { EmailSchema } from '../src/schemas/EmailSchema';
-import styles from '../styles/WelcomePage.module.css';
 
 type IForm = {
     email: string;
@@ -31,19 +31,21 @@ export default function Welcome() {
 
     return (
         <Layout>
-            <div className={styles.content}>
-                <div className={styles.name}>Friendly Carrier</div>
+            <div className={styles.banner}>
+                <div className={styles.title}>Friendly Carrier</div>
                 <div className={styles.description}>
-                    We care about our clients.
-                    <br /> Reliability is our most important advantage
+                    Company that unites people all over the world. If you need
+                    anything what you don’t have in your country, just ask
+                    another person to carry it to you in our app
                 </div>
-                <div className={styles.email}>
+                <div className={styles.fastSignUp}>
                     <form onSubmit={formik.handleSubmit} action='submit'>
                         <TextField
                             id='email'
                             name='email'
                             variant='outlined'
                             color='primary'
+                            placeholder='Email'
                             className={styles.emailInput}
                             value={formik.values.email}
                             onChange={formik.handleChange}
@@ -62,142 +64,116 @@ export default function Welcome() {
                     </form>
                 </div>
             </div>
-
-            <Container maxWidth={false}>
-                <div className={styles.whiteBlockTitle}>Whom you can be</div>
-                <div className={styles.whiteBlockInfo}>
-                    <img
-                        src='/static/images/mainPage/first-whiteBlock-photo-first.png'
-                        alt='qwe'
-                    />
-                    <div>
-                        <span>Carrier</span>
-                        <div>
-                            You are planning to visit another country, then you
-                            can agree to the delivery of something or offer it,
-                            from where you are leaving, to the country where you
-                            are going.
+            <div className={styles.rolesWrapper}>
+                <div className={styles.roleBlock}>
+                    <div className={styles.rolesTitle}>Possible roles</div>
+                    <div className={styles.possibleRoles}>
+                        <div className={styles.role}>
+                            <img
+                                className={styles.roleLeft}
+                                src='/static/images/main-page/carrier.png'
+                                alt='man1'
+                            />
+                            <div className={styles.roleInfo}>
+                                <h3 className={styles.roleTitle}>Carrier</h3>
+                                <div className={styles.roleDescription}>
+                                    You want to visit another country, then you
+                                    can deliver what is needed, from where you
+                                    are leaving, to the country where you are
+                                    going. By completing orders you earn some
+                                    money.
+                                </div>
+                            </div>
                         </div>
-                        <Button variant='contained'>
-                            Register as a Carrier
-                        </Button>
+                        <div className={styles.role}>
+                            <img
+                                className={styles.roleRight}
+                                src='/static/images/main-page/receiver.png'
+                                alt='man2'
+                            />
+                            <div className={styles.roleInfo}>
+                                <h3 className={styles.roleTitle}>Receiver</h3>
+                                <div className={styles.roleDescription}>
+                                    You are in a country where you don't have
+                                    anything you need. Then you can request
+                                    something and wait for the carrier to
+                                    respond or respond to the carrier's offer
+                                    yourself.
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div className={styles.whiteBlockInfo}>
-                    <div>
-                        <span>Receiver</span>
-                        <div>
-                            You are in a country where you don't have anything
-                            you need. Then you can request something and wait
-                            for the carrier to respond or respond to the
-                            carrier's offer yourself.
-                        </div>
-                        <Button variant='contained'>
-                            Register as a Receiver
-                        </Button>
-                    </div>
+            </div>
+            <div className={styles.stepsWrapper}>
+                <div className={styles.stepsTitle}>How does it work</div>
+                <div className={styles.stepsBlock}>
                     <img
-                        src='/static/images/mainPage/first-whiteBlock-photo-second.png'
+                        className={styles.stepOne}
+                        src='/static/images/main-page/step-one.png'
+                        alt='qwe'
+                    />
+                    <img
+                        className={styles.stepTwo}
+                        src='/static/images/main-page/step-two.png'
+                        alt='qwe'
+                    />
+                    <img
+                        className={styles.stepThree}
+                        src='/static/images/main-page/step-three.png'
                         alt='qwe'
                     />
                 </div>
-            </Container>
-
-            <Container className={styles.blueBlock} maxWidth={false}>
-                <div className={styles.blueBlock_title}>Our advantages</div>
-                <div className={styles.blueBlock_content}>
-                    <div className={styles.content_part}>
+            </div>
+            <div className={styles.advantagesBlock}>
+                <div className={styles.advantagesTitle}>Our advantages</div>
+                <div className={styles.advantages}>
+                    <div className={styles.advantage}>
                         <img
-                            src='/static/images/mainPage/blueBlock-photo-first.png'
-                            alt='first'
+                            src='/static/images/main-page/advantage-one.png'
+                            alt=''
                         />
-                        <div className={styles.content_firstText}>
-                            <span>Reliability</span>
-                            <div>
+                        <div className={styles.advantageText}>
+                            <h3 className={styles.advantageTitle}>
+                                Reliability
+                            </h3>
+                            <span className={styles.advantageDescription}>
                                 Receiver gives us money, then we hold them until
                                 receiver doesn’t approve that he got goods.
-                                After that we send money to carrier.{' '}
-                            </div>
+                                After that we send money to carrier.
+                            </span>
                         </div>
                     </div>
-                    <div className={styles.content_part}>
-                        <div className={styles.content_secondText}>
-                            <span>Low commision</span>
-                            <div>
+                    <div className={styles.advantage}>
+                        <img
+                            src='/static/images/main-page/advantage-two.png'
+                            alt=''
+                        />
+                        <div className={styles.advantageText}>
+                            <h3 className={styles.advantageTitle}>Safety</h3>
+                            <span className={styles.advantageDescription}>
+                                All your data will be confident. Your money also
+                                will be safe.
+                            </span>
+                        </div>
+                    </div>
+                    <div className={styles.advantage}>
+                        <img
+                            src='/static/images/main-page/advantage-three.png'
+                            alt=''
+                        />
+                        <div className={styles.advantageText}>
+                            <h3 className={styles.advantageTitle}>
+                                Low commission
+                            </h3>
+                            <span className={styles.advantageDescription}>
                                 We charge a commission for what we found for
                                 your carrier/receiver, but the price will be low
-                            </div>
-                        </div>
-                        <img
-                            src='/static/images/mainPage/blueBlock-photo-second.png'
-                            alt='first'
-                        />
-                    </div>
-                    <div className={styles.content_part}>
-                        <img
-                            src='/static/images/mainPage/blueBlock-photo-third.png'
-                            alt='first'
-                        />
-                        <div className={styles.content_firstText}>
-                            <span>Safety</span>
-                            <div>
-                                All your data will be confident. Your money also
-                                will be safe.{' '}
-                            </div>
+                            </span>
                         </div>
                     </div>
                 </div>
-            </Container>
-
-            <Container maxWidth={false}>
-                <div className={styles.whiteBlockTitle}>How does it work</div>
-                <div className={styles.whiteBlockInfo}>
-                    <img
-                        src='/static/images/mainPage/second-whiteBlock-photo-first.png'
-                        alt='qwe'
-                    />
-                    <div>
-                        <span>1. Choose</span>
-                        <div>
-                            If you are a receiver, than you need to choose
-                            carrier, who will buy you a good you need. If you
-                            are a carrier, you need to choose a receiver you
-                            want to delivery a good.
-                        </div>
-                    </div>
-                </div>
-                <div className={styles.whiteBlockInfo}>
-                    <div>
-                        <span>2. Purchase</span>
-                        <div>
-                            Carrier points the price of good, then to the result
-                            sum added our commission and profit for carrier.
-                            Receiver pays the sum. We hold it on our servers.
-                            Carrier buys a good himself, after he sees that the
-                            sum in the cloud.
-                        </div>
-                    </div>
-                    <img
-                        src='/static/images/mainPage/second-whiteBlock-photo-second.png'
-                        alt='qwe'
-                    />
-                </div>
-                <div className={styles.whiteBlockInfo}>
-                    <img
-                        src='/static/images/mainPage/second-whiteBlock-photo-third.png'
-                        alt='qwe'
-                    />
-                    <div>
-                        <span>3. Receiving</span>
-                        <div>
-                            Carrier brings the good to the country where
-                            receiver lives. Then if receiver sees that the good
-                            is suitable for him, he proves it in the app, and
-                            carrier gets his money.
-                        </div>
-                    </div>
-                </div>
-            </Container>
+            </div>
         </Layout>
     );
 }
