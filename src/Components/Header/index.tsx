@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectIsAuthorized } from '../../redux/selectors/user';
 import HeaderAvatar from './Avatar';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -16,12 +17,22 @@ const Header: React.FC<IProps> = ({
     showContinueIfAuthorized,
     showSignInOutIfUnauthorized,
 }) => {
+    const router = useRouter();
     const isAuthorized = useSelector(selectIsAuthorized);
+
+    const changePageIfAuthorized = () => {
+        if (isAuthorized) {
+            router.push('/carrier');
+        } else {
+            router.push('/signin');
+        }
+    };
 
     return (
         <header className={styles.header}>
             <div className={styles.leftMenu}>
                 <Avatar
+                    onClick={changePageIfAuthorized}
                     sx={{ width: 55, height: 55 }}
                     alt='logo'
                     src='/static/images/logo.png'
