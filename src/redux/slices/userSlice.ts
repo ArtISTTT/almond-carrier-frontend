@@ -1,11 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUser } from '../../interfaces/user';
 
-const initialState: IUser = {
-    email: '',
-    dateOfBirth: new Date(),
-    firstName: '',
-    lastName: '',
+type IUserState = {
+    data: IUser | undefined;
+    isAuthorized: boolean;
+    initializeAuthChecked: boolean;
+};
+
+const initialState: IUserState = {
+    data: undefined,
+    isAuthorized: false,
+    initializeAuthChecked: false,
 };
 
 export const userSlice = createSlice({
@@ -13,13 +18,17 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         addUserData: (state, action: PayloadAction<IUser>) => {
-            state.email = action.payload.email;
-            state.firstName = action.payload.firstName;
-            state.lastName = action.payload.lastName;
-            state.dateOfBirth = new Date(action.payload.dateOfBirth);
+            state.data = action.payload;
+        },
+        setIsAuthorized: (state, action: PayloadAction<boolean>) => {
+            state.isAuthorized = action.payload;
+        },
+        setInitializeAuthChecked: (state, action: PayloadAction<boolean>) => {
+            state.initializeAuthChecked = action.payload;
         },
     },
 });
 
-export const { addUserData } = userSlice.actions;
+export const { addUserData, setIsAuthorized, setInitializeAuthChecked } =
+    userSlice.actions;
 export default userSlice.reducer;

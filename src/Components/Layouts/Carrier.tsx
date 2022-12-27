@@ -14,9 +14,10 @@ import { LinkBehaviour } from '../Common/LinkBehaviour';
 import styles from '../../../styles/CarierLayout.module.css';
 import { signOut } from '../../api/auth';
 import { useSelector } from 'react-redux';
-import { useAppSelector } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { selectUser } from '../../redux/selectors/user';
 import { useRouter } from 'next/router';
+import { setIsAuthorized } from '../../redux/slices/userSlice';
 
 const CarrierLayout: React.FC<{ children: React.ReactNode }> = ({
     children,
@@ -24,6 +25,7 @@ const CarrierLayout: React.FC<{ children: React.ReactNode }> = ({
     const [open, setOpen] = React.useState(false);
     const router = useRouter();
     const user = useAppSelector(selectUser);
+    const dispatch = useAppDispatch();
     const anchorRef = React.useRef(null);
 
     const handleToggle = () => setOpen(prevOpen => !prevOpen);
@@ -34,8 +36,7 @@ const CarrierLayout: React.FC<{ children: React.ReactNode }> = ({
         const data = await signOut();
 
         if (data.ok) {
-            console.log('sign out');
-            router.push('/signin');
+            dispatch(setIsAuthorized(false));
         } else {
             console.log('Sign out error');
         }

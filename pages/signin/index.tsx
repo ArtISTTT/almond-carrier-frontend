@@ -9,7 +9,7 @@ import LoginLayout from '../../src/Components/Layouts/Login';
 import { SigninSchema } from '../../src/schemas/SigninSchema';
 import { signIn } from '../../src/api/auth';
 import { useAppDispatch } from '../../src/redux/hooks';
-import { addUserData } from '../../src/redux/slices/userSlice';
+import { addUserData, setIsAuthorized } from '../../src/redux/slices/userSlice';
 
 type IForm = {
     email: string;
@@ -25,6 +25,7 @@ const SignIn: React.FC = () => {
 
         if (data.ok && data.user) {
             dispatch(addUserData(data.user));
+            dispatch(setIsAuthorized(true));
             router.push('/carrier');
         }
     };
