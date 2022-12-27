@@ -1,7 +1,7 @@
 .thanksForRegistrationWrapper {
     min-height: 100vh;
     width: 100%;
-    color: #6690fd;
+    color: var(--cTextPrimary);
     background-repeat: no-repeat no-repeat no-repeat;
     background-size: cover;
     background-image: url('/static/images/thanks-for-registration/background.jpg');
@@ -20,7 +20,6 @@
 }
 
 .selectWrapper > h3 {
-    /* margin-top: 35px; */
     padding-top: 35px;
     margin-left: 40px;
     font-weight: 600;
@@ -29,7 +28,7 @@
 }
 
 .selectBlock {
-    color: #ffffff;
+    color: var(--cTextSecondary);
     margin-top: 20px;
     margin-left: 30px;
 }
@@ -66,8 +65,8 @@
     width: fit-content;
     margin: 0 auto;
     letter-spacing: 0.4px;
-    background-color: #ffffff;
-    color: #6690fd;
+    background-color: var(--cBgSecondary);
+    color: var(--cTextPrimary);
     margin-top: 45px;
     padding: 4px 43px;
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
@@ -113,8 +112,8 @@
     width: fit-content;
     margin: 0 auto;
     letter-spacing: 0.4px;
-    background-color: #ffffff;
-    color: #6690fd;
+    background-color: var(--cBgSecondary);
+    color: var(--cTextPrimary);
     margin-top: 45px;
     padding: 4px 43px;
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),

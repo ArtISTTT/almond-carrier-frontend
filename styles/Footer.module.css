@@ -3,7 +3,7 @@
     align-items: flex-end;
     height: 400px;
     margin: 0 auto;
-    background-color: #6690fd;
+    background-color: var(--cBg);
     /* -webkit-box-shadow: 0px -3px 14px -3px rgba(49, 141, 212, 0.23);
     -moz-box-shadow: 0px -3px 14px -3px rgba(49, 141, 212, 0.23);
     box-shadow: 0px -3px 14px -3px rgba(49, 141, 212, 0.23); */
@@ -15,7 +15,7 @@
 .container {
     margin: 0 auto;
     width: 90%;
-    background-color: #ffffff;
+    background-color: var(--cBgSecondary);
     border-radius: 15px 15px 0 0;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .emailInput {
-    background-color: #ffffff;
+    background-color: var(--cBgSecondary);
     border-radius: 5px;
 }
 

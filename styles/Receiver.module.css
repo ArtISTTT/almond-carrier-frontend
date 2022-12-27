@@ -12,7 +12,7 @@
 }
 
 .container {
-    background-color: #ffffff;
+    background-color: var(--cBgSecondary);
 }
 
 .filter {
@@ -48,7 +48,7 @@
 
 .filterItem {
     margin: 0 10px;
-    background-color: #ffffff;
+    background-color: var(--cBgSecondary);
     border-radius: 5px;
     margin-bottom: 10px;
 }
