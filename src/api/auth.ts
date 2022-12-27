@@ -1,4 +1,7 @@
 import {
+    IProcessRecover,
+    IRecover,
+    IRecoverReturn,
     ISignIn,
     ISignInReturn,
     ISignOutReturn,
@@ -43,6 +46,40 @@ export const signIn = (requestData: ISignIn): Promise<ISignInReturn> =>
             return {
                 ok: true,
                 user: data.data,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error: data.message,
+            };
+        });
+
+export const recoverPassword = (
+    requestData: IRecover
+): Promise<IRecoverReturn> =>
+    mainInstance
+        .post('/auth/recover', JSON.stringify(requestData))
+        .then(() => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error: data.message,
+            };
+        });
+
+export const processRecoverPassword = (
+    requestData: IProcessRecover
+): Promise<IRecoverReturn> =>
+    mainInstance
+        .post('/auth/process-recover', JSON.stringify(requestData))
+        .then(() => {
+            return {
+                ok: true,
             };
         })
         .catch(data => {

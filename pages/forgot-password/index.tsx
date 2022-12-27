@@ -8,6 +8,7 @@ import LoginLayout from '../../src/Components/Layouts/Login';
 import { EmailSchema } from '../../src/schemas/EmailSchema';
 
 import style from '../../styles/SignIn.module.css';
+import { recoverPassword } from '../../src/api/auth';
 
 type IForm = {
     email: string;
@@ -16,20 +17,15 @@ type IForm = {
 const SignIn: React.FC = () => {
     const router = useRouter();
 
-    const handleSignUp = (form: IForm) => {
-        router.push('/carrier/main');
+    const handleRecover = (form: IForm) => {
+        recoverPassword(form).then(() => console.log('Wait...'));
     };
 
     const formik = useFormik({
         initialValues: {
             email: '',
-            password: '',
-            confirmPasswrod: '',
-            name: '',
-            lastName: '',
-            dateOfBirth: new Date(),
         },
-        onSubmit: handleSignUp,
+        onSubmit: handleRecover,
         validationSchema: EmailSchema,
         validateOnBlur: false,
         validateOnChange: false,

@@ -37,6 +37,7 @@ const CarrierLayout: React.FC<{ children: React.ReactNode }> = ({
 
         if (data.ok) {
             dispatch(setIsAuthorized(false));
+            router.push('/');
         } else {
             console.log('Sign out error');
         }
