@@ -41,53 +41,55 @@ const Footer = () => {
                 />
             </div>
             <div className={styles.centerBlock}>
-                <div className={styles.centerColumn}>
-                    <div className={styles.columnTitle}>Resources</div>
-                    <MUILink className={styles.centerLink} href='#'>
-                        Link
-                    </MUILink>
-                    <MUILink className={styles.centerLink} href='#'>
-                        Link
-                    </MUILink>
-                    <MUILink className={styles.centerLink} href='#'>
-                        Link
-                    </MUILink>
-                    <MUILink className={styles.centerLink} href='#'>
-                        Link
-                    </MUILink>
-                </div>
-                <div className={styles.centerColumn}>
-                    <div className={styles.columnTitle}>Product</div>
-                    <MUILink className={styles.centerLink} href='#'>
-                        Link
-                    </MUILink>
-                    <MUILink className={styles.centerLink} href='#'>
-                        Link
-                    </MUILink>
-                    <MUILink className={styles.centerLink} href='#'>
-                        Link
-                    </MUILink>
-                    <MUILink className={styles.centerLink} href='#'>
-                        Link
-                    </MUILink>
-                    <MUILink className={styles.centerLink} href='#'>
-                        Link
-                    </MUILink>
-                </div>
-                <div className={styles.centerColumn}>
-                    <div className={styles.columnTitle}>Company</div>
-                    <MUILink className={styles.centerLink} href='#'>
-                        Link
-                    </MUILink>
-                    <MUILink className={styles.centerLink} href='#'>
-                        Link
-                    </MUILink>
-                    <MUILink className={styles.centerLink} href='#'>
-                        Link
-                    </MUILink>
-                    <MUILink className={styles.centerLink} href='#'>
-                        Link
-                    </MUILink>
+                <div className={styles.centerBlockInner}>
+                    <div className={styles.centerColumn}>
+                        <div className={styles.columnTitle}>Resources</div>
+                        <MUILink className={styles.centerLink} href='#'>
+                            Link
+                        </MUILink>
+                        <MUILink className={styles.centerLink} href='#'>
+                            Link
+                        </MUILink>
+                        <MUILink className={styles.centerLink} href='#'>
+                            Link
+                        </MUILink>
+                        <MUILink className={styles.centerLink} href='#'>
+                            Link
+                        </MUILink>
+                    </div>
+                    <div className={styles.centerColumn}>
+                        <div className={styles.columnTitle}>Product</div>
+                        <MUILink className={styles.centerLink} href='#'>
+                            Link
+                        </MUILink>
+                        <MUILink className={styles.centerLink} href='#'>
+                            Link
+                        </MUILink>
+                        <MUILink className={styles.centerLink} href='#'>
+                            Link
+                        </MUILink>
+                        <MUILink className={styles.centerLink} href='#'>
+                            Link
+                        </MUILink>
+                        <MUILink className={styles.centerLink} href='#'>
+                            Link
+                        </MUILink>
+                    </div>
+                    <div className={styles.centerColumn}>
+                        <div className={styles.columnTitle}>Company</div>
+                        <MUILink className={styles.centerLink} href='#'>
+                            Link
+                        </MUILink>
+                        <MUILink className={styles.centerLink} href='#'>
+                            Link
+                        </MUILink>
+                        <MUILink className={styles.centerLink} href='#'>
+                            Link
+                        </MUILink>
+                        <MUILink className={styles.centerLink} href='#'>
+                            Link
+                        </MUILink>
+                    </div>
                 </div>
             </div>
             <div className={styles.rightBlock}>

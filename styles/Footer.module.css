@@ -10,6 +10,7 @@
 
 .leftBlock {
     margin-top: 15px;
+    margin-right: 30px;
 }
 
 .leftBlock > div {
@@ -19,12 +20,23 @@
 .centerBlock {
     margin: auto 0;
     display: flex;
+    flex: 1;
+}
+
+.centerBlockInner {
+    max-width: 900px;
+    width: 100%;
+    margin: o auto;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
 }
 
 .centerColumn {
     display: flex;
     flex-flow: column;
-    margin: 0 100px;
+    max-width: 160px;
+    width: 100%;
 }
 
 .centerLink {
