@@ -1,11 +1,11 @@
 import styles from '../styles/WelcomePage.module.css';
 import { Button, TextField } from '@mui/material';
-import Layout from '../src/Components/Layouts/Welcome';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import { EmailSchema } from '../src/schemas/EmailSchema';
 import PrivateLayout from '../src/Components/Layouts/Private';
 import { privateTypes } from '../src/interfaces/private';
+import MainLayout from '../src/Components/Layouts/MainLayout';
 
 type IForm = {
     email: string;
@@ -33,7 +33,10 @@ export default function Welcome() {
 
     return (
         <PrivateLayout privateType={privateTypes.all}>
-            <Layout>
+            <MainLayout
+                showContinueIfAuthorized={true}
+                showSignInOutIfUnauthorized={true}
+            >
                 <div className={styles.banner}>
                     <div className={styles.title}>Friendly Carrier</div>
                     <div className={styles.description}>
@@ -184,7 +187,7 @@ export default function Welcome() {
                         </div>
                     </div>
                 </div>
-            </Layout>
+            </MainLayout>
         </PrivateLayout>
     );
 }

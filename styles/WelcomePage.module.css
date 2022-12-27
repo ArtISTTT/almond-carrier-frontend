@@ -41,7 +41,7 @@
     border-radius: 5px;
 }
 
-.button {
+.submitButton {
     margin-left: 40px;
     padding: 23px 23px;
     height: 48px;
@@ -58,7 +58,7 @@
 }
 
 .emailInput > div:hover > fieldset {
-    border-color: #6690fd !important;
+    border-color: var(--cBorderPrimary) !important;
 }
 
 .emailInput > div > input {
@@ -66,14 +66,14 @@
 }
 
 .emailInput > div > fieldset {
-    border-color: #6690fd;
+    border-color: var(--cBorderPrimary);
 }
 
 .rolesWrapper {
     background: linear-gradient(180deg, #ffffff 0%, #6690fd 100%);
     width: 100%;
 
-    color: #000000;
+    color: var(--cTextThird);
 }
 
 .roleBlock {

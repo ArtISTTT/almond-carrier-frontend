@@ -5,7 +5,7 @@ const CarrierPage: React.FC = () => {
     return (
         <>
             <CarrierLayout>
-                <div>...</div>
+                <div></div>
             </CarrierLayout>
         </>
     );
