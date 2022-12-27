@@ -1,21 +1,23 @@
 import {
+    Autocomplete,
     Avatar,
-    FormControl,
-    InputLabel,
     Link as MUILink,
-    MenuItem,
-    Select,
-    SelectChangeEvent,
+    TextField,
 } from '@mui/material';
+import EmailIcon from '@mui/icons-material/Email';
+import TelegramIcon from '@mui/icons-material/Telegram';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 import React from 'react';
 import styles from '../../../styles/mainLayout.module.css';
 
-const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [language, setLanguage] = React.useState<string>('');
+const languages = [{ label: 'Russian' }, { label: 'English' }];
 
-    const handleChange = (event: SelectChangeEvent) => {
-        setLanguage(event.target.value);
+const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [inputValue, setInputValue] = React.useState<string | undefined>('');
+
+    const onInputChange = (event: any, newInputValue: string) => {
+        setInputValue(newInputValue);
     };
 
     return (
@@ -24,21 +26,17 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <footer className={styles.footer}>
                 <div className={styles.leftBlock}>
                     <div>
-                        <FormControl sx={{ minWidth: 250 }}>
-                            <InputLabel id='demo-simple-select-helper-label'>
-                                Language
-                            </InputLabel>
-                            <Select
-                                labelId='demo-simple-select-helper-label'
-                                id='demo-simple-select-helper'
-                                value={language}
-                                label='Language'
-                                onChange={handleChange}
-                            >
-                                <MenuItem value={'Russian'}>Russian</MenuItem>
-                                <MenuItem value={'English'}>English</MenuItem>
-                            </Select>
-                        </FormControl>
+                        <Autocomplete
+                            inputValue={inputValue}
+                            onInputChange={onInputChange}
+                            disablePortal
+                            id='combo-box-demo'
+                            options={languages}
+                            sx={{ width: 300 }}
+                            renderInput={params => (
+                                <TextField {...params} label='Language' />
+                            )}
+                        />
                     </div>
                     <Avatar
                         sx={{ width: 55, height: 55 }}
@@ -97,22 +95,15 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                     </div>
                 </div>
                 <div className={styles.rightBlock}>
-                    <img
-                        src='/static/images/footer-icons/telegram-logo.svg'
-                        alt='telegram'
-                    />
-                    <img
-                        src='/static/images/footer-icons/instagram-logo.svg'
-                        alt='instagram'
-                    />
-                    <img
-                        src='/static/images/footer-icons/vk-logo.svg'
-                        alt='vk'
-                    />
-                    <img
-                        src='/static/images/footer-icons/gmail-logo.svg'
-                        alt='gmail'
-                    />
+                    <MUILink href='#'>
+                        <EmailIcon className={styles.footerIcon} />
+                    </MUILink>
+                    <MUILink href='#'>
+                        <TelegramIcon className={styles.footerIcon} />
+                    </MUILink>
+                    <MUILink href='#'>
+                        <InstagramIcon className={styles.footerIcon} />
+                    </MUILink>
                 </div>
             </footer>
         </>
