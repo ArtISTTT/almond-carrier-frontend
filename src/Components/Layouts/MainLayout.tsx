@@ -1,8 +1,7 @@
-import { Avatar, Button, Link as MUILink } from '@mui/material';
-
 import React from 'react';
 import styles from '../../../styles/mainLayout.module.css';
 import Header from '../Header';
+import Footer from '../Footer';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -15,7 +14,7 @@ const MainLayout: React.FC<IProps> = ({ children, ...props }) => {
         <div className={styles.mainWrapper}>
             <Header {...props} />
             <div className={styles.content}>{children}</div>
-            <div></div>
+            <Footer />
         </div>
     );
 };
