@@ -80,3 +80,28 @@
 .helpLink {
     font-size: 14px;
 }
+
+.modalBox {
+    text-align: center;
+}
+
+.modalBox h3 {
+    margin-left: 5px;
+}
+
+.modalBox h2 {
+    color: #6690fd;
+}
+
+.modalDoneIcon {
+    font-size: 35px;
+    color: #1c9e11;
+    left: 0px;
+    top: 0px;
+}
+
+.modalTitle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}

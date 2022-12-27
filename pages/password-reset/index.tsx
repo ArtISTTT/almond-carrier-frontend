@@ -1,6 +1,6 @@
 import { Button, Link as MUILink, TextField } from '@mui/material';
 import { Stack } from '@mui/system';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import LoginLayout from '../../src/Components/Layouts/Login';
@@ -8,6 +8,7 @@ import LoginLayout from '../../src/Components/Layouts/Login';
 import style from '../../styles/SignIn.module.css';
 import { processRecoverPassword } from '../../src/api/auth';
 import { RecoverPasswordSchema } from '../../src/schemas/RecoverPasswordSchema';
+import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 
 type IForm = {
     password: string;
@@ -20,6 +21,8 @@ const SignIn: React.FC = () => {
     const router = useRouter();
 
     const { token, id } = router.query;
+
+    const { triggerOpen } = useContext(OpenAlertContext);
 
     React.useEffect(() => {
         if (!router.isReady) return;
@@ -36,13 +39,30 @@ const SignIn: React.FC = () => {
     }, [router.isReady]);
 
     const handleRecover = (form: IForm) => {
-        console.log('handled');
-
         processRecoverPassword({
             password: form.password,
             userId: form.userId,
             token: form.token,
-        }).then(() => console.log('Wait...'));
+        })
+            .then(data => {
+                if (data.ok) {
+                    triggerOpen({
+                        severity: 'success',
+                        text: 'Password successfully changed',
+                    });
+
+                    router.push('/signin');
+                } else {
+                    triggerOpen({
+                        severity: 'error',
+                        text:
+                            data.error ||
+                            'Error when trying to change the password',
+                    });
+                    formik.setSubmitting(false);
+                }
+            })
+            .catch(error => {});
     };
 
     const formik = useFormik({

@@ -31,7 +31,7 @@ export const signUp = (requestData: ISignUp): Promise<ISignUpReturn> =>
         .catch(data => {
             return {
                 ok: false,
-                error: data.message,
+                error: data.response.data.message,
             };
         });
 
@@ -51,7 +51,7 @@ export const signIn = (requestData: ISignIn): Promise<ISignInReturn> =>
         .catch(data => {
             return {
                 ok: false,
-                error: data.message,
+                error: data.response.data.message,
             };
         });
 
@@ -68,7 +68,7 @@ export const recoverPassword = (
         .catch(data => {
             return {
                 ok: false,
-                error: data.message,
+                error: data.response.data.message,
             };
         });
 
@@ -85,7 +85,7 @@ export const processRecoverPassword = (
         .catch(data => {
             return {
                 ok: false,
-                error: data.message,
+                error: data.response.data.message,
             };
         });
 
@@ -101,7 +101,7 @@ export const signOut = (): Promise<ISignOutReturn> =>
         .catch(data => {
             return {
                 ok: false,
-                error: data?.message ?? 'Error',
+                error: data.response.data.message ?? 'Error',
             };
         });
 
@@ -121,6 +121,6 @@ export const getCurrentUser = (): Promise<IGetCurrentUserReturn> =>
         .catch(data => {
             return {
                 ok: false,
-                error: data.message,
+                error: data.response.data.message,
             };
         });
