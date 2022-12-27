@@ -1,38 +1,41 @@
-import React from 'react';
-import Link from 'next/link';
-import { Avatar, Container, Button } from '@mui/material';
-import styles from '../../styles/Header.module.css';
+import { Avatar, Button, Link as MUILink } from '@mui/material';
 
-const Header = () => {
+import React from 'react';
+import styles from '../../../styles/mainLayout.module.css';
+import { useSelector } from 'react-redux';
+
+const Header: React.FC = () => {
     return (
-        <header className={styles.wrapper}>
-            <Container className={styles.content} maxWidth={false}>
+        <header className={styles.header}>
+            <div className={styles.leftMenu}>
                 <Avatar
-                    sx={{ width: 60, height: 60 }}
-                    src='/static/images/pre-logo.png'
+                    sx={{ width: 55, height: 55 }}
                     alt='logo'
+                    src='/static/images/logo.png'
                 />
-                <div>
-                    <Link href='/signin'>
-                        <Button
-                            color='primary'
-                            className={styles.button}
-                            variant='outlined'
-                        >
-                            Sign in
-                        </Button>
-                    </Link>
-                    <Link href='/signup'>
-                        <Button
-                            color='primary'
-                            className={styles.button}
-                            variant='outlined'
-                        >
-                            Sign up
-                        </Button>
-                    </Link>
+                <div className={styles.leftMenuLinks}>
+                    <MUILink className={styles.link} underline='none'>
+                        Link 1
+                    </MUILink>
+                    <MUILink className={styles.link} underline='none'>
+                        Link 2
+                    </MUILink>
+                    <MUILink className={styles.link} underline='none'>
+                        Link 3
+                    </MUILink>
                 </div>
-            </Container>
+            </div>
+            <div className={styles.rightMenu}>
+                <div className={styles.rightMenuButtons}>
+                    <Button className={styles.button} variant='outlined'>
+                        Continue as a receiver
+                    </Button>
+                    <Button className={styles.button} variant='outlined'>
+                        Continue as a carrier
+                    </Button>
+                </div>
+                <Avatar sx={{ width: 40, height: 40 }} src='' alt='profile' />
+            </div>
         </header>
     );
 };
