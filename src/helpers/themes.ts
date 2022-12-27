@@ -6,4 +6,7 @@ export const theme = createTheme({
             main: '#6690FD',
         },
     },
+    typography: {
+        fontFamily: 'Mukta',
+    },
 });

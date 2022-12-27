@@ -33,7 +33,7 @@ const Header: React.FC<IProps> = ({
             <div className={styles.leftMenu}>
                 <Avatar
                     onClick={changePageIfAuthorized}
-                    sx={{ width: 55, height: 55 }}
+                    sx={{ width: 55, height: 55, cursor: 'pointer' }}
                     alt='logo'
                     src='/static/images/logo.png'
                 />

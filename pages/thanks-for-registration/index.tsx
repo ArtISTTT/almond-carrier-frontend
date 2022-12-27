@@ -1,4 +1,4 @@
-import { Button, Link as MUILink } from '@mui/material';
+import { Button, Link as MUILink, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';
 import style from '../../styles/ThanksForRegistration.module.css';
@@ -21,15 +21,31 @@ const SignIn: React.FC = () => {
         <PrivateLayout privateType={privateTypes.all}>
             <div className={style.thanksForRegistrationWrapper}>
                 <div className={style.selectWrapper}>
-                    <h3>Select your role</h3>
+                    <Typography
+                        variant='h2'
+                        component='h2'
+                        className={style.selectTitle}
+                    >
+                        Select your role
+                    </Typography>
                     <div className={style.selectBlock}>
                         <div className={style.selectCarrier}>
-                            <h3>Carrier</h3>
-                            <span>
+                            <Typography
+                                className={style.selectCarrierTitle}
+                                variant='h3'
+                                component='h3'
+                            >
+                                Carrier
+                            </Typography>
+                            <Typography
+                                className={style.selectCarrierDescription}
+                                variant='h4'
+                                component='h4'
+                            >
                                 If you are traveling from one country to
                                 another, then you can be a carrier. You can
                                 accept offers to bring something to a receiver.
-                            </span>
+                            </Typography>
                             <Button
                                 onClick={continueAsACarrier}
                                 variant='contained'
@@ -38,13 +54,23 @@ const SignIn: React.FC = () => {
                             </Button>
                         </div>
                         <div className={style.selectReceiver}>
-                            <h3>Receiver</h3>
-                            <span>
+                            <Typography
+                                className={style.selectReceiverTitle}
+                                variant='h3'
+                                component='h3'
+                            >
+                                Receiver
+                            </Typography>
+                            <Typography
+                                className={style.selectReceiverDescription}
+                                variant='h4'
+                                component='h4'
+                            >
                                 If you live in a country where you don’t have
                                 something what you need, than you can ask a
                                 carrier to bring it from the country where he is
                                 now.
-                            </span>
+                            </Typography>
                             <Button
                                 onClick={continueAsAReceiver}
                                 variant='contained'

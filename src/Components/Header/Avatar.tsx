@@ -1,6 +1,5 @@
 import {
     Avatar,
-    Button,
     ClickAwayListener,
     Grow,
     Link as MUILink,

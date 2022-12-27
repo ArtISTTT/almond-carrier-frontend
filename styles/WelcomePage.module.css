@@ -15,8 +15,8 @@
 }
 
 .title {
-    font-weight: 500;
-    font-size: 80px;
+    font-weight: 700;
+    font-size: 60px;
     line-height: 80px;
     text-align: center;
     letter-spacing: 0.4px;
@@ -24,12 +24,12 @@
 }
 
 .description {
-    font-weight: 400;
-    font-size: 35px;
-    line-height: 60px;
-    margin-top: 100px;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 66px;
+    margin-top: 95px;
     text-align: center;
-    letter-spacing: 0.15px;
+    letter-spacing: 0.4px;
 }
 
 .fastSignUp {
@@ -83,7 +83,7 @@
 .rolesTitle {
     padding-top: 120px;
     font-weight: 600;
-    font-size: 50px;
+    font-size: 45px;
     line-height: 50px;
     letter-spacing: 0.4px;
     color: #6690fd;
@@ -111,7 +111,7 @@
 .roleTitle {
     margin-top: 25px;
     font-weight: 500;
-    font-size: 40px;
+    font-size: 45px;
     line-height: 50px;
     text-align: center;
     letter-spacing: 0.6px;
@@ -119,11 +119,11 @@
 
 .roleDescription {
     margin: 0 35px;
-    margin-top: 25px;
+    margin-top: 17px;
     margin-bottom: 120px;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 24px;
+    line-height: 28px;
     text-align: justify;
     letter-spacing: 0.4px;
 }
@@ -143,7 +143,7 @@
 .stepsTitle {
     padding-top: 40px;
     font-weight: 600;
-    font-size: 40px;
+    font-size: 45px;
     line-height: 50px;
     text-align: center;
     letter-spacing: 0.6px;
@@ -183,7 +183,7 @@
 .advantagesTitle {
     padding-top: 40px;
     font-weight: 600;
-    font-size: 40px;
+    font-size: 45px;
     line-height: 50px;
     text-align: center;
     letter-spacing: 0.6px;
@@ -209,19 +209,21 @@
 .advantageText {
     margin: 0 20px;
 }
+
 .advantageTitle {
-    font-weight: 500;
-    font-size: 40px;
+    font-weight: 600;
+    font-size: 36px;
     margin-top: 30px;
     margin-bottom: 20px;
     line-height: 50px;
     text-align: center;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.6px;
 }
-/* <<<<<<< HEAD ======= .advantageDescription {
+
+.advantageDescription {
     font-weight: 400;
-    font-size: 21px;
-    line-height: 36px;
+    font-size: 26px;
+    line-height: 30px;
     text-align: justify;
     letter-spacing: 0.4px;
-} */
+}

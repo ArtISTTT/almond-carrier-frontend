@@ -1,4 +1,4 @@
-import { Button, Link as MUILink, TextField } from '@mui/material';
+import { Button, Link as MUILink, TextField, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';
 import { LinkBehaviour } from '../../src/Components/Common/LinkBehaviour';
@@ -34,10 +34,10 @@ const SignIn: React.FC = () => {
     return (
         <LoginLayout>
             <>
-                <h2>
+                <Typography variant='h2' component='h2'>
                     Enter email <br />
                     to recover password
-                </h2>
+                </Typography>
                 <form onSubmit={formik.handleSubmit}>
                     <Stack direction='column' spacing={2}>
                         <TextField

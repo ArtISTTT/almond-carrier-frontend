@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../../styles/Receiver.module.css';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Autocomplete, Box, Container } from '@mui/material';
+import { Autocomplete, Box, Container, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Rating from '@mui/material/Rating';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
@@ -172,7 +172,9 @@ const ReceiverPage: React.FC = () => {
     return (
         <CarrierLayout>
             <Container className={styles.container} maxWidth={false}>
-                <div className={styles.title}>Arrivals requests</div>
+                <Typography className={styles.title}>
+                    Arrivals requests
+                </Typography>
                 <div className={styles.filter}>
                     <div className={styles.filterList}>
                         <TextField
