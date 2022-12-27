@@ -1,6 +1,6 @@
 .loginWrapper {
     background-color: var(--cBg);
-    min-height: 100vh;
+    min-height: calc(100vh - 80px) !important;
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
@@ -80,5 +80,3 @@
 .helpLink {
     font-size: 14px;
 }
-
-
