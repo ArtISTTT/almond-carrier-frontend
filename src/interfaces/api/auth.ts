@@ -19,6 +19,21 @@ export type ISignIn = {
     password: string;
 };
 
+export type IRecover = {
+    email: string;
+};
+
+export type IRecoverReturn = {
+    error?: string | undefined;
+    ok: boolean;
+};
+
+export type IProcessRecover = {
+    password: string;
+    userId: string;
+    token: string;
+};
+
 export type ISignInReturn = {
     error?: string | undefined;
     ok: boolean;

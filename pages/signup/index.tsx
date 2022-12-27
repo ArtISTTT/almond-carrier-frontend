@@ -10,7 +10,7 @@ import { SignupSchema } from '../../src/schemas/SignupSchema';
 
 import style from '../../styles/SignIn.module.css';
 import { signUp } from '../../src/api/auth';
-import { addUserData } from '../../src/redux/slices/userSlice';
+import { addUserData, setIsAuthorized } from '../../src/redux/slices/userSlice';
 import { useAppDispatch } from '../../src/redux/hooks';
 
 type IForm = {
@@ -39,6 +39,7 @@ const SignIn: React.FC = () => {
 
         if (data.ok && data.user) {
             dispatch(addUserData(data.user));
+            dispatch(setIsAuthorized(true));
             router.push('/thanks-for-registration');
         }
     };

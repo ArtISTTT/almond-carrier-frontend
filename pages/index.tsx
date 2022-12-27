@@ -4,6 +4,8 @@ import Layout from '../src/Components/Layouts/Welcome';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import { EmailSchema } from '../src/schemas/EmailSchema';
+import PrivateLayout from '../src/Components/Layouts/Private';
+import { privateTypes } from '../src/interfaces/private';
 
 type IForm = {
     email: string;
@@ -30,7 +32,7 @@ export default function Welcome() {
     });
 
     return (
-        <>
+        <PrivateLayout privateType={privateTypes.all}>
             <div className={styles.banner}>
                 <div className={styles.title}>Friendly Carrier</div>
                 <div className={styles.description}>
@@ -174,6 +176,6 @@ export default function Welcome() {
                     </div>
                 </div>
             </div>
-        </>
+        </PrivateLayout>
     );
 }
