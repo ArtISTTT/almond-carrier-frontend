@@ -6,12 +6,12 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background-color: #ffffff;
+    background-color: var(--cBgSecondary);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #6690fd;
+    color: var(--cTextPrimary);
 }
 
 .title {
@@ -37,7 +37,7 @@
 }
 
 .emailInput {
-    color: #6690fd;
+    color: var(--cTextPrimary);
     border-radius: 5px;
 }
 
@@ -49,7 +49,7 @@
 
 .emailInput > label {
     line-height: 20px;
-    color: #6690fd;
+    color: var(--cTextPrimary);
 }
 
 .emailInput > div {
@@ -58,22 +58,22 @@
 }
 
 .emailInput > div:hover > fieldset {
-    border-color: #6690fd !important;
+    border-color: var(--cBorderPrimary) !important;
 }
 
 .emailInput > div > input {
-    color: #6690fd;
+    color: var(--cTextPrimary);
 }
 
 .emailInput > div > fieldset {
-    border-color: #6690fd;
+    border-color: var(--cBorderPrimary);
 }
 
 .rolesWrapper {
     background: linear-gradient(180deg, #ffffff 0%, #6690fd 100%);
     width: 100%;
 
-    color: #000000;
+    color: var(--cTextThird);
 }
 
 .roleBlock {
@@ -86,7 +86,7 @@
     font-size: 50px;
     line-height: 50px;
     letter-spacing: 0.4px;
-    color: #6690fd;
+    color: var(--cTextPrimary);
 }
 
 .possibleRoles {
@@ -105,7 +105,7 @@
 }
 
 .roleInfo {
-    color: #ffffff;
+    color: var(--cTextSecondary);
 }
 
 .roleTitle {
@@ -137,7 +137,7 @@
 }
 
 .stepsWrapper {
-    background: #6690fd;
+    background: var(--cTextPrimary);
 }
 
 .stepsTitle {
@@ -147,7 +147,7 @@
     line-height: 50px;
     text-align: center;
     letter-spacing: 0.6px;
-    color: #ffffff;
+    color: var(--cTextSecondary);
     position: relative;
     z-index: 2;
 }
@@ -187,7 +187,7 @@
     line-height: 50px;
     text-align: center;
     letter-spacing: 0.6px;
-    color: #ffffff;
+    color: var(--cTextSecondary);
 }
 
 .advantage {
@@ -202,7 +202,7 @@
     display: flex;
     margin: 0 25px;
     margin-top: 60px;
-    color: #6690fd;
+    color: var(--cTextPrimary);
     padding-bottom: 120px;
 }
 

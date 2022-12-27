@@ -1,10 +1,10 @@
 .footer {
-    background-color: #ffffff;
+    background-color: var(--cBgSecondary);
     display: flex;
     width: 100%;
     height: 358px;
     justify-content: space-between;
-    color: #000000;
+    color: var(--cTextThird);
     padding: 30px;
 }
 
@@ -26,7 +26,7 @@
 .centerBlockInner {
     max-width: 900px;
     width: 100%;
-    margin: o auto;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     gap: 60px;
@@ -40,7 +40,7 @@
 }
 
 .centerLink {
-    color: #000000;
+    color: var(--cTextThird);
     text-decoration: none;
     margin-top: 15px;
     font-weight: 400;
@@ -66,5 +66,5 @@
 .footerIcon {
     font-size: 30px;
     margin-left: 17px;
-    color: #000000;
+    color: var(--cTextThird);
 }

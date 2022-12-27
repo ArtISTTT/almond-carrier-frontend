@@ -35,7 +35,7 @@
 .loginInner {
     max-width: 450px;
     width: 100%;
-    background-color: #ffffff;
+    background-color: var(--cBgSecondary);
     padding: 50px 40px;
     border-radius: 20px;
     overflow: hidden;
@@ -80,8 +80,7 @@
 .helpLink {
     font-size: 14px;
 }
-
-.modalBox {
+<<<<<<< HEAD .modalBox {
     text-align: center;
 }
 
@@ -90,7 +89,15 @@
 }
 
 .modalBox h2 {
-    color: #6690fd;
+    color: var(--cTextPrimary);
+}
+
+.modalBox {
+    text-align: center;
+}
+
+.modalBox h3 {
+    margin-left: 5px;
 }
 
 .modalDoneIcon {

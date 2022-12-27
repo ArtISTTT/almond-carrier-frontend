@@ -40,8 +40,14 @@
     --card-border-rgb: 131, 134, 135;
 
     --cTextPrimary: #6690fd;
+    --cTextSecondary: #ffffff;
 
+    --cBgSecondary: #ffffff;
     --cBg: #6690fd;
+
+    --cBorderPrimary: #6690fd;
+
+    --cTextThird: #000000cc;
 }
 
 @media (prefers-color-scheme: dark) {
