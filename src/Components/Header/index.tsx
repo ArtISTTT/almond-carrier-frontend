@@ -26,17 +26,19 @@ const Header: React.FC<IProps> = ({
                     alt='logo'
                     src='/static/images/logo.png'
                 />
-                <div className={styles.leftMenuLinks}>
-                    <MUILink className={styles.link} underline='none'>
-                        Link 1
-                    </MUILink>
-                    <MUILink className={styles.link} underline='none'>
-                        Link 2
-                    </MUILink>
-                    <MUILink className={styles.link} underline='none'>
-                        Link 3
-                    </MUILink>
-                </div>
+                {isAuthorized && (
+                    <div className={styles.leftMenuLinks}>
+                        <MUILink className={styles.link} underline='none'>
+                            Link 1
+                        </MUILink>
+                        <MUILink className={styles.link} underline='none'>
+                            Link 2
+                        </MUILink>
+                        <MUILink className={styles.link} underline='none'>
+                            Link 3
+                        </MUILink>
+                    </div>
+                )}
             </div>
             <div className={styles.rightMenu}>
                 <div className={styles.rightMenuButtons}>
