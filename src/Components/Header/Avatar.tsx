@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { selectUser } from '../../redux/selectors/user';
 import { useRouter } from 'next/router';
 import { setIsAuthorized } from '../../redux/slices/userSlice';
+import Link from 'next/link';
 
 const HeaderAvatar: React.FC = () => {
     const [open, setOpen] = React.useState(false);
@@ -26,6 +27,10 @@ const HeaderAvatar: React.FC = () => {
     const handleToggle = () => setOpen(prevOpen => !prevOpen);
 
     const handleClose = () => setOpen(false);
+
+    const goToProfile = () => {
+        router.push('/profile/orders');
+    };
 
     const handleSignOut = async () => {
         const data = await signOut();
@@ -92,7 +97,7 @@ const HeaderAvatar: React.FC = () => {
                                         </MenuItem>
                                         <MenuItem
                                             className={styles.profileItem}
-                                            onClick={handleClose}
+                                            onClick={goToProfile}
                                         >
                                             Profile
                                         </MenuItem>

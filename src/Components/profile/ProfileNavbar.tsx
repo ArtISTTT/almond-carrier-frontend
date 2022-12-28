@@ -5,13 +5,45 @@ import MenuIcon from '@mui/icons-material/Menu';
 import StarIcon from '@mui/icons-material/Star';
 import SettingsIcon from '@mui/icons-material/Settings';
 import RestoreIcon from '@mui/icons-material/Restore';
+import { useRouter } from 'next/router';
+
+const selectTab = (link: string) => {
+    switch (link) {
+        case '/profile/general':
+            return 0;
+        case '/profile/orders':
+            return 1;
+        case '/profile/reviews':
+            return 2;
+        default:
+            return 0;
+    }
+};
+
+const selectTabHref = (index: number) => {
+    switch (index) {
+        case 0:
+            return '/profile/general';
+        case 1:
+            return '/profile/orders';
+        case 2:
+            return '/profile/reviews';
+        default:
+            return '/profile/general';
+    }
+};
 
 const ProfileNavbar: React.FC = () => {
-    const [value, setValue] = React.useState<number>(0);
+    const router = useRouter();
+    const [value, setValue] = React.useState<number>(
+        selectTab(router.pathname)
+    );
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleChange = (_: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
+        router.push(selectTabHref(newValue));
     };
+
     return (
         <Tabs
             className={styles.tabs}
