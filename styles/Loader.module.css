@@ -1,8 +1,4 @@
-.loader {
-    background-image: url('/static/images/loader.jpg');
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.loaderContainer {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -10,89 +6,131 @@
     align-items: center;
 }
 
-.dotElastic {
-    position: relative;
-    width: 15px;
-    height: 15px;
-    border-radius: 20px;
-    background-color: var(--cBg);
+.logoWrapper > span {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 24px;
+
+    letter-spacing: 0.4px;
     color: var(--cTextPrimary);
-    animation: dotElastic 1s infinite linear;
-}
-.dotElastic::before,
-.dotElastic::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 0;
-}
-.dotElastic::before {
-    left: -30px;
-    width: 15px;
-    height: 15px;
-    border-radius: 20px;
-    background-color: var(--cBg);
-    color: var(--cTextPrimary);
-    animation: dotElastic-before 1s infinite linear;
-}
-.dotElastic::after {
-    left: 30px;
-    width: 15px;
-    height: 15px;
-    border-radius: 20px;
-    background-color: var(--cBg);
-    color: var(--cTextPrimary);
-    animation: dotElastic-after 1s infinite linear;
 }
 
-@keyframes dotElastic-before {
+.logo {
+    width: 120px;
+    height: 120px;
+    background-image: url('/static/images/logo.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.loaderWrapper {
+    margin: 0 auto;
+    margin-bottom: 30px;
+    position: relative;
+    width: fit-content;
+}
+
+.loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    height: 120px;
+    width: 120px;
+    -webkit-animation: loader-1 3s linear infinite;
+    animation: loader-1 3s linear infinite;
+}
+@-webkit-keyframes loader-1 {
     0% {
-        transform: scale(1, 1);
-    }
-    25% {
-        transform: scale(1, 1.5);
-    }
-    50% {
-        transform: scale(1, 0.67);
-    }
-    75% {
-        transform: scale(1, 1);
+        -webkit-transform: rotate(0deg);
     }
     100% {
-        transform: scale(1, 1);
+        -webkit-transform: rotate(360deg);
     }
 }
-@keyframes dotElastic {
+@keyframes loader-1 {
     0% {
-        transform: scale(1, 1);
-    }
-    25% {
-        transform: scale(1, 1);
-    }
-    50% {
-        transform: scale(1, 1.5);
-    }
-    75% {
-        transform: scale(1, 1);
+        transform: rotate(0deg);
     }
     100% {
-        transform: scale(1, 1);
+        transform: rotate(360deg);
     }
 }
-@keyframes dotElastic-after {
+.loader span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: 120px;
+    width: 120px;
+    clip: rect(60px, 120px, 120px, 0);
+    -webkit-animation: loader-2 1.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+    animation: loader-2 1.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+@-webkit-keyframes loader-2 {
     0% {
-        transform: scale(1, 1);
-    }
-    25% {
-        transform: scale(1, 1);
-    }
-    50% {
-        transform: scale(1, 0.67);
-    }
-    75% {
-        transform: scale(1, 1.5);
+        -webkit-transform: rotate(0deg);
     }
     100% {
-        transform: scale(1, 1);
+        -webkit-transform: rotate(360deg);
     }
+}
+@keyframes loader-2 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.loader span::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: 114px;
+    width: 114px;
+    border: 3px solid transparent;
+    border-top: 3px solid var(--cBorderPrimary);
+    border-radius: 50%;
+    -webkit-animation: loader-3 1.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+    animation: loader-3 1.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+@-webkit-keyframes loader-3 {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes loader-3 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.loader span::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: 114px;
+    width: 114px;
+    border: 3px solid rgba(102, 144, 253, 0.5);
+    border-radius: 50%;
 }
