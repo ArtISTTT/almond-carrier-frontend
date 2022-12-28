@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../../../styles/ProfileOrders.module.css';
-import { Typography } from '@mui/material';
+import { Pagination, Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import OrderItem from './OrderItem';
 import { orderStatus } from '../../interfaces/profile';
@@ -55,6 +55,12 @@ const ProfileOrders = () => {
                     />
                 ))}
             </div>
+            <Pagination
+                className={styles.pagination}
+                count={10}
+                variant='outlined'
+                color='primary'
+            />
         </div>
     );
 };

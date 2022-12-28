@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
     padding-top: 40px;
     background-color: var(--cBgSecondary);
 }
@@ -20,4 +22,8 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+}
+
+.pagination {
+    margin-left: auto;
 }
