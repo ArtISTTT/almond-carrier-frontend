@@ -1,5 +1,5 @@
 import styles from '../styles/WelcomePage.module.css';
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import { EmailSchema } from '../src/schemas/EmailSchema';
@@ -38,12 +38,23 @@ export default function Welcome() {
                 showSignInOutIfUnauthorized={true}
             >
                 <div className={styles.banner}>
-                    <div className={styles.title}>Friendly Carrier</div>
-                    <div className={styles.description}>
+                    <Typography
+                        variant='h1'
+                        component='h1'
+                        className={styles.title}
+                    >
+                        Friendly Carrier
+                    </Typography>
+                    <Typography
+                        variant='h3'
+                        component='h2'
+                        className={styles.description}
+                    >
                         Company that unites people all over the world. If you
-                        need anything what you don’t have in your country, just
-                        ask another person to carry it to you in our app
-                    </div>
+                        need anything what you<br></br> don’t have in your
+                        country, just ask another person to carry it to you in
+                        our app
+                    </Typography>
                     <div className={styles.fastSignUp}>
                         <form onSubmit={formik.handleSubmit} action='submit'>
                             <TextField
@@ -72,7 +83,13 @@ export default function Welcome() {
                 </div>
                 <div className={styles.rolesWrapper}>
                     <div className={styles.roleBlock}>
-                        <div className={styles.rolesTitle}>Possible roles</div>
+                        <Typography
+                            variant='h2'
+                            component='h2'
+                            className={styles.rolesTitle}
+                        >
+                            Possible roles
+                        </Typography>
                         <div className={styles.possibleRoles}>
                             <div className={styles.role}>
                                 <img
@@ -81,16 +98,24 @@ export default function Welcome() {
                                     alt='man1'
                                 />
                                 <div className={styles.roleInfo}>
-                                    <h3 className={styles.roleTitle}>
+                                    <Typography
+                                        variant='h3'
+                                        component='h3'
+                                        className={styles.roleTitle}
+                                    >
                                         Carrier
-                                    </h3>
-                                    <div className={styles.roleDescription}>
+                                    </Typography>
+                                    <Typography
+                                        variant='h4'
+                                        component='h4'
+                                        className={styles.roleDescription}
+                                    >
                                         You want to visit another country, then
                                         you can deliver what is needed, from
                                         where you are leaving, to the country
                                         where you are going. By completing
                                         orders you earn some money.
-                                    </div>
+                                    </Typography>
                                 </div>
                             </div>
                             <div className={styles.role}>
@@ -100,23 +125,37 @@ export default function Welcome() {
                                     alt='man2'
                                 />
                                 <div className={styles.roleInfo}>
-                                    <h3 className={styles.roleTitle}>
+                                    <Typography
+                                        variant='h3'
+                                        component='h3'
+                                        className={styles.roleTitle}
+                                    >
                                         Receiver
-                                    </h3>
-                                    <div className={styles.roleDescription}>
+                                    </Typography>
+                                    <Typography
+                                        variant='h4'
+                                        component='h4'
+                                        className={styles.roleDescription}
+                                    >
                                         You are in a country where you don't
                                         have anything you need. Then you can
                                         request something and wait for the
                                         carrier to respond or respond to the
                                         carrier's offer yourself.
-                                    </div>
+                                    </Typography>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className={styles.stepsWrapper}>
-                    <div className={styles.stepsTitle}>How does it work</div>
+                    <Typography
+                        variant='h2'
+                        component='h2'
+                        className={styles.stepsTitle}
+                    >
+                        How does it work
+                    </Typography>
                     <div className={styles.stepsBlock}>
                         <img
                             className={styles.stepOne}
@@ -136,7 +175,13 @@ export default function Welcome() {
                     </div>
                 </div>
                 <div className={styles.advantagesBlock}>
-                    <div className={styles.advantagesTitle}>Our advantages</div>
+                    <Typography
+                        variant='h2'
+                        component='h2'
+                        className={styles.advantagesTitle}
+                    >
+                        Our advantages
+                    </Typography>
                     <div className={styles.advantages}>
                         <div className={styles.advantage}>
                             <img
@@ -144,14 +189,22 @@ export default function Welcome() {
                                 alt=''
                             />
                             <div className={styles.advantageText}>
-                                <h3 className={styles.advantageTitle}>
+                                <Typography
+                                    variant='h3'
+                                    component='h3'
+                                    className={styles.advantageTitle}
+                                >
                                     Reliability
-                                </h3>
-                                <span className={styles.advantageDescription}>
+                                </Typography>
+                                <Typography
+                                    variant='h5'
+                                    component='h4'
+                                    className={styles.advantageDescription}
+                                >
                                     Receiver gives us money, then we hold them
                                     until receiver doesn’t approve that he got
                                     goods. After that we send money to carrier.
-                                </span>
+                                </Typography>
                             </div>
                         </div>
                         <div className={styles.advantage}>
@@ -160,13 +213,21 @@ export default function Welcome() {
                                 alt=''
                             />
                             <div className={styles.advantageText}>
-                                <h3 className={styles.advantageTitle}>
+                                <Typography
+                                    variant='h3'
+                                    component='h3'
+                                    className={styles.advantageTitle}
+                                >
                                     Safety
-                                </h3>
-                                <span className={styles.advantageDescription}>
+                                </Typography>
+                                <Typography
+                                    variant='h5'
+                                    component='h4'
+                                    className={styles.advantageDescription}
+                                >
                                     All your data will be confident. Your money
                                     also will be safe.
-                                </span>
+                                </Typography>
                             </div>
                         </div>
                         <div className={styles.advantage}>
@@ -175,14 +236,22 @@ export default function Welcome() {
                                 alt=''
                             />
                             <div className={styles.advantageText}>
-                                <h3 className={styles.advantageTitle}>
+                                <Typography
+                                    variant='h3'
+                                    component='h3'
+                                    className={styles.advantageTitle}
+                                >
                                     Low commission
-                                </h3>
-                                <span className={styles.advantageDescription}>
+                                </Typography>
+                                <Typography
+                                    variant='h5'
+                                    component='h4'
+                                    className={styles.advantageDescription}
+                                >
                                     We charge a commission for what we found for
                                     your carrier/receiver, but the price will be
-                                    low
-                                </span>
+                                    low.
+                                </Typography>
                             </div>
                         </div>
                     </div>

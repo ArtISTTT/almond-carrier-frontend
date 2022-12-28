@@ -78,10 +78,10 @@ const SignIn: React.FC = () => {
     return (
         <LoginLayout>
             <>
-                <h2>
+                <Typography variant='h2' component='h2'>
                     Enter email <br />
                     to recover password
-                </h2>
+                </Typography>
                 <form onSubmit={formik.handleSubmit}>
                     <Stack direction='column' spacing={2}>
                         <TextField

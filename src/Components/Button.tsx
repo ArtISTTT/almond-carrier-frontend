@@ -1,5 +1,5 @@
-import React from "react";
+import React from 'react';
 
 export const Button: React.FC = () => {
-    return <button>GO FUCK THIS WORLD</button>
-}
+    return <button>GO FUCK THIS WORLD</button>;
+};

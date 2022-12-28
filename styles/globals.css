@@ -101,7 +101,7 @@ body {
 body {
     color: #000000;
     background: #fafafa;
-    font-family: 'Urbane', sans-serif;
+    font-family: 'Mukta', sans-serif;
 }
 
 a {
@@ -118,37 +118,41 @@ a {
 /* Font faces connection */
 
 @font-face {
-    font-family: 'Urbane';
-    src: url('/static/fonts/Urbane-Thin.ttf') format('truetype');
-    font-weight: 100;
+    font-family: 'Mukta';
+    src: url('/static/fonts/Mukta-Bold.ttf') format('truetype');
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
-    font-family: 'Urbane';
-    src: url('/static/fonts/Urbane-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Urbane';
-    src: url('/static/fonts/Urbane-Medium.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Urbane';
-    src: url('/static/fonts/Urbane-SemiBold.ttf') format('truetype');
+    font-family: 'Mukta';
+    src: url('/static/fonts/Mukta-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
-    font-family: 'Urbane';
-    src: url('/static/fonts/Urbane-Bold.ttf') format('truetype');
-    font-weight: 700;
+    font-family: 'Mukta';
+    src: url('/static/fonts/Mukta-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mukta';
+    src: url('/static/fonts/Mukta-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mukta';
+    src: url('/static/fonts/Mukta-Light.ttf') format('truetype');
+    font-weight: 300;
     font-style: normal;
     font-display: swap;
 }

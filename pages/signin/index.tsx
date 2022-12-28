@@ -1,4 +1,4 @@
-import { Button, Link as MUILink, TextField } from '@mui/material';
+import { Button, Link as MUILink, TextField, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';
 import style from '../../styles/SignIn.module.css';
@@ -44,7 +44,9 @@ const SignIn: React.FC = () => {
     return (
         <LoginLayout>
             <>
-                <h2>Sign in</h2>
+                <Typography variant='h2' component='h2'>
+                    Sign in
+                </Typography>
                 <form onSubmit={formik.handleSubmit}>
                     <Stack direction='column' spacing={2}>
                         <TextField

@@ -1,4 +1,4 @@
-import { Button, Link as MUILink, TextField } from '@mui/material';
+import { Button, Link as MUILink, TextField, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
@@ -86,7 +86,9 @@ const SignIn: React.FC = () => {
     return (
         <LoginLayout>
             <>
-                <h2>Set up new password</h2>
+                <Typography variant='h2' component='h2'>
+                    Set up new password
+                </Typography>
                 <form onSubmit={formik.handleSubmit}>
                     <Stack direction='column' spacing={2}>
                         <TextField

@@ -5,6 +5,7 @@ import {
     Avatar,
     Link as MUILink,
     TextField,
+    Typography,
 } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import TelegramIcon from '@mui/icons-material/Telegram';
@@ -43,7 +44,13 @@ const Footer = () => {
             <div className={styles.centerBlock}>
                 <div className={styles.centerBlockInner}>
                     <div className={styles.centerColumn}>
-                        <div className={styles.columnTitle}>Resources</div>
+                        <Typography
+                            variant='h3'
+                            component='h3'
+                            className={styles.columnTitle}
+                        >
+                            Resources
+                        </Typography>
                         <MUILink className={styles.centerLink} href='#'>
                             Link
                         </MUILink>
@@ -58,7 +65,13 @@ const Footer = () => {
                         </MUILink>
                     </div>
                     <div className={styles.centerColumn}>
-                        <div className={styles.columnTitle}>Product</div>
+                        <Typography
+                            variant='h3'
+                            component='h3'
+                            className={styles.columnTitle}
+                        >
+                            Product
+                        </Typography>
                         <MUILink className={styles.centerLink} href='#'>
                             Link
                         </MUILink>
@@ -76,7 +89,13 @@ const Footer = () => {
                         </MUILink>
                     </div>
                     <div className={styles.centerColumn}>
-                        <div className={styles.columnTitle}>Company</div>
+                        <Typography
+                            variant='h3'
+                            component='h3'
+                            className={styles.columnTitle}
+                        >
+                            Company
+                        </Typography>
                         <MUILink className={styles.centerLink} href='#'>
                             Link
                         </MUILink>
