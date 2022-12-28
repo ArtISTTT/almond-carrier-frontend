@@ -9,6 +9,7 @@ import {
 } from '../../redux/slices/userSlice';
 import { useSelector } from 'react-redux';
 import { selectIsInitializeAuthChecked } from '../../redux/selectors/user';
+import Loader from '../Loader';
 
 type IAuthLayout = {
     children: React.ReactNode;
@@ -31,7 +32,7 @@ const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
     }, []);
 
     if (!authChecked) {
-        return <>Loading...</>;
+        return <Loader />;
     }
 
     return <>{children}</>;

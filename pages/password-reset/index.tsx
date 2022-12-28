@@ -9,6 +9,7 @@ import style from '../../styles/SignIn.module.css';
 import { processRecoverPassword } from '../../src/api/auth';
 import { RecoverPasswordSchema } from '../../src/schemas/RecoverPasswordSchema';
 import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
+import Loader from '../../src/Components/Loader';
 
 type IForm = {
     password: string;
@@ -79,7 +80,7 @@ const SignIn: React.FC = () => {
     });
 
     if (router.isReady && (!token || !id)) {
-        return <>Loading...</>;
+        return <Loader />;
     }
 
     return (
