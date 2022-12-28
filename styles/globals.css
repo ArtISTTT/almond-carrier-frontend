@@ -41,13 +41,16 @@
 
     --cTextPrimary: #6690fd;
     --cTextSecondary: #ffffff;
+    --cTextThird: #000000cc;
 
-    --cBgSecondary: #ffffff;
     --cBg: #6690fd;
+    --cBgSecondary: #ffffff;
 
     --cBorderPrimary: #6690fd;
 
-    --cTextThird: #000000cc;
+    --cStatusInProgress: #6690fd;
+    --cStatusSuccess: #1c9e11;
+    --cStatusCancelled: #8b8b8b;
 }
 
 @media (prefers-color-scheme: dark) {

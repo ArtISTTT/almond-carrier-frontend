@@ -102,3 +102,8 @@
     padding-top: 12px;
     border-top: 1px solid rgb(191, 179, 179);
 }
+
+.carrierLayoutContent {
+    background-color: var(--cBgSecondary);
+    min-height: calc(100vh - 80px) !important;
+}
