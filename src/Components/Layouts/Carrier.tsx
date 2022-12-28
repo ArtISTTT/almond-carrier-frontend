@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import styles from '../../../styles/mainLayout.module.css';
 import MainLayout from './MainLayout';
 
 const CarrierLayout: React.FC<{ children: React.ReactNode }> = ({
@@ -13,7 +14,7 @@ const CarrierLayout: React.FC<{ children: React.ReactNode }> = ({
             showContinueIfAuthorized={false}
             showSignInOutIfUnauthorized={false}
         >
-            <div>{children}</div>
+            <div className={styles.carrierLayoutContent}>{children}</div>
         </MainLayout>
     );
 };

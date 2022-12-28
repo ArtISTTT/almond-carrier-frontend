@@ -1,0 +1,73 @@
+.card {
+    display: flex;
+    padding-top: 40px;
+    margin-left: 30px;
+}
+
+.avatar {
+    border-radius: 40px;
+    border: 2px solid var(--cBorderPrimary);
+    margin-right: 37px;
+}
+
+.cardInfo {
+    color: var(--cTextThird);
+}
+
+.cardName {
+    margin-top: 8px;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 40px;
+    letter-spacing: 0.4px;
+}
+
+.cardRole {
+    margin-top: 5px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.4px;
+    color: var(--cTextPrimary);
+}
+
+.cardOrders {
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+}
+
+.cardOrders > span {
+    font-weight: 900;
+}
+
+.cardCity {
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+}
+
+.cardCity > span {
+    font-weight: 900;
+}
+
+.cardRating {
+    color: var(--cTextPrimary);
+    margin-top: 10px;
+    margin-left: -4px;
+    font-size: 30px;
+}
+
+.tabs {
+    padding-top: 30px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.layoutWrapper {
+    background-color: var(--cBgSecondary);
+}

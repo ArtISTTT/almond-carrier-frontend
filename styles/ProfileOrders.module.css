@@ -1,0 +1,29 @@
+.ordersWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-top: 40px;
+    background-color: var(--cBgSecondary);
+}
+
+.orderTitle {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 50px;
+    text-align: center;
+    letter-spacing: 0.4px;
+    color: var(--cTextThird);
+}
+
+.orders {
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.pagination {
+    margin-left: auto;
+}
