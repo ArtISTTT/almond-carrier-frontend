@@ -13,7 +13,7 @@ const PrivateLayout: React.FC<IAuthLayout> = ({ privateType, children }) => {
     const router = useRouter();
     const isAuthorized = useAppSelector(selectIsAuthorized);
 
-    if (privateType === privateTypes.onlyAuthorized) {
+    if (privateType === privateTypes.onlyAuthorized && !isAuthorized) {
         router.push('/signin');
         return <></>;
     }
