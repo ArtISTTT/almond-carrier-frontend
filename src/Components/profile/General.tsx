@@ -14,8 +14,15 @@ import { Stack, style } from '@mui/system';
 import classNames from 'classnames';
 
 type IPasswordForm = {
-    password: string;
-    confirmPassword: string;
+    oldPassword: string;
+    newPassword: string;
+};
+
+type IForm = {
+    email: string;
+    firstName: string;
+    lastName: string;
+    dateOfBirth: string;
 };
 
 const initialState = {
@@ -27,20 +34,20 @@ const availableGenders = ['Men', 'Women', 'Other'];
 const General = () => {
     const user = useSelector(selectUser);
 
-    const handleChangeUserInfo = (form: IUser) => {};
+    const handleChangeUserInfo = (form: IForm) => {};
 
     const formik = useFormik({
-        initialValues: user,
+        initialValues: {
+            ...user,
+            dateOfBirth: user.dateOfBirth.format('YYYY-MM-DD'),
+        },
         onSubmit: handleChangeUserInfo,
         validationSchema: ChangeUserSchema,
         validateOnBlur: false,
         validateOnChange: false,
     });
 
-    const handleChangePassword = (form: {
-        oldPassword: string;
-        newPassword: string;
-    }) => {
+    const handleChangePassword = (form: IPasswordForm) => {
         console.log(form);
     };
 
@@ -124,6 +131,9 @@ const General = () => {
                                 }}
                                 className={styles.select}
                             >
+                                <MenuItem value=''>
+                                    <em>None</em>
+                                </MenuItem>
                                 {availableGenders.map(gender => (
                                     <MenuItem key={gender} value={gender}>
                                         {gender}

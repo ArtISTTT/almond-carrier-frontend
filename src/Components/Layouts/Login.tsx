@@ -5,15 +5,6 @@ import { privateTypes } from '../../interfaces/private';
 import PrivateLayout from './Private';
 import MainLayout from './MainLayout';
 
-type IForm = {
-    email: string;
-    password: string;
-    confirmPasswrod: string;
-    name: string;
-    lastName: string;
-    dateOfBirth: Date;
-};
-
 const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
     <PrivateLayout privateType={privateTypes.onlyUnauthorized}>
         <MainLayout

@@ -2,18 +2,12 @@ import { Avatar, Rating, Typography } from '@mui/material';
 import styles from '../../../styles/Profile.module.css';
 import React from 'react';
 import classNames from 'classnames';
+import UploadAvatar from './UploadAvatar';
 
 const ProfileCard = () => {
-    const [value, setValue] = React.useState<number | null>(4.5);
-
     return (
         <div className={styles.card}>
-            <Avatar
-                src='#'
-                alt='Profile Avatar'
-                className={styles.avatar}
-                sx={{ width: 140, height: 140 }}
-            />
+            <UploadAvatar />
             <div className={styles.cardInfo}>
                 <Typography
                     className={styles.cardName}
