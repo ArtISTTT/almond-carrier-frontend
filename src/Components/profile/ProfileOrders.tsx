@@ -57,7 +57,7 @@ const ProfileOrders = () => {
             </div>
             <Pagination
                 className={styles.pagination}
-                count={10}
+                count={Math.round(orders.length / 5)}
                 variant='outlined'
                 color='primary'
             />
