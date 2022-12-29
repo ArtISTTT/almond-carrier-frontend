@@ -12,6 +12,7 @@ import style from '../../styles/SignIn.module.css';
 import { signUp } from '../../src/api/auth';
 import { addUserData, setIsAuthorized } from '../../src/redux/slices/userSlice';
 import { useAppDispatch } from '../../src/redux/hooks';
+import { parseUserDataFromApi } from '../../src/helpers/parseUserDataFromApi';
 
 type IForm = {
     email: string;
@@ -38,7 +39,7 @@ const SignIn: React.FC = () => {
         const data = await signUp(form);
 
         if (data.ok && data.user) {
-            dispatch(addUserData(data.user));
+            dispatch(addUserData(parseUserDataFromApi(data.user)));
             dispatch(setIsAuthorized(true));
             router.push('/thanks-for-registration');
         }

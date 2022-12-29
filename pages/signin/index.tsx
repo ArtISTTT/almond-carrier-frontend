@@ -10,6 +10,7 @@ import { SigninSchema } from '../../src/schemas/SigninSchema';
 import { signIn } from '../../src/api/auth';
 import { useAppDispatch } from '../../src/redux/hooks';
 import { addUserData, setIsAuthorized } from '../../src/redux/slices/userSlice';
+import { parseUserDataFromApi } from '../../src/helpers/parseUserDataFromApi';
 
 type IForm = {
     email: string;
@@ -24,7 +25,7 @@ const SignIn: React.FC = () => {
         const data = await signIn(form);
 
         if (data.ok && data.user) {
-            dispatch(addUserData(data.user));
+            dispatch(addUserData(parseUserDataFromApi(data.user)));
             dispatch(setIsAuthorized(true));
             router.push('/carrier');
         }

@@ -11,8 +11,11 @@ import {
 } from '../../schemas/ChangeUserSchema';
 import { Stack } from '@mui/system';
 import classNames from 'classnames';
-import { updateUserInfo } from '../../api/auth';
+import { updateUserInfo, updateUserPassword } from '../../api/auth';
 import { OpenAlertContext } from '../Layouts/Snackbar';
+import { useAppDispatch } from '../../redux/hooks';
+import { addUserData } from '../../redux/slices/userSlice';
+import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
 
 type IPasswordForm = {
     oldPassword: string;
@@ -36,6 +39,7 @@ const availableGenders = ['Male', 'Female', 'Other'];
 
 const General = () => {
     const user = useSelector(selectUser);
+    const dispatch = useAppDispatch();
     const { triggerOpen } = useContext(OpenAlertContext);
 
     const handleChangeUserInfo = async (form: IForm) => {
@@ -49,7 +53,8 @@ const General = () => {
 
         const data = await updateUserInfo(requestData);
 
-        if (data.ok) {
+        if (data.ok && data.user) {
+            dispatch(addUserData(parseUserDataFromApi(data.user)));
             triggerOpen({
                 severity: 'success',
                 text: 'User info successfully updated',
@@ -73,8 +78,20 @@ const General = () => {
         validateOnChange: false,
     });
 
-    const handleChangePassword = (form: IPasswordForm) => {
-        console.log(form);
+    const handleChangePassword = async (form: IPasswordForm) => {
+        const data = await updateUserPassword(form);
+
+        if (data.ok) {
+            triggerOpen({
+                severity: 'success',
+                text: 'Password successfully updated',
+            });
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || 'Error when trying to update password',
+            });
+        }
     };
 
     const formikChangePassword = useFormik({

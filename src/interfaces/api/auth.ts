@@ -58,3 +58,19 @@ export type IUpdateUserInfo = {
     gender: string;
     phoneNumber: string;
 };
+
+export type IUpdateUserInfoReturn = {
+    error?: string | undefined;
+    ok: boolean;
+    user?: IUser;
+};
+
+export type IUpdateUserPassword = {
+    oldPassword: string;
+    newPassword: string;
+};
+
+export type IUpdatePasswordReturn = {
+    error?: string | undefined;
+    ok: boolean;
+};

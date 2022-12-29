@@ -15,6 +15,7 @@ import {
 import Loader from '../Loader';
 import dayjs from 'dayjs';
 import { IGetCurrentUserReturn } from '../../interfaces/api/auth';
+import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
 
 type IAuthLayout = {
     children: React.ReactNode;
@@ -26,14 +27,7 @@ const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
 
     const updateUser = (data: IGetCurrentUserReturn) => {
         if (data.ok && data.user) {
-            dispatch(
-                addUserData({
-                    ...data.user,
-                    dateOfBirth: dayjs(data.user.dateOfBirth),
-                    phoneNumber: data.user.phoneNumber ?? '',
-                    gender: data.user.gender ?? '',
-                })
-            );
+            dispatch(addUserData(parseUserDataFromApi(data.user)));
             dispatch(setIsAuthorized(true));
         }
 

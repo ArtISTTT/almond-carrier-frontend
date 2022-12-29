@@ -5,7 +5,10 @@ import {
     ISignIn,
     ISignInReturn,
     ISignOutReturn,
+    IUpdatePasswordReturn,
     IUpdateUserInfo,
+    IUpdateUserInfoReturn,
+    IUpdateUserPassword,
 } from './../interfaces/api/auth';
 import { localStorageUserData } from '../helpers/localStorageUserData';
 import {
@@ -128,9 +131,27 @@ export const getCurrentUser = (): Promise<IGetCurrentUserReturn> =>
 
 export const updateUserInfo = (
     requestData: IUpdateUserInfo
-): Promise<ISignUpReturn> =>
+): Promise<IUpdateUserInfoReturn> =>
     mainInstance
         .post('/update-user-info', JSON.stringify(requestData))
+        .then(data => {
+            return {
+                ok: true,
+                user: data.data.user,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error: data.response?.data?.message ?? 'Error',
+            };
+        });
+
+export const updateUserPassword = (
+    requestData: IUpdateUserPassword
+): Promise<IUpdatePasswordReturn> =>
+    mainInstance
+        .post('/update-user-password', JSON.stringify(requestData))
         .then(() => {
             return {
                 ok: true,
