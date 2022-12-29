@@ -33,7 +33,7 @@ const initialState = {
     firstName: 'Artem',
 };
 
-const availableGenders = ['Men', 'Women', 'Other'];
+const availableGenders = ['Male', 'Female', 'Other'];
 
 const General = () => {
     const user = useSelector(selectUser);
