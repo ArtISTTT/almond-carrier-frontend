@@ -64,11 +64,6 @@ const ProfileNavbar: React.FC = () => {
                 label='My Orders'
             />
             <Tab icon={<StarIcon />} iconPosition='start' label='Reviews' />
-            <Tab
-                icon={<SettingsIcon />}
-                iconPosition='start'
-                label='Settings'
-            />
         </Tabs>
     );
 };
