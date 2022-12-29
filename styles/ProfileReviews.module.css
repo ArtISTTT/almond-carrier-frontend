@@ -1,0 +1,29 @@
+.reviewsWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    background-color: var(--cBgSecondary);
+}
+
+.reviewsTitle {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 50px;
+    text-align: center;
+    letter-spacing: 0.4px;
+    color: var(--cTextThird);
+}
+
+.reviews {
+    width: 100%;
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.pagination {
+    margin-left: auto;
+}

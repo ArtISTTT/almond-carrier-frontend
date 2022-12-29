@@ -1,0 +1,90 @@
+.review {
+    display: flex;
+    width: 1000px;
+    box-shadow: 0px 0px 15px 1px rgba(102, 144, 253, 0.25);
+    border-radius: 30px;
+    margin: 0 auto;
+}
+
+.reviewDetails {
+    display: flex;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 12px 18px;
+    justify-content: space-between;
+}
+
+.reviewName {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    letter-spacing: 0.4px;
+    margin-top: 10px;
+}
+
+.reviewRole {
+    font-weight: 400;
+    font-size: 13px;
+    margin-top: 7px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: var(--cTextPrimary);
+}
+
+.reviewProfile {
+    color: var(--cTextThird);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 20px 45px;
+}
+
+.reviewAvatar {
+    /* border: 2px solid var(--cBorderPrimary);
+    border-radius: 20px; */
+    width: 120px;
+    height: 120px;
+}
+
+.reviewData {
+    color: var(--cTextThird);
+    padding-bottom: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewText {
+    padding: 18px 13px;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.4px;
+    flex: 1;
+}
+
+.reviewBenefit {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    margin-right: 160px;
+}
+
+.reviewRating {
+    font-size: 25px;
+    color: var(--cTextPrimary);
+}
+
+.reviewBenefit > span {
+    color: var(--cTextPrimary);
+}
+
+.reviewDate {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: var(--cTextPrimary);
+}
