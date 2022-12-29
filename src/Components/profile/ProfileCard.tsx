@@ -1,4 +1,4 @@
-import { Avatar, Rating, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import styles from '../../../styles/Profile.module.css';
 import React from 'react';
 import classNames from 'classnames';
