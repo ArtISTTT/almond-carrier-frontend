@@ -50,3 +50,11 @@ export type ISignOutReturn = {
     error?: string | undefined;
     ok: boolean;
 };
+
+export type IUpdateUserInfo = {
+    firstName: string;
+    lastName: string;
+    dateOfBirth: Date;
+    gender: string;
+    phoneNumber: string;
+};

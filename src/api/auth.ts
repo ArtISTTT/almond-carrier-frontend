@@ -5,6 +5,7 @@ import {
     ISignIn,
     ISignInReturn,
     ISignOutReturn,
+    IUpdateUserInfo,
 } from './../interfaces/api/auth';
 import { localStorageUserData } from '../helpers/localStorageUserData';
 import {
@@ -116,6 +117,23 @@ export const getCurrentUser = (): Promise<IGetCurrentUserReturn> =>
             return {
                 ok: true,
                 user: data.data,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error: data.response?.data?.message ?? 'Error',
+            };
+        });
+
+export const updateUserInfo = (
+    requestData: IUpdateUserInfo
+): Promise<ISignUpReturn> =>
+    mainInstance
+        .post('/update-user-info', JSON.stringify(requestData))
+        .then(() => {
+            return {
+                ok: true,
             };
         })
         .catch(data => {

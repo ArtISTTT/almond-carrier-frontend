@@ -5,6 +5,6 @@ export type IUser = {
     lastName: string;
     email: string;
     dateOfBirth: Dayjs;
-    gender: string | undefined;
-    phoneNumber: string | undefined;
+    gender: string;
+    phoneNumber: string;
 };

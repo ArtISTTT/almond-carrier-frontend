@@ -39,31 +39,27 @@ const SignIn: React.FC = () => {
         });
     }, [router.isReady]);
 
-    const handleRecover = (form: IForm) => {
-        processRecoverPassword({
+    const handleRecover = async (form: IForm) => {
+        const data = await processRecoverPassword({
             password: form.password,
             userId: form.userId,
             token: form.token,
-        })
-            .then(data => {
-                if (data.ok) {
-                    triggerOpen({
-                        severity: 'success',
-                        text: 'Password successfully changed',
-                    });
+        });
 
-                    router.push('/signin');
-                } else {
-                    triggerOpen({
-                        severity: 'error',
-                        text:
-                            data.error ||
-                            'Error when trying to change the password',
-                    });
-                    formik.setSubmitting(false);
-                }
-            })
-            .catch(error => {});
+        if (data.ok) {
+            triggerOpen({
+                severity: 'success',
+                text: 'Password successfully changed',
+            });
+
+            router.push('/signin');
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || 'Error when trying to change the password',
+            });
+            formik.setSubmitting(false);
+        }
     };
 
     const formik = useFormik({

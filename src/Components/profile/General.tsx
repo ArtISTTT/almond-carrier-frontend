@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from '../../../styles/General.module.css';
 import { Button, MenuItem, Select, TextField, Typography } from '@mui/material';
 import dayjs from 'dayjs';
@@ -12,6 +12,8 @@ import {
 } from '../../schemas/ChangeUserSchema';
 import { Stack, style } from '@mui/system';
 import classNames from 'classnames';
+import { updateUserInfo } from '../../api/auth';
+import { OpenAlertContext } from '../Layouts/Snackbar';
 
 type IPasswordForm = {
     oldPassword: string;
@@ -21,6 +23,8 @@ type IPasswordForm = {
 type IForm = {
     email: string;
     firstName: string;
+    gender: string;
+    phoneNumber: string;
     lastName: string;
     dateOfBirth: string;
 };
@@ -33,8 +37,31 @@ const availableGenders = ['Men', 'Women', 'Other'];
 
 const General = () => {
     const user = useSelector(selectUser);
+    const { triggerOpen } = useContext(OpenAlertContext);
 
-    const handleChangeUserInfo = (form: IForm) => {};
+    const handleChangeUserInfo = async (form: IForm) => {
+        const requestData = {
+            firstName: form.firstName,
+            lastName: form.lastName,
+            dateOfBirth: new Date(form.dateOfBirth),
+            gender: form.gender,
+            phoneNumber: form.phoneNumber,
+        };
+
+        const data = await updateUserInfo(requestData);
+
+        if (data.ok) {
+            triggerOpen({
+                severity: 'success',
+                text: 'User info successfully updated',
+            });
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || 'Error when trying to update user',
+            });
+        }
+    };
 
     const formik = useFormik({
         initialValues: {

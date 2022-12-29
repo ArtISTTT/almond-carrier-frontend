@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-}
+    reactStrictMode: true,
+    images: {
+        minimumCacheTTL: 60,
+    },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -9,7 +9,6 @@ export const ChangeUserSchema = Yup.object().shape({
         .min(2, 'Too Short!')
         .max(50, 'Too Long!')
         .required('Required'),
-    email: Yup.string().email('Invalid email').required('Required'),
     dateOfBirth: Yup.date()
         .max(
             new Date(Date.now() - 567648000000),
