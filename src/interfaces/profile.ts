@@ -8,6 +8,16 @@ export interface IOrder {
     estimatedDate: Dayjs;
 }
 
+export interface IReview {
+    avatar: string;
+    name: string;
+    role: string;
+    text: string;
+    rating: number;
+    benefit: number;
+    date: Dayjs;
+}
+
 export enum orderStatus {
     waitingReciever = 'waitingReciever',
     waitingCarrier = 'waitingCarrier',

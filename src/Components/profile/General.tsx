@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from '../../../styles/General.module.css';
 import { Button, MenuItem, Select, TextField, Typography } from '@mui/material';
-import dayjs from 'dayjs';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/selectors/user';
 import { useFormik } from 'formik';
@@ -10,7 +9,7 @@ import {
     ChangePasswordSchema,
     ChangeUserSchema,
 } from '../../schemas/ChangeUserSchema';
-import { Stack, style } from '@mui/system';
+import { Stack } from '@mui/system';
 import classNames from 'classnames';
 
 type IPasswordForm = {
