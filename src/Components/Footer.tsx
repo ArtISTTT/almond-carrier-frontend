@@ -1,10 +1,13 @@
 import styles from '../../styles/Footer.module.css';
 import React from 'react';
 import {
-    Autocomplete,
     Avatar,
     Link as MUILink,
-    TextField,
+    SelectChangeEvent,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
     Typography,
 } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
@@ -14,27 +17,31 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 const languages = [{ label: 'Russian' }, { label: 'English' }];
 
 const Footer = () => {
-    const [inputValue, setInputValue] = React.useState<string | undefined>('');
+    const [language, setLanguage] = React.useState<string>('Russian');
 
-    const onInputChange = (event: any, newInputValue: string) => {
-        setInputValue(newInputValue);
+    const handleChange = (event: SelectChangeEvent) => {
+        setLanguage(event.target.value as string);
     };
 
     return (
         <footer className={styles.footer}>
             <div className={styles.leftBlock}>
-                <Autocomplete
-                    inputValue={inputValue}
-                    onInputChange={onInputChange}
-                    disablePortal
-                    id='combo-box-demo'
-                    options={languages}
-                    sx={{ width: 300 }}
-                    renderInput={params => (
-                        <TextField {...params} label='Language' />
-                    )}
-                />
-
+                <FormControl sx={{ width: 250 }}>
+                    <InputLabel id='language-label'>Language</InputLabel>
+                    <Select
+                        labelId='language-label'
+                        id='demo-simple-select'
+                        value={language}
+                        label='Language'
+                        MenuProps={{
+                            disableScrollLock: true,
+                        }}
+                        onChange={handleChange}
+                    >
+                        <MenuItem value={'Russian'}>Russian</MenuItem>
+                        <MenuItem value={'English'}>English</MenuItem>
+                    </Select>
+                </FormControl>
                 <Avatar
                     sx={{ width: 55, height: 55 }}
                     src='/static/images/logo.png'
