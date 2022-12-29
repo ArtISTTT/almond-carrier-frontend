@@ -1,11 +1,11 @@
 import { Tab, Tabs } from '@mui/material';
 import React from 'react';
-import styles from '../../../styles/Profile.module.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import StarIcon from '@mui/icons-material/Star';
 import SettingsIcon from '@mui/icons-material/Settings';
 import RestoreIcon from '@mui/icons-material/Restore';
 import { useRouter } from 'next/router';
+import styles from '../../../styles/Profile.module.css';
 
 const selectTab = (link: string) => {
     switch (link) {
@@ -41,7 +41,8 @@ const ProfileNavbar: React.FC = () => {
 
     const handleChange = (_: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
-        router.push(selectTabHref(newValue));
+
+        setTimeout(() => router.push(selectTabHref(newValue)), 200);
     };
 
     return (
@@ -49,6 +50,7 @@ const ProfileNavbar: React.FC = () => {
             className={styles.tabs}
             value={value}
             onChange={handleChange}
+            orientation='vertical'
             aria-label='profile tabs'
         >
             <Tab

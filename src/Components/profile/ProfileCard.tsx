@@ -11,7 +11,7 @@ const ProfileCard = () => {
                 src='#'
                 alt='Profile Avatar'
                 className={styles.avatar}
-                sx={{ width: 180, height: 180 }}
+                sx={{ width: 140, height: 140 }}
             />
             <div className={styles.cardInfo}>
                 <Typography
@@ -20,13 +20,6 @@ const ProfileCard = () => {
                     component='h2'
                 >
                     Samanta Goodman
-                </Typography>
-                <Typography
-                    className={styles.cardRole}
-                    variant='h4'
-                    component='h2'
-                >
-                    Carrier
                 </Typography>
                 <Typography
                     className={styles.cardOrders}

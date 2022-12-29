@@ -106,4 +106,5 @@
 .carrierLayoutContent {
     background-color: var(--cBgSecondary);
     min-height: calc(100vh - 80px) !important;
+    display: flex;
 }

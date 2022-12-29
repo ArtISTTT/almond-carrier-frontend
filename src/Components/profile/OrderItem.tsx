@@ -69,7 +69,11 @@ const OrderItem: React.FC<IOrder> = ({
                     </div>
                 </div>
                 <div className={styles.orderDetails}>
-                    <Button className={styles.detailsButton}>
+                    <Button
+                        className={styles.detailsButton}
+                        variant='contained'
+                        disabled={status === orderStatus.cancelled}
+                    >
                         Order
                         <br /> Details
                     </Button>

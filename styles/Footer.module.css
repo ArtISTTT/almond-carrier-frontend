@@ -6,6 +6,7 @@
     justify-content: space-between;
     color: var(--cTextThird);
     padding: 30px;
+    box-shadow: 0px -4px 5px -6px rgb(34 60 80 / 60%);
 }
 
 .leftBlock {

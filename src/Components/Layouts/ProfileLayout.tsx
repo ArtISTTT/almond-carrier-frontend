@@ -1,15 +1,20 @@
 import React from 'react';
 import ProfileCard from '../profile/ProfileCard';
 import ProfileNavbar from '../profile/ProfileNavbar';
+import styles from '../../../styles/Profile.module.css';
 
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div>
-            <div>
+        <div className={styles.profileLayoutWrapper}>
+            <div className={styles.menuWrapper}>
                 <ProfileCard />
+                <ProfileNavbar />
             </div>
-            <ProfileNavbar />
-            {children}
+            <div className={styles.profileLayoutContentWrapper}>
+                <div className={styles.profileLayoutContentInner}>
+                    {children}
+                </div>
+            </div>
         </div>
     );
 };

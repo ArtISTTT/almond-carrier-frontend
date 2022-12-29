@@ -7,6 +7,14 @@ import { orderStatus } from '../../interfaces/profile';
 
 const orders = [
     {
+        status: orderStatus.awaitingDelivery,
+        item: 'Nuts',
+        from: 'Moscow',
+        to: 'Antalya',
+        reward: 500,
+        estimatedDate: dayjs('2019-01-25'),
+    },
+    {
         status: orderStatus.success,
         item: 'Nuts',
         from: 'Moscow',
@@ -16,14 +24,6 @@ const orders = [
     },
     {
         status: orderStatus.cancelled,
-        item: 'Nuts',
-        from: 'Moscow',
-        to: 'Antalya',
-        reward: 500,
-        estimatedDate: dayjs('2019-01-25'),
-    },
-    {
-        status: orderStatus.awaitingDelivery,
         item: 'Nuts',
         from: 'Moscow',
         to: 'Antalya',
