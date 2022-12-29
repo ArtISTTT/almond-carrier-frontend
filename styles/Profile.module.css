@@ -88,6 +88,10 @@
     margin-top: 0;
 }
 
+.tabs button {
+    justify-content: flex-start;
+}
+
 .layoutWrapper {
     background-color: var(--cBgSecondary);
 }

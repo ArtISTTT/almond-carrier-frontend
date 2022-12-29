@@ -43,7 +43,7 @@ const ProfileCard = () => {
                     </div>
                 </div>
                 <div className={styles.statisticItem}>
-                    <div className={styles.statisticTitle}>Raiting</div>
+                    <div className={styles.statisticTitle}>Rating</div>
                     <div className={styles.statisticValue}>4.75</div>
                 </div>
                 {/* <Rating
