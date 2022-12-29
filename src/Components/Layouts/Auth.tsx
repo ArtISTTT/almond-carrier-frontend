@@ -8,34 +8,41 @@ import {
     setIsAuthorized,
 } from '../../redux/slices/userSlice';
 import { useSelector } from 'react-redux';
-import { selectIsInitializeAuthChecked } from '../../redux/selectors/user';
+import {
+    selectIsInitializeAuthChecked,
+    selectUser,
+} from '../../redux/selectors/user';
 import Loader from '../Loader';
 import dayjs from 'dayjs';
+import { IGetCurrentUserReturn } from '../../interfaces/api/auth';
 
 type IAuthLayout = {
     children: React.ReactNode;
 };
 
 const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
-    const router = useRouter();
-    const dispath = useAppDispatch();
     const authChecked = useSelector(selectIsInitializeAuthChecked);
+    const dispatch = useAppDispatch();
+
+    const updateUser = (data: IGetCurrentUserReturn) => {
+        if (data.ok && data.user) {
+            dispatch(
+                addUserData({
+                    ...data.user,
+                    dateOfBirth: dayjs(data.user.dateOfBirth),
+                    phoneNumber: data.user.phoneNumber ?? '',
+                    gender: data.user.gender ?? '',
+                })
+            );
+            dispatch(setIsAuthorized(true));
+        }
+
+        dispatch(setInitializeAuthChecked(true));
+    };
 
     useEffect(() => {
         getCurrentUser().then(data => {
-            if (data.ok && data.user) {
-                dispath(
-                    addUserData({
-                        ...data.user,
-                        dateOfBirth: dayjs(data.user.dateOfBirth),
-                        phoneNumber: data.user.phoneNumber ?? '',
-                        gender: data.user.gender ?? '',
-                    })
-                );
-                dispath(setIsAuthorized(true));
-            }
-
-            dispath(setInitializeAuthChecked(true));
+            updateUser(data);
         });
     }, []);
 
