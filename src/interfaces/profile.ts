@@ -1,11 +1,15 @@
 import { Dayjs } from 'dayjs';
 export interface IOrder {
-    status: string;
-    item: string;
-    from: string;
-    to: string;
-    reward: number;
-    estimatedDate: Dayjs;
+    status?: string;
+    item?: string;
+    from?: string;
+    to?: string;
+    reward?: number | null;
+    estimatedDate?: Dayjs;
+    currency?: string;
+    suggestedBenefit?: number | null;
+    weight?: string;
+    description?: string;
 }
 
 export interface IReview {

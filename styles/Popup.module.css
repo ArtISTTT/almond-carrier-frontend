@@ -1,0 +1,71 @@
+.popup {
+    background-color: var(--cBgSecondary);
+    width: 100%;
+    max-width: 800px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    padding: 30px;
+    border-radius: 20px;
+    transform: translate(-50%, -50%);
+}
+
+.icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+}
+
+.popupTitle {
+    font-weight: 700;
+    margin-bottom: 30px;
+    margin-top: 5px;
+    font-size: 32px;
+    line-height: 32px;
+    letter-spacing: 0.4px;
+    color: var(--cTextThird);
+}
+.inputItem {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.inputItem > label {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.4px;
+    color: var(--cTextPrimary);
+}
+
+.input {
+    width: 100%;
+}
+
+.select {
+    border-radius: 15px;
+}
+
+.input :global .MuiInputBase-root {
+    border-radius: 15px;
+}
+
+.form {
+    width: 100%;
+    max-width: 804px;
+}
+
+.formGeneral {
+    margin-bottom: 24px;
+}
+
+.confirmButton {
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+    margin-top: 20px !important;
+    margin-left: auto !important;
+}

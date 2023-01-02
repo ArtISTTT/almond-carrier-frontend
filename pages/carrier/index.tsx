@@ -127,6 +127,7 @@ const CarrierPage: React.FC = () => {
                                 <div className={styles.littleOrdersContainer}>
                                     {littleOrders.map((littleOrder, i) => (
                                         <LittleOrderItem
+                                            key={i}
                                             item={littleOrder.item}
                                             benefit={littleOrder.benefit}
                                             to={littleOrder.to}
