@@ -42,7 +42,7 @@ const Popup: React.FC<IProps> = ({ togglePopup, addNewOrder }) => {
 
     const formik = useFormik({
         initialValues: {
-            // id: Math.floor(Math.random() * 1000),
+            id: Math.floor(Math.random() * 99999999999),
             to: 'Russia',
             currency: 'Rubles',
             reward: '',

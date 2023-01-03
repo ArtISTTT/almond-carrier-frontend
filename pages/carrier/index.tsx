@@ -7,6 +7,8 @@ import OrderItem from '../../src/Components/orders/OrderItem';
 import { IOrder, orderStatus } from '../../src/interfaces/profile';
 import AddIcon from '@mui/icons-material/Add';
 import styles from '../../styles/Carrier.module.css';
+import Popup from '../../src/Components/orders/Popup';
+import cn from 'classnames';
 
 const orders: IOrder[] = [
     {
@@ -15,7 +17,7 @@ const orders: IOrder[] = [
         item: 'Nuts',
         from: 'Moscow',
         to: 'Antalya',
-        reward: 500,
+        reward: '500',
         estimatedDate: dayjs('2019-01-25'),
     },
     {
@@ -24,7 +26,7 @@ const orders: IOrder[] = [
         item: 'Nuts',
         from: 'Moscow',
         to: 'Antalya',
-        reward: 500,
+        reward: '500',
         estimatedDate: dayjs('2019-01-25'),
     },
     {
@@ -33,7 +35,7 @@ const orders: IOrder[] = [
         item: 'Nuts',
         from: 'Moscow',
         to: 'Antalya',
-        reward: 500,
+        reward: '500',
         estimatedDate: dayjs('2019-01-25'),
     },
     {
@@ -42,34 +44,7 @@ const orders: IOrder[] = [
         item: 'Nuts',
         from: 'Moscow',
         to: 'Antalya',
-        reward: 500,
-        estimatedDate: dayjs('2019-01-25'),
-    },
-    {
-        id: 5,
-        status: orderStatus.awaitingDelivery,
-        item: 'Nuts',
-        from: 'Moscow',
-        to: 'Antalya',
-        reward: 500,
-        estimatedDate: dayjs('2019-01-25'),
-    },
-    {
-        id: 6,
-        status: orderStatus.awaitingDelivery,
-        item: 'Nuts',
-        from: 'Moscow',
-        to: 'Antalya',
-        reward: 500,
-        estimatedDate: dayjs('2019-01-25'),
-    },
-    {
-        id: 7,
-        status: orderStatus.awaitingDelivery,
-        item: 'Nuts',
-        from: 'Moscow',
-        to: 'Antalya',
-        reward: 500,
+        reward: '500',
         estimatedDate: dayjs('2019-01-25'),
     },
 ];
@@ -85,8 +60,22 @@ const recentlyCreatedOrders = [
 ];
 
 const CarrierPage: React.FC = () => {
+    const [isPopupOpen, setIsPopupOpen] = React.useState<boolean>(false);
+
+    const togglePopup = () => setIsPopupOpen(prev => !prev);
+
+    const addNewOrder = (order: IOrder) => orders.push(order);
+
     return (
         <>
+            <div
+                className={cn({
+                    [styles.popupIsOpen]: isPopupOpen,
+                    [styles.popupIsClosed]: !isPopupOpen,
+                })}
+            >
+                <Popup addNewOrder={addNewOrder} togglePopup={togglePopup} />
+            </div>
             <CarrierLayout>
                 <Container maxWidth={false}>
                     <Typography
@@ -112,6 +101,7 @@ const CarrierPage: React.FC = () => {
                                 ))}
                             </div>
                             <Button
+                                onClick={togglePopup}
                                 className={styles.newOrderButton}
                                 variant='contained'
                             >
