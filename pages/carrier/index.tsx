@@ -2,13 +2,15 @@ import { Button, Typography, Container } from '@mui/material';
 import dayjs from 'dayjs';
 import React from 'react';
 import CarrierLayout from '../../src/Components/Layouts/Carrier';
-import LittleOrderItem from '../../src/Components/profile/LittleOrderItem';
-import OrderItem from '../../src/Components/profile/OrderItem';
-import { orderStatus } from '../../src/interfaces/profile';
+import RecentlyCreatedOrder from '../../src/Components/orders/RecentlyCreatedOrder';
+import OrderItem from '../../src/Components/orders/OrderItem';
+import { IOrder, orderStatus } from '../../src/interfaces/profile';
+import AddIcon from '@mui/icons-material/Add';
 import styles from '../../styles/Carrier.module.css';
 
-const orders = [
+const orders: IOrder[] = [
     {
+        id: 1,
         status: orderStatus.awaitingDelivery,
         item: 'Nuts',
         from: 'Moscow',
@@ -17,6 +19,7 @@ const orders = [
         estimatedDate: dayjs('2019-01-25'),
     },
     {
+        id: 2,
         status: orderStatus.awaitingDelivery,
         item: 'Nuts',
         from: 'Moscow',
@@ -25,6 +28,7 @@ const orders = [
         estimatedDate: dayjs('2019-01-25'),
     },
     {
+        id: 3,
         status: orderStatus.awaitingDelivery,
         item: 'Nuts',
         from: 'Moscow',
@@ -33,6 +37,7 @@ const orders = [
         estimatedDate: dayjs('2019-01-25'),
     },
     {
+        id: 4,
         status: orderStatus.awaitingDelivery,
         item: 'Nuts',
         from: 'Moscow',
@@ -41,6 +46,7 @@ const orders = [
         estimatedDate: dayjs('2019-01-25'),
     },
     {
+        id: 5,
         status: orderStatus.awaitingDelivery,
         item: 'Nuts',
         from: 'Moscow',
@@ -49,6 +55,7 @@ const orders = [
         estimatedDate: dayjs('2019-01-25'),
     },
     {
+        id: 6,
         status: orderStatus.awaitingDelivery,
         item: 'Nuts',
         from: 'Moscow',
@@ -57,6 +64,7 @@ const orders = [
         estimatedDate: dayjs('2019-01-25'),
     },
     {
+        id: 7,
         status: orderStatus.awaitingDelivery,
         item: 'Nuts',
         from: 'Moscow',
@@ -66,19 +74,14 @@ const orders = [
     },
 ];
 
-const littleOrders = [
-    { item: 'Fish', to: 'Barnaul', benefit: 40 },
-    { item: 'Fish', to: 'Barnaul', benefit: 40 },
-    { item: 'Fish', to: 'Barnaul', benefit: 40 },
-    { item: 'Fish', to: 'Barnaul', benefit: 40 },
-    { item: 'Fish', to: 'Barnaul', benefit: 40 },
-    { item: 'Fish', to: 'Barnaul', benefit: 40 },
-    { item: 'Fish', to: 'Barnaul', benefit: 40 },
-    { item: 'Fish', to: 'Barnaul', benefit: 40 },
-    { item: 'Fish', to: 'Barnaul', benefit: 40 },
-    { item: 'Fish', to: 'Barnaul', benefit: 40 },
-    { item: 'Fish', to: 'Barnaul', benefit: 40 },
-    { item: 'Fish', to: 'Barnaul', benefit: 40 },
+const recentlyCreatedOrders = [
+    { item: 'Fish', to: 'Barnaul', benefit: 40, id: 1 },
+    { item: 'Fish', to: 'Barnaul', benefit: 40, id: 2 },
+    { item: 'Fish', to: 'Barnaul', benefit: 40, id: 3 },
+    { item: 'Fish', to: 'Barnaul', benefit: 40, id: 4 },
+    { item: 'Fish', to: 'Barnaul', benefit: 40, id: 5 },
+    { item: 'Fish', to: 'Barnaul', benefit: 40, id: 6 },
+    { item: 'Fish', to: 'Barnaul', benefit: 40, id: 7 },
 ];
 
 const CarrierPage: React.FC = () => {
@@ -96,9 +99,9 @@ const CarrierPage: React.FC = () => {
                     <div className={styles.receiverContent}>
                         <div className={styles.ordersWindow}>
                             <div className={styles.ordersWrapper}>
-                                {orders.map((order, i) => (
+                                {orders.map(order => (
                                     <OrderItem
-                                        key={i}
+                                        key={order.id}
                                         status={order.status}
                                         item={order.item}
                                         from={order.from}
@@ -112,6 +115,7 @@ const CarrierPage: React.FC = () => {
                                 className={styles.newOrderButton}
                                 variant='contained'
                             >
+                                <AddIcon sx={{ fontSize: 22 }} />
                                 CREATE NEW ORDER
                             </Button>
                         </div>
@@ -125,12 +129,12 @@ const CarrierPage: React.FC = () => {
                                     Currently looking for a carrier
                                 </Typography>
                                 <div className={styles.littleOrdersContainer}>
-                                    {littleOrders.map((littleOrder, i) => (
-                                        <LittleOrderItem
-                                            key={i}
-                                            item={littleOrder.item}
-                                            benefit={littleOrder.benefit}
-                                            to={littleOrder.to}
+                                    {recentlyCreatedOrders.map(order => (
+                                        <RecentlyCreatedOrder
+                                            key={order.id}
+                                            item={order.item}
+                                            benefit={order.benefit}
+                                            to={order.to}
                                         />
                                     ))}
                                 </div>

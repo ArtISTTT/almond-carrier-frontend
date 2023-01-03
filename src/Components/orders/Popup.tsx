@@ -1,51 +1,52 @@
-import { Button, MenuItem, Select, TextField } from '@mui/material';
+import { Button, MenuItem, Select, TextField, Typography } from '@mui/material';
 import styles from '../../../styles/Popup.module.css';
 import React from 'react';
-import Typography from '@mui/material/Typography';
 import { useFormik } from 'formik';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Stack } from '@mui/system';
 import { IOrder } from '../../interfaces/profile';
+import { PopupSchema } from '../../schemas/PopupSchema';
 
 const valutes = ['Rubles', 'Euro', 'Dollar'];
 
-const deliverPlaces = ['Antalya', 'Russia'];
+const deliverPlaces = ['Russia', 'Antalya'];
+
+const initialValues = {
+    to: 'Russia',
+    currency: 'Rubles',
+    reward: undefined,
+    item: '',
+    suggestedBenefit: undefined,
+    weight: undefined,
+    description: '',
+};
+
 interface IProps {
     addNewOrder: (form: IOrder) => void;
-    setIsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    togglePopup: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Popup: React.FC<IProps> = ({ setIsPopupOpen, addNewOrder }) => {
-    const closePopup = () => setIsPopupOpen(prev => !prev);
+const Popup: React.FC<IProps> = ({ togglePopup, addNewOrder }) => {
+    const closePopup = () => {
+        formik.setValues(initialValues);
+        togglePopup(prev => !prev);
+    };
 
     const addOrderFunc = (
         form: IOrder,
         { resetForm }: { resetForm: () => void }
     ) => {
-        const isSomeFormElementEmpty = Object.values(form).some(
-            formParam => formParam === '' || formParam === null
-        );
-
-        if (isSomeFormElementEmpty) {
-            //alert()
-            return;
-        }
         addNewOrder(form);
         resetForm();
         closePopup();
     };
 
     const formik = useFormik({
-        initialValues: {
-            to: 'Russia',
-            currency: 'Rubles',
-            reward: null,
-            item: '',
-            suggestedBenefit: null,
-            weight: '',
-            description: '',
-        },
+        initialValues,
         onSubmit: addOrderFunc,
+        validationSchema: PopupSchema,
+        validateOnBlur: false,
+        validateOnChange: false,
     });
 
     return (
@@ -64,10 +65,10 @@ const Popup: React.FC<IProps> = ({ setIsPopupOpen, addNewOrder }) => {
                 <Stack direction='column' spacing={3} width='100%'>
                     <Stack direction='row' spacing={3}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='deliverTo'>Deliver to</label>
+                            <label htmlFor='to'>Deliver to</label>
                             <Select
-                                id='deliverTo'
-                                name='deliverTo'
+                                id='to'
+                                name='to'
                                 value={formik.values.to}
                                 onChange={formik.handleChange}
                                 MenuProps={{
@@ -91,6 +92,8 @@ const Popup: React.FC<IProps> = ({ setIsPopupOpen, addNewOrder }) => {
                                 variant='outlined'
                                 value={formik.values.item}
                                 onChange={formik.handleChange}
+                                error={formik.errors.item !== undefined}
+                                helperText={formik.errors.item}
                                 className={styles.input}
                             />
                         </div>
@@ -126,6 +129,10 @@ const Popup: React.FC<IProps> = ({ setIsPopupOpen, addNewOrder }) => {
                                 variant='outlined'
                                 value={formik.values.suggestedBenefit}
                                 onChange={formik.handleChange}
+                                error={
+                                    formik.errors.suggestedBenefit !== undefined
+                                }
+                                helperText={formik.errors.suggestedBenefit}
                                 className={styles.input}
                             />
                         </div>
@@ -140,6 +147,8 @@ const Popup: React.FC<IProps> = ({ setIsPopupOpen, addNewOrder }) => {
                                 variant='outlined'
                                 value={formik.values.reward}
                                 onChange={formik.handleChange}
+                                error={formik.errors.reward !== undefined}
+                                helperText={formik.errors.reward}
                                 className={styles.input}
                             />
                         </div>
@@ -152,6 +161,8 @@ const Popup: React.FC<IProps> = ({ setIsPopupOpen, addNewOrder }) => {
                                 variant='outlined'
                                 value={formik.values.weight}
                                 onChange={formik.handleChange}
+                                error={formik.errors.weight !== undefined}
+                                helperText={formik.errors.weight}
                                 className={styles.input}
                             />
                         </div>
@@ -166,6 +177,8 @@ const Popup: React.FC<IProps> = ({ setIsPopupOpen, addNewOrder }) => {
                                 variant='outlined'
                                 value={formik.values.description}
                                 onChange={formik.handleChange}
+                                error={formik.errors.description !== undefined}
+                                helperText={formik.errors.description}
                                 className={styles.input}
                             />
                         </div>

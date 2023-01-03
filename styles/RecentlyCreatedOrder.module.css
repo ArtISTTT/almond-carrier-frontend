@@ -44,12 +44,14 @@
 
 .littleOrderItem {
     font-weight: 400;
+    font-size: 16px;
     letter-spacing: 0.46px;
     color: var(--cTextPrimary);
 }
 
 .littleOrderTo {
     font-weight: 400;
+    font-size: 16px;
     letter-spacing: 0.4px;
 }
 
@@ -59,6 +61,7 @@
 
 .littleOrderBenefit {
     font-weight: 400;
+    font-size: 16px;
     letter-spacing: 0.3px;
 }
 

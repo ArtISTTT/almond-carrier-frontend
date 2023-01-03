@@ -1,5 +1,6 @@
 import { Dayjs } from 'dayjs';
 export interface IOrder {
+    id?: number;
     status?: string;
     item?: string;
     from?: string;
@@ -8,7 +9,7 @@ export interface IOrder {
     estimatedDate?: Dayjs;
     currency?: string;
     suggestedBenefit?: number | null;
-    weight?: string;
+    weight?: number | null;
     description?: string;
 }
 

@@ -3,23 +3,24 @@ import styles from '../../styles/Receiver.module.css';
 import { Button, Container, Typography } from '@mui/material';
 import cn from 'classnames';
 import CarrierLayout from '../../src/Components/Layouts/Carrier';
-import OrderItem from '../../src/Components/profile/OrderItem';
-import LittleOrderItem from '../../src/Components/profile/LittleOrderItem';
-import Popup from '../../src/Components/profile/Popup';
+import OrderItem from '../../src/Components/orders/OrderItem';
+import RecentlyCreatedOrder from '../../src/Components/orders/RecentlyCreatedOrder';
+import Popup from '../../src/Components/orders/Popup';
 import { IOrder, orderStatus } from '../../src/interfaces/profile';
+import AddIcon from '@mui/icons-material/Add';
 import dayjs from 'dayjs';
 
-const littleOrders = [
-    { to: 'Barnaul', benefit: 40 },
-    { to: 'Barnaul', benefit: 40 },
-    { to: 'Barnaul', benefit: 40 },
-    { to: 'Barnaul', benefit: 40 },
-    { to: 'Barnaul', benefit: 40 },
-    { to: 'Barnaul', benefit: 40 },
+const recentlyCreatedOrders = [
+    { to: 'Barnaul', benefit: 40, id: 1 },
+    { to: 'Barnaul', benefit: 40, id: 2 },
+    { to: 'Barnaul', benefit: 40, id: 3 },
+    { to: 'Barnaul', benefit: 40, id: 4 },
+    { to: 'Barnaul', benefit: 40, id: 5 },
 ];
 
 const orders: IOrder[] = [
     {
+        id: 1,
         status: orderStatus.awaitingDelivery,
         item: 'Nuts',
         from: 'Moscow',
@@ -28,6 +29,7 @@ const orders: IOrder[] = [
         estimatedDate: dayjs('2019-01-25'),
     },
     {
+        id: 2,
         status: orderStatus.awaitingDelivery,
         item: 'Nuts',
         from: 'Moscow',
@@ -36,6 +38,7 @@ const orders: IOrder[] = [
         estimatedDate: dayjs('2019-01-25'),
     },
     {
+        id: 3,
         status: orderStatus.awaitingDelivery,
         item: 'Nuts',
         from: 'Moscow',
@@ -48,7 +51,7 @@ const orders: IOrder[] = [
 const ReceiverPage: React.FC = () => {
     const [isPopupOpen, setIsPopupOpen] = React.useState<boolean>(false);
 
-    const openPopup = () => setIsPopupOpen(prev => !prev);
+    const togglePopup = () => setIsPopupOpen(prev => !prev);
 
     const addNewOrder = (order: IOrder) => orders.push(order);
 
@@ -60,10 +63,7 @@ const ReceiverPage: React.FC = () => {
                     [styles.popupIsClosed]: !isPopupOpen,
                 })}
             >
-                <Popup
-                    addNewOrder={addNewOrder}
-                    setIsPopupOpen={setIsPopupOpen}
-                />
+                <Popup addNewOrder={addNewOrder} togglePopup={togglePopup} />
             </div>
             <CarrierLayout>
                 <Container maxWidth={false}>
@@ -77,9 +77,9 @@ const ReceiverPage: React.FC = () => {
                     <div className={styles.receiverContent}>
                         <div className={styles.ordersWindow}>
                             <div className={styles.ordersWrapper}>
-                                {orders?.map((order, i) => (
+                                {orders?.map(order => (
                                     <OrderItem
-                                        key={i}
+                                        key={order.id}
                                         status={order.status}
                                         item={order.item}
                                         from={order.from}
@@ -90,10 +90,11 @@ const ReceiverPage: React.FC = () => {
                                 ))}
                             </div>
                             <Button
-                                onClick={openPopup}
+                                onClick={togglePopup}
                                 className={styles.newOrderButton}
                                 variant='contained'
                             >
+                                <AddIcon sx={{ fontSize: 22 }} />
                                 CREATE NEW ORDER
                             </Button>
                         </div>
@@ -107,11 +108,11 @@ const ReceiverPage: React.FC = () => {
                                     Currently looking for a carrier
                                 </Typography>
                                 <div className={styles.littleOrdersContainer}>
-                                    {littleOrders.map((littleOrder, i) => (
-                                        <LittleOrderItem
-                                            key={i}
-                                            benefit={littleOrder.benefit}
-                                            to={littleOrder.to}
+                                    {recentlyCreatedOrders.map(order => (
+                                        <RecentlyCreatedOrder
+                                            key={order.id}
+                                            benefit={order.benefit}
+                                            to={order.to}
                                         />
                                     ))}
                                 </div>
