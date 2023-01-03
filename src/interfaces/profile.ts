@@ -5,11 +5,11 @@ export interface IOrder {
     item?: string;
     from?: string;
     to?: string;
-    reward?: number | null;
+    reward?: string;
     estimatedDate?: Dayjs;
     currency?: string;
-    suggestedBenefit?: number | null;
-    weight?: number | null;
+    suggestedBenefit?: string;
+    weight?: string;
     description?: string;
 }
 

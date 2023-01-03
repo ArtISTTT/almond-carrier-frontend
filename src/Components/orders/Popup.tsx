@@ -11,16 +11,6 @@ const valutes = ['Rubles', 'Euro', 'Dollar'];
 
 const deliverPlaces = ['Russia', 'Antalya'];
 
-const initialValues = {
-    to: 'Russia',
-    currency: 'Rubles',
-    reward: undefined,
-    item: '',
-    suggestedBenefit: undefined,
-    weight: undefined,
-    description: '',
-};
-
 interface IProps {
     addNewOrder: (form: IOrder) => void;
     togglePopup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,7 +18,15 @@ interface IProps {
 
 const Popup: React.FC<IProps> = ({ togglePopup, addNewOrder }) => {
     const closePopup = () => {
-        formik.setValues(initialValues);
+        formik.setValues({
+            to: 'Russia',
+            currency: 'Rubles',
+            reward: '',
+            item: '',
+            suggestedBenefit: '',
+            weight: '',
+            description: '',
+        });
         togglePopup(prev => !prev);
     };
 
@@ -38,11 +36,21 @@ const Popup: React.FC<IProps> = ({ togglePopup, addNewOrder }) => {
     ) => {
         addNewOrder(form);
         resetForm();
+        formik.setSubmitting(false);
         closePopup();
     };
 
     const formik = useFormik({
-        initialValues,
+        initialValues: {
+            // id: Math.floor(Math.random() * 1000),
+            to: 'Russia',
+            currency: 'Rubles',
+            reward: '',
+            item: '',
+            suggestedBenefit: '',
+            weight: '',
+            description: '',
+        },
         onSubmit: addOrderFunc,
         validationSchema: PopupSchema,
         validateOnBlur: false,
