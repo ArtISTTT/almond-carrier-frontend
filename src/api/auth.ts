@@ -5,6 +5,7 @@ import {
     ISignIn,
     ISignInReturn,
     ISignOutReturn,
+    IUpdateAvatar,
     IUpdatePasswordReturn,
     IUpdateUserInfo,
     IUpdateUserInfoReturn,
@@ -16,7 +17,6 @@ import {
     ISignUp,
     ISignUpReturn,
 } from '../interfaces/api/auth';
-import { IUser } from '../interfaces/user';
 import { mainInstance } from './instance';
 
 export const signUp = (requestData: ISignUp): Promise<ISignUpReturn> =>
@@ -163,3 +163,29 @@ export const updateUserPassword = (
                 error: data.response?.data?.message ?? 'Error',
             };
         });
+
+export const updateAvatar = (
+    requestData: IUpdateAvatar
+): Promise<IUpdatePasswordReturn> => {
+    var formData = new FormData();
+
+    formData.append('image', requestData.avatar);
+
+    return mainInstance
+        .post('/update-avatar', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+        .then(() => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error: data.response?.data?.message ?? 'Error',
+            };
+        });
+};

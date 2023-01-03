@@ -70,6 +70,10 @@ export type IUpdateUserPassword = {
     newPassword: string;
 };
 
+export type IUpdateAvatar = {
+    avatar: File;
+};
+
 export type IUpdatePasswordReturn = {
     error?: string | undefined;
     ok: boolean;

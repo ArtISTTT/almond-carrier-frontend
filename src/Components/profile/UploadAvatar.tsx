@@ -1,24 +1,44 @@
 import { Avatar, Button, Rating, Typography } from '@mui/material';
 import styles from '../../../styles/Profile.module.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import cn from 'classnames';
 import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
 import { useRouter } from 'next/router';
+import { updateAvatar } from '../../api/auth';
+import { OpenAlertContext } from '../Layouts/Snackbar';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../redux/selectors/user';
 
 const UploadAvatar = () => {
     const { pathname } = useRouter();
+    const user = useSelector(selectUser);
     const paths = pathname.split('/');
+    const { triggerOpen } = useContext(OpenAlertContext);
 
-    const changeUserImage: React.ChangeEventHandler<HTMLInputElement> =
-        (event) => {
-            console.log(event.target.value);
-        };
+    const changeUserImage: React.ChangeEventHandler<
+        HTMLInputElement
+    > = async event => {
+        if (event.target.files && event.target.files.length > 0) {
+            const data = await updateAvatar({ avatar: event.target.files[0] });
+
+            if (data.ok) {
+                triggerOpen({
+                    severity: 'success',
+                    text: 'Avatar successfully updated',
+                });
+            } else {
+                triggerOpen({
+                    severity: 'error',
+                    text: data.error || 'Error while trying to update avatar',
+                });
+            }
+        }
+    };
 
     return (
         <div className={styles.avatarWrapper}>
             <Avatar
-                src='#'
-                alt='Profile Avatar'
+                src={user.avatar ?? ''}
                 className={cn(styles.avatar, {
                     [styles.avatarEdit]: paths[paths.length - 1] === 'general',
                 })}

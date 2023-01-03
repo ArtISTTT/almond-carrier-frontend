@@ -7,4 +7,5 @@ export type IUser = {
     dateOfBirth: Dayjs;
     gender: string;
     phoneNumber: string;
+    avatar?: string;
 };

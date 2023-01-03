@@ -3,8 +3,12 @@ import styles from '../../../styles/Profile.module.css';
 import React from 'react';
 import classNames from 'classnames';
 import UploadAvatar from './UploadAvatar';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../redux/selectors/user';
 
 const ProfileCard = () => {
+    const user = useSelector(selectUser);
+
     return (
         <div className={styles.card}>
             <UploadAvatar />
@@ -14,7 +18,7 @@ const ProfileCard = () => {
                     variant='h4'
                     component='h2'
                 >
-                    Samanta Goodman
+                    {user.firstName} {user.lastName}
                 </Typography>
                 <Typography
                     className={styles.cardCity}

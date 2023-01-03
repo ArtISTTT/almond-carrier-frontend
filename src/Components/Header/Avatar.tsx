@@ -54,7 +54,7 @@ const HeaderAvatar: React.FC = () => {
             <Avatar
                 className={styles.userAvatar}
                 sx={{ width: 40, height: 40 }}
-                src=''
+                src={user.avatar ?? ''}
                 alt='logo'
                 ref={anchorRef}
                 aria-controls={open ? 'menu-list-grow' : undefined}
