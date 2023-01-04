@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../../../styles/ProfileOrders.module.css';
 import { Pagination, Typography } from '@mui/material';
 import dayjs from 'dayjs';
-import OrderItem from './OrderItem';
+import OrderItem from '../orders/OrderItem';
 import { orderStatus } from '../../interfaces/profile';
 
 const orders = [

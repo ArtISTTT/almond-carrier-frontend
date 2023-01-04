@@ -4,7 +4,6 @@ import { Button, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/selectors/user';
 import { useFormik } from 'formik';
-import { IUser } from '../../interfaces/user';
 import {
     ChangePasswordSchema,
     ChangeUserSchema,
@@ -167,7 +166,6 @@ const General = () => {
                                 name='gender'
                                 placeholder='Gender'
                                 value={formik.values.gender}
-                                label='Select your gender'
                                 onChange={formik.handleChange}
                                 MenuProps={{
                                     disableScrollLock: true,
