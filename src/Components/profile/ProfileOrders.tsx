@@ -1,38 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from '../../../styles/ProfileOrders.module.css';
 import { Pagination, Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import OrderItem from '../orders/OrderItem';
 import { orderStatus } from '../../interfaces/profile';
-
-const orders = [
-    {
-        status: orderStatus.awaitingDelivery,
-        item: 'Nuts',
-        from: 'Moscow',
-        to: 'Antalya',
-        reward: 500,
-        estimatedDate: dayjs('2019-01-25'),
-    },
-    {
-        status: orderStatus.success,
-        item: 'Nuts',
-        from: 'Moscow',
-        to: 'Antalya',
-        reward: 500,
-        estimatedDate: dayjs('2019-01-25'),
-    },
-    {
-        status: orderStatus.cancelled,
-        item: 'Nuts',
-        from: 'Moscow',
-        to: 'Antalya',
-        reward: 500,
-        estimatedDate: dayjs('2019-01-25'),
-    },
-];
+import { useSelector } from 'react-redux';
+import { selectMyOrders } from '../../redux/selectors/orders';
+import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 
 const ProfileOrders = () => {
+    const orders = useSelector(selectMyOrders);
+    const { reload, isLoading, error } = useLoadOwnOrders();
+
+    useEffect(() => {
+        reload();
+    }, []);
+
     return (
         <div className={styles.ordersWrapper}>
             <Typography
@@ -44,15 +27,7 @@ const ProfileOrders = () => {
             </Typography>
             <div className={styles.orders}>
                 {orders.map((order, i) => (
-                    <OrderItem
-                        key={i}
-                        status={order.status}
-                        item={order.item}
-                        from={order.from}
-                        to={order.to}
-                        reward={order.reward}
-                        estimatedDate={order.estimatedDate}
-                    />
+                    <OrderItem key={i} {...order} />
                 ))}
             </div>
             <Pagination
