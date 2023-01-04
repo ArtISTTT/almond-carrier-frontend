@@ -21,9 +21,9 @@ const Popup: React.FC<IProps> = ({ togglePopup, addNewOrder }) => {
         formik.setValues({
             to: 'Russia',
             currency: 'Rubles',
-            reward: '',
+            reward: 15,
             item: '',
-            suggestedBenefit: '',
+            suggestedBenefit: 0,
             weight: '',
             description: '',
         });
@@ -45,9 +45,9 @@ const Popup: React.FC<IProps> = ({ togglePopup, addNewOrder }) => {
             id: Math.floor(Math.random() * 99999999999),
             to: 'Russia',
             currency: 'Rubles',
-            reward: '',
+            reward: 15,
             item: '',
-            suggestedBenefit: '',
+            suggestedBenefit: 0,
             weight: '',
             description: '',
         },

@@ -17,7 +17,7 @@ const orders: IOrder[] = [
         item: 'Nuts',
         from: 'Moscow',
         to: 'Antalya',
-        reward: '500',
+        reward: 500,
         estimatedDate: dayjs('2019-01-25'),
     },
     {
@@ -26,7 +26,7 @@ const orders: IOrder[] = [
         item: 'Nuts',
         from: 'Moscow',
         to: 'Antalya',
-        reward: '500',
+        reward: 500,
         estimatedDate: dayjs('2019-01-25'),
     },
     {
@@ -35,7 +35,7 @@ const orders: IOrder[] = [
         item: 'Nuts',
         from: 'Moscow',
         to: 'Antalya',
-        reward: '500',
+        reward: 500,
         estimatedDate: dayjs('2019-01-25'),
     },
     {
@@ -44,7 +44,7 @@ const orders: IOrder[] = [
         item: 'Nuts',
         from: 'Moscow',
         to: 'Antalya',
-        reward: '500',
+        reward: 500,
         estimatedDate: dayjs('2019-01-25'),
     },
 ];
