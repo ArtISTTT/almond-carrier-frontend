@@ -34,6 +34,12 @@ const SignIn: React.FC = () => {
                 text: 'Successfully sign in',
             });
             router.push('/carrier');
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || 'Error when trying to sign in',
+            });
+            formik.setSubmitting(false);
         }
     };
 

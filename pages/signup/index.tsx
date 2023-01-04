@@ -48,6 +48,12 @@ const SignIn: React.FC = () => {
                 text: 'Successfully sign up',
             });
             router.push('/thanks-for-registration');
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || 'Error when trying to sign up',
+            });
+            formik.setSubmitting(false);
         }
     };
 
