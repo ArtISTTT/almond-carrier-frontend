@@ -133,6 +133,7 @@ const Popup: React.FC<IProps> = ({ togglePopup, addNewOrder }) => {
                             <TextField
                                 id='suggestedBenefit'
                                 name='suggestedBenefit'
+                                type='number'
                                 placeholder='0'
                                 variant='outlined'
                                 value={formik.values.suggestedBenefit}
@@ -153,6 +154,7 @@ const Popup: React.FC<IProps> = ({ togglePopup, addNewOrder }) => {
                                 name='reward'
                                 placeholder='0'
                                 variant='outlined'
+                                type='number'
                                 value={formik.values.reward}
                                 onChange={formik.handleChange}
                                 error={formik.errors.reward !== undefined}
