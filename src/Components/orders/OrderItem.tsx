@@ -4,7 +4,8 @@ import styles from '../../../styles/OrderItem.module.css';
 import { Button, Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import cn from 'classnames';
-import { IOrder, orderStatus } from '../../interfaces/profile';
+import { orderStatus } from '../../interfaces/profile';
+import { IOrder } from '../../interfaces/order';
 
 const OrderItem: React.FC<IOrder> = ({
     status,

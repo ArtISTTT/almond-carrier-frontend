@@ -1,12 +1,14 @@
 import { Button, MenuItem, Select, TextField, Typography } from '@mui/material';
 import styles from '../../../styles/Popup.module.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Stack } from '@mui/system';
 import { CarrierPopupSchema } from '../../schemas/PopupSchema';
 import Popup from './Popup';
 import { ICreateOrderCarrier } from '../../interfaces/order';
+import { addOrderAsACarrier } from '../../api/order';
+import { OpenAlertContext } from '../Layouts/Snackbar';
 
 const valutes = ['Rubles', 'Euro', 'Dollar'];
 
@@ -30,8 +32,22 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup }) => {
         togglePopup(prev => !prev);
     };
 
-    const addNewOrder = (form: ICreateOrderCarrier) => {
-        console.log(form);
+    const { triggerOpen } = useContext(OpenAlertContext);
+
+    const addNewOrder = async (form: ICreateOrderCarrier) => {
+        const data = await addOrderAsACarrier(form);
+
+        if (data.ok && data.order) {
+            triggerOpen({
+                severity: 'success',
+                text: 'Order successfully added',
+            });
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || 'Error when trying to add an order',
+            });
+        }
     };
 
     const addOrderFunc = (

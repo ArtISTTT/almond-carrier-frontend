@@ -2,12 +2,10 @@ import { Button, MenuItem, Select, TextField, Typography } from '@mui/material';
 import styles from '../../../styles/Popup.module.css';
 import React from 'react';
 import { useFormik } from 'formik';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Stack } from '@mui/system';
 import { ReceiverPopupSchema } from '../../schemas/PopupSchema';
 import Popup from './Popup';
-import { ICreateOrderReciever, IOrder } from '../../interfaces/order';
-import cn from 'classnames';
+import { ICreateOrderReciever } from '../../interfaces/order';
 
 const valutes = ['RUB', 'USD', 'EUR'];
 
