@@ -1,6 +1,9 @@
 import { IRecoverReturn } from '../interfaces/api/auth';
-import { IAddAsACarrierReturn } from '../interfaces/api/order';
-import { ICreateOrderCarrier } from '../interfaces/order';
+import {
+    IAddAsACarrierReturn,
+    IGetMyOrdersReturn,
+} from '../interfaces/api/order';
+import { ICreateOrderCarrier, IOrder } from '../interfaces/order';
 import { mainInstance } from './instance';
 
 export const addOrderAsACarrier = (
@@ -12,6 +15,22 @@ export const addOrderAsACarrier = (
             return {
                 ok: true,
                 order: data.data.order,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error: data.response?.data?.message ?? 'Error',
+            };
+        });
+
+export const getMyOrders = (): Promise<IGetMyOrdersReturn> =>
+    mainInstance
+        .get('/order/get-my-orders')
+        .then(data => {
+            return {
+                ok: true,
+                orders: data.data.orders as IOrder[],
             };
         })
         .catch(data => {

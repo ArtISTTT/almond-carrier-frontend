@@ -13,6 +13,7 @@ const deliverPlaces = ['Russia', 'Antalya'];
 
 interface IProps {
     togglePopup: React.Dispatch<React.SetStateAction<boolean>>;
+    reload: () => Promise<void>;
 }
 
 const defaultValues = {
@@ -25,7 +26,7 @@ const defaultValues = {
     productDescription: '',
 };
 
-const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup }) => {
+const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
     const closePopup = () => {
         formik.setValues(defaultValues);
         togglePopup(prev => !prev);

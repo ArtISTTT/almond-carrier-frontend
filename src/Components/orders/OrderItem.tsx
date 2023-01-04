@@ -9,11 +9,11 @@ import { IOrder } from '../../interfaces/order';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
-    item,
-    from,
-    to,
-    reward,
-    estimatedDate,
+    productName,
+    fromLocation,
+    toLocation,
+    rewardAmount,
+    arrivalDate,
 }) => {
     return (
         <div
@@ -31,7 +31,7 @@ const OrderItem: React.FC<IOrder> = ({
                             component='h1'
                             className={styles.orderItem}
                         >
-                            {item}
+                            {productName}
                         </Typography>
                     </div>
                     <div className={styles.orderDescriptions}>
@@ -41,7 +41,7 @@ const OrderItem: React.FC<IOrder> = ({
                             className={styles.description}
                         >
                             <span>FROM: </span>
-                            {from}
+                            {fromLocation}
                         </Typography>
                         <Typography
                             variant='h3'
@@ -49,7 +49,7 @@ const OrderItem: React.FC<IOrder> = ({
                             className={styles.description}
                         >
                             <span>TO: </span>
-                            {to}
+                            {toLocation}
                         </Typography>
                         <Typography
                             variant='h3'
@@ -57,15 +57,15 @@ const OrderItem: React.FC<IOrder> = ({
                             className={styles.description}
                         >
                             <span>REWARD: </span>
-                            {reward}
+                            {rewardAmount}
                         </Typography>
                         <Typography
                             variant='h3'
                             component='p'
                             className={styles.description}
                         >
-                            <span>Estimated date:</span>{' '}
-                            {dayjs(estimatedDate).format('DD.MM.YYYY')}
+                            <span>Arrival date:</span>{' '}
+                            {dayjs(arrivalDate).format('DD.MM.YYYY')}
                         </Typography>
                     </div>
                 </div>

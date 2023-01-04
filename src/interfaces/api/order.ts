@@ -5,3 +5,9 @@ export type IAddAsACarrierReturn = {
     ok: boolean;
     order?: IOrder;
 };
+
+export type IGetMyOrdersReturn = {
+    error?: string | undefined;
+    ok: boolean;
+    orders?: IOrder[];
+};

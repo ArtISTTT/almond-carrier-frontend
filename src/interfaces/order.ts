@@ -1,17 +1,19 @@
 import { Dayjs } from 'dayjs';
+import { orderStatus } from './profile';
 
 export interface IOrder {
-    id?: number;
-    status?: string;
-    item?: string;
-    from?: string;
-    to?: string;
-    reward?: number;
-    estimatedDate?: Dayjs;
-    currency?: string;
-    suggestedBenefit?: number;
-    weight?: string;
-    description?: string;
+    id: string;
+    toLocation: string;
+    fromLocation?: string;
+    productName?: string;
+    rewardAmount: number;
+    productAmount?: number;
+    productWeight?: number;
+    productDescription?: string;
+    carrierMaxWeight: number;
+    arrivalDate?: Date;
+    status: orderStatus;
+    isPayed: boolean;
 }
 
 export interface ICreateOrderReciever {

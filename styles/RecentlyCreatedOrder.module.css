@@ -24,7 +24,7 @@
 
 .littleOrderWrapper {
     position: relative;
-    z-index: 3;
+    z-index: 0;
     max-width: 100%;
     width: 92%;
     background-color: var(--cBgSecondary);

@@ -16,6 +16,7 @@ const deliverPlaces = ['Russia', 'Antalya'];
 
 interface IProps {
     togglePopup: React.Dispatch<React.SetStateAction<boolean>>;
+    reload: () => Promise<void>;
 }
 
 const defaultValues = {
@@ -26,7 +27,7 @@ const defaultValues = {
     rewardAmount: 2000,
 };
 
-const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup }) => {
+const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
     const closePopup = () => {
         formik.setValues(defaultValues);
         togglePopup(prev => !prev);
@@ -42,6 +43,7 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup }) => {
                 severity: 'success',
                 text: 'Order successfully added',
             });
+            reload();
         } else {
             triggerOpen({
                 severity: 'error',

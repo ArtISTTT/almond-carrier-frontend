@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from '../../../styles/Dashboard.module.css';
 import { Button, Container, Typography } from '@mui/material';
 import cn from 'classnames';
@@ -11,6 +11,9 @@ import OrderItem from '../orders/OrderItem';
 import RecentlyCreatedOrder from '../orders/RecentlyCreatedOrder';
 import CarrierAddingPopup from '../orders/CarrierAddingPopup';
 import { IOrder } from '../../interfaces/order';
+import { useSelector } from 'react-redux';
+import { selectMyLiveOrders } from '../../redux/selectors/orders';
+import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 
 const recentlyCreatedOrders = [
     { to: 'Barnaul', benefit: 40, id: 1 },
@@ -20,36 +23,6 @@ const recentlyCreatedOrders = [
     { to: 'Barnaul', benefit: 40, id: 5 },
 ];
 
-const orders: IOrder[] = [
-    {
-        id: 1,
-        status: orderStatus.awaitingDelivery,
-        item: 'Nuts',
-        from: 'Moscow',
-        to: 'Antalya',
-        reward: 500,
-        estimatedDate: dayjs('2019-01-25'),
-    },
-    {
-        id: 2,
-        status: orderStatus.awaitingDelivery,
-        item: 'Nuts',
-        from: 'Moscow',
-        to: 'Antalya',
-        reward: 500,
-        estimatedDate: dayjs('2019-01-25'),
-    },
-    {
-        id: 3,
-        status: orderStatus.awaitingDelivery,
-        item: 'Nuts',
-        from: 'Moscow',
-        to: 'Antalya',
-        reward: 500,
-        estimatedDate: dayjs('2019-01-25'),
-    },
-];
-
 enum PopupType {
     none,
     carrier,
@@ -57,9 +30,16 @@ enum PopupType {
 }
 
 const Dashboard: React.FC = () => {
+    const orders = useSelector(selectMyLiveOrders);
     const [openedPopup, setOpenedPopup] = React.useState<PopupType>(
         PopupType.none
     );
+
+    const { reload, isLoading, error } = useLoadOwnOrders();
+
+    useEffect(() => {
+        reload();
+    }, []);
 
     const toggleCarrierPopup = () =>
         setOpenedPopup(prev => {
@@ -88,10 +68,16 @@ const Dashboard: React.FC = () => {
                 })}
             >
                 {openedPopup === PopupType.reciever && (
-                    <ReceiverAddingPopup togglePopup={toggleReceiverPopup} />
+                    <ReceiverAddingPopup
+                        togglePopup={toggleReceiverPopup}
+                        reload={reload}
+                    />
                 )}
                 {openedPopup === PopupType.carrier && (
-                    <CarrierAddingPopup togglePopup={toggleCarrierPopup} />
+                    <CarrierAddingPopup
+                        togglePopup={toggleCarrierPopup}
+                        reload={reload}
+                    />
                 )}
             </div>
             <CarrierLayout>
@@ -107,15 +93,7 @@ const Dashboard: React.FC = () => {
                         <div className={styles.ordersWindow}>
                             <div className={styles.ordersWrapper}>
                                 {orders?.map(order => (
-                                    <OrderItem
-                                        key={order.id}
-                                        status={order.status}
-                                        item={order.item}
-                                        from={order.from}
-                                        to={order.to}
-                                        estimatedDate={order.estimatedDate}
-                                        reward={order.reward}
-                                    />
+                                    <OrderItem key={order.id} {...order} />
                                 ))}
                             </div>
                             <div className={styles.newOrderButtons}>
