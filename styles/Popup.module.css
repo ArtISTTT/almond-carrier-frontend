@@ -6,7 +6,8 @@
     left: 50%;
     top: 50%;
     padding: 30px;
-    border-radius: 20px;
+    padding-top: 16px;
+    border-radius: 10px;
     transform: translate(-50%, -50%);
 }
 
@@ -19,12 +20,12 @@
 
 .popupTitle {
     font-weight: 700;
-    margin-bottom: 30px;
-    margin-top: 5px;
-    font-size: 32px;
-    line-height: 32px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    line-height: 24px;
     letter-spacing: 0.4px;
     color: var(--cTextThird);
+    text-align: center;
 }
 .inputItem {
     display: flex;

@@ -10,7 +10,7 @@ const SignIn: React.FC = () => {
     const router = useRouter();
 
     const continueAsACarrier = () => {
-        router.push('/carrier');
+        router.push('/dashboard');
     };
 
     const continueAsAReceiver = () => {

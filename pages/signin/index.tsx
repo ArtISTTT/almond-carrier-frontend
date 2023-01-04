@@ -27,7 +27,7 @@ const SignIn: React.FC = () => {
         if (data.ok && data.user) {
             dispatch(addUserData(parseUserDataFromApi(data.user)));
             dispatch(setIsAuthorized(true));
-            router.push('/carrier');
+            router.push('/dashboard');
         }
     };
 

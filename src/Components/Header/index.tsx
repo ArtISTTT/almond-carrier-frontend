@@ -22,7 +22,7 @@ const Header: React.FC<IProps> = ({
 
     const changePageIfAuthorized = () => {
         if (isAuthorized) {
-            router.push('/carrier');
+            router.push('/dashboard');
         } else {
             router.push('/signin');
         }

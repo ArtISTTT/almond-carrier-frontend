@@ -19,7 +19,7 @@ const PrivateLayout: React.FC<IAuthLayout> = ({ privateType, children }) => {
     }
 
     if (privateType === privateTypes.onlyUnauthorized && isAuthorized) {
-        router.push('/carrier');
+        router.push('/dashboard');
         return <></>;
     }
 

@@ -1,14 +1,16 @@
 import React from 'react';
-import styles from '../../styles/Receiver.module.css';
+import styles from '../../../styles/Dashboard.module.css';
 import { Button, Container, Typography } from '@mui/material';
 import cn from 'classnames';
-import CarrierLayout from '../../src/Components/Layouts/Carrier';
-import OrderItem from '../../src/Components/orders/OrderItem';
-import RecentlyCreatedOrder from '../../src/Components/orders/RecentlyCreatedOrder';
-import Popup from '../../src/Components/orders/Popup';
-import { IOrder, orderStatus } from '../../src/interfaces/profile';
 import AddIcon from '@mui/icons-material/Add';
 import dayjs from 'dayjs';
+import { orderStatus } from '../../interfaces/profile';
+import ReceiverAddingPopup from '../orders/ReceiverAddingPopup';
+import CarrierLayout from '../Layouts/Carrier';
+import OrderItem from '../orders/OrderItem';
+import RecentlyCreatedOrder from '../orders/RecentlyCreatedOrder';
+import CarrierAddingPopup from '../orders/CarrierAddingPopup';
+import { IOrder } from '../../interfaces/order';
 
 const recentlyCreatedOrders = [
     { to: 'Barnaul', benefit: 40, id: 1 },
@@ -48,22 +50,49 @@ const orders: IOrder[] = [
     },
 ];
 
-const ReceiverPage: React.FC = () => {
-    const [isPopupOpen, setIsPopupOpen] = React.useState<boolean>(false);
+enum PopupType {
+    none,
+    carrier,
+    reciever,
+}
 
-    const togglePopup = () => setIsPopupOpen(prev => !prev);
+const Dashboard: React.FC = () => {
+    const [openedPopup, setOpenedPopup] = React.useState<PopupType>(
+        PopupType.none
+    );
 
-    const addNewOrder = (order: IOrder) => orders.push(order);
+    const toggleCarrierPopup = () =>
+        setOpenedPopup(prev => {
+            if (prev === PopupType.none) {
+                return PopupType.carrier;
+            }
+
+            return PopupType.none;
+        });
+
+    const toggleReceiverPopup = () =>
+        setOpenedPopup(prev => {
+            if (prev === PopupType.none) {
+                return PopupType.reciever;
+            }
+
+            return PopupType.none;
+        });
 
     return (
         <>
             <div
                 className={cn({
-                    [styles.popupIsOpen]: isPopupOpen,
-                    [styles.popupIsClosed]: !isPopupOpen,
+                    [styles.popupIsOpen]: openedPopup !== PopupType.none,
+                    [styles.popupIsClosed]: openedPopup === PopupType.none,
                 })}
             >
-                <Popup addNewOrder={addNewOrder} togglePopup={togglePopup} />
+                {openedPopup === PopupType.reciever && (
+                    <ReceiverAddingPopup togglePopup={toggleReceiverPopup} />
+                )}
+                {openedPopup === PopupType.carrier && (
+                    <CarrierAddingPopup togglePopup={toggleCarrierPopup} />
+                )}
             </div>
             <CarrierLayout>
                 <Container maxWidth={false}>
@@ -89,14 +118,27 @@ const ReceiverPage: React.FC = () => {
                                     />
                                 ))}
                             </div>
-                            <Button
-                                onClick={togglePopup}
-                                className={styles.newOrderButton}
-                                variant='contained'
-                            >
-                                <AddIcon sx={{ fontSize: 22 }} />
-                                CREATE NEW ORDER
-                            </Button>
+                            <div className={styles.newOrderButtons}>
+                                <Button
+                                    onClick={toggleReceiverPopup}
+                                    className={styles.newOrderButton}
+                                    variant='contained'
+                                >
+                                    <AddIcon sx={{ fontSize: 22 }} />
+                                    Order new item
+                                </Button>
+                                <Button
+                                    onClick={toggleCarrierPopup}
+                                    className={cn(
+                                        styles.newOrderButton,
+                                        styles.sending
+                                    )}
+                                    variant='contained'
+                                >
+                                    <AddIcon sx={{ fontSize: 22 }} />
+                                    Send new item
+                                </Button>
+                            </div>
                         </div>
                         <div className={styles.currentlyWindow}>
                             <div className={styles.currentlyWindowContainer}>
@@ -131,4 +173,4 @@ const ReceiverPage: React.FC = () => {
     );
 };
 
-export default ReceiverPage;
+export default Dashboard;
