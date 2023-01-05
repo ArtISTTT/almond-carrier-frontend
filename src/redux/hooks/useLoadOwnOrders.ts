@@ -6,10 +6,11 @@ import { OpenAlertContext } from '../../Components/Layouts/Snackbar';
 
 type IReturn = {
     isLoading: boolean;
-    reorder: () => void;
+    reload: () => Promise<void>;
+    error: string | undefined;
 };
 
-export const useLoadOwnOrders = () => {
+export const useLoadOwnOrders = (): IReturn => {
     const dispatch = useAppDispatch();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | undefined>(undefined);

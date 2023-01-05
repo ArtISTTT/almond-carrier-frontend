@@ -1,11 +1,13 @@
 import { Button, MenuItem, Select, TextField, Typography } from '@mui/material';
 import styles from '../../../styles/Popup.module.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import { Stack } from '@mui/system';
 import { ReceiverPopupSchema } from '../../schemas/PopupSchema';
 import Popup from './Popup';
 import { ICreateOrderReciever } from '../../interfaces/order';
+import { addOrderAsAReceiver } from '../../api/order';
+import { OpenAlertContext } from '../Layouts/Snackbar';
 
 const valutes = ['RUB', 'USD', 'EUR'];
 
@@ -27,13 +29,27 @@ const defaultValues = {
 };
 
 const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
+    const { triggerOpen } = useContext(OpenAlertContext);
     const closePopup = () => {
         formik.setValues(defaultValues);
         togglePopup(prev => !prev);
     };
 
-    const addNewOrder = (form: ICreateOrderReciever) => {
-        console.log(form);
+    const addNewOrder = async (form: ICreateOrderReciever) => {
+        const data = await addOrderAsAReceiver(form);
+
+        if (data.ok) {
+            triggerOpen({
+                severity: 'success',
+                text: 'Order successfully added',
+            });
+            await reload();
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || 'Error when trying to add an order',
+            });
+        }
     };
 
     const addOrderFunc = (

@@ -14,11 +14,13 @@ export const addOrderAsACarrier = (
     requestData: ICreateOrderCarrier
 ): Promise<IAddAsACarrierReturn> =>
     mainInstance
-        .post('/order/create-order-as-carrier', JSON.stringify(requestData))
+        .post(
+            '/order/create-order-as-carrier',
+            JSON.stringify({ ...requestData, currency: 'RUB' })
+        )
         .then(data => {
             return {
                 ok: true,
-                order: data.data.order,
             };
         })
         .catch(data => {
@@ -32,11 +34,13 @@ export const addOrderAsAReceiver = (
     requestData: ICreateOrderReciever
 ): Promise<IAddAsACarrierReturn> =>
     mainInstance
-        .post('/order/create-order-as-receiver', JSON.stringify(requestData))
+        .post(
+            '/order/create-order-as-receiver',
+            JSON.stringify({ ...requestData, currency: 'RUB' })
+        )
         .then(data => {
             return {
                 ok: true,
-                order: data.data.order,
             };
         })
         .catch(data => {

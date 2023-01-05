@@ -38,12 +38,12 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
     const addNewOrder = async (form: ICreateOrderCarrier) => {
         const data = await addOrderAsACarrier(form);
 
-        if (data.ok && data.order) {
+        if (data.ok) {
             triggerOpen({
                 severity: 'success',
                 text: 'Order successfully added',
             });
-            reload();
+            await reload();
         } else {
             triggerOpen({
                 severity: 'error',
