@@ -35,14 +35,16 @@ const OrderItem: React.FC<IOrder> = ({
                         </Typography>
                     </div>
                     <div className={styles.orderDescriptions}>
-                        <Typography
-                            variant='h3'
-                            component='p'
-                            className={styles.description}
-                        >
-                            <span>FROM: </span>
-                            {fromLocation}
-                        </Typography>
+                        {fromLocation && (
+                            <Typography
+                                variant='h3'
+                                component='p'
+                                className={styles.description}
+                            >
+                                <span>FROM: </span>
+                                {fromLocation}
+                            </Typography>
+                        )}
                         <Typography
                             variant='h3'
                             component='p'
@@ -59,14 +61,16 @@ const OrderItem: React.FC<IOrder> = ({
                             <span>REWARD: </span>
                             {rewardAmount}
                         </Typography>
-                        <Typography
-                            variant='h3'
-                            component='p'
-                            className={styles.description}
-                        >
-                            <span>Arrival date:</span>{' '}
-                            {dayjs(arrivalDate).format('DD.MM.YYYY')}
-                        </Typography>
+                        {arrivalDate && (
+                            <Typography
+                                variant='h3'
+                                component='p'
+                                className={styles.description}
+                            >
+                                <span>Arrival date:</span>{' '}
+                                {dayjs(arrivalDate).format('DD.MM.YYYY')}
+                            </Typography>
+                        )}
                     </div>
                 </div>
                 <div className={styles.orderDetails}>
