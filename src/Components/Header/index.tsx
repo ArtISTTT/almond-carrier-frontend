@@ -39,9 +39,11 @@ const Header: React.FC<IProps> = ({
                 />
                 {isAuthorized && (
                     <div className={styles.leftMenuLinks}>
-                        <MUILink className={styles.link} underline='none'>
-                            Link 1
-                        </MUILink>
+                        <Link href='/dashboard'>
+                            <MUILink className={styles.link} underline='none'>
+                                Dashboard
+                            </MUILink>
+                        </Link>
                         <MUILink className={styles.link} underline='none'>
                             Link 2
                         </MUILink>
