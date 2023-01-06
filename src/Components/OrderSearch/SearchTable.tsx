@@ -8,21 +8,22 @@ import {
 import { Pagination } from '@mui/material';
 import SearchTableOrderCarrier from './SearchTableOrderCarrier';
 import SearchTableOrderReceiver from './SearchTableOrderReceiver';
+import cn from 'classnames';
 
 const carriersHeaders = [
-    'Carrier',
-    'From/To',
-    'Arrival date',
-    'Benefit',
-    'Max weight',
+    { name: 'Carrier', long: true },
+    { name: 'From/To', long: true },
+    { name: 'Arrival date' },
+    { name: 'Benefit' },
+    { name: 'Max weight' },
 ];
 
 const receiversHeaders = [
-    'Receiver',
-    'From/To',
-    'Product name',
-    'Price/Benefit',
-    'Weight',
+    { name: 'Receiver', long: true },
+    { name: 'From/To', long: true },
+    { name: 'Product name' },
+    { name: 'Price/Benefit' },
+    { name: 'Weight' },
 ];
 
 type IProps = {
@@ -43,7 +44,13 @@ const SearchTable: React.FC<IProps> = ({ type }) => {
                     ? carriersHeaders
                     : receiversHeaders
                 ).map(item => (
-                    <div className={styles.tableHeaderItem}>{item}</div>
+                    <div
+                        className={cn(styles.tableHeaderItem, {
+                            [styles.long]: item.long,
+                        })}
+                    >
+                        {item.name}
+                    </div>
                 ))}
                 <div className={styles.tableHeaderItem}></div>
             </div>

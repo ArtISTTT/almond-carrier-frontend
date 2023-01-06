@@ -28,7 +28,7 @@ const SearchTableOrderCarrier: React.FC<IProps> = () => {
                     </div>
                 </div>
             </div>
-            <div className={cn(styles.part, styles.fromTo)}>
+            <div className={cn(styles.part, styles.fromTo, styles.doubleditem)}>
                 <div>
                     <div className={styles.fromToItem}>
                         <span className={styles.prefix}>From:</span>
