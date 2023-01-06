@@ -14,11 +14,13 @@ import { signOut } from '../../api/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { selectUser } from '../../redux/selectors/user';
 import { useRouter } from 'next/router';
+import SettingsPopup from '../settings/SettingsPopup';
 import { setIsAuthorized } from '../../redux/slices/userSlice';
-import Link from 'next/link';
 
 const HeaderAvatar: React.FC = () => {
     const [open, setOpen] = React.useState(false);
+    const [isSettingsPopupOpen, setIsSettingsPopupOpen] =
+        React.useState<boolean>(false);
     const router = useRouter();
     const user = useAppSelector(selectUser);
     const dispatch = useAppDispatch();
@@ -27,6 +29,11 @@ const HeaderAvatar: React.FC = () => {
     const handleToggle = () => setOpen(prevOpen => !prevOpen);
 
     const handleClose = () => setOpen(false);
+
+    const handleOpenSettingsPopup = () => {
+        setOpen(false);
+        setIsSettingsPopupOpen(prev => !prev);
+    };
 
     const goToProfile = () => {
         router.push('/profile/orders');
@@ -51,6 +58,11 @@ const HeaderAvatar: React.FC = () => {
 
     return (
         <>
+            {isSettingsPopupOpen && (
+                <SettingsPopup
+                    setIsSettingsPopupOpen={setIsSettingsPopupOpen}
+                />
+            )}
             <Avatar
                 className={styles.userAvatar}
                 sx={{ width: 40, height: 40 }}
@@ -101,7 +113,9 @@ const HeaderAvatar: React.FC = () => {
                                         >
                                             Profile
                                         </MenuItem>
-                                        <MenuItem onClick={handleClose}>
+                                        <MenuItem
+                                            onClick={handleOpenSettingsPopup}
+                                        >
                                             Settings
                                         </MenuItem>
                                         <MenuItem onClick={handleClose}>

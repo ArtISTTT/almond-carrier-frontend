@@ -1,8 +1,7 @@
-import { Button, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { Button, MenuItem, Select, TextField } from '@mui/material';
 import styles from '../../../styles/Popup.module.css';
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Stack } from '@mui/system';
 import { CarrierPopupSchema } from '../../schemas/PopupSchema';
 import Popup from './Popup';
