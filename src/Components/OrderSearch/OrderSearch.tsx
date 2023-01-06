@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../../styles/OrderSearch.module.css';
 import TypeSwitcher from './TypeSwitcher';
 import {
@@ -8,15 +8,25 @@ import {
 } from '../../interfaces/order-search';
 import SearchFilters from './SearchFilters';
 import SearchTable from './SearchTable';
+import { useSearchOrders } from '../../redux/hooks/useSearchOrders';
+import { IOrder } from '../../interfaces/order';
 
 const OrderSearch: React.FC = () => {
     const [type, setType] = useState(OrderSeachType.carriers);
+    const { reload, isLoading } = useSearchOrders();
+    const [orders, setOrders] = useState<IOrder[]>([]);
 
     const updateByFiltersAndType = async (
         data: carriersFilter | receiversFilter
     ) => {
-        console.log(data);
+        setOrders([]);
+        const awaitedOrders = await reload(data, type);
+        setOrders(awaitedOrders);
     };
+
+    useEffect(() => {
+        updateByFiltersAndType({});
+    }, [type]);
 
     return (
         <div className={styles.wrapper}>
@@ -26,7 +36,7 @@ const OrderSearch: React.FC = () => {
                     updateByFiltersAndType={updateByFiltersAndType}
                     type={type}
                 />
-                <SearchTable type={type} />
+                <SearchTable type={type} orders={orders} />
             </div>
         </div>
     );

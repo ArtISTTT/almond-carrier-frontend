@@ -2,10 +2,13 @@ import React from 'react';
 import styles from '../../../styles/OrderSearch.module.css';
 import { Avatar, Button } from '@mui/material';
 import cn from 'classnames';
+import { IOrder } from '../../interfaces/order';
 
-type IProps = {};
+type IProps = {
+    order: IOrder;
+};
 
-const SearchTableOrderReceiver: React.FC<IProps> = () => {
+const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
     return (
         <div className={styles.itemWrapper}>
             <div className={cn(styles.part, styles.user)}>
@@ -32,30 +35,32 @@ const SearchTableOrderReceiver: React.FC<IProps> = () => {
                 <div>
                     <div className={styles.fromToItem}>
                         <span className={styles.prefix}>From:</span>
-                        <span>Moscow</span>
+                        <span>{order.fromLocation ?? '?'}</span>
                     </div>
                     <div className={styles.fromToItem}>
                         <span className={styles.prefix}>To:</span>
-                        <span>Antalya</span>
+                        <span>{order.toLocation}</span>
                     </div>
                 </div>
             </div>
             <div className={cn(styles.part, styles.productname)}>
-                Playstatin 5
+                {order.productName}
             </div>
             <div className={cn(styles.part, styles.doubleditem)}>
                 <div>
                     <div className={styles.fromToItem}>
                         <span className={styles.prefix}>Price:</span>
-                        <span>500$</span>
+                        <span>{order.productAmount}$</span>
                     </div>
                     <div className={styles.fromToItem}>
                         <span className={styles.prefix}>Benefit:</span>
-                        <span>100$</span>
+                        <span>{order.rewardAmount}$</span>
                     </div>
                 </div>
             </div>
-            <div className={cn(styles.part, styles.maxWeight)}>5kg</div>
+            <div className={cn(styles.part, styles.maxWeight)}>
+                {order.productWeight}kg
+            </div>
             <div className={cn(styles.part)}>
                 <Button variant='contained' className={styles.applyBtn}>
                     Apply

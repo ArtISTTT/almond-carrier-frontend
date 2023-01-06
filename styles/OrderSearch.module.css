@@ -82,6 +82,11 @@
     width: 130px;
 }
 
+.inputItem input {
+    height: 40px !important;
+    box-sizing: border-box !important;
+}
+
 .inputItem.longInput {
     width: 240px;
 }

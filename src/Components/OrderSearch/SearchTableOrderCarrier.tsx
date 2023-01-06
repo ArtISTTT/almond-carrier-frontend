@@ -2,10 +2,14 @@ import React from 'react';
 import styles from '../../../styles/OrderSearch.module.css';
 import { Avatar, Button } from '@mui/material';
 import cn from 'classnames';
+import { IOrder } from '../../interfaces/order';
+import dayjs from 'dayjs';
 
-type IProps = {};
+type IProps = {
+    order: IOrder;
+};
 
-const SearchTableOrderCarrier: React.FC<IProps> = () => {
+const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
     return (
         <div className={styles.itemWrapper}>
             <div className={cn(styles.part, styles.user)}>
@@ -32,17 +36,23 @@ const SearchTableOrderCarrier: React.FC<IProps> = () => {
                 <div>
                     <div className={styles.fromToItem}>
                         <span className={styles.prefix}>From:</span>
-                        <span>Moscow</span>
+                        <span>{order.fromLocation}</span>
                     </div>
                     <div className={styles.fromToItem}>
                         <span className={styles.prefix}>To:</span>
-                        <span>Antalya</span>
+                        <span>{order.toLocation}</span>
                     </div>
                 </div>
             </div>
-            <div className={cn(styles.part, styles.flightDate)}>12.12.2023</div>
-            <div className={cn(styles.part, styles.benefit)}>40$</div>
-            <div className={cn(styles.part, styles.maxWeight)}>5kg</div>
+            <div className={cn(styles.part, styles.flightDate)}>
+                {dayjs(order.arrivalDate as Date).format('YYYY.MM.DD')}
+            </div>
+            <div className={cn(styles.part, styles.benefit)}>
+                {order.rewardAmount}$
+            </div>
+            <div className={cn(styles.part, styles.maxWeight)}>
+                {order.carrierMaxWeight}kg
+            </div>
             <div className={cn(styles.part)}>
                 <Button variant='contained' className={styles.applyBtn}>
                     Apply

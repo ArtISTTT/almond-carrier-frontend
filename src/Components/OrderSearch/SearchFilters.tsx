@@ -43,6 +43,14 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
         validateOnChange: false,
     });
 
+    const refresh = async () => {
+        if (type === OrderSeachType.carriers) {
+            await updateByFiltersAndType(carriersFormik.values);
+        } else {
+            await updateByFiltersAndType(receiversFormik.values);
+        }
+    };
+
     return (
         <div className={styles.filtersWrapper}>
             {type === OrderSeachType.carriers && (
@@ -157,7 +165,11 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                     </div>
                 </form>
             )}
-            <Button variant='contained' className={styles.refreshButton}>
+            <Button
+                variant='contained'
+                className={styles.refreshButton}
+                onClick={refresh}
+            >
                 <LoopIcon fontSize='small' />
                 Refresh
             </Button>

@@ -9,6 +9,7 @@ import { Pagination } from '@mui/material';
 import SearchTableOrderCarrier from './SearchTableOrderCarrier';
 import SearchTableOrderReceiver from './SearchTableOrderReceiver';
 import cn from 'classnames';
+import { IOrder } from '../../interfaces/order';
 
 const carriersHeaders = [
     { name: 'Carrier', long: true },
@@ -28,9 +29,10 @@ const receiversHeaders = [
 
 type IProps = {
     type: OrderSeachType;
+    orders: IOrder[];
 };
 
-const SearchTable: React.FC<IProps> = ({ type }) => {
+const SearchTable: React.FC<IProps> = ({ type, orders }) => {
     const updateByFiltersAndType = async (
         data: carriersFilter | receiversFilter
     ) => {
@@ -56,11 +58,11 @@ const SearchTable: React.FC<IProps> = ({ type }) => {
             </div>
 
             <div>
-                {[1, 2, 3, 4].map(() =>
+                {orders.map(order =>
                     type === OrderSeachType.carriers ? (
-                        <SearchTableOrderCarrier />
+                        <SearchTableOrderCarrier order={order} />
                     ) : (
-                        <SearchTableOrderReceiver />
+                        <SearchTableOrderReceiver order={order} />
                     )
                 )}
             </div>
