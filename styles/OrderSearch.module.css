@@ -1,0 +1,211 @@
+.wrapper {
+    padding: 24px;
+    width: 100%;
+}
+
+.typeSwitcherWrapper {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.typeSwitcher {
+    display: flex;
+    width: 290px;
+    padding: 0 5px;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--cBgThird);
+    border: 1px solid #e9e9e9;
+    border-radius: 16px;
+}
+
+.typeSwitcher > span {
+    height: 40px;
+    width: 140px;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 40px;
+
+    text-align: center;
+    letter-spacing: 0.46px;
+
+    user-select: none;
+}
+
+.typeSwitcher > span:not(.selected) {
+    cursor: pointer;
+}
+
+.typeSwitcher > span.selected {
+    pointer-events: none;
+}
+
+.typeSwitcher > span.on.selected {
+    background-color: var(--cBg);
+    border-radius: 10px;
+    color: var(--cTextSecondary);
+}
+
+.typeSwitcher > span.off.selected {
+    background-color: var(--cStatusSuccess);
+    border-radius: 10px;
+    color: var(--cTextSecondary);
+}
+
+.typeTitle {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 40px;
+    letter-spacing: 0.46px;
+}
+
+.content {
+    margin-top: 24px;
+}
+
+.filtersWrapper {
+    display: flex;
+    align-items: flex-end;
+}
+
+.filtersWrapper form {
+    display: flex;
+    flex: 1;
+    gap: 16px;
+}
+
+.inputItem {
+    display: flex;
+    flex-direction: column;
+    width: 130px;
+}
+
+.inputItem.longInput {
+    width: 240px;
+}
+
+.inputItem .input :global .MuiInputBase-root {
+    border-radius: 15px;
+    height: 40px;
+}
+
+.inputItem > label {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0.4px;
+    color: var(--cTextPrimary);
+}
+
+.refreshButton {
+    border-radius: 15px;
+    height: 40px;
+    width: 140px;
+}
+
+.refreshButton > svg {
+    margin-right: 8px;
+}
+
+.tableWrapper {
+    margin-top: 36px;
+    width: 100%;
+}
+
+.tableHeader {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 12px 0;
+}
+
+.tableHeaderItem {
+    flex: 1;
+    color: var(--cTextLow);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0.46px;
+}
+
+.itemWrapper {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.itemWrapper:last-child {
+    border-bottom: 0;
+}
+
+.itemWrapper .part {
+    flex: 1;
+    padding: 36px 0;
+    display: flex;
+    align-items: center;
+}
+
+.itemWrapper .part.user {
+    display: flex;
+    align-items: center;
+}
+
+.itemWrapper .part.user .userInfo {
+    margin-left: 8px;
+}
+
+.itemWrapper .part.user .userName {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 5px;
+}
+
+.itemWrapper .part.user .infoItem {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    margin-bottom: 5px;
+    color: var(--cTextLow);
+}
+
+.itemWrapper .part.user .infoItemRating span {
+    color: var(--cTextPrimary);
+}
+
+.itemWrapper .part.user .infoItemCompleted span {
+    color: var(--cStatusSuccess);
+}
+
+.fromTo > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fromToItem {
+    font-size: 18px;
+    line-height: 18px;
+}
+
+.fromToItem .prefix {
+    color: var(--cTextLow);
+    width: 50px;
+    display: inline-block;
+    margin-right: 16px;
+}
+
+.applyBtn {
+    width: 110px;
+    height: 40px;
+    border-radius: 16px;
+}
+
+.pagination {
+    margin: 24px 0;
+    margin-left: auto;
+    width: fit-content;
+}

@@ -36,6 +36,8 @@
 .link {
     color: var(--cTextPrimary);
     margin: 0px 8px;
+    font-size: 19px;
+    line-height: 20px;
 }
 
 .link:first-child {
