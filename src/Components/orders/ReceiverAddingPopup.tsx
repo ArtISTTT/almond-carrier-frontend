@@ -76,7 +76,9 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                 <Stack direction='column' spacing={2} width='100%'>
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='fromLocation'>Deliver from</label>
+                            <label htmlFor='fromLocation'>
+                                Deliver from<span>(Not required)</span>
+                            </label>
                             <Select
                                 id='fromLocation'
                                 name='fromLocation'
