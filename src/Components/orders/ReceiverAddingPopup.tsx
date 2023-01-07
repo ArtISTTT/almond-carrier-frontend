@@ -1,4 +1,11 @@
-import { Button, MenuItem, Select, TextField, Typography } from '@mui/material';
+import {
+    Button,
+    InputAdornment,
+    MenuItem,
+    Select,
+    TextField,
+    Typography,
+} from '@mui/material';
 import styles from '../../../styles/Popup.module.css';
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
@@ -71,7 +78,7 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
     });
 
     return (
-        <Popup closePopup={closePopup}>
+        <Popup title={'Order new item'} closePopup={closePopup}>
             <form className={styles.form} onSubmit={formik.handleSubmit}>
                 <Stack direction='column' spacing={2} width='100%'>
                     <Stack direction='row' spacing={2}>
@@ -134,6 +141,13 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                         <div className={styles.inputItem}>
                             <label htmlFor='productWeight'>Weight</label>
                             <TextField
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position='end'>
+                                            KG
+                                        </InputAdornment>
+                                    ),
+                                }}
                                 id='productWeight'
                                 name='productWeight'
                                 placeholder='Weight'
@@ -153,6 +167,13 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                         <div className={styles.inputItem}>
                             <label htmlFor='productAmount'>Product price</label>
                             <TextField
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position='end'>
+                                            RUB
+                                        </InputAdornment>
+                                    ),
+                                }}
                                 id='productAmount'
                                 name='productAmount'
                                 placeholder='0'
@@ -172,6 +193,13 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 Suggested Benefit
                             </label>
                             <TextField
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position='end'>
+                                            RUB
+                                        </InputAdornment>
+                                    ),
+                                }}
                                 id='rewardAmount'
                                 name='rewardAmount'
                                 type='number'

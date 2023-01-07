@@ -33,13 +33,28 @@
     margin-right: 24px;
 }
 
+.leftMenuLinks {
+    display: flex;
+    align-items: center;
+}
+
 .link {
-    color: var(--cTextPrimary);
-    margin: 0px 8px;
+    padding: 0px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 100%;
+    transition-duration: 0.3s;
+}
+
+.link:hover {
+    background: rgba(225, 225, 225, 0.753);
+    transition-duration: 0.3s;
 }
 
 .link:first-child {
-    margin-left: 16px;
+    margin-left: 24px;
 }
 
 .button {

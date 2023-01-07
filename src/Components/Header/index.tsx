@@ -44,12 +44,16 @@ const Header: React.FC<IProps> = ({
                                 Dashboard
                             </MUILink>
                         </Link>
-                        <MUILink className={styles.link} underline='none'>
-                            Link 2
-                        </MUILink>
-                        <MUILink className={styles.link} underline='none'>
-                            Link 3
-                        </MUILink>
+                        <Link href=''>
+                            <MUILink className={styles.link} underline='none'>
+                                Link2
+                            </MUILink>
+                        </Link>
+                        <Link href=''>
+                            <MUILink className={styles.link} underline='none'>
+                                Link3
+                            </MUILink>
+                        </Link>
                     </div>
                 )}
             </div>

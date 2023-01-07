@@ -43,7 +43,9 @@
 }
 
 .inputItem > label > span {
-    font-size: 6.5px;
+    font-size: 10px;
+    line-height: 20px;
+    text-transform: none;
     color: var(--cTextThird);
     margin-left: 2px;
 }
