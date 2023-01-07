@@ -169,7 +169,8 @@
 
 .itemWrapper .part.user .userName {
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
+    white-space: nowrap;
     line-height: 20px;
     margin-bottom: 5px;
 }
@@ -180,6 +181,7 @@
     line-height: 14px;
     margin-bottom: 5px;
     color: var(--cTextLow);
+    white-space: nowrap;
 }
 
 .itemWrapper .part.user .infoItemRating span {

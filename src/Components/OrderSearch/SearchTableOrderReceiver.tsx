@@ -9,6 +9,7 @@ type IProps = {
 };
 
 const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
+    console.log(order);
     return (
         <div className={styles.itemWrapper}>
             <div className={cn(styles.part, styles.user)}>
@@ -17,7 +18,9 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                     alt='logo'
                 />
                 <div className={styles.userInfo}>
-                    <div className={styles.userName}>Artem Velikii</div>
+                    <div className={styles.userName}>
+                        {order.receiver?.firstName} {order.receiver?.lastName}
+                    </div>
                     <div className={cn(styles.infoItem, styles.infoItemRating)}>
                         Rating: <span>4.64</span>
                     </div>

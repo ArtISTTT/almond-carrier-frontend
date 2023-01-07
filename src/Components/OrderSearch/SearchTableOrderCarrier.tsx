@@ -18,7 +18,9 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                     alt='logo'
                 />
                 <div className={styles.userInfo}>
-                    <div className={styles.userName}>Artem Velikii</div>
+                    <div className={styles.userName}>
+                        {order.carrier?.firstName} {order.carrier?.lastName}
+                    </div>
                     <div className={cn(styles.infoItem, styles.infoItemRating)}>
                         Rating: <span>4.64</span>
                     </div>

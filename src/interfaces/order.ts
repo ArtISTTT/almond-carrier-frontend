@@ -14,6 +14,16 @@ export interface IOrder {
     arrivalDate?: Date;
     status: orderStatus;
     isPayed: boolean;
+    receiver?: {
+        id: string;
+        firstName: string;
+        lastName: string;
+    };
+    carrier?: {
+        id: string;
+        firstName: string;
+        lastName: string;
+    };
 }
 
 export interface ICreateOrderReciever {
