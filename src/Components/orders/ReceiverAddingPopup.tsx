@@ -8,6 +8,7 @@ import Popup from './Popup';
 import { ICreateOrderReciever } from '../../interfaces/order';
 import { addOrderAsAReceiver } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
+import RegionAutocomplete from '../Common/RegionAutocomplete';
 
 const valutes = ['RUB', 'USD', 'EUR'];
 
@@ -20,7 +21,9 @@ interface IProps {
 
 const defaultValues = {
     fromLocation: undefined,
+    fromLocation_placeId: undefined,
     toLocation: '',
+    toLocation_placeId: '',
     productName: '',
     rewardAmount: 2000,
     productAmount: 0,
@@ -70,6 +73,18 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
         validateOnChange: false,
     });
 
+    const setLocationValue = (
+        id: 'fromLocation' | 'toLocation',
+        value: string,
+        placeId: string
+    ) => {
+        formik.setValues({
+            ...formik.values,
+            [id]: value,
+            [id + '_placeId']: placeId,
+        });
+    };
+
     return (
         <Popup closePopup={closePopup}>
             <form className={styles.form} onSubmit={formik.handleSubmit}>
@@ -77,41 +92,40 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
                             <label htmlFor='fromLocation'>Deliver from</label>
-                            <Select
-                                id='fromLocation'
-                                name='fromLocation'
-                                value={formik.values.fromLocation}
-                                onChange={formik.handleChange}
-                                MenuProps={{
-                                    disableScrollLock: true,
+                            <RegionAutocomplete
+                                textFieldProps={{
+                                    id: 'fromLocation',
+                                    name: 'fromLocation',
+                                    type: 'string',
+                                    variant: 'outlined',
+                                    value: formik.values.fromLocation,
+                                    onChange: formik.handleChange,
+                                    error:
+                                        formik.errors.fromLocation !==
+                                        undefined,
+                                    helperText: formik.errors.fromLocation,
+                                    className: styles.input,
                                 }}
-                                className={styles.select}
-                            >
-                                {deliverPlaces.map((place, i) => (
-                                    <MenuItem key={i} value={place}>
-                                        {place}
-                                    </MenuItem>
-                                ))}
-                            </Select>
+                                setValue={setLocationValue}
+                            />
                         </div>
                         <div className={styles.inputItem}>
                             <label htmlFor='toLocation'>Deliver to</label>
-                            <Select
-                                id='toLocation'
-                                name='toLocation'
-                                value={formik.values.toLocation}
-                                onChange={formik.handleChange}
-                                MenuProps={{
-                                    disableScrollLock: true,
+                            <RegionAutocomplete
+                                textFieldProps={{
+                                    id: 'toLocation',
+                                    name: 'toLocation',
+                                    type: 'string',
+                                    variant: 'outlined',
+                                    value: formik.values.toLocation,
+                                    onChange: formik.handleChange,
+                                    error:
+                                        formik.errors.toLocation !== undefined,
+                                    helperText: formik.errors.toLocation,
+                                    className: styles.input,
                                 }}
-                                className={styles.select}
-                            >
-                                {deliverPlaces.map((place, i) => (
-                                    <MenuItem key={i} value={place}>
-                                        {place}
-                                    </MenuItem>
-                                ))}
-                            </Select>
+                                setValue={setLocationValue}
+                            />
                         </div>
                     </Stack>
                     <Stack direction='row' spacing={2}>
