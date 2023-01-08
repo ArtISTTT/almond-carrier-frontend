@@ -7,6 +7,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { orderStatus } from '../../interfaces/profile';
 import { IOrder } from '../../interfaces/order';
 import OrderPeopleCard from './OrderPeopleCard';
+import { convertStatusToText } from '../../helpers/convertStatusToText';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
@@ -31,7 +32,7 @@ const OrderItem: React.FC<IOrder> = ({
             <div className={styles.orderData}>
                 <div className={styles.orderInfo}>
                     <div className={styles.orderTitle}>
-                        <div className={styles.carrierBlock}>
+                        <div className={styles.userBlock}>
                             <Typography
                                 className={styles.blockTitle}
                                 variant='h4'
@@ -43,11 +44,14 @@ const OrderItem: React.FC<IOrder> = ({
                                 <OrderPeopleCard people={carrier} />
                             ) : (
                                 <HelpOutlineIcon
-                                    sx={{ width: 65, height: 65 }}
+                                    sx={{
+                                        width: 65,
+                                        height: 65,
+                                    }}
                                 />
                             )}
                         </div>
-                        <div className={styles.receiverBlock}>
+                        <div className={styles.userBlock}>
                             <Typography
                                 className={styles.blockTitle}
                                 variant='h4'
@@ -59,7 +63,10 @@ const OrderItem: React.FC<IOrder> = ({
                                 <OrderPeopleCard people={receiver} />
                             ) : (
                                 <HelpOutlineIcon
-                                    sx={{ width: 65, height: 65 }}
+                                    sx={{
+                                        width: 65,
+                                        height: 65,
+                                    }}
                                 />
                             )}
                         </div>
@@ -166,7 +173,7 @@ const OrderItem: React.FC<IOrder> = ({
                             className={styles.status}
                         >
                             <span>STATUS: </span>
-                            {status}
+                            {convertStatusToText(status)}
                         </Typography>
                     </div>
                 </div>
