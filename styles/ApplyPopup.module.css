@@ -1,0 +1,168 @@
+.popupWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.63);
+}
+
+.popup {
+    background-color: var(--cBgSecondary);
+    width: 100%;
+    max-width: 800px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    padding: 30px;
+    padding-top: 16px;
+    border-radius: 10px;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+}
+
+.icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+}
+
+.carrierCard {
+    display: flex;
+}
+
+.carrierCardInfo {
+    margin-left: 15px;
+}
+
+.carrierName {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24px;
+    color: var(--cTextThird);
+    letter-spacing: 0.4px;
+    margin-bottom: 10px;
+}
+
+.carrierRating {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    /* identical to box height, or 100% */
+    margin-bottom: 5px;
+    letter-spacing: 0.4px;
+    color: var(--cTextLow);
+}
+
+.carrierCompletedOrders {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    /* identical to box height, or 100% */
+
+    letter-spacing: 0.4px;
+    color: var(--cTextLow);
+}
+.carrierRating > span {
+    font-weight: 600;
+    color: var(--cTextThird);
+}
+
+.carrierCompletedOrders > span {
+    font-weight: 600;
+    color: var(--cTextThird);
+}
+
+.carrierInfo {
+    padding-top: 35px;
+    display: flex;
+    gap: 80px;
+    padding-bottom: 30px;
+}
+
+.inputItem {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.inputItem > label {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.4px;
+    color: var(--cTextLow);
+}
+
+.input {
+    width: 100%;
+}
+
+.select {
+    border-radius: 15px;
+}
+
+.input :global .MuiInputBase-root {
+    border-radius: 15px;
+    height: 40px;
+}
+
+.infoItem {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+    max-width: 300px;
+    color: var(--cTextLow);
+}
+
+.infoItem > span {
+    width: 50px;
+    font-weight: 600;
+    color: var(--cTextThird);
+}
+
+.carrierDescription {
+    margin-top: 18px;
+}
+
+.carrierDescriptionTitle {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    /* identical to box height, or 100% */
+    color: var(--cTextLow);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.carrierApplyButton {
+    display: block;
+    margin-left: auto;
+    margin-top: 10px;
+    background: var(--cBg);
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 26px;
+    padding: 8px 46.5px;
+    letter-spacing: 0.46px;
+    text-transform: uppercase;
+    color: var(--cTextSecondary);
+    border-radius: 16px;
+}
+
+.carrierDescriptionBody {
+    width: 100%;
+}
+
+.carrierDescriptionBody :global .MuiInputBase-root {
+    border-radius: 15px;
+}

@@ -3,15 +3,20 @@ import styles from '../../../styles/OrderSearch.module.css';
 import { Avatar, Button } from '@mui/material';
 import cn from 'classnames';
 import { IOrder } from '../../interfaces/order';
+import ReceiverApplyPopup from './ReceiverApplyPopup';
 
 type IProps = {
     order: IOrder;
 };
 
 const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
-    console.log(order);
+    const [isPopupOpen, setIsPopupOpen] = React.useState(true);
+
+    const openPopupFunc = () => setIsPopupOpen(true);
+
     return (
         <div className={styles.itemWrapper}>
+            {isPopupOpen && <ReceiverApplyPopup closePopup={setIsPopupOpen} />}
             <div className={cn(styles.part, styles.user)}>
                 <Avatar
                     sx={{ width: 60, height: 60, cursor: 'pointer' }}
@@ -65,7 +70,11 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                 {order.productWeight}kg
             </div>
             <div className={cn(styles.part)}>
-                <Button variant='contained' className={styles.applyBtn}>
+                <Button
+                    onClick={openPopupFunc}
+                    variant='contained'
+                    className={styles.applyBtn}
+                >
                     Apply
                 </Button>
             </div>

@@ -10,6 +10,7 @@ import SearchTableOrderCarrier from './SearchTableOrderCarrier';
 import SearchTableOrderReceiver from './SearchTableOrderReceiver';
 import cn from 'classnames';
 import { IOrder } from '../../interfaces/order';
+import ApplyPopup from './ApplyPopup';
 
 const carriersHeaders = [
     { name: 'Carrier', long: true },
