@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import styles from '../../../styles/ProfileOrders.module.css';
 import { Pagination, Typography } from '@mui/material';
-import dayjs from 'dayjs';
 import OrderItem from '../orders/OrderItem';
-import { orderStatus } from '../../interfaces/profile';
 import { useSelector } from 'react-redux';
 import { selectMyOrders } from '../../redux/selectors/orders';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
+import OrderLoader from '../OrderLoader';
 
 const ProfileOrders = () => {
     const orders = useSelector(selectMyOrders);
@@ -25,17 +24,23 @@ const ProfileOrders = () => {
             >
                 My orders
             </Typography>
-            <div className={styles.orders}>
-                {orders.map((order, i) => (
-                    <OrderItem key={i} {...order} />
-                ))}
-            </div>
-            <Pagination
-                className={styles.pagination}
-                count={Math.round(orders.length / 5)}
-                variant='outlined'
-                color='primary'
-            />
+            {isLoading ? (
+                <OrderLoader />
+            ) : (
+                <>
+                    <div className={styles.orders}>
+                        {orders.map((order, i) => (
+                            <OrderItem key={i} {...order} />
+                        ))}
+                    </div>
+                    <Pagination
+                        className={styles.pagination}
+                        count={Math.round(orders.length / 5)}
+                        variant='outlined'
+                        color='primary'
+                    />
+                </>
+            )}
         </div>
     );
 };

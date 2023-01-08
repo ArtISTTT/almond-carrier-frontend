@@ -3,17 +3,15 @@ import styles from '../../../styles/Dashboard.module.css';
 import { Button, Container, Typography } from '@mui/material';
 import cn from 'classnames';
 import AddIcon from '@mui/icons-material/Add';
-import dayjs from 'dayjs';
-import { orderStatus } from '../../interfaces/profile';
 import ReceiverAddingPopup from '../orders/ReceiverAddingPopup';
 import CarrierLayout from '../Layouts/Carrier';
 import OrderItem from '../orders/OrderItem';
 import RecentlyCreatedOrder from '../orders/RecentlyCreatedOrder';
 import CarrierAddingPopup from '../orders/CarrierAddingPopup';
-import { IOrder } from '../../interfaces/order';
 import { useSelector } from 'react-redux';
 import { selectMyLiveOrders } from '../../redux/selectors/orders';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
+import OrderLoader from '../OrderLoader';
 
 const recentlyCreatedOrders = [
     { to: 'Barnaul', benefit: 40, id: 1 },
@@ -90,34 +88,38 @@ const Dashboard: React.FC = () => {
                         Live orders
                     </Typography>
                     <div className={styles.receiverContent}>
-                        <div className={styles.ordersWindow}>
-                            <div className={styles.ordersWrapper}>
-                                {orders?.map(order => (
-                                    <OrderItem key={order.id} {...order} />
-                                ))}
+                        {isLoading ? (
+                            <OrderLoader />
+                        ) : (
+                            <div className={styles.ordersWindow}>
+                                <div className={styles.ordersWrapper}>
+                                    {orders?.map(order => (
+                                        <OrderItem key={order.id} {...order} />
+                                    ))}
+                                </div>
+                                <div className={styles.newOrderButtons}>
+                                    <Button
+                                        onClick={toggleReceiverPopup}
+                                        className={styles.newOrderButton}
+                                        variant='contained'
+                                    >
+                                        <AddIcon sx={{ fontSize: 22 }} />
+                                        Order new item
+                                    </Button>
+                                    <Button
+                                        onClick={toggleCarrierPopup}
+                                        className={cn(
+                                            styles.newOrderButton,
+                                            styles.sending
+                                        )}
+                                        variant='contained'
+                                    >
+                                        <AddIcon sx={{ fontSize: 22 }} />
+                                        Send new item
+                                    </Button>
+                                </div>
                             </div>
-                            <div className={styles.newOrderButtons}>
-                                <Button
-                                    onClick={toggleReceiverPopup}
-                                    className={styles.newOrderButton}
-                                    variant='contained'
-                                >
-                                    <AddIcon sx={{ fontSize: 22 }} />
-                                    Order new item
-                                </Button>
-                                <Button
-                                    onClick={toggleCarrierPopup}
-                                    className={cn(
-                                        styles.newOrderButton,
-                                        styles.sending
-                                    )}
-                                    variant='contained'
-                                >
-                                    <AddIcon sx={{ fontSize: 22 }} />
-                                    Send new item
-                                </Button>
-                            </div>
-                        </div>
+                        )}
                         <div className={styles.currentlyWindow}>
                             <div className={styles.currentlyWindowContainer}>
                                 <Typography

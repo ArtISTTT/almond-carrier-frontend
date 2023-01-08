@@ -19,108 +19,21 @@
     background-size: contain;
 }
 
-.selectWrapper > h3 {
-    padding-top: 35px;
-    margin-left: 40px;
-    font-weight: 600;
-    font-size: 44px;
-    line-height: 75px;
-}
-
-.selectBlock {
-    color: var(--cTextSecondary);
-    margin-top: 20px;
-    margin-left: 30px;
-}
-
-.selectCarrier {
-    width: 540px;
-    height: 306px;
+.thanksForRegistrationText {
     display: flex;
+    width: 100%;
     flex-direction: column;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url('/static/images/thanks-for-registration/carrier-background.png');
-}
-
-.selectCarrierTitle {
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    max-width: 900px;
+    text-transform: uppercase;
     font-weight: 600;
-    text-align: center;
-    font-size: 35px;
-    line-height: 30px;
-    margin-top: 45px;
+    letter-spacing: 0.65px;
 }
 
-.selectCarrierDescription {
-    font-style: normal;
-    width: 460px;
-    margin: 0 auto;
-    margin-top: 25px;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-}
-
-.selectCarrier > Button {
-    width: fit-content;
-    margin: 0 auto;
-    letter-spacing: 0.4px;
-    background-color: var(--cBgSecondary);
-    color: var(--cTextPrimary);
-    margin-top: 45px;
-    padding: 4px 43px;
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-        0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
-    border-radius: 15px;
-}
-
-.selectCarrier > Button:hover {
-    background-color: #d8dff2;
-}
-
-.selectReceiver {
-    margin-left: 405px;
-    margin-top: 30px;
-    width: 540px;
-    height: 306px;
-    display: flex;
-    flex-direction: column;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url('/static/images/thanks-for-registration/receiver-background.png');
-}
-
-.selectReceiverTitle {
-    font-weight: 600;
-    text-align: center;
-    font-size: 35px;
-    line-height: 30px;
-    margin-top: 60px;
-}
-
-.selectReceiverDescription {
-    font-style: normal;
-    width: 450px;
-    margin: 0 auto;
-    margin-top: 25px;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-}
-
-.selectReceiver > Button {
-    width: fit-content;
-    margin: 0 auto;
-    letter-spacing: 0.4px;
-    background-color: var(--cBgSecondary);
-    color: var(--cTextPrimary);
-    margin-top: 45px;
-    padding: 4px 43px;
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-        0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
-    border-radius: 15px;
-}
-
-.selectReceiver > Button:hover {
-    background-color: #d8dff2;
+.thanksForRegistrationButton {
+    width: 230px;
+    margin-top: 36px;
+    border-radius: 16px;
 }
