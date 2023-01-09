@@ -4,7 +4,9 @@ import { orderStatus } from './profile';
 export interface IOrder {
     id: string;
     toLocation: string;
+    toLocation_placeId: string;
     fromLocation?: string;
+    fromLocation_placeId?: string;
     productName?: string;
     rewardAmount: number;
     productAmount?: number;
@@ -28,7 +30,9 @@ export interface IOrder {
 
 export interface ICreateOrderReciever {
     toLocation: string;
+    toLocation_placeId: string;
     fromLocation?: string;
+    fromLocation_placeId?: string;
     productName: string;
     rewardAmount: number;
     productAmount: number;
@@ -38,7 +42,9 @@ export interface ICreateOrderReciever {
 
 export interface ICreateOrderCarrier {
     toLocation: string;
+    toLocation_placeId: string;
     fromLocation: string;
+    fromLocation_placeId: string;
     carrierMaxWeight: number;
     arrivalDate: Date;
     rewardAmount: number;

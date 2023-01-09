@@ -16,8 +16,8 @@ export enum orderStatus {
     inDiscussion = 'inDiscussion',
     waitingForPayment = 'waitingForPayment',
     awaitingDelivery = 'awaitingDelivery',
-    confirmedByCarrier = 'confirmedByCarrier',
-    confirmedByReciever = 'confirmedByReciever',
+    // confirmedByCarrier = 'confirmedByCarrier',
+    // confirmedByReciever = 'confirmedByReciever',
     success = 'success',
     cancelled = 'cancelled',
 }

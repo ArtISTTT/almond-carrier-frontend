@@ -9,6 +9,7 @@ import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
 import cn from 'classnames';
 import LoopIcon from '@mui/icons-material/Loop';
+import RegionAutocomplete from '../Common/RegionAutocomplete';
 
 type IProps = {
     updateByFiltersAndType: (
@@ -21,6 +22,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
     const carriersFormik = useFormik({
         initialValues: {
             fromLocation: undefined,
+            fromLocation_placeId: undefined,
             toLocation: undefined,
             maxBenefit: undefined,
             maxWeight: undefined,
@@ -33,6 +35,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
     const receiversFormik = useFormik({
         initialValues: {
             fromLocation: undefined,
+            fromLocation_placeId: undefined,
             toLocation: undefined,
             maxPrice: undefined,
             minBenefit: undefined,
@@ -51,30 +54,69 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
         }
     };
 
+    const setLocationValueReceivers = (
+        id: 'fromLocation' | 'toLocation',
+        value: string,
+        placeId: string
+    ) => {
+        receiversFormik.setValues({
+            ...receiversFormik.values,
+            [id]: value,
+            [id + '_placeId']: placeId,
+        });
+    };
+    const setLocationValueCarriers = (
+        id: 'fromLocation' | 'toLocation',
+        value: string,
+        placeId: string
+    ) => {
+        carriersFormik.setValues({
+            ...carriersFormik.values,
+            [id]: value,
+            [id + '_placeId']: placeId,
+        });
+    };
+
     return (
         <div className={styles.filtersWrapper}>
             {type === OrderSeachType.carriers && (
                 <form onSubmit={carriersFormik.handleSubmit}>
                     <div className={cn(styles.inputItem, styles.longInput)}>
                         <label htmlFor='fromLocation'>From</label>
-                        <TextField
-                            id='fromLocation'
-                            name='fromLocation'
-                            variant='outlined'
-                            value={carriersFormik.values.fromLocation}
-                            onChange={carriersFormik.handleChange}
-                            className={styles.input}
+                        <RegionAutocomplete
+                            textFieldProps={{
+                                id: 'fromLocation',
+                                name: 'fromLocation',
+                                type: 'string',
+                                variant: 'outlined',
+                                value: carriersFormik.values.fromLocation,
+                                onChange: carriersFormik.handleChange,
+                                error:
+                                    carriersFormik.errors.fromLocation !==
+                                    undefined,
+                                helperText: carriersFormik.errors.fromLocation,
+                                className: styles.input,
+                            }}
+                            setValue={setLocationValueCarriers}
                         />
                     </div>
                     <div className={cn(styles.inputItem, styles.longInput)}>
                         <label htmlFor='toLocation'>To</label>
-                        <TextField
-                            id='toLocation'
-                            name='toLocation'
-                            variant='outlined'
-                            value={carriersFormik.values.toLocation}
-                            onChange={carriersFormik.handleChange}
-                            className={styles.input}
+                        <RegionAutocomplete
+                            textFieldProps={{
+                                id: 'toLocation',
+                                name: 'toLocation',
+                                type: 'string',
+                                variant: 'outlined',
+                                value: carriersFormik.values.toLocation,
+                                onChange: carriersFormik.handleChange,
+                                error:
+                                    carriersFormik.errors.toLocation !==
+                                    undefined,
+                                helperText: carriersFormik.errors.toLocation,
+                                className: styles.input,
+                            }}
+                            setValue={setLocationValueCarriers}
                         />
                     </div>
                     <div className={styles.inputItem}>
@@ -107,24 +149,40 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                 <form onSubmit={receiversFormik.handleSubmit}>
                     <div className={cn(styles.inputItem, styles.longInput)}>
                         <label htmlFor='fromLocation'>From</label>
-                        <TextField
-                            id='fromLocation'
-                            name='fromLocation'
-                            variant='outlined'
-                            value={receiversFormik.values.fromLocation}
-                            onChange={receiversFormik.handleChange}
-                            className={styles.input}
+                        <RegionAutocomplete
+                            textFieldProps={{
+                                id: 'fromLocation',
+                                name: 'fromLocation',
+                                type: 'string',
+                                variant: 'outlined',
+                                value: receiversFormik.values.fromLocation,
+                                onChange: receiversFormik.handleChange,
+                                error:
+                                    receiversFormik.errors.fromLocation !==
+                                    undefined,
+                                helperText: receiversFormik.errors.fromLocation,
+                                className: styles.input,
+                            }}
+                            setValue={setLocationValueReceivers}
                         />
                     </div>
                     <div className={cn(styles.inputItem, styles.longInput)}>
                         <label htmlFor='toLocation'>To</label>
-                        <TextField
-                            id='toLocation'
-                            name='toLocation'
-                            variant='outlined'
-                            value={receiversFormik.values.toLocation}
-                            onChange={receiversFormik.handleChange}
-                            className={styles.input}
+                        <RegionAutocomplete
+                            textFieldProps={{
+                                id: 'toLocation',
+                                name: 'toLocation',
+                                type: 'string',
+                                variant: 'outlined',
+                                value: receiversFormik.values.toLocation,
+                                onChange: receiversFormik.handleChange,
+                                error:
+                                    receiversFormik.errors.toLocation !==
+                                    undefined,
+                                helperText: receiversFormik.errors.toLocation,
+                                className: styles.input,
+                            }}
+                            setValue={setLocationValueReceivers}
                         />
                     </div>
                     <div className={styles.inputItem}>

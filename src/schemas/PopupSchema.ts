@@ -5,7 +5,6 @@ export const ReceiverPopupSchema = Yup.object().shape({
     fromLocation: Yup.string().min(1),
     productName: Yup.string()
         .lowercase()
-        .matches(/[a-z]/, 'The short name must not contain numbers.')
         .required('The short name is required'),
     rewardAmount: Yup.number().min(0).required('Reward is required'),
     productAmount: Yup.number().min(0).required('Product amount is required'),

@@ -1,11 +1,13 @@
 import React from 'react';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import styles from '../../../styles/OrderItem.module.css';
-import { Button, Typography } from '@mui/material';
+import { Avatar, Button, Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import cn from 'classnames';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { orderStatus } from '../../interfaces/profile';
 import { IOrder } from '../../interfaces/order';
+import OrderPeopleCard from './OrderPeopleCard';
+import { convertStatusToText } from '../../helpers/convertStatusToText';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
@@ -14,6 +16,11 @@ const OrderItem: React.FC<IOrder> = ({
     toLocation,
     rewardAmount,
     arrivalDate,
+    productWeight,
+    productAmount,
+    receiver,
+    carrierMaxWeight,
+    carrier,
 }) => {
     return (
         <div
@@ -25,24 +32,89 @@ const OrderItem: React.FC<IOrder> = ({
             <div className={styles.orderData}>
                 <div className={styles.orderInfo}>
                     <div className={styles.orderTitle}>
-                        <ShoppingCartIcon className={styles.orderIcon} />
-                        <Typography
-                            variant='h1'
-                            component='h1'
-                            className={styles.orderItem}
-                        >
-                            {productName}
-                        </Typography>
+                        <div className={styles.userBlock}>
+                            <Typography
+                                className={styles.blockTitle}
+                                variant='h4'
+                                component='h4'
+                            >
+                                Carrier
+                            </Typography>
+                            {carrier?.id ? (
+                                <OrderPeopleCard people={carrier} />
+                            ) : (
+                                <HelpOutlineIcon
+                                    sx={{
+                                        width: 65,
+                                        height: 65,
+                                    }}
+                                />
+                            )}
+                        </div>
+                        <div className={styles.userBlock}>
+                            <Typography
+                                className={styles.blockTitle}
+                                variant='h4'
+                                component='h4'
+                            >
+                                receiver
+                            </Typography>
+                            {receiver?.id ? (
+                                <OrderPeopleCard people={receiver} />
+                            ) : (
+                                <HelpOutlineIcon
+                                    sx={{
+                                        width: 65,
+                                        height: 65,
+                                    }}
+                                />
+                            )}
+                        </div>
+                        <div className={styles.moneyBlock}>
+                            <div className={styles.benefitBlock}>
+                                <Typography
+                                    className={styles.moneyTitle}
+                                    variant='h6'
+                                    component='h6'
+                                >
+                                    BENEFIT
+                                </Typography>
+                                <Typography
+                                    className={styles.moneyValue}
+                                    variant='h6'
+                                    component='p'
+                                >
+                                    {rewardAmount}RUB
+                                </Typography>
+                            </div>
+                            {productAmount && (
+                                <div>
+                                    <Typography
+                                        className={styles.moneyTitle}
+                                        variant='h6'
+                                        component='p'
+                                    >
+                                        PRICE
+                                    </Typography>
+                                    <Typography
+                                        className={styles.moneyValue}
+                                        variant='h6'
+                                        component='p'
+                                    >
+                                        {productAmount}RUB
+                                    </Typography>
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <div className={styles.orderDescriptions}>
-                        {fromLocation && (
+                        {productName && (
                             <Typography
                                 variant='h3'
                                 component='p'
                                 className={styles.description}
                             >
-                                <span>FROM: </span>
-                                {fromLocation}
+                                {productName}
                             </Typography>
                         )}
                         <Typography
@@ -53,22 +125,34 @@ const OrderItem: React.FC<IOrder> = ({
                             <span>TO: </span>
                             {toLocation}
                         </Typography>
-                        <Typography
-                            variant='h3'
-                            component='p'
-                            className={styles.description}
-                        >
-                            <span>REWARD: </span>
-                            {rewardAmount}
-                        </Typography>
+                        {fromLocation && (
+                            <Typography
+                                variant='h3'
+                                component='p'
+                                className={styles.description}
+                            >
+                                <span>FROM: </span>
+                                {fromLocation}
+                            </Typography>
+                        )}
+
                         {arrivalDate && (
                             <Typography
                                 variant='h3'
                                 component='p'
                                 className={styles.description}
                             >
-                                <span>Arrival date:</span>{' '}
+                                <span>Flight date:</span>{' '}
                                 {dayjs(arrivalDate).format('DD.MM.YYYY')}
+                            </Typography>
+                        )}
+                        {productWeight && (
+                            <Typography
+                                variant='h3'
+                                component='p'
+                                className={styles.description}
+                            >
+                                <span>Weight:</span> {productWeight}
                             </Typography>
                         )}
                     </div>
@@ -82,6 +166,16 @@ const OrderItem: React.FC<IOrder> = ({
                         Order
                         <br /> Details
                     </Button>
+                    <div>
+                        <Typography
+                            variant='h3'
+                            component='p'
+                            className={styles.status}
+                        >
+                            <span>STATUS: </span>
+                            {convertStatusToText(status)}
+                        </Typography>
+                    </div>
                 </div>
             </div>
         </div>

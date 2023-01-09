@@ -30,21 +30,6 @@
 .orderTitle {
     display: flex;
     align-items: center;
-    padding: 16px 20px;
-}
-
-.orderIcon {
-    font-size: 25px;
-    color: var(--cTextThird);
-}
-
-.orderItem {
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 28px;
-    text-align: center;
-    letter-spacing: 0.4px;
-    margin-left: 15px;
 }
 
 .orderDescriptions {
@@ -57,7 +42,8 @@
 }
 
 .description {
-    font-weight: 500;
+    color: var(--cTextThird);
+    font-weight: 800;
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.3px;
@@ -65,11 +51,14 @@
 }
 
 .description > span {
-    color: var(--cTextThird);
+    font-weight: 500;
 }
 
 .orderDetails {
-    padding: 0 40px;
+    padding: 0 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .detailsButton {
@@ -79,4 +68,118 @@
     letter-spacing: 0.46px;
     padding: 6px 30px;
     border-radius: 16px;
+    margin-top: 20px;
+    margin-bottom: 42px;
+}
+
+.status {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.userBlock {
+    max-width: 300px;
+    width: 100%;
+    padding: 12px 12px;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    text-align: left;
+    height: 120px;
+}
+
+.moneyBlock {
+    padding: 12px 12px;
+    flex: 1;
+    height: 120px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.blockTitle {
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.carrierCard {
+    display: flex;
+    align-items: center;
+}
+
+.receiverCard {
+    display: flex;
+    align-items: center;
+}
+
+.name {
+    color: var(--cTextThird);
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 24px;
+    letter-spacing: 0.4px;
+    margin-bottom: 5px;
+    white-space: nowrap;
+}
+
+.rating {
+    color: var(--cTextLow);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+}
+
+.rating > span {
+    color: var(--cTextPrimary);
+}
+
+.completedOrders {
+    color: var(--cTextLow);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+}
+
+.completedOrders > span {
+    color: var(--cTextSuccess);
+}
+
+.moneyTitle {
+    color: var(--cTextLow);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+}
+
+.moneyValue {
+    color: var(--cTextThird);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.info {
+    margin-left: 15px;
+}
+
+.benefitBlock {
+    margin-bottom: 10px;
 }

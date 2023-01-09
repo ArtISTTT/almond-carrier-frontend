@@ -8,11 +8,12 @@ const valutes = ['Rubles', 'Euro', 'Dollar'];
 const deliverPlaces = ['Russia', 'Antalya'];
 
 interface IProps {
+    title: string;
     closePopup: () => void;
     children: React.ReactNode;
 }
 
-const Popup: React.FC<IProps> = ({ closePopup, children }) => {
+const Popup: React.FC<IProps> = ({ title, closePopup, children }) => {
     return (
         <div className={styles.popup}>
             <div onClick={closePopup} className={styles.icon}>
@@ -23,7 +24,7 @@ const Popup: React.FC<IProps> = ({ closePopup, children }) => {
                 variant='h3'
                 component='h3'
             >
-                Create order
+                {title}
             </Typography>
             {children}
         </div>
