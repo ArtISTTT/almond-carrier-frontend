@@ -8,14 +8,11 @@ import {
     setIsAuthorized,
 } from '../../redux/slices/userSlice';
 import { useSelector } from 'react-redux';
-import {
-    selectIsInitializeAuthChecked,
-    selectUser,
-} from '../../redux/selectors/user';
+import { selectIsInitializeAuthChecked } from '../../redux/selectors/user';
 import Loader from '../Loader';
-import dayjs from 'dayjs';
 import { IGetCurrentUserReturn } from '../../interfaces/api/auth';
 import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
+import { changeLanguage } from '../../redux/slices/settingsSlice';
 
 type IAuthLayout = {
     children: React.ReactNode;
@@ -30,6 +27,14 @@ const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
             dispatch(addUserData(parseUserDataFromApi(data.user)));
             dispatch(setIsAuthorized(true));
         }
+
+        const trimmedLanguage = navigator.language
+            .trim()
+            .split(/-|_/)[0]
+            .toLowerCase();
+        dispatch(
+            changeLanguage(trimmedLanguage === 'ru' ? trimmedLanguage : 'en')
+        );
 
         dispatch(setInitializeAuthChecked(true));
     };

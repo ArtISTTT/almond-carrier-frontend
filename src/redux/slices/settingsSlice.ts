@@ -35,9 +35,12 @@ export const settingsSlice = createSlice({
         changeNotifications: (state, action: PayloadAction<INotifications>) => {
             state.notifications = action.payload;
         },
+        changeLanguage: (state, action: PayloadAction<string>) => {
+            state.generalSettings.language = action.payload;
+        },
     },
 });
 
-export const { changeGeneralSettings, changeNotifications } =
+export const { changeGeneralSettings, changeNotifications, changeLanguage } =
     settingsSlice.actions;
 export default settingsSlice.reducer;
