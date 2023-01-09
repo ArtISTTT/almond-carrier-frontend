@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/EmptyOrders.module.css';
+import styles from '../../../styles/EmptyOrders.module.css';
 import { Typography } from '@mui/material';
 
 const EmptyOrdersBlock = () => {

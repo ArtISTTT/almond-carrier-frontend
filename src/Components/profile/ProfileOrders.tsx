@@ -7,7 +7,7 @@ import { selectMyOrders } from '../../redux/selectors/orders';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 import OrderLoader from '../OrderLoader';
 import cn from 'classnames';
-import EmptyOrdersBlock from '../EmptyOrdersBlock';
+import EmptyOrdersBlock from './EmptyOrdersBlock';
 
 const ProfileOrders = () => {
     const orders = useSelector(selectMyOrders);
