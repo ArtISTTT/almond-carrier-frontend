@@ -7,21 +7,6 @@ export const theme = createTheme({
         },
     },
     typography: {
-        fontFamily: 'Mukta',
+        fontFamily: 'Nunito',
     },
-
-    // MuiInput: {
-    //     styleOverrides: {
-    //       root: {
-    //         '& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button':
-    //           {
-    //             display: 'none',
-    //           },
-    //         '& input[type=number]': {
-    //           MozAppearance: 'textfield',
-    //         },
-    //       },
-    //     },
-    //   },
-    // },
 });
