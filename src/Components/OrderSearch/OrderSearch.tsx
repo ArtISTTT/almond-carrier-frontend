@@ -10,6 +10,7 @@ import SearchFilters from './SearchFilters';
 import SearchTable from './SearchTable';
 import { useSearchOrders } from '../../redux/hooks/useSearchOrders';
 import { IOrder } from '../../interfaces/order';
+import OrderLoader from '../OrderLoader';
 
 const OrderSearch: React.FC = () => {
     const [type, setType] = useState(OrderSeachType.carriers);
@@ -36,7 +37,13 @@ const OrderSearch: React.FC = () => {
                     updateByFiltersAndType={updateByFiltersAndType}
                     type={type}
                 />
-                <SearchTable type={type} orders={orders} />
+                {isLoading ? (
+                    <div className={styles.loaderWrapper}>
+                        <OrderLoader />
+                    </div>
+                ) : (
+                    <SearchTable type={type} orders={orders} />
+                )}
             </div>
         </div>
     );

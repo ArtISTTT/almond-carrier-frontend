@@ -62,7 +62,15 @@
 }
 
 .content {
+    height: 100%;
     margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.loaderWrapper {
+    display: flex;
+    flex: 1;
 }
 
 .filtersWrapper {
