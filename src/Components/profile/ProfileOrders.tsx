@@ -7,6 +7,7 @@ import { selectMyOrders } from '../../redux/selectors/orders';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 import OrderLoader from '../OrderLoader';
 import cn from 'classnames';
+import EmptyOrdersBlock from '../EmptyOrdersBlock';
 
 const ProfileOrders = () => {
     const orders = useSelector(selectMyOrders);
@@ -48,11 +49,7 @@ const ProfileOrders = () => {
                             />
                         </>
                     )}
-                    {orders.length === 0 && (
-                        <div className={styles.emptyText}>
-                            You don't have any orders yet.
-                        </div>
-                    )}
+                    {orders.length === 0 && <EmptyOrdersBlock />}
                 </div>
             )}
         </div>

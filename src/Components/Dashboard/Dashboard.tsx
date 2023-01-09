@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import { selectMyLiveOrders } from '../../redux/selectors/orders';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 import OrderLoader from '../OrderLoader';
+import EmptyOrdersBlock from '../EmptyOrdersBlock';
 
 const recentlyCreatedOrders = [
     { to: 'Barnaul', benefit: 40, id: 1 },
@@ -105,9 +106,7 @@ const Dashboard: React.FC = () => {
                                         <OrderItem key={order.id} {...order} />
                                     ))}
                                     {orders.length === 0 && (
-                                        <div className={styles.emptyText}>
-                                            You don't have any orders yet.
-                                        </div>
+                                        <EmptyOrdersBlock />
                                     )}
                                 </div>
                                 <div className={styles.newOrderButtons}>
