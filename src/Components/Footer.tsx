@@ -13,14 +13,18 @@ import {
 import EmailIcon from '@mui/icons-material/Email';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import InstagramIcon from '@mui/icons-material/Instagram';
-
-const languages = [{ label: 'Russian' }, { label: 'English' }];
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { changeLanguage } from '../redux/slices/settingsSlice';
 
 const Footer = () => {
-    const [language, setLanguage] = React.useState<string>('Russian');
+    const dispatch = useAppDispatch();
+
+    const { language } = useAppSelector(
+        state => state.settings.generalSettings
+    );
 
     const handleChange = (event: SelectChangeEvent) => {
-        setLanguage(event.target.value as string);
+        dispatch(changeLanguage(event.target.value));
     };
 
     return (
@@ -38,8 +42,8 @@ const Footer = () => {
                         }}
                         onChange={handleChange}
                     >
-                        <MenuItem value={'Russian'}>Russian</MenuItem>
-                        <MenuItem value={'English'}>English</MenuItem>
+                        <MenuItem value={'ru'}>Russian</MenuItem>
+                        <MenuItem value={'en'}>English</MenuItem>
                     </Select>
                 </FormControl>
                 <Avatar
