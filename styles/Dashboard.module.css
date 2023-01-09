@@ -3,6 +3,12 @@
     width: 100%;
     padding-top: 25px;
     padding-bottom: 30px;
+    flex: 1;
+}
+
+.dashboardContainer {
+    display: flex;
+    flex-direction: column;
 }
 
 .littleOrdersContainer {
@@ -26,12 +32,23 @@
     flex-direction: column;
     gap: 30px;
     margin-bottom: 30px;
+    flex: 1;
+}
+
+.ordersWrapper.emptyOrders {
+    background-color: var(--cBgThird);
+    color: var(--cTextPrimary);
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .ordersWindow {
     flex: 1;
     padding-right: 15px;
     text-align: end;
+    display: flex;
+    flex-direction: column;
 }
 
 .currentlyWindow {
@@ -63,7 +80,6 @@
 .newOrderButtons {
     display: flex;
     justify-content: flex-end;
-    margin-left: auto;
     gap: 16px;
 }
 
@@ -75,7 +91,7 @@
     padding-left: 20px;
     padding-right: 35px;
     width: 100%;
-    max-width: 210px;
+    max-width: 230px;
     display: flex;
     align-items: center;
     justify-content: space-around;

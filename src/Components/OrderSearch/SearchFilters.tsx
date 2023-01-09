@@ -54,27 +54,21 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
         }
     };
 
-    const setLocationValueReceivers = (
+    const setLocationValueReceivers = async (
         id: 'fromLocation' | 'toLocation',
         value: string,
         placeId: string
     ) => {
-        receiversFormik.setValues({
-            ...receiversFormik.values,
-            [id]: value,
-            [id + '_placeId']: placeId,
-        });
+        await receiversFormik.setFieldValue(id, value);
+        await receiversFormik.setFieldValue(id + '_placeId', placeId);
     };
-    const setLocationValueCarriers = (
+    const setLocationValueCarriers = async (
         id: 'fromLocation' | 'toLocation',
         value: string,
         placeId: string
     ) => {
-        carriersFormik.setValues({
-            ...carriersFormik.values,
-            [id]: value,
-            [id + '_placeId']: placeId,
-        });
+        await carriersFormik.setFieldValue(id, value);
+        await carriersFormik.setFieldValue(id + '_placeId', placeId);
     };
 
     return (

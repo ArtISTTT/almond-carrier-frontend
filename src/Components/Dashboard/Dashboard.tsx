@@ -79,7 +79,10 @@ const Dashboard: React.FC = () => {
                 )}
             </div>
             <CarrierLayout>
-                <Container maxWidth={false}>
+                <Container
+                    maxWidth={false}
+                    className={styles.dashboardContainer}
+                >
                     <Typography
                         className={styles.receiverTitle}
                         variant='h2'
@@ -92,10 +95,20 @@ const Dashboard: React.FC = () => {
                             <OrderLoader />
                         ) : (
                             <div className={styles.ordersWindow}>
-                                <div className={styles.ordersWrapper}>
+                                <div
+                                    className={cn(styles.ordersWrapper, {
+                                        [styles.emptyOrders]:
+                                            orders.length === 0,
+                                    })}
+                                >
                                     {orders?.map(order => (
                                         <OrderItem key={order.id} {...order} />
                                     ))}
+                                    {orders.length === 0 && (
+                                        <div className={styles.emptyText}>
+                                            You don't have any orders yet.
+                                        </div>
+                                    )}
                                 </div>
                                 <div className={styles.newOrderButtons}>
                                     <Button

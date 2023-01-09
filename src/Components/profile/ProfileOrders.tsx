@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectMyOrders } from '../../redux/selectors/orders';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 import OrderLoader from '../OrderLoader';
+import cn from 'classnames';
 
 const ProfileOrders = () => {
     const orders = useSelector(selectMyOrders);
@@ -27,19 +28,32 @@ const ProfileOrders = () => {
             {isLoading ? (
                 <OrderLoader />
             ) : (
-                <>
-                    <div className={styles.orders}>
-                        {orders.map((order, i) => (
-                            <OrderItem key={i} {...order} />
-                        ))}
-                    </div>
-                    <Pagination
-                        className={styles.pagination}
-                        count={Math.round(orders.length / 5)}
-                        variant='outlined'
-                        color='primary'
-                    />
-                </>
+                <div
+                    className={cn(styles.ordersList, {
+                        [styles.emptyOrders]: orders.length === 0,
+                    })}
+                >
+                    {orders.length > 0 && (
+                        <>
+                            <div className={styles.orders}>
+                                {orders.map((order, i) => (
+                                    <OrderItem key={i} {...order} />
+                                ))}
+                            </div>
+                            <Pagination
+                                className={styles.pagination}
+                                count={Math.round(orders.length / 5)}
+                                variant='outlined'
+                                color='primary'
+                            />
+                        </>
+                    )}
+                    {orders.length === 0 && (
+                        <div className={styles.emptyText}>
+                            You don't have any orders yet.
+                        </div>
+                    )}
+                </div>
             )}
         </div>
     );

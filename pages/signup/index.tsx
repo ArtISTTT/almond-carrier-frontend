@@ -1,18 +1,18 @@
 import { Button, TextField, Link as MUILink, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
-import React from 'react';
+import React, { useContext } from 'react';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import { LinkBehaviour } from '../../src/Components/Common/LinkBehaviour';
 import LoginLayout from '../../src/Components/Layouts/Login';
 import { SignupSchema } from '../../src/schemas/SignupSchema';
-
 import style from '../../styles/SignIn.module.css';
 import { signUp } from '../../src/api/auth';
 import { addUserData, setIsAuthorized } from '../../src/redux/slices/userSlice';
 import { useAppDispatch } from '../../src/redux/hooks';
 import { parseUserDataFromApi } from '../../src/helpers/parseUserDataFromApi';
+import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 
 type IForm = {
     email: string;
@@ -26,6 +26,8 @@ type IForm = {
 const SignIn: React.FC = () => {
     const router = useRouter();
     const dispatch = useAppDispatch();
+
+    const { triggerOpen } = useContext(OpenAlertContext);
 
     React.useEffect(() => {
         if (!router.isReady) return;
@@ -41,7 +43,17 @@ const SignIn: React.FC = () => {
         if (data.ok && data.user) {
             dispatch(addUserData(parseUserDataFromApi(data.user)));
             dispatch(setIsAuthorized(true));
+            triggerOpen({
+                severity: 'success',
+                text: 'Successfully sign up',
+            });
             router.push('/thanks-for-registration');
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || 'Error when trying to sign up',
+            });
+            formik.setSubmitting(false);
         }
     };
 

@@ -62,11 +62,11 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
         }
     };
 
-    const addOrderFunc = (
+    const addOrderFunc = async (
         form: ICreateOrderReciever,
         { resetForm }: { resetForm: () => void }
     ) => {
-        addNewOrder(form);
+        await addNewOrder(form);
         resetForm();
         formik.setSubmitting(false);
         closePopup();
@@ -80,16 +80,13 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
         validateOnChange: false,
     });
 
-    const setLocationValue = (
+    const setLocationValue = async (
         id: 'fromLocation' | 'toLocation',
         value: string,
         placeId: string
     ) => {
-        formik.setValues({
-            ...formik.values,
-            [id]: value,
-            [id + '_placeId']: placeId,
-        });
+        await formik.setFieldValue(id, value);
+        await formik.setFieldValue(id + '_placeId', placeId);
     };
 
     return (
