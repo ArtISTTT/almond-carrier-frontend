@@ -7,7 +7,7 @@ import {
     InputAdornment,
 } from '@mui/material';
 import dayjs from 'dayjs';
-
+import { useFormik } from 'formik';
 import React from 'react';
 import styles from '../../../styles/ApplyPopup.module.css';
 import { IOrder } from '../../interfaces/order';
@@ -17,11 +17,30 @@ interface IProps {
     closePopup: React.Dispatch<React.SetStateAction<boolean>>;
     order: IOrder;
 }
+interface IForm {
+    productName: string;
+    productAmount: number | undefined;
+    productWeight: number | undefined;
+    productDescription: string;
+}
+
+const defaultValues = {
+    productName: '',
+    productAmount: undefined,
+    productWeight: undefined,
+    productDescription: '',
+};
 
 const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
-    const ApplyCarrierFunc = () => {
+    const ApplyCarrierFunc = (form: IForm) => {
         closePopup(false);
+        console.log(form);
     };
+
+    const formik = useFormik({
+        initialValues: defaultValues,
+        onSubmit: ApplyCarrierFunc,
+    });
 
     return (
         <ApplyPopup closePopup={closePopup}>
@@ -54,14 +73,14 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
             <div className={styles.carrierInfo}>
                 <Stack direction='column' spacing={3}>
                     <Typography
-                        className={styles.infoItem}
+                        className={styles.infoItemWay}
                         variant='h5'
                         component='p'
                     >
                         To: <span>{order.toLocation}</span>
                     </Typography>
                     <Typography
-                        className={styles.infoItem}
+                        className={styles.infoItemWay}
                         variant='h5'
                         component='p'
                     >
@@ -77,7 +96,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         flight date:
                         <span>
                             {dayjs(order.arrivalDate as Date).format(
-                                'YYYY.MM.DD'
+                                'DD.MM.YYYY'
                             )}
                         </span>
                     </Typography>
@@ -104,93 +123,87 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </Typography>
                 </Stack>
             </div>
-            <Stack direction='row' spacing={3}>
-                <div className={styles.inputItem}>
-                    <label htmlFor='productName'>name</label>
+            <form onSubmit={formik.handleSubmit} action='submit'>
+                <Stack direction='row' spacing={3}>
+                    <div className={styles.inputItem}>
+                        <label htmlFor='productName'>name</label>
+                        <TextField
+                            id='productName'
+                            name='productName'
+                            variant='outlined'
+                            value={formik.values.productName}
+                            onChange={formik.handleChange}
+                            className={styles.input}
+                        />
+                    </div>
+                    <div className={styles.inputItem}>
+                        <label htmlFor='productAmount'>PRICE</label>
+                        <TextField
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position='end'>
+                                        RUB
+                                    </InputAdornment>
+                                ),
+                            }}
+                            id='productAmount'
+                            name='productAmount'
+                            variant='outlined'
+                            type='number'
+                            value={formik.values.productAmount}
+                            onChange={formik.handleChange}
+                            className={styles.input}
+                        />
+                    </div>
+                    <div className={styles.inputItem}>
+                        <label htmlFor='productWeight'>weight</label>
+                        <TextField
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position='end'>
+                                        KG
+                                    </InputAdornment>
+                                ),
+                            }}
+                            id='productWeight'
+                            name='productWeight'
+                            variant='outlined'
+                            type='number'
+                            value={formik.values.productWeight}
+                            onChange={formik.handleChange}
+                            className={styles.input}
+                        />
+                    </div>
+                </Stack>
+                <div className={styles.carrierDescription}>
+                    <Typography
+                        className={styles.carrierDescriptionTitle}
+                        variant='h6'
+                        component='h4'
+                    >
+                        Description:
+                    </Typography>
                     <TextField
-                        id='productName'
-                        name='productName'
+                        id='productDescription'
+                        name='productDescription'
+                        placeholder='Some words about order...'
                         variant='outlined'
-                        // value={formik.values.productName}
-                        // onChange={formik.handleChange}
-                        // error={formik.errors.productName !== undefined}
-                        // helperText={formik.errors.productName}
-                        className={styles.input}
+                        multiline
+                        minRows={4}
+                        maxRows={4}
+                        value={formik.values.productDescription}
+                        onChange={formik.handleChange}
+                        className={styles.carrierDescriptionBody}
                     />
                 </div>
-                <div className={styles.inputItem}>
-                    <label htmlFor='productName'>PRICE</label>
-                    <TextField
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position='end'>
-                                    RUB
-                                </InputAdornment>
-                            ),
-                        }}
-                        id='productName'
-                        name='productName'
-                        variant='outlined'
-                        type='number'
-                        // value={formik.values.productName}
-                        // onChange={formik.handleChange}
-                        // error={formik.errors.productName !== undefined}
-                        // helperText={formik.errors.productName}
-                        className={styles.input}
-                    />
-                </div>
-                <div className={styles.inputItem}>
-                    <label htmlFor='productWeight'>weight</label>
-                    <TextField
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position='end'>
-                                    KG
-                                </InputAdornment>
-                            ),
-                        }}
-                        id='productWeight'
-                        name='productWeight'
-                        variant='outlined'
-                        type='number'
-                        // value={formik.values.productWeight}
-                        // onChange={formik.handleChange}
-                        // error={formik.errors.productWeight !== undefined}
-                        // helperText={formik.errors.productWeight}
-                        className={styles.input}
-                    />
-                </div>
-            </Stack>
-            <div className={styles.carrierDescription}>
-                <Typography
-                    className={styles.carrierDescriptionTitle}
-                    variant='h6'
-                    component='h4'
+                <Button
+                    type='submit'
+                    className={styles.carrierApplyButton}
+                    variant='contained'
                 >
-                    Description:
-                </Typography>
-                <TextField
-                    id='Description'
-                    name='Description'
-                    placeholder='Some words about order...'
-                    variant='outlined'
-                    multiline
-                    minRows={4}
-                    maxRows={4}
-                    // value={formik.values.productDescription}
-                    // onChange={formik.handleChange}
-                    // error={formik.errors.productDescription !== undefined}
-                    // helperText={formik.errors.productDescription}
-                    className={styles.carrierDescriptionBody}
-                />
-            </div>
-            <Button
-                onClick={ApplyCarrierFunc}
-                className={styles.carrierApplyButton}
-                variant='contained'
-            >
-                apply for order
-            </Button>
+                    apply for order
+                </Button>
+            </form>
         </ApplyPopup>
     );
 };

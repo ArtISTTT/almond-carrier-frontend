@@ -1,24 +1,26 @@
 import { Avatar, Button, Typography, TextField, Stack } from '@mui/material';
-import dayjs from 'dayjs';
 import React from 'react';
 import styles from '../../../styles/ApplyPopup.module.css';
 import { IOrder } from '../../interfaces/order';
 import ApplyPopup from './ApplyPopup';
 import cn from 'classnames';
 import { useFormik } from 'formik';
+import RegionAutocomplete from '../Common/RegionAutocomplete';
 
 interface IProps {
     closePopup: React.Dispatch<React.SetStateAction<boolean>>;
     order: IOrder;
 }
 interface IForm {
-    from?: string;
+    fromLocation?: string;
     date: Date;
+    fromLocation_placeId: string;
     Description: string;
 }
 
 const defaultValues = {
-    from: '',
+    fromLocation: '',
+    fromLocation_placeId: '',
     date: new Date(),
     Description: '',
 };
@@ -33,6 +35,15 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
         initialValues: defaultValues,
         onSubmit: ApplyCarrierFunc,
     });
+
+    const setLocationValue = async (
+        id: 'fromLocation' | 'toLocation',
+        value: string,
+        placeId: string
+    ) => {
+        await formik.setFieldValue(id, value);
+        await formik.setFieldValue(id + '_placeId', placeId);
+    };
 
     return (
         <ApplyPopup closePopup={closePopup}>
@@ -69,7 +80,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     spacing={3}
                 >
                     <Typography
-                        className={styles.infoItem}
+                        className={styles.infoItemWay}
                         variant='h5'
                         component='p'
                     >
@@ -77,7 +88,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </Typography>
                     {order.fromLocation && (
                         <Typography
-                            className={styles.infoItem}
+                            className={styles.infoItemWay}
                             variant='h5'
                             component='p'
                         >
@@ -111,26 +122,26 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         component='p'
                     >
                         weight
-                        <span>
-                            {dayjs(order.arrivalDate as Date).format(
-                                'YYYY.MM.DD'
-                            )}
-                        </span>
+                        <span>{order.productWeight}</span>
                     </Typography>
                 </Stack>
             </div>
             <form onSubmit={formik.handleSubmit} action='submit'>
                 <Stack direction='row' spacing={2}>
                     {!order.fromLocation && (
-                        <div className={styles.inputItem}>
-                            <label htmlFor='productName'>From</label>
-                            <TextField
-                                id='from'
-                                name='from'
-                                variant='outlined'
-                                value={formik.values.from}
-                                onChange={formik.handleChange}
-                                className={styles.input}
+                        <div className={cn(styles.inputItem, styles.longInput)}>
+                            <label htmlFor='fromLocation'>From</label>
+                            <RegionAutocomplete
+                                textFieldProps={{
+                                    id: 'fromLocation',
+                                    name: 'fromLocation',
+                                    type: 'string',
+                                    variant: 'outlined',
+                                    value: formik.values.fromLocation,
+                                    onChange: formik.handleChange,
+                                    className: styles.input,
+                                }}
+                                setValue={setLocationValue}
                             />
                         </div>
                     )}
@@ -155,7 +166,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h6'
                         component='h4'
                     >
-                        Description:
+                        Description
                     </Typography>
                     <TextField
                         id='Description'

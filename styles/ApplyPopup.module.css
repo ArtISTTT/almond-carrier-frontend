@@ -15,8 +15,7 @@
     position: fixed;
     left: 50%;
     top: 50%;
-    padding: 30px;
-    padding-top: 16px;
+    padding: 16px 30px;
     border-radius: 10px;
     z-index: 3;
     transform: translate(-50%, -50%);
@@ -66,32 +65,35 @@
     color: var(--cTextLow);
 }
 .carrierRating > span {
+    color: var(--cTextPrimary);
     font-weight: 600;
-    color: var(--cTextThird);
 }
 
 .carrierCompletedOrders > span {
     font-weight: 600;
-    color: var(--cTextThird);
+    color: var(--cTextSuccess);
 }
 
 .receiverInfo {
     padding-top: 35px;
     display: flex;
-    gap: 100px;
+    max-width: 400px;
+    justify-content: space-between;
+    gap: 16px;
     padding-bottom: 20px;
 }
 
 .infoCol {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
 }
 
 .carrierInfo {
     padding-top: 35px;
     display: flex;
-    gap: 100px;
+    max-width: 550px;
+    justify-content: space-between;
+    gap: 16px;
     padding-bottom: 30px;
 }
 
@@ -104,10 +106,10 @@
 .inputItem > label {
     text-transform: uppercase;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 24px;
     letter-spacing: 0.4px;
-    color: var(--cTextLow);
+    color: var(--cTextPrimary);
 }
 
 .input {
@@ -126,7 +128,7 @@
 
 .infoItem {
     font-weight: 400;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 18px;
     letter-spacing: 0.4px;
     text-transform: uppercase;
@@ -135,14 +137,37 @@
     width: 100%;
     gap: 15px;
     max-width: 300px;
-    color: var(--cTextLow);
+    color: var(--cTextPrimary);
+}
+
+.infoItemWay {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+    max-width: 300px;
+    color: var(--cTextPrimary);
+}
+
+.infoItemWay > span {
+    text-transform: none;
+    width: 100%;
+    max-width: 220px;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--cTextThird);
 }
 
 .infoItem > span {
     text-transform: none;
     width: 50px;
-
     font-weight: 500;
+    font-size: 16px;
     color: var(--cTextThird);
 }
 
@@ -152,10 +177,10 @@
 
 .carrierDescriptionTitle {
     font-weight: 400;
-    font-size: 18px;
-    line-height: 18px;
+    font-size: 14px;
+    line-height: 24px;
     /* identical to box height, or 100% */
-    color: var(--cTextLow);
+    color: var(--cTextPrimary);
     letter-spacing: 0.4px;
     text-transform: uppercase;
 }
