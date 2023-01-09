@@ -5,16 +5,34 @@ import styles from '../../../styles/ApplyPopup.module.css';
 import { IOrder } from '../../interfaces/order';
 import ApplyPopup from './ApplyPopup';
 import cn from 'classnames';
+import { useFormik } from 'formik';
 
 interface IProps {
     closePopup: React.Dispatch<React.SetStateAction<boolean>>;
     order: IOrder;
 }
+interface IForm {
+    from?: string;
+    date: Date;
+    Description: string;
+}
+
+const defaultValues = {
+    from: '',
+    date: new Date(),
+    Description: '',
+};
 
 const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
-    const ApplyCarrierFunc = () => {
+    const ApplyCarrierFunc = (form: IForm) => {
         closePopup(false);
+        console.log(form);
     };
+
+    const formik = useFormik({
+        initialValues: defaultValues,
+        onSubmit: ApplyCarrierFunc,
+    });
 
     return (
         <ApplyPopup closePopup={closePopup}>
@@ -101,69 +119,65 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </Typography>
                 </Stack>
             </div>
-            <Stack direction='row' spacing={2}>
-                {!order.fromLocation && (
+            <form onSubmit={formik.handleSubmit} action='submit'>
+                <Stack direction='row' spacing={2}>
+                    {!order.fromLocation && (
+                        <div className={styles.inputItem}>
+                            <label htmlFor='productName'>From</label>
+                            <TextField
+                                id='from'
+                                name='from'
+                                variant='outlined'
+                                value={formik.values.from}
+                                onChange={formik.handleChange}
+                                className={styles.input}
+                            />
+                        </div>
+                    )}
                     <div className={styles.inputItem}>
-                        <label htmlFor='productName'>From</label>
+                        <label htmlFor='productName'>Date</label>
                         <TextField
-                            id='from'
-                            name='from'
+                            id='date'
+                            name='date'
+                            type='date'
                             variant='outlined'
-                            // value={formik.values.productName}
-                            // onChange={formik.handleChange}
-                            // error={formik.errors.productName !== undefined}
-                            // helperText={formik.errors.productName}
-                            className={styles.input}
+                            value={formik.values.date}
+                            onChange={formik.handleChange}
+                            className={cn(styles.onlyDateInput, {
+                                [styles.input]: order.fromLocation,
+                            })}
                         />
                     </div>
-                )}
-                <div className={styles.inputItem}>
-                    <label htmlFor='productName'>Date</label>
+                </Stack>
+                <div className={styles.carrierDescription}>
+                    <Typography
+                        className={styles.carrierDescriptionTitle}
+                        variant='h6'
+                        component='h4'
+                    >
+                        Description:
+                    </Typography>
                     <TextField
-                        id='date'
-                        name='date'
-                        type='date'
+                        id='Description'
+                        name='Description'
+                        placeholder='Some words about order...'
                         variant='outlined'
-                        // value={formik.values.productName}
-                        // onChange={formik.handleChange}
-                        // error={formik.errors.productName !== undefined}
-                        // helperText={formik.errors.productName}
-                        className={cn(styles.onlyDateInput, {
-                            [styles.input]: order.fromLocation,
-                        })}
+                        multiline
+                        minRows={4}
+                        maxRows={4}
+                        value={formik.values.Description}
+                        onChange={formik.handleChange}
+                        className={styles.carrierDescriptionBody}
                     />
                 </div>
-            </Stack>
-            <div className={styles.carrierDescription}>
-                <Typography
-                    className={styles.carrierDescriptionTitle}
-                    variant='h6'
-                    component='h4'
+                <Button
+                    type='submit'
+                    className={styles.carrierApplyButton}
+                    variant='contained'
                 >
-                    Description:
-                </Typography>
-                <TextField
-                    id='Description'
-                    name='Description'
-                    placeholder='Some words about order...'
-                    variant='outlined'
-                    multiline
-                    minRows={4}
-                    maxRows={4}
-                    // value={formik.values.productDescription}
-                    // onChange={formik.handleChange}
-                    // error={formik.errors.productDescription !== undefined}
-                    // helperText={formik.errors.productDescription}
-                    className={styles.carrierDescriptionBody}
-                />
-            </div>
-            <Button
-                onClick={ApplyCarrierFunc}
-                className={styles.carrierApplyButton}
-                variant='contained'
-            >
-                apply for order
-            </Button>
+                    apply for order
+                </Button>
+            </form>
         </ApplyPopup>
     );
 };

@@ -91,7 +91,7 @@
 .carrierInfo {
     padding-top: 35px;
     display: flex;
-    gap: 80px;
+    gap: 100px;
     padding-bottom: 30px;
 }
 
@@ -132,8 +132,8 @@
     text-transform: uppercase;
     display: flex;
     justify-content: space-between;
-    gap: 15px;
     width: 100%;
+    gap: 15px;
     max-width: 300px;
     color: var(--cTextLow);
 }
@@ -141,6 +141,7 @@
 .infoItem > span {
     text-transform: none;
     width: 50px;
+
     font-weight: 500;
     color: var(--cTextThird);
 }

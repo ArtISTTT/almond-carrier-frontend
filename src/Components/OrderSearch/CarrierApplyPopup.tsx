@@ -1,5 +1,13 @@
-import { Avatar, Button, Typography, TextField, Stack } from '@mui/material';
+import {
+    Avatar,
+    Button,
+    Typography,
+    TextField,
+    Stack,
+    InputAdornment,
+} from '@mui/material';
 import dayjs from 'dayjs';
+
 import React from 'react';
 import styles from '../../../styles/ApplyPopup.module.css';
 import { IOrder } from '../../interfaces/order';
@@ -59,6 +67,8 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     >
                         From: <span>{order.fromLocation}</span>
                     </Typography>
+                </Stack>
+                <Stack direction='column' spacing={3}>
                     <Typography
                         className={styles.infoItem}
                         variant='h5'
@@ -71,8 +81,6 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             )}
                         </span>
                     </Typography>
-                </Stack>
-                <Stack direction='column' spacing={3}>
                     <Typography
                         className={styles.infoItem}
                         variant='h5'
@@ -113,6 +121,13 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                 <div className={styles.inputItem}>
                     <label htmlFor='productName'>PRICE</label>
                     <TextField
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position='end'>
+                                    RUB
+                                </InputAdornment>
+                            ),
+                        }}
                         id='productName'
                         name='productName'
                         variant='outlined'
@@ -127,6 +142,13 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                 <div className={styles.inputItem}>
                     <label htmlFor='productWeight'>weight</label>
                     <TextField
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position='end'>
+                                    KG
+                                </InputAdornment>
+                            ),
+                        }}
                         id='productWeight'
                         name='productWeight'
                         variant='outlined'
