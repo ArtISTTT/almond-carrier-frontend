@@ -1,6 +1,6 @@
 import { Button, Link as MUILink, TextField, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
-import React from 'react';
+import React, { useContext } from 'react';
 import style from '../../styles/SignIn.module.css';
 import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
@@ -11,6 +11,7 @@ import { signIn } from '../../src/api/auth';
 import { useAppDispatch } from '../../src/redux/hooks';
 import { addUserData, setIsAuthorized } from '../../src/redux/slices/userSlice';
 import { parseUserDataFromApi } from '../../src/helpers/parseUserDataFromApi';
+import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 
 type IForm = {
     email: string;
@@ -20,6 +21,7 @@ type IForm = {
 const SignIn: React.FC = () => {
     const router = useRouter();
     const dispatch = useAppDispatch();
+    const { triggerOpen } = useContext(OpenAlertContext);
 
     const handleSignIn = async (form: IForm) => {
         const data = await signIn(form);
@@ -27,7 +29,17 @@ const SignIn: React.FC = () => {
         if (data.ok && data.user) {
             dispatch(addUserData(parseUserDataFromApi(data.user)));
             dispatch(setIsAuthorized(true));
+            triggerOpen({
+                severity: 'success',
+                text: 'Successfully sign in',
+            });
             router.push('/dashboard');
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || 'Error when trying to sign in',
+            });
+            formik.setSubmitting(false);
         }
     };
 
