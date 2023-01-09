@@ -11,7 +11,7 @@ type IProps = {
 };
 
 const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
-    const [isPopupOpen, setIsPopupOpen] = React.useState(true);
+    const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
     const openPopupFunc = () => setIsPopupOpen(true);
 

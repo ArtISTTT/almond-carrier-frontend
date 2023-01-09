@@ -102,7 +102,6 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     <TextField
                         id='productName'
                         name='productName'
-                        placeholder='Name'
                         variant='outlined'
                         // value={formik.values.productName}
                         // onChange={formik.handleChange}
@@ -116,7 +115,6 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     <TextField
                         id='productName'
                         name='productName'
-                        placeholder='Price'
                         variant='outlined'
                         type='number'
                         // value={formik.values.productName}
@@ -131,7 +129,6 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     <TextField
                         id='productWeight'
                         name='productWeight'
-                        placeholder='Weight'
                         variant='outlined'
                         type='number'
                         // value={formik.values.productWeight}
@@ -151,9 +148,17 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     Description:
                 </Typography>
                 <TextField
-                    placeholder='Description...'
+                    id='Description'
+                    name='Description'
+                    placeholder='Some words about order...'
+                    variant='outlined'
                     multiline
+                    minRows={4}
                     maxRows={4}
+                    // value={formik.values.productDescription}
+                    // onChange={formik.handleChange}
+                    // error={formik.errors.productDescription !== undefined}
+                    // helperText={formik.errors.productDescription}
                     className={styles.carrierDescriptionBody}
                 />
             </div>

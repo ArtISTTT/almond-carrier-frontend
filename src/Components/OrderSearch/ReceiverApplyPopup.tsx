@@ -1,93 +1,169 @@
 import { Avatar, Button, Typography, TextField, Stack } from '@mui/material';
+import dayjs from 'dayjs';
 import React from 'react';
 import styles from '../../../styles/ApplyPopup.module.css';
+import { IOrder } from '../../interfaces/order';
 import ApplyPopup from './ApplyPopup';
+import cn from 'classnames';
 
 interface IProps {
     closePopup: React.Dispatch<React.SetStateAction<boolean>>;
+    order: IOrder;
 }
 
-const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup }) => {
+const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
+    const ApplyCarrierFunc = () => {
+        closePopup(false);
+    };
+
     return (
         <ApplyPopup closePopup={closePopup}>
-            <div>
-                <Avatar />
-                <div>
-                    <div></div>
-                    <div></div>
+            <div className={styles.carrierCard}>
+                <Avatar sx={{ width: 80, height: 80 }} />
+                <div className={styles.carrierCardInfo}>
+                    <Typography
+                        className={styles.carrierName}
+                        variant='h4'
+                        component='h3'
+                    >
+                        {order.receiver?.firstName} {order.receiver?.lastName}
+                    </Typography>
+                    <Typography
+                        className={styles.carrierRating}
+                        variant='h4'
+                        component='h3'
+                    >
+                        Rating: <span>5</span>
+                    </Typography>
+                    <Typography
+                        className={styles.carrierCompletedOrders}
+                        variant='h4'
+                        component='h3'
+                    >
+                        Completed orders: <span>4</span>
+                    </Typography>
                 </div>
-                <div></div>
-                <div></div>
             </div>
-            <div>
-                <div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
+            <div className={styles.receiverInfo}>
+                <Stack
+                    className={styles.infoCol}
+                    direction='column'
+                    spacing={3}
+                >
+                    <Typography
+                        className={styles.infoItem}
+                        variant='h5'
+                        component='p'
+                    >
+                        To: <span>{order.toLocation}</span>
+                    </Typography>
+                    {order.fromLocation && (
+                        <Typography
+                            className={styles.infoItem}
+                            variant='h5'
+                            component='p'
+                        >
+                            From: <span>{order.fromLocation}</span>
+                        </Typography>
+                    )}
+                </Stack>
+                <Stack
+                    className={styles.infoCol}
+                    direction='column'
+                    spacing={3}
+                >
+                    <Typography
+                        className={styles.infoItem}
+                        variant='h5'
+                        component='p'
+                    >
+                        price:
+                        <span>{order.productAmount}</span>
+                    </Typography>
+                    <Typography
+                        className={styles.infoItem}
+                        variant='h5'
+                        component='p'
+                    >
+                        benefit: <span>{order.rewardAmount}</span>
+                    </Typography>
+                    <Typography
+                        className={styles.infoItem}
+                        variant='h5'
+                        component='p'
+                    >
+                        weight
+                        <span>
+                            {dayjs(order.arrivalDate as Date).format(
+                                'YYYY.MM.DD'
+                            )}
+                        </span>
+                    </Typography>
+                </Stack>
             </div>
-            {/* <Stack direction='row' spacing={3}>
+            <Stack direction='row' spacing={2}>
+                {!order.fromLocation && (
+                    <div className={styles.inputItem}>
+                        <label htmlFor='productName'>From</label>
+                        <TextField
+                            id='from'
+                            name='from'
+                            variant='outlined'
+                            // value={formik.values.productName}
+                            // onChange={formik.handleChange}
+                            // error={formik.errors.productName !== undefined}
+                            // helperText={formik.errors.productName}
+                            className={styles.input}
+                        />
+                    </div>
+                )}
                 <div className={styles.inputItem}>
-                    <label htmlFor='productName'>Short name</label>
+                    <label htmlFor='productName'>Date</label>
                     <TextField
-                        id='productName'
-                        name='productName'
-                        placeholder='Short name'
+                        id='date'
+                        name='date'
+                        type='date'
                         variant='outlined'
                         // value={formik.values.productName}
                         // onChange={formik.handleChange}
                         // error={formik.errors.productName !== undefined}
                         // helperText={formik.errors.productName}
-                        className={styles.input}
+                        className={cn(styles.onlyDateInput, {
+                            [styles.input]: order.fromLocation,
+                        })}
                     />
                 </div>
-                <div className={styles.inputItem}>
-                    <label htmlFor='productName'>Short name</label>
-                    <TextField
-                        id='productName'
-                        name='productName'
-                        placeholder='Short name'
-                        variant='outlined'
-                        // value={formik.values.productName}
-                        // onChange={formik.handleChange}
-                        // error={formik.errors.productName !== undefined}
-                        // helperText={formik.errors.productName}
-                        className={styles.input}
-                    />
-                </div>
-                <div className={styles.inputItem}>
-                    <label htmlFor='productWeight'>Weight</label>
-                    <TextField
-                        id='productWeight'
-                        name='productWeight'
-                        placeholder='Weight'
-                        variant='outlined'
-                        type='number'
-                        // value={formik.values.productWeight}
-                        // onChange={formik.handleChange}
-                        // error={formik.errors.productWeight !== undefined}
-                        // helperText={formik.errors.productWeight}
-                        className={styles.input}
-                    />
-                </div>
-            </Stack> */}
-            <div>
-                <Typography variant='h6' component='h4'>
+            </Stack>
+            <div className={styles.carrierDescription}>
+                <Typography
+                    className={styles.carrierDescriptionTitle}
+                    variant='h6'
+                    component='h4'
+                >
                     Description:
                 </Typography>
                 <TextField
-                    placeholder='MultiLine with rows: 2 and rowsMax: 4'
+                    id='Description'
+                    name='Description'
+                    placeholder='Some words about order...'
+                    variant='outlined'
                     multiline
-                    rows={2}
+                    minRows={4}
                     maxRows={4}
+                    // value={formik.values.productDescription}
+                    // onChange={formik.handleChange}
+                    // error={formik.errors.productDescription !== undefined}
+                    // helperText={formik.errors.productDescription}
+                    className={styles.carrierDescriptionBody}
                 />
             </div>
-            <Button>apply for order</Button>
+            <Button
+                onClick={ApplyCarrierFunc}
+                className={styles.carrierApplyButton}
+                variant='contained'
+            >
+                apply for order
+            </Button>
         </ApplyPopup>
     );
 };

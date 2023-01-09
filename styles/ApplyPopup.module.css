@@ -75,6 +75,19 @@
     color: var(--cTextThird);
 }
 
+.receiverInfo {
+    padding-top: 35px;
+    display: flex;
+    gap: 100px;
+    padding-bottom: 20px;
+}
+
+.infoCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 .carrierInfo {
     padding-top: 35px;
     display: flex;
@@ -99,6 +112,7 @@
 
 .input {
     width: 100%;
+    max-width: 350px;
 }
 
 .select {
@@ -125,8 +139,9 @@
 }
 
 .infoItem > span {
+    text-transform: none;
     width: 50px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--cTextThird);
 }
 
@@ -165,4 +180,11 @@
 
 .carrierDescriptionBody :global .MuiInputBase-root {
     border-radius: 15px;
+}
+
+.onlyDateInput :global .MuiInputBase-root {
+    border-radius: 15px;
+    height: 40px;
+    width: 100%;
+    max-width: 350px;
 }

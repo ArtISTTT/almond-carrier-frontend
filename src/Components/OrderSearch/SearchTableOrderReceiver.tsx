@@ -10,13 +10,15 @@ type IProps = {
 };
 
 const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
-    const [isPopupOpen, setIsPopupOpen] = React.useState(true);
+    const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
     const openPopupFunc = () => setIsPopupOpen(true);
 
     return (
         <div className={styles.itemWrapper}>
-            {isPopupOpen && <ReceiverApplyPopup closePopup={setIsPopupOpen} />}
+            {isPopupOpen && (
+                <ReceiverApplyPopup order={order} closePopup={setIsPopupOpen} />
+            )}
             <div className={cn(styles.part, styles.user)}>
                 <Avatar
                     sx={{ width: 60, height: 60, cursor: 'pointer' }}
