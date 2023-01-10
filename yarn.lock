@@ -1848,7 +1848,7 @@
   "resolved" "https://registry.npmjs.org/i18next-fs-backend/-/i18next-fs-backend-2.1.1.tgz"
   "version" "2.1.1"
 
-"i18next@^22.0.6", "i18next@>= 19.0.0":
+"i18next@^22.0.6", "i18next@^22.4.9", "i18next@>= 19.0.0":
   "integrity" "sha512-8gWMmUz460KJDQp/ob3MNUX84cVuDRY9PLFPnV8d+Qezz/6dkjxwOaH70xjrCNDO+JrUL25iXfAIN9wUkInNZw=="
   "resolved" "https://registry.npmjs.org/i18next/-/i18next-22.4.9.tgz"
   "version" "22.4.9"
@@ -2480,7 +2480,7 @@
     "lodash.debounce" "^4.0.8"
     "prop-types" "^15.5.0"
 
-"react-i18next@^12.1.1":
+"react-i18next@^12.1.1", "react-i18next@^12.1.4":
   "integrity" "sha512-XQND7jYtgM7ht5PH3yIZljCRpAMTlH/zmngM9ZjToqa+0BR6xuu8c7QF0WIIOEjcMTB2S3iOfpN/xG/ZrAnO6g=="
   "resolved" "https://registry.npmjs.org/react-i18next/-/react-i18next-12.1.4.tgz"
   "version" "12.1.4"
