@@ -3,6 +3,7 @@ import styles from '../../../styles/OrderSearch.module.css';
 import { OrderSeachType } from '../../interfaces/order-search';
 import { Typography } from '@mui/material';
 import cn from 'classnames';
+import { useTranslation } from 'next-i18next';
 
 type IProps = {
     type: OrderSeachType;
@@ -10,6 +11,7 @@ type IProps = {
 };
 
 const TypeSwitcher: React.FC<IProps> = ({ type, setType }) => {
+    const { t } = useTranslation();
     const switchType = () => {
         setType(
             type === OrderSeachType.carriers
@@ -27,7 +29,7 @@ const TypeSwitcher: React.FC<IProps> = ({ type, setType }) => {
                     })}
                     onClick={switchType}
                 >
-                    Order
+                    {t('order')}
                 </span>
                 <span
                     className={cn(styles.off, {
@@ -35,7 +37,7 @@ const TypeSwitcher: React.FC<IProps> = ({ type, setType }) => {
                     })}
                     onClick={switchType}
                 >
-                    Deliver
+                    {t('deliver')}
                 </span>
             </div>
             <Typography
@@ -44,8 +46,8 @@ const TypeSwitcher: React.FC<IProps> = ({ type, setType }) => {
                 className={styles.typeTitle}
             >
                 {type === OrderSeachType.carriers
-                    ? 'Currently looking for a carrier'
-                    : 'Currently looking for a receiver'}
+                    ? t('currentlyLookingForACarrier')
+                    : t('currentlyLookingForAReceiver')}
             </Typography>
         </div>
     );

@@ -10,6 +10,7 @@ import { Button, TextField } from '@mui/material';
 import cn from 'classnames';
 import LoopIcon from '@mui/icons-material/Loop';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
+import { useTranslation } from 'next-i18next';
 
 type IProps = {
     updateByFiltersAndType: (
@@ -19,6 +20,7 @@ type IProps = {
 };
 
 const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
+    const { t } = useTranslation();
     const carriersFormik = useFormik({
         initialValues: {
             fromLocation: undefined,
@@ -76,7 +78,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
             {type === OrderSeachType.carriers && (
                 <form onSubmit={carriersFormik.handleSubmit}>
                     <div className={cn(styles.inputItem, styles.longInput)}>
-                        <label htmlFor='fromLocation'>From</label>
+                        <label htmlFor='fromLocation'>{t('from')}</label>
                         <RegionAutocomplete
                             textFieldProps={{
                                 id: 'fromLocation',
@@ -95,7 +97,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                         />
                     </div>
                     <div className={cn(styles.inputItem, styles.longInput)}>
-                        <label htmlFor='toLocation'>To</label>
+                        <label htmlFor='toLocation'>{t('to')}</label>
                         <RegionAutocomplete
                             textFieldProps={{
                                 id: 'toLocation',
@@ -114,7 +116,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                         />
                     </div>
                     <div className={styles.inputItem}>
-                        <label htmlFor='maxWeight'>Max weight</label>
+                        <label htmlFor='maxWeight'>{t('maxWeight')}</label>
                         <TextField
                             id='maxWeight'
                             name='maxWeight'
@@ -126,7 +128,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                         />
                     </div>
                     <div className={styles.inputItem}>
-                        <label htmlFor='maxBenefit'>max benefit</label>
+                        <label htmlFor='maxBenefit'>{t('maxBenefit')}</label>
                         <TextField
                             id='maxBenefit'
                             name='maxBenefit'
@@ -142,7 +144,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
             {type === OrderSeachType.receivers && (
                 <form onSubmit={receiversFormik.handleSubmit}>
                     <div className={cn(styles.inputItem, styles.longInput)}>
-                        <label htmlFor='fromLocation'>From</label>
+                        <label htmlFor='fromLocation'>{t('from')}</label>
                         <RegionAutocomplete
                             textFieldProps={{
                                 id: 'fromLocation',
@@ -161,7 +163,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                         />
                     </div>
                     <div className={cn(styles.inputItem, styles.longInput)}>
-                        <label htmlFor='toLocation'>To</label>
+                        <label htmlFor='toLocation'>{t('to')}</label>
                         <RegionAutocomplete
                             textFieldProps={{
                                 id: 'toLocation',
@@ -180,7 +182,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                         />
                     </div>
                     <div className={styles.inputItem}>
-                        <label htmlFor='maxPrice'>Max price</label>
+                        <label htmlFor='maxPrice'>{t('maxPrice')}</label>
                         <TextField
                             id='maxPrice'
                             name='maxPrice'
@@ -192,7 +194,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                         />
                     </div>
                     <div className={styles.inputItem}>
-                        <label htmlFor='maxWeight'>Max weight</label>
+                        <label htmlFor='maxWeight'>{t('maxWeight')}</label>
                         <TextField
                             id='maxWeight'
                             name='maxWeight'
@@ -204,7 +206,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                         />
                     </div>
                     <div className={styles.inputItem}>
-                        <label htmlFor='minBenefit'>Min benefit</label>
+                        <label htmlFor='minBenefit'>{t('minBenefit')}</label>
                         <TextField
                             id='minBenefit'
                             name='minBenefit'
@@ -223,7 +225,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                 onClick={refresh}
             >
                 <LoopIcon fontSize='small' />
-                Refresh
+                {t('refresh')}
             </Button>
         </div>
     );

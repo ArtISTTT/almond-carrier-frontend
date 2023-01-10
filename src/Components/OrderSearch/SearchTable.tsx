@@ -10,22 +10,7 @@ import SearchTableOrderCarrier from './SearchTableOrderCarrier';
 import SearchTableOrderReceiver from './SearchTableOrderReceiver';
 import cn from 'classnames';
 import { IOrder } from '../../interfaces/order';
-
-const carriersHeaders = [
-    { name: 'Carrier', long: true },
-    { name: 'From/To', long: true },
-    { name: 'Arrival date' },
-    { name: 'Benefit' },
-    { name: 'Max weight' },
-];
-
-const receiversHeaders = [
-    { name: 'Receiver', long: true },
-    { name: 'From/To', long: true },
-    { name: 'Product name' },
-    { name: 'Price/Benefit' },
-    { name: 'Weight' },
-];
+import { useTranslation } from 'next-i18next';
 
 type IProps = {
     type: OrderSeachType;
@@ -33,11 +18,22 @@ type IProps = {
 };
 
 const SearchTable: React.FC<IProps> = ({ type, orders }) => {
-    const updateByFiltersAndType = async (
-        data: carriersFilter | receiversFilter
-    ) => {
-        console.log(data);
-    };
+    const { t } = useTranslation();
+    const carriersHeaders = [
+        { name: t('carrier'), long: true },
+        { name: `${t('from')}/${t('to')}`, long: true },
+        { name: t('arrivalDate') },
+        { name: t('benefit') },
+        { name: t('maxWeight') },
+    ];
+
+    const receiversHeaders = [
+        { name: t('receiver'), long: true },
+        { name: `${t('from')}/${t('to')}`, long: true },
+        { name: t('productName') },
+        { name: t('price/benefit') },
+        { name: t('weight') },
+    ];
 
     return (
         <div className={styles.tableWrapper}>
@@ -50,6 +46,7 @@ const SearchTable: React.FC<IProps> = ({ type, orders }) => {
                         className={cn(styles.tableHeaderItem, {
                             [styles.long]: item.long,
                         })}
+                        key={item.name}
                     >
                         {item.name}
                     </div>
@@ -60,9 +57,12 @@ const SearchTable: React.FC<IProps> = ({ type, orders }) => {
             <div>
                 {orders.map(order =>
                     type === OrderSeachType.carriers ? (
-                        <SearchTableOrderCarrier order={order} />
+                        <SearchTableOrderCarrier order={order} key={order.id} />
                     ) : (
-                        <SearchTableOrderReceiver order={order} />
+                        <SearchTableOrderReceiver
+                            order={order}
+                            key={order.id}
+                        />
                     )
                 )}
             </div>

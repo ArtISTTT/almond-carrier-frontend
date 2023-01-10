@@ -17,10 +17,12 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { changeLanguage } from '../redux/slices/settingsSlice';
 import { Language } from '../interfaces/settings';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 const Footer = () => {
     const dispatch = useAppDispatch();
     const { push, route } = useRouter();
+    const { t } = useTranslation();
 
     const { language } = useAppSelector(
         state => state.settings.generalSettings
@@ -40,7 +42,7 @@ const Footer = () => {
         <footer className={styles.footer}>
             <div className={styles.leftBlock}>
                 <FormControl sx={{ width: 250 }}>
-                    <InputLabel id='language-label'>Language</InputLabel>
+                    <InputLabel id='language-label'>{t('language')}</InputLabel>
                     <Select
                         labelId='language-label'
                         id='demo-simple-select'
@@ -51,8 +53,8 @@ const Footer = () => {
                         }}
                         onChange={handleChange}
                     >
-                        <MenuItem value={Language.RU}>Russian</MenuItem>
-                        <MenuItem value={Language.EN}>English</MenuItem>
+                        <MenuItem value={Language.RU}>{t('russian')}</MenuItem>
+                        <MenuItem value={Language.EN}>{t('english')}</MenuItem>
                     </Select>
                 </FormControl>
                 <Avatar
@@ -69,7 +71,7 @@ const Footer = () => {
                             component='h3'
                             className={styles.columnTitle}
                         >
-                            Resources
+                            {t('resources')}
                         </Typography>
                         <MUILink className={styles.centerLink} href='#'>
                             Link
@@ -90,7 +92,7 @@ const Footer = () => {
                             component='h3'
                             className={styles.columnTitle}
                         >
-                            Product
+                            {t('product')}
                         </Typography>
                         <MUILink className={styles.centerLink} href='#'>
                             Link
@@ -114,7 +116,7 @@ const Footer = () => {
                             component='h3'
                             className={styles.columnTitle}
                         >
-                            Company
+                            {t('company')}
                         </Typography>
                         <MUILink className={styles.centerLink} href='#'>
                             Link

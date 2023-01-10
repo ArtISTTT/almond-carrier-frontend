@@ -11,7 +11,7 @@
 
 .typeSwitcher {
     display: flex;
-    width: 290px;
+    width: 330px;
     padding: 0 5px;
     height: 50px;
     justify-content: space-between;
@@ -23,9 +23,9 @@
 
 .typeSwitcher > span {
     height: 40px;
-    width: 140px;
+    width: 160px;
     font-weight: 500;
-    font-size: 28px;
+    font-size: 24px;
     line-height: 40px;
 
     text-align: center;
@@ -217,7 +217,7 @@
 
 .doubleditem .prefix {
     color: var(--cTextLow);
-    width: 50px;
+    width: 65px;
     display: inline-block;
     margin-right: 16px;
 }

@@ -16,6 +16,7 @@ import { selectUser } from '../../redux/selectors/user';
 import { useRouter } from 'next/router';
 import SettingsPopup from '../settings/SettingsPopup';
 import { setIsAuthorized } from '../../redux/slices/userSlice';
+import { useTranslation } from 'next-i18next';
 
 const HeaderAvatar: React.FC = () => {
     const [open, setOpen] = React.useState(false);
@@ -25,6 +26,7 @@ const HeaderAvatar: React.FC = () => {
     const user = useAppSelector(selectUser);
     const dispatch = useAppDispatch();
     const anchorRef = React.useRef(null);
+    const { t } = useTranslation();
 
     const handleToggle = () => setOpen(prevOpen => !prevOpen);
 
@@ -111,21 +113,21 @@ const HeaderAvatar: React.FC = () => {
                                             className={styles.profileItem}
                                             onClick={goToProfile}
                                         >
-                                            Profile
+                                            {t('profile')}
                                         </MenuItem>
                                         <MenuItem
                                             onClick={handleOpenSettingsPopup}
                                         >
-                                            Settings
+                                            {t('settings')}
                                         </MenuItem>
                                         <MenuItem onClick={handleClose}>
-                                            Billing
+                                            {t('billing')}
                                         </MenuItem>
                                         <MenuItem
                                             className={styles.logoutItem}
                                             onClick={handleSignOut}
                                         >
-                                            Log out
+                                            {t('logOut')}
                                         </MenuItem>
                                     </MenuList>
                                 </ClickAwayListener>

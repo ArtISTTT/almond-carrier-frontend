@@ -7,6 +7,7 @@ import { selectIsAuthorized } from '../../redux/selectors/user';
 import HeaderAvatar from './Avatar';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -19,6 +20,7 @@ const Header: React.FC<IProps> = ({
 }) => {
     const router = useRouter();
     const isAuthorized = useSelector(selectIsAuthorized);
+    const { t } = useTranslation();
 
     const changePageIfAuthorized = () => {
         if (isAuthorized) {
@@ -41,12 +43,12 @@ const Header: React.FC<IProps> = ({
                     <div className={styles.leftMenuLinks}>
                         <Link href='/dashboard'>
                             <MUILink className={styles.link} underline='none'>
-                                Dashboard
+                                {t('dashboard')}
                             </MUILink>
                         </Link>
                         <Link href='/order-search'>
                             <MUILink className={styles.link} underline='none'>
-                                Order search
+                                {t('orderSearch')}
                             </MUILink>
                         </Link>
                         {/* <MUILink className={styles.link} underline='none'>
@@ -63,17 +65,7 @@ const Header: React.FC<IProps> = ({
                                 className={styles.button}
                                 variant='outlined'
                             >
-                                <Link href='/reciever'>
-                                    Continue as a receiver
-                                </Link>
-                            </Button>
-                            <Button
-                                className={styles.button}
-                                variant='outlined'
-                            >
-                                <Link href='/carrier'>
-                                    Continue as a carrier
-                                </Link>
+                                <Link href='/dashboard'>{t('continue')}</Link>
                             </Button>
                         </>
                     )}
@@ -83,13 +75,13 @@ const Header: React.FC<IProps> = ({
                                 className={styles.button}
                                 variant='outlined'
                             >
-                                <Link href='/signin'>Sign in</Link>
+                                <Link href='/signin'>{t('signIn')}</Link>
                             </Button>
                             <Button
                                 className={styles.button}
                                 variant='outlined'
                             >
-                                <Link href='/signup'>Sign up</Link>
+                                <Link href='/signup'>{t('signUp')}</Link>
                             </Button>
                         </>
                     )}

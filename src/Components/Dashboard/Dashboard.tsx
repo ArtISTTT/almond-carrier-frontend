@@ -13,13 +13,14 @@ import { selectMyLiveOrders } from '../../redux/selectors/orders';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 import OrderLoader from '../OrderLoader';
 import EmptyOrdersBlock from './EmptyOrdersBlock';
+import { useTranslation } from 'next-i18next';
 
 const recentlyCreatedOrders = [
-    { to: 'Barnaul', benefit: 40, id: 1 },
-    { to: 'Barnaul', benefit: 40, id: 2 },
-    { to: 'Barnaul', benefit: 40, id: 3 },
-    { to: 'Barnaul', benefit: 40, id: 4 },
-    { to: 'Barnaul', benefit: 40, id: 5 },
+    { to: 'Барнаул, Россия', benefit: 3000, id: 1 },
+    { to: 'Москва, Россия', benefit: 2300, id: 2 },
+    { to: 'Санкт-Петербург, Россия', benefit: 400, id: 3 },
+    { to: 'Анталия, Турция', benefit: 1900, id: 4 },
+    { to: 'Барнаул, Россия', benefit: 999, id: 5 },
 ];
 
 enum PopupType {
@@ -30,6 +31,7 @@ enum PopupType {
 
 const Dashboard: React.FC = () => {
     const orders = useSelector(selectMyLiveOrders);
+    const { t } = useTranslation();
     const [openedPopup, setOpenedPopup] = React.useState<PopupType>(
         PopupType.none
     );
@@ -89,7 +91,7 @@ const Dashboard: React.FC = () => {
                         variant='h2'
                         component='h2'
                     >
-                        Live orders
+                        {t('liveOrders')}
                     </Typography>
                     <div className={styles.receiverContent}>
                         {isLoading ? (
@@ -116,7 +118,7 @@ const Dashboard: React.FC = () => {
                                         variant='contained'
                                     >
                                         <AddIcon sx={{ fontSize: 22 }} />
-                                        Order new item
+                                        {t('orderNewItem')}
                                     </Button>
                                     <Button
                                         onClick={toggleCarrierPopup}
@@ -127,12 +129,12 @@ const Dashboard: React.FC = () => {
                                         variant='contained'
                                     >
                                         <AddIcon sx={{ fontSize: 22 }} />
-                                        Send new item
+                                        {t('sendNewItem')}
                                     </Button>
                                 </div>
                             </div>
                         )}
-                        <div className={styles.currentlyWindow}>
+                        {/* <div className={styles.currentlyWindow}>
                             <div className={styles.currentlyWindowContainer}>
                                 <Typography
                                     className={styles.currentlyTitle}
@@ -157,7 +159,7 @@ const Dashboard: React.FC = () => {
                                     show more
                                 </Button>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </Container>
             </CarrierLayout>
