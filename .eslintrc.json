@@ -15,14 +15,6 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": ["react", "@typescript-eslint", "unused-imports"],
-    "rules": {
-        "unused-imports/no-unused-imports": "error",
-        "sort-imports": [
-            "error",
-            {
-                "ignoreDeclarationSort": true
-            }
-        ]
-    }
+    "plugins": ["react", "@typescript-eslint"],
+    "rules": {}
 }
