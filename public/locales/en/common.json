@@ -10,6 +10,8 @@
     "errorUpdateAvatar": "Error while trying to update avatar",
     "errorUpdated": "Error when trying to update user",
     "female": "Female",
+    "to": "To",
+    "apply": "Apply",
     "firstName": "First name",
     "friendlyCarrier": "Friendly Carrier",
     "from": "From",
