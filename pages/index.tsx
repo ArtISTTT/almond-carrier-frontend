@@ -46,7 +46,7 @@ export default function Welcome() {
                         component='h1'
                         className={styles.title}
                     >
-                        Friendly Carrier
+                        {t('friendlyCarrier')}
                     </Typography>
                     <Typography
                         variant='h3'
@@ -76,7 +76,7 @@ export default function Welcome() {
                                 className={styles.submitButton}
                                 variant='contained'
                             >
-                                Register Now
+                                {t('registerNow')}
                             </Button>
                         </form>
                     </div>
@@ -88,7 +88,7 @@ export default function Welcome() {
                             component='h2'
                             className={styles.rolesTitle}
                         >
-                            Possible roles
+                            {t('possibleRoles')}
                         </Typography>
                         <div className={styles.possibleRoles}>
                             <div className={styles.role}>
@@ -103,18 +103,14 @@ export default function Welcome() {
                                         component='h3'
                                         className={styles.roleTitle}
                                     >
-                                        Carrier
+                                        {t('carrier')}
                                     </Typography>
                                     <Typography
                                         variant='h4'
                                         component='h4'
                                         className={styles.roleDescription}
                                     >
-                                        You want to visit another country, then
-                                        you can deliver what is needed, from
-                                        where you are leaving, to the country
-                                        where you are going. By completing
-                                        orders you earn some money.
+                                        {t('ifYouWantToVisitAnotherCountry')}
                                     </Typography>
                                 </div>
                             </div>
@@ -130,18 +126,14 @@ export default function Welcome() {
                                         component='h3'
                                         className={styles.roleTitle}
                                     >
-                                        Receiver
+                                        {t('receiver')}
                                     </Typography>
                                     <Typography
                                         variant='h4'
                                         component='h4'
                                         className={styles.roleDescription}
                                     >
-                                        You are in a country where you don't
-                                        have anything you need. Then you can
-                                        request something and wait for the
-                                        carrier to respond or respond to the
-                                        carrier's offer yourself.
+                                        {t('ifYouAreInTheCountry')}
                                     </Typography>
                                 </div>
                             </div>
@@ -154,7 +146,7 @@ export default function Welcome() {
                         component='h2'
                         className={styles.stepsTitle}
                     >
-                        How does it work
+                        {t('howDoesItWork')}
                     </Typography>
                     <div className={styles.stepsBlock}>
                         <img
@@ -180,7 +172,7 @@ export default function Welcome() {
                         component='h2'
                         className={styles.advantagesTitle}
                     >
-                        Our advantages
+                        {t('ourAdvantages')}
                     </Typography>
                     <div className={styles.advantages}>
                         <div className={styles.advantage}>
@@ -194,16 +186,14 @@ export default function Welcome() {
                                     component='h3'
                                     className={styles.advantageTitle}
                                 >
-                                    Reliability
+                                    {t('reliability')}
                                 </Typography>
                                 <Typography
                                     variant='h5'
                                     component='h4'
                                     className={styles.advantageDescription}
                                 >
-                                    Receiver gives us money, then we hold them
-                                    until receiver doesn’t approve that he got
-                                    goods. After that we send money to carrier.
+                                    {t('theRecipientPaysForThePackage')}
                                 </Typography>
                             </div>
                         </div>
@@ -218,15 +208,14 @@ export default function Welcome() {
                                     component='h3'
                                     className={styles.advantageTitle}
                                 >
-                                    Safety
+                                    {t('safety')}
                                 </Typography>
                                 <Typography
                                     variant='h5'
                                     component='h4'
                                     className={styles.advantageDescription}
                                 >
-                                    All your data will be confident. Your money
-                                    also will be safe.
+                                    {t('yourAllDataWillBe')}
                                 </Typography>
                             </div>
                         </div>
@@ -241,16 +230,14 @@ export default function Welcome() {
                                     component='h3'
                                     className={styles.advantageTitle}
                                 >
-                                    Low commission
+                                    {t('lowCommission')}
                                 </Typography>
                                 <Typography
                                     variant='h5'
                                     component='h4'
                                     className={styles.advantageDescription}
                                 >
-                                    We charge a commission for what we found for
-                                    your carrier/receiver, but the price will be
-                                    low.
+                                    {t('weChargeACommissionFor')}
                                 </Typography>
                             </div>
                         </div>
