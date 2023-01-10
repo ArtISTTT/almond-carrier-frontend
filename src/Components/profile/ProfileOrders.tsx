@@ -8,10 +8,12 @@ import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 import OrderLoader from '../OrderLoader';
 import cn from 'classnames';
 import EmptyOrdersBlock from './EmptyOrdersBlock';
+import { useTranslation } from 'react-i18next';
 
 const ProfileOrders = () => {
     const orders = useSelector(selectMyOrders);
     const { reload, isLoading, error } = useLoadOwnOrders();
+    const { t } = useTranslation();
 
     useEffect(() => {
         reload();
@@ -24,7 +26,7 @@ const ProfileOrders = () => {
                 variant='h4'
                 component='h3'
             >
-                My orders
+                {t('myOrders')}
             </Typography>
             {isLoading ? (
                 <OrderLoader />

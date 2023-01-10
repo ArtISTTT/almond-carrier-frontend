@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from '../../../styles/EmptyOrders.module.css';
 import { Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const EmptyOrdersBlock = () => {
+    const { t } = useTranslation();
+
     return (
         <div className={styles.emptyText}>
             <Typography
@@ -10,7 +13,7 @@ const EmptyOrdersBlock = () => {
                 variant='h4'
                 component='h4'
             >
-                You don't have any orders yet.
+                {t('youHaveNoOrdersYet')}
             </Typography>
         </div>
     );

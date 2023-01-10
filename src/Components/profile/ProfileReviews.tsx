@@ -3,6 +3,7 @@ import styles from '../../../styles/ProfileReviews.module.css';
 import React from 'react';
 import dayjs from 'dayjs';
 import ReviewItem from './ReviewItem';
+import { useTranslation } from 'react-i18next';
 
 const reviews = [
     {
@@ -44,6 +45,7 @@ const reviews = [
 ];
 
 const ProfileReviews = () => {
+    const { t } = useTranslation();
     return (
         <div className={styles.reviewsWrapper}>
             <Typography
@@ -51,7 +53,7 @@ const ProfileReviews = () => {
                 variant='h4'
                 component='h3'
             >
-                Reviews
+                {t('reviews')}
             </Typography>
             <div className={styles.reviews}>
                 {reviews.map((review, i) => (

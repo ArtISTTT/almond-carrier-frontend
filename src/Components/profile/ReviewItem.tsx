@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import React from 'react';
 import { IReview } from '../../interfaces/profile';
 import styles from '../../../styles/ReviewItem.module.css';
+import { useTranslation } from 'react-i18next';
 
 const ReviewItem: React.FC<IReview> = ({
     role,
@@ -13,6 +14,7 @@ const ReviewItem: React.FC<IReview> = ({
     avatar,
     name,
 }) => {
+    const { t } = useTranslation();
     return (
         <div className={styles.review}>
             <div className={styles.reviewProfile}>
@@ -55,7 +57,10 @@ const ReviewItem: React.FC<IReview> = ({
                         variant='h3'
                         component='p'
                     >
-                        BENEFIT: <span>{benefit} RUB</span>
+                        {t('benefit')}{' '}
+                        <span>
+                            {benefit} {t('rub')}
+                        </span>
                     </Typography>
                     <Typography
                         className={styles.reviewDate}

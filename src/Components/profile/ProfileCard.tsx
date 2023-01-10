@@ -5,9 +5,11 @@ import classNames from 'classnames';
 import UploadAvatar from './UploadAvatar';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/selectors/user';
+import { useTranslation } from 'react-i18next';
 
 const ProfileCard = () => {
     const user = useSelector(selectUser);
+    const { t } = useTranslation();
 
     return (
         <div className={styles.card}>
@@ -25,11 +27,11 @@ const ProfileCard = () => {
                     variant='h4'
                     component='h2'
                 >
-                    From Moscow
+                    {t('from')} Moscow
                 </Typography>
                 <div className={styles.statisticItem}>
                     <div className={styles.statisticTitle}>
-                        Completed orders
+                        {t('completedOrders')}
                     </div>
                     <div
                         className={classNames(
@@ -41,7 +43,7 @@ const ProfileCard = () => {
                     </div>
                 </div>
                 <div className={styles.statisticItem}>
-                    <div className={styles.statisticTitle}>Rating</div>
+                    <div className={styles.statisticTitle}>{t('rating')}</div>
                     <div className={styles.statisticValue}>4.75</div>
                 </div>
                 {/* <Rating
