@@ -13,6 +13,7 @@ import { addUserData, setIsAuthorized } from '../../src/redux/slices/userSlice';
 import { useAppDispatch } from '../../src/redux/hooks';
 import { parseUserDataFromApi } from '../../src/helpers/parseUserDataFromApi';
 import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 type IForm = {
     email: string;
@@ -167,5 +168,13 @@ const SignIn: React.FC = () => {
         </LoginLayout>
     );
 };
+
+export async function getStaticProps({ locale }: { locale: string }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
+    };
+}
 
 export default SignIn;

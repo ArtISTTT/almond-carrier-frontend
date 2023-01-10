@@ -4,6 +4,7 @@ import ProfileLayout from '../../../src/Components/Layouts/ProfileLayout';
 import General from '../../../src/Components/profile/General';
 import PrivateLayout from '../../../src/Components/Layouts/Private';
 import { privateTypes } from '../../../src/interfaces/private';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const index = () => {
     return (
@@ -16,5 +17,13 @@ const index = () => {
         </PrivateLayout>
     );
 };
+
+export async function getStaticProps({ locale }: { locale: string }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
+    };
+}
 
 export default index;

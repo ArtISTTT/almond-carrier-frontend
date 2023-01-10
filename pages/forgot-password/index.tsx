@@ -19,6 +19,7 @@ import { recoverPassword } from '../../src/api/auth';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const modalStyle = {
     position: 'absolute' as 'absolute',
@@ -142,5 +143,13 @@ const SignIn: React.FC = () => {
         </LoginLayout>
     );
 };
+
+export async function getStaticProps({ locale }: { locale: string }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
+    };
+}
 
 export default SignIn;

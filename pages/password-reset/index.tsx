@@ -10,6 +10,7 @@ import { processRecoverPassword } from '../../src/api/auth';
 import { RecoverPasswordSchema } from '../../src/schemas/RecoverPasswordSchema';
 import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 import Loader from '../../src/Components/Loader';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 type IForm = {
     password: string;
@@ -123,5 +124,13 @@ const SignIn: React.FC = () => {
         </LoginLayout>
     );
 };
+
+export async function getStaticProps({ locale }: { locale: string }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
+    };
+}
 
 export default SignIn;
