@@ -15,16 +15,25 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { changeLanguage } from '../redux/slices/settingsSlice';
+import { Language } from '../interfaces/settings';
+import { useRouter } from 'next/router';
 
 const Footer = () => {
     const dispatch = useAppDispatch();
+    const { push, route } = useRouter();
 
     const { language } = useAppSelector(
         state => state.settings.generalSettings
     );
 
     const handleChange = (event: SelectChangeEvent) => {
-        dispatch(changeLanguage(event.target.value));
+        push(route, undefined, { locale: event.target.value });
+        dispatch(
+            changeLanguage({
+                language: event.target.value as Language,
+                updateLocalStorage: true,
+            })
+        );
     };
 
     return (
@@ -42,8 +51,8 @@ const Footer = () => {
                         }}
                         onChange={handleChange}
                     >
-                        <MenuItem value={'ru'}>Russian</MenuItem>
-                        <MenuItem value={'en'}>English</MenuItem>
+                        <MenuItem value={Language.RU}>Russian</MenuItem>
+                        <MenuItem value={Language.EN}>English</MenuItem>
                     </Select>
                 </FormControl>
                 <Avatar

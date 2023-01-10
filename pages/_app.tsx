@@ -6,8 +6,9 @@ import AuthLayout from '../src/Components/Layouts/Auth';
 import { Provider as StoreProvider } from 'react-redux';
 import { store } from '../src/redux';
 import SnackBarLayout from '../src/Components/Layouts/Snackbar';
+import { appWithTranslation } from 'next-i18next';
 
-export default function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
     return (
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
@@ -21,4 +22,6 @@ export default function App({ Component, pageProps }: AppProps) {
             </ThemeProvider>
         </StyledEngineProvider>
     );
-}
+};
+
+export default appWithTranslation(App);

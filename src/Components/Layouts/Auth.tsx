@@ -13,6 +13,7 @@ import Loader from '../Loader';
 import { IGetCurrentUserReturn } from '../../interfaces/api/auth';
 import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
 import { changeLanguage } from '../../redux/slices/settingsSlice';
+import { Language } from '../../interfaces/settings';
 
 type IAuthLayout = {
     children: React.ReactNode;
@@ -21,6 +22,8 @@ type IAuthLayout = {
 const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
     const authChecked = useSelector(selectIsInitializeAuthChecked);
     const dispatch = useAppDispatch();
+    const { locale } = useRouter();
+    const { push, route } = useRouter();
 
     const updateUser = (data: IGetCurrentUserReturn) => {
         if (data.ok && data.user) {
@@ -28,13 +31,21 @@ const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
             dispatch(setIsAuthorized(true));
         }
 
-        const trimmedLanguage = navigator.language
-            .trim()
-            .split(/-|_/)[0]
-            .toLowerCase();
-        dispatch(
-            changeLanguage(trimmedLanguage === 'ru' ? trimmedLanguage : 'en')
-        );
+        const savedLocale = localStorage.getItem('language');
+
+        if (savedLocale) {
+            dispatch(changeLanguage({ language: savedLocale as Language }));
+
+            if (savedLocale !== locale) {
+                push(route, undefined, { locale: savedLocale });
+            }
+        } else {
+            dispatch(
+                changeLanguage({
+                    language: (locale as Language) ?? Language.EN,
+                })
+            );
+        }
 
         dispatch(setInitializeAuthChecked(true));
     };

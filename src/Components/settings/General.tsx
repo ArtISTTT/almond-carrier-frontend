@@ -10,7 +10,7 @@ import { Stack } from '@mui/system';
 import { useFormik } from 'formik';
 import React from 'react';
 import styles from '../../../styles/Settings.module.css';
-import { IGeneralSettings } from '../../interfaces/settings';
+import { IGeneralSettings, Language } from '../../interfaces/settings';
 import { useAppDispatch } from '../../redux/hooks';
 import { changeGeneralSettings } from '../../redux/slices/settingsSlice';
 
@@ -21,7 +21,7 @@ const themes = ['Light', 'Dark'];
 
 const defaultValues = {
     country: '',
-    language: '',
+    language: Language.EN,
     currency: '',
     theme: '',
     isAllowToTransferMoney: false,

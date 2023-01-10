@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IGeneralSettings, INotifications } from '../../interfaces/settings';
+import {
+    IGeneralSettings,
+    INotifications,
+    Language,
+} from '../../interfaces/settings';
 
 interface IInitialState {
     generalSettings: IGeneralSettings;
@@ -9,7 +13,7 @@ interface IInitialState {
 const initialState: IInitialState = {
     generalSettings: {
         country: '',
-        language: '',
+        language: Language.EN,
         currency: '',
         theme: '',
         isAllowToTransferMoney: false,
@@ -31,12 +35,26 @@ export const settingsSlice = createSlice({
             action: PayloadAction<IGeneralSettings>
         ) => {
             state.generalSettings = action.payload;
+
+            if (state.generalSettings.language !== action.payload.language) {
+                localStorage.setItem('language', action.payload.language);
+            }
         },
         changeNotifications: (state, action: PayloadAction<INotifications>) => {
             state.notifications = action.payload;
         },
-        changeLanguage: (state, action: PayloadAction<string>) => {
-            state.generalSettings.language = action.payload;
+        changeLanguage: (
+            state,
+            action: PayloadAction<{
+                language: Language;
+                updateLocalStorage?: true;
+            }>
+        ) => {
+            state.generalSettings.language = action.payload.language;
+
+            if (action.payload.updateLocalStorage) {
+                localStorage.setItem('language', action.payload.language);
+            }
         },
     },
 });

@@ -6,6 +6,8 @@ import { EmailSchema } from '../src/schemas/EmailSchema';
 import PrivateLayout from '../src/Components/Layouts/Private';
 import { privateTypes } from '../src/interfaces/private';
 import MainLayout from '../src/Components/Layouts/MainLayout';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 type IForm = {
     email: string;
@@ -13,6 +15,7 @@ type IForm = {
 
 export default function Welcome() {
     const router = useRouter();
+    const { t } = useTranslation();
 
     const handleSubmit = (form: IForm) => {
         router.push({
@@ -50,10 +53,7 @@ export default function Welcome() {
                         component='h2'
                         className={styles.description}
                     >
-                        Company that unites people all over the world. If you
-                        need anything what you<br></br> don’t have in your
-                        country, just ask another person to carry it to you in
-                        our app
+                        {t('companyThatUnitesPeopleETC')}
                     </Typography>
                     <div className={styles.fastSignUp}>
                         <form onSubmit={formik.handleSubmit} action='submit'>
@@ -259,4 +259,12 @@ export default function Welcome() {
             </MainLayout>
         </PrivateLayout>
     );
+}
+
+export async function getStaticProps({ locale }: { locale: string }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
+    };
 }
