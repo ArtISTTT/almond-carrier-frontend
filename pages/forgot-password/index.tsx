@@ -22,7 +22,7 @@ import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const modalStyle = {
-    position: 'absolute' as 'absolute',
+    position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',

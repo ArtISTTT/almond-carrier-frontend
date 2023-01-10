@@ -167,7 +167,7 @@ export const updateUserPassword = (
 export const updateAvatar = (
     requestData: IUpdateAvatar
 ): Promise<IUpdatePasswordReturn> => {
-    var formData = new FormData();
+    const formData = new FormData();
 
     formData.append('image', requestData.avatar);
 

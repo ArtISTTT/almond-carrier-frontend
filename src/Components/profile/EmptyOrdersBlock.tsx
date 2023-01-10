@@ -10,7 +10,7 @@ const EmptyOrdersBlock = () => {
                 variant='h4'
                 component='h4'
             >
-                You don't have any orders yet.
+                You don&apos;t have any orders yet.
             </Typography>
         </div>
     );

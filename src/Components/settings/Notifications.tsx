@@ -57,8 +57,8 @@ const Notifications: React.FC = () => {
                         variant='body1'
                         component='p'
                     >
-                        I would like to receive notifications about other users'
-                        messages
+                        I would like to receive notifications about other
+                        users&apos; messages
                     </Typography>
                     <Checkbox
                         sx={{

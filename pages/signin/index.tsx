@@ -103,7 +103,7 @@ const SignIn: React.FC = () => {
                                 href='/signup'
                                 component={LinkBehaviour}
                             >
-                                Don't have an account?
+                                Don&apos;t have an account?
                             </MUILink>
                             <MUILink
                                 className={style.helpLink}
