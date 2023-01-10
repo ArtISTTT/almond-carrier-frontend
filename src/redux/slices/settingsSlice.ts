@@ -1,8 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
+    Currency,
     IGeneralSettings,
     INotifications,
     Language,
+    Theme,
+    Country,
 } from '../../interfaces/settings';
 
 interface IInitialState {
@@ -12,10 +15,10 @@ interface IInitialState {
 
 const initialState: IInitialState = {
     generalSettings: {
-        country: '',
-        language: Language.EN,
-        currency: '',
-        theme: '',
+        country: Country.RUSSIA,
+        language: Language.RU,
+        currency: Currency.RUBEL,
+        theme: Theme.LIGHT,
         isAllowToTransferMoney: false,
         isUseTwoStepAuthenticationByPhoneNumber: false,
     },

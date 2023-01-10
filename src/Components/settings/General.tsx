@@ -10,7 +10,13 @@ import { Stack } from '@mui/system';
 import { useFormik } from 'formik';
 import React from 'react';
 import styles from '../../../styles/Settings.module.css';
-import { IGeneralSettings, Language } from '../../interfaces/settings';
+import {
+    IGeneralSettings,
+    Language,
+    Theme,
+    Currency,
+    Country,
+} from '../../interfaces/settings';
 import { useAppDispatch } from '../../redux/hooks';
 import { changeGeneralSettings } from '../../redux/slices/settingsSlice';
 
@@ -20,10 +26,10 @@ const currency = ['Euro', 'Dollar', 'Rubel'];
 const themes = ['Light', 'Dark'];
 
 const defaultValues = {
-    country: '',
-    language: Language.EN,
-    currency: '',
-    theme: '',
+    country: Country.RUSSIA,
+    language: Language.RU,
+    currency: Currency.RUBEL,
+    theme: Theme.LIGHT,
     isAllowToTransferMoney: false,
     isUseTwoStepAuthenticationByPhoneNumber: false,
 };
@@ -39,6 +45,20 @@ const GeneralSettings: React.FC = () => {
         initialValues: defaultValues,
         onSubmit: updateGeneralSettings,
     });
+
+    React.useEffect(() => {
+        formik.setValues({
+            ...formik.values,
+            language:
+                localStorage.getItem('language') === 'ru'
+                    ? Language.RU
+                    : Language.EN,
+            theme: Theme.LIGHT,
+            currency: Currency.RUBEL,
+            country: Country.RUSSIA,
+        });
+        formik.submitForm();
+    }, []);
 
     React.useEffect(() => {
         formik.submitForm();

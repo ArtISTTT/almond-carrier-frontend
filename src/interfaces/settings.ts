@@ -1,13 +1,30 @@
 export enum Language {
-    RU = 'ru',
-    EN = 'en',
+    RU = 'Russian',
+    EN = 'English',
+}
+
+export enum Theme {
+    DARK = 'Dark',
+    LIGHT = 'Light',
+}
+
+export enum Currency {
+    EURO = 'Euro',
+    DOLLAR = 'Dollar',
+    RUBEL = 'Rubel',
+}
+
+export enum Country {
+    RUSSIA = 'Russia',
+    USA = 'USA',
+    SOVIET = 'Soviet Russia',
 }
 
 export type IGeneralSettings = {
-    country: string;
+    country: Country;
     language: Language;
-    currency: string;
-    theme: string;
+    currency: Currency;
+    theme: Theme;
     isAllowToTransferMoney: boolean;
     isUseTwoStepAuthenticationByPhoneNumber: boolean;
 };
