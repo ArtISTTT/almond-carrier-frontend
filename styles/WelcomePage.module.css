@@ -154,7 +154,8 @@
 }
 
 .stepsBlock {
-    width: 1150px;
+    max-width: 1150px;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -163,18 +164,112 @@
 }
 
 .stepOne {
-    width: 483px;
+    color: var(--cTextPrimary);
+    max-width: 483px;
     height: 400px;
     margin-top: 50px;
+    width: 100%;
+    background: url('/static/images/main-page/step-one-bg.png');
+    background-size: cover;
+}
+
+.stepOneTitle {
+    margin-top: 45px;
+    margin-left: 100px;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 50px;
+    letter-spacing: 0.4px;
+}
+
+.stepOneText {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    align-items: center;
+    margin-top: 17px;
+}
+
+.stepOneTextPart {
+    max-width: 267px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 0.4px;
+}
+
+.stepOneTextPartTwo {
+    margin-left: 100px;
 }
 
 .stepTwo {
     margin-top: 360px;
-    width: 450px;
+    max-width: 457px;
+    color: var(--cTextPrimary);
+    height: 450px;
+    width: 100%;
+    background: url('/static/images/main-page/step-two-bg.png');
+    background-size: cover;
+}
+
+@media screen and (max-width: 956px) {
+    .stepTwo {
+        margin-top: 10px;
+    }
+}
+.stepTwoTitle {
+    margin-top: 46px;
+    margin-left: 115px;
+    font-weight: 500;
+    font-size: 50px;
+    line-height: 50px;
+    letter-spacing: 0.4px;
+}
+
+.stepTwoTextPart {
+    font-weight: 500;
+    font-size: 23px;
+    line-height: 26px;
+    letter-spacing: 0.4px;
+    max-width: 362px;
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+.stepTwoTextPartTwo {
+    margin-left: 0;
+    margin-right: 45px;
 }
 
 .stepThree {
-    width: 600px;
+    color: var(--cTextPrimary);
+    max-width: 600px;
+    height: 340px;
+    width: 100%;
+    background: url('/static/images/main-page/step-three-bg.png');
+    background-size: cover;
+}
+
+.stepThreeTitle {
+    margin-top: 49px;
+    margin-left: 94px;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 50px;
+    letter-spacing: 0.4px;
+}
+
+.stepThreeText {
+    margin-top: 25px;
+    margin-left: 54px;
+    max-width: 511px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 23px;
+    line-height: 26px;
+    letter-spacing: 0.4px;
 }
 
 .advantagesBlock {

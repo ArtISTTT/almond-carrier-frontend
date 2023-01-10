@@ -1,5 +1,6 @@
 import styles from '../styles/WelcomePage.module.css';
 import { Button, TextField, Typography } from '@mui/material';
+import cn from 'classnames';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import { EmailSchema } from '../src/schemas/EmailSchema';
@@ -149,21 +150,78 @@ export default function Welcome() {
                         {t('howDoesItWork')}
                     </Typography>
                     <div className={styles.stepsBlock}>
-                        <img
-                            className={styles.stepOne}
-                            src='/static/images/main-page/step-one.png'
-                            alt='qwe'
-                        />
-                        <img
-                            className={styles.stepTwo}
-                            src='/static/images/main-page/step-two.png'
-                            alt='qwe'
-                        />
-                        <img
-                            className={styles.stepThree}
-                            src='/static/images/main-page/step-three.png'
-                            alt='qwe'
-                        />
+                        <div className={styles.stepOne}>
+                            <Typography
+                                className={styles.stepOneTitle}
+                                variant='h3'
+                                component='h3'
+                            >
+                                {t('oneChoose')}
+                            </Typography>
+                            <div className={styles.stepOneText}>
+                                <Typography
+                                    className={styles.stepOneTextPart}
+                                    variant='body1'
+                                    component='p'
+                                >
+                                    {t('oneIfYouReceiver')}
+                                </Typography>
+                                <Typography
+                                    className={cn(
+                                        styles.stepOneTextPart,
+                                        styles.stepOneTextPartTwo
+                                    )}
+                                    variant='body1'
+                                    component='p'
+                                >
+                                    {t('oneIfYouCarrier')}
+                                </Typography>
+                            </div>
+                        </div>
+                        <div className={styles.stepTwo}>
+                            <Typography
+                                className={styles.stepTwoTitle}
+                                variant='h3'
+                                component='h3'
+                            >
+                                {t('purchase')}
+                            </Typography>
+                            <div className={styles.stepOneText}>
+                                <Typography
+                                    className={styles.stepTwoTextPart}
+                                    variant='body1'
+                                    component='p'
+                                >
+                                    {t('priceSum')}
+                                </Typography>
+                                <Typography
+                                    className={cn(
+                                        styles.stepTwoTextPart,
+                                        styles.stepTwoTextPartTwo
+                                    )}
+                                    variant='body1'
+                                    component='p'
+                                >
+                                    {t('holdMoney')}
+                                </Typography>
+                            </div>
+                        </div>
+                        <div className={styles.stepThree}>
+                            <Typography
+                                className={styles.stepThreeTitle}
+                                variant='h3'
+                                component='h3'
+                            >
+                                {t('receiving')}
+                            </Typography>
+                            <Typography
+                                className={styles.stepThreeText}
+                                variant='body1'
+                                component='p'
+                            >
+                                {t('carrierComesToTheCountryToReceiver')}
+                            </Typography>
+                        </div>
                     </div>
                 </div>
                 <div className={styles.advantagesBlock}>
