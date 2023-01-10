@@ -4,6 +4,7 @@ import { Avatar, Button } from '@mui/material';
 import cn from 'classnames';
 import { IOrder } from '../../interfaces/order';
 import { useTranslation } from 'next-i18next';
+import ReceiverApplyPopup from './ReceiverApplyPopup';
 
 type IProps = {
     order: IOrder;
@@ -12,8 +13,15 @@ type IProps = {
 const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
     const { t } = useTranslation();
 
+    const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+
+    const openPopupFunc = () => setIsPopupOpen(true);
+
     return (
         <div className={styles.itemWrapper}>
+            {isPopupOpen && (
+                <ReceiverApplyPopup order={order} closePopup={setIsPopupOpen} />
+            )}
             <div className={cn(styles.part, styles.user)}>
                 <Avatar
                     sx={{ width: 60, height: 60, cursor: 'pointer' }}
@@ -68,7 +76,11 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                 {t('kg')}
             </div>
             <div className={cn(styles.part)}>
-                <Button variant='contained' className={styles.applyBtn}>
+                <Button
+                    onClick={openPopupFunc}
+                    variant='contained'
+                    className={styles.applyBtn}
+                >
                     {t('apply')}
                 </Button>
             </div>
