@@ -2,11 +2,6 @@ import { Typography } from '@mui/material';
 import styles from '../../../styles/Popup.module.css';
 import React from 'react';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-
-const valutes = ['Rubles', 'Euro', 'Dollar'];
-
-const deliverPlaces = ['Russia', 'Antalya'];
-
 interface IProps {
     title: string;
     closePopup: () => void;

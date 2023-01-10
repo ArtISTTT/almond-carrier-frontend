@@ -38,9 +38,12 @@ const defaultValues = {
     productDescription: '',
 };
 
+const enableScroll = () => (window.onscroll = function () {});
+
 const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
     const { triggerOpen } = useContext(OpenAlertContext);
     const closePopup = () => {
+        enableScroll();
         formik.setValues(defaultValues);
         togglePopup(prev => !prev);
     };

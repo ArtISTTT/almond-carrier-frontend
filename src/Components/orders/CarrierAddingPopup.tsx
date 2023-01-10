@@ -17,10 +17,7 @@ import { addOrderAsACarrier } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
 
-const valutes = ['Rubles', 'Euro', 'Dollar'];
-
-const deliverPlaces = ['Russia', 'Antalya'];
-
+const enableScroll = () => (window.onscroll = function () {});
 interface IProps {
     togglePopup: React.Dispatch<React.SetStateAction<boolean>>;
     reload: () => Promise<void>;
@@ -38,6 +35,7 @@ const defaultValues = {
 
 const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
     const closePopup = () => {
+        enableScroll();
         formik.setValues(defaultValues);
         togglePopup(prev => !prev);
     };

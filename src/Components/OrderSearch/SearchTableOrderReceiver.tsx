@@ -10,12 +10,24 @@ type IProps = {
     order: IOrder;
 };
 
+const disableScroll = () => {
+    const scrollTop = window.pageYOffset | document.documentElement.scrollTop;
+    const scrollLeft = window.pageXOffset | document.documentElement.scrollLeft;
+
+    window.onscroll = function () {
+        window.scrollTo(scrollLeft, scrollTop);
+    };
+};
+
 const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
     const { t } = useTranslation();
 
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
-    const openPopupFunc = () => setIsPopupOpen(true);
+    const openPopupFunc = () => {
+        disableScroll();
+        setIsPopupOpen(true);
+    };
 
     return (
         <div className={styles.itemWrapper}>

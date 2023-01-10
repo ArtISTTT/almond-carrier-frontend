@@ -28,11 +28,23 @@ const HeaderAvatar: React.FC = () => {
     const anchorRef = React.useRef(null);
     const { t } = useTranslation();
 
+    const disableScroll = () => {
+        const scrollTop =
+            window.pageYOffset || document.documentElement.scrollTop;
+        const scrollLeft =
+            window.pageXOffset || document.documentElement.scrollLeft;
+
+        window.onscroll = function () {
+            window.scrollTo(scrollLeft, scrollTop);
+        };
+    };
+
     const handleToggle = () => setOpen(prevOpen => !prevOpen);
 
     const handleClose = () => setOpen(false);
 
     const handleOpenSettingsPopup = () => {
+        disableScroll();
         setOpen(false);
         setIsSettingsPopupOpen(prev => !prev);
     };

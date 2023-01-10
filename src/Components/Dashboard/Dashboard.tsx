@@ -15,13 +15,14 @@ import OrderLoader from '../OrderLoader';
 import EmptyOrdersBlock from './EmptyOrdersBlock';
 import { useTranslation } from 'next-i18next';
 
-const recentlyCreatedOrders = [
-    { to: 'Барнаул, Россия', benefit: 3000, id: 1 },
-    { to: 'Москва, Россия', benefit: 2300, id: 2 },
-    { to: 'Санкт-Петербург, Россия', benefit: 400, id: 3 },
-    { to: 'Анталия, Турция', benefit: 1900, id: 4 },
-    { to: 'Барнаул, Россия', benefit: 999, id: 5 },
-];
+const disableScroll = () => {
+    const scrollTop = window.pageYOffset | document.documentElement.scrollTop;
+    const scrollLeft = window.pageXOffset | document.documentElement.scrollLeft;
+
+    window.onscroll = function () {
+        window.scrollTo(scrollLeft, scrollTop);
+    };
+};
 
 enum PopupType {
     none,
@@ -45,6 +46,7 @@ const Dashboard: React.FC = () => {
     const toggleCarrierPopup = () =>
         setOpenedPopup(prev => {
             if (prev === PopupType.none) {
+                disableScroll();
                 return PopupType.carrier;
             }
 
@@ -54,6 +56,7 @@ const Dashboard: React.FC = () => {
     const toggleReceiverPopup = () =>
         setOpenedPopup(prev => {
             if (prev === PopupType.none) {
+                disableScroll();
                 return PopupType.reciever;
             }
 

@@ -15,10 +15,14 @@ interface IProps {
 const SettingsPopup: React.FC<IProps> = ({ setIsSettingsPopupOpen }) => {
     const [isGeneralMenu, setIsGeneralMenu] = React.useState<boolean>(true);
 
+    const enableScroll = () => (window.onscroll = function () {});
+
     const selectGeneral = () => setIsGeneralMenu(true);
     const selectNotifiations = () => setIsGeneralMenu(false);
-    const closePopup = () => setIsSettingsPopupOpen(prev => !prev);
-
+    const closePopup = () => {
+        enableScroll();
+        setIsSettingsPopupOpen(prev => !prev);
+    };
     return (
         <div className={styles.wrapper}>
             <div className={styles.content}>

@@ -10,7 +10,11 @@ interface IProps {
 }
 
 const ApplyPopup: React.FC<IProps> = ({ closePopup, children }) => {
-    const closePopupFunc = () => closePopup(prev => !prev);
+   
+    const closePopupFunc = () => {
+        window.onscroll = function () {};
+        closePopup(prev => !prev);
+    };
 
     return (
         <div className={styles.popupWrapper}>
