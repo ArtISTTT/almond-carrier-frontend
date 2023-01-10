@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
 
+const nameRegex = /^[A-Za-z0-9]+$/;
+
 export const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
         .min(2, 'Too Short!')
@@ -12,6 +14,7 @@ export const SignupSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string()
         .min(8, 'Password must be 8 characters long')
+        .matches(nameRegex, 'Only English letters')
         .matches(/[0-9]/, 'Password requires a number')
         .matches(/[a-z]/, 'Password requires a lowercase letter')
         .matches(/[A-Z]/, 'Password requires an uppercase letter')
