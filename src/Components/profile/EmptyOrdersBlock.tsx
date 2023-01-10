@@ -12,13 +12,6 @@ const EmptyOrdersBlock = () => {
             >
                 You don't have any orders yet.
             </Typography>
-            <Typography
-                className={styles.secondText}
-                variant='h5'
-                component='h5'
-            >
-                To create an order you can click on the buttons below
-            </Typography>
         </div>
     );
 };
