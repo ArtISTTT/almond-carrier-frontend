@@ -156,7 +156,7 @@ export default function Welcome() {
                                 variant='h3'
                                 component='h3'
                             >
-                                1. Choose
+                                {t('oneChoose')}
                             </Typography>
                             <div className={styles.stepOneText}>
                                 <Typography
@@ -164,9 +164,7 @@ export default function Welcome() {
                                     variant='body1'
                                     component='p'
                                 >
-                                    If you are a receiver, than you need to
-                                    choose carrier, who will buy you a good you
-                                    need.
+                                    {t('oneIfYouReceiver')}
                                 </Typography>
                                 <Typography
                                     className={cn(
@@ -176,8 +174,7 @@ export default function Welcome() {
                                     variant='body1'
                                     component='p'
                                 >
-                                    If you are a carrier, you need to choose a
-                                    receiver to deliver a good.
+                                    {t('oneIfYouCarrier')}
                                 </Typography>
                             </div>
                         </div>
@@ -187,7 +184,7 @@ export default function Welcome() {
                                 variant='h3'
                                 component='h3'
                             >
-                                2. Purchase
+                                {t('purchase')}
                             </Typography>
                             <div className={styles.stepOneText}>
                                 <Typography
@@ -195,9 +192,7 @@ export default function Welcome() {
                                     variant='body1'
                                     component='p'
                                 >
-                                    Carrier points the price of good, then to
-                                    the result sum added our commission and
-                                    profit for carrier. Receiver pays the sum.
+                                    {t('priceSum')}
                                 </Typography>
                                 <Typography
                                     className={cn(
@@ -207,10 +202,7 @@ export default function Welcome() {
                                     variant='body1'
                                     component='p'
                                 >
-                                    We hold it on our servers.
-                                    <br /> Carrier buys a good
-                                    <br /> himself, after he sees that
-                                    <br /> the sum is in the cloud
+                                    {t('holdMoney')}
                                 </Typography>
                             </div>
                         </div>
@@ -220,17 +212,14 @@ export default function Welcome() {
                                 variant='h3'
                                 component='h3'
                             >
-                                3. Receiving
+                                {t('receiving')}
                             </Typography>
                             <Typography
                                 className={styles.stepThreeText}
                                 variant='body1'
                                 component='p'
                             >
-                                Carrier brings the good to the country where
-                                receiver lives. Then if receiver sees that the
-                                good is suitable for him, he proves it in the
-                                app, and carrier gets his money.
+                                {t('carrierComesToTheCountryToReceiver')}
                             </Typography>
                         </div>
                     </div>
