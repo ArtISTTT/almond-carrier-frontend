@@ -8,4 +8,5 @@ export type IUser = {
     gender: string;
     phoneNumber: string;
     avatar?: string;
+    completedOrders: number;
 };

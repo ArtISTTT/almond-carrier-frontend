@@ -37,12 +37,12 @@ const ProfileCard = () => {
                             styles.green
                         )}
                     >
-                        12
+                        {user.completedOrders}
                     </div>
                 </div>
                 <div className={styles.statisticItem}>
                     <div className={styles.statisticTitle}>Rating</div>
-                    <div className={styles.statisticValue}>4.75</div>
+                    <div className={styles.statisticValue}>0</div>
                 </div>
                 {/* <Rating
                     precision={0.5}
