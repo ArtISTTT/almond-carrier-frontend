@@ -19,10 +19,11 @@ export const SignupSchema = Yup.object().shape({
         .matches(/[a-z]/, 'Password requires a lowercase letter')
         .matches(/[A-Z]/, 'Password requires an uppercase letter')
         .required('Required'),
-    confitmPassword: Yup.string().oneOf(
-        [Yup.ref('password'), null],
-        'Must match "password" field value'
-    ),
+    confirmPassword: Yup.string()
+        .test('passwords-match', 'Passwords must match', function (value) {
+            return this.parent.password === value;
+        })
+        .required('Confirm Password is required!'),
     dateOfBirth: Yup.date()
         .max(
             new Date(Date.now() - 567648000000),
