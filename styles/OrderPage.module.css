@@ -1,0 +1,86 @@
+.wrapper {
+    min-height: calc(100vh - 80px);
+}
+
+.orderDetails {
+    padding: 32px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--cBgThird);
+}
+
+.orderDetailsMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.orderDetailsTitle {
+    font-size: 32px;
+    line-height: 32px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.orderStatus {
+    color: var(--cTextLow);
+    font-size: 18px;
+}
+
+.orderStatus > span {
+    color: var(--cTextThird);
+}
+
+.orderDetailsInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 8px;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.infoLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--cTextLow);
+    text-align: right;
+}
+
+.infoRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--cTextThird);
+    text-align: right;
+}
+
+.infoRight span {
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.infoRight svg {
+    cursor: pointer;
+}
+
+.infoRight path {
+    color: var(--cTextLow);
+}
+
+.infoRightId {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.infoRightId > div {
+    height: 22px;
+}
+
+.orderInformation {
+    padding: 32px;
+    background-color: var(--cBgSecondary);
+}

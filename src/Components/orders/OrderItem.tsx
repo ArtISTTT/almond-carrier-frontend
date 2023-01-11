@@ -8,6 +8,7 @@ import { orderStatus } from '../../interfaces/profile';
 import { IOrder } from '../../interfaces/order';
 import OrderPeopleCard from './OrderPeopleCard';
 import { convertStatusToText } from '../../helpers/convertStatusToText';
+import Link from 'next/link';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
@@ -21,6 +22,7 @@ const OrderItem: React.FC<IOrder> = ({
     receiver,
     carrierMaxWeight,
     carrier,
+    id,
 }) => {
     return (
         <div
@@ -163,8 +165,10 @@ const OrderItem: React.FC<IOrder> = ({
                         variant='contained'
                         disabled={status === orderStatus.cancelled}
                     >
-                        Order
-                        <br /> Details
+                        <Link href={`/order/${id}`}>
+                            Order
+                            <br /> Details
+                        </Link>
                     </Button>
                     <div>
                         <Typography
