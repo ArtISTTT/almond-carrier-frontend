@@ -207,10 +207,10 @@ const General = () => {
                             <label htmlFor='phoneNumber'>
                                 {t('phoneNumber')}
                             </label>
-                            <TextField
+                            <MuiTelInput
                                 id='phoneNumber'
                                 name='phoneNumber'
-                                placeholder={t('phoneNumber') as string}
+                                placeholder='Phone number'
                                 variant='outlined'
                                 MenuProps={{
                                     disableScrollLock: true,
