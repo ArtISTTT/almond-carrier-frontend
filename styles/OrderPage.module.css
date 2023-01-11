@@ -30,6 +30,7 @@
 
 .orderStatus > span {
     color: var(--cTextThird);
+    font-weight: 600;
 }
 
 .orderDetailsInfo {
@@ -54,6 +55,7 @@
     flex-direction: column;
     justify-content: space-between;
     color: var(--cTextThird);
+    font-weight: 600;
     text-align: right;
 }
 
