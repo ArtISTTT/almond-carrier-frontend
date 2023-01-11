@@ -1,6 +1,6 @@
 export enum Language {
-    RU = 'Russian',
-    EN = 'English',
+    RU = 'ru',
+    EN = 'en',
 }
 
 export enum Theme {

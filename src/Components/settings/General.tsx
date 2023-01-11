@@ -8,57 +8,39 @@ import {
 } from '@mui/material';
 import { Stack } from '@mui/system';
 import { useFormik } from 'formik';
+import { useRouter } from 'next/router';
 import React from 'react';
 import styles from '../../../styles/Settings.module.css';
-import {
-    IGeneralSettings,
-    Language,
-    Theme,
-    Currency,
-    Country,
-} from '../../interfaces/settings';
-import { useAppDispatch } from '../../redux/hooks';
+import { IGeneralSettings, Language } from '../../interfaces/settings';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { changeGeneralSettings } from '../../redux/slices/settingsSlice';
 
 const countries = ['Russia', 'USA', 'Soviet Russia'];
-const languages = ['Russian', 'English'];
+const languages = [
+    { value: Language.RU, text: 'Russian' },
+    { value: Language.EN, text: 'English' },
+];
 const currency = ['Euro', 'Dollar', 'Rubel'];
 const themes = ['Light', 'Dark'];
 
-const defaultValues = {
-    country: Country.RUSSIA,
-    language: Language.RU,
-    currency: Currency.RUBEL,
-    theme: Theme.LIGHT,
-    isAllowToTransferMoney: false,
-    isUseTwoStepAuthenticationByPhoneNumber: false,
-};
-
 const GeneralSettings: React.FC = () => {
     const dispatch = useAppDispatch();
+    const userGeneralSettings = useAppSelector(
+        state => state.settings.generalSettings
+    );
+    const router = useRouter();
 
     const updateGeneralSettings = (form: IGeneralSettings) => {
         dispatch(changeGeneralSettings(form));
+        if (form.language !== userGeneralSettings.language) {
+            router.push(router.route, undefined, { locale: form.language });
+        }
     };
 
     const formik = useFormik({
-        initialValues: defaultValues,
+        initialValues: userGeneralSettings,
         onSubmit: updateGeneralSettings,
     });
-
-    React.useEffect(() => {
-        formik.setValues({
-            ...formik.values,
-            language:
-                localStorage.getItem('language') === 'ru'
-                    ? Language.RU
-                    : Language.EN,
-            theme: Theme.LIGHT,
-            currency: Currency.RUBEL,
-            country: Country.RUSSIA,
-        });
-        formik.submitForm();
-    }, []);
 
     React.useEffect(() => {
         formik.submitForm();
@@ -101,8 +83,8 @@ const GeneralSettings: React.FC = () => {
                                 className={styles.select}
                             >
                                 {languages.map((language, i) => (
-                                    <MenuItem key={i} value={language}>
-                                        {language}
+                                    <MenuItem key={i} value={language.value}>
+                                        {language.text}
                                     </MenuItem>
                                 ))}
                             </Select>
