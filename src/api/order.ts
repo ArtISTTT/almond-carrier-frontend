@@ -1,6 +1,7 @@
 import { IRecoverReturn } from '../interfaces/api/auth';
 import {
     IAddAsACarrierReturn,
+    IGetApplyOrderReturn,
     IGetMyOrdersReturn,
 } from '../interfaces/api/order';
 import {
@@ -81,6 +82,49 @@ export const searchOrders = (requestData: {
             return {
                 ok: true,
                 orders: data.data.orders as IOrder[],
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error: data.response?.data?.message ?? 'Error',
+            };
+        });
+
+export const applyOrderAsCarrier = (requestData: {
+    fromLocation?: string;
+    fromLocation_placeId: string;
+    arrivalDate: Date;
+    orderId: string;
+}): Promise<IGetApplyOrderReturn> =>
+    mainInstance
+        .post('/order/apply-as-carrier', JSON.stringify(requestData))
+        .then(data => {
+            return {
+                ok: true,
+                orderId: data.data.orderId as string,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error: data.response?.data?.message ?? 'Error',
+            };
+        });
+
+export const applyOrderAsReceiver = (requestData: {
+    productName: string;
+    productAmount: number | undefined;
+    productWeight: number | undefined;
+    productDescription: string;
+    orderId: string;
+}): Promise<IGetApplyOrderReturn> =>
+    mainInstance
+        .post('/order/apply-as-receiver', JSON.stringify(requestData))
+        .then(data => {
+            return {
+                ok: true,
+                orderId: data.data.orderId as string,
             };
         })
         .catch(data => {

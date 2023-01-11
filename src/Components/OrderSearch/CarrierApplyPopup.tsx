@@ -8,10 +8,13 @@ import {
 } from '@mui/material';
 import dayjs from 'dayjs';
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from '../../../styles/ApplyPopup.module.css';
 import { IOrder } from '../../interfaces/order';
 import ApplyPopup from './ApplyPopup';
+import { useRouter } from 'next/router';
+import { OpenAlertContext } from '../Layouts/Snackbar';
+import { applyOrderAsReceiver } from '../../api/order';
 
 interface IProps {
     closePopup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -32,14 +35,31 @@ const defaultValues = {
 };
 
 const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
-    const ApplyCarrierFunc = (form: IForm) => {
+    const { push } = useRouter();
+    const { triggerOpen } = useContext(OpenAlertContext);
+
+    const apply = async (form: IForm) => {
+        const data = await applyOrderAsReceiver({ ...form, orderId: order.id });
+
+        if (data.ok && data.orderId) {
+            triggerOpen({
+                severity: 'success',
+                text: 'You have successfully responded to the order.',
+            });
+            push(`/order/${data.orderId}`);
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || 'Error when trying to apply to an order',
+            });
+            formik.setSubmitting(false);
+        }
         closePopup(false);
-        console.log(form);
     };
 
     const formik = useFormik({
         initialValues: defaultValues,
-        onSubmit: ApplyCarrierFunc,
+        onSubmit: apply,
     });
 
     return (

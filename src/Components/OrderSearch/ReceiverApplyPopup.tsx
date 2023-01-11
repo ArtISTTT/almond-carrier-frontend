@@ -1,11 +1,14 @@
 import { Avatar, Button, Typography, TextField, Stack } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from '../../../styles/ApplyPopup.module.css';
 import { IOrder } from '../../interfaces/order';
 import ApplyPopup from './ApplyPopup';
 import cn from 'classnames';
 import { useFormik } from 'formik';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
+import { useRouter } from 'next/router';
+import { OpenAlertContext } from '../Layouts/Snackbar';
+import { applyOrderAsCarrier } from '../../api/order';
 
 interface IProps {
     closePopup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,27 +16,43 @@ interface IProps {
 }
 interface IForm {
     fromLocation?: string;
-    date: Date;
     fromLocation_placeId: string;
-    Description: string;
+    arrivalDate: Date;
 }
 
 const defaultValues = {
     fromLocation: '',
     fromLocation_placeId: '',
-    date: new Date(),
-    Description: '',
+    arrivalDate: new Date(),
 };
 
 const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
-    const ApplyCarrierFunc = (form: IForm) => {
-        closePopup(false);
-        console.log(form);
+    const { push } = useRouter();
+    const { triggerOpen } = useContext(OpenAlertContext);
+
+    const apply = async (form: IForm) => {
+        const data = await applyOrderAsCarrier({ ...form, orderId: order.id });
+
+        if (data.ok && data.orderId) {
+            triggerOpen({
+                severity: 'success',
+                text: 'You have successfully responded to the order.',
+            });
+            push(`/order/${data.orderId}`);
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || 'Error when trying to apply to an order',
+            });
+            formik.setSubmitting(false);
+        }
+
+        closePopup(true);
     };
 
     const formik = useFormik({
         initialValues: defaultValues,
-        onSubmit: ApplyCarrierFunc,
+        onSubmit: apply,
     });
 
     const setLocationValue = async (
@@ -146,13 +165,13 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         </div>
                     )}
                     <div className={styles.inputItem}>
-                        <label htmlFor='productName'>Date</label>
+                        <label htmlFor='arrivalDate'>Date</label>
                         <TextField
-                            id='date'
-                            name='date'
+                            id='arrivalDate'
+                            name='arrivalDate'
                             type='date'
                             variant='outlined'
-                            value={formik.values.date}
+                            value={formik.values.arrivalDate}
                             onChange={formik.handleChange}
                             className={cn(styles.onlyDateInput, {
                                 [styles.input]: order.fromLocation,
@@ -168,25 +187,25 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     >
                         Description
                     </Typography>
-                    <TextField
-                        id='Description'
-                        name='Description'
+                    {/* <TextField
+                        id='description'
+                        name='description'
                         placeholder='Some words about order...'
                         variant='outlined'
                         multiline
                         minRows={4}
                         maxRows={4}
-                        value={formik.values.Description}
+                        value={formik.values.description}
                         onChange={formik.handleChange}
                         className={styles.carrierDescriptionBody}
-                    />
+                    /> */}
                 </div>
                 <Button
                     type='submit'
                     className={styles.carrierApplyButton}
                     variant='contained'
                 >
-                    apply for order
+                    apply to order
                 </Button>
             </form>
         </ApplyPopup>
