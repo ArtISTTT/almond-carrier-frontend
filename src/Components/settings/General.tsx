@@ -8,35 +8,37 @@ import {
 } from '@mui/material';
 import { Stack } from '@mui/system';
 import { useFormik } from 'formik';
+import { useRouter } from 'next/router';
 import React from 'react';
 import styles from '../../../styles/Settings.module.css';
 import { IGeneralSettings, Language } from '../../interfaces/settings';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { changeGeneralSettings } from '../../redux/slices/settingsSlice';
 
 const countries = ['Russia', 'USA', 'Soviet Russia'];
-const languages = ['Russian', 'English'];
+const languages = [
+    { value: Language.RU, text: 'Russian' },
+    { value: Language.EN, text: 'English' },
+];
 const currency = ['Euro', 'Dollar', 'Rubel'];
 const themes = ['Light', 'Dark'];
 
-const defaultValues = {
-    country: '',
-    language: Language.EN,
-    currency: '',
-    theme: '',
-    isAllowToTransferMoney: false,
-    isUseTwoStepAuthenticationByPhoneNumber: false,
-};
-
 const GeneralSettings: React.FC = () => {
     const dispatch = useAppDispatch();
+    const userGeneralSettings = useAppSelector(
+        state => state.settings.generalSettings
+    );
+    const router = useRouter();
 
     const updateGeneralSettings = (form: IGeneralSettings) => {
         dispatch(changeGeneralSettings(form));
+        if (form.language !== userGeneralSettings.language) {
+            router.push(router.route, undefined, { locale: form.language });
+        }
     };
 
     const formik = useFormik({
-        initialValues: defaultValues,
+        initialValues: userGeneralSettings,
         onSubmit: updateGeneralSettings,
     });
 
@@ -81,8 +83,8 @@ const GeneralSettings: React.FC = () => {
                                 className={styles.select}
                             >
                                 {languages.map((language, i) => (
-                                    <MenuItem key={i} value={language}>
-                                        {language}
+                                    <MenuItem key={i} value={language.value}>
+                                        {language.text}
                                     </MenuItem>
                                 ))}
                             </Select>
