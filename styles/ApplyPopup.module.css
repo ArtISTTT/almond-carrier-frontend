@@ -148,7 +148,6 @@
     text-transform: uppercase;
     display: flex;
     width: 100%;
-    gap: 15px;
     max-width: 300px;
     color: var(--cTextPrimary);
 }

@@ -103,7 +103,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        To: <span>{order.toLocation}</span>
+                        To:
                     </Typography>
                     {order.fromLocation && (
                         <Typography
@@ -111,7 +111,29 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             variant='h5'
                             component='p'
                         >
-                            From: <span>{order.fromLocation}</span>
+                            From:
+                        </Typography>
+                    )}
+                </Stack>
+                <Stack
+                    className={styles.infoCol}
+                    direction='column'
+                    spacing={3}
+                >
+                    <Typography
+                        className={styles.infoItemWay}
+                        variant='h5'
+                        component='p'
+                    >
+                        <span>{order.toLocation}</span>
+                    </Typography>
+                    {order.fromLocation && (
+                        <Typography
+                            className={styles.infoItemWay}
+                            variant='h5'
+                            component='p'
+                        >
+                            <span>{order.fromLocation}</span>
                         </Typography>
                     )}
                 </Stack>
