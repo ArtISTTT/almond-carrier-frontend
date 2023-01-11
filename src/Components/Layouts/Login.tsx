@@ -15,7 +15,7 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
                 <div className={style.loginInner}>
                     <Avatar
                         sx={{ width: 120, height: 120 }}
-                        src='/static/images/pre-logo.png'
+                        src='/static/images/logo.png'
                         alt='logo'
                     />
                     {children}
