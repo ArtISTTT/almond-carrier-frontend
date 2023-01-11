@@ -180,25 +180,12 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </div>
                 </Stack>
                 <div className={styles.carrierDescription}>
-                    <Typography
-                        className={styles.carrierDescriptionTitle}
-                        variant='h6'
-                        component='h4'
-                    >
-                        Description
-                    </Typography>
-                    {/* <TextField
-                        id='description'
-                        name='description'
-                        placeholder='Some words about order...'
-                        variant='outlined'
-                        multiline
-                        minRows={4}
-                        maxRows={4}
-                        value={formik.values.description}
-                        onChange={formik.handleChange}
-                        className={styles.carrierDescriptionBody}
-                    /> */}
+                    <div className={styles.productName}>
+                        {order.productName}
+                    </div>
+                    <div className={styles.productDescription}>
+                        {order.productDescription}
+                    </div>
                 </div>
                 <Button
                     type='submit'

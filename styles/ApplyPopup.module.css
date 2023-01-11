@@ -214,3 +214,21 @@
     width: 100%;
     max-width: 350px;
 }
+
+.productName {
+    font-weight: 600;
+    color: var(--cTextThird);
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.productDescription {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 17px;
+    letter-spacing: 0.4px;
+    color: var(--cTextThird);
+}
