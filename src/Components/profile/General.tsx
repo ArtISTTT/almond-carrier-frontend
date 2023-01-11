@@ -16,6 +16,7 @@ import { useAppDispatch } from '../../redux/hooks';
 import { addUserData } from '../../redux/slices/userSlice';
 import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
 import { MuiTelInput } from 'mui-tel-input';
+import { useTranslation } from 'react-i18next';
 
 type IPasswordForm = {
     oldPassword: string;
@@ -31,12 +32,13 @@ type IForm = {
     dateOfBirth: string;
 };
 
-const availableGenders = ['Male', 'Female', 'Other'];
-
 const General = () => {
     const user = useSelector(selectUser);
     const dispatch = useAppDispatch();
     const { triggerOpen } = useContext(OpenAlertContext);
+    const { t } = useTranslation();
+
+    const availableGenders = [t('male'), t('female'), t('other')];
 
     const handleChangeUserInfo = async (form: IForm) => {
         const requestData = {
@@ -54,12 +56,12 @@ const General = () => {
             dispatch(addUserData(parseUserDataFromApi(data.user)));
             triggerOpen({
                 severity: 'success',
-                text: 'User info successfully updated',
+                text: t('successfullyUpdated'),
             });
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error when trying to update user',
+                text: data.error || t('errorUpdated'),
             });
         }
     };
@@ -84,12 +86,12 @@ const General = () => {
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: 'Password successfully updated',
+                text: t('passSuccessfullyUpdated'),
             });
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error when trying to update password',
+                text: data.error || t('passErrorUpdated'),
             });
         }
     };
@@ -108,7 +110,7 @@ const General = () => {
     return (
         <div className={styles.wrapper}>
             <Typography className={styles.title} variant='h4' component='h3'>
-                General information
+                {t('generalInformation')}
             </Typography>
             <form
                 onSubmit={formik.handleSubmit}
@@ -117,11 +119,11 @@ const General = () => {
                 <Stack direction='column' spacing={3} width='100%'>
                     <Stack direction='row' spacing={3}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='firstName'>First name</label>
+                            <label htmlFor='firstName'>{t('firstName')}</label>
                             <TextField
                                 id='firstName'
                                 name='firstName'
-                                placeholder='First Name'
+                                placeholder={t('firstName') as string}
                                 variant='outlined'
                                 value={formik.values.firstName}
                                 onChange={formik.handleChange}
@@ -131,12 +133,12 @@ const General = () => {
                             />
                         </div>
                         <div className={styles.inputItem}>
-                            <label htmlFor='lastName'>Last name</label>
+                            <label htmlFor='lastName'>{t('lastName')}</label>
                             <TextField
                                 className={styles.input}
                                 id='lastName'
                                 name='lastName'
-                                placeholder='Last Name'
+                                placeholder={t('lastName') as string}
                                 variant='outlined'
                                 value={formik.values.lastName}
                                 onChange={formik.handleChange}
@@ -147,11 +149,13 @@ const General = () => {
                     </Stack>
                     <Stack direction='row' spacing={3}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='dateOfBirth'>Date of Birth</label>
+                            <label htmlFor='dateOfBirth'>
+                                {t('dateOfBirth')}
+                            </label>
                             <TextField
                                 id='dateOfBirth'
                                 name='dateOfBirth'
-                                placeholder='Date of Birth'
+                                placeholder={t('dateOfBirth') as string}
                                 type='date'
                                 variant='outlined'
                                 value={formik.values.dateOfBirth}
@@ -161,11 +165,11 @@ const General = () => {
                             />
                         </div>
                         <div className={styles.inputItem}>
-                            <label htmlFor='gender'>Gender</label>
+                            <label htmlFor='gender'>{t('gender')}</label>
                             <Select
                                 id='gender'
                                 name='gender'
-                                placeholder='Gender'
+                                placeholder={t('gender') as string}
                                 value={formik.values.gender}
                                 onChange={formik.handleChange}
                                 MenuProps={{
@@ -174,7 +178,7 @@ const General = () => {
                                 className={styles.select}
                             >
                                 <MenuItem value=''>
-                                    <em>None</em>
+                                    <em>{t('none')}</em>
                                 </MenuItem>
                                 {availableGenders.map(gender => (
                                     <MenuItem key={gender} value={gender}>
@@ -186,11 +190,11 @@ const General = () => {
                     </Stack>
                     <Stack direction='row' spacing={3}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='email'>Email</label>
+                            <label htmlFor='email'>{t('email')}</label>
                             <TextField
                                 id='email'
                                 name='email'
-                                placeholder='Email'
+                                placeholder={t('email') as string}
                                 variant='outlined'
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
@@ -200,11 +204,13 @@ const General = () => {
                             />
                         </div>
                         <div className={styles.inputItem}>
-                            <label htmlFor='phoneNumber'>Phone number</label>
-                            <MuiTelInput
+                            <label htmlFor='phoneNumber'>
+                                {t('phoneNumber')}
+                            </label>
+                            <TextField
                                 id='phoneNumber'
                                 name='phoneNumber'
-                                placeholder='Phone number'
+                                placeholder={t('phoneNumber') as string}
                                 variant='outlined'
                                 MenuProps={{
                                     disableScrollLock: true,
@@ -221,7 +227,7 @@ const General = () => {
                         type='submit'
                         disabled={formik.isSubmitting}
                     >
-                        Change
+                        {t('change')}
                     </Button>
                 </Stack>
             </form>
@@ -232,12 +238,14 @@ const General = () => {
                 <Stack direction='column' spacing={3} width='100%'>
                     <Stack direction='row' spacing={3}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='firstName'>Old Password</label>
+                            <label htmlFor='firstName'>
+                                {t('oldPassword')}
+                            </label>
                             <TextField
                                 id='oldPassword'
                                 name='oldPassword'
                                 type='password'
-                                placeholder='Old Password'
+                                placeholder={t('oldPassword') as string}
                                 variant='outlined'
                                 value={formikChangePassword.values.oldPassword}
                                 onChange={formikChangePassword.handleChange}
@@ -252,12 +260,12 @@ const General = () => {
                             />
                         </div>
                         <div className={styles.inputItem}>
-                            <label htmlFor='lastName'>New Password</label>
+                            <label htmlFor='lastName'>{t('newPassword')}</label>
                             <TextField
                                 id='newPassword'
                                 name='newPassword'
                                 type='password'
-                                placeholder='New Password'
+                                placeholder={t('newPassword') as string}
                                 variant='outlined'
                                 value={formikChangePassword.values.newPassword}
                                 onChange={formikChangePassword.handleChange}
@@ -278,7 +286,7 @@ const General = () => {
                         type='submit'
                         disabled={formikChangePassword.isSubmitting}
                     >
-                        Update password
+                        {t('updatePassword')}
                     </Button>
                 </Stack>
             </form>

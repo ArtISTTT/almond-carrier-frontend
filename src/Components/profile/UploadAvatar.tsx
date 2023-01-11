@@ -8,12 +8,14 @@ import { updateAvatar } from '../../api/auth';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/selectors/user';
+import { useTranslation } from 'react-i18next';
 
 const UploadAvatar = () => {
     const { pathname } = useRouter();
     const user = useSelector(selectUser);
     const paths = pathname.split('/');
     const { triggerOpen } = useContext(OpenAlertContext);
+    const { t } = useTranslation();
 
     const changeUserImage: React.ChangeEventHandler<
         HTMLInputElement
@@ -24,12 +26,12 @@ const UploadAvatar = () => {
             if (data.ok) {
                 triggerOpen({
                     severity: 'success',
-                    text: 'Avatar successfully updated',
+                    text: t('successUpdateAvatar'),
                 });
             } else {
                 triggerOpen({
                     severity: 'error',
-                    text: data.error || 'Error while trying to update avatar',
+                    text: data.error || t('errorUpdateAvatar'),
                 });
             }
         }

@@ -6,6 +6,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import RestoreIcon from '@mui/icons-material/Restore';
 import { useRouter } from 'next/router';
 import styles from '../../../styles/Profile.module.css';
+import { useTranslation } from 'react-i18next';
 
 const selectTab = (link: string) => {
     switch (link) {
@@ -38,6 +39,7 @@ const ProfileNavbar: React.FC = () => {
     const [value, setValue] = React.useState<number>(
         selectTab(router.pathname)
     );
+    const { t } = useTranslation();
 
     const handleChange = (_: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
@@ -53,17 +55,17 @@ const ProfileNavbar: React.FC = () => {
             orientation='vertical'
             aria-label='profile tabs'
         >
-            <Tab
-                icon={<MenuIcon />}
-                iconPosition='start'
-                label='My Information'
-            />
+            <Tab icon={<MenuIcon />} iconPosition='start' label={t('myInfo')} />
             <Tab
                 icon={<RestoreIcon />}
                 iconPosition='start'
-                label='My Orders'
+                label={t('myOrders')}
             />
-            <Tab icon={<StarIcon />} iconPosition='start' label='Reviews' />
+            <Tab
+                icon={<StarIcon />}
+                iconPosition='start'
+                label={t('reviews')}
+            />
         </Tabs>
     );
 };
