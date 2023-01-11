@@ -18,7 +18,6 @@ import { changeLanguage } from '../redux/slices/settingsSlice';
 import { Language } from '../interfaces/settings';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import formatSumFunc from '../helpers/formatSumFunc';
 
 const Footer = () => {
     const dispatch = useAppDispatch();
@@ -28,8 +27,6 @@ const Footer = () => {
     const { language } = useAppSelector(
         state => state.settings.generalSettings
     );
-
-    const qwe = formatSumFunc(1234567890254);
 
     const handleChange = (event: SelectChangeEvent) => {
         push(route, undefined, { locale: event.target.value });

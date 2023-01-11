@@ -1,18 +1,26 @@
+import { useAppSelector } from './index';
+import formatSumFunc from '../../helpers/formatSumFunc';
+import { Currency } from '../../interfaces/settings';
 
+const useFormatAmount = () => {
+    const userCurrency = useAppSelector(
+        state => state.settings.generalSettings.currency
+    );
 
-interface IProps {
-    sum: string | number;
-    userCurrency: string;
-}
+    return (sum: string | number) => {
+        const fixedSum = formatSumFunc(sum);
 
-const useFormatAmount = ({ sum, userCurrency }: IProps) => {
-    // switch (userCurrency) {
-    //     case Currency.:
-    //         break;
-
-    //     default:
-    //         break;
-    // }
+        switch (userCurrency) {
+            case Currency.DOLLAR:
+                return fixedSum.concat(' USD');
+            case Currency.EURO:
+                return fixedSum.concat(' EUR');
+            case Currency.RUBEL:
+                return fixedSum.concat(' РУБ');
+            default:
+                return sum;
+        }
+    };
 };
 
 export default useFormatAmount;

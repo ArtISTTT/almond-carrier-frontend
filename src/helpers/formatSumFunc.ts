@@ -10,9 +10,7 @@ const formatSumFunc = (sum: string | number) => {
 
     const finalSum = reversedSum.join('');
 
-    console.log(finalSum);
-
-    return true;
+    return finalSum;
 };
 
 export default formatSumFunc;
