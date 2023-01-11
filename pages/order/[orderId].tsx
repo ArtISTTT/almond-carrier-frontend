@@ -3,20 +3,19 @@ import React from 'react';
 import PrivateLayout from '../../src/Components/Layouts/Private';
 import { privateTypes } from '../../src/interfaces/private';
 import MainLayout from '../../src/Components/Layouts/MainLayout';
+import OrderPage from '../../src/Components/OrderPage/OrderPage';
 
-const OrderPage = () => {
-    const router = useRouter();
-
+const Order = () => {
     return (
         <PrivateLayout privateType={privateTypes.onlyAuthorized}>
             <MainLayout
                 showContinueIfAuthorized={false}
                 showSignInOutIfUnauthorized={false}
             >
-                <h1>{router.query.orderId}</h1>
+                <OrderPage />
             </MainLayout>
         </PrivateLayout>
     );
 };
 
-export default OrderPage;
+export default Order;
