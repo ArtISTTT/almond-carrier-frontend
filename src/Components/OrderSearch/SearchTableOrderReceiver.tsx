@@ -5,6 +5,7 @@ import cn from 'classnames';
 import { IOrder } from '../../interfaces/order';
 import { useTranslation } from 'next-i18next';
 import ReceiverApplyPopup from './ReceiverApplyPopup';
+import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
 
 type IProps = {
     order: IOrder;
@@ -15,12 +16,20 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
 
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
-    const openPopupFunc = () => setIsPopupOpen(true);
+    const openPopupFunc = () => {
+        toggleHtmlScroll(true);
+        setIsPopupOpen(true);
+    };
+
+    const closePopup = () => {
+        toggleHtmlScroll(false);
+        setIsPopupOpen(false);
+    };
 
     return (
         <div className={styles.itemWrapper}>
             {isPopupOpen && (
-                <ReceiverApplyPopup order={order} closePopup={setIsPopupOpen} />
+                <ReceiverApplyPopup order={order} closePopup={closePopup} />
             )}
             <div className={cn(styles.part, styles.user)}>
                 <Avatar

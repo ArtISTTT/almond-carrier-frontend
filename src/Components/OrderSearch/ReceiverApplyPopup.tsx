@@ -11,7 +11,7 @@ import { OpenAlertContext } from '../Layouts/Snackbar';
 import { applyOrderAsCarrier } from '../../api/order';
 
 interface IProps {
-    closePopup: React.Dispatch<React.SetStateAction<boolean>>;
+    closePopup: () => void;
     order: IOrder;
 }
 interface IForm {
@@ -47,7 +47,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
             formik.setSubmitting(false);
         }
 
-        closePopup(true);
+        closePopup();
     };
 
     const formik = useFormik({

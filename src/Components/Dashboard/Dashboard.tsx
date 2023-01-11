@@ -14,6 +14,7 @@ import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 import OrderLoader from '../OrderLoader';
 import EmptyOrdersBlock from './EmptyOrdersBlock';
 import { useTranslation } from 'next-i18next';
+import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
 
 const recentlyCreatedOrders = [
     { to: 'Барнаул, Россия', benefit: 3000, id: 1 },
@@ -45,18 +46,22 @@ const Dashboard: React.FC = () => {
     const toggleCarrierPopup = () =>
         setOpenedPopup(prev => {
             if (prev === PopupType.none) {
+                toggleHtmlScroll(true);
                 return PopupType.carrier;
             }
 
+            toggleHtmlScroll(false);
             return PopupType.none;
         });
 
     const toggleReceiverPopup = () =>
         setOpenedPopup(prev => {
             if (prev === PopupType.none) {
+                toggleHtmlScroll(true);
                 return PopupType.reciever;
             }
 
+            toggleHtmlScroll(false);
             return PopupType.none;
         });
 

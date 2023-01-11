@@ -5,12 +5,12 @@ import styles from '../../../styles/ApplyPopup.module.css';
 import Avatar from '@mui/material/Avatar';
 
 interface IProps {
-    closePopup: React.Dispatch<React.SetStateAction<boolean>>;
+    closePopup: () => void;
     children: React.ReactNode;
 }
 
 const ApplyPopup: React.FC<IProps> = ({ closePopup, children }) => {
-    const closePopupFunc = () => closePopup(prev => !prev);
+    const closePopupFunc = () => closePopup();
 
     return (
         <div className={styles.popupWrapper}>

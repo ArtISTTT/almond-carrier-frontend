@@ -6,6 +6,7 @@ import { IOrder } from '../../interfaces/order';
 import dayjs from 'dayjs';
 import { useTranslation } from 'next-i18next';
 import CarrierApplyPopup from './CarrierApplyPopup';
+import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
 
 type IProps = {
     order: IOrder;
@@ -16,12 +17,20 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
 
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
-    const openPopupFunc = () => setIsPopupOpen(true);
+    const openPopupFunc = () => {
+        setIsPopupOpen(true);
+        toggleHtmlScroll(true);
+    };
+
+    const closePopup = () => {
+        toggleHtmlScroll(false);
+        setIsPopupOpen(false);
+    };
 
     return (
         <div className={styles.itemWrapper}>
             {isPopupOpen && (
-                <CarrierApplyPopup order={order} closePopup={setIsPopupOpen} />
+                <CarrierApplyPopup order={order} closePopup={closePopup} />
             )}
             <div className={cn(styles.part, styles.user)}>
                 <Avatar
