@@ -29,6 +29,7 @@
         "eslint-config-next": "13.0.7",
         "formik": "^2.2.9",
         "i18next": "^22.4.9",
+        "mui-tel-input": "^3.0.2",
         "next": "13.0.7",
         "next-i18next": "^13.0.3",
         "react": "18.2.0",

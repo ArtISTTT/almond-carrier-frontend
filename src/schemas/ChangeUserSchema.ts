@@ -15,6 +15,7 @@ export const ChangeUserSchema = Yup.object().shape({
             'You must be at least 18 years'
         )
         .required('Required'),
+    
 });
 
 export const ChangePasswordSchema = Yup.object().shape({

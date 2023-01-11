@@ -37,6 +37,10 @@
     width: 100%;
 }
 
+.input :global .MuiInputAdornment-root {
+    display: none;
+}
+
 .select {
     border-radius: 15px;
 }

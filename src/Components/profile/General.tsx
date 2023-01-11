@@ -15,6 +15,7 @@ import { OpenAlertContext } from '../Layouts/Snackbar';
 import { useAppDispatch } from '../../redux/hooks';
 import { addUserData } from '../../redux/slices/userSlice';
 import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
+import { MuiTelInput } from 'mui-tel-input';
 
 type IPasswordForm = {
     oldPassword: string;
@@ -30,10 +31,6 @@ type IForm = {
     dateOfBirth: string;
 };
 
-const initialState = {
-    firstName: 'Artem',
-};
-
 const availableGenders = ['Male', 'Female', 'Other'];
 
 const General = () => {
@@ -43,11 +40,12 @@ const General = () => {
 
     const handleChangeUserInfo = async (form: IForm) => {
         const requestData = {
+            email: form.email,
             firstName: form.firstName,
             lastName: form.lastName,
             dateOfBirth: new Date(form.dateOfBirth),
             gender: form.gender,
-            phoneNumber: form.phoneNumber,
+            phoneNumber: form.phoneNumber.replace(/ /g, ''),
         };
 
         const data = await updateUserInfo(requestData);
@@ -65,6 +63,9 @@ const General = () => {
             });
         }
     };
+
+    const handlePhoneChange = (phone: string) =>
+        formik.setFieldValue('phoneNumber', phone);
 
     const formik = useFormik({
         initialValues: {
@@ -146,7 +147,7 @@ const General = () => {
                     </Stack>
                     <Stack direction='row' spacing={3}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='firstName'>Date of Birth</label>
+                            <label htmlFor='dateOfBirth'>Date of Birth</label>
                             <TextField
                                 id='dateOfBirth'
                                 name='dateOfBirth'
@@ -160,7 +161,7 @@ const General = () => {
                             />
                         </div>
                         <div className={styles.inputItem}>
-                            <label htmlFor='lastName'>Gender</label>
+                            <label htmlFor='gender'>Gender</label>
                             <Select
                                 id='gender'
                                 name='gender'
@@ -185,7 +186,7 @@ const General = () => {
                     </Stack>
                     <Stack direction='row' spacing={3}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='firstName'>Email</label>
+                            <label htmlFor='email'>Email</label>
                             <TextField
                                 id='email'
                                 name='email'
@@ -196,20 +197,20 @@ const General = () => {
                                 error={formik.errors.email !== undefined}
                                 helperText={formik.errors.email}
                                 className={styles.input}
-                                disabled={true}
                             />
                         </div>
                         <div className={styles.inputItem}>
-                            <label htmlFor='firstName'>Phone number</label>
-                            <TextField
+                            <label htmlFor='phoneNumber'>Phone number</label>
+                            <MuiTelInput
                                 id='phoneNumber'
                                 name='phoneNumber'
                                 placeholder='Phone number'
                                 variant='outlined'
+                                MenuProps={{
+                                    disableScrollLock: true,
+                                }}
                                 value={formik.values.phoneNumber}
-                                onChange={formik.handleChange}
-                                error={formik.errors.phoneNumber !== undefined}
-                                helperText={formik.errors.phoneNumber}
+                                onChange={handlePhoneChange}
                                 className={styles.input}
                             />
                         </div>
