@@ -2,8 +2,13 @@ import { Button, Avatar, Typography, Rating } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import styles from '../../../styles/ProfileForNewUser.module.css';
 import { Container } from '@mui/system';
+import { useRouter } from 'next/router';
 
 const ProfileInfo = () => {
+    const router = useRouter();
+
+    const navigateToSignUp = () => router.push('/signup');
+
     return (
         <div className={styles.wrapper}>
             <Container className={styles.profileInfoContainer} maxWidth={false}>
@@ -147,7 +152,11 @@ const ProfileInfo = () => {
                         </Typography>
                     </div>
                 </div>
-                <Button className={styles.profileButton} variant='contained'>
+                <Button
+                    onClick={navigateToSignUp}
+                    className={styles.profileButton}
+                    variant='contained'
+                >
                     Request carrier service
                 </Button>
             </Container>

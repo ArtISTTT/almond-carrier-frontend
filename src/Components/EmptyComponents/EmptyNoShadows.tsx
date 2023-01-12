@@ -3,7 +3,7 @@ import styles from '../../../styles/EmptyOrders.module.css';
 import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-const EmptyOrdersBlock = () => {
+const EmptyNoShadows = ({ text }: { text: string }) => {
     const { t } = useTranslation();
 
     return (
@@ -13,10 +13,10 @@ const EmptyOrdersBlock = () => {
                 variant='h4'
                 component='h4'
             >
-                {t('youHaveNoOrdersYet')}
+                {t(text)}
             </Typography>
         </div>
     );
 };
 
-export default EmptyOrdersBlock;
+export default EmptyNoShadows;

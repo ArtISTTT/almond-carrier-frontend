@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 import { selectMyLiveOrders } from '../../redux/selectors/orders';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 import OrderLoader from '../OrderLoader';
-import EmptyOrdersBlock from './EmptyOrdersBlock';
+import EmptyOrdersBlock from '../EmptyComponents/Empty';
 import { useTranslation } from 'next-i18next';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
 
