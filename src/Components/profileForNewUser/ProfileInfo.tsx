@@ -1,7 +1,6 @@
 import { Button, Avatar, Typography, Rating } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import styles from '../../../styles/ProfileForNewUser.module.css';
-import cn from 'classnames';
 import { Container } from '@mui/system';
 
 const ProfileInfo = () => {
@@ -49,6 +48,7 @@ const ProfileInfo = () => {
                         className={styles.profileRating}
                         name='half-rating'
                         defaultValue={4.5}
+                        readOnly
                         precision={0.5}
                     />
                 </div>
