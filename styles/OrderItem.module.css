@@ -35,7 +35,7 @@
 .orderDescriptions {
     border-top: 1px solid rgba(0, 0, 0, 0.12);
     display: flex;
-    gap: 13px;
+    gap: 5px;
     padding: 12px 20px;
     flex-wrap: wrap;
     white-space: nowrap;
@@ -43,18 +43,21 @@
 
 .description {
     color: var(--cTextThird);
-    font-weight: 800;
+    font-weight: 700;
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.3px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .description > span {
     font-weight: 500;
+    color: var(--cTextPrimary);
 }
 
 .orderDetails {
+    max-width: 300px;
+    width: 100%;
     padding: 0 12px;
     display: flex;
     flex-direction: column;
@@ -77,11 +80,11 @@
     font-size: 16px;
     line-height: 16px;
     letter-spacing: 0.4px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .userBlock {
-    max-width: 300px;
+    max-width: 310px;
     width: 100%;
     padding: 12px 12px;
     border-right: 1px solid rgba(0, 0, 0, 0.12);
@@ -157,6 +160,24 @@
     color: var(--cTextSuccess);
 }
 
+.descriptionParams {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.descriptionWay {
+    display: flex;
+    justify-content: start;
+    gap: 20px;
+    max-width: 100%;
+    width: 100%;
+}
+
+/* .productName {
+    font-size: 16px;
+} */
+
 .moneyTitle {
     color: var(--cTextLow);
     font-weight: 400;
@@ -173,7 +194,6 @@
     font-size: 18px;
     line-height: 18px;
     letter-spacing: 0.4px;
-    text-transform: uppercase;
 }
 
 .info {
