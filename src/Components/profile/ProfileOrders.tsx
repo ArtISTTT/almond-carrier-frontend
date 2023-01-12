@@ -9,6 +9,7 @@ import OrderLoader from '../OrderLoader';
 import cn from 'classnames';
 import EmptyOrdersBlock from './EmptyOrdersBlock';
 import { useTranslation } from 'react-i18next';
+import { parseOrderDataFromApi } from '../../helpers/parseOrderDataFromApi';
 
 const ProfileOrders = () => {
     const orders = useSelector(selectMyOrders);
@@ -40,7 +41,10 @@ const ProfileOrders = () => {
                         <>
                             <div className={styles.orders}>
                                 {orders.map((order, i) => (
-                                    <OrderItem key={i} {...order} />
+                                    <OrderItem
+                                        key={i}
+                                        {...parseOrderDataFromApi(order)}
+                                    />
                                 ))}
                             </div>
                             <Pagination

@@ -6,7 +6,7 @@ import {
     Stack,
     InputAdornment,
 } from '@mui/material';
-import dayjs from 'dayjs';
+
 import { useFormik } from 'formik';
 import React, { useContext } from 'react';
 import styles from '../../../styles/ApplyPopup.module.css';
@@ -114,11 +114,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         component='p'
                     >
                         flight date:
-                        <span>
-                            {dayjs(order.arrivalDate as Date).format(
-                                'DD.MM.YYYY'
-                            )}
-                        </span>
+                        <span>{order.arrivalDate}</span>
                     </Typography>
                     <Typography
                         className={styles.infoItem}

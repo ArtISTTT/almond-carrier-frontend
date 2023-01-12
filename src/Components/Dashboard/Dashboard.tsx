@@ -15,6 +15,7 @@ import OrderLoader from '../OrderLoader';
 import EmptyOrdersBlock from './EmptyOrdersBlock';
 import { useTranslation } from 'next-i18next';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
+import { parseOrderDataFromApi } from '../../helpers/parseOrderDataFromApi';
 
 const recentlyCreatedOrders = [
     { to: 'Барнаул, Россия', benefit: 3000, id: 1 },
@@ -110,7 +111,7 @@ const Dashboard: React.FC = () => {
                                     })}
                                 >
                                     {orders?.map(order => (
-                                        <OrderItem key={order.id} {...order} />
+                                        <OrderItem key={order.id} {...parseOrderDataFromApi(order)} />
                                     ))}
                                     {orders.length === 0 && (
                                         <EmptyOrdersBlock />

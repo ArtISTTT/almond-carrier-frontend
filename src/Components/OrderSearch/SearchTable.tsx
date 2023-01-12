@@ -1,16 +1,13 @@
 import React from 'react';
 import styles from '../../../styles/OrderSearch.module.css';
-import {
-    OrderSeachType,
-    carriersFilter,
-    receiversFilter,
-} from '../../interfaces/order-search';
+import { OrderSeachType } from '../../interfaces/order-search';
 import { Pagination } from '@mui/material';
 import SearchTableOrderCarrier from './SearchTableOrderCarrier';
 import SearchTableOrderReceiver from './SearchTableOrderReceiver';
 import cn from 'classnames';
 import { IOrder } from '../../interfaces/order';
 import { useTranslation } from 'next-i18next';
+import { parseOrderDataFromApi } from '../../helpers/parseOrderDataFromApi';
 
 type IProps = {
     type: OrderSeachType;
@@ -57,7 +54,10 @@ const SearchTable: React.FC<IProps> = ({ type, orders }) => {
             <div>
                 {orders.map(order =>
                     type === OrderSeachType.carriers ? (
-                        <SearchTableOrderCarrier order={order} key={order.id} />
+                        <SearchTableOrderCarrier
+                            order={parseOrderDataFromApi(order)}
+                            key={order.id}
+                        />
                     ) : (
                         <SearchTableOrderReceiver
                             order={order}

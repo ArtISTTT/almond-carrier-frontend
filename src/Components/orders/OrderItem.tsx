@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from '../../../styles/OrderItem.module.css';
-import { Avatar, Button, Typography } from '@mui/material';
-import dayjs from 'dayjs';
+import { Button, Typography } from '@mui/material';
 import cn from 'classnames';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { orderStatus } from '../../interfaces/profile';
@@ -144,8 +143,7 @@ const OrderItem: React.FC<IOrder> = ({
                                 component='p'
                                 className={styles.description}
                             >
-                                <span>Flight date:</span>{' '}
-                                {dayjs(arrivalDate).format('DD.MM.YYYY')}
+                                <span>Flight date:</span> {arrivalDate}
                             </Typography>
                         )}
                         {productWeight && (

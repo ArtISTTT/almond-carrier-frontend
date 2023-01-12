@@ -3,7 +3,6 @@ import styles from '../../../styles/OrderSearch.module.css';
 import { Avatar, Button } from '@mui/material';
 import cn from 'classnames';
 import { IOrder } from '../../interfaces/order';
-import dayjs from 'dayjs';
 import { useTranslation } from 'next-i18next';
 import CarrierApplyPopup from './CarrierApplyPopup';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
@@ -67,7 +66,7 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                 </div>
             </div>
             <div className={cn(styles.part, styles.flightDate)}>
-                {dayjs(order.arrivalDate as Date).format('YYYY.MM.DD')}
+                {order.arrivalDate}
             </div>
             <div className={cn(styles.part, styles.benefit)}>
                 {order.rewardAmount}$
