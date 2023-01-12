@@ -58,7 +58,7 @@ export default function Welcome() {
                         {t('companyThatUnitesPeopleETC')}
                     </Typography>
                     <div className={styles.fastSignUp}>
-                        <form onSubmit={formik.handleSubmit} action='submit'>
+                        <form className={styles.form} onSubmit={formik.handleSubmit} action='submit'>
                             <TextField
                                 id='email'
                                 name='email'

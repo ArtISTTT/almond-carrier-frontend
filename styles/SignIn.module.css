@@ -112,3 +112,70 @@
     align-items: center;
     margin-bottom: 10px;
 }
+
+@media screen and (max-width: 1278px) {
+    .loginImage {
+        display: none;
+    }
+    .loginInner {
+        padding: 30px 40px;
+    }
+    .loginWrapper::before {
+        height: 370px;
+        width: 750px;
+        bottom: 0;
+    }
+}
+
+@media screen and (max-width:1025px) {
+    .loginWrapper::before {
+        width: 600px;
+        height: 300px;
+        left: 0%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .loginWrapper {
+        padding-top: 40px;
+    }
+    .loginInner {
+        width: 80%;
+    }
+    .helpLink {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .loginInner {
+        width: 400px;
+        margin: 0 auto;
+    }
+    .loginWrapper {
+        padding-right: 0;
+        margin: 0 auto;
+    }
+    .loginWrapper::before {
+        width: 400px;
+        height: 250px;
+        left: 0;
+    }
+    .TextField{
+        margin-top: 5px !important;
+    }
+    .nameInput {
+        margin-top: 5px !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .loginWrapper::before {
+        width: 350px;
+        height: 200px;
+        left: 5%;
+    }
+    .loginInner {
+        width: 350px;
+    }
+}
