@@ -103,7 +103,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        To: <span>{order.toLocation}</span>
+                        To:
                     </Typography>
                     {order.fromLocation && (
                         <Typography
@@ -111,7 +111,29 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             variant='h5'
                             component='p'
                         >
-                            From: <span>{order.fromLocation}</span>
+                            From:
+                        </Typography>
+                    )}
+                </Stack>
+                <Stack
+                    className={styles.infoCol}
+                    direction='column'
+                    spacing={3}
+                >
+                    <Typography
+                        className={styles.infoItemWay}
+                        variant='h5'
+                        component='p'
+                    >
+                        <span>{order.toLocation}</span>
+                    </Typography>
+                    {order.fromLocation && (
+                        <Typography
+                            className={styles.infoItemWay}
+                            variant='h5'
+                            component='p'
+                        >
+                            <span>{order.fromLocation}</span>
                         </Typography>
                     )}
                 </Stack>
@@ -180,25 +202,12 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </div>
                 </Stack>
                 <div className={styles.carrierDescription}>
-                    <Typography
-                        className={styles.carrierDescriptionTitle}
-                        variant='h6'
-                        component='h4'
-                    >
-                        Description
-                    </Typography>
-                    {/* <TextField
-                        id='description'
-                        name='description'
-                        placeholder='Some words about order...'
-                        variant='outlined'
-                        multiline
-                        minRows={4}
-                        maxRows={4}
-                        value={formik.values.description}
-                        onChange={formik.handleChange}
-                        className={styles.carrierDescriptionBody}
-                    /> */}
+                    <div className={styles.productName}>
+                        {order.productName}
+                    </div>
+                    <div className={styles.productDescription}>
+                        {order.productDescription}
+                    </div>
                 </div>
                 <Button
                     type='submit'

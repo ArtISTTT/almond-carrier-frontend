@@ -147,9 +147,7 @@
     letter-spacing: 0.4px;
     text-transform: uppercase;
     display: flex;
-    justify-content: space-between;
     width: 100%;
-    gap: 15px;
     max-width: 300px;
     color: var(--cTextPrimary);
 }
@@ -157,7 +155,7 @@
 .infoItemWay > span {
     text-transform: none;
     width: 100%;
-    max-width: 220px;
+    max-width: 180px;
     font-weight: 500;
     font-size: 16px;
     color: var(--cTextThird);
@@ -213,4 +211,26 @@
     height: 40px;
     width: 100%;
     max-width: 350px;
+}
+
+.productName {
+    font-weight: 600;
+    color: var(--cTextThird);
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.productDescription {
+    background-color: rgba(0, 0, 0, 0.058);
+    padding: 7px 15px;
+    border-radius: 16px;
+    min-height: 80px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 17px;
+    letter-spacing: 0.4px;
+    color: var(--cTextThird);
 }
