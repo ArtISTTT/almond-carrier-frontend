@@ -1,0 +1,125 @@
+.confirmBlock {
+    margin-top: 10px;
+    display: flex;
+    gap: 26px;
+}
+
+.confirmItem {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.4px;
+}
+
+.profileName {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 32px;
+    letter-spacing: 0.4px;
+    margin-bottom: 6px;
+}
+
+.profileCardInfo {
+    margin-left: 15px;
+}
+
+.profileCard {
+    display: flex;
+    align-items: center;
+}
+
+.profileCardItem {
+    margin-bottom: 6px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+}
+
+.profileRating {
+    color: var(--cTextPrimary);
+    margin-top: 22px;
+}
+
+.profileBlock {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profileButton {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 26px;
+    letter-spacing: 0.46px;
+    text-transform: uppercase;
+    color: var(--cTextSecondary);
+    padding: 12px 30px;
+    border-radius: 16px;
+    background: var(--cBgSuccess);
+    margin-bottom: 35px;
+}
+
+.profileInfoContainer {
+    max-width: 1200px;
+    width: 100%;
+    padding-top: 30px;
+}
+
+.wrapper {
+    background: #f3f3f3;
+}
+
+.infoBlock {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+    margin-bottom: 34px;
+}
+
+.infoItem {
+    text-align: center;
+    width: 100%;
+    max-width: 280px;
+    height: 138px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px 1px rgba(102, 144, 253, 0.25);
+}
+
+.infoTitle {
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: var(--cTextLow);
+}
+
+.infoParam {
+    margin-top: 22px;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 28px;
+    color: var(--cTextThird);
+    letter-spacing: 0.4px;
+}
+
+.secondInfoParam {
+    margin-top: 6px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+}
+
+.secondInfoParam > span {
+    color: var(--cTextSuccess);
+}
+
+.secondInfoParam > span:last-child {
+    color: var(--cTextPrimary);
+}
