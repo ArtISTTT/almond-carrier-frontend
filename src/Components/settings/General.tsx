@@ -11,7 +11,11 @@ import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import React from 'react';
 import styles from '../../../styles/Settings.module.css';
-import { IGeneralSettings, Language } from '../../interfaces/settings';
+import {
+    Currency,
+    IGeneralSettings,
+    Language,
+} from '../../interfaces/settings';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { changeGeneralSettings } from '../../redux/slices/settingsSlice';
 
@@ -20,7 +24,7 @@ const languages = [
     { value: Language.RU, text: 'Russian' },
     { value: Language.EN, text: 'English' },
 ];
-const currency = ['Euro', 'Dollar', 'Rubel'];
+const currency = [Currency.EUR, Currency.USD, Currency.RUB];
 const themes = ['Light', 'Dark'];
 
 const GeneralSettings: React.FC = () => {

@@ -17,7 +17,7 @@ const initialState: IInitialState = {
     generalSettings: {
         country: Country.RUSSIA,
         language: Language.RU,
-        currency: Currency.RUBEL,
+        currency: Currency.RUB,
         theme: Theme.LIGHT,
         isAllowToTransferMoney: false,
         isUseTwoStepAuthenticationByPhoneNumber: false,

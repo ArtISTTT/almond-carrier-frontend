@@ -9,9 +9,9 @@ export enum Theme {
 }
 
 export enum Currency {
-    EURO = 'Euro',
-    DOLLAR = 'Dollar',
-    RUBEL = 'Rubel',
+    EUR = 'EUR',
+    USD = 'USD',
+    RUB = 'RUB',
 }
 
 export enum Country {
