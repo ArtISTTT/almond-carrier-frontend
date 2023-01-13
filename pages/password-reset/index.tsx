@@ -11,6 +11,7 @@ import { RecoverPasswordSchema } from '../../src/schemas/RecoverPasswordSchema';
 import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 import Loader from '../../src/Components/Loader';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'react-i18next';
 
 type IForm = {
     password: string;
@@ -21,6 +22,7 @@ type IForm = {
 
 const SignIn: React.FC = () => {
     const router = useRouter();
+    const { t } = useTranslation();
 
     const { token, id } = router.query;
 
@@ -50,14 +52,14 @@ const SignIn: React.FC = () => {
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: 'Password successfully changed',
+                text: t('passSuccessfullyUpdated'),
             });
 
             router.push('/signin');
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error when trying to change the password',
+                text: data.error || t('errorUpdatePassword'),
             });
             formik.setSubmitting(false);
         }
@@ -84,7 +86,7 @@ const SignIn: React.FC = () => {
         <LoginLayout>
             <>
                 <Typography variant='h2' component='h2'>
-                    Set up new password
+                    {t('setupNewPassword')}
                 </Typography>
                 <form onSubmit={formik.handleSubmit}>
                     <Stack direction='column' spacing={2}>
@@ -92,7 +94,7 @@ const SignIn: React.FC = () => {
                             id='password'
                             name='password'
                             type='password'
-                            placeholder='Password'
+                            placeholder={t('password') as string}
                             variant='outlined'
                             value={formik.values.password}
                             onChange={formik.handleChange}
@@ -103,7 +105,7 @@ const SignIn: React.FC = () => {
                             id='confirmPassword'
                             name='confirmPassword'
                             type='password'
-                            placeholder='Confirm password'
+                            placeholder={t('confirmPassword') as string}
                             variant='outlined'
                             value={formik.values.confirmPassword}
                             onChange={formik.handleChange}
@@ -116,7 +118,7 @@ const SignIn: React.FC = () => {
                             type='submit'
                             disabled={formik.isSubmitting}
                         >
-                            Restore password
+                            {t('restorePass')}
                         </Button>
                     </Stack>
                 </form>

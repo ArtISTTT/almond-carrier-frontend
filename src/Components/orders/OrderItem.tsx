@@ -9,6 +9,7 @@ import { IOrder } from '../../interfaces/order';
 import OrderPeopleCard from './OrderPeopleCard';
 import { convertStatusToText } from '../../helpers/convertStatusToText';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
@@ -24,6 +25,7 @@ const OrderItem: React.FC<IOrder> = ({
     carrier,
     id,
 }) => {
+    const { t } = useTranslation();
     return (
         <div
             className={cn(styles.order, {
@@ -40,7 +42,7 @@ const OrderItem: React.FC<IOrder> = ({
                                 variant='h4'
                                 component='h4'
                             >
-                                Carrier
+                                {t('carrier')}
                             </Typography>
                             {carrier?.id ? (
                                 <OrderPeopleCard people={carrier} />
@@ -59,7 +61,7 @@ const OrderItem: React.FC<IOrder> = ({
                                 variant='h4'
                                 component='h4'
                             >
-                                receiver
+                                {t('receiver')}
                             </Typography>
                             {receiver?.id ? (
                                 <OrderPeopleCard people={receiver} />
@@ -79,14 +81,15 @@ const OrderItem: React.FC<IOrder> = ({
                                     variant='h6'
                                     component='h6'
                                 >
-                                    BENEFIT
+                                    {t('benefit')}
                                 </Typography>
                                 <Typography
                                     className={styles.moneyValue}
                                     variant='h6'
                                     component='p'
                                 >
-                                    {rewardAmount}RUB
+                                    {rewardAmount}
+                                    {t('rub')}
                                 </Typography>
                             </div>
                             {productAmount && (
@@ -96,14 +99,15 @@ const OrderItem: React.FC<IOrder> = ({
                                         variant='h6'
                                         component='p'
                                     >
-                                        PRICE
+                                        {t('price')}
                                     </Typography>
                                     <Typography
                                         className={styles.moneyValue}
                                         variant='h6'
                                         component='p'
                                     >
-                                        {productAmount}RUB
+                                        {productAmount}
+                                        {t('rub')}
                                     </Typography>
                                 </div>
                             )}
@@ -124,7 +128,7 @@ const OrderItem: React.FC<IOrder> = ({
                             component='p'
                             className={styles.description}
                         >
-                            <span>TO: </span>
+                            <span>{t('to')}: </span>
                             {toLocation}
                         </Typography>
                         {fromLocation && (
@@ -133,7 +137,7 @@ const OrderItem: React.FC<IOrder> = ({
                                 component='p'
                                 className={styles.description}
                             >
-                                <span>FROM: </span>
+                                <span>{t('from')}: </span>
                                 {fromLocation}
                             </Typography>
                         )}
@@ -144,7 +148,7 @@ const OrderItem: React.FC<IOrder> = ({
                                 component='p'
                                 className={styles.description}
                             >
-                                <span>Flight date:</span>{' '}
+                                <span>{t('flightDate')}:</span>{' '}
                                 {dayjs(arrivalDate).format('DD.MM.YYYY')}
                             </Typography>
                         )}
@@ -154,7 +158,7 @@ const OrderItem: React.FC<IOrder> = ({
                                 component='p'
                                 className={styles.description}
                             >
-                                <span>Weight:</span> {productWeight}
+                                <span>{t('weight')}:</span> {productWeight}
                             </Typography>
                         )}
                     </div>
@@ -166,8 +170,7 @@ const OrderItem: React.FC<IOrder> = ({
                         disabled={status === orderStatus.cancelled}
                     >
                         <Link href={`/order/${id}`}>
-                            Order
-                            <br /> Details
+                            {t('orderDetailsButton')}
                         </Link>
                     </Button>
                     <div>
@@ -176,7 +179,7 @@ const OrderItem: React.FC<IOrder> = ({
                             component='p'
                             className={styles.status}
                         >
-                            <span>STATUS: </span>
+                            <span>{t('status:')} </span>
                             {convertStatusToText(status)}
                         </Typography>
                     </div>

@@ -64,7 +64,7 @@ export default function Welcome() {
                                 name='email'
                                 variant='outlined'
                                 color='primary'
-                                placeholder='Email'
+                                placeholder={t('email') as string}
                                 className={styles.emailInput}
                                 value={formik.values.email}
                                 onChange={formik.handleChange}

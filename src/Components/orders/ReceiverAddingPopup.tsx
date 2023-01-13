@@ -16,6 +16,7 @@ import { ICreateOrderReciever } from '../../interfaces/order';
 import { addOrderAsAReceiver } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
+import { useTranslation } from 'react-i18next';
 
 const valutes = ['RUB', 'USD', 'EUR'];
 
@@ -44,6 +45,7 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
         formik.setValues(defaultValues);
         togglePopup(prev => !prev);
     };
+    const { t } = useTranslation();
 
     const addNewOrder = async (form: ICreateOrderReciever) => {
         const data = await addOrderAsAReceiver(form);
@@ -51,13 +53,13 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: 'Order successfully added',
+                text: t('orderSuccessAdd'),
             });
             await reload();
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error when trying to add an order',
+                text: data.error || t('errorAddOrder'),
             });
         }
     };
@@ -96,7 +98,8 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
                             <label htmlFor='fromLocation'>
-                                Deliver from<span>(Not required)</span>
+                                {t('deliverFrom')}
+                                <span>({t('notRequired')})</span>
                             </label>
                             <RegionAutocomplete
                                 textFieldProps={{
@@ -116,7 +119,7 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             />
                         </div>
                         <div className={styles.inputItem}>
-                            <label htmlFor='toLocation'>Deliver to</label>
+                            <label htmlFor='toLocation'>{t('deliverTo')}</label>
                             <RegionAutocomplete
                                 textFieldProps={{
                                     id: 'toLocation',
@@ -136,11 +139,13 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                     </Stack>
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='productName'>Short name</label>
+                            <label htmlFor='productName'>
+                                {t('shortName')}
+                            </label>
                             <TextField
                                 id='productName'
                                 name='productName'
-                                placeholder='Short name'
+                                placeholder={t('shortName') as string}
                                 variant='outlined'
                                 value={formik.values.productName}
                                 onChange={formik.handleChange}
@@ -150,18 +155,18 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             />
                         </div>
                         <div className={styles.inputItem}>
-                            <label htmlFor='productWeight'>Weight</label>
+                            <label htmlFor='productWeight'>{t('weight')}</label>
                             <TextField
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position='end'>
-                                            KG
+                                            {t('kg')}
                                         </InputAdornment>
                                     ),
                                 }}
                                 id='productWeight'
                                 name='productWeight'
-                                placeholder='Weight'
+                                placeholder={t('weight') as string}
                                 variant='outlined'
                                 type='number'
                                 value={formik.values.productWeight}
@@ -176,12 +181,14 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                     </Stack>
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='productAmount'>Product price</label>
+                            <label htmlFor='productAmount'>
+                                {t('productPrice')}
+                            </label>
                             <TextField
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position='end'>
-                                            RUB
+                                            {t('rub')}
                                         </InputAdornment>
                                     ),
                                 }}
@@ -201,13 +208,13 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                         </div>
                         <div className={styles.inputItem}>
                             <label htmlFor='rewardAmount'>
-                                Suggested Benefit
+                                {t('suggestedBenefit')}
                             </label>
                             <TextField
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position='end'>
-                                            RUB
+                                            {t('rub')}
                                         </InputAdornment>
                                     ),
                                 }}
@@ -227,12 +234,14 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
                             <label htmlFor='productDescription'>
-                                Description
+                                {t('description')}
                             </label>
                             <TextField
                                 id='productDescription'
                                 name='productDescription'
-                                placeholder='Some words about order...'
+                                placeholder={
+                                    t('someWordsAboutOrders') as string
+                                }
                                 variant='outlined'
                                 multiline
                                 minRows={4}
@@ -254,7 +263,7 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                         type='submit'
                         disabled={formik.isSubmitting}
                     >
-                        Create Order
+                        {t('createOrder')}
                     </Button>
                 </Stack>
             </form>

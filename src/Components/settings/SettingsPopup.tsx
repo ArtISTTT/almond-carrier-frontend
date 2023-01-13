@@ -7,6 +7,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Typography } from '@mui/material';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import cn from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
     setIsSettingsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,7 +15,7 @@ interface IProps {
 
 const SettingsPopup: React.FC<IProps> = ({ setIsSettingsPopupOpen }) => {
     const [isGeneralMenu, setIsGeneralMenu] = React.useState<boolean>(true);
-
+    const { t } = useTranslation();
     const selectGeneral = () => setIsGeneralMenu(true);
     const selectNotifiations = () => setIsGeneralMenu(false);
     const closePopup = () => setIsSettingsPopupOpen(prev => !prev);
@@ -38,7 +39,7 @@ const SettingsPopup: React.FC<IProps> = ({ setIsSettingsPopupOpen }) => {
                             variant='h6'
                             component='h6'
                         >
-                            General
+                            {t('general')}
                         </Typography>
                     </div>
                     <div
@@ -53,7 +54,7 @@ const SettingsPopup: React.FC<IProps> = ({ setIsSettingsPopupOpen }) => {
                             variant='h6'
                             component='h6'
                         >
-                            Notifications
+                            {t('notifications')}
                         </Typography>
                     </div>
                 </div>

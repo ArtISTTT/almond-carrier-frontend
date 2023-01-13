@@ -1,33 +1,39 @@
+import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
+
+const { t } = useTranslation();
 
 const nameRegex = /^[A-Za-z0-9]+$/;
 
 export const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
-        .min(2, 'Too Short!')
-        .max(50, 'Too Long!')
-        .required('Required'),
+        .min(2, t('tooShort') as string)
+        .max(50, t('tooLong') as string)
+        .required(t('required') as string),
     lastName: Yup.string()
-        .min(2, 'Too Short!')
-        .max(50, 'Too Long!')
-        .required('Required'),
-    email: Yup.string().email('Invalid email').required('Required'),
+        .min(2, t('tooShort') as string)
+        .max(50, t('tooLong') as string)
+        .required(t('required') as string),
+    email: Yup.string()
+        .email(t('invalidEmail') as string)
+        .required(t('required') as string),
     password: Yup.string()
-        .min(8, 'Password must be 8 characters long')
-        .matches(nameRegex, 'Only English letters')
-        .matches(/[0-9]/, 'Password requires a number')
-        .matches(/[a-z]/, 'Password requires a lowercase letter')
-        .matches(/[A-Z]/, 'Password requires an uppercase letter')
-        .required('Required'),
+        .min(8, t('passwordLong') as string)
+        .matches(nameRegex, t('onlyEnglish') as string)
+        .matches(/[0-9]/, t('passwordRequiresNumbers') as string)
+        .matches(/[a-z]/, t('passwordRequiresLowercaseLetter') as string)
+        .matches(/[A-Z]/, t('passwordRequiresUppercaseLetter') as string)
+        .required(t('required') as string),
     confirmPassword: Yup.string()
-        .test('passwords-match', 'Passwords must match', function (value) {
-            return this.parent.password === value;
-        })
-        .required('Confirm Password is required!'),
-    dateOfBirth: Yup.date()
-        .max(
-            new Date(Date.now() - 567648000000),
-            'You must be at least 18 years'
+        .test(
+            'passwords-match',
+            t('passwordsMustMatch') as string,
+            function (value) {
+                return this.parent.password === value;
+            }
         )
-        .required('Required'),
+        .required(t('required') as string),
+    dateOfBirth: Yup.date()
+        .max(new Date(Date.now() - 567648000000), t('mustBeYears') as string)
+        .required(t('required') as string),
 });

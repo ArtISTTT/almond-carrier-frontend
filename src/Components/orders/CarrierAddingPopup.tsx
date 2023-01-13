@@ -16,11 +16,7 @@ import { ICreateOrderCarrier } from '../../interfaces/order';
 import { addOrderAsACarrier } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
-
-const valutes = ['Rubles', 'Euro', 'Dollar'];
-
-const deliverPlaces = ['Russia', 'Antalya'];
-
+import { useTranslation } from 'react-i18next';
 interface IProps {
     togglePopup: React.Dispatch<React.SetStateAction<boolean>>;
     reload: () => Promise<void>;
@@ -42,6 +38,8 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
         togglePopup(prev => !prev);
     };
 
+    const { t } = useTranslation();
+
     const { triggerOpen } = useContext(OpenAlertContext);
 
     const addNewOrder = async (form: ICreateOrderCarrier) => {
@@ -50,13 +48,13 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: 'Order successfully added',
+                text: t('orderSuccessAdd'),
             });
             await reload();
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error when trying to add an order',
+                text: data.error || t('errorAddOrder'),
             });
         }
     };
@@ -94,7 +92,9 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                 <Stack direction='column' spacing={2} width='100%'>
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='fromLocation'>Deliver from</label>
+                            <label htmlFor='fromLocation'>
+                                {t('deliverFrom')}
+                            </label>
                             <RegionAutocomplete
                                 textFieldProps={{
                                     id: 'fromLocation',
@@ -113,7 +113,7 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             />
                         </div>
                         <div className={styles.inputItem}>
-                            <label htmlFor='toLocation'>Deliver to</label>
+                            <label htmlFor='toLocation'>{t('deliverTo')}</label>
                             <RegionAutocomplete
                                 textFieldProps={{
                                     id: 'toLocation',
@@ -133,12 +133,12 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                     </Stack>
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='rewardAmount'>Benefit</label>
+                            <label htmlFor='rewardAmount'>{t('benefit')}</label>
                             <TextField
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position='end'>
-                                            RUB
+                                            {t('rub')}
                                         </InputAdornment>
                                     ),
                                 }}
@@ -155,11 +155,13 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             />
                         </div>
                         <div className={styles.inputItem}>
-                            <label htmlFor='arrivalDate'>Arrival date</label>
+                            <label htmlFor='arrivalDate'>
+                                {t('arrivalDate')}
+                            </label>
                             <TextField
                                 id='arrivalDate'
                                 name='arrivalDate'
-                                placeholder='Arrival date'
+                                placeholder={t('arrivalDate') as string}
                                 type='date'
                                 variant='outlined'
                                 value={formik.values.arrivalDate}
@@ -171,18 +173,20 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                     </Stack>
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='carrierMaxWeight'>Max weight</label>
+                            <label htmlFor='carrierMaxWeight'>
+                                {t('maxWeight')}
+                            </label>
                             <TextField
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position='end'>
-                                            KG
+                                            {t('kg')}
                                         </InputAdornment>
                                     ),
                                 }}
                                 id='carrierMaxWeight'
                                 name='carrierMaxWeight'
-                                placeholder='Max weight'
+                                placeholder={t('maxWeight') as string}
                                 variant='outlined'
                                 type='number'
                                 value={formik.values.carrierMaxWeight}
@@ -201,7 +205,7 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                         type='submit'
                         disabled={formik.isSubmitting}
                     >
-                        Create Order
+                        {t('createOrder')}
                     </Button>
                 </Stack>
             </form>
