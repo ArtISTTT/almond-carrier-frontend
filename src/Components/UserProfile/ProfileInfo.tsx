@@ -2,6 +2,7 @@ import { Button, Avatar, Typography, Rating } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import styles from '../../../styles/ProfileForNewUser.module.css';
 import { Container } from '@mui/system';
+import React from 'react';
 
 const ProfileInfo = () => {
     return (

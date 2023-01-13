@@ -1,7 +1,7 @@
 import React from 'react';
 import MainLayout from '../../src/Components/Layouts/MainLayout';
 import PrivateLayout from '../../src/Components/Layouts/Private';
-import ProfileInfo from '../../src/Components/profileForNewUser/ProfileInfo';
+import ProfileInfo from '../../src/Components/UserProfile/ProfileInfo';
 import { privateTypes } from '../../src/interfaces/private';
 
 const User: React.FC = () => {
