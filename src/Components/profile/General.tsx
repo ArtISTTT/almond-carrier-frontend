@@ -128,7 +128,10 @@ const General = () => {
                                 value={formik.values.firstName}
                                 onChange={formik.handleChange}
                                 error={formik.errors.firstName !== undefined}
-                                helperText={formik.errors.firstName}
+                                helperText={
+                                    formik.errors.firstName &&
+                                    (t(formik.errors.firstName) as string)
+                                }
                                 className={styles.input}
                             />
                         </div>
@@ -143,7 +146,10 @@ const General = () => {
                                 value={formik.values.lastName}
                                 onChange={formik.handleChange}
                                 error={formik.errors.lastName !== undefined}
-                                helperText={formik.errors.lastName}
+                                helperText={
+                                    formik.errors.lastName &&
+                                    (t(formik.errors.lastName) as string)
+                                }
                             />
                         </div>
                     </Stack>
@@ -199,7 +205,10 @@ const General = () => {
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
                                 error={formik.errors.email !== undefined}
-                                helperText={formik.errors.email}
+                                helperText={
+                                    formik.errors.email &&
+                                    (t(formik.errors.email) as string)
+                                }
                                 className={styles.input}
                             />
                         </div>
@@ -254,7 +263,10 @@ const General = () => {
                                     undefined
                                 }
                                 helperText={
-                                    formikChangePassword.errors.oldPassword
+                                    formikChangePassword.errors.oldPassword &&
+                                    (t(
+                                        formikChangePassword.errors.oldPassword
+                                    ) as string)
                                 }
                                 className={styles.input}
                             />
@@ -274,7 +286,10 @@ const General = () => {
                                     undefined
                                 }
                                 helperText={
-                                    formikChangePassword.errors.newPassword
+                                    formikChangePassword.errors.newPassword &&
+                                    (t(
+                                        formikChangePassword.errors.newPassword
+                                    ) as string)
                                 }
                                 className={styles.input}
                             />

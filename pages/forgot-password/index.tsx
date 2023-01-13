@@ -59,8 +59,7 @@ const SignIn: React.FC = () => {
             } else {
                 triggerOpen({
                     severity: 'error',
-                    text:
-                        data.error || 'Error when trying to reset the password',
+                    text: data.error || t('errorToResetPassword'),
                 });
             }
 
@@ -94,7 +93,10 @@ const SignIn: React.FC = () => {
                             value={formik.values.email}
                             onChange={formik.handleChange}
                             error={formik.errors.email !== undefined}
-                            helperText={formik.errors.email}
+                            helperText={
+                                formik.errors.email &&
+                                (t(formik.errors.email) as string)
+                            }
                         />
                         <Button
                             variant='contained'

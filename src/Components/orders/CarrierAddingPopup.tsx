@@ -106,7 +106,11 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                     error:
                                         formik.errors.fromLocation !==
                                         undefined,
-                                    helperText: formik.errors.fromLocation,
+                                    helperText:
+                                        formik.errors.fromLocation &&
+                                        (t(
+                                            formik.errors.fromLocation
+                                        ) as string),
                                     className: styles.input,
                                 }}
                                 setValue={setLocationValue}
@@ -124,7 +128,9 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                     onChange: formik.handleChange,
                                     error:
                                         formik.errors.toLocation !== undefined,
-                                    helperText: formik.errors.toLocation,
+                                    helperText:
+                                        formik.errors.toLocation &&
+                                        (t(formik.errors.toLocation) as string),
                                     className: styles.input,
                                 }}
                                 setValue={setLocationValue}
@@ -150,7 +156,10 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 value={formik.values.rewardAmount}
                                 onChange={formik.handleChange}
                                 error={formik.errors.rewardAmount !== undefined}
-                                helperText={formik.errors.rewardAmount}
+                                helperText={
+                                    formik.errors.rewardAmount &&
+                                    (t(formik.errors.rewardAmount) as string)
+                                }
                                 className={styles.input}
                             />
                         </div>
@@ -194,7 +203,12 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 error={
                                     formik.errors.carrierMaxWeight !== undefined
                                 }
-                                helperText={formik.errors.carrierMaxWeight}
+                                helperText={
+                                    formik.errors.carrierMaxWeight &&
+                                    (t(
+                                        formik.errors.carrierMaxWeight
+                                    ) as string)
+                                }
                                 className={styles.input}
                             />
                         </div>

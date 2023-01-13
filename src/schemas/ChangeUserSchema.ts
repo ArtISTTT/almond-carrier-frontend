@@ -1,39 +1,36 @@
-import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 
 const nameRegex = /^[A-Za-z0-9]+$/;
 
-const { t } = useTranslation();
-
 export const ChangeUserSchema = Yup.object().shape({
     firstName: Yup.string()
-        .min(2, t('tooShort') as string)
-        .max(50, t('tooLong') as string)
-        .required(t('required') as string),
+        .min(2, 'tooShort')
+        .max(50, 'tooLong')
+        .required('required'),
     lastName: Yup.string()
-        .min(2, t('tooShort') as string)
-        .max(50, t('tooLong') as string)
-        .required(t('required') as string),
+        .min(2, 'tooShort')
+        .max(50, 'tooLong')
+        .required('required'),
     dateOfBirth: Yup.date()
-        .max(new Date(Date.now() - 567648000000), t('mustBeYears') as string)
-        .required(t('required') as string),
+        .max(new Date(Date.now() - 567648000000), 'mustBeYears')
+        .required('required'),
 });
 
 export const ChangePasswordSchema = Yup.object().shape({
     oldPassword: Yup.string()
-        .min(8, t('passwordLong') as string)
-        .matches(/[0-9]/, t('passwordRequiresNumbers') as string)
-        .matches(/[a-z]/, t('passwordRequiresLowercaseLetter') as string)
-        .matches(/[A-Z]/, t('passwordRequiresUppercaseLetter') as string)
-        .required(t('required') as string),
+        .min(8, 'passwordLong')
+        .matches(/[0-9]/, 'passwordRequiresNumbers')
+        .matches(/[a-z]/, 'passwordRequiresLowercaseLetter')
+        .matches(/[A-Z]/, 'passwordRequiresUppercaseLetter')
+        .required('required'),
     newPassword: Yup.string()
-        .min(8, t('passwordLong') as string)
-        .matches(nameRegex, t('onlyEnglish') as string)
-        .matches(/[0-9]/, t('passwordRequiresNumbers') as string)
-        .matches(/[a-z]/, t('passwordRequiresLowercaseLetter') as string)
-        .matches(/[A-Z]/, t('passwordRequiresUppercaseLetter') as string)
-        .test('match', t('previousPassword') as string, function (password) {
+        .min(8, 'passwordLong')
+        .matches(nameRegex, 'onlyEnglish')
+        .matches(/[0-9]/, 'passwordRequiresNumbers')
+        .matches(/[a-z]/, 'passwordRequiresLowercaseLetter')
+        .matches(/[A-Z]/, 'passwordRequiresUppercaseLetter')
+        .test('match', 'previousPassword', function (password) {
             return password !== this.parent.oldPassword;
         })
-        .required(t('required') as string),
+        .required('required'),
 });

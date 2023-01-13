@@ -74,7 +74,10 @@ const SignIn: React.FC = () => {
                             value={formik.values.email}
                             onChange={formik.handleChange}
                             error={formik.errors.email !== undefined}
-                            helperText={formik.errors.email}
+                            helperText={
+                                formik.errors.email &&
+                                (t(formik.errors.email) as string)
+                            }
                         />
                         <TextField
                             id='password'
@@ -85,7 +88,10 @@ const SignIn: React.FC = () => {
                             value={formik.values.password}
                             onChange={formik.handleChange}
                             error={formik.errors.password !== undefined}
-                            helperText={formik.errors.password}
+                            helperText={
+                                formik.errors.password &&
+                                (t(formik.errors.password) as string)
+                            }
                         />
                         <Button
                             variant='contained'

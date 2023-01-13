@@ -69,7 +69,10 @@ export default function Welcome() {
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
                                 error={formik.errors.email !== undefined}
-                                helperText={formik.errors.email}
+                                helperText={
+                                    formik.errors.email &&
+                                    (t(formik.errors.email) as string)
+                                }
                             />
                             <Button
                                 type='submit'

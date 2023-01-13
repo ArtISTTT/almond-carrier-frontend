@@ -99,7 +99,10 @@ const SignIn: React.FC = () => {
                             value={formik.values.password}
                             onChange={formik.handleChange}
                             error={formik.errors.password !== undefined}
-                            helperText={formik.errors.password}
+                            helperText={
+                                formik.errors.password &&
+                                (t(formik.errors.password) as string)
+                            }
                         />
                         <TextField
                             id='confirmPassword'
@@ -110,7 +113,10 @@ const SignIn: React.FC = () => {
                             value={formik.values.confirmPassword}
                             onChange={formik.handleChange}
                             error={formik.errors.confirmPassword !== undefined}
-                            helperText={formik.errors.confirmPassword}
+                            helperText={
+                                formik.errors.confirmPassword &&
+                                (t(formik.errors.confirmPassword) as string)
+                            }
                         />
                         <Button
                             variant='contained'

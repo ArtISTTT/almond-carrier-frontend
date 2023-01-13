@@ -112,7 +112,11 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                     error:
                                         formik.errors.fromLocation !==
                                         undefined,
-                                    helperText: formik.errors.fromLocation,
+                                    helperText:
+                                        formik.errors.fromLocation &&
+                                        (t(
+                                            formik.errors.fromLocation
+                                        ) as string),
                                     className: styles.input,
                                 }}
                                 setValue={setLocationValue}
@@ -130,7 +134,9 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                     onChange: formik.handleChange,
                                     error:
                                         formik.errors.toLocation !== undefined,
-                                    helperText: formik.errors.toLocation,
+                                    helperText:
+                                        formik.errors.toLocation &&
+                                        (t(formik.errors.toLocation) as string),
                                     className: styles.input,
                                 }}
                                 setValue={setLocationValue}
@@ -150,7 +156,10 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 value={formik.values.productName}
                                 onChange={formik.handleChange}
                                 error={formik.errors.productName !== undefined}
-                                helperText={formik.errors.productName}
+                                helperText={
+                                    formik.errors.productName &&
+                                    (t(formik.errors.productName) as string)
+                                }
                                 className={styles.input}
                             />
                         </div>
@@ -174,7 +183,10 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 error={
                                     formik.errors.productWeight !== undefined
                                 }
-                                helperText={formik.errors.productWeight}
+                                helperText={
+                                    formik.errors.productWeight &&
+                                    (t(formik.errors.productWeight) as string)
+                                }
                                 className={styles.input}
                             />
                         </div>
@@ -202,7 +214,10 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 error={
                                     formik.errors.productAmount !== undefined
                                 }
-                                helperText={formik.errors.productAmount}
+                                helperText={
+                                    formik.errors.productAmount &&
+                                    (t(formik.errors.productAmount) as string)
+                                }
                                 className={styles.input}
                             />
                         </div>
@@ -226,7 +241,10 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 value={formik.values.rewardAmount}
                                 onChange={formik.handleChange}
                                 error={formik.errors.rewardAmount !== undefined}
-                                helperText={formik.errors.rewardAmount}
+                                helperText={
+                                    formik.errors.rewardAmount &&
+                                    (t(formik.errors.rewardAmount) as string)
+                                }
                                 className={styles.input}
                             />
                         </div>
@@ -252,7 +270,12 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                     formik.errors.productDescription !==
                                     undefined
                                 }
-                                helperText={formik.errors.productDescription}
+                                helperText={
+                                    formik.errors.productDescription &&
+                                    (t(
+                                        formik.errors.productDescription
+                                    ) as string)
+                                }
                                 className={styles.input}
                             />
                         </div>

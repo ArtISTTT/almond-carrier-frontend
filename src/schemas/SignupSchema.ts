@@ -1,39 +1,30 @@
-import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
-
-const { t } = useTranslation();
 
 const nameRegex = /^[A-Za-z0-9]+$/;
 
 export const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
-        .min(2, t('tooShort') as string)
-        .max(50, t('tooLong') as string)
-        .required(t('required') as string),
+        .min(2, 'tooShort')
+        .max(50, 'tooLong')
+        .required('required'),
     lastName: Yup.string()
-        .min(2, t('tooShort') as string)
-        .max(50, t('tooLong') as string)
-        .required(t('required') as string),
-    email: Yup.string()
-        .email(t('invalidEmail') as string)
-        .required(t('required') as string),
+        .min(2, 'tooShort')
+        .max(50, 'tooLong')
+        .required('required'),
+    email: Yup.string().email('invalidEmail').required('required'),
     password: Yup.string()
-        .min(8, t('passwordLong') as string)
-        .matches(nameRegex, t('onlyEnglish') as string)
-        .matches(/[0-9]/, t('passwordRequiresNumbers') as string)
-        .matches(/[a-z]/, t('passwordRequiresLowercaseLetter') as string)
-        .matches(/[A-Z]/, t('passwordRequiresUppercaseLetter') as string)
-        .required(t('required') as string),
+        .min(8, 'passwordLong')
+        .matches(nameRegex, 'onlyEnglish')
+        .matches(/[0-9]/, 'passwordRequiresNumbers')
+        .matches(/[a-z]/, 'passwordRequiresLowercaseLetter')
+        .matches(/[A-Z]/, 'passwordRequiresUppercaseLetter')
+        .required('required'),
     confirmPassword: Yup.string()
-        .test(
-            'passwords-match',
-            t('passwordsMustMatch') as string,
-            function (value) {
-                return this.parent.password === value;
-            }
-        )
-        .required(t('required') as string),
+        .test('passwords-match', 'passwordsMustMatch', function (value) {
+            return this.parent.password === value;
+        })
+        .required('required'),
     dateOfBirth: Yup.date()
-        .max(new Date(Date.now() - 567648000000), t('mustBeYears') as string)
-        .required(t('required') as string),
+        .max(new Date(Date.now() - 567648000000), 'mustBeYears')
+        .required('required'),
 });
