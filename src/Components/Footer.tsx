@@ -41,7 +41,7 @@ const Footer = () => {
     return (
         <footer className={styles.footer}>
             <div className={styles.leftBlock}>
-                <FormControl sx={{ width: 250 }}>
+                <FormControl sx={{ width: 250 }} >
                     <InputLabel id='language-label'>{t('language')}</InputLabel>
                     <Select
                         labelId='language-label'
@@ -52,6 +52,7 @@ const Footer = () => {
                             disableScrollLock: true,
                         }}
                         onChange={handleChange}
+                        className={styles.formControl}
                     >
                         <MenuItem value={Language.RU}>{t('russian')}</MenuItem>
                         <MenuItem value={Language.EN}>{t('english')}</MenuItem>

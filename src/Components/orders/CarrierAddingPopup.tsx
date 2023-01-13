@@ -92,7 +92,7 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
         <Popup title={'Send new item'} closePopup={closePopup}>
             <form className={styles.form} onSubmit={formik.handleSubmit}>
                 <Stack direction='column' spacing={2} width='100%'>
-                    <Stack direction='row' spacing={2}>
+                    <Stack direction='row' spacing={2} className={styles.stack}>
                         <div className={styles.inputItem}>
                             <label htmlFor='fromLocation'>Deliver from</label>
                             <RegionAutocomplete
@@ -112,7 +112,7 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 setValue={setLocationValue}
                             />
                         </div>
-                        <div className={styles.inputItem}>
+                        <div className={styles.inputItemSecond}>
                             <label htmlFor='toLocation'>Deliver to</label>
                             <RegionAutocomplete
                                 textFieldProps={{
@@ -131,7 +131,7 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             />
                         </div>
                     </Stack>
-                    <Stack direction='row' spacing={2}>
+                    <Stack direction='row' spacing={2} className={styles.stack}>
                         <div className={styles.inputItem}>
                             <label htmlFor='rewardAmount'>Benefit</label>
                             <TextField
@@ -154,7 +154,7 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 className={styles.input}
                             />
                         </div>
-                        <div className={styles.inputItem}>
+                        <div className={styles.inputItemSecond}>
                             <label htmlFor='arrivalDate'>Arrival date</label>
                             <TextField
                                 id='arrivalDate'

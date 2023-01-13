@@ -22,6 +22,15 @@ const TypeSwitcher: React.FC<IProps> = ({ type, setType }) => {
 
     return (
         <div className={styles.typeSwitcherWrapper}>
+            <Typography
+                variant='h3'
+                component='h3'
+                className={styles.typeTitle}
+            >
+                {type === OrderSeachType.carriers
+                    ? t('currentlyLookingForACarrier')
+                    : t('currentlyLookingForAReceiver')}
+            </Typography>
             <div className={styles.typeSwitcher}>
                 <span
                     className={cn(styles.on, {
@@ -40,15 +49,6 @@ const TypeSwitcher: React.FC<IProps> = ({ type, setType }) => {
                     {t('deliver')}
                 </span>
             </div>
-            <Typography
-                variant='h3'
-                component='h3'
-                className={styles.typeTitle}
-            >
-                {type === OrderSeachType.carriers
-                    ? t('currentlyLookingForACarrier')
-                    : t('currentlyLookingForAReceiver')}
-            </Typography>
         </div>
     );
 };

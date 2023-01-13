@@ -7,7 +7,7 @@
     top: 50%;
     padding: 30px;
     padding-top: 16px;
-    border-radius: 10px;
+    border-radius: 20px;
     transform: translate(-50%, -50%);
 }
 
@@ -27,13 +27,29 @@
     color: var(--cTextThird);
     text-align: center;
 }
+
 .inputItem {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
+.inputItemSecond {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .inputItem > label {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.4px;
+    color: var(--cTextPrimary);
+}
+
+.inputItemSecond > label {
     text-transform: uppercase;
     font-weight: 500;
     font-size: 16px;
@@ -50,9 +66,18 @@
     margin-left: 2px;
 }
 
+.inputItemSecond > label > span {
+    font-size: 10px;
+    line-height: 20px;
+    text-transform: none;
+    color: var(--cTextThird);
+    margin-left: 2px;
+}
+
 .input {
     width: 100%;
 }
+
 
 .select {
     border-radius: 15px;
@@ -77,4 +102,33 @@
     border-radius: 15px;
     margin-top: 20px !important;
     margin-left: auto !important;
+}
+
+@media screen and (max-width: 820px) {
+    .popup {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .stack {
+        flex-direction: column;
+    }
+    .inputItemSecond {
+        margin-left: 0px !important;
+        padding-top: 10px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .inputItem > label {
+        font-size: 12px;
+    }
+    .inputItemSecond > label {
+        font-size: 12px;
+    }
+    .confirmButton {
+        margin: 20px auto !important;
+        margin-bottom: 0 !important;
+    }
 }

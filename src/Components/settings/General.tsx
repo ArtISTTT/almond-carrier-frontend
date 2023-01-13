@@ -48,7 +48,7 @@ const GeneralSettings: React.FC = () => {
         <Container className={styles.generalContainer} maxWidth={false}>
             <form onSubmit={formik.handleSubmit}>
                 <div className={styles.selectors}>
-                    <Stack direction='row' spacing={2}>
+                    <Stack direction='row' spacing={2} className={styles.stack}>
                         <div className={styles.inputItem}>
                             <label htmlFor='country'>Country</label>
                             <Select
@@ -68,7 +68,7 @@ const GeneralSettings: React.FC = () => {
                                 ))}
                             </Select>
                         </div>
-                        <div className={styles.inputItem}>
+                        <div className={styles.inputItemSecond}>
                             <label htmlFor='language'>Language</label>
                             <Select
                                 id='language'
@@ -88,7 +88,7 @@ const GeneralSettings: React.FC = () => {
                             </Select>
                         </div>
                     </Stack>
-                    <Stack direction='row' spacing={2}>
+                    <Stack direction='row' spacing={2} className={styles.stack}>
                         <div className={styles.inputItem}>
                             <label htmlFor='currency'>Currency</label>
                             <Select
@@ -108,7 +108,7 @@ const GeneralSettings: React.FC = () => {
                                 ))}
                             </Select>
                         </div>
-                        <div className={styles.inputItem}>
+                        <div className={styles.inputItemSecond}>
                             <label htmlFor='theme'>Theme</label>
                             <Select
                                 id='theme'
