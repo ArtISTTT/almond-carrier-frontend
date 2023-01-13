@@ -1,6 +1,7 @@
 import { Dayjs } from 'dayjs';
 
 export interface IReview {
+    id?: number;
     avatar: string;
     name: string;
     role: string;

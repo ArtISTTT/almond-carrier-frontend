@@ -83,5 +83,7 @@
     "updatePassword": "Update password",
     "weChargeACommissionFor": "We charge a commission for what we found for your carrier/receiver, but the price will be low.",
     "youHaveNoOrdersYet": "You don't have any orders yet.",
+    "userHaveNoOrdersYet": "User don't have any orders yet",
+    "userHaveNoReviewsYet": "User don't have any reviews yet",
     "yourAllDataWillBe": "All your data will be confident. Your money will be safe."
 }

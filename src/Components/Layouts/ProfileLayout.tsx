@@ -1,6 +1,6 @@
 import React from 'react';
-import ProfileCard from '../profile/ProfileCard';
-import ProfileNavbar from '../profile/ProfileNavbar';
+import ProfileCard from '../Profile/ProfileCard';
+import ProfileNavbar from '../Profile/ProfileNavbar';
 import styles from '../../../styles/Profile.module.css';
 
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {

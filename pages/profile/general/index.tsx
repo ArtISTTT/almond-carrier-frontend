@@ -1,7 +1,7 @@
 import React from 'react';
 import CarrierLayout from '../../../src/Components/Layouts/Carrier';
 import ProfileLayout from '../../../src/Components/Layouts/ProfileLayout';
-import General from '../../../src/Components/profile/General';
+import General from '../../../src/Components/Profile/General';
 import PrivateLayout from '../../../src/Components/Layouts/Private';
 import { privateTypes } from '../../../src/interfaces/private';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
