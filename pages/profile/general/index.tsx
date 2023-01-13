@@ -4,6 +4,7 @@ import ProfileLayout from '../../../src/Components/Layouts/ProfileLayout';
 import PrivateLayout from '../../../src/Components/Layouts/Private';
 import { privateTypes } from '../../../src/interfaces/private';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+// @ts-ignore
 import General from '../../../src/Components/Profile/General';
 
 const index = () => {
