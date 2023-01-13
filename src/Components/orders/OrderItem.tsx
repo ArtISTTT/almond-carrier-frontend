@@ -79,14 +79,14 @@ const OrderItem: React.FC<IOrder> = ({
                                     variant='h6'
                                     component='h6'
                                 >
-                                    BENEFIT
+                                    Benifit
                                 </Typography>
                                 <Typography
                                     className={styles.moneyValue}
                                     variant='h6'
                                     component='p'
                                 >
-                                    {rewardAmount}RUB
+                                    {rewardAmount} RUB
                                 </Typography>
                             </div>
                             {productAmount && (
@@ -96,67 +96,75 @@ const OrderItem: React.FC<IOrder> = ({
                                         variant='h6'
                                         component='p'
                                     >
-                                        PRICE
+                                        Price
                                     </Typography>
                                     <Typography
                                         className={styles.moneyValue}
                                         variant='h6'
                                         component='p'
                                     >
-                                        {productAmount}RUB
+                                        {productAmount} RUB
                                     </Typography>
                                 </div>
                             )}
                         </div>
                     </div>
                     <div className={styles.orderDescriptions}>
-                        {productName && (
+                        <div className={styles.descriptionWay}>
                             <Typography
                                 variant='h3'
                                 component='p'
                                 className={styles.description}
                             >
-                                {productName}
+                                <span>To: </span>
+                                {toLocation}
                             </Typography>
-                        )}
-                        <Typography
-                            variant='h3'
-                            component='p'
-                            className={styles.description}
-                        >
-                            <span>TO: </span>
-                            {toLocation}
-                        </Typography>
-                        {fromLocation && (
-                            <Typography
-                                variant='h3'
-                                component='p'
-                                className={styles.description}
-                            >
-                                <span>FROM: </span>
-                                {fromLocation}
-                            </Typography>
-                        )}
+                            {fromLocation && (
+                                <Typography
+                                    variant='h3'
+                                    component='p'
+                                    className={styles.description}
+                                >
+                                    <span>From: </span>
+                                    {fromLocation}
+                                </Typography>
+                            )}
+                        </div>
+                        <div className={styles.descriptionParams}>
+                            {productName && (
+                                <Typography
+                                    variant='h3'
+                                    component='p'
+                                    className={cn(
+                                        styles.description,
+                                        styles.productName
+                                    )}
+                                >
+                                    <span>Product: </span>
+                                    {productName}
+                                </Typography>
+                            )}
 
-                        {arrivalDate && (
-                            <Typography
-                                variant='h3'
-                                component='p'
-                                className={styles.description}
-                            >
-                                <span>Flight date:</span>{' '}
-                                {dayjs(arrivalDate).format('DD.MM.YYYY')}
-                            </Typography>
-                        )}
-                        {productWeight && (
-                            <Typography
-                                variant='h3'
-                                component='p'
-                                className={styles.description}
-                            >
-                                <span>Weight:</span> {productWeight}
-                            </Typography>
-                        )}
+                            {arrivalDate && (
+                                <Typography
+                                    variant='h3'
+                                    component='p'
+                                    className={styles.description}
+                                >
+                                    <span>Flight date:</span>{' '}
+                                    {dayjs(arrivalDate).format('DD.MM.YYYY')}
+                                </Typography>
+                            )}
+                            {productWeight && (
+                                <Typography
+                                    variant='h3'
+                                    component='p'
+                                    className={styles.description}
+                                >
+                                    <span>Weight:</span> {productWeight} KG
+                                </Typography>
+                            )}
+                        </div>
                     </div>
                 </div>
                 <div className={styles.orderDetails}>
@@ -176,7 +184,7 @@ const OrderItem: React.FC<IOrder> = ({
                             component='p'
                             className={styles.status}
                         >
-                            <span>STATUS: </span>
+                            <span>Status: </span>
                             {convertStatusToText(status)}
                         </Typography>
                     </div>
