@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../../../styles/RecentlyCreatedOrder.module.css';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
     item?: string;
@@ -10,6 +11,7 @@ interface IProps {
 }
 
 const RecentlyCreatedOrder: React.FC<IProps> = ({ item, to, benefit }) => {
+    const { t } = useTranslation();
     return (
         <div className={styles.littleOrder}>
             <div className={styles.arrow}>
@@ -31,14 +33,14 @@ const RecentlyCreatedOrder: React.FC<IProps> = ({ item, to, benefit }) => {
                         component='p'
                         className={styles.littleOrderTo}
                     >
-                        FROM: <span>{to}</span>
+                        {t('from')}: <span>{to}</span>
                     </Typography>
                     <Typography
                         variant='h6'
                         component='p'
                         className={styles.littleOrderBenefit}
                     >
-                        BENEFIT: <span>{benefit}$</span>
+                        {t('benifit')}: <span>{benefit}$</span>
                     </Typography>
                 </div>
             </div>

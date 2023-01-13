@@ -20,6 +20,7 @@ import { recoverPassword } from '../../src/api/auth';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'react-i18next';
 
 const modalStyle = {
     position: 'absolute',
@@ -39,6 +40,7 @@ type IForm = {
 
 const SignIn: React.FC = () => {
     const router = useRouter();
+    const { t } = useTranslation();
 
     const { triggerOpen } = useContext(OpenAlertContext);
     const [openModal, setOpenModal] = React.useState(false);
@@ -57,8 +59,7 @@ const SignIn: React.FC = () => {
             } else {
                 triggerOpen({
                     severity: 'error',
-                    text:
-                        data.error || 'Error when trying to reset the password',
+                    text: data.error || t('errorToResetPassword'),
                 });
             }
 
@@ -80,20 +81,22 @@ const SignIn: React.FC = () => {
         <LoginLayout>
             <>
                 <Typography variant='h2' component='h2'>
-                    Enter email <br />
-                    to recover password
+                    {t('emailToRecoverPass')}
                 </Typography>
                 <form onSubmit={formik.handleSubmit}>
                     <Stack direction='column' spacing={2}>
                         <TextField
                             id='email'
                             name='email'
-                            placeholder='Email'
+                            placeholder={t('email') as string}
                             variant='outlined'
                             value={formik.values.email}
                             onChange={formik.handleChange}
                             error={formik.errors.email !== undefined}
-                            helperText={formik.errors.email}
+                            helperText={
+                                formik.errors.email &&
+                                (t(formik.errors.email) as string)
+                            }
                         />
                         <Button
                             variant='contained'
@@ -101,14 +104,14 @@ const SignIn: React.FC = () => {
                             type='submit'
                             disabled={formik.isSubmitting}
                         >
-                            Restore password
+                            {t('restorePass')}
                         </Button>
                         <MUILink
                             className={style.helpLink}
                             href='/signin'
                             component={LinkBehaviour}
                         >
-                            ← Retun to Sign in
+                            {t('returnToSingIn')}
                         </MUILink>
                     </Stack>
                 </form>
@@ -126,7 +129,7 @@ const SignIn: React.FC = () => {
                                 variant='h6'
                                 component='h3'
                             >
-                                Link to reset your password was sent to
+                                {t('linkWasSentToEmail')}
                             </Typography>
                         </div>
 

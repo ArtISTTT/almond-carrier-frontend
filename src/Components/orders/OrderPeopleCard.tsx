@@ -1,6 +1,7 @@
 import React from 'react';
 import { Avatar, Typography } from '@mui/material';
 import styles from '../../../styles/OrderItem.module.css';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
     people: {
@@ -11,6 +12,7 @@ interface IProps {
 }
 
 const OrderPeopleCard: React.FC<IProps> = ({ people }) => {
+    const { t } = useTranslation();
     return (
         <div className={styles.carrierCard}>
             <Avatar
@@ -30,14 +32,14 @@ const OrderPeopleCard: React.FC<IProps> = ({ people }) => {
                     variant='h6'
                     component='h6'
                 >
-                    Rating: <span>4.6</span>
+                    {t('rating')}: <span>4.6</span>
                 </Typography>
                 <Typography
                     className={styles.completedOrders}
                     variant='h6'
                     component='h6'
                 >
-                    Completed orders: <span>12</span>
+                    {t('completedOrders')}: <span>12</span>
                 </Typography>
             </div>
         </div>

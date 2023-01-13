@@ -64,12 +64,15 @@ export default function Welcome() {
                                 name='email'
                                 variant='outlined'
                                 color='primary'
-                                placeholder='Email'
+                                placeholder={t('email') as string}
                                 className={styles.emailInput}
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
                                 error={formik.errors.email !== undefined}
-                                helperText={formik.errors.email}
+                                helperText={
+                                    formik.errors.email &&
+                                    (t(formik.errors.email) as string)
+                                }
                             />
                             <Button
                                 type='submit'

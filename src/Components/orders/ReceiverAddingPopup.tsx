@@ -16,6 +16,7 @@ import { ICreateOrderReciever } from '../../interfaces/order';
 import { addOrderAsAReceiver } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
+import { useTranslation } from 'react-i18next';
 
 const valutes = ['RUB', 'USD', 'EUR'];
 
@@ -44,6 +45,7 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
         formik.setValues(defaultValues);
         togglePopup(prev => !prev);
     };
+    const { t } = useTranslation();
 
     const addNewOrder = async (form: ICreateOrderReciever) => {
         const data = await addOrderAsAReceiver(form);
@@ -51,13 +53,13 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: 'Order successfully added',
+                text: t('orderSuccessAdd'),
             });
             await reload();
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error when trying to add an order',
+                text: data.error || t('errorAddOrder'),
             });
         }
     };
@@ -96,7 +98,8 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
                             <label htmlFor='fromLocation'>
-                                Deliver from<span>(Not required)</span>
+                                {t('deliverFrom')}
+                                <span>({t('notRequired')})</span>
                             </label>
                             <RegionAutocomplete
                                 textFieldProps={{
@@ -109,14 +112,18 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                     error:
                                         formik.errors.fromLocation !==
                                         undefined,
-                                    helperText: formik.errors.fromLocation,
+                                    helperText:
+                                        formik.errors.fromLocation &&
+                                        (t(
+                                            formik.errors.fromLocation
+                                        ) as string),
                                     className: styles.input,
                                 }}
                                 setValue={setLocationValue}
                             />
                         </div>
                         <div className={styles.inputItem}>
-                            <label htmlFor='toLocation'>Deliver to</label>
+                            <label htmlFor='toLocation'>{t('deliverTo')}</label>
                             <RegionAutocomplete
                                 textFieldProps={{
                                     id: 'toLocation',
@@ -127,7 +134,9 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                     onChange: formik.handleChange,
                                     error:
                                         formik.errors.toLocation !== undefined,
-                                    helperText: formik.errors.toLocation,
+                                    helperText:
+                                        formik.errors.toLocation &&
+                                        (t(formik.errors.toLocation) as string),
                                     className: styles.input,
                                 }}
                                 setValue={setLocationValue}
@@ -136,32 +145,37 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                     </Stack>
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='productName'>Short name</label>
+                            <label htmlFor='productName'>
+                                {t('shortName')}
+                            </label>
                             <TextField
                                 id='productName'
                                 name='productName'
-                                placeholder='Short name'
+                                placeholder={t('shortName') as string}
                                 variant='outlined'
                                 value={formik.values.productName}
                                 onChange={formik.handleChange}
                                 error={formik.errors.productName !== undefined}
-                                helperText={formik.errors.productName}
+                                helperText={
+                                    formik.errors.productName &&
+                                    (t(formik.errors.productName) as string)
+                                }
                                 className={styles.input}
                             />
                         </div>
                         <div className={styles.inputItem}>
-                            <label htmlFor='productWeight'>Weight</label>
+                            <label htmlFor='productWeight'>{t('weight')}</label>
                             <TextField
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position='end'>
-                                            KG
+                                            {t('kg')}
                                         </InputAdornment>
                                     ),
                                 }}
                                 id='productWeight'
                                 name='productWeight'
-                                placeholder='Weight'
+                                placeholder={t('weight') as string}
                                 variant='outlined'
                                 type='number'
                                 value={formik.values.productWeight}
@@ -169,19 +183,24 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 error={
                                     formik.errors.productWeight !== undefined
                                 }
-                                helperText={formik.errors.productWeight}
+                                helperText={
+                                    formik.errors.productWeight &&
+                                    (t(formik.errors.productWeight) as string)
+                                }
                                 className={styles.input}
                             />
                         </div>
                     </Stack>
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='productAmount'>Product price</label>
+                            <label htmlFor='productAmount'>
+                                {t('productPrice')}
+                            </label>
                             <TextField
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position='end'>
-                                            RUB
+                                            {t('rub')}
                                         </InputAdornment>
                                     ),
                                 }}
@@ -195,19 +214,22 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 error={
                                     formik.errors.productAmount !== undefined
                                 }
-                                helperText={formik.errors.productAmount}
+                                helperText={
+                                    formik.errors.productAmount &&
+                                    (t(formik.errors.productAmount) as string)
+                                }
                                 className={styles.input}
                             />
                         </div>
                         <div className={styles.inputItem}>
                             <label htmlFor='rewardAmount'>
-                                Suggested Benefit
+                                {t('suggestedBenefit')}
                             </label>
                             <TextField
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position='end'>
-                                            RUB
+                                            {t('rub')}
                                         </InputAdornment>
                                     ),
                                 }}
@@ -219,7 +241,10 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 value={formik.values.rewardAmount}
                                 onChange={formik.handleChange}
                                 error={formik.errors.rewardAmount !== undefined}
-                                helperText={formik.errors.rewardAmount}
+                                helperText={
+                                    formik.errors.rewardAmount &&
+                                    (t(formik.errors.rewardAmount) as string)
+                                }
                                 className={styles.input}
                             />
                         </div>
@@ -227,12 +252,14 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
                             <label htmlFor='productDescription'>
-                                Description
+                                {t('description')}
                             </label>
                             <TextField
                                 id='productDescription'
                                 name='productDescription'
-                                placeholder='Some words about order...'
+                                placeholder={
+                                    t('someWordsAboutOrders') as string
+                                }
                                 variant='outlined'
                                 multiline
                                 minRows={4}
@@ -243,7 +270,12 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                     formik.errors.productDescription !==
                                     undefined
                                 }
-                                helperText={formik.errors.productDescription}
+                                helperText={
+                                    formik.errors.productDescription &&
+                                    (t(
+                                        formik.errors.productDescription
+                                    ) as string)
+                                }
                                 className={styles.input}
                             />
                         </div>
@@ -254,7 +286,7 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                         type='submit'
                         disabled={formik.isSubmitting}
                     >
-                        Create Order
+                        {t('createOrder')}
                     </Button>
                 </Stack>
             </form>

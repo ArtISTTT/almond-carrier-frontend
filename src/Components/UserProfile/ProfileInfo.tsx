@@ -2,6 +2,7 @@ import { Button, Avatar, Typography, Rating } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import styles from '../../../styles/ProfileForNewUser.module.css';
 import { Container } from '@mui/system';
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { useRouter } from 'next/router';
 
@@ -10,6 +11,7 @@ const ProfileInfo = () => {
 
     const navigateToSignUp = () => router.push('/signup');
 
+    const { t } = useTranslation();
     return (
         <div className={styles.wrapper}>
             <Container className={styles.profileInfoContainer} maxWidth={false}>
@@ -32,21 +34,21 @@ const ProfileInfo = () => {
                                 variant='h6'
                                 component='h5'
                             >
-                                From: <span></span>
+                                {t('from')}: <span></span>
                             </Typography>
                             <Typography
                                 className={styles.profileCardItem}
                                 variant='h6'
                                 component='h5'
                             >
-                                Often flies to: <span></span>
+                                {t('oftenFlies')}: <span></span>
                             </Typography>
                             <Typography
                                 className={styles.profileCardItem}
                                 variant='h6'
                                 component='h5'
                             >
-                                Currency:<span></span>
+                                {t('currency')}:<span></span>
                             </Typography>
                         </div>
                     </div>
@@ -64,7 +66,7 @@ const ProfileInfo = () => {
                         component='h5'
                         className={styles.confirmItem}
                     >
-                        Email{' '}
+                        {t('email')}{' '}
                         <CheckCircleIcon
                             sx={{ color: 'green', width: 18, height: 18 }}
                         />
@@ -74,7 +76,7 @@ const ProfileInfo = () => {
                         component='h5'
                         className={styles.confirmItem}
                     >
-                        Phone number{' '}
+                        {t('phoneNumber')}{' '}
                         <CheckCircleIcon
                             sx={{ color: 'green', width: 18, height: 18 }}
                         />
@@ -87,21 +89,22 @@ const ProfileInfo = () => {
                             component='h4'
                             className={styles.infoTitle}
                         >
-                            All orders
+                            {t('allOrders')}
                         </Typography>
                         <Typography
                             variant='h4'
                             component='h4'
                             className={styles.infoParam}
                         >
-                            16 orders
+                            16 {t('orders')}
                         </Typography>
                         <Typography
                             variant='h6'
                             component='h6'
                             className={styles.secondInfoParam}
                         >
-                            <span>Carrier</span>: 12 / <span>Receiver</span>: 4
+                            <span>{t('carrier')}</span>: 12 /{' '}
+                            <span>{t('receiver')}</span>: 4
                         </Typography>
                     </div>
                     <div className={styles.infoItem}>
@@ -110,7 +113,7 @@ const ProfileInfo = () => {
                             component='h4'
                             className={styles.infoTitle}
                         >
-                            Completion Rate
+                            {t('completionRate')}
                         </Typography>
                         <Typography
                             variant='h4'
@@ -126,14 +129,14 @@ const ProfileInfo = () => {
                             component='h4'
                             className={styles.infoTitle}
                         >
-                            Activity in Last 30 days
+                            {t('activityInLastDays')}
                         </Typography>
                         <Typography
                             variant='h4'
                             component='h4'
                             className={styles.infoParam}
                         >
-                            4 orders
+                            4 {t('orders')}
                         </Typography>
                     </div>
                     <div className={styles.infoItem}>
@@ -142,14 +145,14 @@ const ProfileInfo = () => {
                             component='h4'
                             className={styles.infoTitle}
                         >
-                            Average Completion Time
+                            {t('averageCompletionTime')}
                         </Typography>
                         <Typography
                             variant='h4'
                             component='h4'
                             className={styles.infoParam}
                         >
-                            18 days
+                            18 {t('days')}
                         </Typography>
                     </div>
                 </div>
@@ -158,7 +161,7 @@ const ProfileInfo = () => {
                     className={styles.profileButton}
                     variant='contained'
                 >
-                    Request carrier service
+                    {t('requestCarrierService')}
                 </Button>
             </Container>
         </div>

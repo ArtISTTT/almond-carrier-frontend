@@ -4,30 +4,27 @@ const nameRegex = /^[A-Za-z0-9]+$/;
 
 export const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
-        .min(2, 'Too Short!')
-        .max(50, 'Too Long!')
-        .required('Required'),
+        .min(2, 'tooShort')
+        .max(50, 'tooLong')
+        .required('required'),
     lastName: Yup.string()
-        .min(2, 'Too Short!')
-        .max(50, 'Too Long!')
-        .required('Required'),
-    email: Yup.string().email('Invalid email').required('Required'),
+        .min(2, 'tooShort')
+        .max(50, 'tooLong')
+        .required('required'),
+    email: Yup.string().email('invalidEmail').required('required'),
     password: Yup.string()
-        .min(8, 'Password must be 8 characters long')
-        .matches(nameRegex, 'Only English letters')
-        .matches(/[0-9]/, 'Password requires a number')
-        .matches(/[a-z]/, 'Password requires a lowercase letter')
-        .matches(/[A-Z]/, 'Password requires an uppercase letter')
-        .required('Required'),
+        .min(8, 'passwordLong')
+        .matches(nameRegex, 'onlyEnglish')
+        .matches(/[0-9]/, 'passwordRequiresNumbers')
+        .matches(/[a-z]/, 'passwordRequiresLowercaseLetter')
+        .matches(/[A-Z]/, 'passwordRequiresUppercaseLetter')
+        .required('required'),
     confirmPassword: Yup.string()
-        .test('passwords-match', 'Passwords must match', function (value) {
+        .test('passwords-match', 'passwordsMustMatch', function (value) {
             return this.parent.password === value;
         })
-        .required('Confirm Password is required!'),
+        .required('required'),
     dateOfBirth: Yup.date()
-        .max(
-            new Date(Date.now() - 567648000000),
-            'You must be at least 18 years'
-        )
-        .required('Required'),
+        .max(new Date(Date.now() - 567648000000), 'mustBeYears')
+        .required('required'),
 });

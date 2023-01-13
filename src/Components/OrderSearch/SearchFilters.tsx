@@ -90,7 +90,11 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                 error:
                                     carriersFormik.errors.fromLocation !==
                                     undefined,
-                                helperText: carriersFormik.errors.fromLocation,
+                                helperText:
+                                    carriersFormik.errors.fromLocation &&
+                                    (t(
+                                        carriersFormik.errors.fromLocation
+                                    ) as string),
                                 className: styles.input,
                             }}
                             setValue={setLocationValueCarriers}
@@ -109,7 +113,11 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                 error:
                                     carriersFormik.errors.toLocation !==
                                     undefined,
-                                helperText: carriersFormik.errors.toLocation,
+                                helperText:
+                                    carriersFormik.errors.toLocation &&
+                                    (t(
+                                        carriersFormik.errors.toLocation
+                                    ) as string),
                                 className: styles.input,
                             }}
                             setValue={setLocationValueCarriers}
@@ -156,7 +164,11 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                 error:
                                     receiversFormik.errors.fromLocation !==
                                     undefined,
-                                helperText: receiversFormik.errors.fromLocation,
+                                helperText:
+                                    receiversFormik.errors.fromLocation &&
+                                    (t(
+                                        receiversFormik.errors.fromLocation
+                                    ) as string),
                                 className: styles.input,
                             }}
                             setValue={setLocationValueReceivers}
@@ -175,7 +187,11 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                 error:
                                     receiversFormik.errors.toLocation !==
                                     undefined,
-                                helperText: receiversFormik.errors.toLocation,
+                                helperText:
+                                    receiversFormik.errors.toLocation &&
+                                    (t(
+                                        receiversFormik.errors.toLocation
+                                    ) as string),
                                 className: styles.input,
                             }}
                             setValue={setLocationValueReceivers}

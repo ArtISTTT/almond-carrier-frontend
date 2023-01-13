@@ -1,25 +1,22 @@
+
 import * as Yup from 'yup';
 
 export const ReceiverPopupSchema = Yup.object().shape({
-    toLocation: Yup.string().min(1).required('Location in required'),
+    toLocation: Yup.string().min(1).required('required'),
     fromLocation: Yup.string().min(1),
-    productName: Yup.string()
-        .lowercase()
-        .required('The short name is required'),
-    rewardAmount: Yup.number().min(0).required('Reward is required'),
-    productAmount: Yup.number().min(0).required('Product amount is required'),
-    productWeight: Yup.number()
-        .min(0.1, 'Weight must be greater than 0.1kg')
-        .required('Product weight is required'),
-    productDescription: Yup.string().required('Description weight is required'),
+    productName: Yup.string().lowercase().required('required'),
+    rewardAmount: Yup.number().min(0).required('required'),
+    productAmount: Yup.number().min(0).required('required'),
+    productWeight: Yup.number().min(0.1, 'greaterWeight').required('required'),
+    productDescription: Yup.string().required('required'),
 });
 
 export const CarrierPopupSchema = Yup.object().shape({
-    toLocation: Yup.string().min(1).required('Location in required'),
-    fromLocation: Yup.string().min(1).required('Location in required'),
-    rewardAmount: Yup.number().min(0).required('Reward is required'),
+    toLocation: Yup.string().min(1).required('required'),
+    fromLocation: Yup.string().min(1).required('required'),
+    rewardAmount: Yup.number().min(0).required('required'),
     carrierMaxWeight: Yup.number()
-        .min(0.1, 'Max weight must be greater than 0.1kg')
-        .required('Product weight is required'),
-    arrivalDate: Yup.date().min(new Date(), 'Please choose future date'),
+        .min(0.1, 'greaterWeight')
+        .required('required'),
+    arrivalDate: Yup.date().min(new Date(), 'futureDate'),
 });

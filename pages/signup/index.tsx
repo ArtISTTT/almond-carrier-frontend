@@ -14,6 +14,7 @@ import { useAppDispatch } from '../../src/redux/hooks';
 import { parseUserDataFromApi } from '../../src/helpers/parseUserDataFromApi';
 import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'react-i18next';
 
 type IForm = {
     email: string;
@@ -26,6 +27,7 @@ type IForm = {
 
 const SignIn: React.FC = () => {
     const router = useRouter();
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
 
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -46,13 +48,13 @@ const SignIn: React.FC = () => {
             dispatch(setIsAuthorized(true));
             triggerOpen({
                 severity: 'success',
-                text: 'Successfully sign up',
+                text: t('successSignUp'),
             });
             router.push('/thanks-for-registration');
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error when trying to sign up',
+                text: data.error || t('errorSignUp'),
             });
             formik.setSubmitting(false);
         }
@@ -77,48 +79,57 @@ const SignIn: React.FC = () => {
         <LoginLayout>
             <>
                 <Typography variant='h2' component='h2'>
-                    Create your account for free!
+                    {t('createYourAccount')}
                 </Typography>
                 <form onSubmit={formik.handleSubmit}>
                     <Stack direction='column' spacing={2}>
                         <TextField
                             id='email'
                             name='email'
-                            placeholder='Email'
+                            placeholder={t('email') as string}
                             variant='outlined'
                             value={formik.values.email}
                             onChange={formik.handleChange}
                             error={formik.errors.email !== undefined}
-                            helperText={formik.errors.email}
+                            helperText={
+                                formik.errors.email &&
+                                (t(formik.errors.email) as string)
+                            }
                         />
                         <Stack direction='row' spacing={2}>
                             <TextField
                                 className={cn(style.input, style.nameInput)}
                                 id='firstName'
                                 name='firstName'
-                                placeholder='First Name'
+                                placeholder={t('firstName') as string}
                                 variant='outlined'
                                 value={formik.values.firstName}
                                 onChange={formik.handleChange}
                                 error={formik.errors.firstName !== undefined}
-                                helperText={formik.errors.firstName}
+                                helperText={
+                                    formik.errors.firstName &&
+                                    (t(formik.errors.firstName) as string)
+                                }
                             />
                             <TextField
                                 className={cn(style.input, style.nameInput)}
                                 id='lastName'
                                 name='lastName'
-                                placeholder='Last Name'
+                                placeholder={t('lastName') as string}
                                 variant='outlined'
                                 value={formik.values.lastName}
                                 onChange={formik.handleChange}
                                 error={formik.errors.lastName !== undefined}
-                                helperText={formik.errors.lastName}
+                                helperText={
+                                    formik.errors.lastName &&
+                                    (t(formik.errors.lastName) as string)
+                                }
                             />
                         </Stack>
                         <TextField
                             id='dateOfBirth'
                             name='dateOfBirth'
-                            placeholder='Date of Birth'
+                            placeholder={t('dateOfBirth') as string}
                             type='date'
                             variant='outlined'
                             value={formik.values.dateOfBirth}
@@ -129,23 +140,29 @@ const SignIn: React.FC = () => {
                             id='password'
                             name='password'
                             type='password'
-                            placeholder='Password'
+                            placeholder={t('password') as string}
                             variant='outlined'
                             value={formik.values.password}
                             onChange={formik.handleChange}
                             error={formik.errors.password !== undefined}
-                            helperText={formik.errors.password}
+                            helperText={
+                                formik.errors.password &&
+                                (t(formik.errors.password) as string)
+                            }
                         />
                         <TextField
                             id='confirmPassword'
                             name='confirmPassword'
                             type='password'
-                            placeholder='Confirm password'
+                            placeholder={t('confirmPassword') as string}
                             variant='outlined'
                             value={formik.values.confirmPassword}
                             onChange={formik.handleChange}
                             error={formik.errors.confirmPassword !== undefined}
-                            helperText={formik.errors.confirmPassword}
+                            helperText={
+                                formik.errors.confirmPassword &&
+                                (t(formik.errors.confirmPassword) as string)
+                            }
                         />
                         <Button
                             variant='contained'
@@ -153,14 +170,14 @@ const SignIn: React.FC = () => {
                             type='submit'
                             disabled={formik.isSubmitting}
                         >
-                            Register
+                            {t('register')}
                         </Button>
                         <MUILink
                             className={style.helpLink}
                             href='/signin'
                             component={LinkBehaviour}
                         >
-                            Already have an account
+                            {t('AlreadyHaveAnAccount')}
                         </MUILink>
                     </Stack>
                 </form>

@@ -13,6 +13,7 @@ import { addUserData, setIsAuthorized } from '../../src/redux/slices/userSlice';
 import { parseUserDataFromApi } from '../../src/helpers/parseUserDataFromApi';
 import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'react-i18next';
 
 type IForm = {
     email: string;
@@ -22,6 +23,7 @@ type IForm = {
 const SignIn: React.FC = () => {
     const router = useRouter();
     const dispatch = useAppDispatch();
+    const { t } = useTranslation();
     const { triggerOpen } = useContext(OpenAlertContext);
 
     const handleSignIn = async (form: IForm) => {
@@ -32,13 +34,13 @@ const SignIn: React.FC = () => {
             dispatch(setIsAuthorized(true));
             triggerOpen({
                 severity: 'success',
-                text: 'Successfully sign in',
+                text: t('successSignIn'),
             });
             router.push('/dashboard');
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error when trying to sign in',
+                text: data.error || t('errorSignIn'),
             });
             formik.setSubmitting(false);
         }
@@ -59,7 +61,7 @@ const SignIn: React.FC = () => {
         <LoginLayout>
             <>
                 <Typography variant='h2' component='h2'>
-                    Sign in
+                    {t('signIn')}
                 </Typography>
                 <form onSubmit={formik.handleSubmit}>
                     <Stack direction='column' spacing={2}>
@@ -67,23 +69,29 @@ const SignIn: React.FC = () => {
                             id='email'
                             name='email'
                             type='email'
-                            placeholder='Email'
+                            placeholder={t('email') as string}
                             variant='outlined'
                             value={formik.values.email}
                             onChange={formik.handleChange}
                             error={formik.errors.email !== undefined}
-                            helperText={formik.errors.email}
+                            helperText={
+                                formik.errors.email &&
+                                (t(formik.errors.email) as string)
+                            }
                         />
                         <TextField
                             id='password'
                             name='password'
                             type='password'
-                            placeholder='Password'
+                            placeholder={t('password') as string}
                             variant='outlined'
                             value={formik.values.password}
                             onChange={formik.handleChange}
                             error={formik.errors.password !== undefined}
-                            helperText={formik.errors.password}
+                            helperText={
+                                formik.errors.password &&
+                                (t(formik.errors.password) as string)
+                            }
                         />
                         <Button
                             variant='contained'
@@ -91,7 +99,7 @@ const SignIn: React.FC = () => {
                             type='submit'
                             disabled={formik.isSubmitting}
                         >
-                            Sign in
+                            {t('signIn')}
                         </Button>
                         <Stack
                             direction='row'
@@ -103,14 +111,14 @@ const SignIn: React.FC = () => {
                                 href='/signup'
                                 component={LinkBehaviour}
                             >
-                                Don&apos;t have an account?
+                                {t('dontHaveAccount')}
                             </MUILink>
                             <MUILink
                                 className={style.helpLink}
                                 href='/forgot-password'
                                 component={LinkBehaviour}
                             >
-                                Forgot your password?
+                                {t('forgotPassword')}
                             </MUILink>
                         </Stack>
                     </Stack>

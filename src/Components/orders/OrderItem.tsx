@@ -9,6 +9,7 @@ import { IOrder } from '../../interfaces/order';
 import OrderPeopleCard from './OrderPeopleCard';
 import { convertStatusToText } from '../../helpers/convertStatusToText';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
@@ -24,6 +25,7 @@ const OrderItem: React.FC<IOrder> = ({
     carrier,
     id,
 }) => {
+    const { t } = useTranslation();
     return (
         <div
             className={cn(styles.order, {
@@ -40,7 +42,7 @@ const OrderItem: React.FC<IOrder> = ({
                                 variant='h4'
                                 component='h4'
                             >
-                                Carrier
+                                {t('carrier')}
                             </Typography>
                             {carrier?.id ? (
                                 <OrderPeopleCard people={carrier} />
@@ -59,7 +61,7 @@ const OrderItem: React.FC<IOrder> = ({
                                 variant='h4'
                                 component='h4'
                             >
-                                receiver
+                                {t('receiver')}
                             </Typography>
                             {receiver?.id ? (
                                 <OrderPeopleCard people={receiver} />
@@ -79,14 +81,14 @@ const OrderItem: React.FC<IOrder> = ({
                                     variant='h6'
                                     component='h6'
                                 >
-                                    Benifit
+                                    BENEFIT
                                 </Typography>
                                 <Typography
                                     className={styles.moneyValue}
                                     variant='h6'
                                     component='p'
                                 >
-                                    {rewardAmount} RUB
+                                    {rewardAmount}RUB
                                 </Typography>
                             </div>
                             {productAmount && (
@@ -96,75 +98,91 @@ const OrderItem: React.FC<IOrder> = ({
                                         variant='h6'
                                         component='p'
                                     >
-                                        Price
+                                        PRICE
                                     </Typography>
                                     <Typography
                                         className={styles.moneyValue}
                                         variant='h6'
                                         component='p'
                                     >
-                                        {productAmount} RUB
+                                        {productAmount}RUB
                                     </Typography>
                                 </div>
                             )}
                         </div>
                     </div>
                     <div className={styles.orderDescriptions}>
-                        <div className={styles.descriptionWay}>
+                        {productName && (
+                            <Typography
+                                variant='h3'
+                                component='p'
+                                className={cn(
+                                    styles.description,
+                                    styles.productName
+                                )}
+                            >
+                                <span>Product: </span>
+                                {productName}
+                            </Typography>
+                        )}
+
+                        {arrivalDate && (
                             <Typography
                                 variant='h3'
                                 component='p'
                                 className={styles.description}
                             >
-                                <span>To: </span>
-                                {toLocation}
+                                <span>Flight date:</span>{' '}
+                                {dayjs(arrivalDate).format('DD.MM.YYYY')}
                             </Typography>
-                            {fromLocation && (
-                                <Typography
-                                    variant='h3'
-                                    component='p'
-                                    className={styles.description}
-                                >
-                                    <span>From: </span>
-                                    {fromLocation}
-                                </Typography>
-                            )}
-                        </div>
-                        <div className={styles.descriptionParams}>
-                            {productName && (
-                                <Typography
-                                    variant='h3'
-                                    component='p'
-                                    className={cn(
-                                        styles.description,
-                                        styles.productName
-                                    )}
-                                >
-                                    <span>Product: </span>
-                                    {productName}
-                                </Typography>
-                            )}
+                        )}
+                        {productWeight && (
+                            <Typography
+                                variant='h3'
+                                component='p'
+                                className={styles.description}
+                            >
+                                {productName}
+                            </Typography>
+                        )}
+                        <Typography
+                            variant='h3'
+                            component='p'
+                            className={styles.description}
+                        >
+                            <span>TO: </span>
+                            {toLocation}
+                        </Typography>
+                        {fromLocation && (
+                            <Typography
+                                variant='h3'
+                                component='p'
+                                className={styles.description}
+                            >
+                                <span>FROM: </span>
+                                {fromLocation}
+                            </Typography>
+                        )}
 
-                            {arrivalDate && (
-                                <Typography
-                                    variant='h3'
-                                    component='p'
-                                    className={styles.description}
-                                >
-                                    <span>Flight date:</span>{' '}
-                                    {dayjs(arrivalDate).format('DD.MM.YYYY')}
-                                </Typography>
-                            )}
-                            {productWeight && (
-                                <Typography
-                                    variant='h3'
-                                    component='p'
-                                    className={styles.description}
-                                >
-                                    <span>Weight:</span> {productWeight} KG
-                                </Typography>
-                            )}
-                        </div>
+                        {arrivalDate && (
+                            <Typography
+                                variant='h3'
+                                component='p'
+                                className={styles.description}
+                            >
+                                <span>Flight date:</span>{' '}
+                                {dayjs(arrivalDate).format('DD.MM.YYYY')}
+                            </Typography>
+                        )}
+                        {productWeight && (
+                            <Typography
+                                variant='h3'
+                                component='p'
+                                className={styles.description}
+                            >
+                                <span>Weight:</span> {productWeight}
+                            </Typography>
+                        )}
                     </div>
                 </div>
                 <div className={styles.orderDetails}>
@@ -174,8 +192,7 @@ const OrderItem: React.FC<IOrder> = ({
                         disabled={status === orderStatus.cancelled}
                     >
                         <Link href={`/order/${id}`}>
-                            Order
-                            <br /> Details
+                            {t('orderDetailsButton')}
                         </Link>
                     </Button>
                     <div>
@@ -184,7 +201,7 @@ const OrderItem: React.FC<IOrder> = ({
                             component='p'
                             className={styles.status}
                         >
-                            <span>Status: </span>
+                            <span>STATUS: </span>
                             {convertStatusToText(status)}
                         </Typography>
                     </div>

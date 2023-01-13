@@ -10,6 +10,7 @@ import { Stack } from '@mui/system';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from '../../../styles/Settings.module.css';
 import {
     Currency,
@@ -29,6 +30,7 @@ const themes = ['Light', 'Dark'];
 
 const GeneralSettings: React.FC = () => {
     const dispatch = useAppDispatch();
+    const { t } = useTranslation();
     const userGeneralSettings = useAppSelector(
         state => state.settings.generalSettings
     );
@@ -56,7 +58,7 @@ const GeneralSettings: React.FC = () => {
                 <div className={styles.selectors}>
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='country'>Country</label>
+                            <label htmlFor='country'>{t('country')}</label>
                             <Select
                                 id='country'
                                 name='country'
@@ -75,7 +77,7 @@ const GeneralSettings: React.FC = () => {
                             </Select>
                         </div>
                         <div className={styles.inputItem}>
-                            <label htmlFor='language'>Language</label>
+                            <label htmlFor='language'>{t('language')}</label>
                             <Select
                                 id='language'
                                 name='language'
@@ -96,7 +98,7 @@ const GeneralSettings: React.FC = () => {
                     </Stack>
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='currency'>Currency</label>
+                            <label htmlFor='currency'>{t('currency')}</label>
                             <Select
                                 id='currency'
                                 name='currency'
@@ -115,7 +117,7 @@ const GeneralSettings: React.FC = () => {
                             </Select>
                         </div>
                         <div className={styles.inputItem}>
-                            <label htmlFor='theme'>Theme</label>
+                            <label htmlFor='theme'>{t('theme')}</label>
                             <Select
                                 id='theme'
                                 name='theme'
@@ -142,8 +144,7 @@ const GeneralSettings: React.FC = () => {
                             variant='body1'
                             component='p'
                         >
-                            I allow friendly carrier to transfer my money to the
-                            cloud
+                            {t('allowToTransferMyMoney')}
                         </Typography>
                         <Checkbox
                             sx={{
@@ -161,8 +162,7 @@ const GeneralSettings: React.FC = () => {
                             variant='body1'
                             component='p'
                         >
-                            I want to use two-step authentication by phone
-                            number
+                            {t('useTwoStepAuthentication')}
                         </Typography>
                         <Checkbox
                             sx={{
@@ -180,15 +180,14 @@ const GeneralSettings: React.FC = () => {
                 </div>
                 <div className={styles.deleteAccountBlock}>
                     <Button className={styles.deleteAccountButton}>
-                        Delete My Account
+                        {t('deleteMyAccount')}
                     </Button>
                     <Typography
                         className={styles.deleteAlert}
                         variant='body2'
                         component='p'
                     >
-                        Note that you cannot delete account
-                        <br /> if you have a running order
+                        {t('cannotDeleteAccount')}
                     </Typography>
                 </div>
             </form>

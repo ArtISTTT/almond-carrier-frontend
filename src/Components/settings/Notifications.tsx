@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../redux/hooks';
 import { INotifications } from '../../interfaces/settings';
 import { useFormik } from 'formik';
 import { changeNotifications } from '../../redux/slices/settingsSlice';
+import { useTranslation } from 'react-i18next';
 
 const defaultValues = {
     notificationsAboutNewsByEmail: false,
@@ -14,6 +15,7 @@ const defaultValues = {
 
 const Notifications: React.FC = () => {
     const dispatch = useAppDispatch();
+    const { t } = useTranslation();
 
     const updateNotifications = (form: INotifications) => {
         dispatch(changeNotifications(form));
@@ -37,9 +39,7 @@ const Notifications: React.FC = () => {
                         variant='body1'
                         component='p'
                     >
-                        I would like to receive notifications about the news of
-                        a friendly carrier
-                        <br /> by email
+                        {t('receiveNotifications')}
                     </Typography>
                     <Checkbox
                         sx={{
@@ -57,8 +57,7 @@ const Notifications: React.FC = () => {
                         variant='body1'
                         component='p'
                     >
-                        I would like to receive notifications about other
-                        users&apos; messages
+                        {t('receiveNotificationsAboutOtherUsers')}
                     </Typography>
                     <Checkbox
                         sx={{
@@ -78,8 +77,7 @@ const Notifications: React.FC = () => {
                         variant='body1'
                         component='p'
                     >
-                        I would like to receive notifications about changing
-                        order states
+                        {t('receiveNotificationsAboutChangingOrder')}
                     </Typography>
                     <Checkbox
                         sx={{

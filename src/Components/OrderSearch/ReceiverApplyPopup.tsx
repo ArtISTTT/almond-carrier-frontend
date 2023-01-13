@@ -9,6 +9,7 @@ import RegionAutocomplete from '../Common/RegionAutocomplete';
 import { useRouter } from 'next/router';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { applyOrderAsCarrier } from '../../api/order';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
     closePopup: () => void;
@@ -28,6 +29,7 @@ const defaultValues = {
 
 const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
     const { push } = useRouter();
+    const { t } = useTranslation();
     const { triggerOpen } = useContext(OpenAlertContext);
 
     const apply = async (form: IForm) => {
@@ -81,14 +83,14 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h4'
                         component='h3'
                     >
-                        Rating: <span>5</span>
+                        {t('rating')}: <span>5</span>
                     </Typography>
                     <Typography
                         className={styles.carrierCompletedOrders}
                         variant='h4'
                         component='h3'
                     >
-                        Completed orders: <span>4</span>
+                        {t('completedOrders')}: <span>4</span>
                     </Typography>
                 </div>
             </div>
@@ -103,7 +105,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        To:
+                        {t('to')}:
                     </Typography>
                     {order.fromLocation && (
                         <Typography
@@ -111,7 +113,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             variant='h5'
                             component='p'
                         >
-                            From:
+                            {t('from')}:
                         </Typography>
                     )}
                 </Stack>
@@ -147,22 +149,21 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        price:
-                        <span>{order.productAmount}</span>
+                        {t('price')}:<span>{order.productAmount}</span>
                     </Typography>
                     <Typography
                         className={styles.infoItem}
                         variant='h5'
                         component='p'
                     >
-                        benefit: <span>{order.rewardAmount}</span>
+                        {t('benefit')}: <span>{order.rewardAmount}</span>
                     </Typography>
                     <Typography
                         className={styles.infoItem}
                         variant='h5'
                         component='p'
                     >
-                        weight
+                        {t('weight')}
                         <span>{order.productWeight}</span>
                     </Typography>
                 </Stack>
@@ -171,7 +172,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                 <Stack direction='row' spacing={2}>
                     {!order.fromLocation && (
                         <div className={cn(styles.inputItem, styles.longInput)}>
-                            <label htmlFor='fromLocation'>From</label>
+                            <label htmlFor='fromLocation'>{t('from')}</label>
                             <RegionAutocomplete
                                 textFieldProps={{
                                     id: 'fromLocation',
@@ -187,7 +188,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         </div>
                     )}
                     <div className={styles.inputItem}>
-                        <label htmlFor='arrivalDate'>Date</label>
+                        <label htmlFor='arrivalDate'>{t('date')}</label>
                         <TextField
                             id='arrivalDate'
                             name='arrivalDate'
@@ -214,7 +215,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     className={styles.carrierApplyButton}
                     variant='contained'
                 >
-                    apply to order
+                    {t('applyToOrder')}
                 </Button>
             </form>
         </ApplyPopup>
