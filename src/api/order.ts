@@ -1,8 +1,9 @@
 import { IRecoverReturn } from '../interfaces/api/auth';
 import {
     IAddAsACarrierReturn,
-    IGetApplyOrderReturn,
+    IApplyOrderReturn,
     IGetMyOrdersReturn,
+    IGetOrderByIdReturn,
 } from '../interfaces/api/order';
 import {
     ICreateOrderCarrier,
@@ -96,7 +97,7 @@ export const applyOrderAsCarrier = (requestData: {
     fromLocation_placeId: string;
     arrivalDate: Date;
     orderId: string;
-}): Promise<IGetApplyOrderReturn> =>
+}): Promise<IApplyOrderReturn> =>
     mainInstance
         .post('/order/apply-as-carrier', JSON.stringify(requestData))
         .then(data => {
@@ -118,7 +119,7 @@ export const applyOrderAsReceiver = (requestData: {
     productWeight: number | undefined;
     productDescription: string;
     orderId: string;
-}): Promise<IGetApplyOrderReturn> =>
+}): Promise<IApplyOrderReturn> =>
     mainInstance
         .post('/order/apply-as-receiver', JSON.stringify(requestData))
         .then(data => {
@@ -131,5 +132,26 @@ export const applyOrderAsReceiver = (requestData: {
             return {
                 ok: false,
                 error: data.response?.data?.message ?? 'Error',
+            };
+        });
+
+export const getOrderById = (requestData: {
+    orderId: string;
+}): Promise<IGetOrderByIdReturn> =>
+    mainInstance
+        .get('/order/get-order-by-id', {
+            params: requestData,
+        })
+        .then(data => {
+            return {
+                ok: true,
+                order: data.data.order as IOrder,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ?? 'Error while getting order',
             };
         });

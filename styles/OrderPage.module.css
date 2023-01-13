@@ -1,5 +1,6 @@
 .wrapper {
     min-height: calc(100vh - 80px);
+    background-color: var(--cBgSecondary);
 }
 
 .orderDetails {
@@ -82,7 +83,137 @@
     height: 22px;
 }
 
+/* ------ Order information -------- */
+
+.productName {
+    margin-bottom: 32px;
+}
+
 .orderInformation {
+    padding: 32px 0;
+    margin: 0 32px;
+}
+
+.orderInformationTitle {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 600;
+    margin-bottom: 48px;
+}
+
+.orderInputValueWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.orderInputValueWrapper svg {
+    cursor: pointer;
+}
+
+.orderInputValueWrapper svg > path {
+    color: var(--cTextLow);
+}
+
+.orderInputValueWrapper svg:hover > path {
+    color: var(--cTextThird);
+}
+
+.orderInputValue {
+    font-size: 18px;
+    line-height: 40px;
+    font-weight: 500;
+    margin-right: 12px;
+    max-width: calc(250px - 24px - 8px);
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.editingWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.editingWrapper svg {
+    cursor: pointer;
+}
+
+.editingWrapper svg > path {
+    color: var(--cTextLow);
+}
+
+.editingWrapper svg:hover > path {
+    color: var(--cTextThird);
+}
+
+.inputItem {
+    max-width: 250px;
+    width: 100%;
+}
+
+.inputItem .input {
+    width: 100%;
+    margin-right: 12px;
+}
+.inputItem .input :global .MuiInputBase-root {
+    border-radius: 15px;
+    height: 40px;
+    width: 100%;
+}
+
+.inputItem > label {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.4px;
+    color: var(--cTextLow);
+}
+
+.valuesByColumns {
+    display: flex;
+    gap: 64px;
+    margin-bottom: 24px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 250px;
+    width: 100%;
+}
+
+.multilineItem {
+    max-width: 516px;
+}
+
+.multiline {
+    width: 100%;
+    margin-right: 16px;
+}
+
+.multiline :global .MuiInputBase-root {
+    border-radius: 15px;
+    width: 100%;
+}
+
+.haveSomeProblems {
+    color: var(--cTextPrimary);
+    padding: 48px 0;
+    margin-left: 32px;
+    margin-right: 32px;
+    max-width: 1000px;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.cancelButtonWrapper {
     padding: 32px;
-    background-color: var(--cBgSecondary);
+}
+
+.cancelButton {
+    width: 250px;
+    border-radius: 15px;
 }

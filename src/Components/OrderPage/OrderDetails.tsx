@@ -2,8 +2,13 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styles from '../../../styles/OrderPage.module.css';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { IOrder } from '../../interfaces/order';
 
-const OrderDetails = () => {
+type IProps = {
+    order: IOrder;
+};
+
+const OrderDetails: React.FC<IProps> = ({ order }) => {
     const router = useRouter();
 
     return (
@@ -11,7 +16,7 @@ const OrderDetails = () => {
             <div className={styles.orderDetailsMain}>
                 <div className={styles.orderDetailsTitle}>Order details</div>
                 <div className={styles.orderStatus}>
-                    Status: <span>Looking for carrier</span>
+                    Status: <span>{order.status}</span>
                 </div>
             </div>
             <div className={styles.orderDetailsInfo}>
@@ -21,7 +26,7 @@ const OrderDetails = () => {
                 </div>
                 <div className={styles.infoRight}>
                     <div className={styles.infoRightId}>
-                        <span>e1241412421412fjsd</span>
+                        <span>{order.id}</span>
                         <div>
                             <ContentCopyIcon fontSize='small' />
                         </div>

@@ -9,4 +9,5 @@ export type IUser = {
     phoneNumber: string;
     avatar?: string;
     completedOrders: number;
+    id: string;
 };

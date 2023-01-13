@@ -12,8 +12,14 @@ export type IGetMyOrdersReturn = {
     orders?: IOrder[];
 };
 
-export type IGetApplyOrderReturn = {
+export type IApplyOrderReturn = {
     error?: string | undefined;
     ok: boolean;
     orderId?: string;
+};
+
+export type IGetOrderByIdReturn = {
+    error?: string | undefined;
+    ok: boolean;
+    order?: IOrder;
 };
