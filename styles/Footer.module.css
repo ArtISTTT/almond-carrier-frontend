@@ -6,7 +6,6 @@
     justify-content: space-between;
     color: var(--cTextThird);
     padding: 30px;
-    /* box-shadow: 0px -4px 5px -6px rgb(34 60 80 / 60%); */
 }
 
 .formControl {
@@ -14,7 +13,9 @@
 }
 
 .leftBlock {
+    display: flex;
     margin-top: 15px;
+    flex-direction: column;
     margin-right: 30px;
 }
 
@@ -72,4 +73,51 @@
     font-size: 30px;
     margin-left: 17px;
     color: var(--cTextThird);
+}
+
+@media screen and (max-width: 1125px) {
+    .leftBlock {
+        width: 140px;
+    }
+    .centerBlock {
+        margin: 0;
+    }
+    .rightBlock {
+        justify-content: right;
+        margin-top: 200px;
+    }
+    .avatar {
+        display: none;
+    }
+    .footer {
+        padding-top: 0;
+        padding-bottom: 10px;
+        height: auto;
+    }
+    .input {
+        width: 140px !important;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .footer {
+        flex-direction: column;
+    }
+    .rightBlock {
+        margin-top: 10px;
+    }
+    .centerBlockInner {
+        justify-content: left;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .columnTitle {
+        font-size: 15px;
+    }
+    .centerLink {
+        font-size: 12px;
+        margin-top: 10px;
+    }
 }

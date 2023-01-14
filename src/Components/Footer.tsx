@@ -41,8 +41,8 @@ const Footer = () => {
     return (
         <footer className={styles.footer}>
             <div className={styles.leftBlock}>
-                <FormControl sx={{ width: 250 }} >
-                    <InputLabel id='language-label'>{t('language')}</InputLabel>
+                <FormControl sx={{ width: 250 }} className={styles.input} >
+                    <InputLabel id='language-label' >{t('language')}</InputLabel>
                     <Select
                         labelId='language-label'
                         id='demo-simple-select'
@@ -62,6 +62,7 @@ const Footer = () => {
                     sx={{ width: 55, height: 55 }}
                     src='/static/images/logo.png'
                     alt='logo'
+                    className={styles.avatar}
                 />
             </div>
             <div className={styles.centerBlock}>
