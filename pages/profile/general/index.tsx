@@ -2,9 +2,9 @@ import React from 'react';
 import CarrierLayout from 'src/Components/Layouts/Carrier';
 import ProfileLayout from 'src/Components/Layouts/ProfileLayout';
 import PrivateLayout from 'src/Components/Layouts/Private';
+import General from 'src/Components/MyProfile/General';
 import { privateTypes } from 'src/interfaces/private';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { General } from 'src/Components/Profile/General';
 
 const index = () => {
     return (

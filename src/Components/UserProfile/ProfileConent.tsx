@@ -6,7 +6,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import styles from '../../../styles/ProfileForNewUser.module.css';
 import { useAppSelector } from '../../redux/hooks';
 import { selectMyOrders } from '../../redux/selectors/orders';
-import ReviewItem from '../Profile/ReviewItem';
+import ReviewItem from '../MyProfile/ReviewItem';
 import dayjs from 'dayjs';
 import OrderItem from '../Orders/OrderItem';
 import EmptyNoShadows from '../EmptyComponents/EmptyNoShadows';

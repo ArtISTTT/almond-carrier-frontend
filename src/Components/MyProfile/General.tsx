@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import styles from '../../../styles/General.module.css';
+import styles from 'styles/General.module.css';
 import { Button, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/selectors/user';
@@ -32,7 +32,7 @@ type IForm = {
     dateOfBirth: string;
 };
 
-export const General = () => {
+const General = () => {
     const user = useSelector(selectUser);
     const dispatch = useAppDispatch();
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -308,3 +308,5 @@ export const General = () => {
         </div>
     );
 };
+
+export default General;
