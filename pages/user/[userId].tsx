@@ -2,7 +2,7 @@ import React from 'react';
 import MainLayout from '../../src/Components/Layouts/MainLayout';
 import PrivateLayout from '../../src/Components/Layouts/Private';
 import ProfileInfo from '../../src/Components/UserProfile/ProfileInfo';
-import ProfileConent from '../../src/Components/UserProfile/ProfileConent';
+import ProfileContent from '../../src/Components/UserProfile/ProfileContent';
 import { privateTypes } from '../../src/interfaces/private';
 
 const User: React.FC = () => {
@@ -13,7 +13,7 @@ const User: React.FC = () => {
                 showSignInOutIfUnauthorized={true}
             >
                 <ProfileInfo />
-                <ProfileConent />
+                <ProfileContent />
             </MainLayout>
         </PrivateLayout>
     );

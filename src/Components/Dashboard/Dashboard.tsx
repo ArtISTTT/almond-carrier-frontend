@@ -5,7 +5,7 @@ import cn from 'classnames';
 import AddIcon from '@mui/icons-material/Add';
 import ReceiverAddingPopup from 'src/Components/Orders/ReceiverAddingPopup';
 import CarrierLayout from '../Layouts/Carrier';
-import OrderItem from '../Orders/OrderItem';
+import OrderItem from 'src/Components/Orders/OrderItem';
 import RecentlyCreatedOrder from '../Orders/RecentlyCreatedOrder';
 import CarrierAddingPopup from '../Orders/CarrierAddingPopup';
 import { useSelector } from 'react-redux';

@@ -8,7 +8,7 @@ import { useAppSelector } from '../../redux/hooks';
 import { selectMyOrders } from '../../redux/selectors/orders';
 import ReviewItem from '../MyProfile/ReviewItem';
 import dayjs from 'dayjs';
-import OrderItem from '../Orders/OrderItem';
+import OrderItem from 'src/Components/Orders/OrderItem';
 import EmptyNoShadows from '../EmptyComponents/EmptyNoShadows';
 import { IReview } from '../../interfaces/profile';
 

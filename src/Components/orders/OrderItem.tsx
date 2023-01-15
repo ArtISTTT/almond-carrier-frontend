@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../../styles/OrderItem.module.css';
+import styles from 'styles/OrderItem.module.css';
 import { Avatar, Button, Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import cn from 'classnames';
