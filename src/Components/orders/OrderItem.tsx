@@ -143,7 +143,8 @@ const OrderItem: React.FC<IOrder> = ({
                                 component='p'
                                 className={styles.description}
                             >
-                                <span>Flight date:</span> {arrivalDate}
+                                <span>Flight date:</span>{' '}
+                                {arrivalDate.format('DD.MM.YYYY')}
                             </Typography>
                         )}
                         {productWeight && (

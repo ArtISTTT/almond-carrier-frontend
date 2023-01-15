@@ -7,7 +7,6 @@ import SearchTableOrderReceiver from './SearchTableOrderReceiver';
 import cn from 'classnames';
 import { IOrder } from '../../interfaces/order';
 import { useTranslation } from 'next-i18next';
-import { parseOrderDataFromApi } from '../../helpers/parseOrderDataFromApi';
 
 type IProps = {
     type: OrderSeachType;
@@ -54,10 +53,7 @@ const SearchTable: React.FC<IProps> = ({ type, orders }) => {
             <div>
                 {orders.map(order =>
                     type === OrderSeachType.carriers ? (
-                        <SearchTableOrderCarrier
-                            order={parseOrderDataFromApi(order)}
-                            key={order.id}
-                        />
+                        <SearchTableOrderCarrier order={order} key={order.id} />
                     ) : (
                         <SearchTableOrderReceiver
                             order={order}

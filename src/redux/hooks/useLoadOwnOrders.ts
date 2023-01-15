@@ -3,6 +3,7 @@ import { useContext, useState } from 'react';
 import { getMyOrders } from '../../api/order';
 import { setMyOrders } from '../slices/ordersSlice';
 import { OpenAlertContext } from '../../Components/Layouts/Snackbar';
+import { parseOrderDataFromApi } from '../../helpers/parseOrderDataFromApi';
 
 type IReturn = {
     isLoading: boolean;
@@ -22,7 +23,7 @@ export const useLoadOwnOrders = (): IReturn => {
         const data = await getMyOrders();
 
         if (data.ok && data.orders) {
-            dispatch(setMyOrders(data.orders));
+            dispatch(setMyOrders(parseOrderDataFromApi(data.orders)));
             setError(undefined);
         } else {
             setError('Error while uploading your orders');

@@ -1,7 +1,7 @@
+import { parseOrderDataFromApi } from './../../helpers/parseOrderDataFromApi';
 import { useAppDispatch } from './index';
 import { useContext, useState } from 'react';
-import { getMyOrders, searchOrders } from '../../api/order';
-import { setMyOrders } from '../slices/ordersSlice';
+import { searchOrders } from '../../api/order';
 import { OpenAlertContext } from '../../Components/Layouts/Snackbar';
 import {
     OrderSeachType,
@@ -37,7 +37,7 @@ export const useSearchOrders = (): IReturn => {
             setError(undefined);
             setIsLoading(false);
 
-            return data.orders;
+            return parseOrderDataFromApi(data.orders);
         } else {
             setError('Error while searching orders');
 

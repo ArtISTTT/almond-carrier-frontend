@@ -11,11 +11,11 @@ const useFormatAmount = () => {
         const fixedSum = formatSumFunc(sum);
 
         switch (userCurrency) {
-            case Currency.DOLLAR:
+            case Currency.USD:
                 return fixedSum.concat(' USD');
-            case Currency.EURO:
+            case Currency.EUR:
                 return fixedSum.concat(' EUR');
-            case Currency.RUBEL:
+            case Currency.RUB:
                 return fixedSum.concat(' РУБ');
             default:
                 return sum;

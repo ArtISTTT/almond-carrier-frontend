@@ -1,4 +1,5 @@
 import { orderStatus } from './profile';
+import { Dayjs } from 'dayjs';
 
 export interface IOrder {
     id: string;
@@ -12,7 +13,7 @@ export interface IOrder {
     productWeight?: number;
     productDescription?: string;
     carrierMaxWeight: number;
-    arrivalDate?: string;
+    arrivalDate?: Dayjs;
     status: orderStatus;
     isPayed: boolean;
     receiver?: {
