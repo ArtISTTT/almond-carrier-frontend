@@ -171,7 +171,7 @@ const OrderItem: React.FC<IOrder> = ({
                                 className={styles.description}
                             >
                                 <span>Flight date:</span>{' '}
-                                {dayjs(arrivalDate).format('DD.MM.YYYY')}
+                                {arrivalDate.format('DD.MM.YYYY')}
                             </Typography>
                         )}
                         {productWeight && (

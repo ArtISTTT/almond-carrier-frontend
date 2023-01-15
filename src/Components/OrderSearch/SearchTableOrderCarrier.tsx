@@ -67,7 +67,7 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                 </div>
             </div>
             <div className={cn(styles.part, styles.flightDate)}>
-                {dayjs(order.arrivalDate as Date).format('YYYY.MM.DD')}
+                {order.arrivalDate?.format('DD.MM.YYYY')}
             </div>
             <div className={cn(styles.part, styles.benefit)}>
                 {order.rewardAmount}$
