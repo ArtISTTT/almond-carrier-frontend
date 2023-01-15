@@ -14,7 +14,7 @@ import { signOut } from '../../api/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { selectUser } from '../../redux/selectors/user';
 import { useRouter } from 'next/router';
-import SettingsPopup from '../Settings/SettingsPopup';
+import SettingsPopup from '../SettingsPopup/SettingsPopup';
 import { setIsAuthorized } from '../../redux/slices/userSlice';
 import { useTranslation } from 'next-i18next';
 
