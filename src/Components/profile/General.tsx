@@ -32,7 +32,7 @@ type IForm = {
     dateOfBirth: string;
 };
 
-const General = () => {
+export const General = () => {
     const user = useSelector(selectUser);
     const dispatch = useAppDispatch();
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -308,5 +308,3 @@ const General = () => {
         </div>
     );
 };
-
-export default General;
