@@ -3,7 +3,7 @@ import styles from '../../../styles/Dashboard.module.css';
 import { Button, Container, Typography } from '@mui/material';
 import cn from 'classnames';
 import AddIcon from '@mui/icons-material/Add';
-import ReceiverAddingPopup from '../Orders/ReceiverAddingPopup';
+import ReceiverAddingPopup from 'src/Components/Orders/ReceiverAddingPopup';
 import CarrierLayout from '../Layouts/Carrier';
 import OrderItem from '../Orders/OrderItem';
 import RecentlyCreatedOrder from '../Orders/RecentlyCreatedOrder';
