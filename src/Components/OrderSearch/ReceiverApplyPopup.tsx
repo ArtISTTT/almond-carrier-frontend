@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { applyOrderAsCarrier } from '../../api/order';
 import { useTranslation } from 'react-i18next';
+import { ReceiverApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
 
 interface IProps {
     closePopup: () => void;
@@ -55,6 +56,9 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
     const formik = useFormik({
         initialValues: defaultValues,
         onSubmit: apply,
+        validationSchema: ReceiverApplyPopupSchema,
+        validateOnBlur: false,
+        validateOnChange: false,
     });
 
     const setLocationValue = async (
@@ -65,6 +69,8 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
         await formik.setFieldValue(id, value);
         await formik.setFieldValue(id + '_placeId', placeId);
     };
+
+    console.log(formik.errors.arrivalDate);
 
     return (
         <ApplyPopup closePopup={closePopup}>
@@ -182,6 +188,14 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                                     value: formik.values.fromLocation,
                                     onChange: formik.handleChange,
                                     className: styles.input,
+                                    error:
+                                        formik.errors.fromLocation !==
+                                        undefined,
+                                    helperText:
+                                        formik.errors.fromLocation &&
+                                        (t(
+                                            formik.errors.fromLocation
+                                        ) as string),
                                 }}
                                 setValue={setLocationValue}
                             />
@@ -199,6 +213,10 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             className={cn(styles.onlyDateInput, {
                                 [styles.input]: order.fromLocation,
                             })}
+                            error={formik.errors.arrivalDate !== undefined}
+                            helperText={
+                                formik.errors.arrivalDate && t('correctDate')
+                            }
                         />
                     </div>
                 </Stack>

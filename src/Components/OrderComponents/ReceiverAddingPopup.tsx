@@ -33,7 +33,7 @@ const defaultValues = {
     toLocation: '',
     toLocation_placeId: '',
     productName: '',
-    rewardAmount: 2000,
+    rewardAmount: 0,
     productAmount: 0,
     productWeight: 0,
     productDescription: '',
