@@ -118,3 +118,31 @@
     height: 100%;
     z-index: 5;
 }
+
+
+@media screen and (max-width: 900px) {
+    .ordersWindow {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .receiverTitle {
+        font-size: 30px;
+    }
+}
+
+
+
+@media screen and (max-width: 500px) {
+    .newOrderButtons {
+        margin: 0 auto;
+    }
+    .newOrderButton {
+        font-size: 10px;
+    }
+    .receiverTitle {
+        font-size: 25px;
+        line-height: 30px;
+    }
+}

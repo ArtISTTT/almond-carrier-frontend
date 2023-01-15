@@ -9,11 +9,11 @@ export const convertStatusToText = (status: orderStatus): string => {
         case orderStatus.inDiscussion:
             return 'In discussion';
         case orderStatus.waitingCarrier:
-            return 'Searching for carrier';
+            return 'Looking for carrier';
         case orderStatus.waitingReciever:
-            return 'Searching for receiver';
+            return 'Looking for receiver';
         case orderStatus.waitingForPayment:
-            return 'waiting for payment';
+            return 'Waiting for payment';
         default:
             return 'Success';
     }

@@ -59,6 +59,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 300px;
 }
 
 .detailsButton {
@@ -69,19 +70,23 @@
     padding: 6px 30px;
     border-radius: 16px;
     margin-top: 20px;
-    margin-bottom: 42px;
+    margin-bottom: 20px;
 }
 
 .status {
     font-weight: 400;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 16px;
     letter-spacing: 0.4px;
     text-transform: uppercase;
 }
 
+.boldSpan {
+    font-weight: 800;
+}
+
 .userBlock {
-    max-width: 300px;
+    max-width: 500px;
     width: 100%;
     padding: 12px 12px;
     border-right: 1px solid rgba(0, 0, 0, 0.12);
@@ -182,4 +187,246 @@
 
 .benefitBlock {
     margin-bottom: 10px;
+}
+
+.moneyBlockNew {
+    display: none;
+}
+
+@media screen and (max-width: 1100px) {
+    .blockTitle {
+        font-size: 12px;
+    }
+    .name {
+        font-size: 15px;
+        line-height: 18px;
+        margin-bottom: 3px;
+    }
+    .rating {
+        font-size: 11px;
+        line-height: 13px;
+    }
+    .completedOrders {
+        font-size: 11px;
+        line-height: 13px;
+    }
+    .roundIcon {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .roundIconQuestion {
+        width: 60px;
+        height: 60px;
+    }
+    .userBlock {
+        padding-left: 8px;
+    }
+    .moneyBlock {
+        padding-left: 8px;
+    }
+    .moneyTitle {
+        font-size: 12px;
+    }
+    .moneyValue {
+        font-size: 15px;
+    }
+    .orderDetails {
+        width: 250px;
+    }
+    .status {
+        font-size: 13px;
+    }
+    .description {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .carrierCard {
+        margin-top: 12px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .orderDetails {
+        width: 150px;
+    }
+    .status {
+        font-size: 12px;
+    }
+    .detailsButton {
+        font-size: 12px;
+        line-height: 20px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .userBlock {
+        padding: 8px;
+        height: 100px;
+    }
+    .moneyBlock {
+        padding: 2px;
+        height: 100px;
+    }
+    .carrierCard {
+        margin-top: 0px;
+    }
+    .roundIconQuestion {
+        margin-top: -5px;
+    }
+    .blockTitle {
+        font-size: 10px;
+    }
+    .moneyTitle {
+        font-size: 10px;
+    }
+    .moneyValue {
+        font-size: 12px;
+    }
+    .description {
+        font-size: 10px;
+        line-height: 12px;
+    }
+    .orderDescriptions {
+        gap: 6px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .detailsButton {
+        margin-bottom: 5px ;
+    }
+    .moneyBlock {
+        display: none;
+    }
+    .orderInfo {
+        border: none;
+    }
+    .orderDescriptions {
+        border-right: 1px solid rgba(0, 0, 0, 0.12);
+    }
+    .moneyBlockNew {
+        display: flex;
+        flex-direction: column;
+        padding-top: 3px;
+    }
+    .benefitBlock {
+        display: flex;
+        height: 10px;
+    }
+    .priceBlock {
+        display: flex;
+    }
+    .moneyTitle {
+        font-size: 11px;
+        line-height: 13px;
+    }
+    .moneyValue {
+        font-size: 11px;
+        line-height: 13px;
+        margin-left: 4px;
+    }
+    .status {
+        font-size: 11px;
+    }
+    .detailsButton {
+        margin-top: 5px;
+        font-size: 10px;
+        line-height: 15px;
+    }
+    .name {
+        font-size: 13px;
+    }
+    .rating {
+        font-size: 10px;
+        line-height: 11px;
+    }
+    .completedOrders {
+        font-size: 10px;
+        line-height: 11px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .userBlock {
+        width: 230px;
+    }
+    .orderData {
+        flex-direction: column;
+    }
+    .orderDescriptions {
+        border-right: none;
+    }
+    .orderDetails {
+        width: 100%;
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .detailsButton {
+        margin-top: 10px;
+    }
+    .status {
+        padding-right: 5px;
+        padding-bottom: 5px;
+    }
+    .userBlock {
+        border: none;
+    }
+    .userBlock:first-child {
+        border-right: 1px solid rgba(0, 0, 0, 0.12);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .orderTitle {
+        flex-direction: column;
+    }
+    .userBlock:first-child {
+        border: none;
+    }
+    .userBlock:first-child {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+    .userBlock {
+        width: 410px;
+    }
+    .description {
+        font-size: 8px;
+        line-height: 10px;
+    }
+    .moneyTitle {
+        font-size: 10px;
+        line-height: 11px;
+    }
+    .moneyValue {
+        font-size: 10px;
+        line-height: 11px;
+    }
+    .status {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .userBlock {
+        width: 390px;
+    }
+}
+
+@media screen and (max-width: 435px) {
+    .userBlock {
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .userBlock {
+        width: 330px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .userBlock {
+        width: 310px;
+    }
 }
