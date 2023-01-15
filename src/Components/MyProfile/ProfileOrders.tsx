@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from '../../../styles/ProfileOrders.module.css';
 import { Pagination, Typography } from '@mui/material';
-import OrderItem from 'src/Components/Orders/OrderItem';
+import OrderItem from 'src/Components/OrderComponents/OrderItem';
 import { useSelector } from 'react-redux';
 import { selectMyOrders } from '../../redux/selectors/orders';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
