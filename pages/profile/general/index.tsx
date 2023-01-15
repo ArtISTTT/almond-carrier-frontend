@@ -11,7 +11,7 @@ const index = () => {
         <PrivateLayout privateType={privateTypes.onlyAuthorized}>
             <CarrierLayout>
                 <ProfileLayout>
-                    <General></General>
+                    <General />
                 </ProfileLayout>
             </CarrierLayout>
         </PrivateLayout>
