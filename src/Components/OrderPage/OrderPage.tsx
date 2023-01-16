@@ -5,14 +5,14 @@ import OrderDetails from './OrderDetails';
 import OrderInformation from './OrderInformation';
 import { getOrderById } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
-import { IOrder } from '../../interfaces/order';
+import { IOrder, IOrderFull } from '../../interfaces/order';
 import OrderLoader from '../OrderLoader';
 import Link from 'next/link';
 import { Button } from '@mui/material';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
-    const [order, setOrder] = useState<IOrder | undefined>(undefined);
+    const [order, setOrder] = useState<IOrderFull | undefined>(undefined);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const { push } = useRouter();
 
@@ -55,7 +55,7 @@ const OrderPage = () => {
     return (
         <div className={styles.wrapper}>
             <OrderDetails order={order} />
-            <OrderInformation order={order} />
+            <OrderInformation order={order} updateOrder={updateOrder} />
             <div className={styles.haveSomeProblems}>
                 <Link href='#'>Have some problems? Write to our support</Link>
             </div>

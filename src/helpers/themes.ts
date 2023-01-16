@@ -5,6 +5,9 @@ export const theme = createTheme({
         primary: {
             main: '#6690FD',
         },
+        success: {
+            main: '#1c9e11',
+        },
     },
     typography: {
         fontFamily: 'Nunito',

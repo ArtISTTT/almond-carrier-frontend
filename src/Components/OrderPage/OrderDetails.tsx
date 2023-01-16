@@ -3,10 +3,10 @@ import React from 'react';
 import styles from '../../../styles/OrderPage.module.css';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useTranslation } from 'react-i18next';
-import { IOrder } from '../../interfaces/order';
+import { IOrderFull } from '../../interfaces/order';
 
 type IProps = {
-    order: IOrder;
+    order: IOrderFull;
 };
 
 const OrderDetails: React.FC<IProps> = ({ order }) => {

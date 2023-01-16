@@ -4,11 +4,13 @@ import {
     IApplyOrderReturn,
     IGetMyOrdersReturn,
     IGetOrderByIdReturn,
+    ISuggestChanges,
 } from '../interfaces/api/order';
 import {
     ICreateOrderCarrier,
     ICreateOrderReciever,
     IOrder,
+    IOrderFull,
 } from '../interfaces/order';
 import {
     OrderSeachType,
@@ -145,7 +147,7 @@ export const getOrderById = (requestData: {
         .then(data => {
             return {
                 ok: true,
-                order: data.data.order as IOrder,
+                order: data.data.order as IOrderFull,
             };
         })
         .catch(data => {
@@ -153,5 +155,61 @@ export const getOrderById = (requestData: {
                 ok: false,
                 error:
                     data.response?.data?.message ?? 'Error while getting order',
+            };
+        });
+
+export const suggestChangesByCarrier = (requestData: {
+    changes: Partial<IOrder>;
+    orderId: string;
+}): Promise<ISuggestChanges> =>
+    mainInstance
+        .post('/order/suggest-changes-by-carrier', JSON.stringify(requestData))
+        .then(data => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ?? 'Error while getting order',
+            };
+        });
+
+export const suggestChangesByReceiver = (requestData: {
+    changes: Partial<IOrder>;
+    orderId: string;
+}): Promise<ISuggestChanges> =>
+    mainInstance
+        .post('/order/suggest-changes-by-receiver', JSON.stringify(requestData))
+        .then(data => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error: data.response?.data?.message ?? 'Error while agree ',
+            };
+        });
+
+export const agreeWithChanges = (requestData: {
+    orderId: string;
+}): Promise<ISuggestChanges> =>
+    mainInstance
+        .post('/order/agree-with-changes', JSON.stringify(requestData))
+        .then(data => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ??
+                    'Error with agreement with the changes ',
             };
         });

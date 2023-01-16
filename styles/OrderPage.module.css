@@ -85,6 +85,22 @@
 
 /* ------ Order information -------- */
 
+.byOther {
+    width: 100%;
+    padding: 4px 32px;
+    font-size: 16px;
+    color: var(--cTextSecondary);
+    background-color: var(--cBgSuccess);
+}
+
+.byYou {
+    width: 100%;
+    padding: 4px 32px;
+    font-size: 16px;
+    color: var(--cTextSecondary);
+    background-color: #df821e;
+}
+
 .productName {
     margin-bottom: 32px;
 }
@@ -128,6 +144,14 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.orderInputValue.green {
+    color: var(--cTextSuccess);
+}
+
+.orderInputValue.orange {
+    color: #df821e;
 }
 
 .editingWrapper {
@@ -193,6 +217,14 @@
     margin-right: 16px;
 }
 
+.multiline.green textarea {
+    -webkit-text-fill-color: var(--cTextSuccess) !important;
+}
+
+.multiline.orange textarea {
+    -webkit-text-fill-color: #df821e !important;
+}
+
 .multiline :global .MuiInputBase-root {
     border-radius: 15px;
     width: 100%;
@@ -215,5 +247,14 @@
 
 .cancelButton {
     width: 250px;
+    border-radius: 15px;
+}
+
+.buttons {
+    display: flex;
+    margin-top: 32px;
+}
+
+.buttonItem {
     border-radius: 15px;
 }

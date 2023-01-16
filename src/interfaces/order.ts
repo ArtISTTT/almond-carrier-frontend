@@ -29,6 +29,11 @@ export interface IOrder {
     };
 }
 
+export interface IOrderFull extends IOrder {
+    byCarrierSuggestedChanges?: Partial<IOrder>;
+    byReceiverSuggestedChanges?: Partial<IOrder>;
+}
+
 export interface ICreateOrderReciever {
     toLocation: string;
     toLocation_placeId: string;

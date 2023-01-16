@@ -3,19 +3,69 @@ import React, { useMemo } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
 import styles from '../../../styles/OrderPage.module.css';
-import { IOrder } from '../../interfaces/order';
+import { IOrderFull } from '../../interfaces/order';
 import dayjs from 'dayjs';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
+import cn from 'classnames';
 
 export type ILabels = {
-    [key in keyof IOrder]?: boolean;
+    [key in keyof IOrderFull]?: boolean;
 };
 
-type OrderWithoutUsers = Omit<IOrder, 'receiver' | 'carrier'>;
+type OrderWithoutUsers = Omit<IOrderFull, 'receiver' | 'carrier'>;
+
+export enum ViewType {
+    carrier = 'carrier',
+    receiver = 'receiver',
+}
+
+export enum ChangedType {
+    byMe = 'byMe',
+    byOther = 'byOther',
+    notChanged = 'notChanged',
+}
+
+export const getChangedType = (
+    order: IOrderFull,
+    viewType: ViewType,
+    id: string
+) => {
+    console.log((order.byCarrierSuggestedChanges as any)?.[id], viewType);
+
+    if (
+        viewType === ViewType.carrier &&
+        (order.byReceiverSuggestedChanges as any)?.[id] !== undefined
+    ) {
+        return ChangedType.byOther;
+    }
+
+    if (
+        viewType === ViewType.receiver &&
+        (order.byCarrierSuggestedChanges as any)?.[id] !== undefined
+    ) {
+        return ChangedType.byOther;
+    }
+
+    if (
+        viewType === ViewType.carrier &&
+        (order.byCarrierSuggestedChanges as any)?.[id] !== undefined
+    ) {
+        return ChangedType.byMe;
+    }
+
+    if (
+        viewType === ViewType.receiver &&
+        (order.byReceiverSuggestedChanges as any)?.[id] !== undefined
+    ) {
+        return ChangedType.byMe;
+    }
+
+    return ChangedType.notChanged;
+};
 
 type IProps = {
     formik: any;
-    editingFields: (keyof IOrder)[];
+    editingFields: (keyof IOrderFull)[];
     order: OrderWithoutUsers;
     id: keyof OrderWithoutUsers;
     label?: string;
@@ -23,8 +73,9 @@ type IProps = {
     placeholder: string;
     availableLabels: ILabels;
     isLocation?: true;
-    addToEditingFields: (name: keyof IOrder) => void;
-    removeFromEditingFields: (name: keyof IOrder) => void;
+    viewType: ViewType;
+    addToEditingFields: (name: keyof IOrderFull) => void;
+    removeFromEditingFields: (name: keyof IOrderFull) => void;
 };
 
 const OrderInputItem: React.FC<IProps> = ({
@@ -37,11 +88,10 @@ const OrderInputItem: React.FC<IProps> = ({
     isLocation,
     availableLabels,
     placeholder,
+    viewType,
     addToEditingFields,
     removeFromEditingFields,
 }) => {
-    const orderValue = useMemo(() => order[id], [order, id]);
-
     const setLocationValue = async (
         id: 'fromLocation' | 'toLocation',
         value: string,
@@ -50,6 +100,8 @@ const OrderInputItem: React.FC<IProps> = ({
         await formik.setFieldValue(id, value);
         await formik.setFieldValue(id + '_placeId', placeId);
     };
+
+    const changedType = useMemo(() => getChangedType(order, viewType, id), []);
 
     return (
         <div className={styles.inputItem}>
@@ -94,17 +146,23 @@ const OrderInputItem: React.FC<IProps> = ({
                 </>
             ) : (
                 <div className={styles.orderInputValueWrapper}>
-                    <span className={styles.orderInputValue}>
-                        {orderValue instanceof Date
-                            ? dayjs(orderValue).format('DD.MM.YYYY')
-                            : orderValue}
+                    <span
+                        className={cn(styles.orderInputValue, {
+                            [styles.green]: changedType === ChangedType.byOther,
+                            [styles.orange]: changedType === ChangedType.byMe,
+                        })}
+                    >
+                        {formik.values[id] instanceof Date
+                            ? dayjs(formik.values[id]).format('DD.MM.YYYY')
+                            : formik.values[id]}
                     </span>
-                    {availableLabels[id] && (
-                        <EditIcon
-                            fontSize='medium'
-                            onClick={() => addToEditingFields(id)}
-                        />
-                    )}
+                    {availableLabels[id] &&
+                        changedType === ChangedType.notChanged && (
+                            <EditIcon
+                                fontSize='medium'
+                                onClick={() => addToEditingFields(id)}
+                            />
+                        )}
                 </div>
             )}
         </div>
