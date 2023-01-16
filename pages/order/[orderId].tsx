@@ -4,17 +4,22 @@ import PrivateLayout from '../../src/Components/Layouts/Private';
 import { privateTypes } from '../../src/interfaces/private';
 import MainLayout from '../../src/Components/Layouts/MainLayout';
 import OrderPage from '../../src/Components/OrderPage/OrderPage';
+import Head from 'next/head';
+import Script from 'next/script';
 
 const Order = () => {
     return (
-        <PrivateLayout privateType={privateTypes.onlyAuthorized}>
-            <MainLayout
-                showContinueIfAuthorized={false}
-                showSignInOutIfUnauthorized={false}
-            >
-                <OrderPage />
-            </MainLayout>
-        </PrivateLayout>
+        <>
+            <Script src='//code.jivosite.com/widget/HKJbIvZfS8' async />
+            <PrivateLayout privateType={privateTypes.onlyAuthorized}>
+                <MainLayout
+                    showContinueIfAuthorized={false}
+                    showSignInOutIfUnauthorized={false}
+                >
+                    <OrderPage />
+                </MainLayout>
+            </PrivateLayout>
+        </>
     );
 };
 
