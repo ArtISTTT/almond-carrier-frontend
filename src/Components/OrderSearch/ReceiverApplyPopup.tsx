@@ -10,6 +10,8 @@ import { useRouter } from 'next/router';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { applyOrderAsCarrier } from '../../api/order';
 import { useTranslation } from 'react-i18next';
+import formatSumFunc from 'src/helpers/formatSumFunc';
+import { useAppSelector } from 'src/redux/hooks';
 
 interface IProps {
     closePopup: () => void;
@@ -31,6 +33,9 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
     const { push } = useRouter();
     const { t } = useTranslation();
     const { triggerOpen } = useContext(OpenAlertContext);
+    const { currency } = useAppSelector(
+        state => state.settings.generalSettings
+    );
 
     const apply = async (form: IForm) => {
         const data = await applyOrderAsCarrier({ ...form, orderId: order.id });
@@ -149,14 +154,21 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        {t('price')}:<span>{order.productAmount}</span>
+                        {t('price')}:
+                        <span>
+                            {order.productAmount &&
+                                formatSumFunc(order.productAmount, currency)}
+                        </span>
                     </Typography>
                     <Typography
                         className={styles.infoItem}
                         variant='h5'
                         component='p'
                     >
-                        {t('benefit')}: <span>{order.rewardAmount}</span>
+                        {t('benefit')}:{' '}
+                        <span>
+                            {formatSumFunc(order.rewardAmount, currency)}
+                        </span>
                     </Typography>
                     <Typography
                         className={styles.infoItem}
@@ -164,7 +176,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         component='p'
                     >
                         {t('weight')}
-                        <span>{order.productWeight}</span>
+                        <span>{order.productWeight} </span>
                     </Typography>
                 </Stack>
             </div>

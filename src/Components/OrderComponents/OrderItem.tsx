@@ -10,6 +10,8 @@ import OrderPeopleCard from './OrderPeopleCard';
 import { convertStatusToText } from '../../helpers/convertStatusToText';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import formatSumFunc from 'src/helpers/formatSumFunc';
+import { useAppSelector } from 'src/redux/hooks';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
@@ -26,6 +28,10 @@ const OrderItem: React.FC<IOrder> = ({
     id,
 }) => {
     const { t } = useTranslation();
+    const { currency } = useAppSelector(
+        state => state.settings.generalSettings
+    );
+
     return (
         <div
             className={cn(styles.order, {
@@ -88,7 +94,7 @@ const OrderItem: React.FC<IOrder> = ({
                                     variant='h6'
                                     component='p'
                                 >
-                                    {rewardAmount}RUB
+                                    {formatSumFunc(rewardAmount, currency)}
                                 </Typography>
                             </div>
                             {productAmount && (
@@ -105,7 +111,7 @@ const OrderItem: React.FC<IOrder> = ({
                                         variant='h6'
                                         component='p'
                                     >
-                                        {productAmount}RUB
+                                        {formatSumFunc(productAmount, currency)}
                                     </Typography>
                                 </div>
                             )}

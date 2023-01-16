@@ -1,4 +1,6 @@
-const formatSumFunc = (sum: string | number) => {
+import { Currency } from './../interfaces/settings';
+
+const formatSumFunc = (sum: string | number, currency: Currency) => {
     const reversedSum = sum.toString().split('').reverse();
 
     for (let i = 0; i < reversedSum.length; i++) {
@@ -8,7 +10,17 @@ const formatSumFunc = (sum: string | number) => {
     }
     reversedSum.reverse().pop();
 
-    const finalSum = reversedSum.join('');
+    let finalSum = reversedSum.join('');
+
+    if (currency === Currency.EUR) {
+        finalSum = finalSum.concat(' EUR');
+    }
+    if (currency === Currency.RUB) {
+        finalSum = finalSum.concat(' РУБ');
+    }
+    if (currency === Currency.USD) {
+        finalSum = finalSum.concat(' USD');
+    }
 
     return finalSum;
 };

@@ -16,6 +16,8 @@ import { useRouter } from 'next/router';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { applyOrderAsReceiver } from '../../api/order';
 import { useTranslation } from 'react-i18next';
+import formatSumFunc from 'src/helpers/formatSumFunc';
+import { useAppSelector } from 'src/redux/hooks';
 
 interface IProps {
     closePopup: () => void;
@@ -39,6 +41,9 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
     const { push } = useRouter();
     const { t } = useTranslation();
     const { triggerOpen } = useContext(OpenAlertContext);
+    const { currency } = useAppSelector(
+        state => state.settings.generalSettings
+    );
 
     const apply = async (form: IForm) => {
         const data = await applyOrderAsReceiver({ ...form, orderId: order.id });
@@ -93,20 +98,36 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                 </div>
             </div>
             <div className={styles.carrierInfo}>
-                <Stack direction='column' spacing={3}>
+                <Stack direction='column' spacing={4}>
                     <Typography
                         className={styles.infoItemWay}
                         variant='h5'
                         component='p'
                     >
-                        {t('to')}: <span>{order.toLocation}</span>
+                        {t('to')}:
                     </Typography>
                     <Typography
                         className={styles.infoItemWay}
                         variant='h5'
                         component='p'
                     >
-                        {t('from')}: <span>{order.fromLocation}</span>
+                        {t('from')}:
+                    </Typography>
+                </Stack>
+                <Stack direction='column' spacing={2}>
+                    <Typography
+                        className={styles.infoItemWay}
+                        variant='h5'
+                        component='p'
+                    >
+                        <span>{order.toLocation}</span>
+                    </Typography>
+                    <Typography
+                        className={styles.infoItemWay}
+                        variant='h5'
+                        component='p'
+                    >
+                        <span>{order.fromLocation}</span>
                     </Typography>
                 </Stack>
                 <Stack direction='column' spacing={3}>
@@ -117,9 +138,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     >
                         {t('flightDate')}:
                         <span>
-                            {dayjs(order.arrivalDate as Date).format(
-                                'DD.MM.YYYY'
-                            )}
+                            {dayjs(order.arrivalDate).format('DD.MM.YYYY')}
                         </span>
                     </Typography>
                     <Typography
@@ -127,7 +146,10 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        {t('benefit')}: <span>{order.rewardAmount}</span>
+                        {t('benefit')}:{' '}
+                        <span>
+                            {formatSumFunc(order.rewardAmount, currency)}
+                        </span>
                     </Typography>
                     <Typography
                         className={styles.infoItem}
