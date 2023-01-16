@@ -10,6 +10,8 @@ import { useRouter } from 'next/router';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { applyOrderAsCarrier } from '../../api/order';
 import { useTranslation } from 'react-i18next';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { Currency } from 'src/interfaces/settings';
 import { ReceiverApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
 
 interface IProps {
@@ -31,6 +33,7 @@ const defaultValues = {
 const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
     const { push } = useRouter();
     const { t } = useTranslation();
+    const formatAmount = useFormatAmount();
     const { triggerOpen } = useContext(OpenAlertContext);
 
     const apply = async (form: IForm) => {
@@ -153,14 +156,29 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        {t('price')}:<span>{order.productAmount}</span>
+                        {t('price')}:
+                        <span>
+                            {order.productAmount &&
+                                formatAmount(
+                                    order.productAmount,
+                                    Currency.RUB,
+                                    true
+                                )}
+                        </span>
                     </Typography>
                     <Typography
                         className={styles.infoItem}
                         variant='h5'
                         component='p'
                     >
-                        {t('benefit')}: <span>{order.rewardAmount}</span>
+                        {t('benefit')}:{' '}
+                        <span>
+                            {formatAmount(
+                                order.rewardAmount,
+                                Currency.RUB,
+                                true
+                            )}
+                        </span>
                     </Typography>
                     <Typography
                         className={styles.infoItem}
@@ -168,7 +186,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         component='p'
                     >
                         {t('weight')}
-                        <span>{order.productWeight}</span>
+                        <span>{order.productWeight} </span>
                     </Typography>
                 </Stack>
             </div>

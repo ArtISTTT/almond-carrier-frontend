@@ -12,7 +12,7 @@ const reviews = [
         role: 'Receiver',
         text: 'Very Good, Dastin Fantastish',
         rating: 4,
-        benefit: 993,
+        benefit: 1993,
         date: dayjs('2019-01-25'),
     },
     {
@@ -21,7 +21,7 @@ const reviews = [
         role: 'Receiver',
         text: 'Very Good, Dastin Fantastish',
         rating: 4,
-        benefit: 993,
+        benefit: 1993,
         date: dayjs('2019-01-25'),
     },
     {
@@ -30,7 +30,7 @@ const reviews = [
         role: 'Receiver',
         text: 'Very Good, Dastin Fantastish',
         rating: 4,
-        benefit: 993,
+        benefit: 11993,
         date: dayjs('2019-01-25'),
     },
     {

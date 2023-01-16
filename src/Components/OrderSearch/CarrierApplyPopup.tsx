@@ -17,6 +17,8 @@ import { OpenAlertContext } from '../Layouts/Snackbar';
 import { applyOrderAsReceiver } from '../../api/order';
 import { useTranslation } from 'react-i18next';
 import { CarrierApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { Currency } from 'src/interfaces/settings';
 
 interface IProps {
     closePopup: () => void;
@@ -39,6 +41,7 @@ const defaultValues = {
 const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
     const { push } = useRouter();
     const { t } = useTranslation();
+    const formatAmount = useFormatAmount();
     const { triggerOpen } = useContext(OpenAlertContext);
 
     const apply = async (form: IForm) => {
@@ -97,20 +100,36 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                 </div>
             </div>
             <div className={styles.carrierInfo}>
-                <Stack direction='column' spacing={3}>
+                <Stack direction='column' spacing={4}>
                     <Typography
                         className={styles.infoItemWay}
                         variant='h5'
                         component='p'
                     >
-                        {t('to')}: <span>{order.toLocation}</span>
+                        {t('to')}:
                     </Typography>
                     <Typography
                         className={styles.infoItemWay}
                         variant='h5'
                         component='p'
                     >
-                        {t('from')}: <span>{order.fromLocation}</span>
+                        {t('from')}:
+                    </Typography>
+                </Stack>
+                <Stack direction='column' spacing={2}>
+                    <Typography
+                        className={styles.infoItemWay}
+                        variant='h5'
+                        component='p'
+                    >
+                        <span>{order.toLocation}</span>
+                    </Typography>
+                    <Typography
+                        className={styles.infoItemWay}
+                        variant='h5'
+                        component='p'
+                    >
+                        <span>{order.fromLocation}</span>
                     </Typography>
                 </Stack>
                 <Stack direction='column' spacing={3}>
@@ -127,7 +146,14 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        {t('benefit')}: <span>{order.rewardAmount}</span>
+                        {t('benefit')}:{' '}
+                        <span>
+                            {formatAmount(
+                                order.rewardAmount,
+                                Currency.RUB,
+                                true
+                            )}
+                        </span>
                     </Typography>
                     <Typography
                         className={styles.infoItem}

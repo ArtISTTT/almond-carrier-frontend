@@ -168,7 +168,7 @@
 
 .descriptionWay {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     gap: 20px;
     max-width: 100%;
     width: 100%;

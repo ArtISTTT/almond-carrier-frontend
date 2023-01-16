@@ -6,6 +6,8 @@ import { IOrder } from '../../interfaces/order';
 import { useTranslation } from 'next-i18next';
 import ReceiverApplyPopup from './ReceiverApplyPopup';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { Currency } from 'src/interfaces/settings';
 
 type IProps = {
     order: IOrder;
@@ -13,6 +15,7 @@ type IProps = {
 
 const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
     const { t } = useTranslation();
+    const formatAmount = useFormatAmount();
 
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
@@ -72,11 +75,24 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                 <div>
                     <div className={styles.fromToItem}>
                         <span className={styles.prefix}>{t('price')}:</span>
-                        <span>{order.productAmount}$</span>
+                        <span>
+                            {order.productAmount &&
+                                formatAmount(
+                                    order.productAmount,
+                                    Currency.RUB,
+                                    true
+                                )}
+                        </span>
                     </div>
                     <div className={styles.fromToItem}>
                         <span className={styles.prefix}>{t('benefit')}:</span>
-                        <span>{order.rewardAmount}$</span>
+                        <span>
+                            {formatAmount(
+                                order.rewardAmount,
+                                Currency.RUB,
+                                true
+                            )}
+                        </span>
                     </div>
                 </div>
             </div>

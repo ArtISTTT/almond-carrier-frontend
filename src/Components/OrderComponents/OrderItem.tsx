@@ -10,6 +10,8 @@ import OrderPeopleCard from './OrderPeopleCard';
 import { convertStatusToText } from '../../helpers/convertStatusToText';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { Currency } from 'src/interfaces/settings';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
@@ -26,6 +28,8 @@ const OrderItem: React.FC<IOrder> = ({
     id,
 }) => {
     const { t } = useTranslation();
+    const formatAmount = useFormatAmount();
+
     return (
         <div
             className={cn(styles.order, {
@@ -88,7 +92,11 @@ const OrderItem: React.FC<IOrder> = ({
                                     variant='h6'
                                     component='p'
                                 >
-                                    {rewardAmount}RUB
+                                    {formatAmount(
+                                        rewardAmount,
+                                        Currency.RUB,
+                                        true
+                                    )}
                                 </Typography>
                             </div>
                             {productAmount && (
@@ -105,7 +113,11 @@ const OrderItem: React.FC<IOrder> = ({
                                         variant='h6'
                                         component='p'
                                     >
-                                        {productAmount}RUB
+                                        {formatAmount(
+                                            productAmount,
+                                            Currency.RUB,
+                                            true
+                                        )}
                                     </Typography>
                                 </div>
                             )}

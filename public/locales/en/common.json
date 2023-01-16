@@ -139,6 +139,9 @@
     "reviews": "Reviews",
 
     "rub": "RUB",
+    "RUB": "Р",
+    "EUR": "€",
+    "USD": "$",
     "russian": "Russian",
     "safety": "Safety",
     "sendNewItem": "Send new item",
