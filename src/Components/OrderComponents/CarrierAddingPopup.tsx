@@ -29,7 +29,7 @@ const defaultValues = {
     fromLocation_placeId: '',
     carrierMaxWeight: 0,
     arrivalDate: undefined as unknown as Date,
-    rewardAmount: 2000,
+    rewardAmount: 0,
 };
 
 const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
@@ -139,7 +139,9 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                     </Stack>
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
-                            <label htmlFor='rewardAmount'>{t('benefit')}</label>
+                            <label htmlFor='rewardAmount'>
+                                {t('productPrice')}
+                            </label>
                             <TextField
                                 InputProps={{
                                     endAdornment: (
@@ -176,6 +178,10 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 value={formik.values.arrivalDate}
                                 onChange={formik.handleChange}
                                 error={formik.errors.arrivalDate !== undefined}
+                                helperText={
+                                    formik.errors.arrivalDate &&
+                                    t('correctDate')
+                                }
                                 className={styles.input}
                             />
                         </div>

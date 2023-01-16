@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { applyOrderAsReceiver } from '../../api/order';
 import { useTranslation } from 'react-i18next';
+import { CarrierApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
 
 interface IProps {
     closePopup: () => void;
@@ -62,6 +63,9 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
     const formik = useFormik({
         initialValues: defaultValues,
         onSubmit: apply,
+        validationSchema: CarrierApplyPopupSchema,
+        validateOnBlur: false,
+        validateOnChange: false,
     });
 
     return (
@@ -144,7 +148,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
             <form onSubmit={formik.handleSubmit} action='submit'>
                 <Stack direction='row' spacing={3}>
                     <div className={styles.inputItem}>
-                        <label htmlFor='productName'>{t('name')}</label>
+                        <label htmlFor='productName'>{t('productName')}</label>
                         <TextField
                             id='productName'
                             name='productName'
@@ -152,6 +156,11 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             value={formik.values.productName}
                             onChange={formik.handleChange}
                             className={styles.input}
+                            error={formik.errors.productName !== undefined}
+                            helperText={
+                                formik.errors.productName &&
+                                (t(formik.errors.productName) as string)
+                            }
                         />
                     </div>
                     <div className={styles.inputItem}>
@@ -171,6 +180,11 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             value={formik.values.productAmount}
                             onChange={formik.handleChange}
                             className={styles.input}
+                            error={formik.errors.productAmount !== undefined}
+                            helperText={
+                                formik.errors.productAmount &&
+                                (t(formik.errors.productAmount) as string)
+                            }
                         />
                     </div>
                     <div className={styles.inputItem}>
@@ -190,6 +204,11 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             value={formik.values.productWeight}
                             onChange={formik.handleChange}
                             className={styles.input}
+                            error={formik.errors.productWeight !== undefined}
+                            helperText={
+                                formik.errors.productWeight &&
+                                (t(formik.errors.productWeight) as string)
+                            }
                         />
                     </div>
                 </Stack>
@@ -212,6 +231,11 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         value={formik.values.productDescription}
                         onChange={formik.handleChange}
                         className={styles.carrierDescriptionBody}
+                        error={formik.errors.productDescription !== undefined}
+                        helperText={
+                            formik.errors.productDescription &&
+                            (t(formik.errors.productDescription) as string)
+                        }
                     />
                 </div>
                 <Button
