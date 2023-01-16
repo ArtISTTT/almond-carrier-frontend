@@ -10,8 +10,8 @@ import OrderPeopleCard from './OrderPeopleCard';
 import { convertStatusToText } from '../../helpers/convertStatusToText';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
-import formatSumFunc from 'src/helpers/formatSumFunc';
-import { useAppSelector } from 'src/redux/hooks';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { Currency } from 'src/interfaces/settings';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
@@ -28,9 +28,7 @@ const OrderItem: React.FC<IOrder> = ({
     id,
 }) => {
     const { t } = useTranslation();
-    const { currency } = useAppSelector(
-        state => state.settings.generalSettings
-    );
+    const formatAmount = useFormatAmount();
 
     return (
         <div
@@ -94,7 +92,11 @@ const OrderItem: React.FC<IOrder> = ({
                                     variant='h6'
                                     component='p'
                                 >
-                                    {formatSumFunc(rewardAmount, currency)}
+                                    {formatAmount(
+                                        rewardAmount,
+                                        Currency.RUB,
+                                        true
+                                    )}
                                 </Typography>
                             </div>
                             {productAmount && (
@@ -111,7 +113,11 @@ const OrderItem: React.FC<IOrder> = ({
                                         variant='h6'
                                         component='p'
                                     >
-                                        {formatSumFunc(productAmount, currency)}
+                                        {formatAmount(
+                                            productAmount,
+                                            Currency.RUB,
+                                            true
+                                        )}
                                     </Typography>
                                 </div>
                             )}

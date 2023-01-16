@@ -1,25 +1,30 @@
-import { useAppSelector } from './index';
-import formatSumFunc from '../../helpers/formatSumFunc';
-import { Currency } from '../../interfaces/settings';
+import { useTranslation } from 'next-i18next';
+import { Currency } from './../../interfaces/settings';
 
 const useFormatAmount = () => {
-    const userCurrency = useAppSelector(
-        state => state.settings.generalSettings.currency
-    );
+    const { t } = useTranslation();
 
-    return (sum: string | number) => {
-        const fixedSum = formatSumFunc(sum);
+    return (
+        sum: string | number,
+        customCurrency: Currency,
+        addCurrency?: boolean
+    ) => {
+        const reversedSum = sum.toString().split('').reverse();
 
-        switch (userCurrency) {
-            case Currency.USD:
-                return fixedSum.concat(' USD');
-            case Currency.EUR:
-                return fixedSum.concat(' EUR');
-            case Currency.RUB:
-                return fixedSum.concat(' РУБ');
-            default:
-                return sum;
+        for (let i = 0; i < reversedSum.length; i++) {
+            if (i % 4 === 0) {
+                reversedSum.splice(i, 0, ',');
+            }
         }
+        reversedSum.reverse().pop();
+
+        let finalSum = reversedSum.join('');
+
+        if (addCurrency) {
+            return finalSum.concat(` ${t(customCurrency)}`);
+        }
+
+        return finalSum;
     };
 };
 

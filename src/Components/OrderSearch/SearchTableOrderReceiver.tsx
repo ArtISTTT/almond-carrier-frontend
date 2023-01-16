@@ -6,8 +6,8 @@ import { IOrder } from '../../interfaces/order';
 import { useTranslation } from 'next-i18next';
 import ReceiverApplyPopup from './ReceiverApplyPopup';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
-import formatSumFunc from 'src/helpers/formatSumFunc';
-import { useAppSelector } from 'src/redux/hooks';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { Currency } from 'src/interfaces/settings';
 
 type IProps = {
     order: IOrder;
@@ -15,9 +15,7 @@ type IProps = {
 
 const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
     const { t } = useTranslation();
-    const { currency } = useAppSelector(
-        state => state.settings.generalSettings
-    );
+    const formatAmount = useFormatAmount();
 
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
@@ -79,13 +77,21 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                         <span className={styles.prefix}>{t('price')}:</span>
                         <span>
                             {order.productAmount &&
-                                formatSumFunc(order.productAmount, currency)}
+                                formatAmount(
+                                    order.productAmount,
+                                    Currency.RUB,
+                                    true
+                                )}
                         </span>
                     </div>
                     <div className={styles.fromToItem}>
                         <span className={styles.prefix}>{t('benefit')}:</span>
                         <span>
-                            {formatSumFunc(order.rewardAmount, currency)}
+                            {formatAmount(
+                                order.rewardAmount,
+                                Currency.RUB,
+                                true
+                            )}
                         </span>
                     </div>
                 </div>

@@ -16,8 +16,8 @@ import { useRouter } from 'next/router';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { applyOrderAsReceiver } from '../../api/order';
 import { useTranslation } from 'react-i18next';
-import formatSumFunc from 'src/helpers/formatSumFunc';
-import { useAppSelector } from 'src/redux/hooks';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { Currency } from 'src/interfaces/settings';
 
 interface IProps {
     closePopup: () => void;
@@ -40,10 +40,8 @@ const defaultValues = {
 const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
     const { push } = useRouter();
     const { t } = useTranslation();
+    const formatAmount = useFormatAmount();
     const { triggerOpen } = useContext(OpenAlertContext);
-    const { currency } = useAppSelector(
-        state => state.settings.generalSettings
-    );
 
     const apply = async (form: IForm) => {
         const data = await applyOrderAsReceiver({ ...form, orderId: order.id });
@@ -148,7 +146,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     >
                         {t('benefit')}:{' '}
                         <span>
-                            {formatSumFunc(order.rewardAmount, currency)}
+                            {formatAmount(order.rewardAmount, Currency.RUB, true)}
                         </span>
                     </Typography>
                     <Typography

@@ -7,8 +7,8 @@ import dayjs from 'dayjs';
 import { useTranslation } from 'next-i18next';
 import CarrierApplyPopup from './CarrierApplyPopup';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
-import formatSumFunc from 'src/helpers/formatSumFunc';
-import { useAppSelector } from 'src/redux/hooks';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { Currency } from 'src/interfaces/settings';
 
 type IProps = {
     order: IOrder;
@@ -16,9 +16,7 @@ type IProps = {
 
 const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
     const { t } = useTranslation();
-    const { currency } = useAppSelector(
-        state => state.settings.generalSettings
-    );
+    const formatAmount = useFormatAmount();
 
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
@@ -75,7 +73,7 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                 {order.arrivalDate?.format('DD.MM.YYYY')}
             </div>
             <div className={cn(styles.part, styles.benefit)}>
-                {formatSumFunc(order.rewardAmount, currency)}
+                {formatAmount(order.rewardAmount, Currency.RUB, true)}
             </div>
             <div className={cn(styles.part, styles.maxWeight)}>
                 {order.carrierMaxWeight} {t('kg')}

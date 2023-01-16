@@ -4,8 +4,8 @@ import React from 'react';
 import { IReview } from '../../interfaces/profile';
 import styles from '../../../styles/ReviewItem.module.css';
 import { useTranslation } from 'react-i18next';
-import formatSumFunc from 'src/helpers/formatSumFunc';
-import { useAppSelector } from 'src/redux/hooks';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { Currency } from 'src/interfaces/settings';
 
 const ReviewItem: React.FC<IReview> = ({
     role,
@@ -17,10 +17,7 @@ const ReviewItem: React.FC<IReview> = ({
     name,
 }) => {
     const { t } = useTranslation();
-
-    const { currency } = useAppSelector(
-        state => state.settings.generalSettings
-    );
+    const formatAmount = useFormatAmount();
 
     return (
         <div className={styles.review}>
@@ -65,7 +62,7 @@ const ReviewItem: React.FC<IReview> = ({
                         component='p'
                     >
                         {t('benefit')}{' '}
-                        <span>{formatSumFunc(benefit, currency)}</span>
+                        <span>{formatAmount(benefit, Currency.RUB, true)}</span>
                     </Typography>
                     <Typography
                         className={styles.reviewDate}
