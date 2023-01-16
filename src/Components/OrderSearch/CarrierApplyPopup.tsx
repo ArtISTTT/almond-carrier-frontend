@@ -116,11 +116,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         component='p'
                     >
                         {t('flightDate')}:
-                        <span>
-                            {dayjs(order.arrivalDate as Date).format(
-                                'DD.MM.YYYY'
-                            )}
-                        </span>
+                        <span>{order.arrivalDate?.format('DD.MM.YYYY')}</span>
                     </Typography>
                     <Typography
                         className={styles.infoItem}
