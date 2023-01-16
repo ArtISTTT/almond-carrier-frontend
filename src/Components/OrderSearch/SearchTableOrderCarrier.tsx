@@ -39,6 +39,7 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                 <Avatar
                     sx={{ width: 60, height: 60, cursor: 'pointer' }}
                     alt='logo'
+                    className={styles.avatar}
                 />
                 <div className={styles.userInfo}>
                     <div className={styles.userName}>
