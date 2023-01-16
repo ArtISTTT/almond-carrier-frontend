@@ -200,24 +200,70 @@ const OrderItem: React.FC<IOrder> = ({
                     </div>
                 </div>
                 <div className={styles.orderDetails}>
-                    <Button
-                        className={styles.detailsButton}
-                        variant='contained'
-                        disabled={status === orderStatus.cancelled}
-                    >
-                        <Link href={`/order/${id}`}>
-                            {t('orderDetailsButton')}
-                        </Link>
-                    </Button>
+                        <div className={styles.moneyBlockNew}>
+                            <div className={styles.benefitBlock}>
+                                <Typography
+                                    className={styles.moneyTitle}
+                                    variant='h6'
+                                    component='h6'
+                                >
+                                    BENEFIT
+                                </Typography>
+                                <Typography
+                                    className={styles.moneyValue}
+                                    variant='h6'
+                                    component='p'
+                                >
+                                    {formatAmount(
+                                        rewardAmount,
+                                        Currency.RUB,
+                                        true
+                                    )}
+                                </Typography>
+                            </div>
+                                {productAmount && (
+                                    <div className={styles.priceBlock}>
+                                        <Typography
+                                            className={styles.moneyTitle}
+                                            variant='h6'
+                                            component='p'
+                                        >
+                                            PRICE
+                                        </Typography>
+                                        <Typography
+                                            className={styles.moneyValue}
+                                            variant='h6'
+                                            component='p'
+                                        >
+                                            {formatAmount(
+                                                productAmount,
+                                                Currency.RUB,
+                                                true
+                                            )}
+                                        </Typography>
+                                    </div>
+                                )}
+                        </div>
                     <div>
-                        <Typography
-                            variant='h3'
-                            component='p'
-                            className={styles.status}
+                        <Button
+                            className={styles.detailsButton}
+                            variant='contained'
+                            disabled={status === orderStatus.cancelled}
                         >
-                            <span>STATUS: </span>
-                            {convertStatusToText(status)}
-                        </Typography>
+                            <Link href={`/order/${id}`}>
+                                {t('orderDetailsButton')}
+                            </Link>
+                        </Button>
+                        <div>
+                            <Typography
+                                variant='h3'
+                                component='p'
+                                className={styles.status}
+                            >
+                                <span>STATUS: </span>
+                                {convertStatusToText(status)}
+                            </Typography>
+                        </div>
                     </div>
                 </div>
             </div>

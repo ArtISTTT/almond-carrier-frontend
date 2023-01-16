@@ -22,7 +22,7 @@ const SearchTable: React.FC<IProps> = ({ type, orders }) => {
     const carriersHeaders = [
         { name: t('carrier'), long: true },
         { name: `${t('from')}/${t('to')}`, long: true },
-        { name: t('Date') },
+        { name: t('arrivalDate') },
         { name: t('benefit') },
         { name: t('maxWeight') },
     ];

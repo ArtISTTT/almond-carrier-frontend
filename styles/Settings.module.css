@@ -206,6 +206,12 @@
     .inputItemSecond > label {
         font-size: 10px;
     }
+    .inputItem {
+        transform: translateY(-10px);
+    }
+    .checkBoxes {
+        padding-top: 10px;
+    }
     .SettingsChooseText {
         font-size: 12px;
     }
