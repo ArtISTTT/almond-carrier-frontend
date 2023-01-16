@@ -22,7 +22,7 @@ const useGetOrder = (orderId: string) => {
         const data = await getOrderById({ orderId });
 
         if (data.ok && data.order) {
-            setOrder(parseOrderDataFromApi([data.order])[0]);
+            setOrder(data.order);
         } else {
             triggerOpen({
                 severity: 'error',

@@ -151,7 +151,7 @@ const OrderInputItem: React.FC<IProps> = ({
                         })}
                     >
                         {id === 'arrivalDate'
-                            ? (formik.values[id] as Dayjs).format('DD.MM.YYYY')
+                            ? dayjs(formik.values[id]).format('DD.MM.YYYY')
                             : formik.values[id]}
                     </span>
                     {availableLabels[id] &&
