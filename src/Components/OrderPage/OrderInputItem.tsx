@@ -4,7 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
 import styles from '../../../styles/OrderPage.module.css';
 import { IOrderFull } from '../../interfaces/order';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
 import cn from 'classnames';
 
@@ -30,8 +30,6 @@ export const getChangedType = (
     viewType: ViewType,
     id: string
 ) => {
-    console.log((order.byCarrierSuggestedChanges as any)?.[id], viewType);
-
     if (
         viewType === ViewType.carrier &&
         (order.byReceiverSuggestedChanges as any)?.[id] !== undefined
@@ -152,8 +150,8 @@ const OrderInputItem: React.FC<IProps> = ({
                             [styles.orange]: changedType === ChangedType.byMe,
                         })}
                     >
-                        {formik.values[id] instanceof Date
-                            ? dayjs(formik.values[id]).format('DD.MM.YYYY')
+                        {formik.values[id] instanceof Dayjs
+                            ? formik.values[id].format('DD.MM.YYYY')
                             : formik.values[id]}
                     </span>
                     {availableLabels[id] &&
