@@ -17,6 +17,7 @@ import { addOrderAsAReceiver } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
 import { useTranslation } from 'react-i18next';
+import cn from 'classnames';
 
 const valutes = ['RUB', 'USD', 'EUR'];
 
@@ -95,7 +96,7 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
         <Popup title={'Order new item'} closePopup={closePopup}>
             <form className={styles.form} onSubmit={formik.handleSubmit}>
                 <Stack direction='column' spacing={2} width='100%'>
-                    <Stack direction='row' spacing={2}>
+                    <Stack direction='row' spacing={2} className={styles.stack}>
                         <div className={styles.inputItem}>
                             <label htmlFor='fromLocation'>
                                 {t('deliverFrom')}
@@ -122,7 +123,12 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 setValue={setLocationValue}
                             />
                         </div>
-                        <div className={styles.inputItem}>
+                        <div
+                            className={cn(
+                                styles.inputItem,
+                                styles.inputItemSecond
+                            )}
+                        >
                             <label htmlFor='toLocation'>{t('deliverTo')}</label>
                             <RegionAutocomplete
                                 textFieldProps={{

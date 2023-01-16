@@ -3,11 +3,11 @@ import React from 'react';
 import style from '../../../styles/SignIn.module.css';
 import { privateTypes } from '../../interfaces/private';
 import PrivateLayout from './Private';
-import MainLayout from './MainLayout';
+import MainLayoutLogin from './MainLayoutLogin';
 
 const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
     <PrivateLayout privateType={privateTypes.onlyUnauthorized}>
-        <MainLayout
+        <MainLayoutLogin
             showContinueIfAuthorized={false}
             showSignInOutIfUnauthorized={false}
         >
@@ -16,6 +16,7 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
                     <Avatar
                         sx={{ width: 120, height: 120 }}
                         src='/static/images/logo.png'
+                        className={style.loginImage}
                         alt='logo'
                     />
                     {children}
@@ -27,7 +28,7 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
                     ></path>
                 </svg>
             </div>
-        </MainLayout>
+        </MainLayoutLogin>
     </PrivateLayout>
 );
 

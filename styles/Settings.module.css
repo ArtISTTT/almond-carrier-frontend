@@ -18,7 +18,7 @@
     z-index: 8;
     max-width: 600px;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 20px;
     max-height: 406px;
     height: 100%;
 }
@@ -61,7 +61,22 @@
     width: 100%;
 }
 
+.inputItemSecond {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .inputItem > label {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: var(--cTextPrimary);
+}
+
+.inputItemSecond > label {
     text-transform: uppercase;
     font-weight: 500;
     font-size: 13px;
@@ -157,8 +172,47 @@
 .closeIcon {
     position: absolute;
     cursor: pointer;
-
     color: var(--cTextThird);
     right: 16px;
     top: 16px;
+    transition: .3s linear;
+}
+
+@media screen and (max-width: 620px) {
+    .content {
+        width: 90%;
+        top: 40%;
+        max-height: 550px;
+    }
+    .stack {
+        flex-direction: column;
+    }
+    .inputItemSecond {
+        padding-top: 10px;
+        margin-left: 0px !important;
+    }
+    .checkBoxText {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .generalSettingsChoose {
+        margin-right: 30px;
+    }
+    .inputItem > label {
+        font-size: 10px;
+    }
+    .inputItemSecond > label {
+        font-size: 10px;
+    }
+    .SettingsChooseText {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .content {
+        top: 50%;
+    }
 }

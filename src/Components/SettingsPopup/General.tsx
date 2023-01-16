@@ -19,6 +19,7 @@ import {
 } from '../../interfaces/settings';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { changeGeneralSettings } from '../../redux/slices/settingsSlice';
+import cn from 'classnames';
 
 const countries = ['Russia', 'USA', 'Soviet Russia'];
 const languages = [
@@ -56,7 +57,7 @@ const GeneralSettings: React.FC = () => {
         <Container className={styles.generalContainer} maxWidth={false}>
             <form onSubmit={formik.handleSubmit}>
                 <div className={styles.selectors}>
-                    <Stack direction='row' spacing={2}>
+                    <Stack direction='row' spacing={2} className={styles.stack}>
                         <div className={styles.inputItem}>
                             <label htmlFor='country'>{t('country')}</label>
                             <Select
@@ -76,7 +77,12 @@ const GeneralSettings: React.FC = () => {
                                 ))}
                             </Select>
                         </div>
-                        <div className={styles.inputItem}>
+                        <div
+                            className={cn(
+                                styles.inputItem,
+                                styles.inputItemSecond
+                            )}
+                        >
                             <label htmlFor='language'>{t('language')}</label>
                             <Select
                                 id='language'
@@ -96,7 +102,7 @@ const GeneralSettings: React.FC = () => {
                             </Select>
                         </div>
                     </Stack>
-                    <Stack direction='row' spacing={2}>
+                    <Stack direction='row' spacing={2} className={styles.stack}>
                         <div className={styles.inputItem}>
                             <label htmlFor='currency'>{t('currency')}</label>
                             <Select
@@ -116,7 +122,12 @@ const GeneralSettings: React.FC = () => {
                                 ))}
                             </Select>
                         </div>
-                        <div className={styles.inputItem}>
+                        <div
+                            className={cn(
+                                styles.inputItem,
+                                styles.inputItemSecond
+                            )}
+                        >
                             <label htmlFor='theme'>{t('theme')}</label>
                             <Select
                                 id='theme'

@@ -89,6 +89,7 @@ const SignIn: React.FC = () => {
                             placeholder={t('email') as string}
                             variant='outlined'
                             value={formik.values.email}
+                            className={style.TextField}
                             onChange={formik.handleChange}
                             error={formik.errors.email !== undefined}
                             helperText={
@@ -96,7 +97,7 @@ const SignIn: React.FC = () => {
                                 (t(formik.errors.email) as string)
                             }
                         />
-                        <Stack direction='row' spacing={2}>
+                        <Stack direction='row' spacing={2} className={style.TextField}>
                             <TextField
                                 className={cn(style.input, style.nameInput)}
                                 id='firstName'
@@ -132,6 +133,7 @@ const SignIn: React.FC = () => {
                             placeholder={t('dateOfBirth') as string}
                             type='date'
                             variant='outlined'
+                            className={style.TextField}
                             value={formik.values.dateOfBirth}
                             onChange={formik.handleChange}
                             error={formik.errors.dateOfBirth !== undefined}
@@ -142,6 +144,7 @@ const SignIn: React.FC = () => {
                             type='password'
                             placeholder={t('password') as string}
                             variant='outlined'
+                            className={style.TextField}
                             value={formik.values.password}
                             onChange={formik.handleChange}
                             error={formik.errors.password !== undefined}
@@ -157,6 +160,7 @@ const SignIn: React.FC = () => {
                             placeholder={t('confirmPassword') as string}
                             variant='outlined'
                             value={formik.values.confirmPassword}
+                            className={style.TextField}
                             onChange={formik.handleChange}
                             error={formik.errors.confirmPassword !== undefined}
                             helperText={

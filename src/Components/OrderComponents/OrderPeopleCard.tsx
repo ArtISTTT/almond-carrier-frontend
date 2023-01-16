@@ -21,6 +21,7 @@ const OrderPeopleCard: React.FC<IProps> = ({ people }) => {
                     height: 65,
                     cursor: 'pointer',
                 }}
+                className={styles.roundIcon}
             />
             <div className={styles.info}>
                 <Typography className={styles.name} variant='h5' component='h5'>

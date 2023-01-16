@@ -56,6 +56,7 @@ const OrderItem: React.FC<IOrder> = ({
                                         width: 65,
                                         height: 65,
                                     }}
+                                    className={styles.roundIconQuestion}
                                 />
                             )}
                         </div>
@@ -75,6 +76,7 @@ const OrderItem: React.FC<IOrder> = ({
                                         width: 65,
                                         height: 65,
                                     }}
+                                    className={styles.roundIconQuestion}
                                 />
                             )}
                         </div>

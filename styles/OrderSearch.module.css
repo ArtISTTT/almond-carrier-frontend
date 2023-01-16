@@ -27,10 +27,8 @@
     font-weight: 500;
     font-size: 24px;
     line-height: 40px;
-
     text-align: center;
     letter-spacing: 0.46px;
-
     user-select: none;
 }
 
@@ -55,7 +53,7 @@
 }
 
 .typeTitle {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 28px;
     line-height: 40px;
     letter-spacing: 0.46px;

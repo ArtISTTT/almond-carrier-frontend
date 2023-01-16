@@ -25,7 +25,6 @@ const SignIn: React.FC = () => {
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
     const { triggerOpen } = useContext(OpenAlertContext);
-
     const handleSignIn = async (form: IForm) => {
         const data = await signIn(form);
 
@@ -86,6 +85,7 @@ const SignIn: React.FC = () => {
                             placeholder={t('password') as string}
                             variant='outlined'
                             value={formik.values.password}
+                            className={style.TextField}
                             onChange={formik.handleChange}
                             error={formik.errors.password !== undefined}
                             helperText={
