@@ -103,7 +103,6 @@ const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
     }, [order]);
 
     const onSubmit = (form: any) => {
-        console.log(form);
         setEditingFields([]);
     };
 
@@ -196,6 +195,8 @@ const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
         viewType,
         'productDescription'
     );
+
+    console.log(typeof formik.values.arrivalDate);
 
     return (
         <>

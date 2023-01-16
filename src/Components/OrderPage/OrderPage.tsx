@@ -9,6 +9,7 @@ import { IOrder, IOrderFull } from '../../interfaces/order';
 import OrderLoader from '../OrderLoader';
 import Link from 'next/link';
 import { Button } from '@mui/material';
+import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -20,8 +21,8 @@ const useGetOrder = (orderId: string) => {
         setIsLoading(true);
         const data = await getOrderById({ orderId });
 
-        if (data.ok) {
-            setOrder(data.order);
+        if (data.ok && data.order) {
+            setOrder(parseOrderDataFromApi([data.order])[0]);
         } else {
             triggerOpen({
                 severity: 'error',
