@@ -27,35 +27,30 @@ import {
 } from 'src/api/order';
 import { useContext } from 'react';
 import { OpenAlertContext } from '../Layouts/Snackbar';
+import { IUser } from 'src/interfaces/user';
 
 type IProps = {
     order: IOrderFull;
+    viewType: ViewType;
+    suggestedChanged: Partial<IOrder> | undefined;
+    hasByYouSuggestedChanged: boolean;
+    user: IUser;
     updateOrder: (withoutLoading?: true) => Promise<void>;
 };
 
-const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
+const OrderInformation: React.FC<IProps> = ({
+    order,
+    viewType,
+    suggestedChanged,
+    hasByYouSuggestedChanged,
+    user,
+    updateOrder,
+}) => {
     const router = useRouter();
-    const user = useSelector(selectUser);
     const [editingFields, setEditingFields] = useState<(keyof IOrderFull)[]>(
         []
     );
     const { triggerOpen } = useContext(OpenAlertContext);
-    const viewType = useMemo(
-        () =>
-            order.receiver?.id === user.id
-                ? ViewType.receiver
-                : ViewType.carrier,
-        []
-    );
-    const suggestedChanged =
-        viewType === ViewType.receiver
-            ? order.byCarrierSuggestedChanges
-            : order.byReceiverSuggestedChanges;
-    const hasByYouSuggestedChanged = Boolean(
-        viewType === ViewType.receiver
-            ? order.byReceiverSuggestedChanges
-            : order.byCarrierSuggestedChanges
-    );
 
     const addToEditingFields = (name: keyof IOrderFull) => {
         setEditingFields(editingFields.concat([name]));
@@ -249,58 +244,6 @@ const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
 
     return (
         <>
-            {order.status === OrderStatus.inDiscussion && (
-                <>
-                    {suggestedChanged && (
-                        <div className={styles.byOther}>
-                            Highlighted fields have been changed and are waiting
-                            for your confirmation
-                        </div>
-                    )}
-                    {hasByYouSuggestedChanged && (
-                        <div className={styles.byYou}>
-                            Highlighted fields have been changed by you and are
-                            waiting for confirmation
-                        </div>
-                    )}
-                    {viewType === ViewType.receiver &&
-                        order.dealConfirmedByReceiver &&
-                        !order.dealConfirmedByCarrier && (
-                            <div className={styles.confirmationString}>
-                                Waiting for confirmation of the carrier
-                            </div>
-                        )}
-                    {viewType === ViewType.carrier &&
-                        order.dealConfirmedByCarrier &&
-                        !order.dealConfirmedByReceiver && (
-                            <div className={styles.confirmationString}>
-                                Waiting for confirmation of the receiver
-                            </div>
-                        )}
-                    {viewType === ViewType.receiver &&
-                        order.dealConfirmedByCarrier &&
-                        !order.dealConfirmedByReceiver && (
-                            <div className={styles.confirmationString}>
-                                The carrier is waiting for your confirmation to
-                                start the deal
-                            </div>
-                        )}
-                    {viewType === ViewType.carrier &&
-                        order.dealConfirmedByReceiver &&
-                        !order.dealConfirmedByCarrier && (
-                            <div className={styles.confirmationString}>
-                                The receiver is waiting for your confirmation to
-                                start the deal
-                            </div>
-                        )}
-                </>
-            )}
-
-            {order.status === OrderStatus.waitingForPaymentVerification && (
-                <div className={styles.confirmationString}>
-                    Waiting for payment confirmation
-                </div>
-            )}
             <div className={styles.orderInformation}>
                 <form onSubmit={formik.handleSubmit}>
                     <div className={styles.orderInformationTitle}>
