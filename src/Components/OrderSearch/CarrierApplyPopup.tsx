@@ -6,7 +6,6 @@ import {
     Stack,
     InputAdornment,
 } from '@mui/material';
-import dayjs from 'dayjs';
 import { useFormik } from 'formik';
 import React, { useContext } from 'react';
 import styles from '../../../styles/ApplyPopup.module.css';
@@ -19,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { CarrierApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
+import { useAppSelector } from 'src/redux/hooks';
 
 interface IProps {
     closePopup: () => void;
@@ -38,11 +38,21 @@ const defaultValues = {
     productDescription: '',
 };
 
+const userCurrency = {
+    [Currency.RUB]: 'RUB',
+    [Currency.EUR]: 'EUR',
+    [Currency.USD]: 'USD',
+};
+
 const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
     const { push } = useRouter();
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
     const { triggerOpen } = useContext(OpenAlertContext);
+
+    const { currency } = useAppSelector(
+        ({ settings }) => settings.generalSettings
+    );
 
     const apply = async (form: IForm) => {
         const data = await applyOrderAsReceiver({ ...form, orderId: order.id });
@@ -100,38 +110,50 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                 </div>
             </div>
             <div className={styles.carrierInfo}>
-                <Stack direction='column' spacing={4}>
-                    <Typography
-                        className={styles.infoItemWay}
-                        variant='h5'
-                        component='p'
+                <div className={styles.infoWayItems}>
+                    <Stack
+                        className={styles.infoWayLine}
+                        direction='row'
+                        spacing={4}
                     >
-                        {t('to')}:
-                    </Typography>
-                    <Typography
-                        className={styles.infoItemWay}
-                        variant='h5'
-                        component='p'
+                        <Typography
+                            className={styles.infoItemWay}
+                            variant='h5'
+                            component='p'
+                        >
+                            {t('to')}:
+                        </Typography>
+                        <Typography
+                            className={styles.infoItemWay}
+                            variant='h5'
+                            component='p'
+                        >
+                            <span>{order.toLocation}</span>
+                        </Typography>
+                    </Stack>
+                    <Stack
+                        className={styles.infoWayLine}
+                        direction='row'
+                        spacing={2}
                     >
-                        {t('from')}:
-                    </Typography>
-                </Stack>
-                <Stack direction='column' spacing={2}>
-                    <Typography
-                        className={styles.infoItemWay}
-                        variant='h5'
-                        component='p'
-                    >
-                        <span>{order.toLocation}</span>
-                    </Typography>
-                    <Typography
-                        className={styles.infoItemWay}
-                        variant='h5'
-                        component='p'
-                    >
-                        <span>{order.fromLocation}</span>
-                    </Typography>
-                </Stack>
+                        <Typography
+                            className={styles.infoItemWay}
+                            variant='h5'
+                            component='p'
+                        >
+                            {t('from')}:
+                        </Typography>
+
+                        <Typography
+                            className={styles.infoItemWay}
+                            variant='h5'
+                            component='p'
+                        >
+                            <span>{order.fromLocation}</span>
+                        </Typography>
+                    </Stack>
+                </div>
+
                 <Stack direction='column' spacing={3}>
                     <Typography
                         className={styles.infoItem}
@@ -160,14 +182,10 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        {t('maxWeight')}: <span>{order.carrierMaxWeight}</span>
-                    </Typography>
-                    <Typography
-                        className={styles.infoItem}
-                        variant='h5'
-                        component='p'
-                    >
-                        {t('totalSum')}: <span>??</span>
+                        {t('maxWeight')}:
+                        <span>
+                            {order.carrierMaxWeight} {t('kg')}
+                        </span>
                     </Typography>
                 </Stack>
             </div>
@@ -195,7 +213,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position='end'>
-                                        {t('rub')}
+                                        {t(userCurrency[currency])}
                                     </InputAdornment>
                                 ),
                             }}

@@ -3,6 +3,11 @@ export enum OrderSeachType {
     carriers = 'carriers',
 }
 
+export enum userRole {
+    receiver = 'receiver',
+    carrier = 'carrier',
+}
+
 export type carriersFilter = {
     fromLocation?: string;
     toLocation?: string;

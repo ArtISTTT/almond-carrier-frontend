@@ -8,6 +8,8 @@ import { Provider as StoreProvider } from 'react-redux';
 import { store } from '../src/redux';
 import SnackBarLayout from '../src/Components/Layouts/Snackbar';
 import { appWithTranslation } from 'next-i18next';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 const App = ({ Component, pageProps }: AppProps) => {
     return (
@@ -15,9 +17,11 @@ const App = ({ Component, pageProps }: AppProps) => {
             <ThemeProvider theme={theme}>
                 <StoreProvider store={store}>
                     <AuthLayout>
-                        <SnackBarLayout>
-                            <Component {...pageProps} />
-                        </SnackBarLayout>
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <SnackBarLayout>
+                                <Component {...pageProps} />
+                            </SnackBarLayout>
+                        </LocalizationProvider>
                     </AuthLayout>
                 </StoreProvider>
             </ThemeProvider>

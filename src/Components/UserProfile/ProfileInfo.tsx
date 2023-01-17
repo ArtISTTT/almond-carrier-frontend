@@ -12,6 +12,7 @@ const ProfileInfo = () => {
     const navigateToSignUp = () => router.push('/signup');
 
     const { t } = useTranslation();
+
     return (
         <div className={styles.wrapper}>
             <Container className={styles.profileInfoContainer} maxWidth={false}>

@@ -21,7 +21,13 @@ import { mainInstance } from './instance';
 
 export const signUp = (requestData: ISignUp): Promise<ISignUpReturn> =>
     mainInstance
-        .post('/auth/signup', JSON.stringify(requestData))
+        .post(
+            '/auth/signup',
+            JSON.stringify({
+                ...requestData,
+                dateOfBirth: requestData.dateOfBirth.toDate(),
+            })
+        )
         .then(data => {
             if (data.data.email) {
                 localStorageUserData.setUserData(data.data);
@@ -133,7 +139,13 @@ export const updateUserInfo = (
     requestData: IUpdateUserInfo
 ): Promise<IUpdateUserInfoReturn> =>
     mainInstance
-        .post('/update-user-info', JSON.stringify(requestData))
+        .post(
+            '/update-user-info',
+            JSON.stringify({
+                ...requestData,
+                dateOfBirth: requestData.dateOfBirth.toDate(),
+            })
+        )
         .then(data => {
             return {
                 ok: true,

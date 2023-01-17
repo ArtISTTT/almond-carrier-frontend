@@ -39,7 +39,7 @@ const ReviewItem: React.FC<IReview> = ({
                     variant='h4'
                     component='h4'
                 >
-                    {role}
+                    {t(role)}
                 </Typography>
             </div>
             <div className={styles.reviewData}>

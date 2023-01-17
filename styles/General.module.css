@@ -37,7 +37,7 @@
     width: 100%;
 }
 
-.input :global .MuiInputAdornment-root {
+.input.inputPhone :global .MuiInputAdornment-root {
     display: none;
 }
 

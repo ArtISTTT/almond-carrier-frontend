@@ -1,13 +1,6 @@
-import {
-    Button,
-    InputAdornment,
-    MenuItem,
-    Select,
-    TextField,
-    Typography,
-} from '@mui/material';
+import { Button, InputAdornment, TextField } from '@mui/material';
 import styles from '../../../styles/Popup.module.css';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import { Stack } from '@mui/system';
 import { CarrierPopupSchema } from '../../schemas/PopupSchema';
@@ -17,6 +10,9 @@ import { addOrderAsACarrier } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
 import { useTranslation } from 'react-i18next';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { useAppSelector } from 'src/redux/hooks';
+import { Currency } from 'src/interfaces/settings';
 import cn from 'classnames';
 
 interface IProps {
@@ -29,9 +25,15 @@ const defaultValues = {
     toLocation_placeId: '',
     fromLocation: '',
     fromLocation_placeId: '',
-    carrierMaxWeight: 0,
+    carrierMaxWeight: null,
     arrivalDate: undefined as unknown as Date,
-    rewardAmount: 0,
+    rewardAmount: null,
+};
+
+const userCurrency = {
+    [Currency.RUB]: 'RUB',
+    [Currency.EUR]: 'EUR',
+    [Currency.USD]: 'USD',
 };
 
 const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
@@ -43,6 +45,10 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
     const { t } = useTranslation();
 
     const { triggerOpen } = useContext(OpenAlertContext);
+
+    const { currency } = useAppSelector(
+        ({ settings }) => settings.generalSettings
+    );
 
     const addNewOrder = async (form: ICreateOrderCarrier) => {
         const data = await addOrderAsACarrier(form);
@@ -153,7 +159,9 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position='end'>
-                                            {t('rub')}
+                                            <span className={styles.currency}>
+                                                {t(userCurrency[currency])}
+                                            </span>
                                         </InputAdornment>
                                     ),
                                 }}
@@ -181,20 +189,30 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             <label htmlFor='arrivalDate'>
                                 {t('arrivalDate')}
                             </label>
-                            <TextField
-                                id='arrivalDate'
-                                name='arrivalDate'
-                                placeholder={t('arrivalDate') as string}
-                                type='date'
-                                variant='outlined'
+                            <DesktopDatePicker
+                                inputFormat='DD.MM.YYYY'
                                 value={formik.values.arrivalDate}
-                                onChange={formik.handleChange}
-                                error={formik.errors.arrivalDate !== undefined}
-                                helperText={
-                                    formik.errors.arrivalDate &&
-                                    t('correctDate')
-                                }
-                                className={styles.input}
+                                disablePast={true}
+                                onChange={value => {
+                                    formik.setFieldValue('arrivalDate', value);
+                                }}
+                                renderInput={params => (
+                                    <TextField
+                                        {...params}
+                                        id='dateOfBirth'
+                                        name='dateOfBirth'
+                                        variant='outlined'
+                                        className={styles.input}
+                                        error={
+                                            formik.errors.arrivalDate !==
+                                            undefined
+                                        }
+                                        helperText={
+                                            formik.errors.arrivalDate &&
+                                            t('correctDate')
+                                        }
+                                    />
+                                )}
                             />
                         </div>
                     </Stack>

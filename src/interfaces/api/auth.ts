@@ -1,3 +1,4 @@
+import { Dayjs } from 'dayjs';
 import { IUser } from '../user';
 
 export type ISignUp = {
@@ -5,7 +6,7 @@ export type ISignUp = {
     lastName: string;
     email: string;
     password: string;
-    dateOfBirth: Date;
+    dateOfBirth: Dayjs;
 };
 
 export type ISignUpReturn = {
@@ -54,7 +55,7 @@ export type ISignOutReturn = {
 export type IUpdateUserInfo = {
     firstName: string;
     lastName: string;
-    dateOfBirth: Date;
+    dateOfBirth: Dayjs;
     gender: string;
     phoneNumber: string;
 };

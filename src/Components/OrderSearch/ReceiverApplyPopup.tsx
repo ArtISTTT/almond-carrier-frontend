@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
 import { ReceiverApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
+import { DesktopDatePicker } from '@mui/x-date-pickers';
 
 interface IProps {
     closePopup: () => void;
@@ -102,50 +103,50 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                 </div>
             </div>
             <div className={styles.receiverInfo}>
-                <Stack
-                    className={styles.infoCol}
-                    direction='column'
-                    spacing={3}
-                >
-                    <Typography
-                        className={styles.infoItemWay}
-                        variant='h5'
-                        component='p'
+                <div className={styles.infoWayItems}>
+                    <Stack
+                        className={styles.infoWayLine}
+                        direction='row'
+                        spacing={4.5}
                     >
-                        {t('to')}:
-                    </Typography>
-                    {order.fromLocation && (
                         <Typography
                             className={styles.infoItemWay}
                             variant='h5'
                             component='p'
                         >
-                            {t('from')}:
+                            {t('to')}:
                         </Typography>
-                    )}
-                </Stack>
-                <Stack
-                    className={styles.infoCol}
-                    direction='column'
-                    spacing={3}
-                >
-                    <Typography
-                        className={styles.infoItemWay}
-                        variant='h5'
-                        component='p'
-                    >
-                        <span>{order.toLocation}</span>
-                    </Typography>
-                    {order.fromLocation && (
                         <Typography
                             className={styles.infoItemWay}
                             variant='h5'
                             component='p'
                         >
-                            <span>{order.fromLocation}</span>
+                            <span>{order.toLocation}</span>
                         </Typography>
+                    </Stack>
+                    {order.fromLocation && (
+                        <Stack
+                            className={styles.infoWayLine}
+                            direction='row'
+                            spacing={2}
+                        >
+                            <Typography
+                                className={styles.infoItemWay}
+                                variant='h5'
+                                component='p'
+                            >
+                                {t('from')}:
+                            </Typography>
+                            <Typography
+                                className={styles.infoItemWay}
+                                variant='h5'
+                                component='p'
+                            >
+                                <span>{order.fromLocation}</span>
+                            </Typography>
+                        </Stack>
                     )}
-                </Stack>
+                </div>
                 <Stack
                     className={styles.infoCol}
                     direction='column'
@@ -219,20 +220,31 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     )}
                     <div className={styles.inputItem}>
                         <label htmlFor='arrivalDate'>{t('date')}</label>
-                        <TextField
-                            id='arrivalDate'
-                            name='arrivalDate'
-                            type='date'
-                            variant='outlined'
+                        <DesktopDatePicker
+                            inputFormat='DD.MM.YYYY'
                             value={formik.values.arrivalDate}
-                            onChange={formik.handleChange}
-                            className={cn(styles.onlyDateInput, {
-                                [styles.input]: order.fromLocation,
-                            })}
-                            error={formik.errors.arrivalDate !== undefined}
-                            helperText={
-                                formik.errors.arrivalDate && t('correctDate')
-                            }
+                            disablePast={true}
+                            onChange={value => {
+                                formik.setFieldValue('arrivalDate', value);
+                            }}
+                            renderInput={params => (
+                                <TextField
+                                    {...params}
+                                    id='arrivalDate'
+                                    name='arrivalDate'
+                                    variant='outlined'
+                                    className={cn(styles.onlyDateInput, {
+                                        [styles.input]: order.fromLocation,
+                                    })}
+                                    error={
+                                        formik.errors.arrivalDate !== undefined
+                                    }
+                                    helperText={
+                                        formik.errors.arrivalDate &&
+                                        t('futureDate')
+                                    }
+                                />
+                            )}
                         />
                     </div>
                 </Stack>

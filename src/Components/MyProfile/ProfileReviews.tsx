@@ -4,12 +4,13 @@ import React from 'react';
 import dayjs from 'dayjs';
 import ReviewItem from './ReviewItem';
 import { useTranslation } from 'react-i18next';
+import { userRole } from 'src/interfaces/order-search';
 
 const reviews = [
     {
         avatar: 'P',
         name: 'Sarah',
-        role: 'Receiver',
+        role: userRole.receiver,
         text: 'Very Good, Dastin Fantastish',
         rating: 4,
         benefit: 1993,
@@ -18,7 +19,7 @@ const reviews = [
     {
         avatar: 'P',
         name: 'Sarah',
-        role: 'Receiver',
+        role: userRole.receiver,
         text: 'Very Good, Dastin Fantastish',
         rating: 4,
         benefit: 1993,
@@ -27,7 +28,7 @@ const reviews = [
     {
         avatar: 'P',
         name: 'Sarah',
-        role: 'Receiver',
+        role: userRole.carrier,
         text: 'Very Good, Dastin Fantastish',
         rating: 4,
         benefit: 11993,
@@ -36,7 +37,7 @@ const reviews = [
     {
         avatar: 'P',
         name: 'Sarah',
-        role: 'Receiver',
+        role: userRole.receiver,
         text: 'Very Good, Dastin Fantastish',
         rating: 4,
         benefit: 993,

@@ -17,7 +17,8 @@ export enum Currency {
 export enum Country {
     RUSSIA = 'Russia',
     USA = 'USA',
-    SOVIET = 'Soviet Russia',
+    Turkey = 'Turkey'
+    
 }
 
 export type IGeneralSettings = {
