@@ -10,6 +10,7 @@ import OrderLoader from '../OrderLoader';
 import Link from 'next/link';
 import { Button } from '@mui/material';
 import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
+import OrderPayment from './OrderPayment';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -60,6 +61,7 @@ const OrderPage = () => {
         <div className={styles.wrapper}>
             <OrderDetails order={order} />
             <OrderInformation order={order} updateOrder={updateOrder} />
+            <OrderPayment order={order} />
             <div className={styles.haveSomeProblems}>
                 <Link href='#'>Have some problems? Write to our support</Link>
             </div>
