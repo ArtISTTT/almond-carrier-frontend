@@ -291,15 +291,15 @@
 
 .phone {
     cursor: pointer;
-    padding: 4px 4px 4px 8px;
+    padding: 8px 8px 8px 8px;
     gap: 24px;
     display: flex;
     align-items: center;
     width: fit-content;
     background-color: #ebebeb;
-    border-radius: 10px;
+    border-radius: 15px;
     color: var(--cTextThird);
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     transition: background-color 0.1s linear;
 }
 
