@@ -85,7 +85,7 @@ const OrderItem: React.FC<IOrder> = ({
                                     variant='h6'
                                     component='h6'
                                 >
-                                    BENEFIT
+                                    {t('benefit')}
                                 </Typography>
                                 <Typography
                                     className={styles.moneyValue}
@@ -106,7 +106,7 @@ const OrderItem: React.FC<IOrder> = ({
                                         variant='h6'
                                         component='p'
                                     >
-                                        PRICE
+                                        {t('price')}
                                     </Typography>
                                     <Typography
                                         className={styles.moneyValue}
@@ -133,21 +133,21 @@ const OrderItem: React.FC<IOrder> = ({
                                     styles.productName
                                 )}
                             >
-                                <span>Product: </span>
+                                <span>{t('product')}: </span>
                                 {productName}
                             </Typography>
                         )}
 
-                        {arrivalDate && (
+                        {/* {arrivalDate && (
                             <Typography
                                 variant='h3'
                                 component='p'
                                 className={styles.description}
                             >
-                                <span>Flight date:</span>{' '}
+                                <span>{t('flightDate')}:</span>{' '}
                                 {dayjs(arrivalDate).format('DD.MM.YYYY')}
                             </Typography>
-                        )}
+                        )} */}
                         {productWeight && (
                             <Typography
                                 variant='h3'
@@ -162,7 +162,7 @@ const OrderItem: React.FC<IOrder> = ({
                             component='p'
                             className={styles.description}
                         >
-                            <span>TO: </span>
+                            <span>{t('to')}: </span>
                             {toLocation}
                         </Typography>
                         {fromLocation && (
@@ -171,7 +171,7 @@ const OrderItem: React.FC<IOrder> = ({
                                 component='p'
                                 className={styles.description}
                             >
-                                <span>FROM: </span>
+                                <span>{t('from')}: </span>
                                 {fromLocation}
                             </Typography>
                         )}
@@ -182,7 +182,7 @@ const OrderItem: React.FC<IOrder> = ({
                                 component='p'
                                 className={styles.description}
                             >
-                                <span>Flight date:</span>{' '}
+                                <span>{t('flightDate')}:</span>{' '}
                                 {arrivalDate.format('DD.MM.YYYY')}
                             </Typography>
                         )}
@@ -192,7 +192,7 @@ const OrderItem: React.FC<IOrder> = ({
                                 component='p'
                                 className={styles.description}
                             >
-                                <span>Weight:</span> {productWeight}
+                                <span>{t('weight')}:</span> {productWeight}
                             </Typography>
                         )}
                     </div>
@@ -213,8 +213,8 @@ const OrderItem: React.FC<IOrder> = ({
                             component='p'
                             className={styles.status}
                         >
-                            <span>STATUS: </span>
-                            {convertStatusToText(status)}
+                            <span>{t('status')}: </span>
+                            {convertStatusToText(t(status))}
                         </Typography>
                     </div>
                 </div>
