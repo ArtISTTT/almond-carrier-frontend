@@ -1,22 +1,22 @@
 import { useTranslation } from 'react-i18next';
-import { orderStatus } from '../../interfaces/profile';
+import { OrderStatus } from '../../interfaces/profile';
 
 export const useConvertStatusToText = () => {
     const { t } = useTranslation();
 
-    return (status: orderStatus) => {
+    return (status: OrderStatus) => {
         switch (status) {
-            case orderStatus.cancelled:
+            case OrderStatus.cancelled:
                 return t('cancelled');
-            case orderStatus.awaitingDelivery:
+            case OrderStatus.awaitingDelivery:
                 return t('waitingForDelivery');
-            case orderStatus.inDiscussion:
+            case OrderStatus.inDiscussion:
                 return t('inDiscussion');
-            case orderStatus.waitingCarrier:
+            case OrderStatus.waitingCarrier:
                 return t('searchingForCarrier');
-            case orderStatus.waitingReciever:
+            case OrderStatus.waitingReciever:
                 return t('searchingForReceiver');
-            case orderStatus.waitingForPayment:
+            case OrderStatus.waitingForPayment:
                 return t('waitingForPayment');
             default:
                 return t('success');

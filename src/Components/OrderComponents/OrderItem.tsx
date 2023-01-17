@@ -4,7 +4,7 @@ import { Avatar, Button, Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import cn from 'classnames';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import { orderStatus } from '../../interfaces/profile';
+import { OrderStatus } from '../../interfaces/profile';
 import { IOrder } from '../../interfaces/order';
 import OrderPeopleCard from './OrderPeopleCard';
 import { useConvertStatusToText } from '../../redux/hooks/useConvertStatusToText';
@@ -34,8 +34,8 @@ const OrderItem: React.FC<IOrder> = ({
     return (
         <div
             className={cn(styles.order, {
-                [styles.orderSuccess]: status === orderStatus.success,
-                [styles.orderCancelled]: status === orderStatus.cancelled,
+                [styles.orderSuccess]: status === OrderStatus.success,
+                [styles.orderCancelled]: status === OrderStatus.cancelled,
             })}
         >
             <div className={styles.orderData}>
@@ -204,7 +204,7 @@ const OrderItem: React.FC<IOrder> = ({
                     <Button
                         className={styles.detailsButton}
                         variant='contained'
-                        disabled={status === orderStatus.cancelled}
+                        disabled={status === OrderStatus.cancelled}
                     >
                         <Link href={`/order/${id}`}>
                             {t('orderDetailsButton')}

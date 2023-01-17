@@ -251,3 +251,22 @@ export const confirmDeal = (requestData: {
                     'Error with confirming the deal',
             };
         });
+
+export const confirmPayment = (requestData: {
+    orderId: string;
+}): Promise<ISuggestChanges> =>
+    mainInstance
+        .post('/order/confirm-payment', JSON.stringify(requestData))
+        .then(() => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ??
+                    'Error with confirming the payment',
+            };
+        });

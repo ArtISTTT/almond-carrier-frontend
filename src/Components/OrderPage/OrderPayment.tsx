@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import styles from '../../../styles/OrderPage.module.css';
 import OrderDetails from './OrderDetails';
 import OrderInformation from './OrderInformation';
-import { getOrderById } from '../../api/order';
+import { confirmPayment, getOrderById } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { IOrder, IOrderFull } from '../../interfaces/order';
 import OrderLoader from '../OrderLoader';
@@ -13,9 +13,13 @@ import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
 import { calculateTotalAmount } from 'src/helpers/calculateTotalAmount';
 import { Currency } from 'src/interfaces/settings';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'src/redux/selectors/user';
+import { OrderStatus } from 'src/interfaces/profile';
 
 type IProps = {
     order: IOrderFull;
+    updateOrder: (withoutLoading?: true) => Promise<void>;
 };
 
 const PAYMENT_CREDENTIALS = {
@@ -23,8 +27,9 @@ const PAYMENT_CREDENTIALS = {
     NAME: 'АРТЕМ ГАЗУКИН',
 };
 
-const OrderPayment: React.FC<IProps> = ({ order }) => {
+const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
     const [paymentOpened, setPaymentOpened] = useState(false);
+    const { id } = useSelector(selectUser);
     const { triggerOpen } = useContext(OpenAlertContext);
 
     const handleChange = () => {
@@ -39,51 +44,79 @@ const OrderPayment: React.FC<IProps> = ({ order }) => {
         });
     };
 
-    return (
-        <div className={styles.orderPaymentWrapper}>
-            <div className={styles.orderPaymentWrapperTotalSum}>
-                Total sum to be paid:&nbsp;
-                <span>
-                    {calculateTotalAmount(
-                        order.productAmount as number,
-                        order.rewardAmount,
-                        Currency.RUB
-                    )}
-                </span>
-            </div>
-            <Button
-                variant='outlined'
-                className={styles.orderPaymentWrapperButton}
-                color='primary'
-                onClick={handleChange}
-            >
-                Оплатить
-            </Button>
-            <Collapse in={paymentOpened}>
-                <div className={styles.collapsedPayment}>
-                    <div className={styles.collapsedPaymentTitle}>
-                        Переведите сумму по номеру телефона на <b>СБП</b> <br />
-                        Банки: <b>Тинькофф</b>, <b>Сбербанк</b>
-                    </div>
-                    <div className={styles.name}>
-                        Имя: <b>{PAYMENT_CREDENTIALS.NAME}</b>
-                    </div>
-                    <div className={styles.phone} onClick={copy}>
-                        {PAYMENT_CREDENTIALS.PHONE}
-                        <ContentCopyIcon fontSize='small' />
-                    </div>
-                    <Button
-                        variant='contained'
-                        className={styles.orderConfirmPaymentButton}
-                        color='primary'
-                        onClick={handleChange}
-                    >
-                        Подтвердить оплату
-                    </Button>
+    const confirmPaymentClick = async () => {
+        const data = await confirmPayment({
+            orderId: order.id,
+        });
+
+        if (data.ok) {
+            triggerOpen({
+                severity: 'success',
+                text: 'Payment confirmed',
+            });
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error as string,
+            });
+        }
+
+        await updateOrder(true);
+    };
+
+    if (
+        order.receiver?.id === id &&
+        order.status === OrderStatus.waitingForPayment
+    ) {
+        return (
+            <div className={styles.orderPaymentWrapper}>
+                <div className={styles.orderPaymentWrapperTotalSum}>
+                    Total sum to be paid:&nbsp;
+                    <span>
+                        {calculateTotalAmount(
+                            order.productAmount as number,
+                            order.rewardAmount,
+                            Currency.RUB
+                        )}
+                    </span>
                 </div>
-            </Collapse>
-        </div>
-    );
+                <Button
+                    variant='outlined'
+                    className={styles.orderPaymentWrapperButton}
+                    color='primary'
+                    onClick={handleChange}
+                >
+                    Оплатить
+                </Button>
+                <Collapse in={paymentOpened}>
+                    <div className={styles.collapsedPayment}>
+                        <div className={styles.collapsedPaymentTitle}>
+                            Переведите сумму по номеру телефона на <b>СБП</b>{' '}
+                            <br />
+                            Банки: <b>Тинькофф</b>, <b>Сбербанк</b>
+                        </div>
+                        <div className={styles.name}>
+                            Имя: <b>{PAYMENT_CREDENTIALS.NAME}</b>
+                        </div>
+                        <div className={styles.phone} onClick={copy}>
+                            {PAYMENT_CREDENTIALS.PHONE}
+                            <ContentCopyIcon fontSize='small' />
+                        </div>
+                        <Button
+                            variant='contained'
+                            className={styles.orderConfirmPaymentButton}
+                            color='primary'
+                            onClick={confirmPaymentClick}
+                        >
+                            Подтвердить оплату
+                        </Button>
+                    </div>
+                </Collapse>
+            </div>
+        );
+    }
+
+    return null;
 };
 
 export default OrderPayment;

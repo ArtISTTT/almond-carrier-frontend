@@ -161,6 +161,7 @@
     "searchingForCarrier": "Поиск перевозчика",
     "searchingForReceiver": "Поиск получателя",
     "waitingForPayment": "Ожидание оплаты",
+    "waitingForPaymentVerification": "Ожидание подтвеждения оплаты",
     "inDiscussion": "В обсуждении",
     "success": "Успешно",
     "waitingForDelivery": "Ожидание доставки",

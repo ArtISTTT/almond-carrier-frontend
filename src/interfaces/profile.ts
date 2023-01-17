@@ -11,7 +11,7 @@ export interface IReview {
     date: Dayjs;
 }
 
-export enum orderStatus {
+export enum OrderStatus {
     waitingReciever = 'waitingReciever',
     waitingCarrier = 'waitingCarrier',
     inDiscussion = 'inDiscussion',

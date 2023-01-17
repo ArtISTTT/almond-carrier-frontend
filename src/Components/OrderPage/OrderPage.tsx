@@ -61,7 +61,7 @@ const OrderPage = () => {
         <div className={styles.wrapper}>
             <OrderDetails order={order} />
             <OrderInformation order={order} updateOrder={updateOrder} />
-            <OrderPayment order={order} />
+            <OrderPayment order={order} updateOrder={updateOrder} />
             <div className={styles.haveSomeProblems}>
                 <Link href='#'>Have some problems? Write to our support</Link>
             </div>

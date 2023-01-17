@@ -186,6 +186,7 @@
     "useTwoStepAuthentication": "I want to use two-step authentication by phone number",
     "waitingForDelivery": "Waiting for delivery",
     "waitingForPayment": "Waiting for payment",
+    "waitingForPaymentVerification": "Waiting for payment confirmation",
     "weChargeACommissionFor": "We charge a commission for what we found for your carrier/receiver, but the price will be low.",
     "weight": "Weight",
     "youHaveNoOrdersYet": "You don't have any orders yet.",

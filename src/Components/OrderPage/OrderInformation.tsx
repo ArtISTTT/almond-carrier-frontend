@@ -4,7 +4,7 @@ import styles from '../../../styles/OrderPage.module.css';
 import { IOrder, IOrderFull } from '../../interfaces/order';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/selectors/user';
-import { orderStatus } from '../../interfaces/profile';
+import { OrderStatus } from '../../interfaces/profile';
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
 import OrderInputItem, {
@@ -80,7 +80,7 @@ const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
         }
 
         if (user.id === order.receiver?.id) {
-            if (order.status === orderStatus.waitingCarrier) {
+            if (order.status === OrderStatus.waitingCarrier) {
                 labels.productName = true;
                 labels.fromLocation = true;
                 labels.toLocation = true;
@@ -88,20 +88,20 @@ const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
                 labels.rewardAmount = true;
                 labels.productWeight = true;
                 labels.productDescription = true;
-            } else if (order.status === orderStatus.inDiscussion) {
+            } else if (order.status === OrderStatus.inDiscussion) {
                 labels.productAmount = true;
                 labels.rewardAmount = true;
                 labels.productWeight = true;
                 labels.productDescription = true;
             }
         } else {
-            if (order.status === orderStatus.waitingReciever) {
+            if (order.status === OrderStatus.waitingReciever) {
                 labels.fromLocation = true;
                 labels.toLocation = true;
                 labels.rewardAmount = true;
                 labels.carrierMaxWeight = true;
                 labels.arrivalDate = true;
-            } else if (order.status === orderStatus.inDiscussion) {
+            } else if (order.status === OrderStatus.inDiscussion) {
                 labels.rewardAmount = true;
             }
         }
@@ -249,48 +249,58 @@ const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
 
     return (
         <>
-            {suggestedChanged && (
-                <div className={styles.byOther}>
-                    Highlighted fields have been changed and are waiting for
-                    your confirmation
+            {order.status === OrderStatus.inDiscussion && (
+                <>
+                    {suggestedChanged && (
+                        <div className={styles.byOther}>
+                            Highlighted fields have been changed and are waiting
+                            for your confirmation
+                        </div>
+                    )}
+                    {hasByYouSuggestedChanged && (
+                        <div className={styles.byYou}>
+                            Highlighted fields have been changed by you and are
+                            waiting for confirmation
+                        </div>
+                    )}
+                    {viewType === ViewType.receiver &&
+                        order.dealConfirmedByReceiver &&
+                        !order.dealConfirmedByCarrier && (
+                            <div className={styles.confirmationString}>
+                                Waiting for confirmation of the carrier
+                            </div>
+                        )}
+                    {viewType === ViewType.carrier &&
+                        order.dealConfirmedByCarrier &&
+                        !order.dealConfirmedByReceiver && (
+                            <div className={styles.confirmationString}>
+                                Waiting for confirmation of the receiver
+                            </div>
+                        )}
+                    {viewType === ViewType.receiver &&
+                        order.dealConfirmedByCarrier &&
+                        !order.dealConfirmedByReceiver && (
+                            <div className={styles.confirmationString}>
+                                The carrier is waiting for your confirmation to
+                                start the deal
+                            </div>
+                        )}
+                    {viewType === ViewType.carrier &&
+                        order.dealConfirmedByReceiver &&
+                        !order.dealConfirmedByCarrier && (
+                            <div className={styles.confirmationString}>
+                                The receiver is waiting for your confirmation to
+                                start the deal
+                            </div>
+                        )}
+                </>
+            )}
+
+            {order.status === OrderStatus.waitingForPaymentVerification && (
+                <div className={styles.confirmationString}>
+                    Waiting for payment confirmation
                 </div>
             )}
-            {hasByYouSuggestedChanged && (
-                <div className={styles.byYou}>
-                    Highlighted fields have been changed by you and are waiting
-                    for confirmation
-                </div>
-            )}
-            {viewType === ViewType.receiver &&
-                order.dealConfirmedByReceiver &&
-                !order.dealConfirmedByCarrier && (
-                    <div className={styles.confirmationString}>
-                        Waiting for confirmation of the carrier
-                    </div>
-                )}
-            {viewType === ViewType.carrier &&
-                order.dealConfirmedByCarrier &&
-                !order.dealConfirmedByReceiver && (
-                    <div className={styles.confirmationString}>
-                        Waiting for confirmation of the receiver
-                    </div>
-                )}
-            {viewType === ViewType.receiver &&
-                order.dealConfirmedByCarrier &&
-                !order.dealConfirmedByReceiver && (
-                    <div className={styles.confirmationString}>
-                        The carrier is waiting for your confirmation to start
-                        the deal
-                    </div>
-                )}
-            {viewType === ViewType.carrier &&
-                order.dealConfirmedByReceiver &&
-                !order.dealConfirmedByCarrier && (
-                    <div className={styles.confirmationString}>
-                        The receiver is waiting for your confirmation to start
-                        the deal
-                    </div>
-                )}
             <div className={styles.orderInformation}>
                 <form onSubmit={formik.handleSubmit}>
                     <div className={styles.orderInformationTitle}>
