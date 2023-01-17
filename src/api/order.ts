@@ -213,3 +213,22 @@ export const agreeWithChanges = (requestData: {
                     'Error with agreement with the changes ',
             };
         });
+
+export const disagreeWithChanges = (requestData: {
+    orderId: string;
+}): Promise<ISuggestChanges> =>
+    mainInstance
+        .post('/order/disagree-with-changes', JSON.stringify(requestData))
+        .then(data => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ??
+                    'Error with agreement with the changes ',
+            };
+        });

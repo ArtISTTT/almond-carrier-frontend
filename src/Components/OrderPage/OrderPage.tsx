@@ -17,8 +17,11 @@ const useGetOrder = (orderId: string) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const { push } = useRouter();
 
-    const updateOrder = async () => {
-        setIsLoading(true);
+    const updateOrder = async (withoutLoading?: true) => {
+        if (!withoutLoading) {
+            setIsLoading(true);
+        }
+
         const data = await getOrderById({ orderId });
 
         if (data.ok && data.order) {

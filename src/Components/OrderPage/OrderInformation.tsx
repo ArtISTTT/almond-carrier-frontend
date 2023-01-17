@@ -20,6 +20,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import cn from 'classnames';
 import {
     agreeWithChanges,
+    disagreeWithChanges,
     suggestChangesByCarrier,
     suggestChangesByReceiver,
 } from 'src/api/order';
@@ -28,7 +29,7 @@ import { OpenAlertContext } from '../Layouts/Snackbar';
 
 type IProps = {
     order: IOrderFull;
-    updateOrder: () => Promise<void>;
+    updateOrder: (withoutLoading?: true) => Promise<void>;
 };
 
 const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
@@ -156,7 +157,7 @@ const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
 
         formik.setSubmitting(false);
 
-        await updateOrder();
+        await updateOrder(true);
     };
 
     const agreeWithChangesClick = async () => {
@@ -178,7 +179,29 @@ const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
 
         formik.setSubmitting(false);
 
-        await updateOrder();
+        await updateOrder(true);
+    };
+
+    const disagreeWithChangesClick = async () => {
+        const data = await agreeWithChanges({
+            orderId: order.id,
+        });
+
+        if (data.ok) {
+            triggerOpen({
+                severity: 'success',
+                text: 'Successfully rejected',
+            });
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || 'Error while rejecting changes',
+            });
+        }
+
+        formik.setSubmitting(false);
+
+        await updateOrder(true);
     };
 
     const formik = useFormik({
@@ -195,8 +218,6 @@ const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
         viewType,
         'productDescription'
     );
-
-    console.log(typeof formik.values.arrivalDate);
 
     return (
         <>
@@ -484,6 +505,14 @@ const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
                                 onClick={agreeWithChangesClick}
                             >
                                 Agree with changes
+                            </Button>
+                            <Button
+                                className={styles.buttonItem}
+                                variant='contained'
+                                color='error'
+                                onClick={disagreeWithChangesClick}
+                            >
+                                Reject changes
                             </Button>
                         </div>
                     )}
