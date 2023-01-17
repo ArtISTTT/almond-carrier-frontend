@@ -6,6 +6,8 @@ import MainLayout from '../../src/Components/Layouts/MainLayout';
 import OrderPage from '../../src/Components/OrderPage/OrderPage';
 import Head from 'next/head';
 import Script from 'next/script';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { GetStaticPaths } from 'next';
 
 const Order = () => {
     return (
@@ -22,5 +24,20 @@ const Order = () => {
         </>
     );
 };
+
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+    return {
+        paths: [],
+        fallback: 'blocking',
+    };
+};
+
+export async function getStaticProps({ locale }: { locale: string }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
+    };
+}
 
 export default Order;
