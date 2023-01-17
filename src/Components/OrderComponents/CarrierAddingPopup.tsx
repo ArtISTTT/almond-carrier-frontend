@@ -27,9 +27,9 @@ const defaultValues = {
     toLocation_placeId: '',
     fromLocation: '',
     fromLocation_placeId: '',
-    carrierMaxWeight: 0,
+    carrierMaxWeight: null,
     arrivalDate: undefined as unknown as Date,
-    rewardAmount: 0,
+    rewardAmount: null,
 };
 
 const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {

@@ -1,7 +1,6 @@
 import { Dayjs } from 'dayjs';
 import { orderStatus } from './profile';
 
-
 export interface IOrder {
     id: string;
     toLocation: string;
@@ -40,9 +39,9 @@ export interface ICreateOrderReciever {
     fromLocation?: string;
     fromLocation_placeId?: string;
     productName: string;
-    rewardAmount: number;
-    productAmount: number;
-    productWeight: number;
+    rewardAmount: number | null;
+    productAmount: number | null;
+    productWeight: number | null;
     productDescription: string;
 }
 
@@ -51,7 +50,7 @@ export interface ICreateOrderCarrier {
     toLocation_placeId: string;
     fromLocation: string;
     fromLocation_placeId: string;
-    carrierMaxWeight: number;
+    carrierMaxWeight: number | null;
     arrivalDate: Date;
-    rewardAmount: number;
+    rewardAmount: number | null;
 }

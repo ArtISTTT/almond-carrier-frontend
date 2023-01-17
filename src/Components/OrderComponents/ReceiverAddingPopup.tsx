@@ -1,11 +1,4 @@
-import {
-    Button,
-    InputAdornment,
-    MenuItem,
-    Select,
-    TextField,
-    Typography,
-} from '@mui/material';
+import { Button, InputAdornment, TextField } from '@mui/material';
 import styles from '../../../styles/Popup.module.css';
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
@@ -18,10 +11,6 @@ import { OpenAlertContext } from '../Layouts/Snackbar';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
 import { useTranslation } from 'react-i18next';
 
-const valutes = ['RUB', 'USD', 'EUR'];
-
-const deliverPlaces = ['Russia', 'Antalya'];
-
 interface IProps {
     togglePopup: React.Dispatch<React.SetStateAction<boolean>>;
     reload: () => Promise<void>;
@@ -33,9 +22,9 @@ const defaultValues = {
     toLocation: '',
     toLocation_placeId: '',
     productName: '',
-    rewardAmount: 0,
-    productAmount: 0,
-    productWeight: 0,
+    rewardAmount: null,
+    productAmount: null,
+    productWeight: null,
     productDescription: '',
 };
 
@@ -146,12 +135,12 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                     <Stack direction='row' spacing={2}>
                         <div className={styles.inputItem}>
                             <label htmlFor='productName'>
-                                {t('shortName')}
+                                {t('productName')}
                             </label>
                             <TextField
                                 id='productName'
                                 name='productName'
-                                placeholder={t('shortName') as string}
+                                placeholder={t('productName') as string}
                                 variant='outlined'
                                 value={formik.values.productName}
                                 onChange={formik.handleChange}

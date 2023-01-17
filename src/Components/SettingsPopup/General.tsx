@@ -13,24 +13,41 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../../../styles/Settings.module.css';
 import {
+    Country,
     Currency,
     IGeneralSettings,
     Language,
+    Theme,
 } from '../../interfaces/settings';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { changeGeneralSettings } from '../../redux/slices/settingsSlice';
 
-const countries = ['Russia', 'USA', 'Soviet Russia'];
-const languages = [
-    { value: Language.RU, text: 'Russian' },
-    { value: Language.EN, text: 'English' },
-];
-const currency = [Currency.EUR, Currency.USD, Currency.RUB];
-const themes = ['Light', 'Dark'];
-
 const GeneralSettings: React.FC = () => {
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
+
+    const languages = [
+        { value: Language.RU, text: t('russian') },
+        { value: Language.EN, text: t('english') },
+    ];
+    const countries = [
+        // { value: Country.RUSSIA, text: t('russia') },
+        // { value: Country.USA, text: t('USA') },
+        t('russia'),
+        t('USA'),
+        t('turkey'),
+        t('bali'),
+    ];
+    const currency = [
+        { value: Currency.RUB, text: t('RUBValute') },
+        { value: Currency.USD, text: t('USDValute') },
+        { value: Currency.EUR, text: t('EURValute') },
+    ];
+    const themes = [
+        { value: Theme.LIGHT, text: t(Theme.LIGHT) },
+        { value: Theme.DARK, text: t(Theme.DARK) },
+    ];
+
     const userGeneralSettings = useAppSelector(
         state => state.settings.generalSettings
     );
@@ -109,9 +126,9 @@ const GeneralSettings: React.FC = () => {
                                 }}
                                 className={styles.select}
                             >
-                                {currency.map((currence, i) => (
-                                    <MenuItem key={i} value={currence}>
-                                        {currence}
+                                {currency.map((currency, i) => (
+                                    <MenuItem key={i} value={currency.value}>
+                                        {currency.text}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -129,8 +146,8 @@ const GeneralSettings: React.FC = () => {
                                 className={styles.select}
                             >
                                 {themes.map((theme, i) => (
-                                    <MenuItem key={i} value={theme}>
-                                        {theme}
+                                    <MenuItem key={i} value={theme.value}>
+                                        {theme.text}
                                     </MenuItem>
                                 ))}
                             </Select>

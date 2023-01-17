@@ -7,7 +7,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { orderStatus } from '../../interfaces/profile';
 import { IOrder } from '../../interfaces/order';
 import OrderPeopleCard from './OrderPeopleCard';
-import { convertStatusToText } from '../../helpers/convertStatusToText';
+import { useConvertStatusToText } from '../../redux/hooks/useConvertStatusToText';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
@@ -29,6 +29,7 @@ const OrderItem: React.FC<IOrder> = ({
 }) => {
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
+    const convertStatus = useConvertStatusToText();
 
     return (
         <div
@@ -214,7 +215,7 @@ const OrderItem: React.FC<IOrder> = ({
                             className={styles.status}
                         >
                             <span>{t('status')}: </span>
-                            {convertStatusToText(t(status))}
+                            {convertStatus(status)}
                         </Typography>
                     </div>
                 </div>
