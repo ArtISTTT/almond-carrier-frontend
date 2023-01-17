@@ -5,16 +5,16 @@ import OrderDetails from './OrderDetails';
 import OrderInformation from './OrderInformation';
 import { getOrderById } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
-import { IOrder, IOrderFull } from '../../interfaces/order';
+import { IOrderFull } from '../../interfaces/order';
 import OrderLoader from '../OrderLoader';
 import Link from 'next/link';
 import { Button } from '@mui/material';
-import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
 import OrderPayment from './OrderPayment';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'src/redux/selectors/user';
 import { ViewType } from './OrderInputItem';
 import OrderLabels from './OrderLabels';
+import OrderChat from '../Chat/OrderChat';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -83,20 +83,26 @@ const OrderPage = () => {
     return (
         <div className={styles.wrapper}>
             <OrderDetails order={order} />
+
             <OrderLabels
                 order={order}
                 viewType={viewType}
                 suggestedChanged={suggestedChanged}
                 hasByYouSuggestedChanged={hasByYouSuggestedChanged}
             />
-            <OrderInformation
-                order={order}
-                updateOrder={updateOrder}
-                user={user}
-                viewType={viewType}
-                suggestedChanged={suggestedChanged}
-                hasByYouSuggestedChanged={hasByYouSuggestedChanged}
-            />
+
+            <div className={styles.orderConent}>
+                <OrderInformation
+                    order={order}
+                    updateOrder={updateOrder}
+                    user={user}
+                    viewType={viewType}
+                    suggestedChanged={suggestedChanged}
+                    hasByYouSuggestedChanged={hasByYouSuggestedChanged}
+                />
+                <OrderChat user={user} />
+            </div>
+
             <OrderPayment order={order} updateOrder={updateOrder} />
             <div className={styles.haveSomeProblems}>
                 <Link href='#'>Have some problems? Write to our support</Link>
