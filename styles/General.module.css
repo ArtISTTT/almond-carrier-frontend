@@ -65,3 +65,35 @@
     margin-top: 20px !important;
     margin-left: auto !important;
 }
+
+@media screen and (max-width: 850px) {
+    .title {
+        font-size: 30px;
+    }
+    .inputItem > label {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .title {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    .stack {
+        flex-direction: column;
+        margin-top: 10px !important;
+    }
+    .inputItemSecond {
+        margin-left: 0 !important;
+        padding-top: 10px;
+    }
+    .inputItem {
+        width: 100%;
+        max-width: 500px;
+    }
+    .confirmButton {
+        width: 170px;
+        font-size: 12px;
+    }
+}

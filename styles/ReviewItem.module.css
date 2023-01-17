@@ -90,3 +90,73 @@
     letter-spacing: 0.4px;
     color: var(--cTextPrimary);
 }
+
+
+@media screen and (max-width: 850px) {
+    .reviewAvatar {
+        width: 80px;
+        height: 80px;
+    }
+    .reviewName {
+        font-size: 15px;
+        line-height: 20px;
+    }
+    .reviewProfile {
+        width: 180px;
+        padding: 20px 10px;
+    }
+    .reviewText {
+        font-size: 12px;
+        line-height: 14px;
+        padding: 10px;
+    }
+    .reviewRole {
+        font-size: 12px;
+    }
+    .reviewBenefit {
+        font-size: 12px;
+    }
+    .reviewDate {
+        font-size: 12px;
+    }
+    .reviewDetails {
+        padding: 5px 10px;  
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .reviewAvatar {
+        width: 60px;
+        height: 60px;
+    }
+    .reviewProfile {
+        width: 120px;
+        padding: 10px 5px;
+    }
+    .reviewName {
+        font-size: 12px;
+    }
+    .reviewRole {
+        font-size: 10px;
+        margin-top: 0;
+    }
+    .reviewText {
+        font-size: 10px;
+        line-height: 11px;
+    }
+    .reviewBenefit {
+        font-size: 9px;
+    }
+    .reviewDate {
+        font-size: 9px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .review {
+        border-radius: 15px;
+    }
+    .reviewBenefit {
+        display: none;
+    }
+}

@@ -145,3 +145,84 @@
 .statisticValue.green {
     color: var(--cStatusSuccess);
 }
+
+.horizontal {
+    display: none;
+}
+
+
+@media screen and (max-width: 1220px) {
+    .profileLayoutWrapper {
+        flex-direction: column;
+    }
+    .menuWrapper {
+        width: 100%;
+        max-width: 1220px;
+    }
+    .profileLayoutContentWrapper {
+        padding: 0;
+    }
+    .profileLayoutContentInner {
+        border-radius: 0;
+    }
+    .card {
+        align-items: flex-start;
+        text-align: left;
+        padding: 40px 15px 10px;
+        flex-direction: row;
+    }
+    .statisticItem {
+        width: 250px;
+        font-size: 15px;
+        border: none;
+        font-weight: 400;
+        padding: 3px 20px;
+    }
+    .cardInfo {
+        border: none;
+    }
+    .avatarWrapper {
+        margin-left: 20px;
+    }
+    .cardName {
+        margin-left: 20px;
+        font-size: 30px;
+        width: 250px;
+    }
+    .cardCity {
+        margin-left: 20px;
+        width: 250px;
+        margin-top: 15px;
+        margin-bottom: 3px;
+    }
+    .vertical {
+        display: none;
+    }
+    .horizontal {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .tab {
+        font-size: 10px;
+    }
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+    .cardName {
+        font-size: 20px;
+    }
+    .cardCity {
+        font-size: 12px;
+        margin-top: 5px;
+        margin-bottom: 3px;
+    }
+    .statisticItem {
+        font-size: 12px;
+        padding-top: 0;
+        width: 180px;
+    }
+}

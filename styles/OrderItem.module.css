@@ -340,6 +340,7 @@
     .moneyTitle {
         font-size: 11px;
         line-height: 13px;
+        width: 50px;
     }
     .moneyValue {
         font-size: 11px;
