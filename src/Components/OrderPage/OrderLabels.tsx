@@ -71,6 +71,13 @@ const OrderLabels: React.FC<IProps> = ({
                     Waiting for payment confirmation
                 </div>
             )}
+
+            {order.status === OrderStatus.awaitingDelivery && (
+                <div className={styles.byOther}>
+                    Payment confirmed! Delivery expected on{' '}
+                    {order.arrivalDate?.format('LL')}
+                </div>
+            )}
         </>
     );
 };
