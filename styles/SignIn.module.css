@@ -4,7 +4,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
-    padding: 80px 80px 0 0;
+    padding: 80px 80px 80px 0;
 
     position: relative;
     z-index: 1;
@@ -111,4 +111,12 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+}
+
+.dateInput :global .MuiInputBase-root {
+    padding-right: 30px;
+}
+
+.dateInput :global .MuiButtonBase-root {
+    padding: 11px;
 }

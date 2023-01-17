@@ -79,13 +79,12 @@
     display: flex;
     max-width: 400px;
     justify-content: space-between;
-    gap: 16px;
+    gap: 36px;
     padding-bottom: 20px;
 }
 
 .infoCol {
     display: flex;
-    flex-direction: column;
 }
 
 .carrierInfo {
@@ -153,23 +152,34 @@
     letter-spacing: 0.4px;
     text-transform: uppercase;
     display: flex;
-    width: 100%;
+    width: fit-content;
     max-width: 300px;
     color: var(--cTextPrimary);
 }
 
 .infoItemWay > span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     text-transform: none;
     width: 100%;
-    max-width: 180px;
+    max-width: 200px;
     font-weight: 500;
     font-size: 16px;
     color: var(--cTextThird);
 }
 
+.infoWayItems {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    width: 100%;
+    gap: 26px;
+}
+
 .infoItem > span {
     text-transform: none;
-    width: 50px;
+    width: 65px;
     font-weight: 500;
     font-size: 16px;
     color: var(--cTextThird);

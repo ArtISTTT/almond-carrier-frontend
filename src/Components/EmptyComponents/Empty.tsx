@@ -13,7 +13,7 @@ const EmptyOrdersBlock = () => {
                 variant='h4'
                 component='h4'
             >
-                {t('youDontHaveAnyOrdersYet')}
+                {t('youHaveNoOrdersYet')}
             </Typography>
             <Typography
                 className={styles.secondText}

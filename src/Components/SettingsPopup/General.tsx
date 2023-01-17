@@ -13,7 +13,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../../../styles/Settings.module.css';
 import {
-    Country,
     Currency,
     IGeneralSettings,
     Language,
@@ -30,14 +29,7 @@ const GeneralSettings: React.FC = () => {
         { value: Language.RU, text: t('russian') },
         { value: Language.EN, text: t('english') },
     ];
-    const countries = [
-        // { value: Country.RUSSIA, text: t('russia') },
-        // { value: Country.USA, text: t('USA') },
-        t('russia'),
-        t('USA'),
-        t('turkey'),
-        t('bali'),
-    ];
+    const countries = [t('russia'), t('USA'), t('turkey'), t('bali')];
     const currency = [
         { value: Currency.RUB, text: t('RUBValute') },
         { value: Currency.USD, text: t('USDValute') },

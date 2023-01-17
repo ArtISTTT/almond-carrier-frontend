@@ -15,6 +15,8 @@ import { parseUserDataFromApi } from '../../src/helpers/parseUserDataFromApi';
 import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'react-i18next';
+import { DesktopDatePicker } from '@mui/x-date-pickers';
+import dayjs, { Dayjs } from 'dayjs';
 
 type IForm = {
     email: string;
@@ -22,7 +24,7 @@ type IForm = {
     confirmPassword: string;
     firstName: string;
     lastName: string;
-    dateOfBirth: Date;
+    dateOfBirth: Dayjs;
 };
 
 const SignIn: React.FC = () => {
@@ -67,7 +69,7 @@ const SignIn: React.FC = () => {
             confirmPassword: '',
             firstName: '',
             lastName: '',
-            dateOfBirth: new Date(),
+            dateOfBirth: dayjs().subtract(18, 'year'),
         },
         onSubmit: handleSignUp,
         validationSchema: SignupSchema,
@@ -126,15 +128,31 @@ const SignIn: React.FC = () => {
                                 }
                             />
                         </Stack>
-                        <TextField
-                            id='dateOfBirth'
-                            name='dateOfBirth'
-                            placeholder={t('dateOfBirth') as string}
-                            type='date'
-                            variant='outlined'
+                        <DesktopDatePicker
+                            inputFormat='DD.MM.YYYY'
+                            label={t('dateOfBirth') as string}
                             value={formik.values.dateOfBirth}
-                            onChange={formik.handleChange}
-                            error={formik.errors.dateOfBirth !== undefined}
+                            maxDate={dayjs().subtract(18, 'year')}
+                            disableFuture={true}
+                            onChange={value => {
+                                formik.setFieldValue('dateOfBirth', value);
+                            }}
+                            renderInput={params => (
+                                <TextField
+                                    {...params}
+                                    id='dateOfBirth'
+                                    name='dateOfBirth'
+                                    variant='outlined'
+                                    className={style.dateInput}
+                                    error={
+                                        formik.errors.dateOfBirth !== undefined
+                                    }
+                                    helperText={
+                                        formik.errors.dateOfBirth &&
+                                        t('mustBeYears')
+                                    }
+                                />
+                            )}
                         />
                         <TextField
                             id='password'

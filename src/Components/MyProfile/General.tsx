@@ -17,6 +17,9 @@ import { addUserData } from '../../redux/slices/userSlice';
 import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
 import { MuiTelInput } from 'mui-tel-input';
 import { useTranslation } from 'react-i18next';
+import cn from 'classnames';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import dayjs, { Dayjs } from 'dayjs';
 
 type IPasswordForm = {
     oldPassword: string;
@@ -29,7 +32,7 @@ type IForm = {
     gender: string;
     phoneNumber: string;
     lastName: string;
-    dateOfBirth: string;
+    dateOfBirth: Dayjs;
 };
 
 const General = () => {
@@ -38,14 +41,14 @@ const General = () => {
     const { triggerOpen } = useContext(OpenAlertContext);
     const { t } = useTranslation();
 
-    const availableGenders = [t('male'), t('female'), t('other')];
+    const availableGenders = [t('none'), t('male'), t('female'), t('other')];
 
     const handleChangeUserInfo = async (form: IForm) => {
         const requestData = {
             email: form.email,
             firstName: form.firstName,
             lastName: form.lastName,
-            dateOfBirth: new Date(form.dateOfBirth),
+            dateOfBirth: form.dateOfBirth,
             gender: form.gender,
             phoneNumber: form.phoneNumber.replace(/ /g, ''),
         };
@@ -72,7 +75,6 @@ const General = () => {
     const formik = useFormik({
         initialValues: {
             ...user,
-            dateOfBirth: user.dateOfBirth.format('YYYY-MM-DD'),
         },
         onSubmit: handleChangeUserInfo,
         validationSchema: ChangeUserSchema,
@@ -158,16 +160,31 @@ const General = () => {
                             <label htmlFor='dateOfBirth'>
                                 {t('dateOfBirth')}
                             </label>
-                            <TextField
-                                id='dateOfBirth'
-                                name='dateOfBirth'
-                                placeholder={t('dateOfBirth') as string}
-                                type='date'
-                                variant='outlined'
+                            <DesktopDatePicker
+                                inputFormat='DD.MM.YYYY'
                                 value={formik.values.dateOfBirth}
-                                onChange={formik.handleChange}
-                                error={formik.errors.dateOfBirth !== undefined}
-                                className={styles.input}
+                                maxDate={dayjs().subtract(18, 'year')}
+                                disableFuture={true}
+                                onChange={value => {
+                                    formik.setFieldValue('dateOfBirth', value);
+                                }}
+                                renderInput={params => (
+                                    <TextField
+                                        {...params}
+                                        id='dateOfBirth'
+                                        name='dateOfBirth'
+                                        variant='outlined'
+                                        className={styles.input}
+                                        error={
+                                            formik.errors.dateOfBirth !==
+                                            undefined
+                                        }
+                                        helperText={
+                                            formik.errors.dateOfBirth &&
+                                            t('mustBeYears')
+                                        }
+                                    />
+                                )}
                             />
                         </div>
                         <div className={styles.inputItem}>
@@ -183,9 +200,6 @@ const General = () => {
                                 }}
                                 className={styles.select}
                             >
-                                <MenuItem value=''>
-                                    <em>{t('none')}</em>
-                                </MenuItem>
                                 {availableGenders.map(gender => (
                                     <MenuItem key={gender} value={gender}>
                                         {gender}
@@ -226,7 +240,7 @@ const General = () => {
                                 }}
                                 value={formik.values.phoneNumber}
                                 onChange={handlePhoneChange}
-                                className={styles.input}
+                                className={cn(styles.input, styles.inputPhone)}
                             />
                         </div>
                     </Stack>

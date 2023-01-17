@@ -185,6 +185,7 @@
     "useTwoStepAuthentication": "Я хочу использовать двухэтапную аутентификацию по номеру телефона",
     "weChargeACommissionFor": "Мы берем комиссию за то, что мы нашли для вашего оператора/приемника, но цена будет низкой.",
     "weight": "Вес",
+    "toCreateAnOrderYouCanClick": "Чтобы создать заказ, воспользуйтесь кнопками ниже",
     "youHaveNoOrdersYet": "У вас до сих пор нет заказов.",
     "userHaveNoOrdersYet": "У пользователя нет заказов",
     "userHaveNoReviewsYet": "У пользователя нет отзывов.",

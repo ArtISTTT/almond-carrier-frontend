@@ -10,11 +10,19 @@ import { addOrderAsAReceiver } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
 import { useTranslation } from 'react-i18next';
+import { Currency } from 'src/interfaces/settings';
+import { useAppSelector } from 'src/redux/hooks';
 
 interface IProps {
     togglePopup: React.Dispatch<React.SetStateAction<boolean>>;
     reload: () => Promise<void>;
 }
+
+const userCurrency = {
+    [Currency.RUB]: 'RUB',
+    [Currency.EUR]: 'EUR',
+    [Currency.USD]: 'USD',
+};
 
 const defaultValues = {
     fromLocation: undefined,
@@ -35,6 +43,10 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
         togglePopup(prev => !prev);
     };
     const { t } = useTranslation();
+
+    const { currency } = useAppSelector(
+        ({ settings }) => settings.generalSettings
+    );
 
     const addNewOrder = async (form: ICreateOrderReciever) => {
         const data = await addOrderAsAReceiver(form);
@@ -189,7 +201,7 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position='end'>
-                                            {t('rub')}
+                                            {t(userCurrency[currency])}
                                         </InputAdornment>
                                     ),
                                 }}
@@ -218,7 +230,7 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position='end'>
-                                            {t('rub')}
+                                            {t(userCurrency[currency])}
                                         </InputAdornment>
                                     ),
                                 }}
