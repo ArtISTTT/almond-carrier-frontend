@@ -20,6 +20,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import cn from 'classnames';
 import {
     agreeWithChanges,
+    confirmDeal,
     disagreeWithChanges,
     suggestChangesByCarrier,
     suggestChangesByReceiver,
@@ -69,7 +70,12 @@ const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
     const availableLabels = useMemo(() => {
         const labels: ILabels = {};
 
-        if (suggestedChanged || hasByYouSuggestedChanged) {
+        if (
+            suggestedChanged ||
+            hasByYouSuggestedChanged ||
+            (order.dealConfirmedByCarrier && viewType === ViewType.carrier) ||
+            (order.dealConfirmedByReceiver && viewType === ViewType.receiver)
+        ) {
             return labels;
         }
 
@@ -204,6 +210,28 @@ const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
         await updateOrder(true);
     };
 
+    const confirmDealClick = async () => {
+        const data = await confirmDeal({
+            orderId: order.id,
+        });
+
+        if (data.ok) {
+            triggerOpen({
+                severity: 'success',
+                text: 'Successfully confirmed',
+            });
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error as string,
+            });
+        }
+
+        formik.setSubmitting(false);
+
+        await updateOrder(true);
+    };
+
     const formik = useFormik({
         initialValues,
         onSubmit: suggestChanges,
@@ -233,6 +261,36 @@ const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
                     for confirmation
                 </div>
             )}
+            {viewType === ViewType.receiver &&
+                order.dealConfirmedByReceiver &&
+                !order.dealConfirmedByCarrier && (
+                    <div className={styles.confirmationString}>
+                        Waiting for confirmation of the carrier
+                    </div>
+                )}
+            {viewType === ViewType.carrier &&
+                order.dealConfirmedByCarrier &&
+                !order.dealConfirmedByReceiver && (
+                    <div className={styles.confirmationString}>
+                        Waiting for confirmation of the receiver
+                    </div>
+                )}
+            {viewType === ViewType.receiver &&
+                order.dealConfirmedByCarrier &&
+                !order.dealConfirmedByReceiver && (
+                    <div className={styles.confirmationString}>
+                        The carrier is waiting for your confirmation to start
+                        the deal
+                    </div>
+                )}
+            {viewType === ViewType.carrier &&
+                order.dealConfirmedByReceiver &&
+                !order.dealConfirmedByCarrier && (
+                    <div className={styles.confirmationString}>
+                        The receiver is waiting for your confirmation to start
+                        the deal
+                    </div>
+                )}
             <div className={styles.orderInformation}>
                 <form onSubmit={formik.handleSubmit}>
                     <div className={styles.orderInformationTitle}>
@@ -482,19 +540,35 @@ const OrderInformation: React.FC<IProps> = ({ order, updateOrder }) => {
                             </div>
                         )}
                     </div>
-                    {order.byCarrierSuggestedChanges === undefined &&
+                    {((!order.dealConfirmedByReceiver &&
+                        viewType === ViewType.receiver) ||
+                        (!order.dealConfirmedByCarrier &&
+                            viewType === ViewType.carrier)) &&
+                        order.byCarrierSuggestedChanges === undefined &&
                         order.byReceiverSuggestedChanges === undefined && (
-                            <div className={styles.buttons}>
-                                <Button
-                                    className={styles.buttonItem}
-                                    variant='contained'
-                                    color='primary'
-                                    disabled={!hasAnyChanges}
-                                    type='submit'
-                                >
-                                    Confirm changes
-                                </Button>
-                            </div>
+                            <>
+                                <div className={styles.buttons}>
+                                    <Button
+                                        className={styles.buttonItem}
+                                        variant='contained'
+                                        color='primary'
+                                        disabled={!hasAnyChanges}
+                                        type='submit'
+                                    >
+                                        Confirm changes
+                                    </Button>
+                                </div>
+                                <div className={styles.buttons}>
+                                    <Button
+                                        className={styles.buttonItem}
+                                        variant='contained'
+                                        color='primary'
+                                        onClick={confirmDealClick}
+                                    >
+                                        Start the deal
+                                    </Button>
+                                </div>
+                            </>
                         )}
                     {suggestedChanged && (
                         <div className={styles.buttons}>

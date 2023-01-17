@@ -101,6 +101,14 @@
     background-color: #df821e;
 }
 
+.confirmationString {
+    width: 100%;
+    padding: 4px 32px;
+    font-size: 16px;
+    color: var(--cTextSecondary);
+    background-color: var(--cBg);
+}
+
 .productName {
     margin-bottom: 32px;
 }

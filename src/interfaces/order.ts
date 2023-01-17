@@ -1,7 +1,6 @@
 import { Dayjs } from 'dayjs';
 import { orderStatus } from './profile';
 
-
 export interface IOrder {
     id: string;
     toLocation: string;
@@ -32,6 +31,8 @@ export interface IOrder {
 export interface IOrderFull extends IOrder {
     byCarrierSuggestedChanges?: Partial<IOrder>;
     byReceiverSuggestedChanges?: Partial<IOrder>;
+    dealConfirmedByCarrier?: boolean;
+    dealConfirmedByReceiver?: boolean;
 }
 
 export interface ICreateOrderReciever {

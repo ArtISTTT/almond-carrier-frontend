@@ -229,6 +229,25 @@ export const disagreeWithChanges = (requestData: {
                 ok: false,
                 error:
                     data.response?.data?.message ??
-                    'Error with agreement with the changes ',
+                    'Error with rejecting the changes ',
+            };
+        });
+
+export const confirmDeal = (requestData: {
+    orderId: string;
+}): Promise<ISuggestChanges> =>
+    mainInstance
+        .post('/order/confirm-deal', JSON.stringify(requestData))
+        .then(() => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ??
+                    'Error with confirming the deal',
             };
         });

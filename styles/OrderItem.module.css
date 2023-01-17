@@ -98,6 +98,7 @@
 }
 
 .moneyBlock {
+    min-width: 135px;
     padding: 12px 12px;
     flex: 1;
     height: 120px;
