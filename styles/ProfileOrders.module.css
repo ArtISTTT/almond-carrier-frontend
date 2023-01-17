@@ -45,3 +45,16 @@
 .pagination {
     margin-left: auto;
 }
+
+@media screen and (max-width: 850px) {
+    .orderTitle {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .orderTitle {
+        font-size: 24px;
+        margin-bottom: 0;
+    }
+}

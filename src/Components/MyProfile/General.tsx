@@ -119,7 +119,7 @@ const General = () => {
                 className={classNames(styles.formGeneral, styles.form)}
             >
                 <Stack direction='column' spacing={3} width='100%'>
-                    <Stack direction='row' spacing={3}>
+                    <Stack direction='row' spacing={3} className={styles.stack}>
                         <div className={styles.inputItem}>
                             <label htmlFor='firstName'>{t('firstName')}</label>
                             <TextField
@@ -137,7 +137,12 @@ const General = () => {
                                 className={styles.input}
                             />
                         </div>
-                        <div className={styles.inputItem}>
+                        <div
+                            className={cn(
+                                styles.inputItem,
+                                styles.inputItemSecond
+                            )}
+                        >
                             <label htmlFor='lastName'>{t('lastName')}</label>
                             <TextField
                                 className={styles.input}
@@ -155,7 +160,7 @@ const General = () => {
                             />
                         </div>
                     </Stack>
-                    <Stack direction='row' spacing={3}>
+                    <Stack direction='row' spacing={3} className={styles.stack}>
                         <div className={styles.inputItem}>
                             <label htmlFor='dateOfBirth'>
                                 {t('dateOfBirth')}
@@ -187,7 +192,12 @@ const General = () => {
                                 )}
                             />
                         </div>
-                        <div className={styles.inputItem}>
+                        <div
+                            className={cn(
+                                styles.inputItem,
+                                styles.inputItemSecond
+                            )}
+                        >
                             <label htmlFor='gender'>{t('gender')}</label>
                             <Select
                                 id='gender'
@@ -208,7 +218,7 @@ const General = () => {
                             </Select>
                         </div>
                     </Stack>
-                    <Stack direction='row' spacing={3}>
+                    <Stack direction='row' spacing={3} className={styles.stack}>
                         <div className={styles.inputItem}>
                             <label htmlFor='email'>{t('email')}</label>
                             <TextField
@@ -226,7 +236,12 @@ const General = () => {
                                 className={styles.input}
                             />
                         </div>
-                        <div className={styles.inputItem}>
+                        <div
+                            className={cn(
+                                styles.inputItem,
+                                styles.inputItemSecond
+                            )}
+                        >
                             <label htmlFor='phoneNumber'>
                                 {t('phoneNumber')}
                             </label>

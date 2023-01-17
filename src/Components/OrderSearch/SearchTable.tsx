@@ -16,7 +16,7 @@ type IProps = {
     type: OrderSeachType;
     orders: IOrder[];
 };
-
+const n = 4
 const SearchTable: React.FC<IProps> = ({ type, orders }) => {
     const { t } = useTranslation();
     const carriersHeaders = [
@@ -68,7 +68,7 @@ const SearchTable: React.FC<IProps> = ({ type, orders }) => {
             </div>
             <Pagination
                 className={styles.pagination}
-                count={3}
+                count={n}
                 variant='outlined'
                 color='primary'
             />

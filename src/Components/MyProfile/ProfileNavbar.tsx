@@ -48,25 +48,58 @@ const ProfileNavbar: React.FC = () => {
     };
 
     return (
-        <Tabs
-            className={styles.tabs}
-            value={value}
-            onChange={handleChange}
-            orientation='vertical'
-            aria-label='profile tabs'
-        >
-            <Tab icon={<MenuIcon />} iconPosition='start' label={t('myInfo')} />
-            <Tab
-                icon={<RestoreIcon />}
-                iconPosition='start'
-                label={t('myOrders')}
-            />
-            <Tab
-                icon={<StarIcon />}
-                iconPosition='start'
-                label={t('reviews')}
-            />
-        </Tabs>
+        <div>
+            <div className={styles.vertical}>
+                <Tabs
+                    className={styles.tabs}
+                    value={value}
+                    onChange={handleChange}
+                    orientation='vertical'
+                    aria-label='profile tabs'
+                >
+                    <Tab icon={<MenuIcon />} iconPosition='start' label={t('myInfo')} />
+                    <Tab
+                        icon={<RestoreIcon />}
+                        iconPosition='start'
+                        label={t('myOrders')}
+                    />
+                    <Tab
+                        icon={<StarIcon />}
+                        iconPosition='start'
+                        label={t('reviews')}
+                    />
+                </Tabs>
+            </div>
+            <div className={styles.horizontal}>
+                <Tabs
+                    className={styles.tabs}
+                    value={value}
+                    onChange={handleChange}
+                    orientation='horizontal'
+                    aria-label='profile tabs'
+                >
+                    <Tab 
+                    icon={<MenuIcon style={{fontSize: 20}} />} 
+                    iconPosition='start' 
+                    label={t('myInfo')}
+                    className={styles.tab}
+                     />
+                    <Tab
+                        icon={<RestoreIcon style={{fontSize: 20}} />}
+                        iconPosition='start'
+                        label={t('myOrders')}
+                        className={styles.tab}
+                    />
+                    <Tab
+                        icon={<StarIcon style={{fontSize: 20}} />}
+                        iconPosition='start'
+                        label={t('reviews')}
+                        className={styles.tab}
+                    />
+                </Tabs>
+            </div>
+
+        </div>
     );
 };
 

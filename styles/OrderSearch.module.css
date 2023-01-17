@@ -54,7 +54,7 @@
 
 .typeTitle {
     font-weight: 700;
-    font-size: 28px;
+    font-size: 36px;
     line-height: 40px;
     letter-spacing: 0.46px;
 }
@@ -86,6 +86,7 @@
     display: flex;
     flex-direction: column;
     width: 130px;
+    margin-right: 10px;
 }
 
 .inputItem input {
@@ -152,10 +153,6 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.itemWrapper:last-child {
-    border-bottom: 0;
-}
-
 .itemWrapper .part {
     flex: 2;
     padding: 36px 0;
@@ -163,7 +160,13 @@
     align-items: center;
 }
 
-.itemWrapper .part.user {
+.itemWrapper {
+    display: flex;
+    align-items: center;
+    flex: 3;
+}
+
+.part.user {
     display: flex;
     align-items: center;
     flex: 3;
@@ -227,7 +230,181 @@
 }
 
 .pagination {
-    margin: 24px 0;
+    margin: 30px 0;
     margin-left: auto;
     width: fit-content;
+}
+
+.formR {
+    display: flex;
+}
+
+.formFirstR {
+    display: flex;
+}
+
+.formSecondR {
+    display: flex;
+}
+
+.formSecondC {
+    display: flex;
+}
+
+.formSecondDistrR {
+    display: flex;
+}
+
+@media screen and (max-width: 1240px) {
+    .doubleditem {
+        font-size: 15px;
+    }
+    .itemWrapper .part.user .userName {
+        font-size: 16px;
+    }
+    .part {
+        font-size: 15px;
+    }
+    .doubleditem .prefix  {
+        margin-right: 0px;
+    }
+    .itemWrapper .part.user .infoItem {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 1135px) {
+    .formR {
+        display: flex;
+        flex-direction: column;
+    }
+    .formSecondR {
+        margin-top: 20px;
+    }
+    .formSecondC {
+        margin-top: 20px;
+    }
+    .avatar {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    .typeTitle {
+        font-size: 30px;
+    }
+    .typeSwitcher > span {
+        height: 30px;
+        width: 130px;
+        font-size: 20px;
+        line-height: 30px;
+    }
+    .typeSwitcher {
+        width: 270px;
+        height: 40px;
+        border-radius: 10px;
+    }
+    .part.user {
+        display: none;
+    }
+    .tableHeaderItem:first-child {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 780px ) {
+    .typeTitle {
+        font-size: 25px;
+    }
+    .typeSwitcher > span {
+        width: 110px;
+    }
+    .typeSwitcher {
+        width: 230px;
+    }
+}
+
+@media screen  and (max-width: 710px) {
+    .filtersWrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .refreshButton {
+        margin-top: 20px;
+    }
+    .inputItem > label {
+        font-size: 10px;
+        line-height: 15px;
+    }
+    .part {
+        font-size: 12px;
+        line-height: 14px;
+        margin-right: 3px;
+    }
+    .doubleditem .prefix {
+        width: 40px;
+    }
+    .tableHeaderItem {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .tableHeaderItem {
+        font-size: 12px;
+    }
+    .part {
+        font-size: 10px;
+        width: 25%;
+    }
+    .tableHeaderItem {
+        font-size: 12px;
+    }
+    .applyBtn {
+        width: 60px;
+        font-size: 10px;
+        height: 30px;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (max-width: 525px) {
+    .formFirstR {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .formSecondR {
+        flex-direction: column;
+    }
+    .typeTitle {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    .typeSwitcher > span {
+        font-size: 15px;
+        height: 25px;
+        line-height: 25px;
+        width: 85px;
+        border-radius: 8px !important; 
+    }
+    .typeSwitcher {
+        height: 35px;
+        width: 185px;
+        padding: 0 3px;
+    }
+    .tableHeaderItem {
+        font-size: 10px;
+    }
+    .part {
+        font-size: 8px;
+        line-height: 10px;
+    }
+    .doubleditem .prefix {
+        width: 30px;
+    }
+    .inputItem .input :global .MuiInputBase-root {
+        border-radius: 10px;
+        height: 30px;
+        font-size: 12px;
+    }
 }

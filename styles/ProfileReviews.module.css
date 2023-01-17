@@ -27,3 +27,15 @@
 .pagination {
     margin-left: auto;
 }
+
+@media screen and (max-width: 850px) {
+    .reviewsTitle {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .reviewsTitle {
+        font-size: 24px;
+    }
+}
