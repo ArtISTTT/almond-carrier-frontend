@@ -17,6 +17,7 @@ import { useRouter } from 'next/router';
 import SettingsPopup from '../SettingsPopup/SettingsPopup';
 import { setIsAuthorized } from '../../redux/slices/userSlice';
 import { useTranslation } from 'next-i18next';
+import { navigateTo } from 'src/interfaces/navigate';
 
 const HeaderAvatar: React.FC = () => {
     const [open, setOpen] = React.useState(false);
@@ -38,7 +39,7 @@ const HeaderAvatar: React.FC = () => {
     };
 
     const goToProfile = () => {
-        router.push('/profile/orders');
+        router.push(navigateTo.PROFILE_ORDERS);
     };
 
     const handleSignOut = async () => {
@@ -46,7 +47,7 @@ const HeaderAvatar: React.FC = () => {
 
         if (data.ok) {
             dispatch(setIsAuthorized(false));
-            router.push('/');
+            router.push(navigateTo.LANDING);
         } else {
             console.log('Sign out error');
         }
