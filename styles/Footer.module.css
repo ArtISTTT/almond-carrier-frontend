@@ -10,6 +10,7 @@
 
 .formControl {
     border-radius: 16px !important;
+    height: 45px;
 }
 
 .leftBlock {
