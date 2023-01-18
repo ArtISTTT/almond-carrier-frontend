@@ -181,7 +181,7 @@
     "message": "Сообщение",
     "correctDate": "Пожалуйста, выберете корректную дату",
     "productName": "Товар",
-    "product": "",
+    "product": "Товар",
     "correctProductPrice": "Пожалуйста, укажите допустимое значение",
     "errorToResetPassword": "Ошиба при изменении пароля",
     "tooLong": "Слишком длинный!",

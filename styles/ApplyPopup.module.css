@@ -16,7 +16,7 @@
     left: 50%;
     top: 50%;
     padding: 16px 30px;
-    border-radius: 10px;
+    border-radius: 20px;
     z-index: 3;
     transform: translate(-50%, -50%);
 }
@@ -258,4 +258,122 @@
 
 .formItems {
     margin: 25px 0;
+}
+
+@media screen and (max-width: 850px) {
+    .popup { 
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .carrierName {
+        font-size: 20px;
+    }
+    .carrierRating {
+        font-size: 15px;
+    }
+    .carrierCompletedOrders {
+        font-size: 15px;
+    }
+    .infoItemWay {
+        font-size: 12px;
+    }
+    .infoItemWay > span {
+        font-size: 14px;
+    }
+    .infoItem {
+        font-size: 12px;
+    }
+    .infoItem > span {
+        font-size: 14px;
+    }
+    .productName {
+        font-size: 12px;
+    }
+    .inputItem > label {
+        font-size: 12px;
+    }
+    .input :global .MuiInputBase-root {
+        font-size: 12px;
+    }   
+    .productDescription {
+        font-size: 13px;
+    }
+    .carrierDescriptionTitle {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .receiverInfo {
+        flex-direction: column;
+    }
+    .infoItem {
+        justify-content: start;
+    }
+    .infoItemWay > span {
+        max-width: 300px;
+    }
+    .infoCol {
+        margin-top: -15px;
+    }
+    .carrierInfo {
+        flex-direction: column;
+    }
+    .stack {
+        margin-top: 5px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .formItems {
+        flex-direction: column;
+    }
+    .inputItemSecond {
+        margin-left: 0 !important;
+        padding-top: 5px;
+    }
+    .infoItem{
+        font-size: 10px;
+    }
+    .infoItemWay {
+        font-size: 10px;
+    }
+    .infoItem > p {
+        width: 90px;
+    }
+    .inputItem > label {
+        font-size: 10px;
+    }
+    .carrierDescriptionTitle {
+        font-size: 10px;
+    }
+    .carrierName {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    .carrierRating {
+        font-size: 12px;
+    }
+    .carrierCompletedOrders {
+        font-size: 12px;
+    }
+    .receiverInfo {
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+    .productName {
+        font-size: 10px;
+    }
+    .formItems {
+        margin: 10px 0;
+    }
+    .carrierApplyButton {
+        width: 120px;
+        font-size: 10px;
+        padding: 5px;
+        margin-top: 15px;
+        line-height: 14px;
+    }
 }

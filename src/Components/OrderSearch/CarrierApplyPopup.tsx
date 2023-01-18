@@ -121,7 +121,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             variant='h5'
                             component='p'
                         >
-                            {t('to')}:
+                            <p>{t('to')}:</p>
                         </Typography>
                         <Typography
                             className={styles.infoItemWay}
@@ -141,7 +141,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             variant='h5'
                             component='p'
                         >
-                            {t('from')}:
+                            <p>{t('from')}:</p>
                         </Typography>
 
                         <Typography
@@ -154,13 +154,13 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </Stack>
                 </div>
 
-                <Stack direction='column' spacing={3}>
+                <Stack direction='column' spacing={3} className={styles.stack}>
                     <Typography
                         className={styles.infoItem}
                         variant='h5'
                         component='p'
                     >
-                        {t('flightDate')}:
+                        <p>{t('flightDate')}:</p>
                         <span>{order.arrivalDate?.format('DD.MM.YYYY')}</span>
                     </Typography>
                     <Typography
@@ -168,7 +168,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        {t('benefit')}:{' '}
+                        <p>{t('benefit')}:{' '}</p>
                         <span>
                             {formatAmount(
                                 order.rewardAmount,
@@ -182,7 +182,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        {t('maxWeight')}:
+                        <p>{t('maxWeight')}:</p>
                         <span>
                             {order.carrierMaxWeight} {t('kg')}
                         </span>
@@ -192,7 +192,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
             <form onSubmit={formik.handleSubmit} action='submit'>
                 <Stack direction='row' spacing={3}>
                     <div className={styles.inputItem}>
-                        <label htmlFor='productName'>{t('productName')}</label>
+                        <label htmlFor='productName'>{t('product')}</label>
                         <TextField
                             id='productName'
                             name='productName'

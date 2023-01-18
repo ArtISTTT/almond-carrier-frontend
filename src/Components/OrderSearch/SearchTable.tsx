@@ -30,7 +30,7 @@ const SearchTable: React.FC<IProps> = ({ type, orders }) => {
     const receiversHeaders = [
         { name: t('receiver'), long: true },
         { name: `${t('from')}/${t('to')}`, long: true },
-        { name: t('productName') },
+        { name: t('product') },
         { name: t('price/benefit') },
         { name: t('weight') },
     ];
