@@ -43,10 +43,12 @@
 
 .select {
     border-radius: 15px;
+    height: 40px;
 }
 
 .input :global .MuiInputBase-root {
     border-radius: 15px;
+    height: 40px;
 }
 
 .form {

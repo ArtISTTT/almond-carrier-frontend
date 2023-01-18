@@ -41,6 +41,13 @@
     white-space: nowrap;
 }
 
+.detailsBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .description {
     color: var(--cTextThird);
     font-weight: 700;
@@ -107,7 +114,6 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-
 }
 
 .blockTitle {

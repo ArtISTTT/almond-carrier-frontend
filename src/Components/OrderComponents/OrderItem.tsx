@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from 'styles/OrderItem.module.css';
-import { Avatar, Button, Typography } from '@mui/material';
-import dayjs from 'dayjs';
+import { Button, Typography } from '@mui/material';
 import cn from 'classnames';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { OrderStatus } from '../../interfaces/profile';
@@ -140,17 +139,6 @@ const OrderItem: React.FC<IOrder> = ({
                                 {productName}
                             </Typography>
                         )}
-
-                        {/* {arrivalDate && (
-                            <Typography
-                                variant='h3'
-                                component='p'
-                                className={styles.description}
-                            >
-                                <span>{t('flightDate')}:</span>{' '}
-                                {dayjs(arrivalDate).format('DD.MM.YYYY')}
-                            </Typography>
-                        )} */}
                         {productWeight && (
                             <Typography
                                 variant='h3'
@@ -178,7 +166,6 @@ const OrderItem: React.FC<IOrder> = ({
                                 {fromLocation}
                             </Typography>
                         )}
-
                         {arrivalDate && (
                             <Typography
                                 variant='h3'
@@ -241,7 +228,7 @@ const OrderItem: React.FC<IOrder> = ({
                             </div>
                         )}
                     </div>
-                    <div>
+                    <div className={styles.detailsBlock}>
                         <Button
                             className={styles.detailsButton}
                             variant='contained'
@@ -257,7 +244,7 @@ const OrderItem: React.FC<IOrder> = ({
                                 component='p'
                                 className={styles.status}
                             >
-                                <span>STATUS: </span>
+                                <span>{t('status')}: </span>
                                 {convertStatus(status)}
                             </Typography>
                         </div>

@@ -2,8 +2,6 @@ import { useRouter } from 'next/router';
 import React, { useMemo, useState } from 'react';
 import styles from '../../../styles/OrderPage.module.css';
 import { IOrder, IOrderFull } from '../../interfaces/order';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../redux/selectors/user';
 import { OrderStatus } from '../../interfaces/profile';
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
@@ -21,7 +19,6 @@ import cn from 'classnames';
 import {
     agreeWithChanges,
     confirmDeal,
-    disagreeWithChanges,
     suggestChangesByCarrier,
     suggestChangesByReceiver,
 } from 'src/api/order';
