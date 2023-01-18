@@ -62,11 +62,15 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                 <div>
                     <div className={styles.fromToItem}>
                         <span className={styles.prefix}>{t('from')}:</span>
-                        <span>{order.fromLocation}</span>
+                        <span className={styles.toAndFromLocationValue}>
+                            {order.fromLocation}
+                        </span>
                     </div>
                     <div className={styles.fromToItem}>
                         <span className={styles.prefix}>{t('to')}:</span>
-                        <span>{order.toLocation}</span>
+                        <span className={styles.toAndFromLocationValue}>
+                            {order.toLocation}
+                        </span>
                     </div>
                 </div>
             </div>

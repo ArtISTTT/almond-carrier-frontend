@@ -60,11 +60,15 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                 <div>
                     <div className={styles.fromToItem}>
                         <span className={styles.prefix}>{t('from')}:</span>
-                        <span>{order.fromLocation ?? '?'}</span>
+                        <span className={styles.toAndFromLocationValue}>
+                            {order.fromLocation ?? '?'}
+                        </span>
                     </div>
                     <div className={styles.fromToItem}>
                         <span className={styles.prefix}>{t('to')}:</span>
-                        <span>{order.toLocation}</span>
+                        <span className={styles.toAndFromLocationValue}>
+                            {order.toLocation}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -73,9 +77,9 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
             </div>
             <div className={cn(styles.part, styles.doubleditem)}>
                 <div>
-                    <div className={styles.fromToItem}>
+                    <div className={styles.benefitPriceItem}>
                         <span className={styles.prefix}>{t('price')}:</span>
-                        <span>
+                        <span className={styles.benefitPriceValue}>
                             {order.productAmount &&
                                 formatAmount(
                                     order.productAmount,
@@ -84,9 +88,9 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                                 )}
                         </span>
                     </div>
-                    <div className={styles.fromToItem}>
+                    <div className={styles.benefitPriceItem}>
                         <span className={styles.prefix}>{t('benefit')}:</span>
-                        <span>
+                        <span className={styles.benefitPriceValue}>
                             {formatAmount(
                                 order.rewardAmount,
                                 Currency.RUB,
@@ -97,8 +101,7 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                 </div>
             </div>
             <div className={cn(styles.part, styles.maxWeight)}>
-                {order.productWeight}
-                {t('kg')}
+                {order.productWeight} {t('kg')}
             </div>
             <div className={cn(styles.part)}>
                 <Button

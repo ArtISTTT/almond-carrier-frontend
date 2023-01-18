@@ -16,14 +16,14 @@ type IProps = {
     type: OrderSeachType;
     orders: IOrder[];
 };
-const n = 4
+const n = 4;
 const SearchTable: React.FC<IProps> = ({ type, orders }) => {
     const { t } = useTranslation();
     const carriersHeaders = [
         { name: t('carrier'), long: true },
         { name: `${t('from')}/${t('to')}`, long: true },
         { name: t('arrivalDate') },
-        { name: t('benefit') },
+        { name: t('price') },
         { name: t('maxWeight') },
     ];
 

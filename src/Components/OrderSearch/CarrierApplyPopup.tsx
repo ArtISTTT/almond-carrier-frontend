@@ -114,7 +114,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     <Stack
                         className={styles.infoWayLine}
                         direction='row'
-                        spacing={4}
+                        spacing={4.25}
                     >
                         <Typography
                             className={styles.infoItemWay}

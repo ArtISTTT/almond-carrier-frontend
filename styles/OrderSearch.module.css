@@ -216,11 +216,34 @@
     line-height: 18px;
 }
 
+.fromToItem {
+    display: flex;
+}
+
+.benefitPriceItem {
+    font-size: 15px;
+    display: flex;
+    gap: 5px;
+}
+
+.benefitPriceValue {
+    white-space: nowrap;
+}
+
 .doubleditem .prefix {
     color: var(--cTextLow);
-    width: 65px;
+    max-width: 65px;
+    width: 100%;
     display: inline-block;
     margin-right: 26px;
+}
+
+.toAndFromLocationValue {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 140px;
 }
 
 .applyBtn {
@@ -265,7 +288,7 @@
     .part {
         font-size: 15px;
     }
-    .doubleditem .prefix  {
+    .doubleditem .prefix {
         margin-right: 0px;
     }
     .itemWrapper .part.user .infoItem {
@@ -312,7 +335,7 @@
     }
 }
 
-@media screen and (max-width: 780px ) {
+@media screen and (max-width: 780px) {
     .typeTitle {
         font-size: 25px;
     }
@@ -324,7 +347,7 @@
     }
 }
 
-@media screen  and (max-width: 710px) {
+@media screen and (max-width: 710px) {
     .filtersWrapper {
         flex-direction: column;
         align-items: flex-start;
@@ -385,7 +408,7 @@
         height: 25px;
         line-height: 25px;
         width: 85px;
-        border-radius: 8px !important; 
+        border-radius: 8px !important;
     }
     .typeSwitcher {
         height: 35px;

@@ -107,7 +107,27 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     <Stack
                         className={styles.infoWayLine}
                         direction='row'
-                        spacing={4.5}
+                        spacing={3.25}
+                    >
+                        <Typography
+                            className={styles.infoItemWay}
+                            variant='h5'
+                            component='p'
+                        >
+                            {t('productItem')}:
+                        </Typography>
+                        <Typography
+                            className={styles.infoItemWay}
+                            variant='h5'
+                            component='p'
+                        >
+                            <span>{order.productName}</span>
+                        </Typography>
+                    </Stack>
+                    <Stack
+                        className={styles.infoWayLine}
+                        direction='row'
+                        spacing={4.25}
                     >
                         <Typography
                             className={styles.infoItemWay}
@@ -158,7 +178,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         component='p'
                     >
                         {t('price')}:
-                        <span>
+                        <span className={styles.infoPriceValue}>
                             {order.productAmount &&
                                 formatAmount(
                                     order.productAmount,
@@ -172,8 +192,8 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        {t('benefit')}:{' '}
-                        <span>
+                        {t('benefit')}:
+                        <span className={styles.infoPriceValue}>
                             {formatAmount(
                                 order.rewardAmount,
                                 Currency.RUB,
@@ -191,8 +211,14 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </Typography>
                 </Stack>
             </div>
+            <div className={styles.carrierDescription}>
+                <div className={styles.productName}>{t('description')}</div>
+                <div className={styles.productDescription}>
+                    {order.productDescription}
+                </div>
+            </div>
             <form onSubmit={formik.handleSubmit} action='submit'>
-                <Stack direction='row' spacing={2}>
+                <Stack className={styles.formItems} direction='row' spacing={2}>
                     {!order.fromLocation && (
                         <div className={cn(styles.inputItem, styles.longInput)}>
                             <label htmlFor='fromLocation'>{t('from')}</label>
@@ -248,14 +274,6 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         />
                     </div>
                 </Stack>
-                <div className={styles.carrierDescription}>
-                    <div className={styles.productName}>
-                        {order.productName}
-                    </div>
-                    <div className={styles.productDescription}>
-                        {order.productDescription}
-                    </div>
-                </div>
                 <Button
                     type='submit'
                     className={styles.carrierApplyButton}

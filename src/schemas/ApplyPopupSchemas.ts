@@ -10,14 +10,7 @@ export const CarrierApplyPopupSchema = Yup.object().shape({
     productDescription: Yup.string(),
 });
 
-const today = new Date();
-
 export const ReceiverApplyPopupSchema = Yup.object().shape({
     fromLocation: Yup.string().min(0),
-    arrivalDate: Yup.date()
-        .min(
-            new Date(new Date(today).setDate(today.getDate() + 1)),
-            'futureDate'
-        )
-        .required('required'),
+    arrivalDate: Yup.date().required('required'),
 });

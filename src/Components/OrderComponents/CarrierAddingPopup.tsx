@@ -26,7 +26,7 @@ const defaultValues = {
     fromLocation: '',
     fromLocation_placeId: '',
     carrierMaxWeight: null,
-    arrivalDate: undefined as unknown as Date,
+    arrivalDate: new Date(),
     rewardAmount: null,
 };
 
@@ -199,8 +199,8 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 renderInput={params => (
                                     <TextField
                                         {...params}
-                                        id='dateOfBirth'
-                                        name='dateOfBirth'
+                                        id='arrivalDate'
+                                        name='arrivalDate'
                                         variant='outlined'
                                         className={styles.input}
                                         error={
