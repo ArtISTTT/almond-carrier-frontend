@@ -16,10 +16,8 @@ export const ReceiverPopupSchema = Yup.object().shape({
         .nullable()
         .min(0.1, 'greaterWeight')
         .required('required'),
-    productDescription: Yup.string().required('required'),
+    productDescription: Yup.string(),
 });
-
-const today = new Date();
 
 export const CarrierPopupSchema = Yup.object().shape({
     toLocation: Yup.string().min(1).required('required'),
@@ -32,10 +30,5 @@ export const CarrierPopupSchema = Yup.object().shape({
         .nullable()
         .min(0.1, 'greaterWeight')
         .required('required'),
-    arrivalDate: Yup.date()
-        .min(
-            new Date(new Date(today).setDate(today.getDate() + 1)),
-            'futureDate'
-        )
-        .required('required'),
+    arrivalDate: Yup.date().required('required'),
 });

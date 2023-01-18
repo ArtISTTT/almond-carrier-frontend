@@ -87,6 +87,10 @@
     display: flex;
 }
 
+.infoPriceValue {
+    white-space: nowrap;
+}
+
 .carrierInfo {
     padding-top: 35px;
     display: flex;
@@ -186,7 +190,8 @@
 }
 
 .carrierDescription {
-    margin-top: 18px;
+    margin-top: 15px;
+    margin-bottom: 18px;
 }
 
 .carrierDescriptionTitle {
@@ -230,13 +235,13 @@
 }
 
 .productName {
-    font-weight: 600;
-    color: var(--cTextThird);
+    font-weight: 400;
+    color: var(--cTextPrimary);
     font-size: 16px;
     line-height: 16px;
     letter-spacing: 0.2px;
     text-transform: uppercase;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 }
 
 .productDescription {
@@ -249,4 +254,8 @@
     line-height: 17px;
     letter-spacing: 0.4px;
     color: var(--cTextThird);
+}
+
+.formItems {
+    margin: 25px 0;
 }
