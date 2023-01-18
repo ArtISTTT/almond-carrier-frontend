@@ -38,8 +38,6 @@ const Footer = () => {
         );
     };
 
-    console.log(language);
-
     return (
         <footer className={styles.footer}>
             <div className={styles.leftBlock}>
@@ -49,7 +47,7 @@ const Footer = () => {
                         labelId='language-label'
                         id='demo-simple-select'
                         value={language}
-                        label={language === 'en' ? 'Language' : 'Язык'}
+                        label={t('language') as string}
                         MenuProps={{
                             disableScrollLock: true,
                         }}
