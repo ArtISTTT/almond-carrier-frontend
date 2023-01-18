@@ -5,6 +5,7 @@ import styles from '../../../styles/OrderChat.module.css';
 import { useTranslation } from 'react-i18next';
 import socketClient from 'socket.io-client';
 import MessagesPanel from './MessagesPanel';
+import axios from 'axios';
 
 const SERVER = 'http://127.0.0.1:8000';
 
@@ -37,43 +38,44 @@ const OrderChat: React.FC<IProps> = ({ user }) => {
     const [socketChannel, setSocketChannel] = React.useState<any>(null);
 
     const configureSocket = () => {
-        socket.on('connection', () => {
-            if (socketChannel) {
-                handleChannelSelect(socketChannel?.id);
-            }
-        });
-        socket.on('channel', (channel: any) => {
-            socketChannels?.forEach((chan: any) => {
-                if (chan.id === channel.id) {
-                    chan.participants = channel.participants;
-                }
-            });
-            setSocketChannels(socketChannels);
-        });
-        socket.on('message', (message: any) => {
-            socketChannels?.forEach((chan: any) => {
-                if (chan.id === message.channel_id) {
-                    if (!chan.messages) {
-                        chan.messages = [message];
-                    } else {
-                        chan.messages.push(message);
-                    }
-                }
-            });
-            setSocketChannels(socketChannels);
-        });
+        // socket.on('connection', () => {
+        //     if (socketChannel) {
+        //         handleChannelSelect(socketChannel?.id);
+        //     }
+        // });
+        // socket.on('channel', (channel: any) => {
+        //     socketChannels?.forEach((chan: any) => {
+        //         if (chan.id === channel.id) {
+        //             chan.participants = channel.participants;
+        //         }
+        //     });
+        //     setSocketChannels(socketChannels);
+        // });
+        // socket.on('message', (message: any) => {
+        //     socketChannels?.forEach((chan: any) => {
+        //         if (chan.id === message.channel_id) {
+        //             if (!chan.messages) {
+        //                 chan.messages = [message];
+        //             } else {
+        //                 chan.messages.push(message);
+        //             }
+        //         }
+        //     });
+        //     setSocketChannels(socketChannels);
+        // });
         setSocket(socket);
     };
 
     const loadChannels = async () => {
-        fetch(`${SERVER}/getChannels`).then(async response => {
-            let data = await response.json();
-            setSocketChannels(data.channels);
-        });
-        // fetch(`${SERVER}/getChannel`).then(async response => {
+        // fetch(`${SERVER}/getChannels`).then(async response => {
         //     let data = await response.json();
-        //     setSocketChannel(data.channel);
+        //     setSocketChannels(data.channels);
         // });
+
+        fetch(`${SERVER}/getChannel`).then(async response => {
+            let data = await response.json();
+            setSocketChannel(data.channel);
+        });
     };
 
     const handleChannelSelect = (id: number) => {
