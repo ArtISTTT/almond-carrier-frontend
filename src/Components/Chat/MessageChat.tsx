@@ -5,12 +5,13 @@ import { Positions } from './OrderChat';
 import cn from 'classnames';
 
 interface IProps {
-    avatar: string;
     text: string;
     position: Positions;
+    senderName: string;
+    id: number;
 }
 
-const MessageChat: React.FC<IProps> = ({ avatar, text, position }) => {
+const MessageChat: React.FC<IProps> = ({ text, position }) => {
     return (
         <div
             className={cn({
@@ -19,7 +20,10 @@ const MessageChat: React.FC<IProps> = ({ avatar, text, position }) => {
             })}
         >
             {position !== Positions.CENTER && (
-                <Avatar src={avatar} sx={{ height: 35, width: 35 }} />
+                <Avatar
+                    src='/static/images/thanks-for-registration/background.jpg'
+                    sx={{ height: 35, width: 35 }}
+                />
             )}
             <Typography
                 variant='body1'
