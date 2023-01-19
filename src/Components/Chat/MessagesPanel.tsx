@@ -1,11 +1,10 @@
 import { TextField, Button } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react';
-import styles from '../../../styles/OrderChat.module.css';
-import MessageChat from './MessageChat';
 import { Positions } from './OrderChat';
 import SendIcon from '@mui/icons-material/Send';
 import { useTranslation } from 'react-i18next';
+import styles from '../../../styles/OrderChat.module.css';
 
 interface IDialogMessage {
     avatar: string;

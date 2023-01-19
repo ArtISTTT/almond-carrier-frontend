@@ -8,7 +8,7 @@ import MessagesPanel from './MessagesPanel';
 import { getMessages, postMessage } from 'src/api/chat';
 import { IOrderFull } from 'src/interfaces/order';
 
-const SERVER = 'http://127.0.0.1:8000';
+const SERVER = process.env.NEXT_PUBLIC_SERVER_URI as string;
 
 interface IProps {
     user: IUser;
@@ -35,8 +35,8 @@ const OrderChat: React.FC<IProps> = ({ user, order }) => {
         configureSocket();
     }, []);
 
-    const [messages, setMessages] = React.useState<any>(null);
-    const [socket, setSocket] = React.useState<any>(socketClient(SERVER));
+    const [messages, setMessages] = React.useState<any[]>([]);
+    // const [socket, setSocket] = React.useState<any>(socketClient(SERVER));
     const [socketChannel, setSocketChannel] = React.useState<any>(null);
 
     const configureSocket = () => {
@@ -65,16 +65,23 @@ const OrderChat: React.FC<IProps> = ({ user, order }) => {
         //     });
         //     setSocketChannels(socketChannels);
         // });
-        setSocket(socket);
+        // setSocket(socket);
     };
 
     const loadMessages = async () => {
         const data = await getMessages(order.id);
-        setMessages(data.messages);
+        if (data.ok && data.messages) {
+            setMessages(data.messages);
+            console.log('load', data.messages);
+        }
     };
 
-    const handleSendMessage = (text: string) => {
-        const data = postMessage({ messageText: text, orderId: order.id });
+    const handleSendMessage = async (text: string) => {
+        const data = await postMessage({
+            messageText: text,
+            orderId: order.id,
+        });
+        console.log('send', data);
 
         // socket.emit('send-message', {
         //     channel_id,

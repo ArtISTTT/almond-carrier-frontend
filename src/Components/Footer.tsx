@@ -38,8 +38,6 @@ const Footer = () => {
         );
     };
 
-    console.log(language);
-
     return (
         <footer className={styles.footer}>
             <div className={styles.leftBlock}>
