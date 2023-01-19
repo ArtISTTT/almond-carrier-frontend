@@ -27,12 +27,13 @@ export const postMessage = (
     requestData: IPostMessage
 ): Promise<IPostMessageReturun> =>
     mainInstance
-        .post('/api/chat/post-message', {
-            params: {
+        .post(
+            '/chat/post-message',
+            JSON.stringify({
                 messageText: requestData.messageText,
                 orderId: requestData.orderId,
-            },
-        })
+            })
+        )
         .then(data => {
             return {
                 ok: true,
