@@ -3,12 +3,14 @@ import React from 'react';
 import { IUser } from 'src/interfaces/user';
 import styles from '../../../styles/OrderChat.module.css';
 import { useTranslation } from 'react-i18next';
-import socketClient from 'socket.io-client';
+import socketClient, { io } from 'socket.io-client';
 import MessagesPanel from './MessagesPanel';
 import { getMessages, postMessage } from 'src/api/chat';
 import { IOrderFull } from 'src/interfaces/order';
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URI as string;
+
+console.log(SERVER);
 
 interface IProps {
     user: IUser;
@@ -30,49 +32,40 @@ export enum Positions {
 const OrderChat: React.FC<IProps> = ({ user, order }) => {
     const { t } = useTranslation();
 
-    React.useEffect(() => {
-        loadMessages();
+    const initialize = async () => {
+        await loadMessages();
         configureSocket();
+    };
+
+    React.useEffect(() => {
+        initialize();
     }, []);
 
     const [messages, setMessages] = React.useState<any[]>([]);
-    // const [socket, setSocket] = React.useState<any>(socketClient(SERVER));
+    const [socket, setSocket] = React.useState<any>();
     const [socketChannel, setSocketChannel] = React.useState<any>(null);
 
     const configureSocket = () => {
-        // socket.on('connection', () => {
-        //     if (socketChannel) {
-        //         handleChannelSelect(socketChannel?.id);
-        //     }
-        // });
-        // socket.on('channel', (channel: any) => {
-        //     socketChannels?.forEach((chan: any) => {
-        //         if (chan.id === channel.id) {
-        //             chan.participants = channel.participants;
-        //         }
-        //     });
-        //     setSocketChannels(socketChannels);
-        // });
-        // socket.on('message', (message: any) => {
-        //     socketChannels?.forEach((chan: any) => {
-        //         if (chan.id === message.channel_id) {
-        //             if (!chan.messages) {
-        //                 chan.messages = [message];
-        //             } else {
-        //                 chan.messages.push(message);
-        //             }
-        //         }
-        //     });
-        //     setSocketChannels(socketChannels);
-        // });
-        // setSocket(socket);
+        const socket = io(SERVER, { transports: ['websocket'] });
+
+        socket.on('connected', () => {
+            console.log('User just connected');
+            socket.emit('connect-to-order', order.id);
+        });
+
+        socket.on('new-message', ({ message }: any) => {
+            console.log('new', message);
+            setMessages(messages.concat([message]));
+        });
+
+        setSocket(socket);
     };
 
     const loadMessages = async () => {
         const data = await getMessages(order.id);
         if (data.ok && data.messages) {
             setMessages(data.messages);
-            console.log('load', data.messages);
+            console.log('load', messages);
         }
     };
 
