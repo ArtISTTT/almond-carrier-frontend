@@ -45,6 +45,7 @@ const MessagesPanel: React.FC<IProps> = ({ onSendMessage, messages }) => {
                 {messages &&
                     messages.map((message: IMessage) => (
                         <MessageChat
+                            key={message.createdAt.toISOString()}
                             type={message.type}
                             createdAt={message.createdAt}
                             messageText={message.messageText}
