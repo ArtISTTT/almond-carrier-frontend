@@ -47,7 +47,10 @@ const OrderChat: React.FC<IProps> = ({ user, order, viewType }) => {
     }, [viewType, order.carrier, order.receiver]);
 
     const configureSocket = () => {
-        const socket = io(SERVER, { transports: ['websocket'] });
+        const socket = io(SERVER, {
+            transports: ['websocket'],
+            forceNew: true,
+        });
 
         socket.on('connected', () => {
             socket.emit('connect-to-order', order.id);
