@@ -108,4 +108,13 @@
         margin: 20px auto !important;
         margin-bottom: 0 !important;
     }
+    .popupTitle {
+        margin-bottom: 10px;
+    }
+    .stack {
+        margin-top: 5px;
+    }
+    .inputItemSecond {
+        padding-top: 5px;
+    }
 }
