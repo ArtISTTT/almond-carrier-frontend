@@ -3,7 +3,7 @@ import React from 'react';
 import { IUser } from 'src/interfaces/user';
 import styles from '../../../styles/OrderChat.module.css';
 import { useTranslation } from 'react-i18next';
-import { io } from 'socket.io-client';
+import { Socket, io } from 'socket.io-client';
 import MessagesPanel from './MessagesPanel';
 import { getMessages, postMessage } from 'src/api/chat';
 import { IOrderFull } from 'src/interfaces/order';
@@ -37,7 +37,7 @@ const OrderChat: React.FC<IProps> = ({ user, order, viewType }) => {
     }, []);
 
     const [messages, setMessages] = React.useState<IMessage[]>([]);
-    const [socket, setSocket] = React.useState<any>();
+    const [socket, setSocket] = React.useState<Socket | null>(null);
 
     const dialogPesron = React.useMemo(() => {
         const person =
