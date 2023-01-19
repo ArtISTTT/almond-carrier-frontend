@@ -1,11 +1,11 @@
 import {
-    IGetMessagesReturun,
+    IGetMessagesReturn,
     IPostMessage,
-    IPostMessageReturun,
+    IPostMessageReturn,
 } from 'src/interfaces/api/chat';
 import { mainInstance } from './instance';
 
-export const getMessages = (orderId: string): Promise<IGetMessagesReturun> =>
+export const getMessages = (orderId: string): Promise<IGetMessagesReturn> =>
     mainInstance
         .get('/chat', {
             params: { orderId },
@@ -13,7 +13,7 @@ export const getMessages = (orderId: string): Promise<IGetMessagesReturun> =>
         .then(data => {
             return {
                 ok: true,
-                chatMessages: data.data,
+                messages: data.data.messages,
             };
         })
         .catch(() => {
@@ -25,7 +25,7 @@ export const getMessages = (orderId: string): Promise<IGetMessagesReturun> =>
 
 export const postMessage = (
     requestData: IPostMessage
-): Promise<IPostMessageReturun> =>
+): Promise<IPostMessageReturn> =>
     mainInstance
         .post(
             '/chat/post-message',

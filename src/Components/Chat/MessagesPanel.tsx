@@ -5,6 +5,8 @@ import { Positions } from './OrderChat';
 import SendIcon from '@mui/icons-material/Send';
 import { useTranslation } from 'react-i18next';
 import styles from '../../../styles/OrderChat.module.css';
+import { IMessage } from 'src/interfaces/chat';
+import MessageChat from './MessageChat';
 
 interface IDialogMessage {
     avatar: string;
@@ -14,9 +16,10 @@ interface IDialogMessage {
 
 interface IProps {
     onSendMessage: (text: string) => void;
+    messages: IMessage[];
 }
 
-const MessagesPanel: React.FC<IProps> = ({ onSendMessage }) => {
+const MessagesPanel: React.FC<IProps> = ({ onSendMessage, messages }) => {
     const { t } = useTranslation();
 
     const addMessage = async (form: IDialogMessage) => {
@@ -39,17 +42,16 @@ const MessagesPanel: React.FC<IProps> = ({ onSendMessage }) => {
     return (
         <div className={styles.contentBlock}>
             <div className={styles.messages}>
-                {/* {channel &&
-                    channel.messages &&
-                    channel.messages.map((message: any) => (
+                {messages &&
+                    messages.map((message: IMessage) => (
                         <MessageChat
-                            key={message.id}
-                            id={message.id}
-                            senderName={message.senderName}
-                            text={message.text}
-                            position={Positions.RIGHT}
+                            type={message.type}
+                            createdAt={message.createdAt}
+                            messageText={message.messageText}
+                            readByRecipients={message.readByRecipients}
+                            // position={Positions.RIGHT}
                         />
-                    ))} */}
+                    ))}
             </div>
             <form
                 className={styles.sendMessageBlock}

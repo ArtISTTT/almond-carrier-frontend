@@ -1,16 +1,18 @@
+import { IMessageServer } from '../chat';
+
 export interface IPostMessage {
     messageText: string;
     orderId: string;
 }
 
-export interface IPostMessageReturun {
+export interface IPostMessageReturn {
     error?: string | undefined;
     ok: boolean;
-    message?: any;
+    message?: IMessageServer;
 }
 
-export interface IGetMessagesReturun {
+export interface IGetMessagesReturn {
     error?: string | undefined;
     ok: boolean;
-    messages?: any[];
+    messages?: IMessageServer[];
 }

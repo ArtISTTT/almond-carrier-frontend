@@ -1,25 +1,26 @@
 import { Avatar, Typography } from '@mui/material';
 import React from 'react';
 import styles from '../../../styles/OrderChat.module.css';
-import { Positions } from './OrderChat';
 import cn from 'classnames';
+import { MessageType } from 'src/interfaces/chat';
+import { Dayjs } from 'dayjs';
 
 interface IProps {
-    text: string;
-    position: Positions;
-    senderName: string;
-    id: number;
+    messageText: string;
+    type: MessageType;
+    createdAt: Dayjs;
+    readByRecipients: boolean;
 }
 
-const MessageChat: React.FC<IProps> = ({ text, position }) => {
+const MessageChat: React.FC<IProps> = ({ messageText, type, createdAt }) => {
     return (
         <div
             className={cn({
-                [styles.MessageBlock]: position === Positions.LEFT,
-                [styles.ReversedMessageBlock]: position === Positions.RIGHT,
+                [styles.MessageBlock]: type === MessageType.Other,
+                [styles.ReversedMessageBlock]: type === MessageType.Mine,
             })}
         >
-            {position !== Positions.CENTER && (
+            {type !== MessageType.Admin && (
                 <Avatar
                     src='/static/images/thanks-for-registration/background.jpg'
                     sx={{ height: 35, width: 35 }}
@@ -29,10 +30,10 @@ const MessageChat: React.FC<IProps> = ({ text, position }) => {
                 variant='body1'
                 component='h6'
                 className={cn(styles.messageText, {
-                    [styles.OurMessageBlock]: position === Positions.CENTER,
+                    [styles.OurMessageBlock]: type === MessageType.Admin,
                 })}
             >
-                {text}
+                {messageText}
             </Typography>
         </div>
     );

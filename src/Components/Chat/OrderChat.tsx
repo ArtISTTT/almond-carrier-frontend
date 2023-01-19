@@ -3,24 +3,19 @@ import React from 'react';
 import { IUser } from 'src/interfaces/user';
 import styles from '../../../styles/OrderChat.module.css';
 import { useTranslation } from 'react-i18next';
-import socketClient, { io } from 'socket.io-client';
+import { io } from 'socket.io-client';
 import MessagesPanel from './MessagesPanel';
 import { getMessages, postMessage } from 'src/api/chat';
 import { IOrderFull } from 'src/interfaces/order';
+import { parseMessages } from 'src/helpers/parseMessages';
+import { IMessage, IMessageServer } from 'src/interfaces/chat';
+import { ViewType } from '../OrderPage/OrderInputItem';
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URI as string;
-
-console.log(SERVER);
-
 interface IProps {
     user: IUser;
     order: IOrderFull;
-}
-interface ISocketChannel {
-    senderName: string;
-    id: number;
-    text: string;
-    channel_id: number;
+    viewType: ViewType;
 }
 
 export enum Positions {
@@ -29,8 +24,8 @@ export enum Positions {
     CENTER = 'Center',
 }
 
-const OrderChat: React.FC<IProps> = ({ user, order }) => {
-    const { t } = useTranslation();
+const OrderChat: React.FC<IProps> = ({ user, order, viewType }) => {
+    // const { t } = useTranslation();
 
     const initialize = async () => {
         await loadMessages();
@@ -41,21 +36,25 @@ const OrderChat: React.FC<IProps> = ({ user, order }) => {
         initialize();
     }, []);
 
-    const [messages, setMessages] = React.useState<any[]>([]);
+    const [messages, setMessages] = React.useState<IMessage[]>([]);
     const [socket, setSocket] = React.useState<any>();
-    const [socketChannel, setSocketChannel] = React.useState<any>(null);
+
+    const dialogPesron = React.useMemo(() => {
+        const person =
+            viewType === ViewType.carrier ? order.receiver : order.carrier;
+
+        return `${person?.firstName} ${person?.lastName}`;
+    }, [viewType, order.carrier, order.receiver]);
 
     const configureSocket = () => {
         const socket = io(SERVER, { transports: ['websocket'] });
 
         socket.on('connected', () => {
-            console.log('User just connected');
             socket.emit('connect-to-order', order.id);
         });
 
-        socket.on('new-message', ({ message }: any) => {
-            console.log('new', message);
-            setMessages(messages.concat([message]));
+        socket.on('new-message', ({ message }: { message: IMessageServer }) => {
+            setMessages(prev => prev.concat(parseMessages(user.id, [message])));
         });
 
         setSocket(socket);
@@ -63,9 +62,9 @@ const OrderChat: React.FC<IProps> = ({ user, order }) => {
 
     const loadMessages = async () => {
         const data = await getMessages(order.id);
+
         if (data.ok && data.messages) {
-            setMessages(data.messages);
-            console.log('load', messages);
+            setMessages(parseMessages(user.id, data.messages));
         }
     };
 
@@ -74,14 +73,10 @@ const OrderChat: React.FC<IProps> = ({ user, order }) => {
             messageText: text,
             orderId: order.id,
         });
-        console.log('send', data);
 
-        // socket.emit('send-message', {
-        //     channel_id,
-        //     text,
-        //     senderName: socket.id,
-        //     id: Date.now(),
-        // });
+        if (data.ok) {
+            return;
+        }
     };
 
     return (
@@ -94,18 +89,21 @@ const OrderChat: React.FC<IProps> = ({ user, order }) => {
                         variant='h6'
                         component='h6'
                     >
-                        {user.firstName} {user.lastName}
+                        {dialogPesron}
                     </Typography>
                     <Typography
                         className={styles.chatMemberOnline}
                         variant='subtitle2'
                         component='h6'
                     >
-                        {t('lastSeenOnline')} 15m {t('ago')}
+                        {/* {t('lastSeenOnline')} 15m {t('ago')} */}
                     </Typography>
                 </div>
             </div>
-            <MessagesPanel onSendMessage={handleSendMessage} />
+            <MessagesPanel
+                messages={messages}
+                onSendMessage={handleSendMessage}
+            />
         </div>
     );
 };
