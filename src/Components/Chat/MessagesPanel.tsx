@@ -14,18 +14,17 @@ interface IDialogMessage {
 }
 
 interface IProps {
-    onSendMessage: any;
-    channel: any;
+    onSendMessage: (text: string) => void;
 }
 
-const MessagesPanel: React.FC<IProps> = ({ onSendMessage, channel }) => {
+const MessagesPanel: React.FC<IProps> = ({ onSendMessage }) => {
     const { t } = useTranslation();
 
     const addMessage = async (form: IDialogMessage) => {
         if (!form.text.trim()) {
             return;
         }
-        onSendMessage(channel.id, form.text);
+        onSendMessage(form.text);
         await formik.setFieldValue('text', '');
     };
 
@@ -41,7 +40,7 @@ const MessagesPanel: React.FC<IProps> = ({ onSendMessage, channel }) => {
     return (
         <div className={styles.contentBlock}>
             <div className={styles.messages}>
-                {channel &&
+                {/* {channel &&
                     channel.messages &&
                     channel.messages.map((message: any) => (
                         <MessageChat
@@ -51,7 +50,7 @@ const MessagesPanel: React.FC<IProps> = ({ onSendMessage, channel }) => {
                             text={message.text}
                             position={Positions.RIGHT}
                         />
-                    ))}
+                    ))} */}
             </div>
             <form
                 className={styles.sendMessageBlock}

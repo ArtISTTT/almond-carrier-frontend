@@ -1,7 +1,11 @@
-import { IPostMessage } from 'src/interfaces/api/chat';
+import {
+    IGetMessagesReturun,
+    IPostMessage,
+    IPostMessageReturun,
+} from 'src/interfaces/api/chat';
 import { mainInstance } from './instance';
 
-export const getMessages = (orderId: string): Promise<any> =>
+export const getMessages = (orderId: string): Promise<IGetMessagesReturun> =>
     mainInstance
         .get('/chat', {
             params: { orderId },
@@ -19,11 +23,12 @@ export const getMessages = (orderId: string): Promise<any> =>
             };
         });
 
-export const postMessage = (requestData: IPostMessage): Promise<any> =>
+export const postMessage = (
+    requestData: IPostMessage
+): Promise<IPostMessageReturun> =>
     mainInstance
         .post('/api/chat/post-message', {
             params: {
-                userId: requestData.userId,
                 messageText: requestData.messageText,
                 orderId: requestData.orderId,
             },

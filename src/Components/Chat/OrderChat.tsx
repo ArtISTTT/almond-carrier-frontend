@@ -5,12 +5,14 @@ import styles from '../../../styles/OrderChat.module.css';
 import { useTranslation } from 'react-i18next';
 import socketClient from 'socket.io-client';
 import MessagesPanel from './MessagesPanel';
-import axios from 'axios';
+import { getMessages, postMessage } from 'src/api/chat';
+import { IOrderFull } from 'src/interfaces/order';
 
 const SERVER = 'http://127.0.0.1:8000';
 
 interface IProps {
     user: IUser;
+    order: IOrderFull;
 }
 interface ISocketChannel {
     senderName: string;
@@ -25,15 +27,15 @@ export enum Positions {
     CENTER = 'Center',
 }
 
-const OrderChat: React.FC<IProps> = ({ user }) => {
+const OrderChat: React.FC<IProps> = ({ user, order }) => {
     const { t } = useTranslation();
 
     React.useEffect(() => {
-        loadChannels();
+        loadMessages();
         configureSocket();
     }, []);
 
-    const [socketChannels, setSocketChannels] = React.useState<any>(null);
+    const [messages, setMessages] = React.useState<any>(null);
     const [socket, setSocket] = React.useState<any>(socketClient(SERVER));
     const [socketChannel, setSocketChannel] = React.useState<any>(null);
 
@@ -66,33 +68,20 @@ const OrderChat: React.FC<IProps> = ({ user }) => {
         setSocket(socket);
     };
 
-    const loadChannels = async () => {
-        // fetch(`${SERVER}/getChannels`).then(async response => {
-        //     let data = await response.json();
-        //     setSocketChannels(data.channels);
+    const loadMessages = async () => {
+        const data = await getMessages(order.id);
+        setMessages(data.messages);
+    };
+
+    const handleSendMessage = (text: string) => {
+        const data = postMessage({ messageText: text, orderId: order.id });
+
+        // socket.emit('send-message', {
+        //     channel_id,
+        //     text,
+        //     senderName: socket.id,
+        //     id: Date.now(),
         // });
-
-        fetch(`${SERVER}/getChannel`).then(async response => {
-            let data = await response.json();
-            setSocketChannel(data.channel);
-        });
-    };
-
-    const handleChannelSelect = (id: number) => {
-        let channel = socketChannels.find((c: any) => {
-            return c.id === id;
-        });
-        setSocketChannel(channel);
-        socket.emit('channel-join', id, (ack: any) => {});
-    };
-
-    const handleSendMessage = (channel_id: number, text: string) => {
-        socket.emit('send-message', {
-            channel_id,
-            text,
-            senderName: socket.id,
-            id: Date.now(),
-        });
     };
 
     return (
@@ -116,10 +105,7 @@ const OrderChat: React.FC<IProps> = ({ user }) => {
                     </Typography>
                 </div>
             </div>
-            <MessagesPanel
-                onSendMessage={handleSendMessage}
-                channel={socketChannel}
-            />
+            <MessagesPanel onSendMessage={handleSendMessage} />
         </div>
     );
 };
