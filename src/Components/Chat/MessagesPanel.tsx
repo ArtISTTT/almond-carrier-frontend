@@ -1,12 +1,13 @@
 import { TextField, Button } from '@mui/material';
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Positions } from './OrderChat';
 import SendIcon from '@mui/icons-material/Send';
 import { useTranslation } from 'react-i18next';
 import styles from '../../../styles/OrderChat.module.css';
 import { IMessage } from 'src/interfaces/chat';
 import MessageChat from './MessageChat';
+import dayjs from 'dayjs';
 
 interface IDialogMessage {
     avatar: string;
@@ -20,7 +21,18 @@ interface IProps {
 }
 
 const MessagesPanel: React.FC<IProps> = ({ onSendMessage, messages }) => {
+    const [currentDate, setCurrentDate] = useState(dayjs());
     const { t } = useTranslation();
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setCurrentDate(dayjs());
+        }, 60000);
+
+        return () => {
+            clearTimeout(timeout);
+        };
+    });
 
     const addMessage = async (form: IDialogMessage) => {
         if (!form.text.trim()) {
