@@ -1,21 +1,21 @@
-import { Avatar, Typography, TextField } from '@mui/material';
+import { Avatar, Typography } from '@mui/material';
 import React from 'react';
 import { IUser } from 'src/interfaces/user';
 import styles from '../../../styles/OrderChat.module.css';
-import SendIcon from '@mui/icons-material/Send';
-import MessageChat from './MessageChat';
-import { useFormik } from 'formik';
-import Button from '@mui/material/Button';
 import { useTranslation } from 'react-i18next';
+import { Socket, io } from 'socket.io-client';
+import MessagesPanel from './MessagesPanel';
+import { getMessages, postMessage } from 'src/api/chat';
+import { IOrderFull } from 'src/interfaces/order';
+import { parseMessages } from 'src/helpers/parseMessages';
+import { IMessage, IMessageServer } from 'src/interfaces/chat';
+import { ViewType } from '../OrderPage/OrderInputItem';
 
+const SERVER = process.env.NEXT_PUBLIC_SERVER_URI as string;
 interface IProps {
     user: IUser;
-}
-
-interface IDialogMessage {
-    avatar: string;
-    text: string;
-    position: Positions;
+    order: IOrderFull;
+    viewType: ViewType;
 }
 
 export enum Positions {
@@ -24,56 +24,63 @@ export enum Positions {
     CENTER = 'Center',
 }
 
-const defaultMessages = [
-    {
-        text: 'asd asd asd asdasd asdasd asdasd asdasd asdasd asdasd asdasd asds',
-        avatar: '/static/images/thanks-for-registration/background.jpg',
-        position: Positions.LEFT,
-    },
-    {
-        text: 'qwe qwe',
-        avatar: '/static/images/thanks-for-registration/background.jpg',
-        position: Positions.LEFT,
-    },
-    {
-        text: 'asdasd',
-        avatar: '/static/images/thanks-for-registration/background.jpg',
-        position: Positions.CENTER,
-    },
-    {
-        text: 'asdasd',
-        avatar: '/static/images/thanks-for-registration/background.jpg',
-        position: Positions.RIGHT,
-    },
-    {
-        text: 'asd asd asd asdasd asdasd asdasd asdasd asdasd asdasd asdasd asds',
-        avatar: '/static/images/thanks-for-registration/background.jpg',
-        position: Positions.RIGHT,
-    },
-];
+const OrderChat: React.FC<IProps> = ({ user, order, viewType }) => {
+    // const { t } = useTranslation();
 
-const OrderChat: React.FC<IProps> = ({ user }) => {
-    const [dialogMessages, setDialogMessages] =
-        React.useState<IDialogMessage[]>(defaultMessages);
-
-    const { t } = useTranslation();
-
-    const addMessage = async (form: IDialogMessage) => {
-        if (!form.text.trim()) {
-            return;
-        }
-        await setDialogMessages([...dialogMessages, form]);
-        await formik.setFieldValue('text', '');
+    const initialize = async () => {
+        await loadMessages();
+        configureSocket();
     };
 
-    const formik = useFormik({
-        initialValues: {
-            text: '',
-            avatar: '/static/images/thanks-for-registration/background.jpg',
-            position: Positions.RIGHT,
-        },
-        onSubmit: addMessage,
-    });
+    React.useEffect(() => {
+        initialize();
+    }, []);
+
+    const [messages, setMessages] = React.useState<IMessage[]>([]);
+    const [socket, setSocket] = React.useState<Socket | null>(null);
+
+    const dialogPesron = React.useMemo(() => {
+        const person =
+            viewType === ViewType.carrier ? order.receiver : order.carrier;
+
+        return `${person?.firstName} ${person?.lastName}`;
+    }, [viewType, order.carrier, order.receiver]);
+
+    const configureSocket = () => {
+        const socket = io(SERVER, {
+            transports: ['websocket'],
+            forceNew: true,
+        });
+
+        socket.on('connected', () => {
+            socket.emit('connect-to-order', order.id);
+        });
+
+        socket.on('new-message', ({ message }: { message: IMessageServer }) => {
+            setMessages(prev => prev.concat(parseMessages(user.id, [message])));
+        });
+
+        setSocket(socket);
+    };
+
+    const loadMessages = async () => {
+        const data = await getMessages(order.id);
+
+        if (data.ok && data.messages) {
+            setMessages(parseMessages(user.id, data.messages));
+        }
+    };
+
+    const handleSendMessage = async (text: string) => {
+        const data = await postMessage({
+            messageText: text,
+            orderId: order.id,
+        });
+
+        if (data.ok) {
+            return;
+        }
+    };
 
     return (
         <div className={styles.chatWrapper}>
@@ -85,56 +92,21 @@ const OrderChat: React.FC<IProps> = ({ user }) => {
                         variant='h6'
                         component='h6'
                     >
-                        {user.firstName} {user.lastName}
+                        {dialogPesron}
                     </Typography>
                     <Typography
                         className={styles.chatMemberOnline}
                         variant='subtitle2'
                         component='h6'
                     >
-                        {t('lastSeenOnline')} 15m {t('ago')}
+                        {/* {t('lastSeenOnline')} 15m {t('ago')} */}
                     </Typography>
                 </div>
             </div>
-            <div className={styles.contentBlock}>
-                <div className={styles.messages}>
-                    {dialogMessages.map(message => (
-                        <MessageChat
-                            avatar={message.avatar}
-                            text={message.text}
-                            position={message.position}
-                        />
-                    ))}
-                </div>
-                <form
-                    className={styles.sendMessageBlock}
-                    onSubmit={formik.handleSubmit}
-                    action='submit'
-                >
-                    <TextField
-                        InputProps={{
-                            disableUnderline: true,
-                        }}
-                        id='text'
-                        name='text'
-                        variant='filled'
-                        className={styles.inputMessage}
-                        placeholder={t('message') as string}
-                        value={formik.values.text}
-                        onChange={formik.handleChange}
-                        multiline
-                        maxRows={3}
-                    />
-                    <Button type='submit'>
-                        <SendIcon
-                            type='submit'
-                            color='primary'
-                            className={styles.sendIcon}
-                            sx={{ fontSize: 40 }}
-                        />
-                    </Button>
-                </form>
-            </div>
+            <MessagesPanel
+                messages={messages}
+                onSendMessage={handleSendMessage}
+            />
         </div>
     );
 };

@@ -46,7 +46,7 @@
 .ordersWindow {
     flex: 1;
     padding-right: 15px;
-    text-align: end;
+    text-align: center;
     display: flex;
     flex-direction: column;
 }
@@ -119,7 +119,6 @@
     z-index: 5;
 }
 
-
 @media screen and (max-width: 900px) {
     .ordersWindow {
         text-align: center;
@@ -131,8 +130,6 @@
         font-size: 30px;
     }
 }
-
-
 
 @media screen and (max-width: 500px) {
     .newOrderButtons {

@@ -41,13 +41,13 @@ const Footer = () => {
     return (
         <footer className={styles.footer}>
             <div className={styles.leftBlock}>
-                <FormControl sx={{ width: 250 }} className={styles.input} >
-                    <InputLabel id='language-label' >{t('language')}</InputLabel>
+                <FormControl sx={{ width: 250 }} className={styles.input}>
+                    <InputLabel id='language-label'>{t('language')}</InputLabel>
                     <Select
                         labelId='language-label'
                         id='demo-simple-select'
                         value={language}
-                        label='Language'
+                        label={language === 'en' ? 'Language' : 'Язык'}
                         MenuProps={{
                             disableScrollLock: true,
                         }}
