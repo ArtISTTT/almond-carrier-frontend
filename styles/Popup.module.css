@@ -68,6 +68,11 @@
     height: 40px;
 }
 
+.descriptionInput :global .MuiInputBase-root {
+    width: 100%;
+    border-radius: 15px;
+}
+
 .form {
     width: 100%;
     max-width: 804px;
