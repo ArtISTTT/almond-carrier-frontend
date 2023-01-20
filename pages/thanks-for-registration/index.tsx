@@ -1,6 +1,6 @@
 import { Button, Typography } from '@mui/material';
 import React from 'react';
-import style from '../../styles/ThanksForRegistration.module.css';
+import styles from '../../styles/ThanksForRegistration.module.css';
 import { useRouter } from 'next/router';
 import PrivateLayout from '../../src/Components/Layouts/Private';
 import { privateTypes } from '../../src/interfaces/private';
@@ -17,13 +17,13 @@ const SignIn: React.FC = () => {
 
     return (
         <PrivateLayout privateType={privateTypes.all}>
-            <div className={style.thanksForRegistrationWrapper}>
-                <div className={style.thanksForRegistrationText}>
-                    <Typography variant='h3' component='h2'>
+            <div className={styles.thanksForRegistrationWrapper}>
+                <div className={styles.thanksForRegistrationText}>
+                    <Typography variant='h3' component='h2' className={styles.text}>
                         {t('thanksForResistration')}
                     </Typography>
                     <Button
-                        className={style.thanksForRegistrationButton}
+                        className={styles.thanksForRegistrationButton}
                         onClick={goToDashBoard}
                         variant='contained'
                     >

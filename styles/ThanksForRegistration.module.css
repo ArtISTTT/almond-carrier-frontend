@@ -37,3 +37,45 @@
     margin-top: 36px;
     border-radius: 16px;
 }
+
+@media screen and (max-width: 1400px) {
+    .thanksForRegistrationText {
+        margin-top: 200px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .thanksForRegistrationWrapper::before {
+        height: 500px;
+        width: 500px;
+    }
+    .text {
+        font-size: 36px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .thanksForRegistrationText {
+        margin-top: 50px;
+    }
+    .thanksForRegistrationWrapper::before {
+        height: 400px;
+        width: 400px;
+    }
+    .text {
+        font-size: 30px;
+    }
+    .thanksForRegistrationButton {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .text {
+        font-size: 24px;
+    }
+    .thanksForRegistrationWrapper::before {
+        width: 350px;
+        height: 350px;
+    }
+}

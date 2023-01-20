@@ -279,6 +279,7 @@
     }
     .status {
         font-size: 12px;
+        text-align: center;
     }
     .detailsButton {
         font-size: 12px;
@@ -319,7 +320,7 @@
     }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 760px) {
     .detailsButton {
         margin-bottom: 5px;
     }

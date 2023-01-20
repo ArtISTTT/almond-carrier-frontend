@@ -14,6 +14,7 @@ import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
 import { ReceiverApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
+import { style } from '@mui/system';
 
 interface IProps {
     closePopup: () => void;
@@ -114,7 +115,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             variant='h5'
                             component='p'
                         >
-                            {t('productItem')}:
+                            <p>{t('productItem')}:</p>
                         </Typography>
                         <Typography
                             className={styles.infoItemWay}
@@ -134,7 +135,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             variant='h5'
                             component='p'
                         >
-                            {t('to')}:
+                            <p>{t('to')}:</p>
                         </Typography>
                         <Typography
                             className={styles.infoItemWay}
@@ -177,7 +178,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        {t('price')}:
+                        <p>{t('price')}:</p>
                         <span className={styles.infoPriceValue}>
                             {order.productAmount &&
                                 formatAmount(
@@ -192,7 +193,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        {t('benefit')}:
+                        <p>{t('benefit')}:</p>
                         <span className={styles.infoPriceValue}>
                             {formatAmount(
                                 order.rewardAmount,
@@ -206,7 +207,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        {t('weight')}
+                        <p>{t('weight')}</p>
                         <span>{order.productWeight} </span>
                     </Typography>
                 </Stack>
@@ -244,7 +245,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             />
                         </div>
                     )}
-                    <div className={styles.inputItem}>
+                    <div className={cn(styles.inputItem, styles.inputItemSecond)}>
                         <label htmlFor='arrivalDate'>{t('date')}</label>
                         <DesktopDatePicker
                             inputFormat='DD.MM.YYYY'
