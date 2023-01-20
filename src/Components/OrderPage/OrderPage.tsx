@@ -63,7 +63,7 @@ const OrderPage = () => {
             order?.receiver?.id === user.id
                 ? ViewType.receiver
                 : ViewType.carrier,
-        []
+        [order?.receiver?.id, user.id]
     );
 
     if (isLoading || !order) {
