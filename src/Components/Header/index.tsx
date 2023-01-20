@@ -8,6 +8,7 @@ import HeaderAvatar from './Avatar';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import { LinkBehaviour } from '../Common/LinkBehaviour';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -41,19 +42,23 @@ const Header: React.FC<IProps> = ({
                 />
                 {isAuthorized && (
                     <div className={styles.leftMenuLinks}>
-                        <Link href='/dashboard'>
-                            <MUILink className={styles.link} underline='none'>
-                                {t('dashboard')}
-                            </MUILink>
-                        </Link>
-                        <Link href='/order-search'>
-                            <MUILink className={styles.link} underline='none'>
-                                {t('orderSearch')}
-                            </MUILink>
-                        </Link>
-                        {/* <MUILink className={styles.link} underline='none'>
-                            Link 3
-                        </MUILink> */}
+                        <MUILink
+                            href='/dashboard'
+                            className={styles.link}
+                            component={LinkBehaviour}
+                            underline='none'
+                        >
+                            {t('dashboard')}
+                        </MUILink>
+
+                        <MUILink
+                            href='/order-search'
+                            className={styles.link}
+                            component={LinkBehaviour}
+                            underline='none'
+                        >
+                            {t('orderSearch')}
+                        </MUILink>
                     </div>
                 )}
             </div>
