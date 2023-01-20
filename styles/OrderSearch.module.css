@@ -416,6 +416,7 @@
     }
     .formSecondR {
         flex-direction: column;
+        margin-top: 10px;
     }
     .typeTitle {
         font-size: 20px;
@@ -457,6 +458,15 @@
     }
     .tableHeaderItem {
         font-size: 9px;
+    }
+    .wrapper {
+        padding: 10px;
+    }
+    .inputItemLast {
+        margin-top: 10px;
+    }
+    .formSecondC {
+        margin-top: 15px;
     }
 }
 

@@ -91,7 +91,7 @@ const SignIn: React.FC = () => {
                             placeholder={t('email') as string}
                             variant='outlined'
                             value={formik.values.email}
-                            className={style.TextField}
+                            className={cn(style.TextField,style.input)}
                             onChange={formik.handleChange}
                             error={formik.errors.email !== undefined}
                             helperText={

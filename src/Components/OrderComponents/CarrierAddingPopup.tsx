@@ -153,7 +153,7 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                     <Stack direction='row' spacing={2} className={styles.stack}>
                         <div className={styles.inputItem}>
                             <label htmlFor='rewardAmount'>
-                                {t('productPrice')}
+                                {t('benefit')}
                             </label>
                             <TextField
                                 InputProps={{

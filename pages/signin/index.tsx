@@ -14,6 +14,7 @@ import { parseUserDataFromApi } from '../../src/helpers/parseUserDataFromApi';
 import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
 
 type IForm = {
     email: string;

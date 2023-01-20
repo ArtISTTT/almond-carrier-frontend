@@ -273,7 +273,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                     />
                                 </div>
                             </div>
-                            <div className={styles.inputItem}>
+                            <div className={cn(styles.inputItem, styles.inputItemLast)}>
                                 <label htmlFor='minBenefit'>
                                     {t('minBenefit')}
                                 </label>

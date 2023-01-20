@@ -377,6 +377,9 @@
 }
 
 @media screen and (max-width: 600px) {
+    .orderInfo {
+        width: 100%;
+    }
     .userBlock {
         width: 230px;
     }
@@ -409,6 +412,9 @@
 }
 
 @media screen and (max-width: 500px) {
+    .orderInfo {
+        width: 100%;
+    }
     .orderTitle {
         flex-direction: column;
     }
@@ -420,7 +426,7 @@
     }
     .userBlock {
         width: 100%;
-        max-width: 450px;
+        max-width: 470px;
     }
     .description {
         font-size: 8px;
