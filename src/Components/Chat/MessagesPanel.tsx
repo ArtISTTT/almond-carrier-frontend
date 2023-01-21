@@ -62,7 +62,6 @@ const MessagesPanel: React.FC<IProps> = ({ onSendMessage, messages }) => {
                             createdAt={message.createdAt}
                             messageText={message.messageText}
                             readByRecipients={message.readByRecipients}
-                            // position={Positions.RIGHT}
                         />
                     ))}
             </div>
