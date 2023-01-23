@@ -5,8 +5,9 @@
 
 .typeSwitcherWrapper {
     display: flex;
-    align-items: center;
-    gap: 32px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .typeSwitcher {
@@ -457,6 +458,9 @@
     }
     .tableHeaderItem {
         font-size: 9px;
+    }
+    .typeSwitcherWrapper {
+        gap: 15px;
     }
 }
 
