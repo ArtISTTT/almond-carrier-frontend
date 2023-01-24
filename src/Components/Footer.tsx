@@ -18,10 +18,11 @@ import { changeLanguage } from '../redux/slices/settingsSlice';
 import { Language } from '../interfaces/settings';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import { useCreateQueryParams } from 'src/redux/hooks/useCreateQueryParams';
 
 const Footer = () => {
     const dispatch = useAppDispatch();
-    const { push, route } = useRouter();
+    const router = useRouter();
     const { t } = useTranslation();
 
     const { language } = useAppSelector(
@@ -29,7 +30,18 @@ const Footer = () => {
     );
 
     const handleChange = (event: SelectChangeEvent) => {
-        push(route, undefined, { locale: event.target.value });
+        const queryParams = useCreateQueryParams(router.route, router);
+
+        router.push(
+            {
+                href: router.route,
+                query: queryParams,
+            },
+            undefined,
+            {
+                locale: event.target.value,
+            }
+        );
         dispatch(
             changeLanguage({
                 language: event.target.value as Language,
@@ -65,9 +77,7 @@ const Footer = () => {
                         alt='logo'
                         className={styles.avatar}
                     />
-                    <div className={styles.rightsText}>
-                        {t("copyright")}
-                    </div>
+                    <div className={styles.rightsText}>{t('copyright')}</div>
                 </div>
             </div>
             <div className={styles.centerBlock}>
@@ -80,16 +90,28 @@ const Footer = () => {
                         >
                             {t('sitemap')}
                         </Typography>
-                        <MUILink className={styles.centerLink} href='/dashboard'>
+                        <MUILink
+                            className={styles.centerLink}
+                            href='/dashboard'
+                        >
                             {t('dashboard')}
                         </MUILink>
-                        <MUILink className={styles.centerLink} href='/order-search'>
+                        <MUILink
+                            className={styles.centerLink}
+                            href='/order-search'
+                        >
                             {t('orderSearch')}
                         </MUILink>
-                        <MUILink className={styles.centerLink} href='/profile/orders'>
+                        <MUILink
+                            className={styles.centerLink}
+                            href='/profile/orders'
+                        >
                             {t('profileOrders')}
                         </MUILink>
-                        <MUILink className={styles.centerLink} href='/profile/general'>
+                        <MUILink
+                            className={styles.centerLink}
+                            href='/profile/general'
+                        >
                             {t('myInfo')}
                         </MUILink>
                     </div>
@@ -129,7 +151,7 @@ const Footer = () => {
                             {t('feedback')}
                         </MUILink>
                         <MUILink className={styles.centerLink} href='#'>
-                            {t("contactUs")}
+                            {t('contactUs')}
                         </MUILink>
                     </div>
                 </div>
@@ -142,9 +164,7 @@ const Footer = () => {
                         alt='logo'
                         className={styles.avatar}
                     />
-                    <div className={styles.rightsText}>
-                        {t("copyright")}
-                    </div>
+                    <div className={styles.rightsText}>{t('copyright')}</div>
                 </div>
                 <div className={styles.icons}>
                     <MUILink href='#'>
@@ -157,7 +177,6 @@ const Footer = () => {
                         <InstagramIcon className={styles.footerIcon} />
                     </MUILink>
                 </div>
-
             </div>
         </footer>
     );
