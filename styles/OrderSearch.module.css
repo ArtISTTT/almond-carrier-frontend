@@ -5,8 +5,9 @@
 
 .typeSwitcherWrapper {
     display: flex;
-    align-items: center;
-    gap: 32px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .typeSwitcher {
@@ -467,6 +468,9 @@
     }
     .formSecondC {
         margin-top: 15px;
+    }
+    .typeSwitcherWrapper {
+        gap: 15px;
     }
 }
 

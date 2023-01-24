@@ -58,12 +58,17 @@ const Footer = () => {
                         <MenuItem value={Language.EN}>{t('english')}</MenuItem>
                     </Select>
                 </FormControl>
-                <Avatar
-                    sx={{ width: 55, height: 55 }}
-                    src='/static/images/logo.png'
-                    alt='logo'
-                    className={styles.avatar}
-                />
+                <div className={styles.rights}>
+                    <Avatar
+                        sx={{ width: 55, height: 55 }}
+                        src='/static/images/logo.png'
+                        alt='logo'
+                        className={styles.avatar}
+                    />
+                    <div className={styles.rightsText}>
+                        {t("copyright")}
+                    </div>
+                </div>
             </div>
             <div className={styles.centerBlock}>
                 <div className={styles.centerBlockInner}>
@@ -73,19 +78,19 @@ const Footer = () => {
                             component='h3'
                             className={styles.columnTitle}
                         >
-                            {t('resources')}
+                            {t('sitemap')}
                         </Typography>
-                        <MUILink className={styles.centerLink} href='#'>
-                            Link
+                        <MUILink className={styles.centerLink} href='/dashboard'>
+                            {t('dashboard')}
                         </MUILink>
-                        <MUILink className={styles.centerLink} href='#'>
-                            Link
+                        <MUILink className={styles.centerLink} href='/order-search'>
+                            {t('orderSearch')}
                         </MUILink>
-                        <MUILink className={styles.centerLink} href='#'>
-                            Link
+                        <MUILink className={styles.centerLink} href='/profile/orders'>
+                            {t('profileOrders')}
                         </MUILink>
-                        <MUILink className={styles.centerLink} href='#'>
-                            Link
+                        <MUILink className={styles.centerLink} href='/profile/general'>
+                            {t('myInfo')}
                         </MUILink>
                     </div>
                     <div className={styles.centerColumn}>
@@ -94,22 +99,19 @@ const Footer = () => {
                             component='h3'
                             className={styles.columnTitle}
                         >
-                            {t('product')}
+                            {t('generalS')}
                         </Typography>
                         <MUILink className={styles.centerLink} href='#'>
-                            Link
+                            {t('about')}
                         </MUILink>
                         <MUILink className={styles.centerLink} href='#'>
-                            Link
+                            {t('founders')}
                         </MUILink>
                         <MUILink className={styles.centerLink} href='#'>
-                            Link
+                            {t('privacy')}
                         </MUILink>
                         <MUILink className={styles.centerLink} href='#'>
-                            Link
-                        </MUILink>
-                        <MUILink className={styles.centerLink} href='#'>
-                            Link
+                            {t('serviceTerms')}
                         </MUILink>
                     </div>
                     <div className={styles.centerColumn}>
@@ -118,33 +120,44 @@ const Footer = () => {
                             component='h3'
                             className={styles.columnTitle}
                         >
-                            {t('company')}
+                            {t('help')}
                         </Typography>
                         <MUILink className={styles.centerLink} href='#'>
-                            Link
+                            {t('FAQ')}
                         </MUILink>
                         <MUILink className={styles.centerLink} href='#'>
-                            Link
+                            {t('feedback')}
                         </MUILink>
                         <MUILink className={styles.centerLink} href='#'>
-                            Link
-                        </MUILink>
-                        <MUILink className={styles.centerLink} href='#'>
-                            Link
+                            {t("contactUs")}
                         </MUILink>
                     </div>
                 </div>
             </div>
             <div className={styles.rightBlock}>
-                <MUILink href='#'>
-                    <EmailIcon className={styles.footerIcon} />
-                </MUILink>
-                <MUILink href='#'>
-                    <TelegramIcon className={styles.footerIcon} />
-                </MUILink>
-                <MUILink href='#'>
-                    <InstagramIcon className={styles.footerIcon} />
-                </MUILink>
+                <div className={styles.rightsSmall}>
+                    <Avatar
+                        sx={{ width: 55, height: 55 }}
+                        src='/static/images/logo.png'
+                        alt='logo'
+                        className={styles.avatar}
+                    />
+                    <div className={styles.rightsText}>
+                        {t("copyright")}
+                    </div>
+                </div>
+                <div className={styles.icons}>
+                    <MUILink href='#'>
+                        <EmailIcon className={styles.footerIcon} />
+                    </MUILink>
+                    <MUILink href='#'>
+                        <TelegramIcon className={styles.footerIcon} />
+                    </MUILink>
+                    <MUILink href='#'>
+                        <InstagramIcon className={styles.footerIcon} />
+                    </MUILink>
+                </div>
+
             </div>
         </footer>
     );
