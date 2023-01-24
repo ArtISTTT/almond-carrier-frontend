@@ -14,6 +14,7 @@ import { parseUserDataFromApi } from '../../src/helpers/parseUserDataFromApi';
 import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'react-i18next';
+import { navigateTo } from 'src/interfaces/navigate';
 
 type IForm = {
     email: string;
@@ -35,7 +36,7 @@ const SignIn: React.FC = () => {
                 severity: 'success',
                 text: t('successSignIn'),
             });
-            router.push('/dashboard');
+            router.push(navigateTo.DASHBOARD);
         } else {
             triggerOpen({
                 severity: 'error',
@@ -108,14 +109,14 @@ const SignIn: React.FC = () => {
                         >
                             <MUILink
                                 className={style.helpLink}
-                                href='/signup'
+                                href={navigateTo.SIGNUP}
                                 component={LinkBehaviour}
                             >
                                 {t('dontHaveAccount')}
                             </MUILink>
                             <MUILink
                                 className={style.helpLink}
-                                href='/forgot-password'
+                                href={navigateTo.FORGOT_PASSWORD}
                                 component={LinkBehaviour}
                             >
                                 {t('forgotPassword')}

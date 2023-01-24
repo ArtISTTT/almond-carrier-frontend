@@ -21,6 +21,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { changeGeneralSettings } from '../../redux/slices/settingsSlice';
 import cn from 'classnames';
+import { useCreateQueryParams } from 'src/redux/hooks/useCreateQueryParams';
 
 const GeneralSettings: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -47,10 +48,21 @@ const GeneralSettings: React.FC = () => {
     const router = useRouter();
 
     const updateGeneralSettings = (form: IGeneralSettings) => {
-        dispatch(changeGeneralSettings(form));
+        const queryParams = useCreateQueryParams(router.route, router);
+
         if (form.language !== userGeneralSettings.language) {
-            router.push(router.route, undefined, { locale: form.language });
+            router.push(
+                {
+                    href: router.route,
+                    query: queryParams,
+                },
+                undefined,
+                {
+                    locale: form.language,
+                }
+            );
         }
+        dispatch(changeGeneralSettings(form));
     };
 
     const formik = useFormik({

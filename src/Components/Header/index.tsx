@@ -8,6 +8,7 @@ import HeaderAvatar from './Avatar';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import { navigateTo } from 'src/interfaces/navigate';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -24,9 +25,9 @@ const Header: React.FC<IProps> = ({
 
     const changePageIfAuthorized = () => {
         if (isAuthorized) {
-            router.push('/dashboard');
+            router.push(navigateTo.DASHBOARD);
         } else {
-            router.push('/signin');
+            router.push(navigateTo.SIGNIN);
         }
     };
 
@@ -41,12 +42,12 @@ const Header: React.FC<IProps> = ({
                 />
                 {isAuthorized && (
                     <div className={styles.leftMenuLinks}>
-                        <Link href='/dashboard'>
+                        <Link href={navigateTo.DASHBOARD}>
                             <MUILink className={styles.link} underline='none'>
                                 {t('dashboard')}
                             </MUILink>
                         </Link>
-                        <Link href='/order-search'>
+                        <Link href={navigateTo.ORDER_SEARCH}>
                             <MUILink className={styles.link} underline='none'>
                                 {t('orderSearch')}
                             </MUILink>
@@ -65,7 +66,9 @@ const Header: React.FC<IProps> = ({
                                 className={styles.button}
                                 variant='outlined'
                             >
-                                <Link href='/dashboard'>{t('continue')}</Link>
+                                <Link href={navigateTo.DASHBOARD}>
+                                    {t('continue')}
+                                </Link>
                             </Button>
                         </>
                     )}
@@ -75,13 +78,17 @@ const Header: React.FC<IProps> = ({
                                 className={styles.button}
                                 variant='outlined'
                             >
-                                <Link href='/signin'>{t('signIn')}</Link>
+                                <Link href={navigateTo.SIGNIN}>
+                                    {t('signIn')}
+                                </Link>
                             </Button>
                             <Button
                                 className={styles.button}
                                 variant='outlined'
                             >
-                                <Link href='/signup'>{t('signUp')}</Link>
+                                <Link href={navigateTo.SIGNUP}>
+                                    {t('signUp')}
+                                </Link>
                             </Button>
                         </>
                     )}

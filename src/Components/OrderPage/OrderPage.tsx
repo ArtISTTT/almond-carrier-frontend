@@ -15,6 +15,8 @@ import { selectUser } from 'src/redux/selectors/user';
 import { ViewType } from './OrderInputItem';
 import OrderLabels from './OrderLabels';
 import OrderChat from '../Chat/OrderChat';
+import { navigateTo } from 'src/interfaces/navigate';
+
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -37,7 +39,7 @@ const useGetOrder = (orderId: string) => {
                 text: data.error || 'Error when trying to add an order',
             });
 
-            push('/dashboard');
+            push(navigateTo.DASHBOARD);
         }
 
         setIsLoading(false);

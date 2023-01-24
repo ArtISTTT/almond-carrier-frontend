@@ -14,6 +14,7 @@ import { IGetCurrentUserReturn } from '../../interfaces/api/auth';
 import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
 import { changeLanguage } from '../../redux/slices/settingsSlice';
 import { Language } from '../../interfaces/settings';
+import dayjs from 'dayjs';
 
 type IAuthLayout = {
     children: React.ReactNode;
@@ -35,6 +36,7 @@ const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
 
         if (savedLocale) {
             dispatch(changeLanguage({ language: savedLocale as Language }));
+            dayjs.locale(savedLocale);
 
             if (savedLocale !== locale) {
                 push(route, undefined, { locale: savedLocale });

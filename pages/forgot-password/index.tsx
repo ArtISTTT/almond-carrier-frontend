@@ -21,6 +21,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'react-i18next';
+import { navigateTo } from 'src/interfaces/navigate';
 
 const modalStyle = {
     position: 'absolute',
@@ -49,7 +50,7 @@ const SignIn: React.FC = () => {
     };
     const handleCloseModal = () => {
         setOpenModal(false);
-        router.push('/');
+        router.push(navigateTo.LANDING);
     };
 
     const handleRecover = (form: IForm) => {
@@ -108,7 +109,7 @@ const SignIn: React.FC = () => {
                         </Button>
                         <MUILink
                             className={style.helpLink}
-                            href='/signin'
+                            href={navigateTo.SIGNIN}
                             component={LinkBehaviour}
                         >
                             {t('returnToSingIn')}

@@ -6,13 +6,14 @@ import PrivateLayout from '../../src/Components/Layouts/Private';
 import { privateTypes } from '../../src/interfaces/private';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'react-i18next';
+import { navigateTo } from 'src/interfaces/navigate';
 
 const SignIn: React.FC = () => {
     const router = useRouter();
     const { t } = useTranslation();
 
     const goToDashBoard = () => {
-        router.push('/dashboard');
+        router.push(navigateTo.DASHBOARD);
     };
 
     return (

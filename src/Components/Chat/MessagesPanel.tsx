@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import styles from '../../../styles/OrderChat.module.css';
 import { IMessage } from 'src/interfaces/chat';
 import MessageChat from './MessageChat';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
 interface IDialogMessage {
     avatar: string;
@@ -39,6 +39,7 @@ const MessagesPanel: React.FC<IProps> = ({ onSendMessage, messages }) => {
             return;
         }
         onSendMessage(form.text);
+
         await formik.setFieldValue('text', '');
     };
 
@@ -57,6 +58,7 @@ const MessagesPanel: React.FC<IProps> = ({ onSendMessage, messages }) => {
                 {messages &&
                     messages.map((message: IMessage) => (
                         <MessageChat
+                            currentDate={currentDate}
                             key={message.createdAt.toISOString()}
                             type={message.type}
                             createdAt={message.createdAt}

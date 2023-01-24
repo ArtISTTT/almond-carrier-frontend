@@ -12,6 +12,7 @@ import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 import Loader from '../../src/Components/Loader';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'react-i18next';
+import { navigateTo } from 'src/interfaces/navigate';
 
 type IForm = {
     password: string;
@@ -32,7 +33,7 @@ const SignIn: React.FC = () => {
         if (!router.isReady) return;
 
         if (router.isReady && (!token || !id)) {
-            router.push('/');
+            router.push(navigateTo.LANDING);
         }
 
         formik.setValues({
@@ -55,7 +56,7 @@ const SignIn: React.FC = () => {
                 text: t('passSuccessfullyUpdated'),
             });
 
-            router.push('/signin');
+            router.push(navigateTo.SIGNIN);
         } else {
             triggerOpen({
                 severity: 'error',
