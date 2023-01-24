@@ -46,10 +46,27 @@ const GeneralSettings: React.FC = () => {
     );
     const router = useRouter();
 
+    console.log(router);
+
     const updateGeneralSettings = (form: IGeneralSettings) => {
         dispatch(changeGeneralSettings(form));
+
+        const queryParams =
+            router.route === '/order/[orderId]'
+                ? { orderId: router.query.orderId }
+                : {};
+
         if (form.language !== userGeneralSettings.language) {
-            router.push(router.route, undefined, { locale: form.language });
+            router.push(
+                {
+                    href: router.route,
+                    query: queryParams,
+                },
+                undefined,
+                {
+                    locale: form.language,
+                }
+            );
         }
     };
 

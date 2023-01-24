@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ru';
 import {
     Currency,
     IGeneralSettings,
@@ -41,6 +43,7 @@ export const settingsSlice = createSlice({
 
             if (state.generalSettings.language !== action.payload.language) {
                 localStorage.setItem('language', action.payload.language);
+                dayjs.locale(action.payload.language);
             }
         },
         changeNotifications: (state, action: PayloadAction<INotifications>) => {
@@ -54,6 +57,8 @@ export const settingsSlice = createSlice({
             }>
         ) => {
             state.generalSettings.language = action.payload.language;
+
+            dayjs.locale(action.payload.language);
 
             if (action.payload.updateLocalStorage) {
                 localStorage.setItem('language', action.payload.language);

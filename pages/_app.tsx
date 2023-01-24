@@ -10,8 +10,12 @@ import SnackBarLayout from '../src/Components/Layouts/Snackbar';
 import { appWithTranslation } from 'next-i18next';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import RelativeTime from 'dayjs/plugin/relativeTime';
+import dayjs from 'dayjs';
 
 const App = ({ Component, pageProps }: AppProps) => {
+    dayjs.extend(RelativeTime);
+
     return (
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
