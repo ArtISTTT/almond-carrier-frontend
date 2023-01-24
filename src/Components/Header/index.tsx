@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { navigateTo } from 'src/interfaces/navigate';
+import { LinkBehaviour } from '../Common/LinkBehaviour';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -42,19 +43,23 @@ const Header: React.FC<IProps> = ({
                 />
                 {isAuthorized && (
                     <div className={styles.leftMenuLinks}>
-                        <Link href={navigateTo.DASHBOARD}>
-                            <MUILink className={styles.link} underline='none'>
-                                {t('dashboard')}
-                            </MUILink>
-                        </Link>
-                        <Link href={navigateTo.ORDER_SEARCH}>
-                            <MUILink className={styles.link} underline='none'>
-                                {t('orderSearch')}
-                            </MUILink>
-                        </Link>
-                        {/* <MUILink className={styles.link} underline='none'>
-                            Link 3
-                        </MUILink> */}
+                        <MUILink
+                            href={navigateTo.DASHBOARD}
+                            className={styles.link}
+                            component={LinkBehaviour}
+                            underline='none'
+                        >
+                            {t('dashboard')}
+                        </MUILink>
+
+                        <MUILink
+                            href={navigateTo.ORDER_SEARCH}
+                            className={styles.link}
+                            component={LinkBehaviour}
+                            underline='none'
+                        >
+                            {t('orderSearch')}
+                        </MUILink>
                     </div>
                 )}
             </div>
