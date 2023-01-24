@@ -99,7 +99,7 @@ const Footer = () => {
                             component='h3'
                             className={styles.columnTitle}
                         >
-                            {t('general')}
+                            {t('generalS')}
                         </Typography>
                         <MUILink className={styles.centerLink} href='#'>
                             {t('about')}
@@ -109,6 +109,9 @@ const Footer = () => {
                         </MUILink>
                         <MUILink className={styles.centerLink} href='#'>
                             {t('privacy')}
+                        </MUILink>
+                        <MUILink className={styles.centerLink} href='#'>
+                            {t('serviceTerms')}
                         </MUILink>
                     </div>
                     <div className={styles.centerColumn}>
