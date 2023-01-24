@@ -41,12 +41,11 @@
 .link {
     font-size: 19px;
     line-height: 20px;
-    padding: 0px 8px;
+    padding: 0px 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 80px;
-    width: 100%;
     transition-duration: 0.3s;
 }
 
