@@ -97,10 +97,7 @@ const HeaderAvatar: React.FC = () => {
                         >
                             <Paper>
                                 <ClickAwayListener onClickAway={handleClose}>
-                                    <MenuList
-                                        // autoFocusItem={open}
-                                        id='menu-list-grow'
-                                    >
+                                    <MenuList id='menu-list-grow'>
                                         <MenuItem
                                             className={styles.emailItem}
                                             onClick={handleClose}
