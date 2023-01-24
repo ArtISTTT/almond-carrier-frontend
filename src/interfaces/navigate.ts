@@ -8,5 +8,5 @@ export enum navigateTo {
     ORDER_SEARCH = '/order-search',
     FORGOT_PASSWORD = '/forgot-password',
     ORDER = '/order/[orderId]',
-    USER = 'user/[userId]',
+    USER = '/user/[userId]',
 }

@@ -39,12 +39,11 @@ export const settingsSlice = createSlice({
             state,
             action: PayloadAction<IGeneralSettings>
         ) => {
-            state.generalSettings = action.payload;
-
             if (state.generalSettings.language !== action.payload.language) {
                 localStorage.setItem('language', action.payload.language);
                 dayjs.locale(action.payload.language);
             }
+            state.generalSettings = action.payload;
         },
         changeNotifications: (state, action: PayloadAction<INotifications>) => {
             state.notifications = action.payload;

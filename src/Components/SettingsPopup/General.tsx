@@ -47,18 +47,14 @@ const GeneralSettings: React.FC = () => {
     );
     const router = useRouter();
 
-    console.log(router);
-
     const updateGeneralSettings = (form: IGeneralSettings) => {
-        dispatch(changeGeneralSettings(form));
-
         const queryParams = useCreateQueryParams(router.route, router);
 
         if (form.language !== userGeneralSettings.language) {
             router.push(
                 {
                     href: router.route,
-                    query: queryParams(),
+                    query: queryParams,
                 },
                 undefined,
                 {
@@ -66,6 +62,7 @@ const GeneralSettings: React.FC = () => {
                 }
             );
         }
+        dispatch(changeGeneralSettings(form));
     };
 
     const formik = useFormik({
