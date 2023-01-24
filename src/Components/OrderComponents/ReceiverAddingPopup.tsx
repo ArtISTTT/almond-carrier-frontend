@@ -283,7 +283,10 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                         formik.errors.productDescription
                                     ) as string)
                                 }
-                                className={styles.descriptionInput}
+                                className={cn(
+                                    styles.descriptionInput,
+                                    styles.inputBig
+                                )}
                             />
                         </div>
                     </Stack>

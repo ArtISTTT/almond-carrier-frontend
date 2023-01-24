@@ -170,10 +170,10 @@
         left: 0;
     }
     .TextField {
-        margin-top: 5px !important;
+        margin-top: 10px !important;
     }
     .nameInput {
-        margin-top: 5px !important;
+        margin-top: 0px !important;
     }
 }
 

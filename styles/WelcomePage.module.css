@@ -575,12 +575,25 @@
         line-height: 16px;
         padding: 0 10px;
     }
-
     .advantage > img {
         width: 200px;
     }
     .advantagesTitle {
         padding-top: 0;
+        font-size: 30px;
+    }
+    .advantageDescription {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .advantages {
+        padding-bottom: 40px;   
+    }
+    .stepsTitle {
+        font-size: 30px;
+    }
+    .rolesTitle {
+        font-size: 30px;
     }
     .stepsBlock {
         padding-left: 10px;
@@ -589,7 +602,7 @@
         margin-left: 0;
     }
     .stepOneTextPartTwo {
-        margin-left: 40px;
+        margin-left: 55px;
     }
     .stepTwo {
         margin-left: 10px;
@@ -603,5 +616,10 @@
     }
     .stepTwoTextPartTwo {
         margin-left: 15px;
+    }
+    .stepThreeText {
+        margin-top: 0;
+        width: 280px;
+        margin-left: 55px;
     }
 }

@@ -123,4 +123,10 @@
     .inputItemSecond {
         padding-top: 5px;
     }
+    .input :global .MuiInputBase-root {
+        height: 40px;
+    }
+    .inputBig :global .MuiInputBase-root {
+        height: 125px;
+    }
 }

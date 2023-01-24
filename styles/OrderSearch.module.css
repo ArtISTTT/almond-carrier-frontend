@@ -416,6 +416,7 @@
     }
     .formSecondR {
         flex-direction: column;
+        margin-top: 10px;
     }
     .typeTitle {
         font-size: 20px;
@@ -458,6 +459,15 @@
     .tableHeaderItem {
         font-size: 9px;
     }
+    .wrapper {
+        padding: 10px;
+    }
+    .inputItemLast {
+        margin-top: 10px;
+    }
+    .formSecondC {
+        margin-top: 15px;
+    }
 }
 
 @media screen and (max-width: 420px) {
@@ -465,7 +475,7 @@
         width: 25px;
     }
     .refreshButton {
-        width: 100px;
+        width: 130px;
         font-size: 10px;
     }
 }
