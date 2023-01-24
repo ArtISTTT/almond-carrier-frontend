@@ -139,6 +139,7 @@
 .sendTime {
     text-align: end;
     white-space: nowrap;
+    color: var(--cTextLow);
     font-size: 8px;
 }
 
