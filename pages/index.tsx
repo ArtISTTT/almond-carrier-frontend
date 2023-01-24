@@ -10,6 +10,7 @@ import { privateTypes } from '../src/interfaces/private';
 import MainLayout from '../src/Components/Layouts/MainLayout';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { navigateTo } from 'src/interfaces/navigate';
 
 type IForm = {
     email: string;
@@ -21,7 +22,7 @@ export default function Welcome() {
 
     const handleSubmit = (form: IForm) => {
         router.push({
-            pathname: '/signup',
+            pathname: navigateTo.SIGNUP,
             query: { email: form.email },
         });
     };
@@ -58,7 +59,11 @@ export default function Welcome() {
                         {t('companyThatUnitesPeopleETC')}
                     </Typography>
                     <div className={styles.fastSignUp}>
-                        <form className={styles.form} onSubmit={formik.handleSubmit} action='submit'>
+                        <form
+                            className={styles.form}
+                            onSubmit={formik.handleSubmit}
+                            action='submit'
+                        >
                             <TextField
                                 id='email'
                                 name='email'

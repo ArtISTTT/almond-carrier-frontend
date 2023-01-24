@@ -21,6 +21,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { changeGeneralSettings } from '../../redux/slices/settingsSlice';
 import cn from 'classnames';
+import { useCreateQueryParams } from 'src/redux/hooks/useCreateQueryParams';
 
 const GeneralSettings: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -51,16 +52,13 @@ const GeneralSettings: React.FC = () => {
     const updateGeneralSettings = (form: IGeneralSettings) => {
         dispatch(changeGeneralSettings(form));
 
-        const queryParams =
-            router.route === '/order/[orderId]'
-                ? { orderId: router.query.orderId }
-                : {};
+        const queryParams = useCreateQueryParams(router.route, router);
 
         if (form.language !== userGeneralSettings.language) {
             router.push(
                 {
                     href: router.route,
-                    query: queryParams,
+                    query: queryParams(),
                 },
                 undefined,
                 {

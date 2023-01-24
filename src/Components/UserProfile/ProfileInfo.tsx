@@ -5,11 +5,12 @@ import { Container } from '@mui/system';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { useRouter } from 'next/router';
+import { navigateTo } from 'src/interfaces/navigate';
 
 const ProfileInfo = () => {
     const router = useRouter();
 
-    const navigateToSignUp = () => router.push('/signup');
+    const navigateToSignUp = () => router.push(navigateTo.SIGNUP);
 
     const { t } = useTranslation();
 

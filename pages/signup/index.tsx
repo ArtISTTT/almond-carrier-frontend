@@ -17,6 +17,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'react-i18next';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
 import dayjs, { Dayjs } from 'dayjs';
+import { navigateTo } from 'src/interfaces/navigate';
 
 type IForm = {
     email: string;
@@ -52,7 +53,7 @@ const SignIn: React.FC = () => {
                 severity: 'success',
                 text: t('successSignUp'),
             });
-            router.push('/thanks-for-registration');
+            router.push(navigateTo.THANKS_FOR_REGISTRATION);
         } else {
             triggerOpen({
                 severity: 'error',
@@ -202,7 +203,7 @@ const SignIn: React.FC = () => {
                         </Button>
                         <MUILink
                             className={style.helpLink}
-                            href='/signin'
+                            href={navigateTo.SIGNIN}
                             component={LinkBehaviour}
                         >
                             {t('AlreadyHaveAnAccount')}
