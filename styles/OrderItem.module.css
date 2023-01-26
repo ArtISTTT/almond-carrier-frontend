@@ -333,10 +333,22 @@
     .orderDescriptions {
         border-right: 1px solid rgba(0, 0, 0, 0.12);
     }
+    .orderDetails {
+        padding-right: 0;
+        padding-left: 0;
+        align-items: flex-start;
+    }
+    .detailsBlock {
+        padding-right: 5px;
+        padding-left: 5px;
+        height: 93px;
+    }
     .moneyBlockNew {
         display: flex;
         flex-direction: column;
-        padding-top: 3px;
+        padding-top: 10px;
+        padding-left: 10px;
+        justify-content: start;
     }
     .benefitBlock {
         display: flex;
@@ -391,10 +403,11 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
     .orderDetails {
-        flex-direction: row;
+        flex-direction: row-reverse;
         width: 100%;
         max-width: 700px;
         justify-content: space-between;
+        align-items: center;
     }
     .detailsButton {
         margin-top: 10px;
