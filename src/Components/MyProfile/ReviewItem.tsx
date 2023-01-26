@@ -27,20 +27,22 @@ const ReviewItem: React.FC<IReview> = ({
                     src={avatar}
                     alt={'Avatar'}
                 />
-                <Typography
-                    className={styles.reviewName}
-                    variant='h3'
-                    component='h3'
-                >
-                    {name}
-                </Typography>
-                <Typography
-                    className={styles.reviewRole}
-                    variant='h4'
-                    component='h4'
-                >
-                    {t(role)}
-                </Typography>
+                <div className={styles.reviewTextData}>
+                    <Typography
+                        className={styles.reviewName}
+                        variant='h3'
+                        component='h3'
+                    >
+                        {name}
+                    </Typography>
+                    <Typography
+                        className={styles.reviewRole}
+                        variant='h4'
+                        component='h4'
+                    >
+                        {t(role)}
+                    </Typography>
+                </div>
             </div>
             <div className={styles.reviewData}>
                 <Typography
