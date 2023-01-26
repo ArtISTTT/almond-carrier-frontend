@@ -188,6 +188,27 @@ const OrderItem: React.FC<IOrder> = ({
                     </div>
                 </div>
                 <div className={styles.orderDetails}>
+                    <div className={styles.detailsBlock}>
+                        <Button
+                            className={styles.detailsButton}
+                            variant='contained'
+                            disabled={status === OrderStatus.cancelled}
+                        >
+                            <Link href={`/order/${id}`}>
+                                {t('orderDetailsButton')}
+                            </Link>
+                        </Button>
+                        <div>
+                            <Typography
+                                variant='h3'
+                                component='p'
+                                className={styles.status}
+                            >
+                                <span>{t('status')}: </span>
+                                {convertStatus(status)}
+                            </Typography>
+                        </div>
+                    </div>
                     <div className={styles.moneyBlockNew}>
                         <div className={styles.benefitBlock}>
                             <Typography
@@ -227,27 +248,6 @@ const OrderItem: React.FC<IOrder> = ({
                                 </Typography>
                             </div>
                         )}
-                    </div>
-                    <div className={styles.detailsBlock}>
-                        <Button
-                            className={styles.detailsButton}
-                            variant='contained'
-                            disabled={status === OrderStatus.cancelled}
-                        >
-                            <Link href={`/order/${id}`}>
-                                {t('orderDetailsButton')}
-                            </Link>
-                        </Button>
-                        <div>
-                            <Typography
-                                variant='h3'
-                                component='p'
-                                className={styles.status}
-                            >
-                                <span>{t('status')}: </span>
-                                {convertStatus(status)}
-                            </Typography>
-                        </div>
                     </div>
                 </div>
             </div>

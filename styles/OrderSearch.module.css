@@ -472,7 +472,7 @@
 
 @media screen and (max-width: 420px) {
     .doubleditem .prefix {
-        width: 25px;
+        width: 32px;
     }
     .filtersWrapper {
         display: flex;
