@@ -33,9 +33,24 @@
     font-size: 18px;
 }
 
+.statusSuccess {
+    background-color: var(--cBgSuccess);
+}
+
+.statusInProcess {
+    background-color: var(--cBg);
+}
+
+.statusCancelled {
+    background-color: var(--cBgCancelled);
+}
+
 .orderStatus > span {
-    color: var(--cTextThird);
+    color: var(--cTextSecondary);
     font-weight: 600;
+
+    padding: 5px 8px;
+    border-radius: 15px;
 }
 
 .orderDetailsInfo {

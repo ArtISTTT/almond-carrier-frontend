@@ -16,7 +16,7 @@ import { ViewType } from './OrderInputItem';
 import OrderLabels from './OrderLabels';
 import OrderChat from '../Chat/OrderChat';
 import { navigateTo } from 'src/interfaces/navigate';
-
+import { useTranslation } from 'react-i18next';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -55,6 +55,8 @@ const OrderPage = () => {
     const { order, updateOrder, isLoading } = useGetOrder(
         router.query.orderId as string
     );
+
+    const { t } = useTranslation();
 
     useEffect(() => {
         updateOrder();
@@ -107,7 +109,7 @@ const OrderPage = () => {
 
             <OrderPayment order={order} updateOrder={updateOrder} />
             <div className={styles.haveSomeProblems}>
-                <Link href='#'>Have some problems? Write to our support</Link>
+                <Link href='#'>{t('HaveSomeProblems')}</Link>
             </div>
             <div className={styles.cancelButtonWrapper}>
                 <Button
@@ -115,7 +117,7 @@ const OrderPage = () => {
                     variant='contained'
                     className={styles.cancelButton}
                 >
-                    Cancel order
+                    {t('CancelOrder')}
                 </Button>
             </div>
         </div>

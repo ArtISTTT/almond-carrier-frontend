@@ -150,25 +150,24 @@
 
 @media screen and (max-width: 600px) {
     .columnTitle {
-        /* font-size: 15px; */
         font-weight: 700;
     }
+    .centerLink {
+        white-space: nowrap;
+    }
+
     .centerBlockInner {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
+        margin-left: 5px;
         gap: 30px;
     }
     .centerLink {
-        /* font-size: 12px; */
         margin-top: 10px;
         text-align: left;
     }
     .rightsText {
         font-size: 12px;
-    }
-    .leftBlock {
-        margin: 10px auto;
-        width: 161px;
     }
     .footer {
         padding: 10px;

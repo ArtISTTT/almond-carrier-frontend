@@ -25,6 +25,8 @@ import {
 import { useContext } from 'react';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { IUser } from 'src/interfaces/user';
+import { useTranslation } from 'react-i18next';
+import InputAdornment from '@mui/material/InputAdornment';
 
 type IProps = {
     order: IOrderFull;
@@ -47,6 +49,9 @@ const OrderInformation: React.FC<IProps> = ({
     const [editingFields, setEditingFields] = useState<(keyof IOrderFull)[]>(
         []
     );
+
+    const { t } = useTranslation();
+
     const { triggerOpen } = useContext(OpenAlertContext);
 
     const addToEditingFields = (name: keyof IOrderFull) => {
@@ -143,13 +148,13 @@ const OrderInformation: React.FC<IProps> = ({
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: 'Successfully changed',
+                text: t('SuccessfullyChanged'),
             });
             setEditingFields([]);
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error while changing data',
+                text: data.error || t('ErrorWhileChangingData'),
             });
         }
 
@@ -166,12 +171,12 @@ const OrderInformation: React.FC<IProps> = ({
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: 'Successfully changed',
+                text: t('SuccessfullyChanged'),
             });
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error while changing data',
+                text: data.error || t('ErrorWhileChangingData'),
             });
         }
 
@@ -188,12 +193,12 @@ const OrderInformation: React.FC<IProps> = ({
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: 'Successfully rejected',
+                text: t('SuccessfullyRejected'),
             });
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error while rejecting changes',
+                text: data.error || t('ErrorWhileRejectingChanges'),
             });
         }
 
@@ -210,7 +215,7 @@ const OrderInformation: React.FC<IProps> = ({
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: 'Successfully confirmed',
+                text: t('SuccessfullyConfirmed'),
             });
         } else {
             triggerOpen({
@@ -253,9 +258,9 @@ const OrderInformation: React.FC<IProps> = ({
                                 editingFields={editingFields}
                                 order={order}
                                 id='productName'
-                                label='Product name'
+                                label={t('productName') as string}
                                 type='string'
-                                placeholder='Product name'
+                                placeholder={t('productName') as string}
                                 availableLabels={availableLabels}
                                 addToEditingFields={addToEditingFields}
                                 removeFromEditingFields={
@@ -275,8 +280,8 @@ const OrderInformation: React.FC<IProps> = ({
                                     id='fromLocation'
                                     type='string'
                                     isLocation={true}
-                                    placeholder='Product name'
-                                    label='From location'
+                                    placeholder={t('from') as string}
+                                    label={t('from') as string}
                                     availableLabels={availableLabels}
                                     addToEditingFields={addToEditingFields}
                                     removeFromEditingFields={
@@ -293,8 +298,8 @@ const OrderInformation: React.FC<IProps> = ({
                                     id='toLocation'
                                     type='string'
                                     isLocation={true}
-                                    placeholder='To location'
-                                    label='To location'
+                                    placeholder={t('to') as string}
+                                    label={t('to') as string}
                                     availableLabels={availableLabels}
                                     addToEditingFields={addToEditingFields}
                                     removeFromEditingFields={
@@ -310,8 +315,8 @@ const OrderInformation: React.FC<IProps> = ({
                                     order={order}
                                     id='arrivalDate'
                                     type='date'
-                                    placeholder='Arrival date'
-                                    label='Arrival date'
+                                    placeholder={t('arrivalDate') as string}
+                                    label={t('arrivalDate') as string}
                                     availableLabels={availableLabels}
                                     addToEditingFields={addToEditingFields}
                                     removeFromEditingFields={
@@ -329,8 +334,8 @@ const OrderInformation: React.FC<IProps> = ({
                                     order={order}
                                     id='productAmount'
                                     type='number'
-                                    placeholder='Product amount'
-                                    label='Product amount'
+                                    placeholder={t('ProductAmount') as string}
+                                    label={t('ProductAmount') as string}
                                     availableLabels={availableLabels}
                                     addToEditingFields={addToEditingFields}
                                     removeFromEditingFields={
@@ -346,8 +351,8 @@ const OrderInformation: React.FC<IProps> = ({
                                     order={order}
                                     id='rewardAmount'
                                     type='number'
-                                    placeholder='Reward amount'
-                                    label='Reward amount'
+                                    placeholder={t('RewardAmount') as string}
+                                    label={t('RewardAmount') as string}
                                     availableLabels={availableLabels}
                                     addToEditingFields={addToEditingFields}
                                     removeFromEditingFields={
@@ -358,7 +363,7 @@ const OrderInformation: React.FC<IProps> = ({
                             )}
                             {order.rewardAmount && order.productAmount && (
                                 <div className={styles.inputItem}>
-                                    <label>Total amount</label>
+                                    <label>{t('TotalAmount')}</label>
                                     <div
                                         className={
                                             styles.orderInputValueWrapper
@@ -384,8 +389,8 @@ const OrderInformation: React.FC<IProps> = ({
                                     editingFields={editingFields}
                                     order={order}
                                     id='productWeight'
-                                    placeholder='Product weight'
-                                    label='Product weight'
+                                    placeholder={t('weight') as string}
+                                    label={t('weight') as string}
                                     type='number'
                                     availableLabels={availableLabels}
                                     addToEditingFields={addToEditingFields}
@@ -402,8 +407,8 @@ const OrderInformation: React.FC<IProps> = ({
                                     order={order}
                                     id='carrierMaxWeight'
                                     type='number'
-                                    placeholder='Max weight'
-                                    label='Max weight'
+                                    placeholder={t('maxWeight') as string}
+                                    label={t('maxWeight') as string}
                                     availableLabels={availableLabels}
                                     addToEditingFields={addToEditingFields}
                                     removeFromEditingFields={
@@ -422,7 +427,7 @@ const OrderInformation: React.FC<IProps> = ({
                             )}
                         >
                             <label htmlFor='productDescription'>
-                                Description
+                                {t('description')}
                             </label>
                             <div className={styles.editingWrapper}>
                                 <TextField
@@ -431,6 +436,7 @@ const OrderInformation: React.FC<IProps> = ({
                                     variant='outlined'
                                     type='string'
                                     multiline
+                                    placeholder={t('description') as string}
                                     minRows={4}
                                     maxRows={4}
                                     disabled={
@@ -499,7 +505,7 @@ const OrderInformation: React.FC<IProps> = ({
                                     disabled={!hasAnyChanges}
                                     type='submit'
                                 >
-                                    Confirm changes
+                                    {t('ConfirmChanges')}
                                 </Button>
                             </div>
                             <div className={styles.buttons}>
@@ -509,7 +515,7 @@ const OrderInformation: React.FC<IProps> = ({
                                     color='primary'
                                     onClick={confirmDealClick}
                                 >
-                                    Start the deal
+                                    {t('StartTheDeal')}
                                 </Button>
                             </div>
                         </>
@@ -522,7 +528,7 @@ const OrderInformation: React.FC<IProps> = ({
                             color='success'
                             onClick={agreeWithChangesClick}
                         >
-                            Agree with changes
+                            {t('AgreeWithChanges')}
                         </Button>
                         <Button
                             className={styles.buttonItem}
@@ -530,7 +536,7 @@ const OrderInformation: React.FC<IProps> = ({
                             color='error'
                             onClick={disagreeWithChangesClick}
                         >
-                            Reject changes
+                            {t('RejectChanges')}
                         </Button>
                     </div>
                 )}

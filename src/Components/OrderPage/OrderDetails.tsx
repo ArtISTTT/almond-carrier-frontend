@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router';
 import React from 'react';
+import cn from 'classnames';
 import styles from '../../../styles/OrderPage.module.css';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useTranslation } from 'react-i18next';
 import { IOrderFull } from '../../interfaces/order';
+import { OrderStatus } from 'src/interfaces/profile';
 
 type IProps = {
     order: IOrderFull;
@@ -20,7 +22,20 @@ const OrderDetails: React.FC<IProps> = ({ order }) => {
                     {t('orderDetails')}
                 </div>
                 <div className={styles.orderStatus}>
-                    {t('status:')} <span>Looking for carrier</span>
+                    {t('status:')}{' '}
+                    <span
+                        className={cn({
+                            [styles.statusInProcess]:
+                                order.status !== OrderStatus.success &&
+                                order.status !== OrderStatus.cancelled,
+                            [styles.statusSuccess]:
+                                order.status === OrderStatus.success,
+                            [styles.statusCancelled]:
+                                order.status === OrderStatus.cancelled,
+                        })}
+                    >
+                        Looking for carrier
+                    </span>
                 </div>
             </div>
             <div className={styles.orderDetailsInfo}>

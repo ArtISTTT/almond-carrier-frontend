@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../../../styles/OrderSearch.module.css';
-import { Avatar, Button } from '@mui/material';
+import { Avatar, Button, Tooltip } from '@mui/material';
 import cn from 'classnames';
 import { IOrder } from '../../interfaces/order';
 import { useTranslation } from 'next-i18next';
@@ -58,18 +58,22 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
             </div>
             <div className={cn(styles.part, styles.fromTo, styles.doubleditem)}>
                 <div>
-                    <div className={styles.fromToItem}>
-                        <span className={styles.prefix}>{t('from')}:</span>
-                        <span className={styles.toAndFromLocationValue}>
-                            {order.fromLocation ?? '?'}
-                        </span>
-                    </div>
-                    <div className={styles.fromToItem}>
-                        <span className={styles.prefix}>{t('to')}:</span>
-                        <span className={styles.toAndFromLocationValue}>
-                            {order.toLocation}
-                        </span>
-                    </div>
+                    <Tooltip title={order.fromLocation} placement='bottom'>
+                        <div className={styles.fromToItem}>
+                            <span className={styles.prefix}>{t('from')}:</span>
+                            <span className={styles.toAndFromLocationValue}>
+                                {order.fromLocation ?? t('undefined')}
+                            </span>
+                        </div>
+                    </Tooltip>
+                    <Tooltip title={order.toLocation} placement='bottom'>
+                        <div className={styles.fromToItem}>
+                            <span className={styles.prefix}>{t('to')}:</span>
+                            <span className={styles.toAndFromLocationValue}>
+                                {order.toLocation}
+                            </span>
+                        </div>
+                    </Tooltip>
                 </div>
             </div>
             <div className={cn(styles.part, styles.productname)}>
@@ -88,6 +92,7 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                                 )}
                         </span>
                     </div>
+
                     <div className={styles.benefitPriceItem}>
                         <span className={styles.prefix}>{t('benefit')}:</span>
                         <span className={styles.benefitPriceValue}>

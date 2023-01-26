@@ -3,6 +3,7 @@ import styles from '../../../styles/OrderPage.module.css';
 import { IOrder, IOrderFull } from '../../interfaces/order';
 import { OrderStatus } from 'src/interfaces/profile';
 import { ViewType } from './OrderInputItem';
+import { useTranslation } from 'react-i18next';
 
 type IProps = {
     viewType: ViewType;
@@ -17,50 +18,48 @@ const OrderLabels: React.FC<IProps> = ({
     hasByYouSuggestedChanged,
     order,
 }) => {
+    const { t } = useTranslation();
+
     return (
         <>
             {order.status === OrderStatus.inDiscussion && (
                 <>
                     {suggestedChanged && (
                         <div className={styles.byOther}>
-                            Highlighted fields have been changed and are waiting
-                            for your confirmation
+                            {t('HighlightedFieldsHaveBeenChanged')}
                         </div>
                     )}
                     {hasByYouSuggestedChanged && (
                         <div className={styles.byYou}>
-                            Highlighted fields have been changed by you and are
-                            waiting for confirmation
+                            {t('HighlightedFieldsHaveBeenChangedByYou')}
                         </div>
                     )}
                     {viewType === ViewType.receiver &&
                         order.dealConfirmedByReceiver &&
                         !order.dealConfirmedByCarrier && (
                             <div className={styles.confirmationString}>
-                                Waiting for confirmation of the carrier
+                                {t('confirmationCarrier')}
                             </div>
                         )}
                     {viewType === ViewType.carrier &&
                         order.dealConfirmedByCarrier &&
                         !order.dealConfirmedByReceiver && (
                             <div className={styles.confirmationString}>
-                                Waiting for confirmation of the receiver
+                                {t('confirmationReceiver')}
                             </div>
                         )}
                     {viewType === ViewType.receiver &&
                         order.dealConfirmedByCarrier &&
                         !order.dealConfirmedByReceiver && (
                             <div className={styles.confirmationString}>
-                                The carrier is waiting for your confirmation to
-                                start the deal
+                                {t('carrierWaitingYourConfirmation')}
                             </div>
                         )}
                     {viewType === ViewType.carrier &&
                         order.dealConfirmedByReceiver &&
                         !order.dealConfirmedByCarrier && (
                             <div className={styles.confirmationString}>
-                                The receiver is waiting for your confirmation to
-                                start the deal
+                                {t('receiverWaitingYourConfirmation')}
                             </div>
                         )}
                 </>
@@ -68,14 +67,13 @@ const OrderLabels: React.FC<IProps> = ({
 
             {order.status === OrderStatus.waitingForPaymentVerification && (
                 <div className={styles.confirmationString}>
-                    Waiting for payment confirmation
+                    {t('WaitingPaymentConfirmation')}
                 </div>
             )}
 
             {order.status === OrderStatus.awaitingDelivery && (
                 <div className={styles.byOther}>
-                    Payment confirmed! Delivery expected on{' '}
-                    {order.arrivalDate?.format('LL')}
+                    {t('PaymentConfirmed')} {order.arrivalDate?.format('LL')}
                 </div>
             )}
         </>

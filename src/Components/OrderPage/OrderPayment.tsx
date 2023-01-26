@@ -16,6 +16,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'src/redux/selectors/user';
 import { OrderStatus } from 'src/interfaces/profile';
+import { useTranslation } from 'react-i18next';
 
 type IProps = {
     order: IOrderFull;
@@ -32,6 +33,8 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
     const { id } = useSelector(selectUser);
     const { triggerOpen } = useContext(OpenAlertContext);
 
+    const { t } = useTranslation();
+
     const handleChange = () => {
         setPaymentOpened(prev => !prev);
     };
@@ -40,7 +43,7 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
         navigator.clipboard.writeText(PAYMENT_CREDENTIALS.PHONE);
         triggerOpen({
             severity: 'info',
-            text: 'Copied',
+            text: t('Copied'),
         });
     };
 
@@ -52,7 +55,7 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: 'Payment confirmed',
+                text: t('PaymentConfirmedAlert'),
             });
         } else {
             triggerOpen({
@@ -71,7 +74,7 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
         return (
             <div className={styles.orderPaymentWrapper}>
                 <div className={styles.orderPaymentWrapperTotalSum}>
-                    Total sum to be paid:&nbsp;
+                    {t('totalSum')}:&nbsp;
                     <span>
                         {calculateTotalAmount(
                             order.productAmount as number,
@@ -86,17 +89,18 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
                     color='primary'
                     onClick={handleChange}
                 >
-                    Оплатить
+                    {t('Pay')}
                 </Button>
                 <Collapse in={paymentOpened}>
                     <div className={styles.collapsedPayment}>
                         <div className={styles.collapsedPaymentTitle}>
-                            Переведите сумму по номеру телефона на <b>СБП</b>{' '}
-                            <br />
-                            Банки: <b>Тинькофф</b>, <b>Сбербанк</b>
+                            {t('TransferTheAmountByPhoneNumberTo')}
+                            <b>{t('SBP')}</b> <br />
+                            {t('Banks')}: <b>{t('Tinkoff')}</b>,{' '}
+                            <b>{t('Sberbank')}</b>
                         </div>
                         <div className={styles.name}>
-                            Имя: <b>{PAYMENT_CREDENTIALS.NAME}</b>
+                            {t('name')}: <b>{PAYMENT_CREDENTIALS.NAME}</b>
                         </div>
                         <div className={styles.phone} onClick={copy}>
                             {PAYMENT_CREDENTIALS.PHONE}
@@ -108,7 +112,7 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
                             color='primary'
                             onClick={confirmPaymentClick}
                         >
-                            Подтвердить оплату
+                            {t('confirmPay')}
                         </Button>
                     </div>
                 </Collapse>

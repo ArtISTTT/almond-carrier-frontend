@@ -35,9 +35,9 @@
 .orderDescriptions {
     border-top: 1px solid rgba(0, 0, 0, 0.12);
     display: flex;
-    gap: 5px;
-    padding: 12px 20px;
+    padding: 12px;
     flex-wrap: wrap;
+    gap: 5px;
     white-space: nowrap;
 }
 
@@ -54,10 +54,21 @@
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.3px;
-    /* text-transform: uppercase; */
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 240px;
+    margin-right: 9px;
+    width: fit-content;
+}
+
+.description:last-child {
+    margin-right: 0;
 }
 
 .description > span {
+    white-space: nowrap;
     font-weight: 500;
     color: var(--cTextPrimary);
 }
@@ -80,7 +91,7 @@
     padding: 6px 30px;
     border-radius: 16px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .status {
@@ -179,18 +190,6 @@
     gap: 20px;
 }
 
-.descriptionWay {
-    display: flex;
-    justify-content: flex-start;
-    gap: 20px;
-    max-width: 100%;
-    width: 100%;
-}
-
-/* .productName {
-    font-size: 16px;
-} */
-
 .moneyTitle {
     color: var(--cTextLow);
     font-weight: 400;
@@ -267,23 +266,19 @@
     .description {
         font-size: 12px;
         line-height: 15px;
+        margin-right: 6px;
     }
     .carrierCard {
         margin-top: 12px;
+    }
+    .orderDescriptions {
+        padding: 8px;
     }
 }
 
 @media screen and (max-width: 900px) {
     .orderDetails {
         width: 150px;
-    }
-    .status {
-        font-size: 12px;
-        text-align: center;
-    }
-    .detailsButton {
-        font-size: 12px;
-        line-height: 20px;
     }
 }
 
@@ -314,6 +309,7 @@
     .description {
         font-size: 10px;
         line-height: 12px;
+        margin-right: 2px;
     }
     .orderDescriptions {
         gap: 6px;
@@ -321,6 +317,9 @@
 }
 
 @media screen and (max-width: 760px) {
+    .orderDetails {
+        padding: 0;
+    }
     .detailsButton {
         margin-bottom: 5px;
     }
@@ -333,39 +332,34 @@
     .orderDescriptions {
         border-right: 1px solid rgba(0, 0, 0, 0.12);
     }
-    .orderDetails {
-        padding-right: 0;
-        padding-left: 0;
-        align-items: flex-start;
-    }
     .detailsBlock {
-        padding-right: 5px;
-        padding-left: 5px;
-        height: 93px;
+        height: 99px;
+        width: 100%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
     .moneyBlockNew {
         display: flex;
+        height: 34px;
         flex-direction: column;
-        padding-top: 10px;
-        padding-left: 10px;
+        margin-top: 10px;
+        font-size: 11px;
+        width: 130px;
         justify-content: start;
     }
     .benefitBlock {
         display: flex;
-        height: 10px;
     }
     .priceBlock {
         display: flex;
     }
     .moneyTitle {
-        font-size: 11px;
         line-height: 13px;
-        width: 50px;
+        width: 60px;
+        text-align: left;
     }
     .moneyValue {
-        font-size: 11px;
+        font-size: 10px;
         line-height: 13px;
-        margin-left: 4px;
     }
     .status {
         font-size: 11px;
@@ -392,9 +386,21 @@
     .orderInfo {
         width: 100%;
     }
-    .userBlock {
-        width: 230px;
+    .moneyBlockNew {
+        padding-left: 6px;
     }
+    .detailsBlock {
+        border-bottom: none;
+        border-left: 1px solid rgba(0, 0, 0, 0.12);
+        width: 50%;
+    }
+    .userBlock {
+        width: 50%;
+    }
+    .description {
+        max-width: 150px;
+    }
+
     .orderData {
         flex-direction: column;
     }

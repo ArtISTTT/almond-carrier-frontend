@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
+import Tooltip from '@mui/material/Tooltip';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
@@ -101,90 +102,84 @@ const OrderItem: React.FC<IOrder> = ({
                                     )}
                                 </Typography>
                             </div>
-                            {productAmount && (
-                                <div>
-                                    <Typography
-                                        className={styles.moneyTitle}
-                                        variant='h6'
-                                        component='p'
-                                    >
-                                        {t('price')}
-                                    </Typography>
-                                    <Typography
-                                        className={styles.moneyValue}
-                                        variant='h6'
-                                        component='p'
-                                    >
-                                        {formatAmount(
-                                            productAmount,
-                                            Currency.RUB,
-                                            true
-                                        )}
-                                    </Typography>
-                                </div>
-                            )}
+
+                            <div>
+                                <Typography
+                                    className={styles.moneyTitle}
+                                    variant='h6'
+                                    component='p'
+                                >
+                                    {t('price')}
+                                </Typography>
+                                <Typography
+                                    className={styles.moneyValue}
+                                    variant='h6'
+                                    component='p'
+                                >
+                                    {productAmount
+                                        ? formatAmount(
+                                              productAmount,
+                                              Currency.RUB,
+                                              true
+                                          )
+                                        : t('undefined')}
+                                </Typography>
+                            </div>
                         </div>
                     </div>
                     <div className={styles.orderDescriptions}>
-                        {productName && (
-                            <Typography
-                                variant='h3'
-                                component='p'
-                                className={cn(
-                                    styles.description,
-                                    styles.productName
-                                )}
-                            >
-                                <span>{t('product')}: </span>
-                                {productName}
-                            </Typography>
-                        )}
-                        {productWeight && (
+                        <Typography
+                            variant='h3'
+                            component='p'
+                            className={cn(
+                                styles.description,
+                                styles.productName
+                            )}
+                        >
+                            <span>{t('product')}: </span>
+                            {productName ? productName : t('undefined')}
+                        </Typography>
+                        <Tooltip placement='bottom' title={toLocation}>
                             <Typography
                                 variant='h3'
                                 component='p'
                                 className={styles.description}
                             >
-                                {productName}
+                                <span>{t('to')}: </span>
+                                {toLocation}
                             </Typography>
-                        )}
-                        <Typography
-                            variant='h3'
-                            component='p'
-                            className={styles.description}
-                        >
-                            <span>{t('to')}: </span>
-                            {toLocation}
-                        </Typography>
-                        {fromLocation && (
+                        </Tooltip>
+                        <Tooltip placement='bottom' title={fromLocation}>
                             <Typography
                                 variant='h3'
                                 component='p'
                                 className={styles.description}
                             >
                                 <span>{t('from')}: </span>
-                                {fromLocation}
+                                {fromLocation ? fromLocation : t('undefined')}
                             </Typography>
-                        )}
-                        {arrivalDate && (
-                            <Typography
-                                variant='h3'
-                                component='p'
-                                className={styles.description}
-                            >
-                                <span>{t('flightDate')}:</span>{' '}
-                                {arrivalDate.format('DD.MM.YYYY')}
-                            </Typography>
-                        )}
-                        {productWeight && (
-                            <Typography
-                                variant='h3'
-                                component='p'
-                                className={styles.description}
-                            >
-                                <span>{t('weight')}:</span> {productWeight}
-                            </Typography>
-                        )}
+                        </Tooltip>
+                        <Typography
+                            variant='h3'
+                            component='p'
+                            className={styles.description}
+                        >
+                            <span>{t('flightDate')}:</span>{' '}
+                            {arrivalDate
+                                ? arrivalDate.format('DD.MM.YYYY')
+                                : t('undefined')}
+                        </Typography>
+
+                        <Typography
+                            variant='h3'
+                            component='p'
+                            className={styles.description}
+                        >
+                            <span>{t('weight')}:</span>{' '}
+                            {productWeight
+                                ? `${productWeight} ${t('kg')}`
+                                : t('undefined')}
+                        </Typography>
                     </div>
                 </div>
                 <div className={styles.orderDetails}>
@@ -204,19 +199,41 @@ const OrderItem: React.FC<IOrder> = ({
                                 component='p'
                                 className={styles.status}
                             >
-                                <span>{t('status')}: </span>
                                 {convertStatus(status)}
                             </Typography>
                         </div>
                     </div>
                     <div className={styles.moneyBlockNew}>
+                        <div className={styles.priceBlock}>
+                            <Typography
+                                className={styles.moneyTitle}
+                                variant='h6'
+                                component='p'
+                            >
+                                {t('price')}:
+                            </Typography>
+                            <Typography
+                                className={styles.moneyValue}
+                                variant='h6'
+                                component='p'
+                            >
+                                {productAmount
+                                    ? formatAmount(
+                                          productAmount,
+                                          Currency.RUB,
+                                          true
+                                      )
+                                    : t('undefined')}
+                            </Typography>
+                        </div>
+
                         <div className={styles.benefitBlock}>
                             <Typography
                                 className={styles.moneyTitle}
                                 variant='h6'
                                 component='h6'
                             >
-                                BENEFIT
+                                {t('benefit')}:
                             </Typography>
                             <Typography
                                 className={styles.moneyValue}
@@ -226,28 +243,6 @@ const OrderItem: React.FC<IOrder> = ({
                                 {formatAmount(rewardAmount, Currency.RUB, true)}
                             </Typography>
                         </div>
-                        {productAmount && (
-                            <div className={styles.priceBlock}>
-                                <Typography
-                                    className={styles.moneyTitle}
-                                    variant='h6'
-                                    component='p'
-                                >
-                                    PRICE
-                                </Typography>
-                                <Typography
-                                    className={styles.moneyValue}
-                                    variant='h6'
-                                    component='p'
-                                >
-                                    {formatAmount(
-                                        productAmount,
-                                        Currency.RUB,
-                                        true
-                                    )}
-                                </Typography>
-                            </div>
-                        )}
                     </div>
                 </div>
             </div>
