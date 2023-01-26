@@ -19,6 +19,7 @@
     font-size: 60px;
     line-height: 80px;
     text-align: center;
+    margin-top: 85px;
     letter-spacing: 0.4px;
     text-transform: uppercase;
 }
@@ -27,7 +28,7 @@
     font-weight: 500;
     font-size: 42px;
     line-height: 66px;
-    margin-top: 95px;
+    margin-top: 45px;
     text-align: center;
     letter-spacing: 0.4px;
 }
@@ -64,6 +65,7 @@
 
 .emailInput > div > input {
     color: var(--cTextPrimary);
+    height: 14px;
 }
 
 .emailInput > div > fieldset {
@@ -355,14 +357,13 @@
         margin-left: 35px;
     }
     .stepTwo {
-        height: 400px;
+        height: 410px;
     }
     .stepTwoTitle {
         font-size: 40px;
     }
     .stepTwoTextPart {
         font-size: 18px;
-        margin-left: -20px;
     }
     .stepTwoTextPartTwo {
         font-size: 18px;
@@ -390,7 +391,7 @@
         margin-bottom: 50px;
     }
     .stepsBlock {
-        padding-left: 250px;
+        justify-content: center;
     }
 }
 
@@ -400,13 +401,13 @@
     }
     .description {
         font-size: 26px;
-    }    
+    }
     .roleTitle {
         font-size: 40px;
     }
     .roleDescription {
         font-size: 20px;
-        line-height: 25px;   
+        line-height: 25px;
     }
     .advantageTitle {
         font-size: 20px;
@@ -418,7 +419,7 @@
         line-height: 25px;
     }
     .stepsBlock {
-        padding-left: 100px ;
+        padding-left: 100px;
     }
 }
 
@@ -470,9 +471,12 @@
     .description {
         font-size: 24px;
         line-height: 35px;
-    }    
+    }
     .roleTitle {
         font-size: 28px;
+    }
+    .fastSignUp {
+        padding-bottom: 20px;
     }
     .roleDescription {
         font-size: 18px;
@@ -497,6 +501,11 @@
     }
     .stepOneTextPartTwo {
         margin-left: 10px;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
     }
     .stepTwo {
         height: 330px;
@@ -534,28 +543,23 @@
         width: 90%;
         margin: 30px auto;
     }
+    .submitButton {
+        margin-left: 0;
+    }
 }
 
 @media screen and (max-width: 440px) {
     .title {
         font-size: 36px;
-    }    
+    }
     .description {
         line-height: 30px;
-        margin-top: 30px;
     }
     .fastSignUp {
         margin-top: 100px;
     }
-    .form {
-        display: flex;
-        flex-direction: column;
-    }
     .emailInput {
         text-align: center;
-    }
-    .submitButton {
-        margin: 20px auto;
     }
     .role > img {
         height: 200px;
@@ -587,7 +591,7 @@
         line-height: 20px;
     }
     .advantages {
-        padding-bottom: 40px;   
+        padding-bottom: 40px;
     }
     .stepsTitle {
         font-size: 30px;

@@ -68,6 +68,10 @@
     height: 40px;
 }
 
+.input > div > input {
+    height: 6px;
+}
+
 .descriptionInput :global .MuiInputBase-root {
     width: 100%;
     border-radius: 15px;

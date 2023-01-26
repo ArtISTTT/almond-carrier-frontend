@@ -86,7 +86,7 @@
 .inputItem {
     display: flex;
     flex-direction: column;
-    width: 130px;
+    width: 240px;
     margin-right: 10px;
 }
 
@@ -261,22 +261,8 @@
 
 .formR {
     display: flex;
-}
-
-.formFirstR {
-    display: flex;
-}
-
-.formSecondR {
-    display: flex;
-}
-
-.formSecondC {
-    display: flex;
-}
-
-.formSecondDistrR {
-    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
 }
 
 @media screen and (max-width: 1240px) {
@@ -298,16 +284,6 @@
 }
 
 @media screen and (max-width: 1135px) {
-    .formR {
-        display: flex;
-        flex-direction: column;
-    }
-    .formSecondR {
-        margin-top: 20px;
-    }
-    .formSecondC {
-        margin-top: 20px;
-    }
     .avatar {
         display: none;
     }
@@ -357,7 +333,7 @@
 @media screen and (max-width: 710px) {
     .filtersWrapper {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-end;
     }
     .refreshButton {
         margin-top: 20px;
@@ -385,6 +361,26 @@
 @media screen and (max-width: 570px) {
     .tableHeaderItem {
         font-size: 12px;
+    }
+    .refreshButton {
+        width: 115px;
+        font-size: 10px;
+        height: 30px;
+        margin-right: 10px;
+        border-radius: 10px;
+    }
+
+    .content {
+        margin-top: 10px;
+    }
+    .inputItem.longInput {
+        width: 100%;
+    }
+    .inputItem {
+        width: 100%;
+    }
+    .typeTitle {
+        margin: 0 auto;
     }
     .part {
         font-size: 10px;
@@ -478,8 +474,14 @@
     .doubleditem .prefix {
         width: 25px;
     }
+    .filtersWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
     .refreshButton {
         width: 130px;
         font-size: 10px;
+        margin-right: 10px;
     }
 }

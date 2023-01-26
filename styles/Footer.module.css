@@ -135,6 +135,9 @@
     .rights {
         display: none;
     }
+    .centerBlockInner {
+        gap: 30px;
+    }
     .rightsSmall {
         display: flex;
         gap: 5px;
@@ -143,23 +146,29 @@
         display: flex;
         align-items: center;
     }
-    .centerBlockInner {
-        justify-content: left;
-        gap: 20px;
-    }
 }
 
 @media screen and (max-width: 600px) {
     .columnTitle {
-        font-size: 15px;
+        /* font-size: 15px; */
+        font-weight: 700;
+    }
+    .centerBlockInner {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
     }
     .centerLink {
-        font-size: 12px;
+        /* font-size: 12px; */
         margin-top: 10px;
         text-align: left;
     }
     .rightsText {
         font-size: 12px;
+    }
+    .leftBlock {
+        margin: 10px auto;
+        width: 161px;
     }
     .footer {
         padding: 10px;
@@ -167,5 +176,19 @@
     .avatar {
         width: 40px;
         height: 40px;
+    }
+    .rightBlock {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .icons {
+        margin: 20px auto;
+        gap: 35px;
+    }
+    .footerIcon:first-child {
+        margin-left: 0;
+    }
+    .rightsSmall {
+        margin: 10px auto;
     }
 }

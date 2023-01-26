@@ -15,6 +15,7 @@ export const ReceiverPopupSchema = Yup.object().shape({
     productWeight: Yup.number()
         .nullable()
         .min(0.1, 'greaterWeight')
+        .max(40, 'maxWeightInput')
         .required('required'),
     productDescription: Yup.string(),
 });
@@ -29,6 +30,7 @@ export const CarrierPopupSchema = Yup.object().shape({
     carrierMaxWeight: Yup.number()
         .nullable()
         .min(0.1, 'greaterWeight')
+        .max(40, 'maxWeightInput')
         .required('required'),
     arrivalDate: Yup.date().required('required'),
 });
