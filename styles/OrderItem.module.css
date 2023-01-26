@@ -343,7 +343,7 @@
         flex-direction: column;
         margin-top: 10px;
         font-size: 11px;
-        width: 130px;
+        width: 150px;
         justify-content: start;
     }
     .benefitBlock {
@@ -391,8 +391,8 @@
     }
     .detailsBlock {
         border-bottom: none;
-        border-left: 1px solid rgba(0, 0, 0, 0.12);
-        width: 50%;
+        align-items: flex-end;
+        padding-right: 10px;
     }
     .userBlock {
         width: 50%;
