@@ -365,9 +365,6 @@
         font-size: 10px;
         line-height: 15px;
     }
-    .name {
-        font-size: 13px;
-    }
     .rating {
         font-size: 10px;
         line-height: 11px;
@@ -448,8 +445,8 @@
         max-width: 500px;
     }
     .description {
-        font-size: 10px;
-        line-height: 10px;
+        font-size: 12px;
+        line-height: 12px;
     }
     .moneyTitle {
         font-size: 12px;
