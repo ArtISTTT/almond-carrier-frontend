@@ -22,6 +22,7 @@ const ProfileInfo = () => {
                         <Avatar
                             src='/static/images/signin-image.png'
                             sx={{ width: 140, height: 140 }}
+                            className={styles.avatar}
                         />
                         <div className={styles.profileCardInfo}>
                             <Typography
@@ -158,13 +159,15 @@ const ProfileInfo = () => {
                         </Typography>
                     </div>
                 </div>
-                <Button
-                    onClick={navigateToSignUp}
-                    className={styles.profileButton}
-                    variant='contained'
-                >
-                    {t('requestCarrierService')}
-                </Button>
+                <div className={styles.profileButtonWrapper}>
+                    <Button
+                        onClick={navigateToSignUp}
+                        className={styles.profileButton}
+                        variant='contained'
+                    >
+                        {t('requestCarrierService')}
+                    </Button>
+                </div>
             </Container>
         </div>
     );
