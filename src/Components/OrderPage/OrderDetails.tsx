@@ -17,8 +17,6 @@ const OrderDetails: React.FC<IProps> = ({ order }) => {
     const { t } = useTranslation();
     const statusToText = useConvertStatusToText();
 
-    console.log(order);
-
     return (
         <div className={styles.orderDetails}>
             <div className={styles.orderDetailsMain}>

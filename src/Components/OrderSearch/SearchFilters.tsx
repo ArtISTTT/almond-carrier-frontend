@@ -21,18 +21,18 @@ type IProps = {
     type: OrderSeachType;
 };
 
+const userCurrency = {
+    [Currency.RUB]: 'RUB',
+    [Currency.EUR]: 'EUR',
+    [Currency.USD]: 'USD',
+};
+
 const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
     const { t } = useTranslation();
 
     const { currency } = useAppSelector(
         ({ settings }) => settings.generalSettings
     );
-
-    const userCurrency = {
-        [Currency.RUB]: 'RUB',
-        [Currency.EUR]: 'EUR',
-        [Currency.USD]: 'USD',
-    };
 
     const carriersFormik = useFormik({
         initialValues: {
