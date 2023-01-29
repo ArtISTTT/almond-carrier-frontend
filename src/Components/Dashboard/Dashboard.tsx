@@ -6,7 +6,6 @@ import AddIcon from '@mui/icons-material/Add';
 import ReceiverAddingPopup from 'src/Components/OrderComponents/ReceiverAddingPopup';
 import CarrierLayout from '../Layouts/Carrier';
 import OrderItem from 'src/Components/OrderComponents/OrderItem';
-// import RecentlyCreatedOrder from '../Orders/RecentlyCreatedOrder';
 import CarrierAddingPopup from '../OrderComponents/CarrierAddingPopup';
 import { useSelector } from 'react-redux';
 import { selectMyLiveOrders } from '../../redux/selectors/orders';
@@ -15,14 +14,6 @@ import OrderLoader from '../OrderLoader';
 import EmptyOrdersBlock from '../EmptyComponents/Empty';
 import { useTranslation } from 'next-i18next';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
-
-const recentlyCreatedOrders = [
-    { to: 'Барнаул, Россия', benefit: 3000, id: 1 },
-    { to: 'Москва, Россия', benefit: 2300, id: 2 },
-    { to: 'Санкт-Петербург, Россия', benefit: 400, id: 3 },
-    { to: 'Анталия, Турция', benefit: 1900, id: 4 },
-    { to: 'Барнаул, Россия', benefit: 999, id: 5 },
-];
 
 enum PopupType {
     none,
@@ -139,32 +130,6 @@ const Dashboard: React.FC = () => {
                                 </div>
                             </div>
                         )}
-                        {/* <div className={styles.currentlyWindow}>
-                            <div className={styles.currentlyWindowContainer}>
-                                <Typography
-                                    className={styles.currentlyTitle}
-                                    variant='h4'
-                                    component='h4'
-                                >
-                                    Currently looking for a carrier
-                                </Typography>
-                                <div className={styles.littleOrdersContainer}>
-                                    {recentlyCreatedOrders.map(order => (
-                                        <RecentlyCreatedOrder
-                                            key={order.id}
-                                            benefit={order.benefit}
-                                            to={order.to}
-                                        />
-                                    ))}
-                                </div>
-                                <Button
-                                    className={styles.showMoreButton}
-                                    variant='contained'
-                                >
-                                    show more
-                                </Button>
-                            </div>
-                        </div> */}
                     </div>
                 </Container>
             </CarrierLayout>

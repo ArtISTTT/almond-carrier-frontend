@@ -40,13 +40,13 @@
 .emailInput {
     color: var(--cTextPrimary);
     background-color: var(--cBgSecondary);
-    border-radius: 5px;
 }
 
 .submitButton {
     margin-left: 40px;
     padding: 23px 23px;
     height: 48px;
+    border-radius: 15px;
 }
 
 .emailInput > label {
@@ -57,6 +57,7 @@
 .emailInput > div {
     height: 48px;
     box-sizing: border-box;
+    border-radius: 15px;
 }
 
 .emailInput > div:hover > fieldset {

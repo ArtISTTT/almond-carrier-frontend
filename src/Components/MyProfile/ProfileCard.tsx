@@ -46,13 +46,6 @@ const ProfileCard = () => {
                     <div className={styles.statisticTitle}>{t('rating')}</div>
                     <div className={styles.statisticValue}>0</div>
                 </div>
-                {/* <Rating
-                    precision={0.5}
-                    className={styles.cardRating}
-                    name='read-only'
-                    value={value}
-                    readOnly
-                /> */}
             </div>
         </div>
     );

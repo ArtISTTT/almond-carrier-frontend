@@ -23,6 +23,7 @@ const useGetOrder = (orderId: string) => {
     const [order, setOrder] = useState<IOrderFull | undefined>(undefined);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const { push } = useRouter();
+    const { t } = useTranslation();
 
     const updateOrder = async (withoutLoading?: true) => {
         if (!withoutLoading) {
@@ -36,7 +37,7 @@ const useGetOrder = (orderId: string) => {
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error when trying to add an order',
+                text: data.error || t('errorAddOrder'),
             });
 
             push(navigateTo.DASHBOARD);

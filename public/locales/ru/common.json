@@ -2,6 +2,7 @@
     "about": "О нас",
     "activityInLastDays": "Активность за последние 30 дней",
     "ago": " назад",
+    "error": "Ошибка",
     "allOrders": "Все заказы",
     "PaymentConfirmedAlert": "Оплата подтверждена",
     "HighlightedFieldsHaveBeenChanged": "Некоторые поля были изменены и ждут вашего подтверждения",
@@ -124,7 +125,7 @@
     "maxWeight": "Макс. вес",
     "maxWeightInput": "Не более 40 кг",
     "message": "Сообщение",
-    
+
     "confirmPay": "Подтвердить оплату",
     "minBenefit": "Мин. награда",
     "mustBeYears": "Вам должно быть 18 лет!",

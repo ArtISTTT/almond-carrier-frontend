@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import cn from 'classnames';
+import { useConvertStatusToText } from '../../redux/hooks/useConvertStatusToText';
 import styles from '../../../styles/OrderPage.module.css';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useTranslation } from 'react-i18next';
@@ -14,6 +15,9 @@ type IProps = {
 const OrderDetails: React.FC<IProps> = ({ order }) => {
     const router = useRouter();
     const { t } = useTranslation();
+    const statusToText = useConvertStatusToText();
+
+    console.log(order);
 
     return (
         <div className={styles.orderDetails}>
@@ -34,7 +38,7 @@ const OrderDetails: React.FC<IProps> = ({ order }) => {
                                 order.status === OrderStatus.cancelled,
                         })}
                     >
-                        Looking for carrier
+                        {statusToText(order.status)}
                     </span>
                 </div>
             </div>

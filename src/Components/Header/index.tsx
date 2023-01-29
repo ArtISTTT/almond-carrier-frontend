@@ -65,7 +65,7 @@ const Header: React.FC<IProps> = ({
             </div>
             <div className={styles.rightMenu}>
                 <div className={styles.rightMenuButtons}>
-                    {isAuthorized && showContinueIfAuthorized && (
+                    {/* {isAuthorized && showContinueIfAuthorized && (
                         <>
                             <Button
                                 className={styles.button}
@@ -76,7 +76,7 @@ const Header: React.FC<IProps> = ({
                                 </Link>
                             </Button>
                         </>
-                    )}
+                    )} */}
                     {!isAuthorized && showSignInOutIfUnauthorized && (
                         <>
                             <Button
