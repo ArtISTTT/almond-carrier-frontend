@@ -523,10 +523,11 @@
     }
     .itemWrapper .part.user .userName {
         font-size: 8px;
+        margin-bottom: 2px;
     }
     .itemWrapper .part.user .infoItem {
-        font-size: 6px;
-        line-height: 6px;
+        font-size: 7px;
+        line-height: 7px;
     }
     .toAndFromLocationValue {
         max-width: 60px;

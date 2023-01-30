@@ -330,7 +330,6 @@
     .detailsBlock {
         height: 99px;
         width: 100%;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
     .moneyBlockNew {
         display: flex;
@@ -386,6 +385,7 @@
         width: 100%;
         padding: 0px 6px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        margin-top: 0;
     }
     .detailsBlock {
         border-bottom: none;
@@ -397,7 +397,9 @@
     .description {
         max-width: 150px;
     }
-
+    .benefitBlock {
+        margin-bottom: 0;
+    }
     .orderData {
         flex-direction: column;
     }
