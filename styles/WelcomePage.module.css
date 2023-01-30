@@ -40,6 +40,7 @@
 .emailInput {
     color: var(--cTextPrimary);
     background-color: var(--cBgSecondary);
+    border-radius: 16px;
 }
 
 .submitButton {
