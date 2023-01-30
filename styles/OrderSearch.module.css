@@ -83,6 +83,11 @@
     gap: 16px;
 }
 
+.WeightBenefitBlock {
+    display: flex;
+    gap: 5px;
+}
+
 .inputItem {
     display: flex;
     flex-direction: column;
@@ -289,10 +294,17 @@
     }
 }
 
+@media screen and (max-width: 960px) {
+    .WeightBenefitBlock {
+        flex-wrap: wrap;
+    }
+}
+
 @media screen and (max-width: 940px) {
     .typeTitle {
         font-size: 30px;
     }
+
     .typeSwitcher > span {
         height: 30px;
         width: 130px;
@@ -362,6 +374,9 @@
     .tableHeaderItem {
         font-size: 12px;
     }
+    .WeightBenefitBlock {
+        flex-wrap: nowrap;
+    }
     .refreshButton {
         width: 115px;
         font-size: 10px;
@@ -410,6 +425,10 @@
     .formFirstR {
         flex-direction: column;
         gap: 10px;
+    }
+
+    .WeightBenefitBlock {
+        width: 100%;
     }
     .formSecondR {
         flex-direction: column;
@@ -460,9 +479,7 @@
     .wrapper {
         padding: 10px;
     }
-    .inputItemLast {
-        margin-top: 10px;
-    }
+
     .formSecondC {
         margin-top: 15px;
     }
