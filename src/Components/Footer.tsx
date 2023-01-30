@@ -82,61 +82,59 @@ const Footer = () => {
             </div>
             <div className={styles.centerBlock}>
                 <div className={styles.centerBlockInner}>
-                    <div className={styles.centerTwo}>
-                        <div className={styles.centerColumn}>
-                            <Typography
-                                variant='h3'
-                                component='h3'
-                                className={styles.columnTitle}
-                            >
-                                {t('sitemap')}
-                            </Typography>
-                            <MUILink
-                                className={styles.centerLink}
-                                href='/dashboard'
-                            >
-                                {t('dashboard')}
-                            </MUILink>
-                            <MUILink
-                                className={styles.centerLink}
-                                href='/order-search'
-                            >
-                                {t('orderSearch')}
-                            </MUILink>
-                            <MUILink
-                                className={styles.centerLink}
-                                href='/profile/orders'
-                            >
-                                {t('profileOrders')}
-                            </MUILink>
-                            <MUILink
-                                className={styles.centerLink}
-                                href='/profile/general'
-                            >
-                                {t('myInfo')}
-                            </MUILink>
-                        </div>
-                        <div className={styles.centerColumn}>
-                            <Typography
-                                variant='h3'
-                                component='h3'
-                                className={styles.columnTitle}
-                            >
-                                {t('generalS')}
-                            </Typography>
-                            <MUILink className={styles.centerLink} href='#'>
-                                {t('about')}
-                            </MUILink>
-                            <MUILink className={styles.centerLink} href='#'>
-                                {t('founders')}
-                            </MUILink>
-                            <MUILink className={styles.centerLink} href='#'>
-                                {t('privacy')}
-                            </MUILink>
-                            <MUILink className={styles.centerLink} href='#'>
-                                {t('serviceTerms')}
-                            </MUILink>
-                        </div>
+                    <div className={styles.centerColumn}>
+                        <Typography
+                            variant='h3'
+                            component='h3'
+                            className={styles.columnTitle}
+                        >
+                            {t('sitemap')}
+                        </Typography>
+                        <MUILink
+                            className={styles.centerLink}
+                            href='/dashboard'
+                        >
+                            {t('dashboard')}
+                        </MUILink>
+                        <MUILink
+                            className={styles.centerLink}
+                            href='/order-search'
+                        >
+                            {t('orderSearch')}
+                        </MUILink>
+                        <MUILink
+                            className={styles.centerLink}
+                            href='/profile/orders'
+                        >
+                            {t('profileOrders')}
+                        </MUILink>
+                        <MUILink
+                            className={styles.centerLink}
+                            href='/profile/general'
+                        >
+                            {t('myInfo')}
+                        </MUILink>
+                    </div>
+                    <div className={styles.centerColumn}>
+                        <Typography
+                            variant='h3'
+                            component='h3'
+                            className={styles.columnTitle}
+                        >
+                            {t('generalS')}
+                        </Typography>
+                        <MUILink className={styles.centerLink} href='#'>
+                            {t('about')}
+                        </MUILink>
+                        <MUILink className={styles.centerLink} href='#'>
+                            {t('founders')}
+                        </MUILink>
+                        <MUILink className={styles.centerLink} href='#'>
+                            {t('privacy')}
+                        </MUILink>
+                        <MUILink className={styles.centerLink} href='#'>
+                            {t('serviceTerms')}
+                        </MUILink>
                     </div>
                     <div className={styles.centerColumn}>
                         <Typography
