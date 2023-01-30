@@ -1,5 +1,6 @@
 import { Button, Avatar, Typography, Rating } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 import styles from '../../../styles/ProfileForNewUser.module.css';
 import { Container } from '@mui/system';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +8,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { navigateTo } from 'src/interfaces/navigate';
 import { IGetUser } from 'src/interfaces/api/user';
+import dayjs from 'dayjs';
 
 interface IProps {
     user: IGetUser;
@@ -43,19 +45,29 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                             >
                                 {t('from')}: <span>{user?.fromLocation}</span>
                             </Typography>
+
                             <Typography
                                 className={styles.profileCardItem}
                                 variant='h6'
                                 component='h5'
                             >
-                                {t('oftenFlies')}: <span></span>
+                                {t('gender')}:{' '}
+                                <span>
+                                    {user.gender && (t(user?.gender) as string)}
+                                </span>
                             </Typography>
+
                             <Typography
                                 className={styles.profileCardItem}
                                 variant='h6'
                                 component='h5'
                             >
-                                {t('currency')}:<span></span>
+                                {t('dateOfBirth')}:{' '}
+                                <span>
+                                    {dayjs(user.dateOfBirth).format(
+                                        'DD.MM.YYYY'
+                                    )}
+                                </span>
                             </Typography>
                         </div>
                     </div>
@@ -74,9 +86,15 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                         className={styles.confirmItem}
                     >
                         {t('email')}{' '}
-                        <CheckCircleIcon
-                            sx={{ color: 'green', width: 18, height: 18 }}
-                        />
+                        {user.verifiedByEmail ? (
+                            <CheckCircleIcon
+                                sx={{ color: 'green', width: 18, height: 18 }}
+                            />
+                        ) : (
+                            <CancelIcon
+                                sx={{ color: 'red', width: 18, height: 18 }}
+                            />
+                        )}
                     </Typography>
                     <Typography
                         variant='h6'
@@ -84,9 +102,15 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                         className={styles.confirmItem}
                     >
                         {t('phoneNumber')}{' '}
-                        <CheckCircleIcon
-                            sx={{ color: 'green', width: 18, height: 18 }}
-                        />
+                        {user.verifiedByPhone ? (
+                            <CheckCircleIcon
+                                sx={{ color: 'green', width: 18, height: 18 }}
+                            />
+                        ) : (
+                            <CancelIcon
+                                sx={{ color: 'red', width: 18, height: 18 }}
+                            />
+                        )}
                     </Typography>
                 </div>
                 <div className={styles.infoBlock}>
