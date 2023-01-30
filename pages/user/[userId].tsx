@@ -12,6 +12,8 @@ import { OpenAlertContext } from 'src/Components/Layouts/Snackbar';
 import { useTranslation } from 'react-i18next';
 import { IGetUser } from 'src/interfaces/api/user';
 import UserLoader from 'src/Components/UserLoader';
+import { useAppSelector } from 'src/redux/hooks';
+import { navigateTo } from 'src/interfaces/navigate';
 
 const useGetCurrentUser = ({ userId }: { userId: string }) => {
     const { t } = useTranslation();
@@ -41,10 +43,13 @@ const useGetCurrentUser = ({ userId }: { userId: string }) => {
 };
 
 const User: React.FC = () => {
-    const { query } = useRouter();
+    const { query, push } = useRouter();
+
     const { user, getCurrentUser, isLoading } = useGetCurrentUser({
         userId: query.userId as string,
     });
+
+    const currentUserId = useAppSelector(({ user }) => user.data?.id);
 
     React.useEffect(() => {
         getCurrentUser();
@@ -52,6 +57,10 @@ const User: React.FC = () => {
 
     if (!user || isLoading) {
         return <UserLoader />;
+    }
+
+    if (user.id === currentUserId) {
+        push(navigateTo.PROFILE_ORDERS);
     }
 
     return (
