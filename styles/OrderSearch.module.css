@@ -237,7 +237,7 @@
 
 .doubleditem .prefix {
     color: var(--cTextLow);
-    max-width: 65px;
+    max-width: 70px;
     width: 100%;
     display: inline-block;
     margin-right: 26px;
@@ -405,7 +405,7 @@
         line-height: 14px;
     }
     .doubleditem .prefix {
-        width: 40px;
+        width: 53px;
     }
     .tableHeaderItem {
         font-size: 14px;
@@ -510,7 +510,7 @@
         font-weight: 600;
     }
     .doubleditem .prefix {
-        width: 30px;
+        width: 35px;
         font-size: 8px;
     }
     .inputItem .input :global .MuiInputBase-root {
@@ -550,7 +550,7 @@
 
 @media screen and (max-width: 420px) {
     .doubleditem .prefix {
-        width: 32px;
+        width: 34px;
     }
     .filtersWrapper {
         display: flex;
