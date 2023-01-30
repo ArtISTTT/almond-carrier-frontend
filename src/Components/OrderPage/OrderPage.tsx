@@ -118,7 +118,7 @@ const OrderPage = () => {
                     variant='contained'
                     className={styles.cancelButton}
                 >
-                    {t('CancelOrder')}
+                    {t('cancelOrder')}
                 </Button>
             </div>
         </div>
