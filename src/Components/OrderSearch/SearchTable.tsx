@@ -23,8 +23,8 @@ const SearchTable: React.FC<IProps> = ({ type, orders }) => {
         { name: t('carrier'), long: true },
         { name: `${t('from')}/${t('to')}`, long: true },
         { name: t('arrivalDate') },
-        { name: t('price') },
-        { name: t('maxWeight') },
+        { name: t('benefit') },
+        { name: t('maxWeight'), short: true },
     ];
 
     const receiversHeaders = [
@@ -32,7 +32,7 @@ const SearchTable: React.FC<IProps> = ({ type, orders }) => {
         { name: `${t('from')}/${t('to')}`, long: true },
         { name: t('product') },
         { name: t('price/benefit') },
-        { name: t('weight') },
+        { name: t('weight'), short: true },
     ];
 
     return (
@@ -45,13 +45,13 @@ const SearchTable: React.FC<IProps> = ({ type, orders }) => {
                     <div
                         className={cn(styles.tableHeaderItem, {
                             [styles.long]: item.long,
-                        })}
+                        }, {[styles.short]: item.short})}
                         key={item.name}
                     >
                         {item.name}
                     </div>
                 ))}
-                <div className={styles.tableHeaderItem}></div>
+                <div className={cn(styles.tableHeaderItem, styles.tableHeaderItemNone, styles.short)}></div>
             </div>
 
             <div>

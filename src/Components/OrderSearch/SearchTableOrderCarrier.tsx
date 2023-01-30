@@ -86,7 +86,7 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
             <div className={cn(styles.part, styles.maxWeight)}>
                 {order.carrierMaxWeight} {t('kg')}
             </div>
-            <div className={cn(styles.part)}>
+            <div className={cn(styles.part, styles.button)}>
                 <Button
                     onClick={openPopupFunc}
                     variant='contained'
