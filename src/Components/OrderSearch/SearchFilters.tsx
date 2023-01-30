@@ -151,7 +151,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                     id='maxWeight'
                                     name='maxWeight'
                                     type='number'
-                                    placeholder={t('maxWeight') as string}
+                                    placeholder={t('weight') as string}
                                     variant='outlined'
                                     InputProps={{
                                         endAdornment: (
@@ -178,9 +178,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                 <TextField
                                     id='maxBenefit'
                                     name='maxBenefit'
-                                    placeholder={
-                                        t('maxBenefit') as string
-                                    }
+                                    placeholder={t('benefit') as string}
                                     variant='outlined'
                                     type='number'
                                     InputProps={{
@@ -257,7 +255,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                     id='maxPrice'
                                     name='maxPrice'
                                     type='number'
-                                    placeholder={t('maxPrice') as string}
+                                    placeholder={t('price') as string}
                                     variant='outlined'
                                     InputProps={{
                                         endAdornment: (
@@ -279,7 +277,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                     id='maxWeight'
                                     name='maxWeight'
                                     type='number'
-                                    placeholder={t('maxWeight') as string}
+                                    placeholder={t('weight') as string}
                                     InputProps={{
                                         endAdornment: (
                                             <InputAdornment position='end'>
@@ -307,7 +305,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                     name='minBenefit'
                                     variant='outlined'
                                     type='number'
-                                    placeholder={t('minBenefit') as string}
+                                    placeholder={t('benefit') as string}
                                     InputProps={{
                                         endAdornment: (
                                             <InputAdornment position='end'>
