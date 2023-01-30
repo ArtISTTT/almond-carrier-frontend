@@ -59,6 +59,7 @@
     "emailToRecoverPass": "Enter email\n to recover password",
     "english": "English",
     "error": "Error",
+    "errorLoadingUserPage": "Error loading the user page",
     "errorAddOrder": "Error when trying to add an order",
     "errorApplyToOrder": "Error when trying to apply to an order",
     "errorSignIn": "Error when trying to sign in",

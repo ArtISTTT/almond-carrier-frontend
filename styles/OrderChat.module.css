@@ -1,11 +1,16 @@
 .chatHeader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
     padding: 12px;
     background: var(--cBg);
     border-radius: 30px 30px 0 0;
+}
+
+.chatPerson {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    gap: 10px;
+    width: fit-content;
+    cursor: pointer;
 }
 
 .chatWrapper {

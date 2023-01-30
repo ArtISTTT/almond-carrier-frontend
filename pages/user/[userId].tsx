@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import MainLayout from '../../src/Components/Layouts/MainLayout';
 import PrivateLayout from '../../src/Components/Layouts/Private';
 import ProfileInfo from '../../src/Components/UserProfile/ProfileInfo';
@@ -6,16 +6,62 @@ import ProfileContent from '../../src/Components/UserProfile/ProfileContent';
 import { privateTypes } from '../../src/interfaces/private';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticPaths } from 'next';
+import { getUser } from 'src/api/user';
+import { useRouter } from 'next/router';
+import { OpenAlertContext } from 'src/Components/Layouts/Snackbar';
+import { useTranslation } from 'react-i18next';
+import { IGetUser } from 'src/interfaces/api/user';
+import UserLoader from 'src/Components/UserLoader';
+
+const useGetCurrentUser = ({ userId }: { userId: string }) => {
+    const { t } = useTranslation();
+    const { triggerOpen } = useContext(OpenAlertContext);
+
+    const [user, setUser] = React.useState<IGetUser | undefined>(undefined);
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+    const getCurrentUser = async () => {
+        setIsLoading(true);
+        const data = await getUser({ userId });
+
+        if (data.ok && data.user) {
+            setUser(data.user);
+            setIsLoading(false);
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || t('errorLoadingUserPage'),
+            });
+            setUser(undefined);
+            setIsLoading(false);
+        }
+    };
+
+    return { user, getCurrentUser, isLoading };
+};
 
 const User: React.FC = () => {
+    const { query } = useRouter();
+    const { user, getCurrentUser, isLoading } = useGetCurrentUser({
+        userId: query.userId as string,
+    });
+
+    React.useEffect(() => {
+        getCurrentUser();
+    }, [query.userId]);
+
+    if (!user || isLoading) {
+        return <UserLoader />;
+    }
+
     return (
         <PrivateLayout privateType={privateTypes.all}>
             <MainLayout
                 showContinueIfAuthorized={true}
                 showSignInOutIfUnauthorized={true}
             >
-                <ProfileInfo />
-                <ProfileContent />
+                <ProfileInfo user={user} />
+                <ProfileContent user={user} />
             </MainLayout>
         </PrivateLayout>
     );

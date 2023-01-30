@@ -5,6 +5,13 @@
     flex: 1;
 }
 
+.userLoaderWrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .ldsRing {
     display: inline-block;
     position: relative;

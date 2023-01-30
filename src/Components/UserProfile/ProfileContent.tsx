@@ -11,6 +11,7 @@ import dayjs from 'dayjs';
 import OrderItem from 'src/Components/OrderComponents/OrderItem';
 import EmptyNoShadows from '../EmptyComponents/EmptyNoShadows';
 import { IReview } from '../../interfaces/profile';
+import { IGetUser } from 'src/interfaces/api/user';
 
 const reviews: IReview[] = [
     {
@@ -60,12 +61,10 @@ enum profileContent {
     REVIEWS = 1,
 }
 
-const ProfileConent: React.FC = () => {
+const ProfileConent = ({ user }: { user: IGetUser }) => {
     const [content, setContent] = React.useState<profileContent>(
         profileContent.ORDERS
     );
-
-    const orders = useAppSelector(selectMyOrders);
 
     const handleChange = (_: React.SyntheticEvent, newValue: number) => {
         setContent(newValue);
@@ -92,12 +91,12 @@ const ProfileConent: React.FC = () => {
                     />
                 </Tabs>
                 <div className={styles.contentItems}>
-                    {orders.length > 0 &&
+                    {user.successOrders.length > 0 &&
                         content === profileContent.ORDERS &&
-                        orders.map((order, i) => (
-                            <OrderItem key={i} {...order} />
+                        user.successOrders.map(order => (
+                            <OrderItem key={order.id} {...order} />
                         ))}
-                    {orders.length === 0 &&
+                    {user.successOrders.length === 0 &&
                         content === profileContent.ORDERS && (
                             <EmptyNoShadows text={'userHaveNoOrdersYet'} />
                         )}

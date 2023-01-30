@@ -8,6 +8,8 @@ import CarrierApplyPopup from './CarrierApplyPopup';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
+import { useRouter } from 'next/router';
+import { navigateTo } from 'src/interfaces/navigate';
 
 type IProps = {
     order: IOrder;
@@ -16,6 +18,7 @@ type IProps = {
 const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
+    const router = useRouter();
 
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
@@ -27,6 +30,13 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
     const closePopup = () => {
         toggleHtmlScroll(false);
         setIsPopupOpen(false);
+    };
+
+    const navigateToUserPage = (): void => {
+        router.push({
+            pathname: navigateTo.USER,
+            query: { userId: order.carrier?.id },
+        });
     };
 
     return (
@@ -41,7 +51,10 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                     className={styles.avatar}
                 />
                 <div className={styles.userInfo}>
-                    <div className={styles.userName}>
+                    <div
+                        onClick={navigateToUserPage}
+                        className={styles.userName}
+                    >
                         {order.carrier?.firstName} {order.carrier?.lastName}
                     </div>
                     <div className={cn(styles.infoItem, styles.infoItemRating)}>

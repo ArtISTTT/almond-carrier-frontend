@@ -8,6 +8,8 @@ import ReceiverApplyPopup from './ReceiverApplyPopup';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
+import { useRouter } from 'next/router';
+import { navigateTo } from 'src/interfaces/navigate';
 
 type IProps = {
     order: IOrder;
@@ -16,6 +18,7 @@ type IProps = {
 const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
+    const router = useRouter();
 
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
@@ -29,6 +32,13 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
         setIsPopupOpen(false);
     };
 
+    const navigateToUserPage = (): void => {
+        router.push({
+            pathname: navigateTo.USER,
+            query: { userId: order.receiver?.id },
+        });
+    };
+
     return (
         <div className={styles.itemWrapper}>
             {isPopupOpen && (
@@ -40,7 +50,10 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                     alt='logo'
                 />
                 <div className={styles.userInfo}>
-                    <div className={styles.userName}>
+                    <div
+                        onClick={navigateToUserPage}
+                        className={styles.userName}
+                    >
                         {order.receiver?.firstName} {order.receiver?.lastName}
                     </div>
                     <div className={cn(styles.infoItem, styles.infoItemRating)}>
