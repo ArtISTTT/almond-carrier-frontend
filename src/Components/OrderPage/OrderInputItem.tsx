@@ -99,7 +99,10 @@ const OrderInputItem: React.FC<IProps> = ({
         await formik.setFieldValue(id + '_placeId', placeId);
     };
 
-    const changedType = useMemo(() => getChangedType(order, viewType, id), []);
+    const changedType = useMemo(
+        () => getChangedType(order, viewType, id),
+        [order, viewType, id]
+    );
 
     return (
         <div className={styles.inputItem}>

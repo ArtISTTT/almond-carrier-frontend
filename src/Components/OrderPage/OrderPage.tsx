@@ -105,7 +105,12 @@ const OrderPage = () => {
                     suggestedChanged={suggestedChanged}
                     hasByYouSuggestedChanged={hasByYouSuggestedChanged}
                 />
-                <OrderChat viewType={viewType} order={order} user={user} />
+                <OrderChat
+                    viewType={viewType}
+                    order={order}
+                    user={user}
+                    updateOrder={updateOrder}
+                />
             </div>
 
             <OrderPayment order={order} updateOrder={updateOrder} />

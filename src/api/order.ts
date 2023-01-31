@@ -214,6 +214,25 @@ export const agreeWithChanges = (requestData: {
             };
         });
 
+export const completeOrder = (requestData: {
+    orderId: string;
+}): Promise<ISuggestChanges> =>
+    mainInstance
+        .post('/order/complete-order', JSON.stringify(requestData))
+        .then(data => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ??
+                    'Error with agreement with the changes ',
+            };
+        });
+
 export const disagreeWithChanges = (requestData: {
     orderId: string;
 }): Promise<ISuggestChanges> =>

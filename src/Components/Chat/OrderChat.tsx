@@ -16,6 +16,7 @@ interface IProps {
     user: IUser;
     order: IOrderFull;
     viewType: ViewType;
+    updateOrder: (withoutLoading?: true) => Promise<void>;
 }
 
 export enum Positions {
@@ -24,7 +25,12 @@ export enum Positions {
     CENTER = 'Center',
 }
 
-const OrderChat: React.FC<IProps> = ({ user, order, viewType }) => {
+const OrderChat: React.FC<IProps> = ({
+    user,
+    order,
+    viewType,
+    updateOrder,
+}) => {
     // const { t } = useTranslation();
 
     const initialize = async () => {
@@ -58,6 +64,10 @@ const OrderChat: React.FC<IProps> = ({ user, order, viewType }) => {
 
         socket.on('new-message', ({ message }: { message: IMessageServer }) => {
             setMessages(prev => prev.concat(parseMessages(user.id, [message])));
+        });
+
+        socket.on('new-status', async () => {
+            await updateOrder(true);
         });
 
         setSocket(socket);
