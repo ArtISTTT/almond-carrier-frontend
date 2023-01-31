@@ -4,8 +4,8 @@ export enum Language {
 }
 
 export enum Theme {
-    DARK = 'Dark',
-    LIGHT = 'Light',
+    DARK = 'dark',
+    LIGHT = 'light',
 }
 
 export enum Currency {
@@ -17,8 +17,7 @@ export enum Currency {
 export enum Country {
     RUSSIA = 'Russia',
     USA = 'USA',
-    Turkey = 'Turkey'
-    
+    Turkey = 'Turkey',
 }
 
 export type IGeneralSettings = {
