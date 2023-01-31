@@ -92,7 +92,7 @@ const SignIn: React.FC = () => {
                             placeholder={t('email') as string}
                             variant='outlined'
                             value={formik.values.email}
-                            className={cn(style.TextField,style.input)}
+                            className={cn(style.TextField, style.input)}
                             onChange={formik.handleChange}
                             error={formik.errors.email !== undefined}
                             helperText={
@@ -206,7 +206,7 @@ const SignIn: React.FC = () => {
                             href={navigateTo.SIGNIN}
                             component={LinkBehaviour}
                         >
-                            {t('AlreadyHaveAnAccount')}
+                            {t('alreadyHaveAnAccount')}
                         </MUILink>
                     </Stack>
                 </form>

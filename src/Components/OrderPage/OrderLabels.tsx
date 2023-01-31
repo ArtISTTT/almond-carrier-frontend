@@ -26,12 +26,12 @@ const OrderLabels: React.FC<IProps> = ({
                 <>
                     {suggestedChanged && (
                         <div className={styles.byOther}>
-                            {t('HighlightedFieldsHaveBeenChanged')}
+                            {t('highlightedFieldsHaveBeenChanged')}
                         </div>
                     )}
                     {hasByYouSuggestedChanged && (
                         <div className={styles.byYou}>
-                            {t('HighlightedFieldsHaveBeenChangedByYou')}
+                            {t('highlightedFieldsHaveBeenChangedByYou')}
                         </div>
                     )}
                     {viewType === ViewType.receiver &&
@@ -67,13 +67,13 @@ const OrderLabels: React.FC<IProps> = ({
 
             {order.status === OrderStatus.waitingForPaymentVerification && (
                 <div className={styles.confirmationString}>
-                    {t('WaitingPaymentConfirmation')}
+                    {t('waitingPaymentConfirmation')}
                 </div>
             )}
 
             {order.status === OrderStatus.awaitingDelivery && (
                 <div className={styles.byOther}>
-                    {t('PaymentConfirmed')} {order.arrivalDate?.format('LL')}
+                    {t('paymentConfirmed')} {order.arrivalDate?.format('LL')}
                 </div>
             )}
         </>

@@ -1,5 +1,5 @@
+import { useTranslation } from 'next-i18next';
 import { parseOrderDataFromApi } from './../../helpers/parseOrderDataFromApi';
-import { useAppDispatch } from './index';
 import { useContext, useState } from 'react';
 import { searchOrders } from '../../api/order';
 import { OpenAlertContext } from '../../Components/Layouts/Snackbar';
@@ -20,7 +20,7 @@ type IReturn = {
 };
 
 export const useSearchOrders = (): IReturn => {
-    const dispatch = useAppDispatch();
+    const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | undefined>(undefined);
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -39,11 +39,11 @@ export const useSearchOrders = (): IReturn => {
 
             return parseOrderDataFromApi(data.orders);
         } else {
-            setError('Error while searching orders');
+            setError(t('errorSearchingOrders') as string);
 
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error while searching orders',
+                text: data.error || t('errorSearchingOrders'),
             });
         }
 

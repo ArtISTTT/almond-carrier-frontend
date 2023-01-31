@@ -148,7 +148,7 @@ const OrderInformation: React.FC<IProps> = ({
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: t('SuccessfullyChanged'),
+                text: t('successfullyChanged'),
             });
             setEditingFields([]);
         } else {
@@ -171,7 +171,7 @@ const OrderInformation: React.FC<IProps> = ({
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: t('SuccessfullyChanged'),
+                text: t('successfullyChanged'),
             });
         } else {
             triggerOpen({
@@ -193,7 +193,7 @@ const OrderInformation: React.FC<IProps> = ({
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: t('SuccessfullyRejected'),
+                text: t('successfullyRejected'),
             });
         } else {
             triggerOpen({
@@ -215,7 +215,7 @@ const OrderInformation: React.FC<IProps> = ({
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: t('SuccessfullyConfirmed'),
+                text: t('successfullyConfirmed'),
             });
         } else {
             triggerOpen({
@@ -351,8 +351,8 @@ const OrderInformation: React.FC<IProps> = ({
                                     order={order}
                                     id='rewardAmount'
                                     type='number'
-                                    placeholder={t('RewardAmount') as string}
-                                    label={t('RewardAmount') as string}
+                                    placeholder={t('rewardAmount') as string}
+                                    label={t('rewardAmount') as string}
                                     availableLabels={availableLabels}
                                     addToEditingFields={addToEditingFields}
                                     removeFromEditingFields={
@@ -363,7 +363,7 @@ const OrderInformation: React.FC<IProps> = ({
                             )}
                             {order.rewardAmount && order.productAmount && (
                                 <div className={styles.inputItem}>
-                                    <label>{t('TotalAmount')}</label>
+                                    <label>{t('totalAmount')}</label>
                                     <div
                                         className={
                                             styles.orderInputValueWrapper
@@ -505,7 +505,7 @@ const OrderInformation: React.FC<IProps> = ({
                                     disabled={!hasAnyChanges}
                                     type='submit'
                                 >
-                                    {t('ConfirmChanges')}
+                                    {t('confirmChanges')}
                                 </Button>
                             </div>
                             <div className={styles.buttons}>
@@ -515,7 +515,7 @@ const OrderInformation: React.FC<IProps> = ({
                                     color='primary'
                                     onClick={confirmDealClick}
                                 >
-                                    {t('StartTheDeal')}
+                                    {t('startTheDeal')}
                                 </Button>
                             </div>
                         </>
@@ -528,7 +528,7 @@ const OrderInformation: React.FC<IProps> = ({
                             color='success'
                             onClick={agreeWithChangesClick}
                         >
-                            {t('AgreeWithChanges')}
+                            {t('agreeWithChanges')}
                         </Button>
                         <Button
                             className={styles.buttonItem}
@@ -536,7 +536,7 @@ const OrderInformation: React.FC<IProps> = ({
                             color='error'
                             onClick={disagreeWithChangesClick}
                         >
-                            {t('RejectChanges')}
+                            {t('rejectChanges')}
                         </Button>
                     </div>
                 )}

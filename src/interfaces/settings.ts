@@ -4,8 +4,8 @@ export enum Language {
 }
 
 export enum Theme {
-    DARK = 'Dark',
-    LIGHT = 'Light',
+    DARK = 'dark',
+    LIGHT = 'light',
 }
 
 export enum Genders {
