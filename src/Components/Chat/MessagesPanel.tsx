@@ -37,10 +37,19 @@ const MessagesPanel: React.FC<IProps> = ({ onSendMessage, messages }) => {
     const addMessage = async (form: IDialogMessage) => {
         if (!form.text.trim()) {
             return;
+        } else {
+            await onSendMessage(form.text.trim());
+            await formik.setFieldValue('text', '');
         }
-        onSendMessage(form.text);
+    };
 
-        await formik.setFieldValue('text', '');
+    const keyDownSendMessage = async (
+        e: React.KeyboardEvent<HTMLDivElement>
+    ) => {
+        if (e.keyCode === 13 && !(e.altKey || e.shiftKey)) {
+            await formik.submitForm();
+            await e.preventDefault();
+        }
     };
 
     const formik = useFormik({
@@ -79,6 +88,7 @@ const MessagesPanel: React.FC<IProps> = ({ onSendMessage, messages }) => {
                     id='text'
                     name='text'
                     variant='filled'
+                    onKeyDown={keyDownSendMessage}
                     className={styles.inputMessage}
                     placeholder={t('message') as string}
                     value={formik.values.text}
