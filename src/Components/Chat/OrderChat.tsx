@@ -67,7 +67,7 @@ const OrderChat: React.FC<IProps> = ({
         });
 
         socket.on('new-status', async () => {
-            await updateOrder(true);
+            await updateOrder();
         });
 
         setSocket(socket);
