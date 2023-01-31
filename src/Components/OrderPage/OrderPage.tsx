@@ -17,6 +17,7 @@ import OrderLabels from './OrderLabels';
 import OrderChat from '../Chat/OrderChat';
 import { navigateTo } from 'src/interfaces/navigate';
 import { useTranslation } from 'react-i18next';
+import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -33,7 +34,7 @@ const useGetOrder = (orderId: string) => {
         const data = await getOrderById({ orderId });
 
         if (data.ok && data.order) {
-            setOrder(data.order);
+            setOrder(parseOrderDataFromApi([data.order])[0]);
         } else {
             triggerOpen({
                 severity: 'error',
@@ -105,7 +106,12 @@ const OrderPage = () => {
                     suggestedChanged={suggestedChanged}
                     hasByYouSuggestedChanged={hasByYouSuggestedChanged}
                 />
-                <OrderChat viewType={viewType} order={order} user={user} />
+                <OrderChat
+                    viewType={viewType}
+                    order={order}
+                    user={user}
+                    updateOrder={updateOrder}
+                />
             </div>
 
             <OrderPayment order={order} updateOrder={updateOrder} />

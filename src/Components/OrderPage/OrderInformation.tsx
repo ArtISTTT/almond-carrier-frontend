@@ -18,6 +18,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import cn from 'classnames';
 import {
     agreeWithChanges,
+    completeOrder,
     confirmDeal,
     suggestChangesByCarrier,
     suggestChangesByReceiver,
@@ -158,8 +159,6 @@ const OrderInformation: React.FC<IProps> = ({
         }
 
         formik.setSubmitting(false);
-
-        await updateOrder(true);
     };
 
     const agreeWithChangesClick = async () => {
@@ -180,8 +179,6 @@ const OrderInformation: React.FC<IProps> = ({
         }
 
         formik.setSubmitting(false);
-
-        await updateOrder(true);
     };
 
     const disagreeWithChangesClick = async () => {
@@ -202,8 +199,26 @@ const OrderInformation: React.FC<IProps> = ({
         }
 
         formik.setSubmitting(false);
+    };
 
-        await updateOrder(true);
+    const completeOrderClick = async () => {
+        const data = await completeOrder({
+            orderId: order.id,
+        });
+
+        if (data.ok) {
+            triggerOpen({
+                severity: 'success',
+                text: t('SuccessfullyConfirmed'),
+            });
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error as string,
+            });
+        }
+
+        formik.setSubmitting(false);
     };
 
     const confirmDealClick = async () => {
@@ -224,8 +239,6 @@ const OrderInformation: React.FC<IProps> = ({
         }
 
         formik.setSubmitting(false);
-
-        await updateOrder(true);
     };
 
     const formik = useFormik({
@@ -559,6 +572,19 @@ const OrderInformation: React.FC<IProps> = ({
                         </Button>
                     </div>
                 )}
+                {viewType === ViewType.receiver &&
+                    order.status === OrderStatus.awaitingDelivery && (
+                        <div className={styles.buttons}>
+                            <Button
+                                className={styles.buttonItem}
+                                variant='contained'
+                                color='success'
+                                onClick={completeOrderClick}
+                            >
+                                Товар получен
+                            </Button>
+                        </div>
+                    )}
             </form>
         </div>
     );
