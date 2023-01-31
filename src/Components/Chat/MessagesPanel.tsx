@@ -5,7 +5,7 @@ import { Positions } from './OrderChat';
 import SendIcon from '@mui/icons-material/Send';
 import { useTranslation } from 'react-i18next';
 import styles from '../../../styles/OrderChat.module.css';
-import { IMessage } from 'src/interfaces/chat';
+import { IMessage, MessageType } from 'src/interfaces/chat';
 import MessageChat from './MessageChat';
 import dayjs, { Dayjs } from 'dayjs';
 
@@ -18,9 +18,14 @@ interface IDialogMessage {
 interface IProps {
     onSendMessage: (text: string) => void;
     messages: IMessage[];
+    errorMessage: string;
 }
 
-const MessagesPanel: React.FC<IProps> = ({ onSendMessage, messages }) => {
+const MessagesPanel: React.FC<IProps> = ({
+    onSendMessage,
+    messages,
+    errorMessage,
+}) => {
     const [currentDate, setCurrentDate] = useState(dayjs());
     const { t } = useTranslation();
 
@@ -55,17 +60,30 @@ const MessagesPanel: React.FC<IProps> = ({ onSendMessage, messages }) => {
     return (
         <div className={styles.contentBlock}>
             <div className={styles.messages}>
-                {messages &&
-                    messages.map((message: IMessage) => (
-                        <MessageChat
-                            currentDate={currentDate}
-                            key={message.createdAt.toISOString()}
-                            type={message.type}
-                            createdAt={message.createdAt}
-                            messageText={message.messageText}
-                            readByRecipients={message.readByRecipients}
-                        />
-                    ))}
+                {!errorMessage ? (
+                    <>
+                        {messages &&
+                            messages.map((message: IMessage) => (
+                                <MessageChat
+                                    currentDate={currentDate}
+                                    key={message.createdAt.toISOString()}
+                                    type={message.type}
+                                    createdAt={message.createdAt}
+                                    messageText={message.messageText}
+                                    readByRecipients={message.readByRecipients}
+                                />
+                            ))}
+                    </>
+                ) : (
+                    <MessageChat
+                        currentDate={currentDate}
+                        key={dayjs().toISOString()}
+                        type={MessageType.Admin}
+                        createdAt={dayjs()}
+                        messageText={errorMessage}
+                        readByRecipients={true}
+                    />
+                )}
             </div>
             <form
                 className={styles.sendMessageBlock}

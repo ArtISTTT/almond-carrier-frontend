@@ -44,6 +44,7 @@ const OrderChat: React.FC<IProps> = ({
 
     const [messages, setMessages] = React.useState<IMessage[]>([]);
     const [socket, setSocket] = React.useState<Socket | null>(null);
+    const [errorMessage, setErrorMessage] = React.useState<string>('');
 
     const dialogPesron = React.useMemo(() => {
         const person =
@@ -78,6 +79,9 @@ const OrderChat: React.FC<IProps> = ({
 
         if (data.ok && data.messages) {
             setMessages(parseMessages(user.id, data.messages));
+        }
+        if (!data.ok && data.error) {
+            setErrorMessage(data.error);
         }
     };
 
@@ -114,6 +118,7 @@ const OrderChat: React.FC<IProps> = ({
                 </div>
             </div>
             <MessagesPanel
+                errorMessage={errorMessage}
                 messages={messages}
                 onSendMessage={handleSendMessage}
             />
