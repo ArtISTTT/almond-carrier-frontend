@@ -172,6 +172,10 @@
     color: var(--cTextPrimary);
 }
 
+.stackDistance {
+    gap: 20px;
+}
+
 .infoItemWay > span {
     text-overflow: ellipsis;
     overflow: hidden;
@@ -376,6 +380,9 @@
     }
     .carrierDescriptionTitle {
         font-size: 10px;
+    }
+    .stackDistance {
+        gap: 10px;
     }
     .carrierName {
         font-size: 18px;
