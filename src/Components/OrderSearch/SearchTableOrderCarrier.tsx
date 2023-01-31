@@ -40,7 +40,8 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
     };
 
     return (
-        <div className={styles.itemWrapper}>
+        <div>
+                    <div className={styles.itemWrapper}>
             {isPopupOpen && (
                 <CarrierApplyPopup order={order} closePopup={closePopup} />
             )}
@@ -69,6 +70,7 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                         {t('completedOrders')}: <span>16</span>
                     </div>
                 </div>
+            </div>
                 <div
                     className={cn(
                         styles.part,
@@ -117,17 +119,18 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                         {t('apply')}
                     </Button>
                 </div>
-            </div>
-            <div className={styles.hidingButton}>
-                <Button
-                    onClick={openPopupFunc}
-                    variant='contained'
-                    className={styles.applyBtn}
-                >
-                    {t('apply')}
-                </Button>
-            </div>
         </div>
+        <div className={styles.hidingButton}>
+            <Button
+                onClick={openPopupFunc}
+                variant='contained'
+                className={styles.applyBtn}
+                >
+                {t('apply')}
+            </Button>
+        </div>
+    </div>
+
     );
 };
 
