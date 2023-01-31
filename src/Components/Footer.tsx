@@ -2,7 +2,6 @@ import styles from '../../styles/Footer.module.css';
 import React from 'react';
 import {
     Avatar,
-    Link as MUILink,
     SelectChangeEvent,
     FormControl,
     InputLabel,
@@ -19,6 +18,7 @@ import { Language } from '../interfaces/settings';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useCreateQueryParams } from 'src/redux/hooks/useCreateQueryParams';
+import { LinkBehaviour } from './Common/LinkBehaviour';
 
 const Footer = () => {
     const dispatch = useAppDispatch();
@@ -91,30 +91,30 @@ const Footer = () => {
                             >
                                 {t('sitemap')}
                             </Typography>
-                            <MUILink
+                            <LinkBehaviour
                                 className={styles.centerLink}
                                 href='/dashboard'
                             >
                                 {t('dashboard')}
-                            </MUILink>
-                            <MUILink
+                            </LinkBehaviour>
+                            <LinkBehaviour
                                 className={styles.centerLink}
                                 href='/order-search'
                             >
                                 {t('orderSearch')}
-                            </MUILink>
-                            <MUILink
+                            </LinkBehaviour>
+                            <LinkBehaviour
                                 className={styles.centerLink}
                                 href='/profile/orders'
                             >
                                 {t('profileOrders')}
-                            </MUILink>
-                            <MUILink
+                            </LinkBehaviour>
+                            <LinkBehaviour
                                 className={styles.centerLink}
                                 href='/profile/general'
                             >
                                 {t('myInfo')}
-                            </MUILink>
+                            </LinkBehaviour>
                         </div>
                         <div className={styles.centerColumn}>
                             <Typography
@@ -124,18 +124,30 @@ const Footer = () => {
                             >
                                 {t('generalS')}
                             </Typography>
-                            <MUILink className={styles.centerLink} href='#'>
+                            <LinkBehaviour
+                                className={styles.centerLink}
+                                href='#'
+                            >
                                 {t('about')}
-                            </MUILink>
-                            <MUILink className={styles.centerLink} href='#'>
+                            </LinkBehaviour>
+                            <LinkBehaviour
+                                className={styles.centerLink}
+                                href='#'
+                            >
                                 {t('founders')}
-                            </MUILink>
-                            <MUILink className={styles.centerLink} href='#'>
+                            </LinkBehaviour>
+                            <LinkBehaviour
+                                className={styles.centerLink}
+                                href='#'
+                            >
                                 {t('privacy')}
-                            </MUILink>
-                            <MUILink className={styles.centerLink} href='#'>
+                            </LinkBehaviour>
+                            <LinkBehaviour
+                                className={styles.centerLink}
+                                href='#'
+                            >
                                 {t('serviceTerms')}
-                            </MUILink>
+                            </LinkBehaviour>
                         </div>
                     </div>
                     <div className={styles.centerColumn}>
@@ -146,15 +158,15 @@ const Footer = () => {
                         >
                             {t('help')}
                         </Typography>
-                        <MUILink className={styles.centerLink} href='#'>
+                        <LinkBehaviour className={styles.centerLink} href='#'>
                             {t('FAQ')}
-                        </MUILink>
-                        <MUILink className={styles.centerLink} href='#'>
+                        </LinkBehaviour>
+                        <LinkBehaviour className={styles.centerLink} href='#'>
                             {t('feedback')}
-                        </MUILink>
-                        <MUILink className={styles.centerLink} href='#'>
+                        </LinkBehaviour>
+                        <LinkBehaviour className={styles.centerLink} href='#'>
                             {t('contactUs')}
-                        </MUILink>
+                        </LinkBehaviour>
                     </div>
                 </div>
             </div>
@@ -169,15 +181,15 @@ const Footer = () => {
                     <div className={styles.rightsText}>{t('copyright')}</div>
                 </div>
                 <div className={styles.icons}>
-                    <MUILink href='#'>
+                    <LinkBehaviour href='#'>
                         <EmailIcon className={styles.footerIcon} />
-                    </MUILink>
-                    <MUILink href='#'>
+                    </LinkBehaviour>
+                    <LinkBehaviour href='#'>
                         <TelegramIcon className={styles.footerIcon} />
-                    </MUILink>
-                    <MUILink href='#'>
+                    </LinkBehaviour>
+                    <LinkBehaviour href='#'>
                         <InstagramIcon className={styles.footerIcon} />
-                    </MUILink>
+                    </LinkBehaviour>
                 </div>
             </div>
         </footer>
