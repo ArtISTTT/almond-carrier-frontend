@@ -18,6 +18,7 @@ import OrderChat from '../Chat/OrderChat';
 import { navigateTo } from 'src/interfaces/navigate';
 import { useTranslation } from 'react-i18next';
 import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
+import { OrderStatus } from 'src/interfaces/profile';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -118,15 +119,21 @@ const OrderPage = () => {
             <div className={styles.haveSomeProblems}>
                 <Link href='#'>{t('HaveSomeProblems')}</Link>
             </div>
-            <div className={styles.cancelButtonWrapper}>
-                <Button
-                    color='error'
-                    variant='contained'
-                    className={styles.cancelButton}
-                >
-                    {t('CancelOrder')}
-                </Button>
-            </div>
+            {[
+                OrderStatus.waitingReciever,
+                OrderStatus.waitingCarrier,
+                OrderStatus.inDiscussion,
+            ].includes(order.status) && (
+                <div className={styles.cancelButtonWrapper}>
+                    <Button
+                        color='error'
+                        variant='contained'
+                        className={styles.cancelButton}
+                    >
+                        {t('CancelOrder')}
+                    </Button>
+                </div>
+            )}
         </div>
     );
 };
