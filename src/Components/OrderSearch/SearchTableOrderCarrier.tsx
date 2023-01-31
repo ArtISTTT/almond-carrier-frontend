@@ -57,7 +57,7 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                     >
                         {order.carrier?.firstName} {order.carrier?.lastName}
                     </div>
-                    {/* <div className={cn(styles.infoItem, styles.infoItemRating)}>
+                    <div className={cn(styles.infoItem, styles.infoItemRating)}>
                         {t('rating')}: <span>4.64</span>
                     </div>
                     <div
@@ -67,7 +67,7 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                         )}
                     >
                         {t('completedOrders')}: <span>16</span>
-                    </div> */}
+                    </div>
                 </div>
                 <div
                     className={cn(

@@ -52,10 +52,19 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                         className={styles.avatar}
                     />
                     <div className={styles.userInfo}>
-                        <div onClick={navigateToUserPage} className={styles.userName}>
-                            {order.receiver?.firstName} {order.receiver?.lastName}
+                        <div
+                            onClick={navigateToUserPage}
+                            className={styles.userName}
+                        >
+                            {order.receiver?.firstName}{' '}
+                            {order.receiver?.lastName}
                         </div>
-                        <div className={cn(styles.infoItem, styles.infoItemRating)}>
+                        <div
+                            className={cn(
+                                styles.infoItem,
+                                styles.infoItemRating
+                            )}
+                        >
                             {t('rating')}: <span>4.64</span>
                         </div>
                         <div
@@ -68,11 +77,19 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                         </div>
                     </div>
                 </div>
-                <div className={cn(styles.part, styles.fromTo, styles.doubleditem)}>
+                <div
+                    className={cn(
+                        styles.part,
+                        styles.fromTo,
+                        styles.doubleditem
+                    )}
+                >
                     <div>
                         <Tooltip title={order.fromLocation} placement='bottom'>
                             <div className={styles.fromToItem}>
-                                <span className={styles.prefix}>{t('from')}:</span>
+                                <span className={styles.prefix}>
+                                    {t('from')}:
+                                </span>
                                 <span className={styles.toAndFromLocationValue}>
                                     {order.fromLocation ?? t('undefined')}
                                 </span>
@@ -80,7 +97,9 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                         </Tooltip>
                         <Tooltip title={order.toLocation} placement='bottom'>
                             <div className={styles.fromToItem}>
-                                <span className={styles.prefix}>{t('to')}:</span>
+                                <span className={styles.prefix}>
+                                    {t('to')}:
+                                </span>
                                 <span className={styles.toAndFromLocationValue}>
                                     {order.toLocation}
                                 </span>
@@ -106,7 +125,9 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                         </div>
 
                         <div className={styles.benefitPriceItem}>
-                            <span className={styles.prefix}>{t('benefit')}:</span>
+                            <span className={styles.prefix}>
+                                {t('benefit')}:
+                            </span>
                             <span className={styles.benefitPriceValue}>
                                 {formatAmount(
                                     order.rewardAmount,
@@ -135,12 +156,11 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
                     onClick={openPopupFunc}
                     variant='contained'
                     className={styles.applyBtn}
-                    >
+                >
                     {t('apply')}
                 </Button>
             </div>
         </div>
-
     );
 };
 
