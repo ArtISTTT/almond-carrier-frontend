@@ -284,6 +284,21 @@
     }
 }
 
+@media screen and (max-width: 807px) {
+    .detailsButton {
+        margin-top: 5px;
+        font-size: 10px;
+        line-height: 15px;
+        margin-bottom: 5px;
+    }
+    .status {
+        text-align: center;
+    }
+    .orderDetails {
+        padding: 0;
+    }
+}
+
 @media screen and (max-width: 770px) {
     .userBlock {
         padding: 8px;
@@ -316,9 +331,6 @@
 @media screen and (max-width: 760px) {
     .orderDetails {
         padding: 0;
-    }
-    .detailsButton {
-        margin-bottom: 5px;
     }
     .moneyBlock {
         display: none;
@@ -361,11 +373,6 @@
     .status {
         font-size: 11px;
     }
-    .detailsButton {
-        margin-top: 5px;
-        font-size: 10px;
-        line-height: 15px;
-    }
     .rating {
         font-size: 10px;
         line-height: 11px;
@@ -376,7 +383,7 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 640px) {
     .orderInfo {
         width: 100%;
     }

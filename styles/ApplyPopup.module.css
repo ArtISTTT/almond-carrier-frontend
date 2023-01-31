@@ -147,8 +147,17 @@
     justify-content: space-between;
     width: 100%;
     gap: 15px;
+    margin-top: 24px;
     max-width: 300px;
     color: var(--cTextPrimary);
+}
+
+.infoItem > span {
+    white-space: nowrap;
+}
+
+.infoItem:first-child {
+    margin-top: 0;
 }
 
 .infoItemWay {
@@ -295,6 +304,7 @@
     }
     .inputItem > label {
         font-size: 12px;
+        line-height: 14px;
     }
     .input :global .MuiInputBase-root {
         font-size: 12px;
@@ -307,7 +317,7 @@
     }
 }
 
-@media screen and (max-width: 530px) {
+@media screen and (max-width: 610px) {
     .receiverInfo {
         flex-direction: column;
     }
@@ -317,14 +327,29 @@
     .infoItemWay > span {
         max-width: 300px;
     }
+    .infoWayItems {
+        gap: 15px;
+    }
+    .infoItem > p {
+        width: 100px;
+    }
     .infoCol {
-        margin-top: -15px;
+        margin-top: -20px;
     }
     .carrierInfo {
         flex-direction: column;
     }
     .stack {
-        margin-top: 5px;
+        margin-top: 0px;
+    }
+    .infoItem  {
+        margin-top: 15px;
+    }
+    .infoItem:first-child {
+        margin-top: 0;
+    }
+    .carrierInfo {
+        padding-bottom: 15px;
     }
 }
 
@@ -334,13 +359,14 @@
     }
     .inputItemSecond {
         margin-left: 0 !important;
-        padding-top: 5px;
+        padding-top: 10px;
     }
     .infoItem {
         font-size: 10px;
     }
     .infoItemWay {
         font-size: 10px;
+        max-width: 250px;
     }
     .infoItem > p {
         width: 80px;
@@ -365,7 +391,7 @@
     }
     .receiverInfo {
         padding-top: 20px;
-        padding-bottom: 10px;
+        padding-bottom: 0px;
     }
     .productName {
         font-size: 10px;
@@ -379,5 +405,14 @@
         padding: 5px;
         margin-top: 15px;
         line-height: 14px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .infoItemWay {
+        max-width: 200px;
+    }
+    .carrierName {
+        width: 150px;
     }
 }

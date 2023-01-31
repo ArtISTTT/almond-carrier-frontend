@@ -177,6 +177,7 @@
     }
     .reviewName {
         margin-top: 0;
+        text-align: left;
     }
     .reviewText {
         min-height: 70px;

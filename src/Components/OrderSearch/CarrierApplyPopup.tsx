@@ -170,7 +170,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </Stack>
                 </div>
 
-                <Stack direction='column' spacing={3} className={styles.stack}>
+                <Stack direction='column' className={styles.stack}>
                     <Typography
                         className={styles.infoItem}
                         variant='h5'

@@ -294,6 +294,12 @@
     }
 }
 
+@media screen and (max-width: 1202px) {
+    .WeightBenefitBlock {
+        margin-top: 10px;
+    }
+}
+
 @media screen and (max-width: 1135px) {
     .avatar {
         display: none;
@@ -306,6 +312,7 @@
 @media screen and (max-width: 960px) {
     .WeightBenefitBlock {
         flex-wrap: wrap;
+        margin-top: 0;
     }
 }
 
@@ -400,6 +407,9 @@
     .toAndFromLocationValue {
         font-weight: 600;
     }
+    .part {
+        font-weight: 600;
+    }
 }
 
 @media screen and (max-width: 710px) {
@@ -435,6 +445,7 @@
     }
     .WeightBenefitBlock {
         flex-wrap: nowrap;
+        width: 100%;
     }
     .refreshButton {
         width: 115px;
@@ -498,10 +509,6 @@
         flex-direction: column;
         gap: 10px;
     }
-
-    .WeightBenefitBlock {
-        width: 100%;
-    }
     .formSecondR {
         flex-direction: column;
         margin-top: 10px;
@@ -547,7 +554,7 @@
         margin-bottom: 2px;
     }
     .itemWrapper .part.user .infoItem {
-        font-size: 7px;
+        font-size: 6px;
         line-height: 7px;
     }
     .toAndFromLocationValue {
@@ -570,7 +577,7 @@
 
 @media screen and (max-width: 420px) {
     .doubleditem .prefix {
-        width: 34px;
+        width: 32px;
     }
     .filtersWrapper {
         display: flex;

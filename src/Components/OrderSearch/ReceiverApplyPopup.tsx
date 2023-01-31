@@ -196,7 +196,6 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                 <Stack
                     className={styles.infoCol}
                     direction='column'
-                    spacing={3}
                 >
                     <Typography
                         className={styles.infoItem}
