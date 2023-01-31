@@ -230,5 +230,6 @@
     }
     .profileLayoutContentInner {
         padding: 10px;
+        padding-bottom: 60px;
     }
 }

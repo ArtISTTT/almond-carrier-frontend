@@ -153,3 +153,80 @@
     flex-direction: column;
     gap: 25px;
 }
+
+@media screen and (max-width: 630px) {
+    .profileName {
+        font-size: 24px;
+    }
+    .profileCardItem {
+        font-size: 15px;
+        margin-bottom: 3px;
+    }
+    .confirmItem {
+        font-size: 15px;
+    }
+    .infoTitle {
+        font-size: 15px;
+        line-height: 15px;
+    }
+    .infoParam {
+        font-size: 20px;
+        margin-top: 15px;
+    }
+    .secondInfoParam {
+        font-size: 12px;
+        margin-top: 0;
+    }
+    .infoItem {
+        height: 110px;
+    }
+}
+@media screen and (max-width: 617px) {
+    .profileButtonWrapper {
+       text-align: center;
+    }
+    .profileButton {
+        width: 240px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .profileName {
+        font-size: 20px;
+        line-height: 20px;
+    }
+    .profileBlock {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+    .profileRating {
+        margin-top: 0px;
+        margin-left: 110px;
+    }
+    .confirmBlock {
+        gap: 10px;
+        margin-top: 5px;
+    }
+    .profileButton {
+        width: none;
+        font-size: 12px;
+    }
+    .infoTitle {
+        margin-top: 10px;
+    }
+    .infoParam {
+        margin-top: 20px;
+        font-size: 18px;
+        line-height: 18px;
+    }
+    .secondInfoParam {
+        margin-top: 5px;
+    }
+    .tab {
+        font-size: 12px;
+    }
+}

@@ -343,7 +343,7 @@
         font-size: 10px;
     }
     .infoItem > p {
-        width: 90px;
+        width: 80px;
     }
     .inputItem > label {
         font-size: 10px;
@@ -357,9 +357,11 @@
     }
     .carrierRating {
         font-size: 12px;
+        line-height: 12px;
     }
     .carrierCompletedOrders {
         font-size: 12px;
+        line-height: 12px;
     }
     .receiverInfo {
         padding-top: 20px;

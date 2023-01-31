@@ -303,15 +303,10 @@
         font-size: 10px;
     }
     .moneyTitle {
-        font-size: 10px;
+        font-size: 12px;
     }
     .moneyValue {
         font-size: 12px;
-    }
-    .description {
-        font-size: 10px;
-        line-height: 12px;
-        margin-right: 2px;
     }
     .orderDescriptions {
         gap: 6px;
@@ -337,7 +332,6 @@
     .detailsBlock {
         height: 99px;
         width: 100%;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
     .moneyBlockNew {
         display: flex;
@@ -346,6 +340,7 @@
         margin-top: 10px;
         font-size: 11px;
         width: 150px;
+        padding-left: 6px;
         justify-content: start;
     }
     .benefitBlock {
@@ -355,13 +350,13 @@
         display: flex;
     }
     .moneyTitle {
-        line-height: 13px;
-        width: 60px;
+        line-height: 12px;
         text-align: left;
     }
     .moneyValue {
-        font-size: 10px;
-        line-height: 13px;
+        padding-left: 5px;
+        font-size: 12px;
+        line-height: 12px;
     }
     .status {
         font-size: 11px;
@@ -370,9 +365,6 @@
         margin-top: 5px;
         font-size: 10px;
         line-height: 15px;
-    }
-    .name {
-        font-size: 13px;
     }
     .rating {
         font-size: 10px;
@@ -389,12 +381,17 @@
         width: 100%;
     }
     .moneyBlockNew {
-        padding-left: 6px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 0px 6px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        margin-top: 0;
     }
     .detailsBlock {
         border-bottom: none;
-        align-items: flex-end;
-        padding-right: 10px;
+        align-items: center;
     }
     .userBlock {
         width: 50%;
@@ -402,7 +399,9 @@
     .description {
         max-width: 150px;
     }
-
+    .benefitBlock {
+        margin-bottom: 0;
+    }
     .orderData {
         flex-direction: column;
     }
@@ -411,7 +410,7 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
     .orderDetails {
-        flex-direction: row-reverse;
+        flex-direction: column-reverse;
         width: 100%;
         max-width: 700px;
         justify-content: space-between;
@@ -447,19 +446,19 @@
     }
     .userBlock {
         width: 100%;
-        max-width: 470px;
+        max-width: 500px;
     }
     .description {
-        font-size: 8px;
-        line-height: 10px;
+        font-size: 12px;
+        line-height: 12px;
     }
     .moneyTitle {
-        font-size: 10px;
-        line-height: 11px;
+        font-size: 12px;
+        line-height: 12px;
     }
     .moneyValue {
-        font-size: 10px;
-        line-height: 11px;
+        font-size: 12px;
+        line-height: 12px;
     }
     .status {
         font-size: 10px;
@@ -469,27 +468,27 @@
 @media screen and (max-width: 470px) {
     .userBlock {
         width: 100%;
-        max-width: 410px;
+        max-width: 450px;
     }
 }
 
 @media screen and (max-width: 435px) {
     .userBlock {
         width: 100%;
-        max-width: 380px;
+        max-width: 420px;
     }
 }
 
 @media screen and (max-width: 400px) {
     .userBlock {
         width: 100%;
-        max-width: 350px;
+        max-width: 380px;
     }
 }
 
 @media screen and (max-width: 370px) {
     .userBlock {
         width: 100%;
-        max-width: 320px;
+        max-width: 350px;
     }
 }

@@ -83,11 +83,13 @@ const ProfileConent = ({ user }: { user: IGetUser }) => {
                         icon={<PersonIcon />}
                         iconPosition='start'
                         label='current orders'
+                        className={styles.tab}
                     />
                     <Tab
                         icon={<StarIcon />}
                         iconPosition='start'
                         label='Feedback'
+                        className={styles.tab}
                     />
                 </Tabs>
                 <div className={styles.contentItems}>

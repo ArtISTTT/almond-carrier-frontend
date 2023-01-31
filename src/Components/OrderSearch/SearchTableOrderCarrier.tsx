@@ -57,7 +57,7 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                     >
                         {order.carrier?.firstName} {order.carrier?.lastName}
                     </div>
-                    <div className={cn(styles.infoItem, styles.infoItemRating)}>
+                    {/* <div className={cn(styles.infoItem, styles.infoItemRating)}>
                         {t('rating')}: <span>4.64</span>
                     </div>
                     <div
@@ -67,39 +67,58 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                         )}
                     >
                         {t('completedOrders')}: <span>16</span>
+                    </div> */}
+                </div>
+                <div
+                    className={cn(
+                        styles.part,
+                        styles.fromTo,
+                        styles.doubleditem
+                    )}
+                >
+                    <div>
+                        <Tooltip title={order.fromLocation} placement='bottom'>
+                            <div className={styles.fromToItem}>
+                                <span className={styles.prefix}>
+                                    {t('from')}:
+                                </span>
+                                <span className={styles.toAndFromLocationValue}>
+                                    {order.fromLocation}
+                                </span>
+                            </div>
+                        </Tooltip>
+                        <Tooltip title={order.toLocation} placement='bottom'>
+                            <div className={styles.fromToItem}>
+                                <span className={styles.prefix}>
+                                    {t('to')}:
+                                </span>
+                                <span className={styles.toAndFromLocationValue}>
+                                    {order.toLocation}
+                                </span>
+                            </div>
+                        </Tooltip>
                     </div>
                 </div>
-            </div>
-            <div className={cn(styles.part, styles.fromTo, styles.doubleditem)}>
-                <div>
-                    <Tooltip title={order.fromLocation} placement='bottom'>
-                        <div className={styles.fromToItem}>
-                            <span className={styles.prefix}>{t('from')}:</span>
-                            <span className={styles.toAndFromLocationValue}>
-                                {order.fromLocation}
-                            </span>
-                        </div>
-                    </Tooltip>
-                    <Tooltip title={order.toLocation} placement='bottom'>
-                        <div className={styles.fromToItem}>
-                            <span className={styles.prefix}>{t('to')}:</span>
-                            <span className={styles.toAndFromLocationValue}>
-                                {order.toLocation}
-                            </span>
-                        </div>
-                    </Tooltip>
+                <div className={cn(styles.part, styles.flightDate)}>
+                    {order.arrivalDate?.format('DD.MM.YYYY')}
+                </div>
+                <div className={cn(styles.part, styles.benefit)}>
+                    {formatAmount(order.rewardAmount, Currency.RUB, true)}
+                </div>
+                <div className={cn(styles.part, styles.maxWeight)}>
+                    {order.carrierMaxWeight} {t('kg')}
+                </div>
+                <div className={cn(styles.part, styles.button)}>
+                    <Button
+                        onClick={openPopupFunc}
+                        variant='contained'
+                        className={styles.applyBtn}
+                    >
+                        {t('apply')}
+                    </Button>
                 </div>
             </div>
-            <div className={cn(styles.part, styles.flightDate)}>
-                {order.arrivalDate?.format('DD.MM.YYYY')}
-            </div>
-            <div className={cn(styles.part, styles.benefit)}>
-                {formatAmount(order.rewardAmount, Currency.RUB, true)}
-            </div>
-            <div className={cn(styles.part, styles.maxWeight)}>
-                {order.carrierMaxWeight} {t('kg')}
-            </div>
-            <div className={cn(styles.part)}>
+            <div className={styles.hidingButton}>
                 <Button
                     onClick={openPopupFunc}
                     variant='contained'
