@@ -7,6 +7,30 @@
     display: flex;
 }
 
+.personInfo {
+    margin: 20px 0;
+}
+
+.personRole {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.4px;
+    color: var(--cTextLow);
+}
+
+.personName {
+    font-size: 18px;
+    line-height: 40px;
+    font-weight: 500;
+    margin-right: 12px;
+    max-width: calc(250px - 24px - 8px);
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .orderDetails {
     padding: 32px;
     display: flex;

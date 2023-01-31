@@ -26,7 +26,6 @@ import { useContext } from 'react';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { IUser } from 'src/interfaces/user';
 import { useTranslation } from 'react-i18next';
-import InputAdornment from '@mui/material/InputAdornment';
 
 type IProps = {
     order: IOrderFull;
@@ -244,12 +243,32 @@ const OrderInformation: React.FC<IProps> = ({
         'productDescription'
     );
 
+    const personFullName = () => {
+        if (viewType === ViewType.receiver) {
+            return `${order.carrier?.firstName} ${order.carrier?.lastName}`;
+        }
+
+        if (viewType === ViewType.carrier) {
+            return `${order.receiver?.firstName} ${order.receiver?.lastName}`;
+        }
+    };
+
     return (
         <div className={styles.orderInformation}>
             <form onSubmit={formik.handleSubmit}>
                 <div className={styles.orderInformationTitle}>
                     Order information
                 </div>
+
+                <div className={styles.personInfo}>
+                    <div className={styles.personRole}>
+                        {viewType === ViewType.carrier
+                            ? t('receiver')
+                            : t('carrier')}
+                    </div>
+                    <div className={styles.personName}>{personFullName()}</div>
+                </div>
+
                 <div className={styles.editableForm}>
                     {order.productName && (
                         <div className={styles.productName}>
