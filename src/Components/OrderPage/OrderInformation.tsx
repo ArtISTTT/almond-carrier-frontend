@@ -33,6 +33,8 @@ type IProps = {
     viewType: ViewType;
     suggestedChanged: Partial<IOrder> | undefined;
     hasByYouSuggestedChanged: boolean;
+    isReviewBlockOpen: boolean;
+    setIsReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
     user: IUser;
     updateOrder: (withoutLoading?: true) => Promise<void>;
 };
@@ -42,22 +44,19 @@ const OrderInformation: React.FC<IProps> = ({
     viewType,
     suggestedChanged,
     hasByYouSuggestedChanged,
+    isReviewBlockOpen,
+    setIsReviewBlockOpen,
     user,
     updateOrder,
 }) => {
     const [editingFields, setEditingFields] = useState<(keyof IOrderFull)[]>(
         []
     );
-    const [isReviewBlockOpen, setIsReviewBlockOpen] = useState<boolean>(false);
 
     const { t } = useTranslation();
     const { triggerOpen } = useContext(OpenAlertContext);
 
-    React.useEffect(() => {
-        if (order.status === OrderStatus.success) {
-            setIsReviewBlockOpen(true);
-        }
-    }, []);
+    
 
     const addToEditingFields = (name: keyof IOrderFull) => {
         setEditingFields(editingFields.concat([name]));
