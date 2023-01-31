@@ -555,14 +555,16 @@ const OrderInformation: React.FC<IProps> = ({
                 )}
                 {viewType === ViewType.receiver &&
                     order.status === OrderStatus.awaitingDelivery && (
-                        <Button
-                            className={styles.buttonItem}
-                            variant='contained'
-                            color='success'
-                            onClick={completeOrderClick}
-                        >
-                            Товар получен
-                        </Button>
+                        <div className={styles.buttons}>
+                            <Button
+                                className={styles.buttonItem}
+                                variant='contained'
+                                color='success'
+                                onClick={completeOrderClick}
+                            >
+                                Товар получен
+                            </Button>
+                        </div>
                     )}
             </form>
         </div>
