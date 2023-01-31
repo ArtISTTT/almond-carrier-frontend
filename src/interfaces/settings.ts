@@ -8,6 +8,13 @@ export enum Theme {
     LIGHT = 'Light',
 }
 
+export enum Genders {
+    MALE = 'Male',
+    FEMALE = 'Female',
+    OTHER = 'Other',
+    NONE = 'None',
+}
+
 export enum Currency {
     EUR = 'EUR',
     USD = 'USD',
@@ -17,8 +24,7 @@ export enum Currency {
 export enum Country {
     RUSSIA = 'Russia',
     USA = 'USA',
-    Turkey = 'Turkey'
-    
+    Turkey = 'Turkey',
 }
 
 export type IGeneralSettings = {

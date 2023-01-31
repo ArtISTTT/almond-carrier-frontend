@@ -14,12 +14,28 @@ interface IProps {
     user: IGetUser;
 }
 
+enum gendersEnum {
+    MALE = 'Male',
+    FEMALE = 'Female',
+    OTHER = 'Other',
+    NONE = 'None',
+}
+
+const genders = {
+    [gendersEnum.MALE]: 'male',
+    [gendersEnum.FEMALE]: 'female',
+    [gendersEnum.OTHER]: 'other',
+    [gendersEnum.NONE]: 'none',
+};
+
 const ProfileInfo: React.FC<IProps> = ({ user }) => {
     const router = useRouter();
 
     const navigateToSignUp = () => router.push(navigateTo.SIGNUP);
 
     const { t } = useTranslation();
+
+    console.log(user);
 
     return (
         <div className={styles.wrapper}>
@@ -52,9 +68,7 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                                 component='h5'
                             >
                                 {t('gender')}:{' '}
-                                <span>
-                                    {user.gender && (t(user?.gender) as string)}
-                                </span>
+                                <span>{t(genders[user.gender])}</span>
                             </Typography>
 
                             <Typography
