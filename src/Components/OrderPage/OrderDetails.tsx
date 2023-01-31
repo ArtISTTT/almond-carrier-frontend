@@ -23,22 +23,19 @@ const OrderDetails: React.FC<IProps> = ({ order }) => {
                 <div className={styles.orderDetailsTitle}>
                     {t('orderDetails')}
                 </div>
-                <div className={styles.orderStatus}>
-                    {t('status:')}{' '}
-                    <span
-                        className={cn({
-                            [styles.statusInProcess]:
-                                order.status !== OrderStatus.success &&
-                                order.status !== OrderStatus.cancelled,
-                            [styles.statusSuccess]:
-                                order.status === OrderStatus.success,
-                            [styles.statusCancelled]:
-                                order.status === OrderStatus.cancelled,
-                        })}
-                    >
-                        {statusToText(order.status)}
-                    </span>
-                </div>
+                <span
+                    className={cn(styles.orderStatus, {
+                        [styles.statusInProcess]:
+                            order.status !== OrderStatus.success &&
+                            order.status !== OrderStatus.cancelled,
+                        [styles.statusSuccess]:
+                            order.status === OrderStatus.success,
+                        [styles.statusCancelled]:
+                            order.status === OrderStatus.cancelled,
+                    })}
+                >
+                    {statusToText(order.status)}
+                </span>
             </div>
             <div className={styles.orderDetailsInfo}>
                 <div className={styles.infoLeft}>
