@@ -1,0 +1,41 @@
+.reviewBlockWrapper {
+    height: 630px;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: var(--cBgThird);
+    border-radius: 30px;
+    position: relative;
+}
+
+.closeIcon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.ratingBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    align-items: center;
+}
+
+.ratingStars {
+    font-size: 30px;
+    color: var(--cTextPrimary);
+}
+
+.submitButton {
+    width: fit-content;
+}
+
+.reviewBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    align-items: center;
+}
