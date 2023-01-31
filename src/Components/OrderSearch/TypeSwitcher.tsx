@@ -29,7 +29,7 @@ const TypeSwitcher: React.FC<IProps> = ({ type, setType }) => {
                     })}
                     onClick={switchType}
                 >
-                    {t('    ')}
+                    {t('receive')}
                 </span>
                 <span
                     className={cn(styles.off, {
