@@ -8,24 +8,18 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { navigateTo } from 'src/interfaces/navigate';
 import { IGetUser } from 'src/interfaces/api/user';
+import { Genders } from 'src/interfaces/settings';
 import dayjs from 'dayjs';
 
 interface IProps {
     user: IGetUser;
 }
 
-enum gendersEnum {
-    MALE = 'Male',
-    FEMALE = 'Female',
-    OTHER = 'Other',
-    NONE = 'None',
-}
-
 const genders = {
-    [gendersEnum.MALE]: 'male',
-    [gendersEnum.FEMALE]: 'female',
-    [gendersEnum.OTHER]: 'other',
-    [gendersEnum.NONE]: 'none',
+    [Genders.MALE]: 'male',
+    [Genders.FEMALE]: 'female',
+    [Genders.OTHER]: 'other',
+    [Genders.NONE]: 'none',
 };
 
 const ProfileInfo: React.FC<IProps> = ({ user }) => {
@@ -34,8 +28,6 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
     const navigateToSignUp = () => router.push(navigateTo.SIGNUP);
 
     const { t } = useTranslation();
-
-    console.log(user);
 
     return (
         <div className={styles.wrapper}>
@@ -54,22 +46,24 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                             >
                                 {user?.firstName} {user?.lastName}
                             </Typography>
-                            <Typography
+                            {/* <Typography
                                 className={styles.profileCardItem}
                                 variant='h6'
                                 component='h5'
                             >
                                 {t('from')}: <span>{user?.fromLocation}</span>
-                            </Typography>
+                            </Typography> */}
 
-                            <Typography
-                                className={styles.profileCardItem}
-                                variant='h6'
-                                component='h5'
-                            >
-                                {t('gender')}:{' '}
-                                <span>{t(genders[user.gender])}</span>
-                            </Typography>
+                            {user.gender && (
+                                <Typography
+                                    className={styles.profileCardItem}
+                                    variant='h6'
+                                    component='h5'
+                                >
+                                    {t('gender')}:{' '}
+                                    <span>{t(genders[user.gender])}</span>
+                                </Typography>
+                            )}
 
                             <Typography
                                 className={styles.profileCardItem}

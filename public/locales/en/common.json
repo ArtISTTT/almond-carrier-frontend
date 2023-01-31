@@ -74,7 +74,7 @@
     "EURValute": "EUR",
     "FAQ": "FAQ",
     "feedback": "Leave Feedback",
-    "Female": "Female",
+    "female": "Female",
     "firstName": "First name",
     "flightDate": "Flight date",
     "forgotPassword": "Forgot your password?",
@@ -118,7 +118,7 @@
     "maxBenefit": "Max Benefit",
     "maxPrice": "Max price",
     "maxWeight": "Max weight",
-    
+
     "mustBeYears": "You must be at least 18 years",
     "myInfo": "My Information",
     "myOrders": "My orders",
@@ -141,7 +141,7 @@
     "orders": "orders",
     "orderSearch": "Order search",
     "orderSuccessAdd": "Order successfully added",
-    "Other": "Other",
+    "other": "Other",
     "ourAdvantages": "Our advantages",
     "passErrorUpdated": "Error when trying to update password",
     "passSuccessfullyUpdated": "Password successfully updated",

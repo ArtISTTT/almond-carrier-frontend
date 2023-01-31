@@ -1,5 +1,6 @@
 import { Dayjs } from 'dayjs';
 import { IOrderFull } from '../order';
+import { Genders } from '../settings';
 
 export interface IGetUserReturn {
     ok: boolean;
@@ -15,7 +16,7 @@ export interface IGetUser {
     dateOfBirth: Dayjs;
     firstName: string;
     fromLocation: string;
-    gender?: string;
+    gender?: Genders;
     id: string;
     lastName: string;
     avatar?: string;
