@@ -45,6 +45,8 @@ const OrderChat: React.FC<IProps> = ({
     const [messages, setMessages] = React.useState<IMessage[]>([]);
     const [socket, setSocket] = React.useState<Socket | null>(null);
     const [errorMessage, setErrorMessage] = React.useState<string>('');
+    const [isMessagesLoading, setIsMessagesLoading] =
+        React.useState<boolean>(false);
 
     const dialogPesron = React.useMemo(() => {
         const person =
@@ -75,13 +77,16 @@ const OrderChat: React.FC<IProps> = ({
     };
 
     const loadMessages = async () => {
+        setIsMessagesLoading(true);
         const data = await getMessages(order.id);
 
         if (data.ok && data.messages) {
             setMessages(parseMessages(user.id, data.messages));
+            setIsMessagesLoading(false);
         }
-        if (!data.ok && data.error) {
+        if (data.error) {
             setErrorMessage(data.error);
+            setIsMessagesLoading(false);
         }
     };
 
@@ -108,17 +113,19 @@ const OrderChat: React.FC<IProps> = ({
                     >
                         {dialogPesron}
                     </Typography>
-                    <Typography
+                    {/* <Typography
                         className={styles.chatMemberOnline}
                         variant='subtitle2'
                         component='h6'
                     >
-                        {/* {t('lastSeenOnline')} 15m {t('ago')} */}
-                    </Typography>
+                        {t('lastSeenOnline')} 15m {t('ago')}
+                    </Typography> */}
                 </div>
             </div>
             <MessagesPanel
                 errorMessage={errorMessage}
+                loadMessages={loadMessages}
+                isMessagesLoading={isMessagesLoading}
                 messages={messages}
                 onSendMessage={handleSendMessage}
             />

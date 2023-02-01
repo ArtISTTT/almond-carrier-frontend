@@ -7,6 +7,7 @@
     "allowToTransferMyMoney": "I allow friendly carrier to transfer my money to the cloud",
     "AlreadyHaveAnAccount": "Already have an account",
     "apply": "Apply",
+    "errorGetMessages": "Error loading messages",
     "applyForOrder": "apply for order",
     "applyToOrder": "apply to order",
     "arrivalDate": "Arrival date",
