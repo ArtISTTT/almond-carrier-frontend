@@ -27,6 +27,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SearchIcon from '@mui/icons-material/Search';
+import SettingsPopup from '../SettingsPopup/SettingsPopup';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -41,6 +42,8 @@ const Header: React.FC<IProps> = ({
     const user = useAppSelector(selectUser);
     const isAuthorized = useSelector(selectIsAuthorized);
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
+    const [isSettingsPopupOpen, setIsSettingsPopupOpen] =
+        React.useState<boolean>(false);
     const { t } = useTranslation();
 
     const changePageIfAuthorized = () => {
@@ -49,6 +52,11 @@ const Header: React.FC<IProps> = ({
         } else {
             router.push(navigateTo.SIGNIN);
         }
+    };
+
+    const handleOpenSettingsPopup = () => {
+        setMobileMenuOpen(false);
+        setIsSettingsPopupOpen(prev => !prev);
     };
 
     const handleClose = () => setMobileMenuOpen(false);
@@ -112,7 +120,12 @@ const Header: React.FC<IProps> = ({
                         </>
                     )}
                 </div>
-                {isAuthorized && <HeaderAvatar />}
+                {isAuthorized && (
+                    <HeaderAvatar
+                        setIsSettingsPopupOpen={setIsSettingsPopupOpen}
+                        isSettingsPopupOpen={isSettingsPopupOpen}
+                    />
+                )}
             </div>
 
             <div className={styles.mobileMenuWrapper}>
@@ -120,6 +133,11 @@ const Header: React.FC<IProps> = ({
                     onClick={toggleMobileMenu}
                     sx={{ width: 30, height: 30, cursor: 'pointer' }}
                 />
+                {isSettingsPopupOpen && (
+                    <SettingsPopup
+                        setIsSettingsPopupOpen={setIsSettingsPopupOpen}
+                    />
+                )}
                 {mobileMenuOpen && (
                     <div className={styles.mobileMenu}>
                         <ClickAwayListener onClickAway={handleClose}>
@@ -138,7 +156,10 @@ const Header: React.FC<IProps> = ({
                                         <AccountBoxIcon />
                                         <span>{t('profile')}</span>
                                     </MenuItem>
-                                    <MenuItem className={styles.settingsItem}>
+                                    <MenuItem
+                                        onClick={handleOpenSettingsPopup}
+                                        className={styles.settingsItem}
+                                    >
                                         <SettingsIcon />
                                         <span>{t('settings')}</span>
                                     </MenuItem>

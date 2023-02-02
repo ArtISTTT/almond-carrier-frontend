@@ -18,10 +18,16 @@ import { setIsAuthorized } from '../../redux/slices/userSlice';
 import { useTranslation } from 'next-i18next';
 import { navigateTo } from 'src/interfaces/navigate';
 
-const HeaderAvatar: React.FC = () => {
+interface IProps {
+    isSettingsPopupOpen: boolean;
+    setIsSettingsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const HeaderAvatar: React.FC<IProps> = ({
+    isSettingsPopupOpen,
+    setIsSettingsPopupOpen,
+}) => {
     const [open, setOpen] = React.useState(false);
-    const [isSettingsPopupOpen, setIsSettingsPopupOpen] =
-        React.useState<boolean>(false);
     const router = useRouter();
     const user = useAppSelector(selectUser);
     const dispatch = useAppDispatch();
