@@ -109,11 +109,6 @@
     color: rgba(0, 0, 0, 0.6);
 }
 
-.profileItem {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
 .logoutItem {
     padding-top: 12px;
     border-top: 1px solid rgb(191, 179, 179);
@@ -132,7 +127,7 @@
 .mobileMenu {
     position: fixed;
     height: 100vh;
-    width: 47%;
+    width: 50%;
     top: 0;
     right: 0;
     background-color: var(--cBgSecondary);
@@ -148,11 +143,11 @@
     align-items: flex-start;
     border-bottom: 1px solid rgb(191, 179, 179);
     padding: 18px 0;
-    padding-left: 16px;
+    padding-left: 10px;
 }
 
 .userItem > span {
-    font-weight: 400;
+    font-weight: 500;
     font-size: 16px;
     line-height: 150%;
     letter-spacing: 0.15px;
@@ -161,7 +156,7 @@
 
 .userItem > div {
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 143%;
     letter-spacing: 0.17px;
     color: rgba(0, 0, 0, 0.6);
@@ -169,17 +164,36 @@
 
 .profileItem {
     margin-top: 20px;
+    padding-left: 10px;
+    font-size: 14px;
 }
 
 .bullingItem {
     margin-bottom: 20px;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.settingsItem {
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.dashboardItem {
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.orderSearchItem {
+    padding-left: 10px;
+    font-size: 14px;
 }
 
 .exitItem {
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 47%;
+    width: 50%;
     display: flex;
     justify-content: center;
     border-top: 1px solid rgb(191, 179, 179);
@@ -188,6 +202,27 @@
 .mobileMenuPaper {
     height: 100vh;
     padding: 0;
+}
+
+.profileItem > span {
+    margin-left: 5px;
+}
+
+.settingsItem > span {
+    margin-left: 5px;
+}
+
+.bullingItem > span {
+    margin-left: 5px;
+}
+
+.dashboardItem > span {
+    margin-left: 5px;
+    white-space: nowrap;
+}
+
+.orderSearchItem > span {
+    margin-left: 5px;
 }
 
 @media screen and (max-width: 470px) {
@@ -210,6 +245,7 @@
     .mobileMenuWrapper {
         display: flex;
         align-items: center;
+        font-size: 10px;
         margin-right: 24px;
     }
 }

@@ -8,18 +8,25 @@ import {
     ClickAwayListener,
 } from '@mui/material';
 import React from 'react';
-import styles from '../../../styles/mainLayout.module.css';
+import Link from 'next/link';
 import { useSelector } from 'react-redux';
+
+import styles from '../../../styles/mainLayout.module.css';
 import { selectIsAuthorized, selectUser } from '../../redux/selectors/user';
 import HeaderAvatar from './Avatar';
-import Link from 'next/link';
+
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { navigateTo } from 'src/interfaces/navigate';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
 import { useAppSelector } from 'src/redux/hooks';
-import MenuIcon from '@mui/icons-material';
+
+import MenuIcon from '@mui/icons-material/Menu';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import SettingsIcon from '@mui/icons-material/Settings';
+import PaymentsIcon from '@mui/icons-material/Payments';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import SearchIcon from '@mui/icons-material/Search';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -45,8 +52,11 @@ const Header: React.FC<IProps> = ({
     };
 
     const handleClose = () => setMobileMenuOpen(false);
-
     const toggleMobileMenu = () => setMobileMenuOpen(true);
+
+    const goToProfile = () => router.push(navigateTo.PROFILE_ORDERS);
+    const goToDashboard = () => router.push(navigateTo.DASHBOARD);
+    const goToOrdersSearch = () => router.push(navigateTo.ORDER_SEARCH);
 
     return (
         <header className={styles.header}>
@@ -81,18 +91,6 @@ const Header: React.FC<IProps> = ({
             </div>
             <div className={styles.rightMenu}>
                 <div className={styles.rightMenuButtons}>
-                    {/* {isAuthorized && showContinueIfAuthorized && (
-                        <>
-                            <Button
-                                className={styles.button}
-                                variant='outlined'
-                            >
-                                <Link href={navigateTo.DASHBOARD}>
-                                    {t('continue')}
-                                </Link>
-                            </Button>
-                        </>
-                    )} */}
                     {!isAuthorized && showSignInOutIfUnauthorized && (
                         <>
                             <Button
@@ -133,17 +131,37 @@ const Header: React.FC<IProps> = ({
                                         </span>
                                         <div>{user.email}</div>
                                     </MenuItem>
-                                    <MenuItem className={styles.profileItem}>
-                                        Profine
+                                    <MenuItem
+                                        onClick={goToProfile}
+                                        className={styles.profileItem}
+                                    >
+                                        <AccountBoxIcon />
+                                        <span>{t('profile')}</span>
                                     </MenuItem>
-                                    <MenuItem>Settings</MenuItem>
+                                    <MenuItem className={styles.settingsItem}>
+                                        <SettingsIcon />
+                                        <span>{t('settings')}</span>
+                                    </MenuItem>
                                     <MenuItem className={styles.bullingItem}>
-                                        Bulling
+                                        <PaymentsIcon />
+                                        <span>{t('billing')}</span>
                                     </MenuItem>
-                                    <MenuItem>Dashboard</MenuItem>
-                                    <MenuItem>Order Search</MenuItem>
+                                    <MenuItem
+                                        onClick={goToDashboard}
+                                        className={styles.dashboardItem}
+                                    >
+                                        <DashboardIcon />
+                                        <span>{t('dashboard')}</span>
+                                    </MenuItem>
+                                    <MenuItem
+                                        onClick={goToOrdersSearch}
+                                        className={styles.orderSearchItem}
+                                    >
+                                        <SearchIcon />
+                                        <span>{t('orderSearch')}</span>
+                                    </MenuItem>
                                     <MenuItem className={styles.exitItem}>
-                                        Exit
+                                        {t('logOut')}
                                     </MenuItem>
                                 </MenuList>
                             </Paper>
