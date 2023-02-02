@@ -143,10 +143,12 @@ const Header: React.FC<IProps> = ({
             </div>
 
             <div className={styles.mobileMenuWrapper}>
-                <MenuIcon
-                    onClick={toggleMobileMenu}
-                    sx={{ width: 30, height: 30, cursor: 'pointer' }}
-                />
+                {isAuthorized && (
+                    <MenuIcon
+                        onClick={toggleMobileMenu}
+                        sx={{ width: 30, height: 30, cursor: 'pointer' }}
+                    />
+                )}
                 {isSettingsPopupOpen && (
                     <SettingsPopup
                         setIsSettingsPopupOpen={setIsSettingsPopupOpen}
@@ -158,41 +160,59 @@ const Header: React.FC<IProps> = ({
                             <Paper className={styles.mobileMenuPaper}>
                                 <MenuList>
                                     <MenuItem className={styles.userItem}>
-                                        <span>
-                                            {user.firstName} {user.lastName}
-                                        </span>
-                                        <div>{user.email}</div>
+                                        <Avatar
+                                            className={styles.userAvatarMobile}
+                                            sx={{ width: 30, height: 30 }}
+                                            src={user.avatar ?? ''}
+                                            alt='logo'
+                                        />
+                                        <div>
+                                            <span>
+                                                {user.firstName} {user.lastName}
+                                            </span>
+                                            <div>{user.email}</div>
+                                        </div>
                                     </MenuItem>
                                     <MenuItem
                                         onClick={goToProfile}
                                         className={styles.profileItem}
                                     >
-                                        <AccountBoxIcon />
+                                        <AccountBoxIcon
+                                            className={styles.mobileMenuIcon}
+                                        />
                                         <span>{t('profile')}</span>
                                     </MenuItem>
                                     <MenuItem
                                         onClick={handleOpenSettingsPopup}
                                         className={styles.settingsItem}
                                     >
-                                        <SettingsIcon />
+                                        <SettingsIcon
+                                            className={styles.mobileMenuIcon}
+                                        />
                                         <span>{t('settings')}</span>
                                     </MenuItem>
                                     <MenuItem className={styles.bullingItem}>
-                                        <PaymentsIcon />
+                                        <PaymentsIcon
+                                            className={styles.mobileMenuIcon}
+                                        />
                                         <span>{t('billing')}</span>
                                     </MenuItem>
                                     <MenuItem
                                         onClick={goToDashboard}
                                         className={styles.dashboardItem}
                                     >
-                                        <DashboardIcon />
+                                        <DashboardIcon
+                                            className={styles.mobileMenuIcon}
+                                        />
                                         <span>{t('dashboard')}</span>
                                     </MenuItem>
                                     <MenuItem
                                         onClick={goToOrdersSearch}
                                         className={styles.orderSearchItem}
                                     >
-                                        <SearchIcon />
+                                        <SearchIcon
+                                            className={styles.mobileMenuIcon}
+                                        />
                                         <span>{t('orderSearch')}</span>
                                     </MenuItem>
                                     <MenuItem
@@ -205,6 +225,16 @@ const Header: React.FC<IProps> = ({
                             </Paper>
                         </ClickAwayListener>
                     </div>
+                )}
+                {!isAuthorized && showSignInOutIfUnauthorized && (
+                    <>
+                        <Button className={styles.button} variant='outlined'>
+                            <Link href={navigateTo.SIGNIN}>{t('signIn')}</Link>
+                        </Button>
+                        <Button className={styles.button} variant='outlined'>
+                            <Link href={navigateTo.SIGNUP}>{t('signUp')}</Link>
+                        </Button>
+                    </>
                 )}
             </div>
         </header>

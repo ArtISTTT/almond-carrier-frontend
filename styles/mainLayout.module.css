@@ -137,26 +137,35 @@
     padding: 0;
 }
 
+.userAvatarMobile {
+    margin-right: 7px;
+}
+
+.mobileMenuIcon {
+    color: var(--cTextPrimary);
+}
+
 .userItem {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     border-bottom: 1px solid rgb(191, 179, 179);
-    padding: 18px 0;
+    padding: 21px 0;
+    max-height: 81px;
     padding-left: 10px;
 }
 
-.userItem > span {
+.userItem > div > span {
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 150%;
+    max-width: 135px;
     letter-spacing: 0.15px;
     color: rgba(0, 0, 0, 0.87);
 }
 
-.userItem > div {
+.userItem > div > div {
     font-weight: 400;
-    font-size: 12px;
+    font-size: 10px;
     line-height: 143%;
     letter-spacing: 0.17px;
     color: rgba(0, 0, 0, 0.6);
