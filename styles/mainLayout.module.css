@@ -254,6 +254,7 @@
     .mobileMenuWrapper {
         display: flex;
         align-items: center;
+
         font-size: 10px;
         margin-right: 24px;
     }

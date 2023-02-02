@@ -162,7 +162,7 @@ const Header: React.FC<IProps> = ({
                                     <MenuItem className={styles.userItem}>
                                         <Avatar
                                             className={styles.userAvatarMobile}
-                                            sx={{ width: 30, height: 30 }}
+                                            sx={{ width: 35, height: 35 }}
                                             src={user.avatar ?? ''}
                                             alt='logo'
                                         />
