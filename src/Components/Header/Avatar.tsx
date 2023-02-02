@@ -2,7 +2,6 @@ import {
     Avatar,
     ClickAwayListener,
     Grow,
-    Link as MUILink,
     MenuItem,
     MenuList,
     Paper,

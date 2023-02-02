@@ -7,17 +7,19 @@ import {
     MenuList,
     ClickAwayListener,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react';
 import styles from '../../../styles/mainLayout.module.css';
 import { useSelector } from 'react-redux';
-import { selectIsAuthorized } from '../../redux/selectors/user';
+import { selectIsAuthorized, selectUser } from '../../redux/selectors/user';
 import HeaderAvatar from './Avatar';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { navigateTo } from 'src/interfaces/navigate';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
+import { useAppSelector } from 'src/redux/hooks';
+import MenuIcon from '@mui/icons-material';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -29,6 +31,7 @@ const Header: React.FC<IProps> = ({
     showSignInOutIfUnauthorized,
 }) => {
     const router = useRouter();
+    const user = useAppSelector(selectUser);
     const isAuthorized = useSelector(selectIsAuthorized);
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
     const { t } = useTranslation();
@@ -125,7 +128,10 @@ const Header: React.FC<IProps> = ({
                             <Paper className={styles.mobileMenuPaper}>
                                 <MenuList>
                                     <MenuItem className={styles.userItem}>
-                                        User
+                                        <span>
+                                            {user.firstName} {user.lastName}
+                                        </span>
+                                        <div>{user.email}</div>
                                     </MenuItem>
                                     <MenuItem className={styles.profileItem}>
                                         Profine
