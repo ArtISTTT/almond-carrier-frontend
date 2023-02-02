@@ -2,7 +2,6 @@ import {
     Avatar,
     ClickAwayListener,
     Grow,
-    Link as MUILink,
     MenuItem,
     MenuList,
     Paper,
@@ -18,6 +17,7 @@ import SettingsPopup from '../SettingsPopup/SettingsPopup';
 import { setIsAuthorized } from '../../redux/slices/userSlice';
 import { useTranslation } from 'next-i18next';
 import { navigateTo } from 'src/interfaces/navigate';
+import { toggleHtmlScroll } from 'src/helpers/toggleHtmlScroll';
 
 const HeaderAvatar: React.FC = () => {
     const [open, setOpen] = React.useState(false);
@@ -35,12 +35,11 @@ const HeaderAvatar: React.FC = () => {
 
     const handleOpenSettingsPopup = () => {
         setOpen(false);
+        toggleHtmlScroll(true);
         setIsSettingsPopupOpen(prev => !prev);
     };
 
-    const goToProfile = () => {
-        router.push(navigateTo.PROFILE_ORDERS);
-    };
+    const goToProfile = () => router.push(navigateTo.PROFILE_ORDERS);
 
     const handleSignOut = async () => {
         const data = await signOut();
