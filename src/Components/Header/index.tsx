@@ -19,7 +19,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { navigateTo } from 'src/interfaces/navigate';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
-import { useAppSelector } from 'src/redux/hooks';
+import { useAppDispatch, useAppSelector } from 'src/redux/hooks';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
@@ -28,6 +28,8 @@ import PaymentsIcon from '@mui/icons-material/Payments';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsPopup from '../SettingsPopup/SettingsPopup';
+import { signOut } from 'src/api/auth';
+import { setIsAuthorized } from 'src/redux/slices/userSlice';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -39,6 +41,7 @@ const Header: React.FC<IProps> = ({
     showSignInOutIfUnauthorized,
 }) => {
     const router = useRouter();
+    const dispatch = useAppDispatch();
     const user = useAppSelector(selectUser);
     const isAuthorized = useSelector(selectIsAuthorized);
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
@@ -57,6 +60,17 @@ const Header: React.FC<IProps> = ({
     const handleOpenSettingsPopup = () => {
         setMobileMenuOpen(false);
         setIsSettingsPopupOpen(prev => !prev);
+    };
+
+    const handleSignOut = async () => {
+        const data = await signOut();
+
+        if (data.ok) {
+            dispatch(setIsAuthorized(false));
+            router.push(navigateTo.LANDING);
+        } else {
+            console.log('Sign out error');
+        }
     };
 
     const handleClose = () => setMobileMenuOpen(false);
@@ -181,7 +195,10 @@ const Header: React.FC<IProps> = ({
                                         <SearchIcon />
                                         <span>{t('orderSearch')}</span>
                                     </MenuItem>
-                                    <MenuItem className={styles.exitItem}>
+                                    <MenuItem
+                                        onClick={handleSignOut}
+                                        className={styles.exitItem}
+                                    >
                                         {t('logOut')}
                                     </MenuItem>
                                 </MenuList>
