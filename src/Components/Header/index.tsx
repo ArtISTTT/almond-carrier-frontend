@@ -1,5 +1,13 @@
-import { Avatar, Button, Link as MUILink } from '@mui/material';
-
+import {
+    Avatar,
+    Button,
+    Link as MUILink,
+    Paper,
+    MenuItem,
+    MenuList,
+    ClickAwayListener,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react';
 import styles from '../../../styles/mainLayout.module.css';
 import { useSelector } from 'react-redux';
@@ -22,6 +30,7 @@ const Header: React.FC<IProps> = ({
 }) => {
     const router = useRouter();
     const isAuthorized = useSelector(selectIsAuthorized);
+    const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
     const { t } = useTranslation();
 
     const changePageIfAuthorized = () => {
@@ -31,6 +40,10 @@ const Header: React.FC<IProps> = ({
             router.push(navigateTo.SIGNIN);
         }
     };
+
+    const handleClose = () => setMobileMenuOpen(false);
+
+    const toggleMobileMenu = () => setMobileMenuOpen(true);
 
     return (
         <header className={styles.header}>
@@ -99,6 +112,38 @@ const Header: React.FC<IProps> = ({
                     )}
                 </div>
                 {isAuthorized && <HeaderAvatar />}
+            </div>
+
+            <div className={styles.mobileMenuWrapper}>
+                <MenuIcon
+                    onClick={toggleMobileMenu}
+                    sx={{ width: 30, height: 30, cursor: 'pointer' }}
+                />
+                {mobileMenuOpen && (
+                    <div className={styles.mobileMenu}>
+                        <ClickAwayListener onClickAway={handleClose}>
+                            <Paper className={styles.mobileMenuPaper}>
+                                <MenuList>
+                                    <MenuItem className={styles.userItem}>
+                                        User
+                                    </MenuItem>
+                                    <MenuItem className={styles.profileItem}>
+                                        Profine
+                                    </MenuItem>
+                                    <MenuItem>Settings</MenuItem>
+                                    <MenuItem className={styles.bullingItem}>
+                                        Bulling
+                                    </MenuItem>
+                                    <MenuItem>Dashboard</MenuItem>
+                                    <MenuItem>Order Search</MenuItem>
+                                    <MenuItem className={styles.exitItem}>
+                                        Exit
+                                    </MenuItem>
+                                </MenuList>
+                            </Paper>
+                        </ClickAwayListener>
+                    </div>
+                )}
             </div>
         </header>
     );

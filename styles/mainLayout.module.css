@@ -125,11 +125,66 @@
     display: flex;
 }
 
+.mobileMenuWrapper {
+    display: none;
+}
+
+.mobileMenu {
+    position: fixed;
+    height: 100vh;
+    width: 47%;
+    top: 0;
+    right: 0;
+    background-color: var(--cBgSecondary);
+}
+
+.mobileMenuPaper :global .MuiList-root {
+    padding: 0;
+    position: relative;
+}
+
+.userItem {
+    border-bottom: 1px solid rgb(191, 179, 179);
+    padding: 27px 0;
+}
+
+.profileItem {
+    margin-top: 20px;
+}
+
+.bullingItem {
+    margin-bottom: 20px;
+}
+
+.exitItem {
+}
+
+.mobileMenuPaper {
+    height: 100vh;
+    padding: 0;
+    box-shadow: none;
+}
+
 @media screen and (max-width: 470px) {
     .link {
         font-size: 15px;
     }
     .link:first-child {
         margin-left: 0px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .leftMenuLinks {
+        display: none;
+    }
+    .rightMenu {
+        display: none;
+    }
+
+    .mobileMenuWrapper {
+        display: flex;
+        align-items: center;
+        margin-right: 24px;
     }
 }
