@@ -61,6 +61,7 @@
     "error": "Error",
     "errorAddOrder": "Error when trying to add an order",
     "errorApplyToOrder": "Error when trying to apply to an order",
+    "errorSendMessage": "Message sending error",
     "errorSignIn": "Error when trying to sign in",
     "errorSignUp": "Error when trying to sign up",
     "errorToResetPassword": "Error when trying to reset the password",
