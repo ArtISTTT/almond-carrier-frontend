@@ -248,7 +248,7 @@ const General = () => {
                             <MuiTelInput
                                 id='phoneNumber'
                                 name='phoneNumber'
-                                placeholder='Phone number'
+                                placeholder={t('phoneNumber') as string}
                                 variant='outlined'
                                 MenuProps={{
                                     disableScrollLock: true,

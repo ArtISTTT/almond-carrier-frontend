@@ -283,9 +283,25 @@
     }
 }
 
+@media screen and (max-width: 1202px) {
+    .WeightBenefitBlock {
+        margin-top: 10px;
+    }
+}
+
 @media screen and (max-width: 1135px) {
     .avatar {
         display: none;
+    }
+    .itemWrapper .part.user .userInfo {
+        margin-left: 0px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .WeightBenefitBlock {
+        flex-wrap: wrap;
+        margin-top: 0;
     }
 }
 
@@ -328,6 +344,32 @@
     .benefitPriceValue {
         font-size: 12px;
     }
+    .itemWrapper .part.user .userName {
+        font-size: 12px;
+        line-height: 12px;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+    .itemWrapper .part.user .infoItem {
+        font-size: 10px;
+        line-height: 10px;
+        margin-bottom: 3px;
+    }
+    .part.maxWeight {
+        font-weight: 600;
+    }
+    .benefitPriceValue {
+        font-weight: 600;
+    }
+    .part.productName {
+        font-weight: 600;
+    }
+    .toAndFromLocationValue {
+        font-weight: 600;
+    }
+    .part {
+        font-weight: 600;
+    }
 }
 
 @media screen and (max-width: 710px) {
@@ -361,6 +403,10 @@
 @media screen and (max-width: 570px) {
     .tableHeaderItem {
         font-size: 12px;
+    }
+    .WeightBenefitBlock {
+        flex-wrap: nowrap;
+        width: 100%;
     }
     .refreshButton {
         width: 115px;
@@ -450,6 +496,14 @@
     }
     .benefitPriceValue {
         font-size: 8px;
+    }
+    .itemWrapper .part.user .userName {
+        font-size: 8px;
+        margin-bottom: 2px;
+    }
+    .itemWrapper .part.user .infoItem {
+        font-size: 6px;
+        line-height: 7px;
     }
     .toAndFromLocationValue {
         max-width: 60px;

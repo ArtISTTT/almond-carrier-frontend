@@ -154,7 +154,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </Stack>
                 </div>
 
-                <Stack direction='column' spacing={3} className={styles.stack}>
+                <Stack direction='column' className={styles.stack}>
                     <Typography
                         className={styles.infoItem}
                         variant='h5'
@@ -189,8 +189,8 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </Typography>
                 </Stack>
             </div>
-            <form onSubmit={formik.handleSubmit} action='submit'>
-                <Stack direction='row' spacing={3}>
+            <form onSubmit={formik.handleSubmit}  action='submit'>
+                <Stack direction='row' className={styles.stackDistance}>
                     <div className={styles.inputItem}>
                         <label htmlFor='productName'>{t('product')}</label>
                         <TextField

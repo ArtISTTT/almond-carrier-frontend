@@ -97,7 +97,7 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
     return (
         <Popup title={'Send new item'} closePopup={closePopup}>
             <form className={styles.form} onSubmit={formik.handleSubmit}>
-                <Stack direction='column' spacing={2} width='100%'>
+                <Stack direction='column'  width='100%'>
                     <Stack direction='row' spacing={2} className={styles.stack}>
                         <div className={styles.inputItem}>
                             <label htmlFor='fromLocation'>
@@ -127,7 +127,8 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                         <div
                             className={cn(
                                 styles.inputItem,
-                                styles.inputItemSecond
+                                styles.Second,
+                                styles.noMargin
                             )}
                         >
                             <label htmlFor='toLocation'>{t('deliverTo')}</label>
@@ -181,7 +182,8 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                         <div
                             className={cn(
                                 styles.inputItem,
-                                styles.inputItemSecond
+                                styles.Second,
+                                styles.noMargin
                             )}
                         >
                             <label htmlFor='arrivalDate'>
