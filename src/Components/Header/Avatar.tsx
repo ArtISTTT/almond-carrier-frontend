@@ -38,9 +38,7 @@ const HeaderAvatar: React.FC = () => {
         setIsSettingsPopupOpen(prev => !prev);
     };
 
-    const goToProfile = () => {
-        router.push(navigateTo.PROFILE_ORDERS);
-    };
+    const goToProfile = () => router.push(navigateTo.PROFILE_ORDERS);
 
     const handleSignOut = async () => {
         const data = await signOut();
