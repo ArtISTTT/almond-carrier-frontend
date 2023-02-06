@@ -211,27 +211,6 @@ const OrderInformation: React.FC<IProps> = ({
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: t('SuccessfullyConfirmed'),
-            });
-        } else {
-            triggerOpen({
-                severity: 'error',
-                text: data.error as string,
-            });
-        }
-
-        formik.setSubmitting(false);
-        await updateOrder(true);
-    };
-
-    const completeOrderClick = async () => {
-        const data = await completeOrder({
-            orderId: order.id,
-        });
-
-        if (data.ok) {
-            triggerOpen({
-                severity: 'success',
                 text: t('successfullyConfirmed'),
             });
         } else {

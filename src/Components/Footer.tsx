@@ -178,7 +178,7 @@ const Footer = () => {
                             className={styles.centerLink}
                             href='#'
                         >
-                            {t('feedback')}
+                            {t('leaveFeedback')}
                         </MUILink>
                         <MUILink
                             component={LinkBehaviour}

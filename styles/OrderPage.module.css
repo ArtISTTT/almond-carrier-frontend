@@ -355,10 +355,15 @@
     border-radius: 15px;
     margin-left: 5px;
     height: 28px;
-    color: var(--cTextSecondary);
+    color: var(--cTextPrimary);
     text-transform: none;
+    cursor: pointer;
     font-weight: 600;
     padding: 2px 12px;
+}
+
+.openReviewPopupButton:hover {
+    text-decoration: underline;
 }
 
 .detailsButtons {

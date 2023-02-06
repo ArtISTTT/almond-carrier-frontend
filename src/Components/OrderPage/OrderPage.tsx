@@ -130,7 +130,7 @@ const OrderPage = () => {
 
             <OrderPayment order={order} updateOrder={updateOrder} />
             <div className={styles.haveSomeProblems}>
-                <Link href='#'>{t('HaveSomeProblems')}</Link>
+                <Link href='#'>{t('haveSomeProblems')}</Link>
             </div>
             {[
                 OrderStatus.waitingReciever,
