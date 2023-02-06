@@ -17,6 +17,8 @@ import OrderLabels from './OrderLabels';
 import OrderChat from '../Chat/OrderChat';
 import { navigateTo } from 'src/interfaces/navigate';
 import { useTranslation } from 'react-i18next';
+import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
+import { OrderStatus } from 'src/interfaces/profile';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -33,7 +35,7 @@ const useGetOrder = (orderId: string) => {
         const data = await getOrderById({ orderId });
 
         if (data.ok && data.order) {
-            setOrder(data.order);
+            setOrder(parseOrderDataFromApi([data.order])[0]);
         } else {
             triggerOpen({
                 severity: 'error',
@@ -52,6 +54,7 @@ const useGetOrder = (orderId: string) => {
 const OrderPage = () => {
     const router = useRouter();
     const user = useSelector(selectUser);
+    const [isReviewBlockOpen, setIsReviewBlockOpen] = useState<boolean>(false);
 
     const { order, updateOrder, isLoading } = useGetOrder(
         router.query.orderId as string
@@ -62,6 +65,12 @@ const OrderPage = () => {
     useEffect(() => {
         updateOrder();
     }, []);
+
+    useEffect(() => {
+        if (order?.status === OrderStatus.success) {
+            setIsReviewBlockOpen(true);
+        }
+    }, [order]);
 
     const viewType = useMemo(
         () =>
@@ -87,7 +96,11 @@ const OrderPage = () => {
 
     return (
         <div className={styles.wrapper}>
-            <OrderDetails order={order} />
+            <OrderDetails
+                isReviewBlockOpen={isReviewBlockOpen}
+                setIsReviewBlockOpen={setIsReviewBlockOpen}
+                order={order}
+            />
 
             <OrderLabels
                 order={order}
@@ -98,6 +111,8 @@ const OrderPage = () => {
 
             <div className={styles.orderConent}>
                 <OrderInformation
+                    isReviewBlockOpen={isReviewBlockOpen}
+                    setIsReviewBlockOpen={setIsReviewBlockOpen}
                     order={order}
                     updateOrder={updateOrder}
                     user={user}
@@ -105,22 +120,33 @@ const OrderPage = () => {
                     suggestedChanged={suggestedChanged}
                     hasByYouSuggestedChanged={hasByYouSuggestedChanged}
                 />
-                <OrderChat viewType={viewType} order={order} user={user} />
+                <OrderChat
+                    viewType={viewType}
+                    order={order}
+                    user={user}
+                    updateOrder={updateOrder}
+                />
             </div>
 
             <OrderPayment order={order} updateOrder={updateOrder} />
             <div className={styles.haveSomeProblems}>
                 <Link href='#'>{t('HaveSomeProblems')}</Link>
             </div>
-            <div className={styles.cancelButtonWrapper}>
-                <Button
-                    color='error'
-                    variant='contained'
-                    className={styles.cancelButton}
-                >
-                    {t('cancelOrder')}
-                </Button>
-            </div>
+            {[
+                OrderStatus.waitingReciever,
+                OrderStatus.waitingCarrier,
+                OrderStatus.inDiscussion,
+            ].includes(order.status) && (
+                <div className={styles.cancelButtonWrapper}>
+                    <Button
+                        color='error'
+                        variant='contained'
+                        className={styles.cancelButton}
+                    >
+                        {t('cancelOrder')}
+                    </Button>
+                </div>
+            )}
         </div>
     );
 };

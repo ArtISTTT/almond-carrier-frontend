@@ -1,5 +1,5 @@
 import { Avatar, Typography } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import { IUser } from 'src/interfaces/user';
 import styles from '../../../styles/OrderChat.module.css';
 import { useTranslation } from 'react-i18next';
@@ -10,6 +10,7 @@ import { IOrderFull } from 'src/interfaces/order';
 import { parseMessages } from 'src/helpers/parseMessages';
 import { IMessage, IMessageServer } from 'src/interfaces/chat';
 import { ViewType } from '../OrderPage/OrderInputItem';
+import { OpenAlertContext } from '../Layouts/Snackbar';
 import { useRouter } from 'next/router';
 import { navigateTo } from 'src/interfaces/navigate';
 
@@ -18,6 +19,7 @@ interface IProps {
     user: IUser;
     order: IOrderFull;
     viewType: ViewType;
+    updateOrder: (withoutLoading?: true) => Promise<void>;
 }
 
 export enum Positions {
@@ -26,7 +28,14 @@ export enum Positions {
     CENTER = 'Center',
 }
 
-const OrderChat: React.FC<IProps> = ({ user, order, viewType }) => {
+const OrderChat: React.FC<IProps> = ({
+    user,
+    order,
+    viewType,
+    updateOrder,
+}) => {
+    const { t } = useTranslation();
+    const { triggerOpen } = useContext(OpenAlertContext);
     const router = useRouter();
 
     const initialize = async () => {
@@ -40,6 +49,9 @@ const OrderChat: React.FC<IProps> = ({ user, order, viewType }) => {
 
     const [messages, setMessages] = React.useState<IMessage[]>([]);
     const [socket, setSocket] = React.useState<Socket | null>(null);
+    const [errorMessage, setErrorMessage] = React.useState<string>('');
+    const [isMessagesLoading, setIsMessagesLoading] =
+        React.useState<boolean>(false);
 
     const dialogPesron = React.useMemo(() => {
         const person =
@@ -67,14 +79,24 @@ const OrderChat: React.FC<IProps> = ({ user, order, viewType }) => {
             setMessages(prev => prev.concat(parseMessages(user.id, [message])));
         });
 
+        socket.on('new-status', async () => {
+            await updateOrder();
+        });
+
         setSocket(socket);
     };
 
     const loadMessages = async () => {
+        setIsMessagesLoading(true);
         const data = await getMessages(order.id);
 
         if (data.ok && data.messages) {
             setMessages(parseMessages(user.id, data.messages));
+            setIsMessagesLoading(false);
+        }
+        if (data.error) {
+            setErrorMessage(data.error);
+            setIsMessagesLoading(false);
         }
     };
 
@@ -84,8 +106,11 @@ const OrderChat: React.FC<IProps> = ({ user, order, viewType }) => {
             orderId: order.id,
         });
 
-        if (data.ok) {
-            return;
+        if (!data.ok) {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || t('errorSendMessage'),
+            });
         }
     };
 
@@ -120,6 +145,9 @@ const OrderChat: React.FC<IProps> = ({ user, order, viewType }) => {
                 </div>
             </div>
             <MessagesPanel
+                errorMessage={errorMessage}
+                loadMessages={loadMessages}
+                isMessagesLoading={isMessagesLoading}
                 messages={messages}
                 onSendMessage={handleSendMessage}
             />

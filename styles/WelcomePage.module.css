@@ -40,7 +40,7 @@
 .emailInput {
     color: var(--cTextPrimary);
     background-color: var(--cBgSecondary);
-    border-radius: 16px;
+    border-radius: 15px;
 }
 
 .submitButton {
@@ -69,8 +69,7 @@
     color: var(--cTextPrimary);
     height: 14px;
 }
-
-.emailInput > div > fieldset {
+z .emailInput > div > fieldset {
     border-color: var(--cBorderPrimary);
 }
 

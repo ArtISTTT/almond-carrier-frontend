@@ -95,6 +95,7 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
                     <div className={styles.collapsedPayment}>
                         <div className={styles.collapsedPaymentTitle}>
                             {t('transferTheAmountByPhoneNumberTo')}
+                            &nbsp;
                             <b>{t('SBP')}</b> <br />
                             {t('banks')}: <b>{t('tinkoff')}</b>,{' '}
                             <b>{t('sberbank')}</b>

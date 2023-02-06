@@ -2,10 +2,10 @@ import styles from '../../styles/Footer.module.css';
 import React from 'react';
 import {
     Avatar,
-    Link as MUILink,
     SelectChangeEvent,
     FormControl,
     InputLabel,
+    Link as MUILink,
     Select,
     MenuItem,
     Typography,
@@ -19,6 +19,7 @@ import { Language } from '../interfaces/settings';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useCreateQueryParams } from 'src/redux/hooks/useCreateQueryParams';
+import { LinkBehaviour } from './Common/LinkBehaviour';
 
 const Footer = () => {
     const dispatch = useAppDispatch();
@@ -92,23 +93,27 @@ const Footer = () => {
                         </Typography>
                         <MUILink
                             className={styles.centerLink}
+                            component={LinkBehaviour}
                             href='/dashboard'
                         >
                             {t('dashboard')}
                         </MUILink>
                         <MUILink
+                            component={LinkBehaviour}
                             className={styles.centerLink}
                             href='/order-search'
                         >
                             {t('orderSearch')}
                         </MUILink>
                         <MUILink
+                            component={LinkBehaviour}
                             className={styles.centerLink}
                             href='/profile/orders'
                         >
                             {t('profileOrders')}
                         </MUILink>
                         <MUILink
+                            component={LinkBehaviour}
                             className={styles.centerLink}
                             href='/profile/general'
                         >
@@ -123,16 +128,32 @@ const Footer = () => {
                         >
                             {t('generalS')}
                         </Typography>
-                        <MUILink className={styles.centerLink} href='#'>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='#'
+                        >
                             {t('about')}
                         </MUILink>
-                        <MUILink className={styles.centerLink} href='#'>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='#'
+                        >
                             {t('founders')}
                         </MUILink>
-                        <MUILink className={styles.centerLink} href='#'>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='#'
+                        >
                             {t('privacy')}
                         </MUILink>
-                        <MUILink className={styles.centerLink} href='#'>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='#'
+                        >
                             {t('serviceTerms')}
                         </MUILink>
                     </div>
@@ -145,13 +166,25 @@ const Footer = () => {
                         >
                             {t('help')}
                         </Typography>
-                        <MUILink className={styles.centerLink} href='#'>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='#'
+                        >
                             {t('FAQ')}
                         </MUILink>
-                        <MUILink className={styles.centerLink} href='#'>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='#'
+                        >
                             {t('feedback')}
                         </MUILink>
-                        <MUILink className={styles.centerLink} href='#'>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='#'
+                        >
                             {t('contactUs')}
                         </MUILink>
                     </div>
@@ -168,13 +201,13 @@ const Footer = () => {
                     <div className={styles.rightsText}>{t('copyright')}</div>
                 </div>
                 <div className={styles.icons}>
-                    <MUILink href='#'>
+                    <MUILink component={LinkBehaviour} href='#'>
                         <EmailIcon className={styles.footerIcon} />
                     </MUILink>
-                    <MUILink href='#'>
+                    <MUILink component={LinkBehaviour} href='#'>
                         <TelegramIcon className={styles.footerIcon} />
                     </MUILink>
-                    <MUILink href='#'>
+                    <MUILink component={LinkBehaviour} href='#'>
                         <InstagramIcon className={styles.footerIcon} />
                     </MUILink>
                 </div>

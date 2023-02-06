@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React from 'react';
 import cn from 'classnames';
 import { useConvertStatusToText } from '../../redux/hooks/useConvertStatusToText';
@@ -7,15 +6,23 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useTranslation } from 'react-i18next';
 import { IOrderFull } from '../../interfaces/order';
 import { OrderStatus } from 'src/interfaces/profile';
+import Button from '@mui/material/Button';
 
 type IProps = {
     order: IOrderFull;
+    isReviewBlockOpen: boolean;
+    setIsReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const OrderDetails: React.FC<IProps> = ({ order }) => {
-    const router = useRouter();
+const OrderDetails: React.FC<IProps> = ({
+    order,
+    setIsReviewBlockOpen,
+    isReviewBlockOpen,
+}) => {
     const { t } = useTranslation();
     const statusToText = useConvertStatusToText();
+
+    const openReviewBlock = () => setIsReviewBlockOpen(true);
 
     return (
         <div className={styles.orderDetails}>
@@ -23,10 +30,9 @@ const OrderDetails: React.FC<IProps> = ({ order }) => {
                 <div className={styles.orderDetailsTitle}>
                     {t('orderDetails')}
                 </div>
-                <div className={styles.orderStatus}>
-                    {t('status:')}{' '}
+                <div className={styles.detailsButtons}>
                     <span
-                        className={cn({
+                        className={cn(styles.orderStatus, {
                             [styles.statusInProcess]:
                                 order.status !== OrderStatus.success &&
                                 order.status !== OrderStatus.cancelled,
@@ -38,6 +44,15 @@ const OrderDetails: React.FC<IProps> = ({ order }) => {
                     >
                         {statusToText(order.status)}
                     </span>
+                    {!isReviewBlockOpen && (
+                        <Button
+                            className={styles.openReviewPopupButton}
+                            variant='contained'
+                            onClick={openReviewBlock}
+                        >
+                            Open review
+                        </Button>
+                    )}
                 </div>
             </div>
             <div className={styles.orderDetailsInfo}>
