@@ -54,6 +54,7 @@ const useGetOrder = (orderId: string) => {
 const OrderPage = () => {
     const router = useRouter();
     const user = useSelector(selectUser);
+    const [isReviewBlockOpen, setIsReviewBlockOpen] = useState<boolean>(false);
 
     const { order, updateOrder, isLoading } = useGetOrder(
         router.query.orderId as string
@@ -64,6 +65,12 @@ const OrderPage = () => {
     useEffect(() => {
         updateOrder();
     }, []);
+
+    useEffect(() => {
+        if (order?.status === OrderStatus.success) {
+            setIsReviewBlockOpen(true);
+        }
+    }, [order]);
 
     const viewType = useMemo(
         () =>
@@ -89,7 +96,11 @@ const OrderPage = () => {
 
     return (
         <div className={styles.wrapper}>
-            <OrderDetails order={order} />
+            <OrderDetails
+                isReviewBlockOpen={isReviewBlockOpen}
+                setIsReviewBlockOpen={setIsReviewBlockOpen}
+                order={order}
+            />
 
             <OrderLabels
                 order={order}
@@ -100,6 +111,8 @@ const OrderPage = () => {
 
             <div className={styles.orderConent}>
                 <OrderInformation
+                    isReviewBlockOpen={isReviewBlockOpen}
+                    setIsReviewBlockOpen={setIsReviewBlockOpen}
                     order={order}
                     updateOrder={updateOrder}
                     user={user}
