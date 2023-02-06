@@ -1,5 +1,5 @@
 import { Avatar, Typography } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import { IUser } from 'src/interfaces/user';
 import styles from '../../../styles/OrderChat.module.css';
 import { useTranslation } from 'react-i18next';
@@ -10,6 +10,7 @@ import { IOrderFull } from 'src/interfaces/order';
 import { parseMessages } from 'src/helpers/parseMessages';
 import { IMessage, IMessageServer } from 'src/interfaces/chat';
 import { ViewType } from '../OrderPage/OrderInputItem';
+import { OpenAlertContext } from '../Layouts/Snackbar';
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URI as string;
 interface IProps {
@@ -31,7 +32,8 @@ const OrderChat: React.FC<IProps> = ({
     viewType,
     updateOrder,
 }) => {
-    // const { t } = useTranslation();
+    const { t } = useTranslation();
+    const { triggerOpen } = useContext(OpenAlertContext);
 
     const initialize = async () => {
         await loadMessages();
@@ -44,6 +46,9 @@ const OrderChat: React.FC<IProps> = ({
 
     const [messages, setMessages] = React.useState<IMessage[]>([]);
     const [socket, setSocket] = React.useState<Socket | null>(null);
+    const [errorMessage, setErrorMessage] = React.useState<string>('');
+    const [isMessagesLoading, setIsMessagesLoading] =
+        React.useState<boolean>(false);
 
     const dialogPesron = React.useMemo(() => {
         const person =
@@ -74,10 +79,16 @@ const OrderChat: React.FC<IProps> = ({
     };
 
     const loadMessages = async () => {
+        setIsMessagesLoading(true);
         const data = await getMessages(order.id);
 
         if (data.ok && data.messages) {
             setMessages(parseMessages(user.id, data.messages));
+            setIsMessagesLoading(false);
+        }
+        if (data.error) {
+            setErrorMessage(data.error);
+            setIsMessagesLoading(false);
         }
     };
 
@@ -87,8 +98,11 @@ const OrderChat: React.FC<IProps> = ({
             orderId: order.id,
         });
 
-        if (data.ok) {
-            return;
+        if (!data.ok) {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || t('errorSendMessage'),
+            });
         }
     };
 
@@ -104,16 +118,19 @@ const OrderChat: React.FC<IProps> = ({
                     >
                         {dialogPesron}
                     </Typography>
-                    <Typography
+                    {/* <Typography
                         className={styles.chatMemberOnline}
                         variant='subtitle2'
                         component='h6'
                     >
-                        {/* {t('lastSeenOnline')} 15m {t('ago')} */}
-                    </Typography>
+                        {t('lastSeenOnline')} 15m {t('ago')}
+                    </Typography> */}
                 </div>
             </div>
             <MessagesPanel
+                errorMessage={errorMessage}
+                loadMessages={loadMessages}
+                isMessagesLoading={isMessagesLoading}
                 messages={messages}
                 onSendMessage={handleSendMessage}
             />

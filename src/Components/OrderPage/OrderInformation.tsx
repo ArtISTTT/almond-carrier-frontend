@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React, { useMemo, useState } from 'react';
 import styles from '../../../styles/OrderPage.module.css';
 import { IOrder, IOrderFull } from '../../interfaces/order';
@@ -27,12 +26,15 @@ import { useContext } from 'react';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { IUser } from 'src/interfaces/user';
 import { useTranslation } from 'react-i18next';
+import OrderReview from './OrderReview';
 
 type IProps = {
     order: IOrderFull;
     viewType: ViewType;
     suggestedChanged: Partial<IOrder> | undefined;
     hasByYouSuggestedChanged: boolean;
+    isReviewBlockOpen: boolean;
+    setIsReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
     user: IUser;
     updateOrder: (withoutLoading?: true) => Promise<void>;
 };
@@ -42,17 +44,19 @@ const OrderInformation: React.FC<IProps> = ({
     viewType,
     suggestedChanged,
     hasByYouSuggestedChanged,
+    isReviewBlockOpen,
+    setIsReviewBlockOpen,
     user,
     updateOrder,
 }) => {
-    const router = useRouter();
     const [editingFields, setEditingFields] = useState<(keyof IOrderFull)[]>(
         []
     );
 
     const { t } = useTranslation();
-
     const { triggerOpen } = useContext(OpenAlertContext);
+
+    
 
     const addToEditingFields = (name: keyof IOrderFull) => {
         setEditingFields(editingFields.concat([name]));

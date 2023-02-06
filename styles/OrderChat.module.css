@@ -51,6 +51,14 @@
     padding-left: 10px;
 }
 
+.errorButton {
+    max-width: 300px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    width: 100%;
+}
+
 .sendIcon {
     color: var(--cTextPrimary);
     cursor: pointer;
@@ -73,6 +81,10 @@
     padding: 10px;
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+.errorMessageBlock {
+    justify-content: center;
 }
 
 .MessageBlock {
@@ -150,4 +162,16 @@
 
 .messageAvatar {
     margin-bottom: 17.5px;
+}
+
+.errorMessage {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    color: var(--cTextError);
+}
+
+.errorMessage > span {
+    font-size: 16px;
+    font-weight: 600;
 }

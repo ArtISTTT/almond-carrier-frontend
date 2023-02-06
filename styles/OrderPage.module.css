@@ -373,3 +373,18 @@
 .buttonItem {
     border-radius: 15px;
 }
+
+.openReviewPopupButton {
+    font-size: 16px;
+    border-radius: 15px;
+    margin-left: 5px;
+    height: 28px;
+    color: var(--cTextSecondary);
+    text-transform: none;
+    font-weight: 600;
+    padding: 2px 12px;
+}
+
+.detailsButtons {
+    display: flex;
+}

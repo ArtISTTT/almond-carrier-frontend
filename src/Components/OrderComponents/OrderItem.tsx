@@ -12,6 +12,8 @@ import { useTranslation } from 'react-i18next';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
 import Tooltip from '@mui/material/Tooltip';
+import { LinkBehaviour } from '../Common/LinkBehaviour';
+import DetailsLoader from '../DetailsLoader';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
@@ -30,6 +32,11 @@ const OrderItem: React.FC<IOrder> = ({
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
     const convertStatus = useConvertStatusToText();
+
+    const [isDetailsLoading, setIsDetailsLoading] =
+        React.useState<boolean>(false);
+
+    const navigateToDetailsLoading = () => setIsDetailsLoading(true);
 
     return (
         <div
@@ -189,9 +196,16 @@ const OrderItem: React.FC<IOrder> = ({
                             variant='contained'
                             disabled={status === OrderStatus.cancelled}
                         >
-                            <Link href={`/order/${id}`}>
-                                {t('orderDetailsButton')}
-                            </Link>
+                            {!isDetailsLoading ? (
+                                <LinkBehaviour
+                                    onClick={navigateToDetailsLoading}
+                                    href={`/order/${id}`}
+                                >
+                                    {t('orderDetailsButton')}
+                                </LinkBehaviour>
+                            ) : (
+                                <DetailsLoader />
+                            )}
                         </Button>
                         <div>
                             <Typography

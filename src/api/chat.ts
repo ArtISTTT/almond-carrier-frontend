@@ -19,7 +19,7 @@ export const getMessages = (orderId: string): Promise<IGetMessagesReturn> =>
         .catch(() => {
             return {
                 ok: false,
-                error: 'Error',
+                error: 'errorGetMessages',
             };
         });
 

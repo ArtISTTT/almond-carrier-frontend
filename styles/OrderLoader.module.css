@@ -2,26 +2,42 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 400px;
     flex: 1;
 }
 
+.messagesLoaderWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.detailsLoaderWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 52px;
+}
+
 .ldsRing {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 64px;
+    height: 64px;
 }
 .ldsRing div {
     box-sizing: border-box;
     display: block;
     position: absolute;
-    width: 64px;
-    height: 64px;
-    margin: 8px;
-    border: 8px solid var(--cBorderPrimary);
+    width: 56px;
+    height: 56px;
+    border: 8px solid var(--cBgSecondary);
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: var(--cBorderPrimary) transparent transparent transparent;
+    border-color: var(--cBgSecondary) transparent transparent transparent;
 }
 .ldsRing div:nth-child(1) {
     animation-delay: -0.45s;
