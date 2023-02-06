@@ -8,6 +8,13 @@ export enum Theme {
     LIGHT = 'light',
 }
 
+export enum Genders {
+    MALE = 'Male',
+    FEMALE = 'Female',
+    OTHER = 'Other',
+    NONE = 'None',
+}
+
 export enum Currency {
     EUR = 'EUR',
     USD = 'USD',

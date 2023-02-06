@@ -44,6 +44,7 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
         triggerOpen({
             severity: 'info',
             text: t('copied'),
+            text: t('copied'),
         });
     };
 
@@ -55,6 +56,7 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
+                text: t('paymentConfirmedAlert'),
                 text: t('paymentConfirmedAlert'),
             });
         } else {
@@ -95,7 +97,10 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
                     <div className={styles.collapsedPayment}>
                         <div className={styles.collapsedPaymentTitle}>
                             {t('transferTheAmountByPhoneNumberTo')}
+                            &nbsp;
                             <b>{t('SBP')}</b> <br />
+                            {t('banks')}: <b>{t('tinkoff')}</b>,{' '}
+                            <b>{t('sberbank')}</b>
                             {t('banks')}: <b>{t('tinkoff')}</b>,{' '}
                             <b>{t('sberbank')}</b>
                         </div>

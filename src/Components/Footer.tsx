@@ -5,6 +5,7 @@ import {
     SelectChangeEvent,
     FormControl,
     InputLabel,
+    Link as MUILink,
     Select,
     MenuItem,
     Typography,
@@ -82,74 +83,81 @@ const Footer = () => {
             </div>
             <div className={styles.centerBlock}>
                 <div className={styles.centerBlockInner}>
-                    <div className={styles.centerTwo}>
-                        <div className={styles.centerColumn}>
-                            <Typography
-                                variant='h3'
-                                component='h3'
-                                className={styles.columnTitle}
-                            >
-                                {t('sitemap')}
-                            </Typography>
-                            <LinkBehaviour
-                                className={styles.centerLink}
-                                href='/dashboard'
-                            >
-                                {t('dashboard')}
-                            </LinkBehaviour>
-                            <LinkBehaviour
-                                className={styles.centerLink}
-                                href='/order-search'
-                            >
-                                {t('orderSearch')}
-                            </LinkBehaviour>
-                            <LinkBehaviour
-                                className={styles.centerLink}
-                                href='/profile/orders'
-                            >
-                                {t('profileOrders')}
-                            </LinkBehaviour>
-                            <LinkBehaviour
-                                className={styles.centerLink}
-                                href='/profile/general'
-                            >
-                                {t('myInfo')}
-                            </LinkBehaviour>
-                        </div>
-                        <div className={styles.centerColumn}>
-                            <Typography
-                                variant='h3'
-                                component='h3'
-                                className={styles.columnTitle}
-                            >
-                                {t('generalS')}
-                            </Typography>
-                            <LinkBehaviour
-                                className={styles.centerLink}
-                                href='#'
-                            >
-                                {t('about')}
-                            </LinkBehaviour>
-                            <LinkBehaviour
-                                className={styles.centerLink}
-                                href='#'
-                            >
-                                {t('founders')}
-                            </LinkBehaviour>
-                            <LinkBehaviour
-                                className={styles.centerLink}
-                                href='#'
-                            >
-                                {t('privacy')}
-                            </LinkBehaviour>
-                            <LinkBehaviour
-                                className={styles.centerLink}
-                                href='#'
-                            >
-                                {t('serviceTerms')}
-                            </LinkBehaviour>
-                        </div>
+                    <div className={styles.centerColumn}>
+                        <Typography
+                            variant='h3'
+                            component='h3'
+                            className={styles.columnTitle}
+                        >
+                            {t('sitemap')}
+                        </Typography>
+                        <MUILink
+                            className={styles.centerLink}
+                            component={LinkBehaviour}
+                            href='/dashboard'
+                        >
+                            {t('dashboard')}
+                        </MUILink>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='/order-search'
+                        >
+                            {t('orderSearch')}
+                        </MUILink>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='/profile/orders'
+                        >
+                            {t('profileOrders')}
+                        </MUILink>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='/profile/general'
+                        >
+                            {t('myInfo')}
+                        </MUILink>
                     </div>
+                    <div className={styles.centerColumn}>
+                        <Typography
+                            variant='h3'
+                            component='h3'
+                            className={styles.columnTitle}
+                        >
+                            {t('generalS')}
+                        </Typography>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='#'
+                        >
+                            {t('about')}
+                        </MUILink>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='#'
+                        >
+                            {t('founders')}
+                        </MUILink>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='#'
+                        >
+                            {t('privacy')}
+                        </MUILink>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='#'
+                        >
+                            {t('serviceTerms')}
+                        </MUILink>
+                    </div>
+
                     <div className={styles.centerColumn}>
                         <Typography
                             variant='h3'
@@ -158,15 +166,27 @@ const Footer = () => {
                         >
                             {t('help')}
                         </Typography>
-                        <LinkBehaviour className={styles.centerLink} href='#'>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='#'
+                        >
                             {t('FAQ')}
-                        </LinkBehaviour>
-                        <LinkBehaviour className={styles.centerLink} href='#'>
-                            {t('feedback')}
-                        </LinkBehaviour>
-                        <LinkBehaviour className={styles.centerLink} href='#'>
+                        </MUILink>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='#'
+                        >
+                            {t('leaveFeedback')}
+                        </MUILink>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href='#'
+                        >
                             {t('contactUs')}
-                        </LinkBehaviour>
+                        </MUILink>
                     </div>
                 </div>
             </div>
@@ -181,15 +201,15 @@ const Footer = () => {
                     <div className={styles.rightsText}>{t('copyright')}</div>
                 </div>
                 <div className={styles.icons}>
-                    <LinkBehaviour href='#'>
+                    <MUILink component={LinkBehaviour} href='#'>
                         <EmailIcon className={styles.footerIcon} />
-                    </LinkBehaviour>
-                    <LinkBehaviour href='#'>
+                    </MUILink>
+                    <MUILink component={LinkBehaviour} href='#'>
                         <TelegramIcon className={styles.footerIcon} />
-                    </LinkBehaviour>
-                    <LinkBehaviour href='#'>
+                    </MUILink>
+                    <MUILink component={LinkBehaviour} href='#'>
                         <InstagramIcon className={styles.footerIcon} />
-                    </LinkBehaviour>
+                    </MUILink>
                 </div>
             </div>
         </footer>

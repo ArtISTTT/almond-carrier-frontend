@@ -44,15 +44,15 @@ const OrderDetails: React.FC<IProps> = ({
                     >
                         {statusToText(order.status)}
                     </span>
-                    {!isReviewBlockOpen && (
-                        <Button
-                            className={styles.openReviewPopupButton}
-                            variant='contained'
-                            onClick={openReviewBlock}
-                        >
-                            Open review
-                        </Button>
-                    )}
+                    {!isReviewBlockOpen &&
+                        order.status === OrderStatus.success && (
+                            <span
+                                className={styles.openReviewPopupButton}
+                                onClick={openReviewBlock}
+                            >
+                                {t('leaveFeedback')}
+                            </span>
+                        )}
                 </div>
             </div>
             <div className={styles.orderDetailsInfo}>

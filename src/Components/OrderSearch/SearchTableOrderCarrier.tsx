@@ -8,6 +8,8 @@ import CarrierApplyPopup from './CarrierApplyPopup';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
+import { useRouter } from 'next/router';
+import { navigateTo } from 'src/interfaces/navigate';
 
 type IProps = {
     order: IOrder;
@@ -16,6 +18,7 @@ type IProps = {
 const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
+    const router = useRouter();
 
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
@@ -29,8 +32,16 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
         setIsPopupOpen(false);
     };
 
+    const navigateToUserPage = (): void => {
+        router.push({
+            pathname: navigateTo.USER,
+            query: { userId: order.carrier?.id },
+        });
+    };
+
     return (
-        <div className={styles.itemWrapper}>
+        <div>
+                    <div className={styles.itemWrapper}>
             {isPopupOpen && (
                 <CarrierApplyPopup order={order} closePopup={closePopup} />
             )}
@@ -41,7 +52,10 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                     className={styles.avatar}
                 />
                 <div className={styles.userInfo}>
-                    <div className={styles.userName}>
+                    <div
+                        onClick={navigateToUserPage}
+                        className={styles.userName}
+                    >
                         {order.carrier?.firstName} {order.carrier?.lastName}
                     </div>
                     <div className={cn(styles.infoItem, styles.infoItemRating)}>
@@ -57,45 +71,66 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                     </div>
                 </div>
             </div>
-            <div className={cn(styles.part, styles.fromTo, styles.doubleditem)}>
-                <div>
-                    <Tooltip title={order.fromLocation} placement='bottom'>
-                        <div className={styles.fromToItem}>
-                            <span className={styles.prefix}>{t('from')}:</span>
-                            <span className={styles.toAndFromLocationValue}>
-                                {order.fromLocation}
-                            </span>
-                        </div>
-                    </Tooltip>
-                    <Tooltip title={order.toLocation} placement='bottom'>
-                        <div className={styles.fromToItem}>
-                            <span className={styles.prefix}>{t('to')}:</span>
-                            <span className={styles.toAndFromLocationValue}>
-                                {order.toLocation}
-                            </span>
-                        </div>
-                    </Tooltip>
-                </div>
-            </div>
-            <div className={cn(styles.part, styles.flightDate)}>
-                {order.arrivalDate?.format('DD.MM.YYYY')}
-            </div>
-            <div className={cn(styles.part, styles.benefit)}>
-                {formatAmount(order.rewardAmount, Currency.RUB, true)}
-            </div>
-            <div className={cn(styles.part, styles.maxWeight)}>
-                {order.carrierMaxWeight} {t('kg')}
-            </div>
-            <div className={cn(styles.part)}>
-                <Button
-                    onClick={openPopupFunc}
-                    variant='contained'
-                    className={styles.applyBtn}
+                <div
+                    className={cn(
+                        styles.part,
+                        styles.fromTo,
+                        styles.doubleditem
+                    )}
                 >
-                    {t('apply')}
-                </Button>
-            </div>
+                    <div>
+                        <Tooltip title={order.fromLocation} placement='bottom'>
+                            <div className={styles.fromToItem}>
+                                <span className={styles.prefix}>
+                                    {t('from')}:
+                                </span>
+                                <span className={styles.toAndFromLocationValue}>
+                                    {order.fromLocation}
+                                </span>
+                            </div>
+                        </Tooltip>
+                        <Tooltip title={order.toLocation} placement='bottom'>
+                            <div className={styles.fromToItem}>
+                                <span className={styles.prefix}>
+                                    {t('to')}:
+                                </span>
+                                <span className={styles.toAndFromLocationValue}>
+                                    {order.toLocation}
+                                </span>
+                            </div>
+                        </Tooltip>
+                    </div>
+                </div>
+                <div className={cn(styles.part, styles.flightDate)}>
+                    {order.arrivalDate?.format('DD.MM.YYYY')}
+                </div>
+                <div className={cn(styles.part, styles.benefit)}>
+                    {formatAmount(order.rewardAmount, Currency.RUB, true)}
+                </div>
+                <div className={cn(styles.part, styles.maxWeight)}>
+                    {order.carrierMaxWeight} {t('kg')}
+                </div>
+                <div className={cn(styles.part, styles.button)}>
+                    <Button
+                        onClick={openPopupFunc}
+                        variant='contained'
+                        className={styles.applyBtn}
+                    >
+                        {t('apply')}
+                    </Button>
+                </div>
         </div>
+        <div className={styles.hidingButton}>
+            <Button
+                onClick={openPopupFunc}
+                variant='contained'
+                className={styles.applyBtn}
+                >
+                {t('apply')}
+            </Button>
+        </div>
+    </div>
+
     );
 };
 

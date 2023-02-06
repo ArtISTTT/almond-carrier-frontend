@@ -127,7 +127,8 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                         <div
                             className={cn(
                                 styles.inputItem,
-                                styles.inputItemSecond
+                                styles.Second,
+                                styles.noMargin
                             )}
                         >
                             <label htmlFor='toLocation'>{t('deliverTo')}</label>
@@ -170,7 +171,7 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 className={styles.input}
                             />
                         </div>
-                        <div className={styles.inputItem}>
+                        <div className={cn(styles.inputItem, styles.Second)}>
                             <label htmlFor='productWeight'>{t('weight')}</label>
                             <TextField
                                 InputProps={{
@@ -228,7 +229,7 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 className={styles.input}
                             />
                         </div>
-                        <div className={styles.inputItem}>
+                        <div className={cn(styles.inputItem, styles.Second)}>
                             <label htmlFor='rewardAmount'>
                                 {t('suggestedBenefit')}
                             </label>

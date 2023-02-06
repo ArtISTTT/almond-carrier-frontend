@@ -466,6 +466,9 @@ z .emailInput > div > fieldset {
     .advantage > img {
         width: 300px;
     }
+    .advantageTextAnotherColor {
+        color: white;
+    }
 }
 
 @media screen and (max-width: 560px) {

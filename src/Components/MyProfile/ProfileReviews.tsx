@@ -58,16 +58,7 @@ const ProfileReviews = () => {
             </Typography>
             <div className={styles.reviews}>
                 {reviews.map((review, i) => (
-                    <ReviewItem
-                        key={i}
-                        role={review.role}
-                        text={review.text}
-                        rating={review.rating}
-                        benefit={review.benefit}
-                        date={review.date}
-                        avatar={review.avatar}
-                        name={review.name}
-                    />
+                    <ReviewItem key={i} {...review} />
                 ))}
             </div>
             <Pagination

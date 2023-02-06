@@ -211,7 +211,7 @@ const OrderInformation: React.FC<IProps> = ({
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: t('SuccessfullyConfirmed'),
+                text: t('successfullyConfirmed'),
             });
         } else {
             triggerOpen({
@@ -221,6 +221,7 @@ const OrderInformation: React.FC<IProps> = ({
         }
 
         formik.setSubmitting(false);
+        await updateOrder(true);
     };
 
     const confirmDealClick = async () => {
@@ -241,6 +242,7 @@ const OrderInformation: React.FC<IProps> = ({
         }
 
         formik.setSubmitting(false);
+        await updateOrder(true);
     };
 
     const formik = useFormik({
