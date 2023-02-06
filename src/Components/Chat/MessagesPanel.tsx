@@ -11,6 +11,12 @@ import MessageChat from './MessageChat';
 import dayjs, { Dayjs } from 'dayjs';
 import MessagesLoader from '../MessagesLoader';
 
+const keys = {
+    ENTER: 13,
+    TAB: 16,
+    CTRL: 17,
+};
+
 interface IDialogMessage {
     avatar: string;
     text: string;
@@ -33,6 +39,7 @@ const MessagesPanel: React.FC<IProps> = ({
     errorMessage,
 }) => {
     const [currentDate, setCurrentDate] = useState(dayjs());
+    const [pushedKeys, setPushedKeys] = useState<number[]>([]);
     const { t } = useTranslation();
 
     useEffect(() => {
@@ -44,6 +51,26 @@ const MessagesPanel: React.FC<IProps> = ({
             clearTimeout(timeout);
         };
     });
+
+    const onKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+        const newKeys = pushedKeys.concat([event.keyCode]);
+
+        console.log(newKeys);
+
+        if (newKeys.includes(keys.ENTER)) {
+            if (newKeys.includes(keys.TAB) || newKeys.includes(keys.CTRL)) {
+                return;
+            }
+
+            await formik.submitForm();
+        }
+
+        setPushedKeys(newKeys);
+    };
+
+    const onKeyUp = async () => {
+        setPushedKeys([]);
+    };
 
     const addMessage = async (form: IDialogMessage) => {
         if (!form.text.trim()) {
@@ -120,6 +147,8 @@ const MessagesPanel: React.FC<IProps> = ({
                         placeholder={t('message') as string}
                         value={formik.values.text}
                         onChange={formik.handleChange}
+                        onKeyDown={onKeyDown}
+                        onKeyUp={onKeyUp}
                         multiline
                         maxRows={3}
                     />
