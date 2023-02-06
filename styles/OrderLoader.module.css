@@ -2,6 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 400px;
+    flex: 1;
+}
+
+.messagesLoaderWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex: 1;
 }
 
