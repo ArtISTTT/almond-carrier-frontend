@@ -56,8 +56,6 @@ const OrderInformation: React.FC<IProps> = ({
     const { t } = useTranslation();
     const { triggerOpen } = useContext(OpenAlertContext);
 
-    
-
     const addToEditingFields = (name: keyof IOrderFull) => {
         setEditingFields(editingFields.concat([name]));
     };
