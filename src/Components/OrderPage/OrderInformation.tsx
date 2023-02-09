@@ -156,7 +156,7 @@ const OrderInformation: React.FC<IProps> = ({
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || t('ErrorWhileChangingData'),
+                text: data.error || t('errorWhileChangingData'),
             });
         }
 
@@ -176,7 +176,7 @@ const OrderInformation: React.FC<IProps> = ({
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || t('ErrorWhileChangingData'),
+                text: data.error || t('errorWhileChangingData'),
             });
         }
 
@@ -196,7 +196,7 @@ const OrderInformation: React.FC<IProps> = ({
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || t('ErrorWhileRejectingChanges'),
+                text: data.error || t('errorWhileRejectingChanges'),
             });
         }
 

@@ -121,82 +121,37 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </Typography>
                 </div>
             </div>
+
             <div className={styles.receiverInfo}>
-                <div className={styles.infoWayItems}>
-                    <Stack
-                        className={styles.infoWayLine}
-                        direction='row'
-                        spacing={3.25}
-                    >
-                        <Typography
-                            className={styles.infoItemWay}
-                            variant='h5'
-                            component='p'
-                        >
-                            <p>{t('productItem')}:</p>
-                        </Typography>
-                        <Typography
-                            className={styles.infoItemWay}
-                            variant='h5'
-                            component='p'
-                        >
-                            <span>{order.productName}</span>
-                        </Typography>
-                    </Stack>
-                    <Stack
-                        className={styles.infoWayLine}
-                        direction='row'
-                        spacing={4.25}
-                    >
-                        <Typography
-                            className={styles.infoItemWay}
-                            variant='h5'
-                            component='p'
-                        >
-                            <p>{t('to')}:</p>
-                        </Typography>
-                        <Tooltip title={order.toLocation} placement='bottom'>
-                            <Typography
-                                className={styles.infoItemWay}
-                                variant='h5'
-                                component='p'
-                            >
-                                <span>{order.toLocation}</span>
-                            </Typography>
-                        </Tooltip>
-                    </Stack>
-                    {order.fromLocation && (
-                        <Stack
-                            className={styles.infoWayLine}
-                            direction='row'
-                            spacing={2}
-                        >
-                            <Typography
-                                className={styles.infoItemWay}
-                                variant='h5'
-                                component='p'
-                            >
-                                {t('from')}:
-                            </Typography>
-                            <Tooltip
-                                title={order.fromLocation}
-                                placement='bottom'
-                            >
-                                <Typography
-                                    className={styles.infoItemWay}
-                                    variant='h5'
-                                    component='p'
-                                >
-                                    <span>{order.fromLocation}</span>
-                                </Typography>
-                            </Tooltip>
-                        </Stack>
-                    )}
-                </div>
-                <Stack
-                    className={styles.infoCol}
-                    direction='column'
+                <Typography
+                    className={styles.infoItem}
+                    variant='h5'
+                    component='p'
                 >
+                    <p>{t('productItem')}:</p>
+                    <span>{order.productName}</span>
+                </Typography>
+
+                <Typography
+                    className={styles.infoItem}
+                    variant='h5'
+                    component='p'
+                >
+                    <p>{t('to')}:</p>
+                    <span>{order.toLocation}</span>
+                </Typography>
+
+                {order.fromLocation && (
+                    <Typography
+                        className={styles.infoItem}
+                        variant='h5'
+                        component='p'
+                    >
+                        {t('from')}: <span>{order.fromLocation}</span>
+                    </Typography>
+                )}
+
+                <Stack className={styles.infoCol} direction='column'>
                     <Typography
                         className={styles.infoItem}
                         variant='h5'
@@ -232,10 +187,13 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         component='p'
                     >
                         <p>{t('weight')}</p>
-                        <span>{order.productWeight} </span>
+                        <span>
+                            {order.productWeight} {t('kg')}
+                        </span>
                     </Typography>
                 </Stack>
             </div>
+
             <div className={styles.carrierDescription}>
                 <div className={styles.productName}>{t('description')}</div>
                 <div className={styles.productDescription}>
@@ -243,7 +201,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                 </div>
             </div>
             <form onSubmit={formik.handleSubmit} action='submit'>
-                <Stack className={styles.formItems} direction='row' spacing={2}>
+                <Stack className={styles.formItems} direction='column'>
                     {!order.fromLocation && (
                         <div className={cn(styles.inputItem, styles.longInput)}>
                             <label htmlFor='fromLocation'>{t('from')}</label>
