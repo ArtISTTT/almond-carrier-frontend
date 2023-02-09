@@ -4,13 +4,13 @@ import { Tabs, Tab } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import PersonIcon from '@mui/icons-material/Person';
 import styles from '../../../styles/ProfileForNewUser.module.css';
-import { useAppSelector } from '../../redux/hooks';
-import { selectMyOrders } from '../../redux/selectors/orders';
 import ReviewItem from '../MyProfile/ReviewItem';
 import dayjs from 'dayjs';
 import OrderItem from 'src/Components/OrderComponents/OrderItem';
 import EmptyNoShadows from '../EmptyComponents/EmptyNoShadows';
 import { IReview } from '../../interfaces/profile';
+import { IGetUser } from 'src/interfaces/api/user';
+import { useTranslation } from 'react-i18next';
 
 const reviews: IReview[] = [
     {
@@ -65,6 +65,8 @@ const ProfileConent: React.FC = () => {
         profileContent.ORDERS
     );
 
+    const { t } = useTranslation();
+
     const orders = useAppSelector(selectMyOrders);
 
     const handleChange = (_: React.SyntheticEvent, newValue: number) => {
@@ -83,12 +85,14 @@ const ProfileConent: React.FC = () => {
                     <Tab
                         icon={<PersonIcon />}
                         iconPosition='start'
-                        label='current orders'
+                        label={t('currentOrders') as string}
+                        className={styles.tab}
                     />
                     <Tab
                         icon={<StarIcon />}
                         iconPosition='start'
-                        label='Feedback'
+                        label={t('feedback') as string}
+                        className={styles.tab}
                     />
                 </Tabs>
                 <div className={styles.contentItems}>

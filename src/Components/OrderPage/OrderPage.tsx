@@ -54,6 +54,7 @@ const useGetOrder = (orderId: string) => {
 const OrderPage = () => {
     const router = useRouter();
     const user = useSelector(selectUser);
+    const [isReviewBlockOpen, setIsReviewBlockOpen] = useState<boolean>(false);
 
     const { order, updateOrder, isLoading } = useGetOrder(
         router.query.orderId as string
@@ -64,6 +65,12 @@ const OrderPage = () => {
     useEffect(() => {
         updateOrder();
     }, []);
+
+    useEffect(() => {
+        if (order?.status === OrderStatus.success) {
+            setIsReviewBlockOpen(true);
+        }
+    }, [order]);
 
     const viewType = useMemo(
         () =>
@@ -89,7 +96,11 @@ const OrderPage = () => {
 
     return (
         <div className={styles.wrapper}>
-            <OrderDetails order={order} />
+            <OrderDetails
+                isReviewBlockOpen={isReviewBlockOpen}
+                setIsReviewBlockOpen={setIsReviewBlockOpen}
+                order={order}
+            />
 
             <OrderLabels
                 order={order}
@@ -100,6 +111,8 @@ const OrderPage = () => {
 
             <div className={styles.orderConent}>
                 <OrderInformation
+                    isReviewBlockOpen={isReviewBlockOpen}
+                    setIsReviewBlockOpen={setIsReviewBlockOpen}
                     order={order}
                     updateOrder={updateOrder}
                     user={user}
@@ -117,7 +130,7 @@ const OrderPage = () => {
 
             <OrderPayment order={order} updateOrder={updateOrder} />
             <div className={styles.haveSomeProblems}>
-                <Link href='#'>{t('HaveSomeProblems')}</Link>
+                <Link href='#'>{t('haveSomeProblems')}</Link>
             </div>
             {[
                 OrderStatus.waitingReciever,
@@ -130,7 +143,7 @@ const OrderPage = () => {
                         variant='contained'
                         className={styles.cancelButton}
                     >
-                        {t('CancelOrder')}
+                        {t('cancelOrder')}
                     </Button>
                 </div>
             )}
