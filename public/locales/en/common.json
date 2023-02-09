@@ -76,6 +76,7 @@
     "errorUpdatePassword": "Error when trying to change the password",
     "errorUploadingOrders": "Error while uploading your orders",
     "errorWhileChangingData": "Error while changing data",
+    "orderInformation": "Order information",
     "errorWhileRejectingChanges": "Error while rejecting changes",
     "EUR": "€",
     "EURValute": "EUR",
@@ -167,7 +168,7 @@
     "priceSum": "Carrier points the price of good, then to the result sum added our commission and profit for Carrier. Receiver pays the sum.",
     "privacy": "Privacy Policy",
     "product": "Product",
-    "ProductAmount": "Product amount",
+    "productAmount": "Product amount",
     "productItem": "Product",
     "productName": "Product name",
     "productPrice": "Product price",
@@ -178,7 +179,7 @@
     "rating": "Rating",
     "receive": "Receive",
     "productLink": "Product link",
-   
+
     "receiveNotifications": "I would like to receive notifications about the news of a Friendly Carrier\n by email",
     "receiveNotificationsAboutChangingOrder": "I would like to receive notifications about changing order status",
     "receiveNotificationsAboutOtherUsers": "I would like to receive notifications about other users' messages",
