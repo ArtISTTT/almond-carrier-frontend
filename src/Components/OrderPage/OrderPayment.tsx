@@ -44,7 +44,6 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
         triggerOpen({
             severity: 'info',
             text: t('copied'),
-            text: t('copied'),
         });
     };
 
@@ -56,7 +55,6 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: t('paymentConfirmedAlert'),
                 text: t('paymentConfirmedAlert'),
             });
         } else {
