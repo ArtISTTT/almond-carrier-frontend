@@ -20,7 +20,7 @@ import { useTranslation } from 'react-i18next';
 import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
 import { OrderStatus } from 'src/interfaces/profile';
 
-const useGetOrder = async (orderId: string) => {
+const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
     const [order, setOrder] = useState<IOrderFull | undefined>(undefined);
     const [isLoading, setIsLoading] = useState<boolean>(true);
