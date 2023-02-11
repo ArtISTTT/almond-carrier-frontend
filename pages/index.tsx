@@ -247,7 +247,12 @@ export default function Welcome() {
                                 src='/static/images/main-page/advantage-one.png'
                                 alt=''
                             />
-                            <div className={cn(styles.advantageText, styles.advantageTextAnotherColor)}>
+                            <div
+                                className={cn(
+                                    styles.advantageText,
+                                    styles.advantageTextAnotherColor
+                                )}
+                            >
                                 <Typography
                                     variant='h3'
                                     component='h3'

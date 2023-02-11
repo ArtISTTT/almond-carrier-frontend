@@ -25,7 +25,7 @@ export const useLoadOwnOrders = (): IReturn => {
         const data = await getMyOrders();
 
         if (data.ok && data.orders) {
-            dispatch(setMyOrders(parseOrderDataFromApi(data.orders)));
+            dispatch(setMyOrders(await parseOrderDataFromApi(data.orders)));
             setError(undefined);
         } else {
             setError(t('errorUploadingOrders') as string);

@@ -353,7 +353,7 @@
         font-size: 11px;
         width: 150px;
         padding-left: 6px;
-        justify-content: start;
+        justify-content: flex-start;
     }
     .benefitBlock {
         display: flex;
