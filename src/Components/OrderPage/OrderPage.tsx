@@ -35,7 +35,7 @@ const useGetOrder = (orderId: string) => {
         const data = await getOrderById({ orderId });
 
         if (data.ok && data.order) {
-            setOrder((await parseOrderDataFromApi([data.order]))[0]);
+            setOrder(parseOrderDataFromApi([data.order])[0]);
         } else {
             triggerOpen({
                 severity: 'error',

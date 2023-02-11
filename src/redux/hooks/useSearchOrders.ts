@@ -37,7 +37,7 @@ export const useSearchOrders = (): IReturn => {
             setError(undefined);
             setIsLoading(false);
 
-            return await parseOrderDataFromApi(data.orders);
+            return parseOrderDataFromApi(data.orders);
         } else {
             setError(t('errorSearchingOrders') as string);
 
