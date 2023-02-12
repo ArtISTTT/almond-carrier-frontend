@@ -13,13 +13,46 @@
 }
 
 .notificationWrapper {
-    width: 350px;
+    width: 400px;
     padding: 15px 10px;
     margin: 3px 2px;
+    border-radius: 4px;
+}
+
+.notificationTitle {
+    text-decoration: underline;
+    color: var(--cTextPrimary);
+    font-size: 12px;
+}
+
+.notificationInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.notificationContent {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 4px;
+}
+
+.notificationText {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--cTextPrimary);
+    padding: 5px 0;
+}
+
+.notificationText > span {
+    color: var(--cTextThird);
+    letter-spacing: 0.2px;
+}
+
+.notificationTime {
+    color: var(--cTextLow);
+    font-size: 10px;
 }
 
 .checkNotificationIcon {

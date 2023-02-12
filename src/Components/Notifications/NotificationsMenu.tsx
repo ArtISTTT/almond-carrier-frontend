@@ -1,6 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import NotificationsItem from './NotificationsItem';
+import { IUserNotification } from 'src/interfaces/user';
+import dayjs from 'dayjs';
 import styles from '../../../styles/Notifications.module.css';
 import {
     ClickAwayListener,
@@ -11,18 +13,37 @@ import {
 } from '@mui/material';
 
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import MarkChatReadIcon from '@mui/icons-material/MarkChatRead';
-import { IUserNotification } from 'src/interfaces/user';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
 
 const NotificationsMenu = () => {
     const [open, setOpen] = React.useState<boolean>(false);
     const [notifications, setNotifications] = React.useState<
         IUserNotification[]
     >([
-        { text: 'qwe', deal: '123', id: 'lox' },
-        { text: 'qwe', deal: '123', id: 'lox1' },
-        { text: 'qwe', deal: '123', id: 'lox2' },
-        { text: 'qwe', deal: '123', id: 'lox3' },
+        {
+            text: 'New message from carrier',
+            deal: 'God of War: Ragnarok',
+            id: 'lox',
+            date: dayjs().set('hour', 5).set('minute', 55).set('second', 15),
+        },
+        {
+            text: 'New message from receiver',
+            deal: 'Crack',
+            id: 'lox1',
+            date: dayjs().set('hour', 4).set('minute', 55).set('second', 15),
+        },
+        {
+            text: 'Payment success',
+            deal: 'Mefedron',
+            id: 'lox2',
+            date: dayjs().set('hour', 2).set('minute', 55).set('second', 15),
+        },
+        {
+            text: 'New changes',
+            deal: 'Baby',
+            id: 'lox3',
+            date: dayjs().set('hour', 22).set('minute', 55).set('second', 15),
+        },
     ]);
 
     const anchorRef = React.useRef(null);
@@ -84,6 +105,9 @@ const NotificationsMenu = () => {
                                                     setNotifications={
                                                         setNotifications
                                                     }
+                                                    currentDate={
+                                                        notification.date
+                                                    }
                                                     id={notification.id}
                                                     text={notification.text}
                                                     deal={notification.deal}
@@ -95,7 +119,7 @@ const NotificationsMenu = () => {
                                                 }
                                                 onClick={clearNotifications}
                                             >
-                                                <MarkChatReadIcon
+                                                <ClearAllIcon
                                                     sx={{
                                                         width: 17,
                                                         height: 17,

@@ -17,4 +17,5 @@ export interface IUserNotification {
     text: string;
     id: string;
     deal: string;
+    date: Dayjs;
 }
