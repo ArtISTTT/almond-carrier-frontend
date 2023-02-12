@@ -19,12 +19,10 @@ const NotificationsMenu = () => {
     const [notifications, setNotifications] = React.useState<
         IUserNotification[]
     >([
-        { text: 'qwe', deal: '123' },
-        { text: 'qwe', deal: '123' },
-        { text: 'qwe', deal: '123' },
-        { text: 'qwe', deal: '123' },
-        { text: 'qwe', deal: '123' },
-        { text: 'qwe', deal: '123' },
+        { text: 'qwe', deal: '123', id: 'lox' },
+        { text: 'qwe', deal: '123', id: 'lox1' },
+        { text: 'qwe', deal: '123', id: 'lox2' },
+        { text: 'qwe', deal: '123', id: 'lox3' },
     ]);
 
     const anchorRef = React.useRef(null);
@@ -35,6 +33,7 @@ const NotificationsMenu = () => {
         prevOpen.current = open;
     }, [open]);
 
+    const clearNotifications = () => setNotifications([]);
     const handleClose = () => setOpen(false);
     const handleToggle = () => setOpen(prevOpen => !prevOpen);
 
@@ -82,6 +81,10 @@ const NotificationsMenu = () => {
                                             </div>
                                             {notifications.map(notification => (
                                                 <NotificationsItem
+                                                    setNotifications={
+                                                        setNotifications
+                                                    }
+                                                    id={notification.id}
                                                     text={notification.text}
                                                     deal={notification.deal}
                                                 />
@@ -90,6 +93,7 @@ const NotificationsMenu = () => {
                                                 className={
                                                     styles.notificationsMarkAllButton
                                                 }
+                                                onClick={clearNotifications}
                                             >
                                                 <MarkChatReadIcon
                                                     sx={{

@@ -15,5 +15,6 @@ export type IUser = {
 
 export interface IUserNotification {
     text: string;
+    id: string;
     deal: string;
 }
