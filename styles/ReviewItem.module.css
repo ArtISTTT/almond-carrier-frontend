@@ -14,6 +14,9 @@
     justify-content: space-between;
     align-items: center;
 }
+.reviewTextData {
+    text-align: center;
+}
 
 .reviewName {
     font-weight: 500;
@@ -37,13 +40,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     border-right: 1px solid rgba(0, 0, 0, 0.12);
     padding: 20px 45px;
 }
 
 .reviewAvatar {
-    /* border: 2px solid var(--cBorderPrimary);
-    border-radius: 20px; */
     width: 120px;
     height: 120px;
 }
@@ -91,7 +93,6 @@
     color: var(--cTextPrimary);
 }
 
-
 @media screen and (max-width: 850px) {
     .reviewAvatar {
         width: 80px;
@@ -120,7 +121,7 @@
         font-size: 12px;
     }
     .reviewDetails {
-        padding: 5px 10px;  
+        padding: 5px 10px;
     }
 }
 
@@ -172,9 +173,11 @@
     }
     .reviewTextData {
         padding-left: 10px;
+        text-align: center;
     }
     .reviewName {
         margin-top: 0;
+        text-align: left;
     }
     .reviewText {
         min-height: 70px;

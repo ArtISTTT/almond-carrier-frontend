@@ -1,11 +1,12 @@
 import { Dayjs } from 'dayjs';
+import { Genders } from './settings';
 
 export type IUser = {
     firstName: string;
     lastName: string;
     email: string;
     dateOfBirth: Dayjs;
-    gender: string;
+    gender: Genders;
     phoneNumber: string;
     avatar?: string;
     completedOrders: number;

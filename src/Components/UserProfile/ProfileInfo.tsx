@@ -1,13 +1,28 @@
 import { Button, Avatar, Typography, Rating } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 import styles from '../../../styles/ProfileForNewUser.module.css';
 import { Container } from '@mui/system';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { useRouter } from 'next/router';
 import { navigateTo } from 'src/interfaces/navigate';
+import { IGetUser } from 'src/interfaces/api/user';
+import { Genders } from 'src/interfaces/settings';
+import dayjs from 'dayjs';
 
-const ProfileInfo = () => {
+interface IProps {
+    user: IGetUser;
+}
+
+const genders = {
+    [Genders.MALE]: 'male',
+    [Genders.FEMALE]: 'female',
+    [Genders.OTHER]: 'other',
+    [Genders.NONE]: 'none',
+};
+
+const ProfileInfo: React.FC<IProps> = ({ user }) => {
     const router = useRouter();
 
     const navigateToSignUp = () => router.push(navigateTo.SIGNUP);
@@ -22,6 +37,7 @@ const ProfileInfo = () => {
                         <Avatar
                             src='/static/images/signin-image.png'
                             sx={{ width: 140, height: 140 }}
+                            className={styles.avatar}
                         />
                         <div className={styles.profileCardInfo}>
                             <Typography
@@ -29,28 +45,38 @@ const ProfileInfo = () => {
                                 variant='h3'
                                 component='h3'
                             >
-                                name surname
+                                {user?.firstName} {user?.lastName}
                             </Typography>
+                            {/* <Typography
+                                className={styles.profileCardItem}
+                                variant='h6'
+                                component='h5'
+                            >
+                                {t('from')}: <span>{user?.fromLocation}</span>
+                            </Typography> */}
+
+                            {user.gender && (
+                                <Typography
+                                    className={styles.profileCardItem}
+                                    variant='h6'
+                                    component='h5'
+                                >
+                                    {t('gender')}:{' '}
+                                    <span>{t(genders[user.gender])}</span>
+                                </Typography>
+                            )}
+
                             <Typography
                                 className={styles.profileCardItem}
                                 variant='h6'
                                 component='h5'
                             >
-                                {t('from')}: <span></span>
-                            </Typography>
-                            <Typography
-                                className={styles.profileCardItem}
-                                variant='h6'
-                                component='h5'
-                            >
-                                {t('oftenFlies')}: <span></span>
-                            </Typography>
-                            <Typography
-                                className={styles.profileCardItem}
-                                variant='h6'
-                                component='h5'
-                            >
-                                {t('currency')}:<span></span>
+                                {t('dateOfBirth')}:{' '}
+                                <span>
+                                    {dayjs(user.dateOfBirth).format(
+                                        'DD.MM.YYYY'
+                                    )}
+                                </span>
                             </Typography>
                         </div>
                     </div>
@@ -69,9 +95,15 @@ const ProfileInfo = () => {
                         className={styles.confirmItem}
                     >
                         {t('email')}{' '}
-                        <CheckCircleIcon
-                            sx={{ color: 'green', width: 18, height: 18 }}
-                        />
+                        {user.verifiedByEmail ? (
+                            <CheckCircleIcon
+                                sx={{ color: 'green', width: 18, height: 18 }}
+                            />
+                        ) : (
+                            <CancelIcon
+                                sx={{ color: 'red', width: 18, height: 18 }}
+                            />
+                        )}
                     </Typography>
                     <Typography
                         variant='h6'
@@ -79,9 +111,15 @@ const ProfileInfo = () => {
                         className={styles.confirmItem}
                     >
                         {t('phoneNumber')}{' '}
-                        <CheckCircleIcon
-                            sx={{ color: 'green', width: 18, height: 18 }}
-                        />
+                        {user.verifiedByPhone ? (
+                            <CheckCircleIcon
+                                sx={{ color: 'green', width: 18, height: 18 }}
+                            />
+                        ) : (
+                            <CancelIcon
+                                sx={{ color: 'red', width: 18, height: 18 }}
+                            />
+                        )}
                     </Typography>
                 </div>
                 <div className={styles.infoBlock}>
@@ -98,15 +136,17 @@ const ProfileInfo = () => {
                             component='h4'
                             className={styles.infoParam}
                         >
-                            16 {t('orders')}
+                            {user?.completedOrders} {t('orders')}
                         </Typography>
                         <Typography
                             variant='h6'
                             component='h6'
                             className={styles.secondInfoParam}
                         >
-                            <span>{t('carrier')}</span>: 12 /{' '}
-                            <span>{t('receiver')}</span>: 4
+                            <span>{t('carrier')}</span>:{' '}
+                            {user?.completedOrdersAsCarrier} /{' '}
+                            <span>{t('receiver')}</span>:{' '}
+                            {user?.completedOrdersAsReceiver}
                         </Typography>
                     </div>
                     <div className={styles.infoItem}>
@@ -122,7 +162,7 @@ const ProfileInfo = () => {
                             component='h4'
                             className={styles.infoParam}
                         >
-                            89%
+                            {user?.completionRate}%
                         </Typography>
                     </div>
                     <div className={styles.infoItem}>
@@ -138,7 +178,9 @@ const ProfileInfo = () => {
                             component='h4'
                             className={styles.infoParam}
                         >
-                            4 {t('orders')}
+                            <>
+                                {user?.ordersInLastMonth} {t('orders')}
+                            </>
                         </Typography>
                     </div>
                     <div className={styles.infoItem}>
@@ -158,13 +200,15 @@ const ProfileInfo = () => {
                         </Typography>
                     </div>
                 </div>
-                <Button
-                    onClick={navigateToSignUp}
-                    className={styles.profileButton}
-                    variant='contained'
-                >
-                    {t('requestCarrierService')}
-                </Button>
+                <div className={styles.profileButtonWrapper}>
+                    <Button
+                        onClick={navigateToSignUp}
+                        className={styles.profileButton}
+                        variant='contained'
+                    >
+                        {t('requestCarrierService')}
+                    </Button>
+                </div>
             </Container>
         </div>
     );

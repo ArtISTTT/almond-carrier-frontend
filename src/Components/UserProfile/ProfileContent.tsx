@@ -4,13 +4,13 @@ import { Tabs, Tab } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import PersonIcon from '@mui/icons-material/Person';
 import styles from '../../../styles/ProfileForNewUser.module.css';
-import { useAppSelector } from '../../redux/hooks';
-import { selectMyOrders } from '../../redux/selectors/orders';
 import ReviewItem from '../MyProfile/ReviewItem';
 import dayjs from 'dayjs';
 import OrderItem from 'src/Components/OrderComponents/OrderItem';
 import EmptyNoShadows from '../EmptyComponents/EmptyNoShadows';
 import { IReview } from '../../interfaces/profile';
+import { IGetUser } from 'src/interfaces/api/user';
+import { useTranslation } from 'react-i18next';
 
 const reviews: IReview[] = [
     {
@@ -60,12 +60,12 @@ enum profileContent {
     REVIEWS = 1,
 }
 
-const ProfileConent: React.FC = () => {
+const ProfileConent = ({ user }: { user: IGetUser }) => {
     const [content, setContent] = React.useState<profileContent>(
         profileContent.ORDERS
     );
 
-    const orders = useAppSelector(selectMyOrders);
+    const { t } = useTranslation();
 
     const handleChange = (_: React.SyntheticEvent, newValue: number) => {
         setContent(newValue);
@@ -83,21 +83,23 @@ const ProfileConent: React.FC = () => {
                     <Tab
                         icon={<PersonIcon />}
                         iconPosition='start'
-                        label='current orders'
+                        label={t('currentOrders') as string}
+                        className={styles.tab}
                     />
                     <Tab
                         icon={<StarIcon />}
                         iconPosition='start'
-                        label='Feedback'
+                        label={t('feedback') as string}
+                        className={styles.tab}
                     />
                 </Tabs>
                 <div className={styles.contentItems}>
-                    {orders.length > 0 &&
+                    {user.successOrders.length > 0 &&
                         content === profileContent.ORDERS &&
-                        orders.map((order, i) => (
-                            <OrderItem key={i} {...order} />
+                        user.successOrders.map(order => (
+                            <OrderItem key={order.id} {...order} />
                         ))}
-                    {orders.length === 0 &&
+                    {user.successOrders.length === 0 &&
                         content === profileContent.ORDERS && (
                             <EmptyNoShadows text={'userHaveNoOrdersYet'} />
                         )}

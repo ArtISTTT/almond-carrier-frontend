@@ -4,6 +4,7 @@ import { getMyOrders } from '../../api/order';
 import { setMyOrders } from '../slices/ordersSlice';
 import { OpenAlertContext } from '../../Components/Layouts/Snackbar';
 import { parseOrderDataFromApi } from '../../helpers/parseOrderDataFromApi';
+import { useTranslation } from 'react-i18next';
 
 type IReturn = {
     isLoading: boolean;
@@ -13,6 +14,7 @@ type IReturn = {
 
 export const useLoadOwnOrders = (): IReturn => {
     const dispatch = useAppDispatch();
+    const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | undefined>(undefined);
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -26,11 +28,11 @@ export const useLoadOwnOrders = (): IReturn => {
             dispatch(setMyOrders(parseOrderDataFromApi(data.orders)));
             setError(undefined);
         } else {
-            setError('Error while uploading your orders');
+            setError(t('errorUploadingOrders') as string);
 
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error while uploading your orders',
+                text: data.error || (t('errorUploadingOrders') as string),
             });
         }
 

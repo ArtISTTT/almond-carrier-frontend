@@ -7,6 +7,30 @@
     display: flex;
 }
 
+.personInfo {
+    margin: 20px 0;
+}
+
+.personRole {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.4px;
+    color: var(--cTextLow);
+}
+
+.personName {
+    font-size: 18px;
+    line-height: 40px;
+    font-weight: 500;
+    margin-right: 12px;
+    max-width: calc(250px - 24px - 8px);
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .orderDetails {
     padding: 32px;
     display: flex;
@@ -348,4 +372,24 @@
 
 .buttonItem {
     border-radius: 15px;
+}
+
+.openReviewPopupButton {
+    font-size: 16px;
+    border-radius: 15px;
+    margin-left: 5px;
+    height: 28px;
+    color: var(--cTextPrimary);
+    text-transform: none;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 2px 12px;
+}
+
+.openReviewPopupButton:hover {
+    text-decoration: underline;
+}
+
+.detailsButtons {
+    display: flex;
 }

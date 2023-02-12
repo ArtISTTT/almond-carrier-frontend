@@ -43,7 +43,7 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
         navigator.clipboard.writeText(PAYMENT_CREDENTIALS.PHONE);
         triggerOpen({
             severity: 'info',
-            text: t('Copied'),
+            text: t('copied'),
         });
     };
 
@@ -55,7 +55,7 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: t('PaymentConfirmedAlert'),
+                text: t('paymentConfirmedAlert'),
             });
         } else {
             triggerOpen({
@@ -89,16 +89,18 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
                     color='primary'
                     onClick={handleChange}
                 >
-                    {t('Pay')}
+                    {t('pay')}
                 </Button>
                 <Collapse in={paymentOpened}>
                     <div className={styles.collapsedPayment}>
                         <div className={styles.collapsedPaymentTitle}>
-                            {t('TransferTheAmountByPhoneNumberTo')}
+                            {t('transferTheAmountByPhoneNumberTo')}
                             &nbsp;
                             <b>{t('SBP')}</b> <br />
-                            {t('Banks')}: <b>{t('Tinkoff')}</b>,{' '}
-                            <b>{t('Sberbank')}</b>
+                            {t('banks')}: <b>{t('tinkoff')}</b>,{' '}
+                            <b>{t('sberbank')}</b>
+                            {t('banks')}: <b>{t('tinkoff')}</b>,{' '}
+                            <b>{t('sberbank')}</b>
                         </div>
                         <div className={styles.name}>
                             {t('name')}: <b>{PAYMENT_CREDENTIALS.NAME}</b>

@@ -67,6 +67,10 @@
     flex-direction: column;
 }
 
+.hidingButton {
+    display: none;
+}
+
 .loaderWrapper {
     display: flex;
     flex: 1;
@@ -81,6 +85,11 @@
     display: flex;
     flex: 1;
     gap: 16px;
+}
+
+.WeightBenefitBlock {
+    display: flex;
+    gap: 5px;
 }
 
 .inputItem {
@@ -183,6 +192,8 @@
     white-space: nowrap;
     line-height: 20px;
     margin-bottom: 5px;
+    cursor: pointer;
+    width: fit-content;
 }
 
 .itemWrapper .part.user .infoItem {
@@ -233,7 +244,7 @@
 
 .doubleditem .prefix {
     color: var(--cTextLow);
-    max-width: 65px;
+    max-width: 70px;
     width: 100%;
     display: inline-block;
     margin-right: 26px;
@@ -283,9 +294,25 @@
     }
 }
 
+@media screen and (max-width: 1202px) {
+    .WeightBenefitBlock {
+        margin-top: 10px;
+    }
+}
+
 @media screen and (max-width: 1135px) {
     .avatar {
         display: none;
+    }
+    .itemWrapper .part.user .userInfo {
+        margin-left: 0px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .WeightBenefitBlock {
+        flex-wrap: wrap;
+        margin-top: 0;
     }
 }
 
@@ -293,6 +320,7 @@
     .typeTitle {
         font-size: 30px;
     }
+
     .typeSwitcher > span {
         height: 30px;
         width: 130px;
@@ -304,11 +332,39 @@
         height: 40px;
         border-radius: 10px;
     }
-    .part.user {
+    .tableHeaderItemNone {
         display: none;
     }
-    .tableHeaderItem:first-child {
+    .part.button {
         display: none;
+    }
+    .tableHeaderItem.short {
+        flex: 1;
+    }
+    .part.user {
+        flex: 3;
+    }
+    .part.fromTo {
+        flex: 3;
+    }
+    .part.productName {
+        flex: 2;
+    }
+    .part.maxWeight {
+        flex: 1;
+    }
+    .part.doubleditem {
+        flex: 2;
+    }
+    .hidingButton {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: -20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+    .itemWrapper {
+        border-bottom: none;
     }
 }
 
@@ -328,6 +384,32 @@
     .benefitPriceValue {
         font-size: 12px;
     }
+    .itemWrapper .part.user .userName {
+        font-size: 12px;
+        line-height: 12px;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+    .itemWrapper .part.user .infoItem {
+        font-size: 10px;
+        line-height: 10px;
+        margin-bottom: 3px;
+    }
+    .part.maxWeight {
+        font-weight: 600;
+    }
+    .benefitPriceValue {
+        font-weight: 600;
+    }
+    .part.productName {
+        font-weight: 600;
+    }
+    .toAndFromLocationValue {
+        font-weight: 600;
+    }
+    .part {
+        font-weight: 600;
+    }
 }
 
 @media screen and (max-width: 710px) {
@@ -345,10 +427,9 @@
     .part {
         font-size: 12px;
         line-height: 14px;
-        margin-right: 7px;
     }
     .doubleditem .prefix {
-        width: 40px;
+        width: 53px;
     }
     .tableHeaderItem {
         font-size: 14px;
@@ -362,6 +443,10 @@
     .tableHeaderItem {
         font-size: 12px;
     }
+    .WeightBenefitBlock {
+        flex-wrap: nowrap;
+        width: 100%;
+    }
     .refreshButton {
         width: 115px;
         font-size: 10px;
@@ -369,7 +454,9 @@
         margin-right: 10px;
         border-radius: 10px;
     }
-
+    .wrapper {
+        padding: 10px;
+    }
     .content {
         margin-top: 10px;
     }
@@ -384,7 +471,18 @@
     }
     .part {
         font-size: 10px;
-        width: 25%;
+    }
+    .part.user {
+        margin-left: 0;
+    }
+    .itemWrapper .part.user .userName {
+        font-size: 10px;
+    }
+    .itemWrapper .part.user .infoItemRating {
+        font-size: 8px;
+    }
+    .itemWrapper .part.user .infoItemCompleted {
+        font-size: 8px;
     }
     .tableHeaderItem {
         font-size: 12px;
@@ -440,7 +538,7 @@
         font-weight: 600;
     }
     .doubleditem .prefix {
-        width: 30px;
+        width: 35px;
         font-size: 8px;
     }
     .inputItem .input :global .MuiInputBase-root {
@@ -451,6 +549,14 @@
     .benefitPriceValue {
         font-size: 8px;
     }
+    .itemWrapper .part.user .userName {
+        font-size: 8px;
+        margin-bottom: 2px;
+    }
+    .itemWrapper .part.user .infoItem {
+        font-size: 6px;
+        line-height: 7px;
+    }
     .toAndFromLocationValue {
         max-width: 60px;
     }
@@ -460,9 +566,7 @@
     .wrapper {
         padding: 10px;
     }
-    .inputItemLast {
-        margin-top: 10px;
-    }
+
     .formSecondC {
         margin-top: 15px;
     }
@@ -484,5 +588,11 @@
         width: 130px;
         font-size: 10px;
         margin-right: 10px;
+    }
+    .hidingButton {
+        padding-bottom: 10px;
+    }
+    .applyBtn {
+        height: 25px;
     }
 }

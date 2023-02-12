@@ -42,6 +42,8 @@
     line-height: 24px;
     color: var(--cTextThird);
     letter-spacing: 0.4px;
+    width: fit-content;
+    cursor: pointer;
     margin-bottom: 10px;
 }
 
@@ -145,8 +147,17 @@
     justify-content: space-between;
     width: 100%;
     gap: 15px;
+    margin-top: 24px;
     max-width: 300px;
     color: var(--cTextPrimary);
+}
+
+.infoItem > span {
+    white-space: nowrap;
+}
+
+.infoItem:first-child {
+    margin-top: 0;
 }
 
 .infoItemWay {
@@ -159,6 +170,10 @@
     width: fit-content;
     max-width: 300px;
     color: var(--cTextPrimary);
+}
+
+.stackDistance {
+    gap: 20px;
 }
 
 .infoItemWay > span {
@@ -261,7 +276,7 @@
 }
 
 @media screen and (max-width: 850px) {
-    .popup { 
+    .popup {
         width: 90%;
     }
 }
@@ -293,10 +308,11 @@
     }
     .inputItem > label {
         font-size: 12px;
+        line-height: 14px;
     }
     .input :global .MuiInputBase-root {
         font-size: 12px;
-    }   
+    }
     .productDescription {
         font-size: 13px;
     }
@@ -305,7 +321,7 @@
     }
 }
 
-@media screen and (max-width: 530px) {
+@media screen and (max-width: 610px) {
     .receiverInfo {
         flex-direction: column;
     }
@@ -315,14 +331,29 @@
     .infoItemWay > span {
         max-width: 300px;
     }
+    .infoWayItems {
+        gap: 15px;
+    }
+    .infoItem > p {
+        width: 100px;
+    }
     .infoCol {
-        margin-top: -15px;
+        margin-top: -20px;
     }
     .carrierInfo {
         flex-direction: column;
     }
     .stack {
-        margin-top: 5px;
+        margin-top: 0px;
+    }
+    .infoItem  {
+        margin-top: 15px;
+    }
+    .infoItem:first-child {
+        margin-top: 0;
+    }
+    .carrierInfo {
+        padding-bottom: 15px;
     }
 }
 
@@ -332,16 +363,17 @@
     }
     .inputItemSecond {
         margin-left: 0 !important;
-        padding-top: 5px;
+        padding-top: 10px;
     }
-    .infoItem{
+    .infoItem {
         font-size: 10px;
     }
     .infoItemWay {
         font-size: 10px;
+        max-width: 250px;
     }
     .infoItem > p {
-        width: 90px;
+        width: 80px;
     }
     .inputItem > label {
         font-size: 10px;
@@ -349,19 +381,24 @@
     .carrierDescriptionTitle {
         font-size: 10px;
     }
+    .stackDistance {
+        gap: 10px;
+    }
     .carrierName {
         font-size: 18px;
         margin-bottom: 5px;
     }
     .carrierRating {
         font-size: 12px;
+        line-height: 12px;
     }
     .carrierCompletedOrders {
         font-size: 12px;
+        line-height: 12px;
     }
     .receiverInfo {
         padding-top: 20px;
-        padding-bottom: 10px;
+        padding-bottom: 0px;
     }
     .productName {
         font-size: 10px;
@@ -375,5 +412,14 @@
         padding: 5px;
         margin-top: 15px;
         line-height: 14px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .infoItemWay {
+        max-width: 200px;
+    }
+    .carrierName {
+        width: 150px;
     }
 }

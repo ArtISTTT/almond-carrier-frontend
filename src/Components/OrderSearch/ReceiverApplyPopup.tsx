@@ -1,4 +1,11 @@
-import { Avatar, Button, Typography, TextField, Stack } from '@mui/material';
+import {
+    Avatar,
+    Button,
+    Typography,
+    TextField,
+    Stack,
+    Tooltip,
+} from '@mui/material';
 import React, { useContext } from 'react';
 import styles from '../../../styles/ApplyPopup.module.css';
 import { IOrder } from '../../interfaces/order';
@@ -14,7 +21,7 @@ import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
 import { ReceiverApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
-import { style } from '@mui/system';
+import { navigateTo } from 'src/interfaces/navigate';
 
 interface IProps {
     closePopup: () => void;
@@ -44,13 +51,13 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
         if (data.ok && data.orderId) {
             triggerOpen({
                 severity: 'success',
-                text: 'You have successfully responded to the order.',
+                text: t('successRespondedOrder'),
             });
             push(`/order/${data.orderId}`);
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || 'Error when trying to apply to an order',
+                text: data.error || t('errorApplyToOrder'),
             });
             formik.setSubmitting(false);
         }
@@ -75,13 +82,24 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
         await formik.setFieldValue(id + '_placeId', placeId);
     };
 
+    const navigateToUserPage = (): void => {
+        push({
+            pathname: navigateTo.USER,
+            query: { userId: order.receiver?.id },
+        });
+    };
+
     return (
         <ApplyPopup closePopup={closePopup}>
             <div className={styles.carrierCard}>
-                <Avatar sx={{ width: 80, height: 80 }} />
+                <Avatar
+                    onClick={navigateToUserPage}
+                    sx={{ width: 80, height: 80, cursor: 'pointer' }}
+                />
                 <div className={styles.carrierCardInfo}>
                     <Typography
                         className={styles.carrierName}
+                        onClick={navigateToUserPage}
                         variant='h4'
                         component='h3'
                     >
@@ -137,13 +155,15 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         >
                             <p>{t('to')}:</p>
                         </Typography>
-                        <Typography
-                            className={styles.infoItemWay}
-                            variant='h5'
-                            component='p'
-                        >
-                            <span>{order.toLocation}</span>
-                        </Typography>
+                        <Tooltip title={order.toLocation} placement='bottom'>
+                            <Typography
+                                className={styles.infoItemWay}
+                                variant='h5'
+                                component='p'
+                            >
+                                <span>{order.toLocation}</span>
+                            </Typography>
+                        </Tooltip>
                     </Stack>
                     {order.fromLocation && (
                         <Stack
@@ -158,20 +178,24 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             >
                                 {t('from')}:
                             </Typography>
-                            <Typography
-                                className={styles.infoItemWay}
-                                variant='h5'
-                                component='p'
+                            <Tooltip
+                                title={order.fromLocation}
+                                placement='bottom'
                             >
-                                <span>{order.fromLocation}</span>
-                            </Typography>
+                                <Typography
+                                    className={styles.infoItemWay}
+                                    variant='h5'
+                                    component='p'
+                                >
+                                    <span>{order.fromLocation}</span>
+                                </Typography>
+                            </Tooltip>
                         </Stack>
                     )}
                 </div>
                 <Stack
                     className={styles.infoCol}
                     direction='column'
-                    spacing={3}
                 >
                     <Typography
                         className={styles.infoItem}
@@ -245,7 +269,9 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             />
                         </div>
                     )}
-                    <div className={cn(styles.inputItem, styles.inputItemSecond)}>
+                    <div
+                        className={cn(styles.inputItem, styles.inputItemSecond)}
+                    >
                         <label htmlFor='arrivalDate'>{t('date')}</label>
                         <DesktopDatePicker
                             inputFormat='DD.MM.YYYY'

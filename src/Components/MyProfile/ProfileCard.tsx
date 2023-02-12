@@ -27,7 +27,8 @@ const ProfileCard = () => {
                     variant='h4'
                     component='h2'
                 >
-                    {t('from')} Moscow
+                    {t('from')} 
+                    <span>Moscow</span> 
                 </Typography>
                 <div className={styles.statisticItem}>
                     <div className={styles.statisticTitle}>

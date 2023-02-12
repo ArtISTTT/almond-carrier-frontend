@@ -5,6 +5,7 @@ import {
     TextField,
     Stack,
     InputAdornment,
+    Tooltip,
 } from '@mui/material';
 import { useFormik } from 'formik';
 import React, { useContext } from 'react';
@@ -19,6 +20,7 @@ import { CarrierApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
 import { useAppSelector } from 'src/redux/hooks';
+import { navigateTo } from 'src/interfaces/navigate';
 
 interface IProps {
     closePopup: () => void;
@@ -81,13 +83,24 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
         validateOnChange: false,
     });
 
+    const navigateToUserPage = (): void => {
+        push({
+            pathname: navigateTo.USER,
+            query: { userId: order.carrier?.id },
+        });
+    };
+
     return (
         <ApplyPopup closePopup={closePopup}>
             <div className={styles.carrierCard}>
-                <Avatar sx={{ width: 80, height: 80 }} />
+                <Avatar
+                    onClick={navigateToUserPage}
+                    sx={{ width: 80, height: 80, cursor: 'pointer' }}
+                />
                 <div className={styles.carrierCardInfo}>
                     <Typography
                         className={styles.carrierName}
+                        onClick={navigateToUserPage}
                         variant='h4'
                         component='h3'
                     >
@@ -123,13 +136,15 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         >
                             <p>{t('to')}:</p>
                         </Typography>
-                        <Typography
-                            className={styles.infoItemWay}
-                            variant='h5'
-                            component='p'
-                        >
-                            <span>{order.toLocation}</span>
-                        </Typography>
+                        <Tooltip title={order.toLocation} placement='bottom'>
+                            <Typography
+                                className={styles.infoItemWay}
+                                variant='h5'
+                                component='p'
+                            >
+                                <span>{order.toLocation}</span>
+                            </Typography>
+                        </Tooltip>
                     </Stack>
                     <Stack
                         className={styles.infoWayLine}
@@ -143,18 +158,19 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         >
                             <p>{t('from')}:</p>
                         </Typography>
-
-                        <Typography
-                            className={styles.infoItemWay}
-                            variant='h5'
-                            component='p'
-                        >
-                            <span>{order.fromLocation}</span>
-                        </Typography>
+                        <Tooltip title={order.fromLocation} placement='bottom'>
+                            <Typography
+                                className={styles.infoItemWay}
+                                variant='h5'
+                                component='p'
+                            >
+                                <span>{order.fromLocation}</span>
+                            </Typography>
+                        </Tooltip>
                     </Stack>
                 </div>
 
-                <Stack direction='column' spacing={3} className={styles.stack}>
+                <Stack direction='column' className={styles.stack}>
                     <Typography
                         className={styles.infoItem}
                         variant='h5'
@@ -168,7 +184,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        <p>{t('benefit')}:{' '}</p>
+                        <p>{t('benefit')}: </p>
                         <span>
                             {formatAmount(
                                 order.rewardAmount,
@@ -189,8 +205,8 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </Typography>
                 </Stack>
             </div>
-            <form onSubmit={formik.handleSubmit} action='submit'>
-                <Stack direction='row' spacing={3}>
+            <form onSubmit={formik.handleSubmit}  action='submit'>
+                <Stack direction='row' className={styles.stackDistance}>
                     <div className={styles.inputItem}>
                         <label htmlFor='productName'>{t('product')}</label>
                         <TextField

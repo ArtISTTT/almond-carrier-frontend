@@ -1,11 +1,16 @@
 .chatHeader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
     padding: 12px;
     background: var(--cBg);
     border-radius: 30px 30px 0 0;
+}
+
+.chatPerson {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    gap: 10px;
+    width: fit-content;
+    cursor: pointer;
 }
 
 .chatWrapper {
@@ -17,7 +22,7 @@
     border-radius: 30px;
     box-shadow: 0px 0px 15px 1px rgba(102, 144, 253, 0.25);
     margin-top: 32px;
-    margin-right: 15px;
+    margin-right: 32px;
 }
 
 .chatMemberName {
@@ -33,6 +38,7 @@
 }
 
 .inputMessage {
+    margin-bottom: 5px;
     flex: 1;
     text-align: start;
     overflow-y: hidden;
@@ -45,9 +51,17 @@
 
 .sendMessageBlock {
     display: flex;
-    align-items: center;
-    padding-left: 13px;
-    margin-bottom: 5px;
+    height: 100px;
+    align-items: flex-end;
+    padding-left: 10px;
+}
+
+.errorButton {
+    max-width: 300px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    width: 100%;
 }
 
 .sendIcon {
@@ -66,12 +80,16 @@
     flex: 1;
     display: flex;
     overflow-y: auto;
-    max-height: 490px;
+    max-height: 450px;
     flex-direction: column;
     gap: 7px;
     padding: 10px;
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+.errorMessageBlock {
+    justify-content: center;
 }
 
 .MessageBlock {
@@ -149,4 +167,16 @@
 
 .messageAvatar {
     margin-bottom: 17.5px;
+}
+
+.errorMessage {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    color: var(--cTextError);
+}
+
+.errorMessage > span {
+    font-size: 16px;
+    font-weight: 600;
 }

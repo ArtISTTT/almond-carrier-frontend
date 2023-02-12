@@ -2,6 +2,8 @@ import React from 'react';
 import { Avatar, Typography } from '@mui/material';
 import styles from 'styles/OrderItem.module.css';
 import { useTranslation } from 'react-i18next';
+import { navigateTo } from '../../interfaces/navigate';
+import { useRouter } from 'next/router';
 
 interface IProps {
     people: {
@@ -13,6 +15,15 @@ interface IProps {
 
 const OrderPeopleCard: React.FC<IProps> = ({ people }) => {
     const { t } = useTranslation();
+    const router = useRouter();
+
+    const navigateToUserPage = (): void => {
+        router.push({
+            pathname: navigateTo.USER,
+            query: { userId: people.id },
+        });
+    };
+
     return (
         <div className={styles.carrierCard}>
             <Avatar
@@ -21,10 +32,16 @@ const OrderPeopleCard: React.FC<IProps> = ({ people }) => {
                     height: 65,
                     cursor: 'pointer',
                 }}
+                onClick={navigateToUserPage}
                 className={styles.roundIcon}
             />
             <div className={styles.info}>
-                <Typography className={styles.name} variant='h5' component='h5'>
+                <Typography
+                    onClick={navigateToUserPage}
+                    className={styles.name}
+                    variant='h5'
+                    component='h5'
+                >
                     {people?.firstName ? people?.firstName : 'Vladimir'}{' '}
                     {people?.lastName ? people?.lastName : 'Putin'}
                 </Typography>
