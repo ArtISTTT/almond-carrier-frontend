@@ -41,21 +41,31 @@ const MobileMenu = ({
     isSettingsPopupOpen,
     setIsSettingsPopupOpen,
 }: IProps) => {
-    
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
+    const [animate, setAnimate] = React.useState<boolean>(false);
 
-    const { t } = useTranslation();
+    const user = useAppSelector(selectUser);
     const router = useRouter();
     const dispatch = useAppDispatch();
-    const user = useAppSelector(selectUser);
-    const { triggerOpen } = useContext(OpenAlertContext);
     const isAuthorized = useSelector(selectIsAuthorized);
+    const { t } = useTranslation();
+    const { triggerOpen } = useContext(OpenAlertContext);
 
-    const handleClose = () => setMobileMenuOpen(false);
-    const toggleMobileMenu = () => setMobileMenuOpen(true);
+    const handleCloseMenu = () => {
+        setTimeout(() => {
+            setMobileMenuOpen(false);
+        }, 295);
+        setAnimate(false);
+    };
+
+    const toggleMobileMenu = () => {
+        setMobileMenuOpen(true);
+        setAnimate(true);
+    };
 
     const handleOpenSettingsPopup = () => {
         setMobileMenuOpen(false);
+        setAnimate(false);
         setIsSettingsPopupOpen(prev => !prev);
     };
 
@@ -97,8 +107,13 @@ const MobileMenu = ({
                     />
                 )}
                 {mobileMenuOpen && (
-                    <div className={styles.mobileMenu}>
-                        <ClickAwayListener onClickAway={handleClose}>
+                    <div
+                        className={cn(styles.mobileMenu, {
+                            [styles.openMobileMenu]: animate,
+                            [styles.closeMobileMenu]: !animate,
+                        })}
+                    >
+                        <ClickAwayListener onClickAway={handleCloseMenu}>
                             <Paper className={styles.mobileMenuPaper}>
                                 <MenuList>
                                     <MenuItem className={styles.userItem}>
@@ -117,7 +132,7 @@ const MobileMenu = ({
                                     </MenuItem>
                                     <MenuItem
                                         onClick={goToProfile}
-                                        className={styles.profileItem}
+                                        className={styles.profileItemMobile}
                                     >
                                         <AccountBoxIcon
                                             className={styles.mobileMenuIcon}
