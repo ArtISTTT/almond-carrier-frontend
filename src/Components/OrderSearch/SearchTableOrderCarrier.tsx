@@ -10,6 +10,8 @@ import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
 import { useRouter } from 'next/router';
 import { navigateTo } from 'src/interfaces/navigate';
+import { useSelector } from 'react-redux';
+import { selectIsAuthorized } from 'src/redux/selectors/user';
 
 type IProps = {
     order: IOrder;
@@ -18,13 +20,17 @@ type IProps = {
 const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
+    const isAuthorized = useSelector(selectIsAuthorized);
     const router = useRouter();
 
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
     const openPopupFunc = () => {
-        setIsPopupOpen(true);
-        toggleHtmlScroll(true);
+        if (isAuthorized) {
+            setIsPopupOpen(true);
+            toggleHtmlScroll(true);
+        }
+        router.push(navigateTo.SIGNIN);
     };
 
     const closePopup = () => {
@@ -41,36 +47,41 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
 
     return (
         <div>
-                    <div className={styles.itemWrapper}>
-            {isPopupOpen && (
-                <CarrierApplyPopup order={order} closePopup={closePopup} />
-            )}
-            <div className={cn(styles.part, styles.user)}>
-                <Avatar
-                    sx={{ width: 60, height: 60, cursor: 'pointer' }}
-                    alt='logo'
-                    className={styles.avatar}
-                />
-                <div className={styles.userInfo}>
-                    <div
-                        onClick={navigateToUserPage}
-                        className={styles.userName}
-                    >
-                        {order.carrier?.firstName} {order.carrier?.lastName}
-                    </div>
-                    <div className={cn(styles.infoItem, styles.infoItemRating)}>
-                        {t('rating')}: <span>4.64</span>
-                    </div>
-                    <div
-                        className={cn(
-                            styles.infoItem,
-                            styles.infoItemCompleted
-                        )}
-                    >
-                        {t('completedOrders')}: <span>16</span>
+            <div className={styles.itemWrapper}>
+                {isPopupOpen && (
+                    <CarrierApplyPopup order={order} closePopup={closePopup} />
+                )}
+                <div className={cn(styles.part, styles.user)}>
+                    <Avatar
+                        sx={{ width: 60, height: 60, cursor: 'pointer' }}
+                        alt='logo'
+                        className={styles.avatar}
+                    />
+                    <div className={styles.userInfo}>
+                        <div
+                            onClick={navigateToUserPage}
+                            className={styles.userName}
+                        >
+                            {order.carrier?.firstName} {order.carrier?.lastName}
+                        </div>
+                        <div
+                            className={cn(
+                                styles.infoItem,
+                                styles.infoItemRating
+                            )}
+                        >
+                            {t('rating')}: <span>4.64</span>
+                        </div>
+                        <div
+                            className={cn(
+                                styles.infoItem,
+                                styles.infoItemCompleted
+                            )}
+                        >
+                            {t('completedOrders')}: <span>16</span>
+                        </div>
                     </div>
                 </div>
-            </div>
                 <div
                     className={cn(
                         styles.part,
@@ -119,18 +130,17 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                         {t('apply')}
                     </Button>
                 </div>
-        </div>
-        <div className={styles.hidingButton}>
-            <Button
-                onClick={openPopupFunc}
-                variant='contained'
-                className={styles.applyBtn}
+            </div>
+            <div className={styles.hidingButton}>
+                <Button
+                    onClick={openPopupFunc}
+                    variant='contained'
+                    className={styles.applyBtn}
                 >
-                {t('apply')}
-            </Button>
+                    {t('apply')}
+                </Button>
+            </div>
         </div>
-    </div>
-
     );
 };
 

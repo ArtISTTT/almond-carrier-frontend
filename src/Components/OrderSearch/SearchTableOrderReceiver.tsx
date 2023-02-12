@@ -10,6 +10,8 @@ import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
 import { useRouter } from 'next/router';
 import { navigateTo } from 'src/interfaces/navigate';
+import { useSelector } from 'react-redux';
+import { selectIsAuthorized } from 'src/redux/selectors/user';
 
 type IProps = {
     order: IOrder;
@@ -18,13 +20,17 @@ type IProps = {
 const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
+    const isAuthorized = useSelector(selectIsAuthorized);
     const router = useRouter();
 
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
     const openPopupFunc = () => {
-        toggleHtmlScroll(true);
-        setIsPopupOpen(true);
+        if (isAuthorized) {
+            toggleHtmlScroll(true);
+            setIsPopupOpen(true);
+        }
+        router.push(navigateTo.SIGNIN);
     };
 
     const closePopup = () => {
