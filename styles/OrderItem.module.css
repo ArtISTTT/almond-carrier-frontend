@@ -392,8 +392,6 @@
     .detailsBlock {
         border-bottom: none;
         align-items: center;
-        width: fit-content;
-        padding-right: 10px;
     }
     .userBlock {
         width: 50%;
