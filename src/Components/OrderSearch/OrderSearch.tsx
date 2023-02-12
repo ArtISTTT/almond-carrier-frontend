@@ -11,10 +11,13 @@ import SearchTable from './SearchTable';
 import { useSearchOrders } from '../../redux/hooks/useSearchOrders';
 import { IOrder } from '../../interfaces/order';
 import OrderLoader from '../Loaders/OrderLoader';
+import CarrierApplyPopup from './CarrierApplyPopup';
+import ReceiverApplyPopup from './ReceiverApplyPopup';
 
 const OrderSearch: React.FC = () => {
     const [type, setType] = useState(OrderSeachType.carriers);
     const { reload, isLoading } = useSearchOrders();
+    const [applyedOrder, setApplyedOrder] = React.useState<IOrder>();
     const [orders, setOrders] = useState<IOrder[]>([]);
 
     const updateByFiltersAndType = async (
@@ -25,9 +28,29 @@ const OrderSearch: React.FC = () => {
         setOrders(awaitedOrders);
     };
 
+    const closePopup = () => setApplyedOrder(undefined);
+
     useEffect(() => {
         updateByFiltersAndType({});
     }, [type]);
+
+    if (applyedOrder) {
+        return (
+            <>
+                {type === OrderSeachType.carriers ? (
+                    <CarrierApplyPopup
+                        order={applyedOrder}
+                        closePopup={closePopup}
+                    />
+                ) : (
+                    <ReceiverApplyPopup
+                        order={applyedOrder}
+                        closePopup={closePopup}
+                    />
+                )}
+            </>
+        );
+    }
 
     return (
         <div className={styles.wrapper}>
@@ -42,7 +65,11 @@ const OrderSearch: React.FC = () => {
                         <OrderLoader />
                     </div>
                 ) : (
-                    <SearchTable type={type} orders={orders} />
+                    <SearchTable
+                        setApplyedOrder={setApplyedOrder}
+                        type={type}
+                        orders={orders}
+                    />
                 )}
             </div>
         </div>

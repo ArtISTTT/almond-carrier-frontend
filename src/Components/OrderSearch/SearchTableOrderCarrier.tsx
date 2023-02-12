@@ -4,8 +4,6 @@ import { Avatar, Button, Tooltip } from '@mui/material';
 import cn from 'classnames';
 import { IOrder } from '../../interfaces/order';
 import { useTranslation } from 'next-i18next';
-import CarrierApplyPopup from './CarrierApplyPopup';
-import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
 import { useRouter } from 'next/router';
@@ -13,24 +11,18 @@ import { navigateTo } from 'src/interfaces/navigate';
 
 type IProps = {
     order: IOrder;
+    setApplyedOrder: React.Dispatch<React.SetStateAction<IOrder | undefined>>;
 };
 
-const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
+const SearchTableOrderCarrier: React.FC<IProps> = ({
+    order,
+    setApplyedOrder,
+}) => {
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
     const router = useRouter();
 
-    const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-
-    const openPopupFunc = () => {
-        setIsPopupOpen(true);
-        toggleHtmlScroll(true);
-    };
-
-    const closePopup = () => {
-        toggleHtmlScroll(false);
-        setIsPopupOpen(false);
-    };
+    const openPopupFunc = () => setApplyedOrder(order);
 
     const navigateToUserPage = (): void => {
         router.push({
@@ -41,36 +33,38 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
 
     return (
         <div>
-                    <div className={styles.itemWrapper}>
-            {isPopupOpen && (
-                <CarrierApplyPopup order={order} closePopup={closePopup} />
-            )}
-            <div className={cn(styles.part, styles.user)}>
-                <Avatar
-                    sx={{ width: 60, height: 60, cursor: 'pointer' }}
-                    alt='logo'
-                    className={styles.avatar}
-                />
-                <div className={styles.userInfo}>
-                    <div
-                        onClick={navigateToUserPage}
-                        className={styles.userName}
-                    >
-                        {order.carrier?.firstName} {order.carrier?.lastName}
-                    </div>
-                    <div className={cn(styles.infoItem, styles.infoItemRating)}>
-                        {t('rating')}: <span>4.64</span>
-                    </div>
-                    <div
-                        className={cn(
-                            styles.infoItem,
-                            styles.infoItemCompleted
-                        )}
-                    >
-                        {t('completedOrders')}: <span>16</span>
+            <div className={styles.itemWrapper}>
+                <div className={cn(styles.part, styles.user)}>
+                    <Avatar
+                        sx={{ width: 60, height: 60, cursor: 'pointer' }}
+                        alt='logo'
+                        className={styles.avatar}
+                    />
+                    <div className={styles.userInfo}>
+                        <div
+                            onClick={navigateToUserPage}
+                            className={styles.userName}
+                        >
+                            {order.carrier?.firstName} {order.carrier?.lastName}
+                        </div>
+                        <div
+                            className={cn(
+                                styles.infoItem,
+                                styles.infoItemRating
+                            )}
+                        >
+                            {t('rating')}: <span>4.64</span>
+                        </div>
+                        <div
+                            className={cn(
+                                styles.infoItem,
+                                styles.infoItemCompleted
+                            )}
+                        >
+                            {t('completedOrders')}: <span>16</span>
+                        </div>
                     </div>
                 </div>
-            </div>
                 <div
                     className={cn(
                         styles.part,
@@ -119,18 +113,17 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({ order }) => {
                         {t('apply')}
                     </Button>
                 </div>
-        </div>
-        <div className={styles.hidingButton}>
-            <Button
-                onClick={openPopupFunc}
-                variant='contained'
-                className={styles.applyBtn}
+            </div>
+            <div className={styles.hidingButton}>
+                <Button
+                    onClick={openPopupFunc}
+                    variant='contained'
+                    className={styles.applyBtn}
                 >
-                {t('apply')}
-            </Button>
+                    {t('apply')}
+                </Button>
+            </div>
         </div>
-    </div>
-
     );
 };
 
