@@ -174,7 +174,10 @@ const MobileMenu = ({
                                     </MenuItem>
                                     <MenuItem
                                         onClick={handleSignOut}
-                                        className={styles.exitItem}
+                                        className={cn(styles.exitItem, {
+                                            [styles.openMobileMenu]: animate,
+                                            [styles.closeMobileMenu]: !animate,
+                                        })}
                                     >
                                         {t('logOut')}
                                     </MenuItem>
