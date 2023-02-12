@@ -391,7 +391,8 @@
     }
     .detailsBlock {
         border-bottom: none;
-        align-items: flex-end;
+        align-items: center;
+        width: fit-content;
         padding-right: 10px;
     }
     .userBlock {

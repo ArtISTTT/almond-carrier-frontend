@@ -65,6 +65,10 @@
     font-weight: 600;
 }
 
+.button :global .MuiLink-root {
+    text-decoration: none;
+}
+
 .userPanel {
     display: flex;
     align-items: center;
@@ -120,6 +124,17 @@
     display: flex;
 }
 
+.blurWrapper {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+}
+
+.blurWrapperOn {
+    backdrop-filter: blur(1px);
+}
+
 .mobileMenuWrapper {
     display: none;
 }
@@ -172,7 +187,7 @@
 }
 
 .profileItem {
-    margin-top: 20px;
+    /* margin-top: 20px; */
     padding-left: 10px;
     font-size: 14px;
 }
@@ -254,7 +269,7 @@
     .mobileMenuWrapper {
         display: flex;
         align-items: center;
-
+        z-index: 2;
         font-size: 10px;
         margin-right: 24px;
     }

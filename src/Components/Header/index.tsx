@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { navigateTo } from 'src/interfaces/navigate';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
-import MobileMenu from './mobileMenu';
+import MobileMenu from './MobileMenu';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -76,17 +76,23 @@ const Header: React.FC<IProps> = ({
                                 className={styles.button}
                                 variant='outlined'
                             >
-                                <Link href={navigateTo.SIGNIN}>
+                                <MUILink
+                                    component={LinkBehaviour}
+                                    href={navigateTo.SIGNIN}
+                                >
                                     {t('signIn')}
-                                </Link>
+                                </MUILink>
                             </Button>
                             <Button
                                 className={styles.button}
                                 variant='outlined'
                             >
-                                <Link href={navigateTo.SIGNUP}>
+                                <MUILink
+                                    component={LinkBehaviour}
+                                    href={navigateTo.SIGNUP}
+                                >
                                     {t('signUp')}
-                                </Link>
+                                </MUILink>
                             </Button>
                         </>
                     )}
