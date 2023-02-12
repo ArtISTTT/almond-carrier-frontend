@@ -84,7 +84,7 @@ const NotificationsMenu = () => {
                             transformOrigin:
                                 placement === 'bottom'
                                     ? 'center top'
-                                    : 'center bottom',
+                                    : 'center top',
                         }}
                         className={styles.growMenu}
                     >
