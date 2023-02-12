@@ -30,6 +30,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import SettingsPopup from '../SettingsPopup/SettingsPopup';
 import { signOut } from 'src/api/auth';
 import { setIsAuthorized } from 'src/redux/slices/userSlice';
+import NotificationsMenu from '../Notifications/NotificationsMenu';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -135,10 +136,13 @@ const Header: React.FC<IProps> = ({
                     )}
                 </div>
                 {isAuthorized && (
-                    <HeaderAvatar
-                        setIsSettingsPopupOpen={setIsSettingsPopupOpen}
-                        isSettingsPopupOpen={isSettingsPopupOpen}
-                    />
+                    <div className={styles.authoridedIcons}>
+                        <NotificationsMenu />
+                        <HeaderAvatar
+                            setIsSettingsPopupOpen={setIsSettingsPopupOpen}
+                            isSettingsPopupOpen={isSettingsPopupOpen}
+                        />
+                    </div>
                 )}
             </div>
 

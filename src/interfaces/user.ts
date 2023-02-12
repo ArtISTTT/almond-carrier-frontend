@@ -12,3 +12,8 @@ export type IUser = {
     completedOrders: number;
     id: string;
 };
+
+export interface IUserNotification {
+    text: string;
+    deal: string;
+}

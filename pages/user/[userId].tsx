@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import { OpenAlertContext } from 'src/Components/Layouts/Snackbar';
 import { useTranslation } from 'react-i18next';
 import { IGetUser } from 'src/interfaces/api/user';
-import UserLoader from 'src/Components/UserLoader';
+import UserLoader from 'src/Components/Loaders/UserLoader';
 import { useAppSelector } from 'src/redux/hooks';
 import { navigateTo } from 'src/interfaces/navigate';
 

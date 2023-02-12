@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/OrderLoader.module.css';
+import styles from '../../../styles/OrderLoader.module.css';
 
 const UserLoader = () => {
     return (

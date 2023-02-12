@@ -6,7 +6,7 @@ import OrderInformation from './OrderInformation';
 import { getOrderById } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { IOrderFull } from '../../interfaces/order';
-import OrderLoader from '../OrderLoader';
+import OrderLoader from '../Loaders/OrderLoader';
 import Link from 'next/link';
 import { Button } from '@mui/material';
 import OrderPayment from './OrderPayment';

@@ -10,7 +10,7 @@ import SearchFilters from './SearchFilters';
 import SearchTable from './SearchTable';
 import { useSearchOrders } from '../../redux/hooks/useSearchOrders';
 import { IOrder } from '../../interfaces/order';
-import OrderLoader from '../OrderLoader';
+import OrderLoader from '../Loaders/OrderLoader';
 
 const OrderSearch: React.FC = () => {
     const [type, setType] = useState(OrderSeachType.carriers);

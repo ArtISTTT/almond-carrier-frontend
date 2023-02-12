@@ -12,8 +12,7 @@ import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency, Language } from 'src/interfaces/settings';
 import Tooltip from '@mui/material/Tooltip';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
-import DetailsLoader from '../DetailsLoader';
-
+import DetailsLoader from '../Loaders/DetailsLoader';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
@@ -38,10 +37,6 @@ const OrderItem: React.FC<IOrder> = ({
         React.useState<boolean>(false);
 
     const navigateToDetailsLoading = () => setIsDetailsLoading(true);
-
-    // React.useEffect(() => {
-    //     const qwe = getCurrentPlace(fromLocation_placeId, Language.RU);
-    // }, []);
 
     return (
         <div

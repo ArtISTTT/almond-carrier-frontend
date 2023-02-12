@@ -9,7 +9,7 @@ import {
 } from '../../redux/slices/userSlice';
 import { useSelector } from 'react-redux';
 import { selectIsInitializeAuthChecked } from '../../redux/selectors/user';
-import Loader from '../Loader';
+import Loader from '../Loaders/Loader';
 import { IGetCurrentUserReturn } from '../../interfaces/api/auth';
 import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
 import { changeLanguage } from '../../redux/slices/settingsSlice';

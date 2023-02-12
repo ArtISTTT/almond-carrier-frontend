@@ -27,6 +27,16 @@
     margin-left: 24px;
 }
 
+.authoridedIcons {
+    display: flex;
+    align-items: center;
+}
+
+.notificationsIconHeader {
+    color: var(--cTextPrimary);
+    margin-right: 10px;
+}
+
 .rightMenu {
     display: flex;
     align-items: center;
