@@ -65,7 +65,7 @@ const MessageChat: React.FC<IProps> = ({
                 </Typography>
                 {type !== MessageType.Admin && (
                     <div className={styles.sendTime}>
-                        {messageTime(currentDate, createdAt)}
+                        {messageTime(createdAt)}
                     </div>
                 )}
             </div>

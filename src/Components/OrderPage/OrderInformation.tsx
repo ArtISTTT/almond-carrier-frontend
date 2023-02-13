@@ -108,10 +108,6 @@ const OrderInformation: React.FC<IProps> = ({
         return labels;
     }, [order]);
 
-    const onSubmit = (form: any) => {
-        setEditingFields([]);
-    };
-
     const initialValues = useMemo(() => {
         return {
             toLocation: order.toLocation,
@@ -156,7 +152,7 @@ const OrderInformation: React.FC<IProps> = ({
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || t('ErrorWhileChangingData'),
+                text: data.error || t('errorWhileChangingData'),
             });
         }
 
@@ -176,7 +172,7 @@ const OrderInformation: React.FC<IProps> = ({
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || t('ErrorWhileChangingData'),
+                text: data.error || t('errorWhileChangingData'),
             });
         }
 
@@ -196,7 +192,7 @@ const OrderInformation: React.FC<IProps> = ({
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || t('ErrorWhileRejectingChanges'),
+                text: data.error || t('errorWhileRejectingChanges'),
             });
         }
 
@@ -260,7 +256,7 @@ const OrderInformation: React.FC<IProps> = ({
         'productDescription'
     );
 
-    const personFullName = () => {
+    const personFullName = useMemo(() => {
         if (viewType === ViewType.receiver) {
             return `${order.carrier?.firstName} ${order.carrier?.lastName}`;
         }
@@ -268,14 +264,30 @@ const OrderInformation: React.FC<IProps> = ({
         if (viewType === ViewType.carrier) {
             return `${order.receiver?.firstName} ${order.receiver?.lastName}`;
         }
-    };
+    }, [
+        viewType,
+        order.receiver?.firstName,
+        order.receiver?.lastName,
+        order.carrier?.lastName,
+        order.carrier?.firstName,
+    ]);
 
     return (
         <div className={styles.orderInformation}>
             {!isReviewBlockOpen ? (
                 <form onSubmit={formik.handleSubmit}>
                     <div className={styles.orderInformationTitle}>
-                        Order information
+                        {t('orderInformation')}
+                    </div>
+                    <div className={styles.personInfo}>
+                        <div className={styles.personRole}>
+                            {viewType === ViewType.carrier
+                                ? t('receiver')
+                                : t('carrier')}
+                        </div>
+                        <div className={styles.personName}>
+                            {personFullName}
+                        </div>
                     </div>
                     <div className={styles.editableForm}>
                         {order.productName && (
