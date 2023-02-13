@@ -45,11 +45,8 @@ const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
 
             <div className={styles.reviewContent}>
                 <div className={styles.personInfo}>
-                    <Typography variant='h4' component='h3'>
-                        Поздравляем! Ваш заказ Завершен!
-                    </Typography>
-                    <Typography variant='h5' component='h3'>
-                        Курьер: Никита Богданков
+                    <Typography variant='h4' component='h3' className={styles.titleText}>
+                        {t('congratulations')}
                     </Typography>
                 </div>
 
@@ -59,7 +56,9 @@ const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
                     action='submit'
                 >
                     <div className={styles.ratingBlock}>
-                        <div>Поставьте рейтинг челу</div>
+                        <div className={styles.ratingBlockText}>
+                            {t('rateCarrier')} <span className={styles.rateName}>Nikita</span> 
+                        </div>
                         <Rating
                             className={styles.ratingStars}
                             name='rating'
