@@ -28,6 +28,24 @@
     margin-bottom: 16px;
 }
 
+.detailsButtons {
+    display: flex;
+    gap: 15px;
+}
+
+.openReviewButton {
+    color: var(--cTextPrimary);
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 300ms;
+}
+
+.openReviewButton:hover {
+    text-decoration: underline;
+}
+
 .orderStatus {
     color: var(--cTextLow);
     font-size: 18px;

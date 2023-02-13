@@ -18,8 +18,6 @@ const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
     const { t } = useTranslation();
 
     const sendReview = (form: Iform) => {
-        // console.log(form);
-
         setIsReviewBlockOpen(false);
     };
 

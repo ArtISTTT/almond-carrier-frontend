@@ -50,7 +50,6 @@ const OrderInformation: React.FC<IProps> = ({
     user,
     updateOrder,
 }) => {
-    const router = useRouter();
     const [editingFields, setEditingFields] = useState<(keyof IOrderFull)[]>(
         []
     );

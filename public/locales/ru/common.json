@@ -70,6 +70,7 @@
     "errorUpdatePassword": "Ошибка при обновлении пароля",
     "errorWhileChangingData": "Ошибка при изменении данных",
     "productAmount": "Цена",
+    "leaveFeedback": "Оставить отзыв",
     "orderInformation": "Информация о заказе",
     "errorWhileRejectingChanges": "Ошибка при отклонении данных",
     "EUR": "€",

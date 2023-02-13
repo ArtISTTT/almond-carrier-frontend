@@ -10,12 +10,20 @@ import { OrderStatus } from 'src/interfaces/profile';
 
 type IProps = {
     order: IOrderFull;
+    isReviewBlockOpen: boolean;
+    setIsReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const OrderDetails: React.FC<IProps> = ({ order }) => {
+const OrderDetails: React.FC<IProps> = ({
+    order,
+    isReviewBlockOpen,
+    setIsReviewBlockOpen,
+}) => {
     const router = useRouter();
     const { t } = useTranslation();
     const statusToText = useConvertStatusToText();
+
+    const openReviewBlock = () => setIsReviewBlockOpen(true);
 
     return (
         <div className={styles.orderDetails}>
@@ -23,19 +31,29 @@ const OrderDetails: React.FC<IProps> = ({ order }) => {
                 <div className={styles.orderDetailsTitle}>
                     {t('orderDetails')}
                 </div>
-                <span
-                    className={cn(styles.orderStatus, {
-                        [styles.statusInProcess]:
-                            order.status !== OrderStatus.success &&
-                            order.status !== OrderStatus.cancelled,
-                        [styles.statusSuccess]:
-                            order.status === OrderStatus.success,
-                        [styles.statusCancelled]:
-                            order.status === OrderStatus.cancelled,
-                    })}
-                >
-                    {statusToText(order.status)}
-                </span>
+                <div className={styles.detailsButtons}>
+                    <span
+                        className={cn(styles.orderStatus, {
+                            [styles.statusInProcess]:
+                                order.status !== OrderStatus.success &&
+                                order.status !== OrderStatus.cancelled,
+                            [styles.statusSuccess]:
+                                order.status === OrderStatus.success,
+                            [styles.statusCancelled]:
+                                order.status === OrderStatus.cancelled,
+                        })}
+                    >
+                        {statusToText(order.status)}
+                    </span>
+                    {!isReviewBlockOpen && (
+                        <div
+                            className={styles.openReviewButton}
+                            onClick={openReviewBlock}
+                        >
+                            {t('leaveFeedback')}
+                        </div>
+                    )}
+                </div>
             </div>
             <div className={styles.orderDetailsInfo}>
                 <div className={styles.infoLeft}>
