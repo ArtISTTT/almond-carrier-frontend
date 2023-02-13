@@ -125,7 +125,7 @@ const OrderChat: React.FC<IProps> = ({
         <div className={styles.chatWrapper}>
             <div className={styles.chatHeader}>
                 <div onClick={navigateToUserPage} className={styles.chatPerson}>
-                    <Avatar sx={{ height: 50, width: 50 }} />
+                    <Avatar sx={{ height: 50, width: 50 }} className={styles.avatar} />
                     <div className={styles.chatMember}>
                         <Typography
                             className={styles.chatMemberName}

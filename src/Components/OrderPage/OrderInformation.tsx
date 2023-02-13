@@ -362,9 +362,9 @@ const OrderInformation: React.FC<IProps> = ({
                                         id='productAmount'
                                         type='number'
                                         placeholder={
-                                            t('ProductAmount') as string
+                                            t('productAmount') as string
                                         }
-                                        label={t('ProductAmount') as string}
+                                        label={t('productAmount') as string}
                                         availableLabels={availableLabels}
                                         addToEditingFields={addToEditingFields}
                                         removeFromEditingFields={
@@ -381,9 +381,9 @@ const OrderInformation: React.FC<IProps> = ({
                                         id='rewardAmount'
                                         type='number'
                                         placeholder={
-                                            t('RewardAmount') as string
+                                            t('rewardAmount') as string
                                         }
-                                        label={t('RewardAmount') as string}
+                                        label={t('rewardAmount') as string}
                                         availableLabels={availableLabels}
                                         addToEditingFields={addToEditingFields}
                                         removeFromEditingFields={
@@ -394,7 +394,7 @@ const OrderInformation: React.FC<IProps> = ({
                                 )}
                                 {order.rewardAmount && order.productAmount && (
                                     <div className={styles.inputItem}>
-                                        <label>{t('TotalAmount')}</label>
+                                        <label>{t('totalAmount')}</label>
                                         <div
                                             className={
                                                 styles.orderInputValueWrapper
@@ -543,7 +543,7 @@ const OrderInformation: React.FC<IProps> = ({
                                         disabled={!hasAnyChanges}
                                         type='submit'
                                     >
-                                        {t('ConfirmChanges')}
+                                        {t('confirmChanges')}
                                     </Button>
                                 </div>
                                 <div className={styles.buttons}>
@@ -553,7 +553,7 @@ const OrderInformation: React.FC<IProps> = ({
                                         color='primary'
                                         onClick={confirmDealClick}
                                     >
-                                        {t('StartTheDeal')}
+                                        {t('startTheDeal')}
                                     </Button>
                                 </div>
                             </>
