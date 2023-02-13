@@ -19,6 +19,7 @@ import { CarrierApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
 import { useAppSelector } from 'src/redux/hooks';
+import { navigateTo } from 'src/interfaces/navigate';
 
 interface IProps {
     closePopup: () => void;
@@ -94,7 +95,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
         <ApplyPopup closePopup={closePopup}>
             <div className={styles.carrierCard}>
                 <Avatar
-                    nClick={navigateToUserPage}
+                    onClick={navigateToUserPage}
                     sx={{ width: 80, height: 80, cursor: 'pointer' }}
                 />
                 <div className={styles.carrierCardInfo}>

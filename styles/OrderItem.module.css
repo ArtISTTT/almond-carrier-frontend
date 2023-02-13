@@ -344,7 +344,7 @@
         margin-top: 10px;
         font-size: 11px;
         width: 150px;
-        justify-content: start;
+        justify-content: flex-start;
     }
     .benefitBlock {
         display: flex;

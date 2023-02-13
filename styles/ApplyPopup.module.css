@@ -181,6 +181,8 @@
 }
 
 .stackDistance {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
 }
 
@@ -285,7 +287,7 @@
 }
 
 @media screen and (max-width: 850px) {
-    .popup { 
+    .popup {
         width: 90%;
     }
 }
@@ -320,7 +322,7 @@
     }
     .input :global .MuiInputBase-root {
         font-size: 12px;
-    }   
+    }
     .productDescription {
         font-size: 13px;
     }
@@ -367,7 +369,7 @@
         margin-left: 0 !important;
         padding-top: 5px;
     }
-    .infoItem{
+    .infoItem {
         font-size: 10px;
     }
     .infoItemWay {
