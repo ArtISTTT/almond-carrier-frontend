@@ -7,6 +7,7 @@ import { Dayjs } from 'dayjs';
 import { useDifferenceTime } from 'src/redux/hooks/useDifferenceTime';
 
 interface IProps {
+    errorMessage?: string;
     messageText: string;
     type: MessageType;
     createdAt: Dayjs;
@@ -18,9 +19,11 @@ const MessageChat: React.FC<IProps> = ({
     messageText,
     type,
     createdAt,
+    errorMessage,
     currentDate,
 }) => {
     const messageTime = useDifferenceTime(currentDate);
+    const { t } = useTranslation();
 
     return (
         <div
@@ -49,11 +52,20 @@ const MessageChat: React.FC<IProps> = ({
                         [styles.OurMessageBlock]: type === MessageType.Admin,
                     })}
                 >
-                    {messageText}{' '}
+                     {errorMessage ? (
+                        <div className={styles.errorMessage}>
+                            <ErrorIcon />
+                            <span>{t(messageText)}</span>
+                        </div>
+                    ) : (
+                        messageText
+                    )}
                 </Typography>
-                <div className={styles.sendTime}>
-                    {messageTime(currentDate, createdAt)}
-                </div>
+                {type !== MessageType.Admin && (
+                    <div className={styles.sendTime}>
+                        {messageTime(createdAt)}
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -150,3 +150,43 @@
 .messageAvatar {
     margin-bottom: 17.5px;
 }
+.errorMessage {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    color: var(--cTextError);
+}
+
+.errorMessage > span {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+@media screen and (max-width: 1130px) {
+    .chatWrapper {
+        margin-top: 0;
+        margin-left: 32px;
+        margin-bottom: 32px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .chatWrapper {
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .chatWrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .chatMemberName {
+        font-size: 15px;
+    }
+    .avatar {
+        width: 40px;
+        height: 40px;
+    }
+}

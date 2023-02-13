@@ -15,9 +15,10 @@ import { useTranslation } from 'next-i18next';
 type IProps = {
     type: OrderSeachType;
     orders: IOrder[];
+    setApplyedOrder: React.Dispatch<React.SetStateAction<IOrder | undefined>>;
 };
 const n = 4;
-const SearchTable: React.FC<IProps> = ({ type, orders }) => {
+const SearchTable: React.FC<IProps> = ({ type, orders, setApplyedOrder }) => {
     const { t } = useTranslation();
     const carriersHeaders = [
         { name: t('carrier'), long: true },
@@ -57,9 +58,14 @@ const SearchTable: React.FC<IProps> = ({ type, orders }) => {
             <div>
                 {orders.map(order =>
                     type === OrderSeachType.carriers ? (
-                        <SearchTableOrderCarrier order={order} key={order.id} />
+                        <SearchTableOrderCarrier
+                            setApplyedOrder={setApplyedOrder}
+                            order={order}
+                            key={order.id}
+                        />
                     ) : (
                         <SearchTableOrderReceiver
+                            setApplyedOrder={setApplyedOrder}
                             order={order}
                             key={order.id}
                         />

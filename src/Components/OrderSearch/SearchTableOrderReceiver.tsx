@@ -5,93 +5,112 @@ import cn from 'classnames';
 import { IOrder } from '../../interfaces/order';
 import { useTranslation } from 'next-i18next';
 import ReceiverApplyPopup from './ReceiverApplyPopup';
-import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
 
 type IProps = {
     order: IOrder;
+    setApplyedOrder: React.Dispatch<React.SetStateAction<IOrder | undefined>>;
 };
 
-const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
+const SearchTableOrderReceiver: React.FC<IProps> = ({
+    order,
+    setApplyedOrder,
+}) => {
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
+    const router = useRouter();
 
-    const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+    const openPopupFunc = () => setApplyedOrder(order);
 
-    const openPopupFunc = () => {
-        toggleHtmlScroll(true);
-        setIsPopupOpen(true);
-    };
-
-    const closePopup = () => {
-        toggleHtmlScroll(false);
-        setIsPopupOpen(false);
+    const navigateToUserPage = (): void => {
+        router.push({
+            pathname: navigateTo.USER,
+            query: { userId: order.receiver?.id },
+        });
     };
 
     return (
-        <div className={styles.itemWrapper}>
-            {isPopupOpen && (
-                <ReceiverApplyPopup order={order} closePopup={closePopup} />
-            )}
-            <div className={cn(styles.part, styles.user)}>
-                <Avatar
-                    sx={{ width: 60, height: 60, cursor: 'pointer' }}
-                    alt='logo'
-                />
-                <div className={styles.userInfo}>
-                    <div className={styles.userName}>
-                        {order.receiver?.firstName} {order.receiver?.lastName}
-                    </div>
-                    <div className={cn(styles.infoItem, styles.infoItemRating)}>
-                        {t('rating')}: <span>4.64</span>
-                    </div>
-                    <div
-                        className={cn(
-                            styles.infoItem,
-                            styles.infoItemCompleted
-                        )}
-                    >
-                        {t('completedOrders')}: <span>16</span>
+        <div>
+            <div className={styles.itemWrapper}>
+                <div className={cn(styles.part, styles.user)}>
+                    <Avatar
+                        sx={{ width: 60, height: 60, cursor: 'pointer' }}
+                        alt='logo'
+                        className={styles.avatar}
+                    />
+                    <div className={styles.userInfo}>
+                        <div
+                            onClick={navigateToUserPage}
+                            className={styles.userName}
+                        >
+                            {order.receiver?.firstName}{' '}
+                            {order.receiver?.lastName}
+                        </div>
+                        <div
+                            className={cn(
+                                styles.infoItem,
+                                styles.infoItemRating
+                            )}
+                        >
+                            {t('rating')}: <span>4.64</span>
+                        </div>
+                        <div
+                            className={cn(
+                                styles.infoItem,
+                                styles.infoItemCompleted
+                            )}
+                        >
+                            {t('completedOrders')}: <span>16</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className={cn(styles.part, styles.fromTo, styles.doubleditem)}>
-                <div>
-                    <Tooltip title={order.fromLocation} placement='bottom'>
-                        <div className={styles.fromToItem}>
-                            <span className={styles.prefix}>{t('from')}:</span>
-                            <span className={styles.toAndFromLocationValue}>
-                                {order.fromLocation ?? t('undefined')}
-                            </span>
-                        </div>
-                    </Tooltip>
-                    <Tooltip title={order.toLocation} placement='bottom'>
-                        <div className={styles.fromToItem}>
-                            <span className={styles.prefix}>{t('to')}:</span>
-                            <span className={styles.toAndFromLocationValue}>
-                                {order.toLocation}
-                            </span>
-                        </div>
-                    </Tooltip>
-                </div>
-            </div>
-            <div className={cn(styles.part, styles.productname)}>
-                {order.productName}
-            </div>
-            <div className={cn(styles.part, styles.doubleditem)}>
-                <div>
-                    <div className={styles.benefitPriceItem}>
-                        <span className={styles.prefix}>{t('price')}:</span>
-                        <span className={styles.benefitPriceValue}>
-                            {order.productAmount &&
-                                formatAmount(
-                                    order.productAmount,
-                                    Currency.RUB,
-                                    true
-                                )}
-                        </span>
+                <div
+                    className={cn(
+                        styles.part,
+                        styles.fromTo,
+                        styles.doubleditem
+                    )}
+                >
+                    <div>
+                        <Tooltip title={order.fromLocation} placement='bottom'>
+                            <div className={styles.fromToItem}>
+                                <span className={styles.prefix}>
+                                    {t('from')}:
+                                </span>
+                                <span className={styles.toAndFromLocationValue}>
+                                    {order.fromLocation ?? t('undefined')}
+                                </span>
+                            </div>
+                        </Tooltip>
+                        <Tooltip title={order.toLocation} placement='bottom'>
+                            <div className={styles.fromToItem}>
+                                <span className={styles.prefix}>
+                                    {t('to')}:
+                                </span>
+                                <span className={styles.toAndFromLocationValue}>
+                                    {order.toLocation}
+                                </span>
+                            </div>
+                        </Tooltip>
                     </div>
+                </div>
+                <div className={cn(styles.part, styles.productName)}>
+                    {order.productName}
+                </div>
+                <div className={cn(styles.part, styles.doubleditem)}>
+                    <div>
+                        <div className={styles.benefitPriceItem}>
+                            <span className={styles.prefix}>{t('price')}:</span>
+                            <span className={styles.benefitPriceValue}>
+                                {order.productAmount &&
+                                    formatAmount(
+                                        order.productAmount,
+                                        Currency.RUB,
+                                        true
+                                    )}
+                            </span>
+                        </div>
 
                     <div className={styles.benefitPriceItem}>
                         <span className={styles.prefix}>{t('benefit')}:</span>

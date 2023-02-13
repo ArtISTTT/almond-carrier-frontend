@@ -26,6 +26,7 @@ interface IProps {
 }
 interface IForm {
     productName: string;
+    productLink: string;
     productAmount: number | undefined;
     productWeight: number | undefined;
     productDescription: string;
@@ -33,6 +34,7 @@ interface IForm {
 
 const defaultValues = {
     productName: '',
+    productLink: '',
     productAmount: undefined,
     productWeight: undefined,
     productDescription: '',
@@ -81,13 +83,24 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
         validateOnChange: false,
     });
 
+    const navigateToUserPage = (): void => {
+        push({
+            pathname: navigateTo.USER,
+            query: { userId: order.carrier?.id },
+        });
+    };
+
     return (
         <ApplyPopup closePopup={closePopup}>
             <div className={styles.carrierCard}>
-                <Avatar sx={{ width: 80, height: 80 }} />
+                <Avatar
+                    nClick={navigateToUserPage}
+                    sx={{ width: 80, height: 80, cursor: 'pointer' }}
+                />
                 <div className={styles.carrierCardInfo}>
                     <Typography
                         className={styles.carrierName}
+                        onClick={navigateToUserPage}
                         variant='h4'
                         component='h3'
                     >
@@ -109,88 +122,55 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </Typography>
                 </div>
             </div>
+
             <div className={styles.carrierInfo}>
-                <div className={styles.infoWayItems}>
-                    <Stack
-                        className={styles.infoWayLine}
-                        direction='row'
-                        spacing={4.25}
-                    >
-                        <Typography
-                            className={styles.infoItemWay}
-                            variant='h5'
-                            component='p'
-                        >
-                            <p>{t('to')}:</p>
-                        </Typography>
-                        <Typography
-                            className={styles.infoItemWay}
-                            variant='h5'
-                            component='p'
-                        >
-                            <span>{order.toLocation}</span>
-                        </Typography>
-                    </Stack>
-                    <Stack
-                        className={styles.infoWayLine}
-                        direction='row'
-                        spacing={2}
-                    >
-                        <Typography
-                            className={styles.infoItemWay}
-                            variant='h5'
-                            component='p'
-                        >
-                            <p>{t('from')}:</p>
-                        </Typography>
-
-                        <Typography
-                            className={styles.infoItemWay}
-                            variant='h5'
-                            component='p'
-                        >
-                            <span>{order.fromLocation}</span>
-                        </Typography>
-                    </Stack>
-                </div>
-
-                <Stack direction='column' spacing={3} className={styles.stack}>
-                    <Typography
-                        className={styles.infoItem}
-                        variant='h5'
-                        component='p'
-                    >
-                        <p>{t('flightDate')}:</p>
-                        <span>{order.arrivalDate?.format('DD.MM.YYYY')}</span>
-                    </Typography>
-                    <Typography
-                        className={styles.infoItem}
-                        variant='h5'
-                        component='p'
-                    >
-                        <p>{t('benefit')}:{' '}</p>
-                        <span>
-                            {formatAmount(
-                                order.rewardAmount,
-                                Currency.RUB,
-                                true
-                            )}
-                        </span>
-                    </Typography>
-                    <Typography
-                        className={styles.infoItem}
-                        variant='h5'
-                        component='p'
-                    >
-                        <p>{t('maxWeight')}:</p>
-                        <span>
-                            {order.carrierMaxWeight} {t('kg')}
-                        </span>
-                    </Typography>
-                </Stack>
+                <Typography
+                    className={styles.infoItem}
+                    variant='h5'
+                    component='p'
+                >
+                    <p>{t('to')}:</p>
+                    <span>{order.toLocation}</span>
+                </Typography>
+                <Typography
+                    className={styles.infoItem}
+                    variant='h5'
+                    component='p'
+                >
+                    <p>{t('from')}:</p>
+                    <span>{order.fromLocation}</span>
+                </Typography>
+                <Typography
+                    className={styles.infoItem}
+                    variant='h5'
+                    component='p'
+                >
+                    <p>{t('flightDate')}:</p>
+                    <span>{order.arrivalDate?.format('DD.MM.YYYY')}</span>
+                </Typography>
+                <Typography
+                    className={styles.infoItem}
+                    variant='h5'
+                    component='p'
+                >
+                    <p>{t('benefit')}: </p>
+                    <span>
+                        {formatAmount(order.rewardAmount, Currency.RUB, true)}
+                    </span>
+                </Typography>
+                <Typography
+                    className={styles.infoItem}
+                    variant='h5'
+                    component='p'
+                >
+                    <p>{t('maxWeight')}:</p>
+                    <span>
+                        {order.carrierMaxWeight} {t('kg')}
+                    </span>
+                </Typography>
             </div>
             <form onSubmit={formik.handleSubmit} action='submit'>
-                <Stack direction='row' spacing={3}>
+                <Stack direction='row' className={styles.stackDistance}>
                     <div className={styles.inputItem}>
                         <label htmlFor='productName'>{t('product')}</label>
                         <TextField
@@ -204,6 +184,23 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             helperText={
                                 formik.errors.productName &&
                                 (t(formik.errors.productName) as string)
+                            }
+                        />
+                    </div>
+                    <div className={styles.inputItem}>
+                        <label htmlFor='productLink'>{t('productLink')}</label>
+                        <TextField
+                            id='productLink'
+                            name='productLink'
+                            variant='outlined'
+                            value={formik.values.productLink}
+                            placeholder='example.com'
+                            onChange={formik.handleChange}
+                            className={styles.input}
+                            error={formik.errors.productLink !== undefined}
+                            helperText={
+                                formik.errors.productLink &&
+                                (t(formik.errors.productLink) as string)
                             }
                         />
                     </div>
@@ -240,6 +237,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                                         {t('kg')}
                                     </InputAdornment>
                                 ),
+                                inputProps: { max: 40 },
                             }}
                             id='productWeight'
                             name='productWeight'
