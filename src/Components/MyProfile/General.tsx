@@ -20,6 +20,7 @@ import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs, { Dayjs } from 'dayjs';
+import { Genders } from 'src/interfaces/settings';
 
 type IPasswordForm = {
     oldPassword: string;
@@ -29,7 +30,7 @@ type IPasswordForm = {
 type IForm = {
     email: string;
     firstName: string;
-    gender: string;
+    gender: Genders;
     phoneNumber: string;
     lastName: string;
     dateOfBirth: Dayjs;
@@ -41,7 +42,12 @@ const General = () => {
     const { triggerOpen } = useContext(OpenAlertContext);
     const { t } = useTranslation();
 
-    const availableGenders = [t('none'), t('male'), t('female'), t('other')];
+    const availableGenders = [
+        { value: Genders.NONE, text: t('none') },
+        { value: Genders.MALE, text: t('male') },
+        { value: Genders.FEMALE, text: t('female') },
+        { value: Genders.OTHER, text: t('other') },
+    ];
 
     const handleChangeUserInfo = async (form: IForm) => {
         const requestData = {
@@ -211,8 +217,11 @@ const General = () => {
                                 className={styles.select}
                             >
                                 {availableGenders.map(gender => (
-                                    <MenuItem key={gender} value={gender}>
-                                        {gender}
+                                    <MenuItem
+                                        key={gender.text}
+                                        value={gender.value}
+                                    >
+                                        {gender.text}
                                     </MenuItem>
                                 ))}
                             </Select>

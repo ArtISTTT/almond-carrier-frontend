@@ -168,6 +168,17 @@
     margin-bottom: 10px;
 }
 
+.personName {
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 500;
+    max-width: calc(250px - 24px - 8px);
+    /* width: 100%; */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .orderInputValueWrapper {
     display: flex;
     align-items: center;

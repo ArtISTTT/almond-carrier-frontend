@@ -48,7 +48,6 @@ const OrderInformation: React.FC<IProps> = ({
     isReviewBlockOpen,
     setIsReviewBlockOpen,
     user,
-    updateOrder,
 }) => {
     const [editingFields, setEditingFields] = useState<(keyof IOrderFull)[]>(
         []
@@ -279,16 +278,19 @@ const OrderInformation: React.FC<IProps> = ({
                     <div className={styles.orderInformationTitle}>
                         {t('orderInformation')}
                     </div>
-                    <div className={styles.personInfo}>
-                        <div className={styles.personRole}>
-                            {viewType === ViewType.carrier
-                                ? t('receiver')
-                                : t('carrier')}
+                    {((viewType === ViewType.carrier && order.receiver) ||
+                        (viewType === ViewType.receiver && order.carrier)) && (
+                        <div className={styles.personInfo}>
+                            <div className={styles.personRole}>
+                                {viewType === ViewType.carrier
+                                    ? t('receiver')
+                                    : t('carrier')}
+                            </div>
+                            <div className={styles.personName}>
+                                {personFullName}
+                            </div>
                         </div>
-                        <div className={styles.personName}>
-                            {personFullName}
-                        </div>
-                    </div>
+                    )}
                     <div className={styles.editableForm}>
                         {order.productName && (
                             <div className={styles.productName}>
