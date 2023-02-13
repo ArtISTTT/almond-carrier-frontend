@@ -5,8 +5,11 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { ReviewSchema } from 'src/schemas/ReviewSchema';
+import { ViewType } from './OrderInputItem';
 
 interface IProps {
+    personFullName?: string;
+    viewType: ViewType;
     setIsReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface Iform {
@@ -14,7 +17,11 @@ interface Iform {
     rating: number;
 }
 
-const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
+const OrderReview = ({
+    setIsReviewBlockOpen,
+    personFullName,
+    viewType,
+}: IProps) => {
     const { t } = useTranslation();
 
     const sendReview = (form: Iform) => {
@@ -44,10 +51,13 @@ const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
             <div className={styles.reviewContent}>
                 <div className={styles.personInfo}>
                     <Typography variant='h4' component='h3'>
-                        Поздравляем! Ваш заказ Завершен!
+                        {t('congratulationsDealDone')}
                     </Typography>
                     <Typography variant='h5' component='h3'>
-                        Курьер: Никита Богданков
+                        {viewType === ViewType.carrier
+                            ? t('receiver')
+                            : t('carrier')}
+                        : {personFullName}
                     </Typography>
                 </div>
 
@@ -57,7 +67,7 @@ const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
                     action='submit'
                 >
                     <div className={styles.ratingBlock}>
-                        <div>Поставьте рейтинг челу</div>
+                        <div>{t('RateIt')}</div>
                         <Rating
                             className={styles.ratingStars}
                             name='rating'
@@ -70,7 +80,7 @@ const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
                     <div className={styles.reviewInput}>
                         <label htmlFor='Review'></label>
                         <TextField
-                            label='Review'
+                            label={t('review') as string}
                             name='reviewText'
                             variant='outlined'
                             color='primary'
@@ -93,7 +103,7 @@ const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
                         className={styles.submitButton}
                         variant='contained'
                     >
-                        Send Review
+                        {t('sendReview')}
                     </Button>
                 </form>
             </div>

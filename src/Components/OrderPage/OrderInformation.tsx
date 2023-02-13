@@ -601,13 +601,17 @@ const OrderInformation: React.FC<IProps> = ({
                                     color='success'
                                     onClick={completeOrderClick}
                                 >
-                                    Товар получен
+                                    {t('productReceived')}
                                 </Button>
                             </div>
                         )}
                 </form>
             ) : (
-                <OrderReview setIsReviewBlockOpen={setIsReviewBlockOpen} />
+                <OrderReview
+                    personFullName={personFullName}
+                    viewType={viewType}
+                    setIsReviewBlockOpen={setIsReviewBlockOpen}
+                />
             )}
         </div>
     );
