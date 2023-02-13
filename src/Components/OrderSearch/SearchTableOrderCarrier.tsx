@@ -7,6 +7,8 @@ import { IOrder } from '../../interfaces/order';
 import { useTranslation } from 'next-i18next';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
+import { useRouter } from 'next/router';
+import { navigateTo } from 'src/interfaces/navigate';
 
 type IProps = {
     order: IOrder;
@@ -114,7 +116,7 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({
                     </Button>
                 </div>
             </div>
-            <div className={styles.hidingButton}>
+            {/* <div className={styles.hidingButton}>
                 <Button
                     onClick={openPopupFunc}
                     variant='contained'
@@ -122,7 +124,7 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({
                 >
                     {t('apply')}
                 </Button>
-            </div>
+            </div> */}
         </div>
     );
 };

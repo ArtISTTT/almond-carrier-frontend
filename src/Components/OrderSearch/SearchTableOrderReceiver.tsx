@@ -7,6 +7,8 @@ import { useTranslation } from 'next-i18next';
 import ReceiverApplyPopup from './ReceiverApplyPopup';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
+import { useRouter } from 'next/router';
+import { navigateTo } from 'src/interfaces/navigate';
 
 type IProps = {
     order: IOrder;
@@ -112,29 +114,32 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({
                             </span>
                         </div>
 
-                    <div className={styles.benefitPriceItem}>
-                        <span className={styles.prefix}>{t('benefit')}:</span>
-                        <span className={styles.benefitPriceValue}>
-                            {formatAmount(
-                                order.rewardAmount,
-                                Currency.RUB,
-                                true
-                            )}
-                        </span>
+                        <div className={styles.benefitPriceItem}>
+                            <span className={styles.prefix}>
+                                {t('benefit')}:
+                            </span>
+                            <span className={styles.benefitPriceValue}>
+                                {formatAmount(
+                                    order.rewardAmount,
+                                    Currency.RUB,
+                                    true
+                                )}
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className={cn(styles.part, styles.maxWeight)}>
-                {order.productWeight} {t('kg')}
-            </div>
-            <div className={cn(styles.part)}>
-                <Button
-                    onClick={openPopupFunc}
-                    variant='contained'
-                    className={styles.applyBtn}
-                >
-                    {t('apply')}
-                </Button>
+                <div className={cn(styles.part, styles.maxWeight)}>
+                    {order.productWeight} {t('kg')}
+                </div>
+                <div className={cn(styles.part)}>
+                    <Button
+                        onClick={openPopupFunc}
+                        variant='contained'
+                        className={styles.applyBtn}
+                    >
+                        {t('apply')}
+                    </Button>
+                </div>
             </div>
         </div>
     );
