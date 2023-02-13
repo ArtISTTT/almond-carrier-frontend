@@ -94,7 +94,7 @@ const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
                         className={styles.submitButton}
                         variant='contained'
                     >
-                        Send Review
+                        {t('sendReview')}
                     </Button>
                 </form>
             </div>
