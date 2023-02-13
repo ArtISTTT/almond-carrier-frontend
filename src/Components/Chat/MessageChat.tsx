@@ -4,7 +4,9 @@ import styles from '../../../styles/OrderChat.module.css';
 import cn from 'classnames';
 import { MessageType } from 'src/interfaces/chat';
 import { Dayjs } from 'dayjs';
+import ErrorIcon from '@mui/icons-material/Error';
 import { useDifferenceTime } from 'src/redux/hooks/useDifferenceTime';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
     errorMessage?: string;
@@ -52,7 +54,7 @@ const MessageChat: React.FC<IProps> = ({
                         [styles.OurMessageBlock]: type === MessageType.Admin,
                     })}
                 >
-                     {errorMessage ? (
+                    {errorMessage ? (
                         <div className={styles.errorMessage}>
                             <ErrorIcon />
                             <span>{t(messageText)}</span>

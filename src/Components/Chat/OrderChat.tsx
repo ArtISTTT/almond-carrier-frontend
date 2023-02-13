@@ -1,5 +1,5 @@
 import { Avatar, Typography } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import { IUser } from 'src/interfaces/user';
 import styles from '../../../styles/OrderChat.module.css';
 import { useTranslation } from 'react-i18next';

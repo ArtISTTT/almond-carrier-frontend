@@ -16,6 +16,9 @@ interface IDialogMessage {
 }
 
 interface IProps {
+    errorMessage: string;
+    loadMessages: () => void;
+    isMessagesLoading: boolean;
     onSendMessage: (text: string) => void;
     messages: IMessage[];
 }
