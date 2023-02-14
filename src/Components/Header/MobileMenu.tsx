@@ -250,7 +250,7 @@ const MobileMenu = ({
                                                     height: 17,
                                                 }}
                                             />
-                                            <span>{t('markAllAsRead')}</span>
+                                            <div>{t('markAllAsRead')}</div>
                                         </div>
                                     </>
                                 )}

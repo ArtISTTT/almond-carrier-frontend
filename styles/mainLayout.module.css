@@ -322,6 +322,35 @@
     .link:first-child {
         margin-left: 0px;
     }
+    .notificationsMarkAllButton {
+        font-size: 12px;
+        gap: 5px;
+        text-align: right;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .notificationsMarkAllButton {
+        font-size: 12px;
+        gap: 5px;
+        text-align: right;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .notificationsMarkAllButton {
+        font-size: 10.5px;
+        gap: 3.5px;
+        text-align: right;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .notificationsMarkAllButton {
+        font-size: 10px;
+        gap: 5px;
+        text-align: right;
+    }
 }
 
 @media screen and (max-width: 620px) {

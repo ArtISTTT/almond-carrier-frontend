@@ -34,26 +34,31 @@ const NotificationsItem = ({
     return (
         <div className={styles.notificationMobileWrapper}>
             <div className={styles.notificationContent}>
-                <div>
+                <div className={styles.notificationContentInner}>
                     <div className={styles.notificationTitle}>{deal}</div>
                     <div className={styles.notificationMobileText}>
-                        <FmdBadIcon />
-                        <span>{text}</span>
+                        <div className={styles.notificationMobileTextInfo}>
+                            <FmdBadIcon />
+                            <span>{text}</span>
+                        </div>
+                        <div className={styles.checkNotificationIcon}>
+                            <Tooltip
+                                placement='top'
+                                title={t('markAsRead') as string}
+                            >
+                                <MarkChatReadIcon
+                                    onClick={removeNotification}
+                                    sx={{
+                                        width: 22,
+                                        height: 22,
+                                    }}
+                                />
+                            </Tooltip>
+                        </div>
                     </div>
                     <div className={styles.notificationTime}>
                         {notificationsTime(currentDate)}
                     </div>
-                </div>
-                <div className={styles.checkNotificationIcon}>
-                    <Tooltip placement='top' title={t('markAsRead') as string}>
-                        <MarkChatReadIcon
-                            onClick={removeNotification}
-                            sx={{
-                                width: 22,
-                                height: 22,
-                            }}
-                        />
-                    </Tooltip>
                 </div>
             </div>
         </div>
