@@ -108,10 +108,6 @@ const OrderInformation: React.FC<IProps> = ({
         return labels;
     }, [order]);
 
-    const onSubmit = (form: any) => {
-        setEditingFields([]);
-    };
-
     const initialValues = useMemo(() => {
         return {
             toLocation: order.toLocation,
@@ -260,7 +256,7 @@ const OrderInformation: React.FC<IProps> = ({
         'productDescription'
     );
 
-    const personFullName = () => {
+    const personFullName = useMemo(() => {
         if (viewType === ViewType.receiver) {
             return `${order.carrier?.firstName} ${order.carrier?.lastName}`;
         }
@@ -268,7 +264,13 @@ const OrderInformation: React.FC<IProps> = ({
         if (viewType === ViewType.carrier) {
             return `${order.receiver?.firstName} ${order.receiver?.lastName}`;
         }
-    };
+    }, [
+        viewType,
+        order.receiver?.firstName,
+        order.receiver?.lastName,
+        order.carrier?.lastName,
+        order.carrier?.firstName,
+    ]);
 
     return (
         <div className={styles.orderInformation}>
@@ -284,7 +286,7 @@ const OrderInformation: React.FC<IProps> = ({
                                 : t('carrier')}
                         </div>
                         <div className={styles.personName}>
-                            {personFullName()}
+                            {personFullName}
                         </div>
                     </div>
                     <div className={styles.editableForm}>
