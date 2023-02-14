@@ -114,5 +114,3 @@ const Header: React.FC<IProps> = ({
 };
 
 export default Header;
-
-export default Header;
