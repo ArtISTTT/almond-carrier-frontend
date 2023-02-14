@@ -124,7 +124,7 @@ z .emailInput > div > fieldset {
 .roleDescription {
     padding: 0 35px;
     margin-top: 17px;
-    margin-bottom: 120px;
+    margin-bottom: 60px;
     font-weight: 400;
     font-size: 24px;
     line-height: 28px;
@@ -157,122 +157,81 @@ z .emailInput > div > fieldset {
     z-index: 2;
 }
 
+.stepsText {
+    width: 80%;
+}
+
+.stepText {
+    color: var(--cTextSecondary);
+    font-size: 24px;
+    line-height: 30px;
+    margin-top: 20px;
+    text-align: justify;
+}
+
+.leftPartContent {
+    text-align: center;
+}
+
+.stepImage {
+    width: auto;
+    height: 300px;
+    border-radius: 20px;
+}
+
 .stepsBlock {
     max-width: 1150px;
     width: 100%;
     margin: 0 auto;
     padding: 0 10px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     padding-bottom: 40px;
-}
-
-.stepOne {
-    color: var(--cTextPrimary);
-    max-width: 483px;
-    height: 400px;
-    margin-top: 50px;
-    width: 100%;
-    background: url('/static/images/main-page/step-one-bg.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.stepOneTitle {
-    margin-top: 45px;
-    margin-left: 100px;
-    font-weight: 600;
-    font-size: 50px;
-    line-height: 50px;
-    letter-spacing: 0.4px;
-}
-
-.stepOneText {
-    display: flex;
+    padding-top: 60px;
     flex-direction: column;
-    gap: 17px;
-    align-items: center;
-    margin-top: 17px;
 }
 
-.stepOneTextPart {
-    max-width: 267px;
+.stepBlock {
+    display: flex;
     width: 100%;
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 26px;
-    letter-spacing: 0.4px;
 }
 
-.stepOneTextPartTwo {
-    margin-left: 100px;
+.stepBlockReverse {
+    flex-direction: row-reverse;
 }
 
-.stepTwo {
-    margin-top: 360px;
-    max-width: 457px;
-    color: var(--cTextPrimary);
-    height: 450px;
+.stepPart {
+    flex: 1 1;
+    margin-top: 30px;
+}
+
+.rightPart {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 40px;
+}
+
+.leftPart {
     width: 100%;
-    background: url('/static/images/main-page/step-two-bg.png');
-    background-size: contain;
-    background-repeat: no-repeat;
+    max-width: 800px;
+    height: 330px;
+    align-items: flex-end;
 }
 
-.stepTwoTitle {
-    margin-top: 46px;
-    margin-left: 115px;
-    font-weight: 500;
-    font-size: 50px;
-    line-height: 50px;
-    letter-spacing: 0.4px;
+.stepPartReverse {
+    align-items: flex-end;
+    padding-right: 60px;
 }
 
-.stepTwoTextPart {
-    font-weight: 500;
-    font-size: 23px;
-    line-height: 26px;
-    letter-spacing: 0.4px;
-    max-width: 362px;
-    width: 100%;
-    margin-top: 10px;
-    margin-left: 30px;
-}
-
-.stepTwoTextPartTwo {
-    margin-left: 0;
-    margin-right: 45px;
-}
-
-.stepThree {
-    color: var(--cTextPrimary);
-    max-width: 600px;
-    height: 340px;
-    width: 100%;
-    background: url('/static/images/main-page/step-three-bg.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.stepThreeTitle {
-    margin-top: 49px;
-    margin-left: 94px;
+.stepTitle {
+    text-align: left;
+    color: var(--cTextSecondary);
+    font-size: 36px;
     font-weight: 600;
-    font-size: 50px;
-    line-height: 50px;
-    letter-spacing: 0.4px;
 }
 
-.stepThreeText {
-    margin-top: 25px;
-    margin-left: 54px;
-    max-width: 511px;
-    width: 100%;
-    font-weight: 500;
-    font-size: 23px;
-    line-height: 26px;
-    letter-spacing: 0.4px;
+.stepTitleRight {
+    text-align: right;
 }
 
 .advantagesBlock {
@@ -384,13 +343,32 @@ z .emailInput > div > fieldset {
         font-size: 28px;
         font-weight: 700;
     }
+    .stepTitle {
+        font-size: 28px;
+    }
+    .stepText {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .stepImage {
+        height: 250px;
+    }
+    .rightPart {
+        padding-left: 10px;
+    }
+    .stepPartReverse {
+        padding-right: 30px;
+    }
+    .stepsText {
+        width: 95%;
+    }
+    .stepImage {
+        width: 100%;
+        height: auto;
+    }
 }
 
 @media screen and (max-width: 960px) {
-    .stepTwo {
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
     .stepsBlock {
         justify-content: center;
     }
@@ -418,9 +396,6 @@ z .emailInput > div > fieldset {
     .advantageDescription {
         font-size: 20px;
         line-height: 25px;
-    }
-    .stepsBlock {
-        padding-left: 100px;
     }
 }
 
@@ -469,6 +444,45 @@ z .emailInput > div > fieldset {
     .advantageTextAnotherColor {
         color: white;
     }
+    .stepTitle {
+        font-size: 25px;
+    }
+    .stepText {
+        margin-top: 10px;
+        font-size: 18px;
+        line-height: 20px;
+    }
+    .leftPart {
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .stepBlock {
+        flex-direction: column-reverse;
+        width: 80%;
+        margin: 0 auto;
+    }
+    .rightPart {
+        padding-left: 0;
+    }
+    .stepPartReverse {
+        padding-right: 0;
+        align-items: flex-start;
+    }
+    .stepsText {
+        width: 100%;
+    }
+    .stepText {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .stepTitle {
+        font-size: 28px;
+    }
+    .stepsBlock {
+        padding-top: 10px;
+    }
 }
 
 @media screen and (max-width: 560px) {
@@ -490,55 +504,10 @@ z .emailInput > div > fieldset {
     .stepsBlock {
         padding-left: 20px;
     }
-    .stepOneTitle {
-        font-size: 25px;
-        margin-top: 20px;
-    }
-    .stepOne {
-        height: 300px;
-    }
-    .stepOneTextPart {
-        font-size: 14px;
-        width: 180px;
-        margin-left: -90px;
-        line-height: 20px;
-    }
-    .stepOneTextPartTwo {
-        margin-left: 10px;
-    }
     .form {
         display: flex;
         flex-direction: column;
         gap: 20px;
-    }
-    .stepTwo {
-        height: 330px;
-        margin-left: 40px;
-    }
-    .stepTwoTitle {
-        font-size: 25px;
-        margin-left: 70px;
-    }
-    .stepTwoTextPart {
-        font-size: 14px;
-        width: 270px;
-        margin-top: 0;
-        line-height: 20px;
-    }
-    .stepTwoTextPartTwo {
-        font-size: 14px;
-        line-height: 20px;
-    }
-    .stepThreeTitle {
-        font-size: 25px;
-        margin-top: 20px;
-    }
-    .stepThreeText {
-        font-size: 14px;
-        line-height: 20px;
-        width: 300px;
-        margin-left: 50px;
-        margin-top: 10px;
     }
     .advantageDescription {
         padding-top: 10px;
@@ -604,30 +573,13 @@ z .emailInput > div > fieldset {
         font-size: 30px;
     }
     .stepsBlock {
-        padding-left: 10px;
+        padding-left: 0px;
     }
-    .stepOneTextPart {
-        margin-left: 0;
+    .stepText {
+        font-size: 16px;
+        line-height: 18px;
     }
-    .stepOneTextPartTwo {
-        margin-left: 55px;
-    }
-    .stepTwo {
-        margin-left: 10px;
-    }
-    .stepTwoTitle {
-        margin-top: 30px;
-        margin-left: 90px;
-    }
-    .stepTwoTextPart {
-        margin-left: 0;
-    }
-    .stepTwoTextPartTwo {
-        margin-left: 15px;
-    }
-    .stepThreeText {
-        margin-top: 0;
-        width: 280px;
-        margin-left: 55px;
+    .stepBlock {
+        width: 90%;
     }
 }

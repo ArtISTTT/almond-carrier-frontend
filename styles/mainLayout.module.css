@@ -65,6 +65,10 @@
     font-weight: 600;
 }
 
+.button :global .MuiLink-root {
+    text-decoration: none;
+}
+
 .userPanel {
     display: flex;
     align-items: center;
@@ -78,9 +82,6 @@
 .growMenu {
     margin-top: 21px;
     background: var(--cBgSecondary);
-    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
-        0px 8px 10px 1px rgba(0, 0, 0, 0.14),
-        0px 3px 14px 2px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
 }
 
@@ -109,11 +110,6 @@
     color: rgba(0, 0, 0, 0.6);
 }
 
-.profileItem {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
 .logoutItem {
     padding-top: 12px;
     border-top: 1px solid rgb(191, 179, 179);
@@ -125,11 +121,185 @@
     display: flex;
 }
 
+.blurWrapper {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    z-index: 1;
+}
+
+.blurWrapperOn {
+    backdrop-filter: blur(1px);
+}
+
+.mobileMenu {
+    position: fixed;
+    height: 100vh;
+    width: 50%;
+    top: 0;
+    right: 0;
+    background-color: var(--cBgSecondary);
+}
+
+.openMobileMenu {
+    animation-name: slide;
+    animation-duration: 0.3s;
+}
+
+.closeMobileMenu {
+    animation-name: backSlide;
+    animation-duration: 0.3s;
+}
+
+.mobileMenuPaper :global .MuiList-root {
+    padding: 0;
+}
+
+.userAvatarMobile {
+    margin-right: 7px;
+}
+
+.mobileMenuIcon {
+    color: var(--cTextPrimary);
+}
+
+.userItem {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(191, 179, 179);
+    padding: 21px 0;
+    max-height: 81px;
+    padding-left: 10px;
+}
+
+.userItem > div > span {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 150%;
+    max-width: 135px;
+    letter-spacing: 0.15px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.userItem > div > div {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 143%;
+    letter-spacing: 0.17px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.profileItemMobile {
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.bullingItem {
+    margin-bottom: 20px;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.settingsItem {
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.dashboardItem {
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.orderSearchItem {
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.exitItem {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgb(191, 179, 179);
+}
+
+.mobileMenuPaper {
+    height: 100vh;
+    padding: 0;
+}
+
+.profileItemMobile > span {
+    margin-left: 5px;
+}
+
+.settingsItem > span {
+    margin-left: 5px;
+}
+
+.bullingItem > span {
+    margin-left: 5px;
+}
+
+.dashboardItem > span {
+    margin-left: 5px;
+    white-space: nowrap;
+}
+
+.orderSearchItem > span {
+    margin-left: 5px;
+}
+
+.mobileMenuWrapper {
+    display: none;
+}
+
 @media screen and (max-width: 470px) {
     .link {
         font-size: 15px;
     }
     .link:first-child {
         margin-left: 0px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .leftMenuLinks {
+        display: none;
+    }
+    .rightMenu {
+        display: none;
+    }
+
+    .blurWrapper {
+        display: block;
+    }
+
+    .mobileMenuWrapper {
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        font-size: 10px;
+        margin-right: 24px;
+    }
+}
+
+@keyframes slide {
+    0% {
+        right: -220px;
+    }
+    100% {
+        right: 0;
+    }
+}
+
+@keyframes backSlide {
+    0% {
+        right: 0;
+    }
+    100% {
+        right: -260px;
     }
 }

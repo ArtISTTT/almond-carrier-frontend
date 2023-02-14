@@ -151,6 +151,119 @@ export default function Welcome() {
                     </div>
                 </div>
                 <div className={styles.stepsWrapper}>
+                    <Typography 
+                        variant='h2'
+                        component='h2'
+                        className={styles.stepsTitle}
+                    > 
+                        {t('howDoesItWork')}
+                    </Typography>
+                    <div className={styles.stepsBlock}>
+                        <div className={styles.stepBlock}>
+                            <div className={cn(styles.leftPart, styles.stepPart)}>
+                                <div className={styles.leftPartContent}>
+                                    <img
+                                        className={styles.stepImage}
+                                        src='/static/images/main-page/choose.png'
+                                        alt='choose'
+                                    />
+                                </div>
+                            </div>
+                            <div className={cn(styles.rightPart, styles.stepPart)}>
+                                <Typography
+                                    variant='h3'
+                                    component='h3'
+                                    className={styles.stepTitle}
+                                >
+                                    {t('oneChoose')}
+                                </Typography>
+                                <div className={styles.stepsText}>
+                                    <Typography
+                                        className={styles.stepText}
+                                        variant='body1'
+                                        component='p'
+                                    >
+                                        {t('oneIfYouReceiver')}
+                                    </Typography>
+                                    <Typography
+                                        className={styles.stepText}
+                                        variant='body1'
+                                        component='p'
+                                    >
+                                        {t('oneIfYouCarrier')}
+                                    </Typography>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={cn(styles.stepBlock, styles.stepBlockReverse)}>
+                            <div className={cn(styles.leftPart, styles.stepPart)}>
+                                <div className={styles.leftPartContent}>
+                                    <img
+                                        className={styles.stepImage}
+                                        src='/static/images/main-page/purchase.png'
+                                        alt='purchase'
+                                    />
+                                </div>
+                            </div>
+                            <div className={cn(styles.rightPart, styles.stepPart, styles.stepPartReverse)}>
+                                <Typography
+                                    variant='h3'
+                                    component='h3'
+                                    className={cn(styles.stepTitle, styles.stepTitleRight)}
+                                >
+                                    {t('purchase')}
+                                </Typography>
+                                <div className={styles.stepsText}>
+                                    <Typography
+                                        className={styles.stepText}
+                                        variant='body1'
+                                        component='p'
+                                    >
+                                        {t('priceSum')}
+                                    </Typography>
+                                    <Typography
+                                        className={styles.stepText}
+                                        variant='body1'
+                                        component='p'
+                                    >
+                                        {t('holdMoney')}
+                                    </Typography>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={styles.stepBlock}>
+                            <div className={cn(styles.leftPart, styles.stepPart)}>
+                                <div className={styles.leftPartContent}>
+                                    <img
+                                        className={styles.stepImage}
+                                        src='/static/images/main-page/receiving.png'
+                                        alt='choose'
+                                    />
+                                </div>
+                            </div>
+                            <div className={cn(styles.rightPart, styles.stepPart)}>
+                                <Typography
+                                    variant='h3'
+                                    component='h3'
+                                    className={styles.stepTitle}
+                                >
+                                    {t('receiving')}
+                                </Typography>
+                                <div className={styles.stepsText}>
+                                    <Typography
+                                        className={styles.stepText}
+                                        variant='body1'
+                                        component='p'
+                                    >
+                                        {t('carrierComesToTheCountryToReceiver')}
+                                    </Typography>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                {/* <div className={styles.stepsWrapper}>
                     <Typography
                         variant='h2'
                         component='h2'
@@ -232,7 +345,7 @@ export default function Welcome() {
                             </Typography>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className={styles.advantagesBlock}>
                     <Typography
                         variant='h2'
