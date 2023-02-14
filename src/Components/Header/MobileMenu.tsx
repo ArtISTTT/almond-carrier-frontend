@@ -28,22 +28,29 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
 import SearchIcon from '@mui/icons-material/Search';
+import { IUserNotification } from 'src/interfaces/user';
+import NotificationsMobileItem from '../Notifications/NotificationsMobileItem';
 
 interface IProps {
+    notifications: IUserNotification[];
+    setNotifications: React.Dispatch<React.SetStateAction<IUserNotification[]>>;
     showSignInOutIfUnauthorized: boolean;
     isSettingsPopupOpen: boolean;
     setIsSettingsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const MobileMenu = ({
+    notifications,
+    setNotifications,
     showSignInOutIfUnauthorized,
     isSettingsPopupOpen,
     setIsSettingsPopupOpen,
 }: IProps) => {
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
     const [animate, setAnimate] = React.useState<boolean>(false);
-    
+
     const dispatch = useAppDispatch();
     const user = useAppSelector(selectUser);
     const router = useRouter();
@@ -83,6 +90,7 @@ const MobileMenu = ({
         }
     };
 
+    const clearNotifications = () => setNotifications([]);
     const goToProfile = () => router.push(navigateTo.PROFILE_ORDERS);
     const goToDashboard = () => router.push(navigateTo.DASHBOARD);
     const goToOrdersSearch = () => router.push(navigateTo.ORDER_SEARCH);
@@ -105,6 +113,26 @@ const MobileMenu = ({
                     <SettingsPopup
                         setIsSettingsPopupOpen={setIsSettingsPopupOpen}
                     />
+                )}
+                {!isAuthorized && showSignInOutIfUnauthorized && (
+                    <>
+                        <Button className={styles.button} variant='outlined'>
+                            <MUILink
+                                component={LinkBehaviour}
+                                href={navigateTo.SIGNIN}
+                            >
+                                {t('signIn')}
+                            </MUILink>
+                        </Button>
+                        <Button className={styles.button} variant='outlined'>
+                            <MUILink
+                                component={LinkBehaviour}
+                                href={navigateTo.SIGNUP}
+                            >
+                                {t('signUp')}
+                            </MUILink>
+                        </Button>
+                    </>
                 )}
                 {mobileMenuOpen && (
                     <div
@@ -182,29 +210,58 @@ const MobileMenu = ({
                                         {t('logOut')}
                                     </MenuItem>
                                 </MenuList>
+                                {notifications.length > 0 && (
+                                    <>
+                                        <div
+                                            className={
+                                                styles.notificationsMobileTitle
+                                            }
+                                        >
+                                            {t('notifications')}
+                                        </div>
+                                        <div
+                                            className={
+                                                styles.notificationsMobileBlock
+                                            }
+                                        >
+                                            {notifications.map(notification => (
+                                                <NotificationsMobileItem
+                                                    setNotifications={
+                                                        setNotifications
+                                                    }
+                                                    currentDate={
+                                                        notification.date
+                                                    }
+                                                    id={notification.id}
+                                                    text={notification.text}
+                                                    deal={notification.deal}
+                                                />
+                                            ))}
+                                        </div>
+                                        <div
+                                            className={
+                                                styles.notificationsMarkAllButton
+                                            }
+                                            onClick={clearNotifications}
+                                        >
+                                            <ClearAllIcon
+                                                sx={{
+                                                    width: 17,
+                                                    height: 17,
+                                                }}
+                                            />
+                                            <span>{t('markAllAsRead')}</span>
+                                        </div>
+                                    </>
+                                )}
+                                {notifications.length === 0 && (
+                                    <div className={styles.emplyNotifications}>
+                                        {t('noNotifications')}
+                                    </div>
+                                )}
                             </Paper>
                         </ClickAwayListener>
                     </div>
-                )}
-                {!isAuthorized && showSignInOutIfUnauthorized && (
-                    <>
-                        <Button className={styles.button} variant='outlined'>
-                            <MUILink
-                                component={LinkBehaviour}
-                                href={navigateTo.SIGNIN}
-                            >
-                                {t('signIn')}
-                            </MUILink>
-                        </Button>
-                        <Button className={styles.button} variant='outlined'>
-                            <MUILink
-                                component={LinkBehaviour}
-                                href={navigateTo.SIGNUP}
-                            >
-                                {t('signUp')}
-                            </MUILink>
-                        </Button>
-                    </>
                 )}
             </div>
         </>
