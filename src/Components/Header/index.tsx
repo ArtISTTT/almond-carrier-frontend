@@ -1,15 +1,17 @@
 import { Avatar, Button, Link as MUILink } from '@mui/material';
-
 import React from 'react';
-import styles from '../../../styles/mainLayout.module.css';
+import Link from 'next/link';
 import { useSelector } from 'react-redux';
+
+import styles from '../../../styles/mainLayout.module.css';
 import { selectIsAuthorized } from '../../redux/selectors/user';
 import HeaderAvatar from './Avatar';
-import Link from 'next/link';
+
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { navigateTo } from 'src/interfaces/navigate';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
+import MobileMenu from './MobileMenu';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -21,8 +23,11 @@ const Header: React.FC<IProps> = ({
     showSignInOutIfUnauthorized,
 }) => {
     const router = useRouter();
-    const isAuthorized = useSelector(selectIsAuthorized);
     const { t } = useTranslation();
+    const isAuthorized = useSelector(selectIsAuthorized);
+
+    const [isSettingsPopupOpen, setIsSettingsPopupOpen] =
+        React.useState<boolean>(false);
 
     const changePageIfAuthorized = () => {
         if (isAuthorized) {
@@ -65,43 +70,49 @@ const Header: React.FC<IProps> = ({
             </div>
             <div className={styles.rightMenu}>
                 <div className={styles.rightMenuButtons}>
-                    {/* {isAuthorized && showContinueIfAuthorized && (
-                        <>
-                            <Button
-                                className={styles.button}
-                                variant='outlined'
-                            >
-                                <Link href={navigateTo.DASHBOARD}>
-                                    {t('continue')}
-                                </Link>
-                            </Button>
-                        </>
-                    )} */}
                     {!isAuthorized && showSignInOutIfUnauthorized && (
                         <>
                             <Button
                                 className={styles.button}
                                 variant='outlined'
                             >
-                                <Link href={navigateTo.SIGNIN}>
+                                <MUILink
+                                    component={LinkBehaviour}
+                                    href={navigateTo.SIGNIN}
+                                >
                                     {t('signIn')}
-                                </Link>
+                                </MUILink>
                             </Button>
                             <Button
                                 className={styles.button}
                                 variant='outlined'
                             >
-                                <Link href={navigateTo.SIGNUP}>
+                                <MUILink
+                                    component={LinkBehaviour}
+                                    href={navigateTo.SIGNUP}
+                                >
                                     {t('signUp')}
-                                </Link>
+                                </MUILink>
                             </Button>
                         </>
                     )}
                 </div>
-                {isAuthorized && <HeaderAvatar />}
+                {isAuthorized && (
+                    <HeaderAvatar
+                        setIsSettingsPopupOpen={setIsSettingsPopupOpen}
+                        isSettingsPopupOpen={isSettingsPopupOpen}
+                    />
+                )}
             </div>
+            <MobileMenu
+                isSettingsPopupOpen={isSettingsPopupOpen}
+                setIsSettingsPopupOpen={setIsSettingsPopupOpen}
+                showSignInOutIfUnauthorized={showSignInOutIfUnauthorized}
+            />
         </header>
     );
 };
+
+export default Header;
 
 export default Header;
