@@ -75,6 +75,10 @@
     font-weight: 600;
 }
 
+.button :global .MuiLink-root {
+    text-decoration: none;
+}
+
 .userPanel {
     display: flex;
     align-items: center;
@@ -88,9 +92,6 @@
 .growMenu {
     margin-top: 21px;
     background: var(--cBgSecondary);
-    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
-        0px 8px 10px 1px rgba(0, 0, 0, 0.14),
-        0px 3px 14px 2px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
 }
 
@@ -130,8 +131,16 @@
     display: flex;
 }
 
-.mobileMenuWrapper {
+.blurWrapper {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
     display: none;
+    z-index: 1;
+}
+
+.blurWrapperOn {
+    backdrop-filter: blur(1px);
 }
 
 .mobileMenu {
@@ -141,6 +150,16 @@
     top: 0;
     right: 0;
     background-color: var(--cBgSecondary);
+}
+
+.openMobileMenu {
+    animation-name: slide;
+    animation-duration: 0.3s;
+}
+
+.closeMobileMenu {
+    animation-name: backSlide;
+    animation-duration: 0.3s;
 }
 
 .mobileMenuPaper :global .MuiList-root {
@@ -181,8 +200,7 @@
     color: rgba(0, 0, 0, 0.6);
 }
 
-.profileItem {
-    margin-top: 20px;
+.profileItemMobile {
     padding-left: 10px;
     font-size: 14px;
 }
@@ -223,7 +241,7 @@
     padding: 0;
 }
 
-.profileItem > span {
+.profileItemMobile > span {
     margin-left: 5px;
 }
 
@@ -244,6 +262,10 @@
     margin-left: 5px;
 }
 
+.mobileMenuWrapper {
+    display: none;
+}
+
 @media screen and (max-width: 470px) {
     .link {
         font-size: 15px;
@@ -261,11 +283,33 @@
         display: none;
     }
 
+    .blurWrapper {
+        display: block;
+    }
+
     .mobileMenuWrapper {
         display: flex;
         align-items: center;
-
+        z-index: 2;
         font-size: 10px;
         margin-right: 24px;
+    }
+}
+
+@keyframes slide {
+    0% {
+        right: -220px;
+    }
+    100% {
+        right: 0;
+    }
+}
+
+@keyframes backSlide {
+    0% {
+        right: 0;
+    }
+    100% {
+        right: -260px;
     }
 }
