@@ -14,6 +14,7 @@ import { IGetUser } from 'src/interfaces/api/user';
 import UserLoader from 'src/Components/UserLoader';
 import { useAppSelector } from 'src/redux/hooks';
 import { navigateTo } from 'src/interfaces/navigate';
+import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
 
 const useGetCurrentUser = ({ userId }: { userId: string }) => {
     const { t } = useTranslation();
@@ -27,7 +28,10 @@ const useGetCurrentUser = ({ userId }: { userId: string }) => {
         const data = await getUser({ userId });
 
         if (data.ok && data.user) {
-            setUser(data.user);
+            setUser({
+                ...data.user,
+                successOrders: parseOrderDataFromApi(data.user.successOrders),
+            });
             setIsLoading(false);
         } else {
             triggerOpen({
