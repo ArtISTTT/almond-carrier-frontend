@@ -1,30 +1,24 @@
 .popupWrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 3;
+    z-index: 1;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.63);
+    background-color: var(--cBgSecondary);
 }
 
 .popup {
-    background-color: var(--cBgSecondary);
     width: 100%;
-    max-width: 800px;
-    position: fixed;
-    left: 50%;
-    top: 50%;
+    max-width: 550px;
+    margin: 0 auto;
     padding: 16px 30px;
-    border-radius: 20px;
+    padding-top: 32px;
     z-index: 3;
-    transform: translate(-50%, -50%);
 }
 
 .icon {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 96px;
+    right: 24px;
+    color: var(--cTextPrimary);
     cursor: pointer;
 }
 
@@ -80,12 +74,13 @@
     padding-top: 35px;
     display: flex;
     max-width: 400px;
-    justify-content: space-between;
-    gap: 36px;
+    flex-direction: column;
+    gap: 15px;
     padding-bottom: 20px;
 }
 
 .infoCol {
+    gap: 15px;
     display: flex;
 }
 
@@ -96,10 +91,13 @@
 .carrierInfo {
     padding-top: 35px;
     display: flex;
-    max-width: 550px;
-    justify-content: space-between;
-    gap: 16px;
-    padding-bottom: 30px;
+    flex-direction: column;
+    gap: 20px;
+    /* display: flex; */
+    /* max-width: 550px; */
+    /* justify-content: space-between; */
+    /* gap: 16px; */
+    padding-bottom: 20px;
 }
 
 .inputItem {
@@ -120,8 +118,7 @@
 
 .input {
     width: 100%;
-    max-width: 350px;
-    height: 40px;
+    max-width: 500px;
 }
 
 .select {
@@ -146,10 +143,15 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    gap: 15px;
-    margin-top: 24px;
-    max-width: 300px;
+    gap: 20px;
+    max-width: 200px;
     color: var(--cTextPrimary);
+}
+
+.infoItemLink > span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: var(--cTextPrimary);
 }
 
 .infoItem > span {
@@ -160,6 +162,16 @@
     margin-top: 0;
 }
 
+.infoWayLine {
+    border: 1px solid;
+    display: flex;
+    justify-content: space-between;
+}
+
+.infoItemTitle {
+    max-width: 200px;
+}
+
 .infoItemWay {
     font-weight: 400;
     font-size: 14px;
@@ -167,22 +179,20 @@
     letter-spacing: 0.4px;
     text-transform: uppercase;
     display: flex;
-    width: fit-content;
-    max-width: 300px;
     color: var(--cTextPrimary);
 }
 
 .stackDistance {
-    gap: 20px;
+    gap: 10px;
 }
 
 .infoItemWay > span {
-    text-overflow: ellipsis;
+    /* text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap;
+    white-space: nowrap; */
     text-transform: none;
     width: 100%;
-    max-width: 200px;
+    /* max-width: 200px; */
     font-weight: 500;
     font-size: 16px;
     color: var(--cTextThird);
@@ -191,7 +201,7 @@
 .infoWayItems {
     display: flex;
     flex-direction: column;
-    max-width: 300px;
+    /* max-width: 331px; */
     width: 100%;
     gap: 26px;
 }
@@ -227,7 +237,7 @@
     font-weight: 500;
     font-size: 15px;
     line-height: 26px;
-    padding: 8px 46.5px;
+    padding: 8px 35px;
     letter-spacing: 0.46px;
     text-transform: uppercase;
     color: var(--cTextSecondary);
@@ -246,7 +256,6 @@
     border-radius: 15px;
     height: 40px;
     width: 100%;
-    max-width: 350px;
 }
 
 .productName {
@@ -272,6 +281,8 @@
 }
 
 .formItems {
+    display: flex;
+    gap: 10px;
     margin: 25px 0;
 }
 
@@ -346,7 +357,7 @@
     .stack {
         margin-top: 0px;
     }
-    .infoItem  {
+    .infoItem {
         margin-top: 15px;
     }
     .infoItem:first-child {

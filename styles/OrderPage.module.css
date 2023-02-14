@@ -189,7 +189,7 @@
     font-weight: 500;
     margin-right: 12px;
     max-width: calc(250px - 24px - 8px);
-    width: 100%;
+    /* width: 100%; */
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -392,4 +392,147 @@
 
 .detailsButtons {
     display: flex;
+    align-items: center;
+}
+
+
+@media screen and (max-width: 1130px) {
+    .orderConent {
+        flex-direction: column;
+    }
+    .haveSomeProblems {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .valuesByColumns {
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .orderDetailsTitle {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+    .orderStatus {
+        font-size: 15px;
+    }
+    .orderDetailsInfo {
+        font-size: 15px;
+    }
+    .infoRight span {
+        font-size: 15px;
+    }
+    .infoRight svg {
+        width: 16px;
+        height: 16px;
+    }
+    .orderDetails {
+        padding: 32px 10px;
+    }
+    .orderInformation {
+        margin: 0 10px;
+    }
+    .orderInputValue {
+        font-size: 15px;
+    }
+    .orderInputValueWrapper svg {
+        height: 16px;
+        width: 16px;
+    }
+    .editingWrapper svg {
+        height: 16px;
+        width: 16px;
+    }
+    .column:last-child {
+        max-width: 100px;
+    }
+    .haveSomeProblems {
+        margin-left: 10px;
+        width: 95%;
+    }
+    .cancelButtonWrapper {
+        padding-left: 10px;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .orderDetails {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .orderDetailsInfo {
+        justify-content: flex-start;
+    }
+    .infoLeft {
+        text-align: left;
+    }
+    .buttons {
+        margin-top: 20px;
+    }
+    .infoRight {
+        text-align: left;
+    }
+}
+
+@media screen and (max-width: 484px) {
+    .orderInputValueWrapper {
+        width: 400px;
+    }
+    .orderInformationTitle {
+        margin-bottom: 30px;
+    }
+    .valuesByColumns {
+        flex-direction: column;
+    }
+    .orderInputValue {
+        max-width: 400px;
+    }
+    .column:last-child {
+        max-width: 300px;
+    }
+    .productName {
+        margin-bottom: 16px;
+    }
+    .multiline :global .MuiInputBase-root {
+        font-size: 12px;
+        padding: 10px;
+    }
+    .haveSomeProblems {
+        margin-top: 32px;
+    }
+    .cancelButton {
+        width: 180px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .orderInputValue {
+        max-width: 350px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .orderDetailsInfo {
+        font-size: 13px;
+        gap: 5px;
+    }
+    .infoRight {
+        text-align: left;
+    }
+    .infoRight span{
+        font-size: 13px;
+    }
+    .infoRight svg {
+        height: 14px;
+        width: 14px;
+    }
+    .infoRightId {
+        gap: 5px;
+    }
+    .orderInputValue {
+        max-width: 250px;
+    }
 }
