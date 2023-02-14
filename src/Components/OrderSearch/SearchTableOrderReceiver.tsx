@@ -4,8 +4,6 @@ import { Avatar, Button, Tooltip } from '@mui/material';
 import cn from 'classnames';
 import { IOrder } from '../../interfaces/order';
 import { useTranslation } from 'next-i18next';
-import ReceiverApplyPopup from './ReceiverApplyPopup';
-import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
 import { useRouter } from 'next/router';
@@ -15,28 +13,19 @@ import { selectIsAuthorized } from 'src/redux/selectors/user';
 
 type IProps = {
     order: IOrder;
+    setApplyedOrder: React.Dispatch<React.SetStateAction<IOrder | undefined>>;
 };
 
-const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
+const SearchTableOrderReceiver: React.FC<IProps> = ({
+    order,
+    setApplyedOrder,
+}) => {
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
     const isAuthorized = useSelector(selectIsAuthorized);
     const router = useRouter();
 
-    const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-
-    const openPopupFunc = () => {
-        if (isAuthorized) {
-            toggleHtmlScroll(true);
-            setIsPopupOpen(true);
-        }
-        router.push(navigateTo.SIGNIN);
-    };
-
-    const closePopup = () => {
-        toggleHtmlScroll(false);
-        setIsPopupOpen(false);
-    };
+    const openPopupFunc = () => setApplyedOrder(order);
 
     const navigateToUserPage = (): void => {
         router.push({
@@ -48,9 +37,6 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({ order }) => {
     return (
         <div>
             <div className={styles.itemWrapper}>
-                {isPopupOpen && (
-                    <ReceiverApplyPopup order={order} closePopup={closePopup} />
-                )}
                 <div className={cn(styles.part, styles.user)}>
                     <Avatar
                         sx={{ width: 60, height: 60, cursor: 'pointer' }}
