@@ -599,7 +599,7 @@ const OrderInformation: React.FC<IProps> = ({
                                     color='success'
                                     onClick={completeOrderClick}
                                 >
-                                    Товар получен
+                                    {t('productDelivered')}
                                 </Button>
                             </div>
                         )}
