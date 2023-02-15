@@ -58,6 +58,25 @@
     border-radius: 15px;
 }
 
+.fastLoginTitle {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.loginImage {
+    margin: 0 auto;
+}
+
+.loginInput {
+    border-radius: 15px;
+}
+
+.loginInput :global .MuiInputBase-root {
+    border-radius: 15px;
+}
+
 @keyframes wave {
     from {
         transform: rotate(0deg);
@@ -119,6 +138,26 @@
 
 .dateInput :global .MuiButtonBase-root {
     padding: 11px;
+}
+
+.fastLoginPopupWrapper {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.67);
+}
+
+.fastLoginPopupInner {
+    position: absolute;
+    background-color: var(--cBgSecondary);
+    border-radius: 16px;
+    padding: 32px 60px;
+    z-index: 3;
+    left: calc(50% - 412px / 2);
+    top: calc(50% - 500px / 2);
 }
 
 @media screen and (max-width: 1278px) {
