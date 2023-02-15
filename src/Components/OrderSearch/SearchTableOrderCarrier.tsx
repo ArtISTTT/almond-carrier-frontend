@@ -13,17 +13,18 @@ import { selectIsAuthorized } from 'src/redux/selectors/user';
 import FastLoginPopup from './FastLoginPopup';
 
 type IProps = {
+    isFastLoginPopupOpen: boolean;
+    setIsFastLoginPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
     order: IOrder;
     setApplyedOrder: React.Dispatch<React.SetStateAction<IOrder | undefined>>;
 };
 
 const SearchTableOrderCarrier: React.FC<IProps> = ({
+    isFastLoginPopupOpen,
+    setIsFastLoginPopupOpen,
     order,
     setApplyedOrder,
 }) => {
-    const [isFastLoginPopupOpen, setIsFastLoginPopupOpen] =
-        React.useState<boolean>(false);
-
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
     const isAuthorized = useSelector(selectIsAuthorized);
