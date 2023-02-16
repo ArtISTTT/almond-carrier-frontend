@@ -5,7 +5,7 @@ import Notifications from './Notifications';
 import SettingsIcon from '@mui/icons-material/Settings';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Typography } from '@mui/material';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import CloseIcon from '@mui/icons-material/Close';
 import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 
@@ -24,7 +24,7 @@ const SettingsPopup: React.FC<IProps> = ({ setIsSettingsPopupOpen }) => {
         <div className={styles.wrapper}>
             <div className={styles.content}>
                 <div onClick={closePopup} className={styles.closeIcon}>
-                    <HighlightOffIcon />
+                    <CloseIcon />
                 </div>
                 <div className={styles.selectSettings}>
                     <div
