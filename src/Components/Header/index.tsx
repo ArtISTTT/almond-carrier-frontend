@@ -46,8 +46,9 @@ const Header: React.FC<IProps> = ({
                     alt='logo'
                     src='/static/images/logo.png'
                 />
-                {isAuthorized && (
-                    <div className={styles.leftMenuLinks}>
+
+                <div className={styles.leftMenuLinks}>
+                    {isAuthorized && (
                         <MUILink
                             href={navigateTo.DASHBOARD}
                             className={styles.link}
@@ -56,17 +57,16 @@ const Header: React.FC<IProps> = ({
                         >
                             {t('dashboard')}
                         </MUILink>
-
-                        <MUILink
-                            href={navigateTo.ORDER_SEARCH}
-                            className={styles.link}
-                            component={LinkBehaviour}
-                            underline='none'
-                        >
-                            {t('orderSearch')}
-                        </MUILink>
-                    </div>
-                )}
+                    )}
+                    <MUILink
+                        href={navigateTo.ORDER_SEARCH}
+                        className={styles.link}
+                        component={LinkBehaviour}
+                        underline='none'
+                    >
+                        {t('orderSearch')}
+                    </MUILink>
+                </div>
             </div>
             <div className={styles.rightMenu}>
                 <div className={styles.rightMenuButtons}>

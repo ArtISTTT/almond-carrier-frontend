@@ -1,5 +1,5 @@
 import React from 'react';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import CloseIcon from '@mui/icons-material/Close';
 import styles from '../../../styles/ApplyPopup.module.css';
 
 interface IProps {
@@ -14,7 +14,7 @@ const ApplyPopup: React.FC<IProps> = ({ closePopup, children }) => {
         <div className={styles.popupWrapper}>
             <div className={styles.popup}>
                 <div onClick={closePopupFunc} className={styles.icon}>
-                    <HighlightOffIcon />
+                    <CloseIcon />
                 </div>
                 {children}
             </div>

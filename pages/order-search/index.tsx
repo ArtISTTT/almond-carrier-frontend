@@ -6,7 +6,7 @@ import CarrierLayout from '../../src/Components/Layouts/Carrier';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const ReceiverPage: React.FC = () => (
-    <PrivateLayout privateType={privateTypes.onlyAuthorized}>
+    <PrivateLayout privateType={privateTypes.all}>
         <CarrierLayout>
             <OrderSearch />
         </CarrierLayout>

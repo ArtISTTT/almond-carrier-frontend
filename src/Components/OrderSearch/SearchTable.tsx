@@ -19,7 +19,11 @@ type IProps = {
 };
 const n = 4;
 const SearchTable: React.FC<IProps> = ({ type, orders, setApplyedOrder }) => {
+    const [isFastLoginPopupOpen, setIsFastLoginPopupOpen] =
+        React.useState<boolean>(false);
+
     const { t } = useTranslation();
+
     const carriersHeaders = [
         { name: t('carrier'), long: true },
         { name: `${t('from')}/${t('to')}`, long: true },
@@ -66,12 +70,16 @@ const SearchTable: React.FC<IProps> = ({ type, orders, setApplyedOrder }) => {
                 {orders.map(order =>
                     type === OrderSeachType.carriers ? (
                         <SearchTableOrderCarrier
+                            isFastLoginPopupOpen={isFastLoginPopupOpen}
+                            setIsFastLoginPopupOpen={setIsFastLoginPopupOpen}
                             setApplyedOrder={setApplyedOrder}
                             order={order}
                             key={order.id}
                         />
                     ) : (
                         <SearchTableOrderReceiver
+                            isFastLoginPopupOpen={isFastLoginPopupOpen}
+                            setIsFastLoginPopupOpen={setIsFastLoginPopupOpen}
                             setApplyedOrder={setApplyedOrder}
                             order={order}
                             key={order.id}
