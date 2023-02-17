@@ -1,26 +1,60 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styles from '../../../styles/ReviewBlock.module.css';
 import { Rating, TextField, Button, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useFormik } from 'formik';
 import { ReviewSchema } from 'src/schemas/ReviewSchema';
 import { useTranslation } from 'react-i18next';
+import { sendReview } from 'src/api/review';
+import { ViewType } from './OrderInputItem';
+import { OpenAlertContext } from '../Layouts/Snackbar';
 
 interface IProps {
     setIsReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    orderId: string;
+    reviewerType: ViewType;
+    userForId: string;
 }
 interface Iform {
     reviewText: string;
     rating: number;
 }
 
-const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
+const OrderReview: React.FC<IProps> = ({
+    setIsReviewBlockOpen,
+    orderId,
+    reviewerType,
+    userForId,
+}) => {
     const { t } = useTranslation();
+    const { triggerOpen } = useContext(OpenAlertContext);
+    const [isSendButtonDisabled, setIsSendButtonDisabled] = useState(false);
 
-    const sendReview = (form: Iform) => {
+    const sendReviewFormik = async (form: Iform) => {
+        setIsSendButtonDisabled(true);
         // console.log(form);
+        const data = await sendReview({
+            orderId,
+            reviewerType,
+            userForId,
+            text: form.reviewText,
+            rating: form.rating,
+        });
 
-        setIsReviewBlockOpen(false);
+        if (data.ok) {
+            triggerOpen({
+                severity: 'success',
+                text: 'Отзыв успешно оставлен',
+            });
+
+            setIsReviewBlockOpen(false);
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: 'Ошибка при оставлении отзыва',
+            });
+        }
+        setIsSendButtonDisabled(false);
     };
 
     const formik = useFormik({
@@ -28,7 +62,7 @@ const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
             reviewText: '',
             rating: 0,
         },
-        onSubmit: sendReview,
+        onSubmit: sendReviewFormik,
         validationSchema: ReviewSchema,
         validateOnBlur: false,
         validateOnChange: false,
@@ -45,7 +79,11 @@ const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
 
             <div className={styles.reviewContent}>
                 <div className={styles.personInfo}>
-                    <Typography variant='h4' component='h3' className={styles.titleText}>
+                    <Typography
+                        variant='h4'
+                        component='h3'
+                        className={styles.titleText}
+                    >
                         {t('congratulations')}
                     </Typography>
                 </div>
@@ -57,7 +95,8 @@ const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
                 >
                     <div className={styles.ratingBlock}>
                         <div className={styles.ratingBlockText}>
-                            {t('rateCarrier')} <span className={styles.rateName}>Nikita</span> 
+                            {t('rateCarrier')}{' '}
+                            <span className={styles.rateName}>Nikita</span>
                         </div>
                         <Rating
                             className={styles.ratingStars}
@@ -93,6 +132,7 @@ const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
                         color='primary'
                         className={styles.submitButton}
                         variant='contained'
+                        disabled={isSendButtonDisabled}
                     >
                         {t('sendReview')}
                     </Button>

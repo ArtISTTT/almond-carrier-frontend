@@ -605,7 +605,16 @@ const OrderInformation: React.FC<IProps> = ({
                         )}
                 </form>
             ) : (
-                <OrderReview setIsReviewBlockOpen={setIsReviewBlockOpen} />
+                <OrderReview
+                    setIsReviewBlockOpen={setIsReviewBlockOpen}
+                    orderId={order.id}
+                    userForId={
+                        viewType === ViewType.receiver
+                            ? (order.carrier?.id as string)
+                            : (order.receiver?.id as string)
+                    }
+                    reviewerType={viewType}
+                />
             )}
         </div>
     );
