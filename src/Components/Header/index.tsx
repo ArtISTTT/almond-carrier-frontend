@@ -1,6 +1,5 @@
 import { Avatar, Button, Link as MUILink } from '@mui/material';
 import React from 'react';
-import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
 import styles from '../../../styles/mainLayout.module.css';
@@ -12,6 +11,9 @@ import { useTranslation } from 'next-i18next';
 import { navigateTo } from 'src/interfaces/navigate';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
 import MobileMenu from './MobileMenu';
+import NotificationsMenu from '../Notifications/NotificationsMenu';
+import { IUserNotification } from 'src/interfaces/user';
+import dayjs from 'dayjs';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -25,9 +27,61 @@ const Header: React.FC<IProps> = ({
     const router = useRouter();
     const { t } = useTranslation();
     const isAuthorized = useSelector(selectIsAuthorized);
-
     const [isSettingsPopupOpen, setIsSettingsPopupOpen] =
         React.useState<boolean>(false);
+
+    const [notifications, setNotifications] = React.useState<
+        IUserNotification[]
+    >([
+        {
+            text: 'New message from carrier',
+            deal: 'God of War: Ragnarok',
+            id: 'lox',
+            date: dayjs().set('hour', 5).set('minute', 55).set('second', 15),
+        },
+        {
+            text: 'New message from receiver',
+            deal: 'Crack',
+            id: 'lox1',
+            date: dayjs().set('hour', 4).set('minute', 55).set('second', 15),
+        },
+        {
+            text: 'Payment success',
+            deal: 'Mefedron',
+            id: 'lox2',
+            date: dayjs().set('hour', 2).set('minute', 55).set('second', 15),
+        },
+        {
+            text: 'New changes',
+            deal: 'Baby',
+            id: 'lox3',
+            date: dayjs().set('hour', 22).set('minute', 55).set('second', 15),
+        },
+        {
+            text: 'New message from carrier',
+            deal: 'God of War: Ragnarok',
+            id: 'lox4',
+            date: dayjs().set('hour', 5).set('minute', 55).set('second', 15),
+        },
+        {
+            text: 'New message from carrier',
+            deal: 'God of War: Ragnarok',
+            id: 'lox5',
+            date: dayjs().set('hour', 5).set('minute', 55).set('second', 15),
+        },
+        {
+            text: 'New message from carrier',
+            deal: 'God of War: Ragnarok',
+            id: 'lox5',
+            date: dayjs().set('hour', 5).set('minute', 55).set('second', 15),
+        },
+        {
+            text: 'New message from carrier',
+            deal: 'God of War: Ragnarok',
+            id: 'lox5',
+            date: dayjs().set('hour', 5).set('minute', 55).set('second', 15),
+        },
+    ]);
 
     const changePageIfAuthorized = () => {
         if (isAuthorized) {
@@ -98,13 +152,22 @@ const Header: React.FC<IProps> = ({
                     )}
                 </div>
                 {isAuthorized && (
-                    <HeaderAvatar
-                        setIsSettingsPopupOpen={setIsSettingsPopupOpen}
-                        isSettingsPopupOpen={isSettingsPopupOpen}
-                    />
+                    <div className={styles.authoridedIcons}>
+                        <NotificationsMenu
+                            notifications={notifications}
+                            setNotifications={setNotifications}
+                        />
+                        <HeaderAvatar
+                            setIsSettingsPopupOpen={setIsSettingsPopupOpen}
+                            isSettingsPopupOpen={isSettingsPopupOpen}
+                        />
+                    </div>
                 )}
             </div>
+
             <MobileMenu
+                setNotifications={setNotifications}
+                notifications={notifications}
                 isSettingsPopupOpen={isSettingsPopupOpen}
                 setIsSettingsPopupOpen={setIsSettingsPopupOpen}
                 showSignInOutIfUnauthorized={showSignInOutIfUnauthorized}

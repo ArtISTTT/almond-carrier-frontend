@@ -27,6 +27,16 @@
     margin-left: 24px;
 }
 
+.authoridedIcons {
+    display: flex;
+    align-items: center;
+}
+
+.notificationsIconHeader {
+    color: var(--cTextPrimary);
+    margin-right: 10px;
+}
+
 .rightMenu {
     display: flex;
     align-items: center;
@@ -256,6 +266,60 @@
     display: none;
 }
 
+.mobileMenuContent {
+    display: flex;
+    gap: 10px;
+}
+
+.notificationsMobileTitle {
+    padding-top: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+    text-align: center;
+    font-size: 15px;
+    color: var(-cTextThird);
+}
+
+.notificationsMobileBlock {
+    max-height: 300px;
+    overflow-x: hidden;
+}
+
+.notificationsMobileBlock::-webkit-scrollbar {
+    display: none;
+}
+
+.notificationsMobileBlock {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.notificationsMarkAllButton {
+    margin-top: 10px;
+    justify-content: flex-end;
+    margin-right: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--cTextThird);
+    transition-duration: 300ms;
+}
+
+.notificationsMarkAllButton > span {
+    margin-left: 5px;
+}
+
+.notificationsMarkAllButton:hover {
+    color: var(--cTextPrimary);
+}
+
+.emplyNotifications {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 15px;
+}
+
 @media screen and (max-width: 470px) {
     .link {
         font-size: 15px;
@@ -263,9 +327,38 @@
     .link:first-child {
         margin-left: 0px;
     }
+    .notificationsMarkAllButton {
+        font-size: 12px;
+        gap: 5px;
+        text-align: right;
+    }
 }
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 490px) {
+    .notificationsMarkAllButton {
+        font-size: 12px;
+        gap: 5px;
+        text-align: right;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .notificationsMarkAllButton {
+        font-size: 10.5px;
+        gap: 3.5px;
+        text-align: right;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .notificationsMarkAllButton {
+        font-size: 10px;
+        gap: 5px;
+        text-align: right;
+    }
+}
+
+@media screen and (max-width: 620px) {
     .leftMenuLinks {
         display: none;
     }

@@ -81,64 +81,61 @@ const HeaderAvatar: React.FC<IProps> = ({
                 aria-haspopup='true'
                 onClick={handleToggle}
             />
-            <div>
-                <Popper
-                    open={open}
-                    anchorEl={anchorRef.current}
-                    role={undefined}
-                    transition
-                    disablePortal
-                >
-                    {({ TransitionProps, placement }) => (
-                        <Grow
-                            {...TransitionProps}
-                            style={{
-                                transformOrigin:
-                                    placement === 'bottom'
-                                        ? 'center top'
-                                        : 'center bottom',
-                            }}
-                            className={styles.growMenu}
-                        >
-                            <Paper>
-                                <ClickAwayListener onClickAway={handleClose}>
-                                    <MenuList id='menu-list-grow'>
-                                        <MenuItem
-                                            className={styles.emailItem}
-                                            onClick={handleClose}
-                                        >
-                                            <span>
-                                                {user.firstName} {user.lastName}
-                                            </span>
-                                            <div>{user.email}</div>
-                                        </MenuItem>
-                                        <MenuItem
-                                            className={styles.profileItem}
-                                            onClick={goToProfile}
-                                        >
-                                            {t('profile')}
-                                        </MenuItem>
-                                        <MenuItem
-                                            onClick={handleOpenSettingsPopup}
-                                        >
-                                            {t('settings')}
-                                        </MenuItem>
-                                        <MenuItem onClick={handleClose}>
-                                            {t('billing')}
-                                        </MenuItem>
-                                        <MenuItem
-                                            className={styles.logoutItem}
-                                            onClick={handleSignOut}
-                                        >
-                                            {t('logOut')}
-                                        </MenuItem>
-                                    </MenuList>
-                                </ClickAwayListener>
-                            </Paper>
-                        </Grow>
-                    )}
-                </Popper>
-            </div>
+
+            <Popper
+                open={open}
+                anchorEl={anchorRef.current}
+                role={undefined}
+                transition
+                disablePortal
+            >
+                {({ TransitionProps, placement }) => (
+                    <Grow
+                        {...TransitionProps}
+                        style={{
+                            transformOrigin:
+                                placement === 'bottom'
+                                    ? 'center top'
+                                    : 'center bottom',
+                        }}
+                        className={styles.growMenu}
+                    >
+                        <Paper>
+                            <ClickAwayListener onClickAway={handleClose}>
+                                <MenuList id='menu-list-grow'>
+                                    <MenuItem
+                                        className={styles.emailItem}
+                                        onClick={handleClose}
+                                    >
+                                        <span>
+                                            {user.firstName} {user.lastName}
+                                        </span>
+                                        <div>{user.email}</div>
+                                    </MenuItem>
+                                    <MenuItem
+                                        className={styles.profileItem}
+                                        onClick={goToProfile}
+                                    >
+                                        {t('profile')}
+                                    </MenuItem>
+                                    <MenuItem onClick={handleOpenSettingsPopup}>
+                                        {t('settings')}
+                                    </MenuItem>
+                                    <MenuItem onClick={handleClose}>
+                                        {t('billing')}
+                                    </MenuItem>
+                                    <MenuItem
+                                        className={styles.logoutItem}
+                                        onClick={handleSignOut}
+                                    >
+                                        {t('logOut')}
+                                    </MenuItem>
+                                </MenuList>
+                            </ClickAwayListener>
+                        </Paper>
+                    </Grow>
+                )}
+            </Popper>
         </>
     );
 };

@@ -10,7 +10,7 @@ import CarrierAddingPopup from '../OrderComponents/CarrierAddingPopup';
 import { useSelector } from 'react-redux';
 import { selectMyLiveOrders } from '../../redux/selectors/orders';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
-import OrderLoader from '../OrderLoader';
+import OrderLoader from '../Loaders/OrderLoader';
 import EmptyOrdersBlock from '../EmptyComponents/Empty';
 import { useTranslation } from 'next-i18next';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';

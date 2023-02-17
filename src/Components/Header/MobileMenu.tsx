@@ -28,22 +28,30 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
 import SearchIcon from '@mui/icons-material/Search';
+import { IUserNotification } from 'src/interfaces/user';
+import NotificationsMobileItem from '../Notifications/NotificationsMobileItem';
+import NotificationsMenu from '../Notifications/NotificationsMenu';
 
 interface IProps {
+    notifications: IUserNotification[];
+    setNotifications: React.Dispatch<React.SetStateAction<IUserNotification[]>>;
     showSignInOutIfUnauthorized: boolean;
     isSettingsPopupOpen: boolean;
     setIsSettingsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const MobileMenu = ({
+    notifications,
+    setNotifications,
     showSignInOutIfUnauthorized,
     isSettingsPopupOpen,
     setIsSettingsPopupOpen,
 }: IProps) => {
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
     const [animate, setAnimate] = React.useState<boolean>(false);
-    
+
     const dispatch = useAppDispatch();
     const user = useAppSelector(selectUser);
     const router = useRouter();
@@ -83,6 +91,7 @@ const MobileMenu = ({
         }
     };
 
+    const clearNotifications = () => setNotifications([]);
     const goToProfile = () => router.push(navigateTo.PROFILE_ORDERS);
     const goToDashboard = () => router.push(navigateTo.DASHBOARD);
     const goToOrdersSearch = () => router.push(navigateTo.ORDER_SEARCH);
@@ -96,15 +105,41 @@ const MobileMenu = ({
             />
             <div className={styles.mobileMenuWrapper}>
                 {isAuthorized && (
-                    <MenuIcon
-                        onClick={toggleMobileMenu}
-                        sx={{ width: 30, height: 30, cursor: 'pointer' }}
-                    />
+                    <div className={styles.mobileMenuContent}>
+                        <NotificationsMenu
+                            notifications={notifications}
+                            setNotifications={setNotifications}
+                        />
+                        <MenuIcon
+                            onClick={toggleMobileMenu}
+                            sx={{ width: 30, height: 30, cursor: 'pointer' }}
+                        />
+                    </div>
                 )}
                 {isSettingsPopupOpen && (
                     <SettingsPopup
                         setIsSettingsPopupOpen={setIsSettingsPopupOpen}
                     />
+                )}
+                {!isAuthorized && showSignInOutIfUnauthorized && (
+                    <>
+                        <Button className={styles.button} variant='outlined'>
+                            <MUILink
+                                component={LinkBehaviour}
+                                href={navigateTo.SIGNIN}
+                            >
+                                {t('signIn')}
+                            </MUILink>
+                        </Button>
+                        <Button className={styles.button} variant='outlined'>
+                            <MUILink
+                                component={LinkBehaviour}
+                                href={navigateTo.SIGNUP}
+                            >
+                                {t('signUp')}
+                            </MUILink>
+                        </Button>
+                    </>
                 )}
                 {mobileMenuOpen && (
                     <div
@@ -185,26 +220,6 @@ const MobileMenu = ({
                             </Paper>
                         </ClickAwayListener>
                     </div>
-                )}
-                {!isAuthorized && showSignInOutIfUnauthorized && (
-                    <>
-                        <Button className={styles.button} variant='outlined'>
-                            <MUILink
-                                component={LinkBehaviour}
-                                href={navigateTo.SIGNIN}
-                            >
-                                {t('signIn')}
-                            </MUILink>
-                        </Button>
-                        <Button className={styles.button} variant='outlined'>
-                            <MUILink
-                                component={LinkBehaviour}
-                                href={navigateTo.SIGNUP}
-                            >
-                                {t('signUp')}
-                            </MUILink>
-                        </Button>
-                    </>
                 )}
             </div>
         </>

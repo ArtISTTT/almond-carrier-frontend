@@ -9,7 +9,7 @@ import style from '../../styles/SignIn.module.css';
 import { processRecoverPassword } from '../../src/api/auth';
 import { RecoverPasswordSchema } from '../../src/schemas/RecoverPasswordSchema';
 import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
-import Loader from '../../src/Components/Loader';
+import Loader from '../../src/Components/Loaders/Loader';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'react-i18next';
 import { navigateTo } from 'src/interfaces/navigate';

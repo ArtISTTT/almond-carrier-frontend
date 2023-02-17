@@ -9,7 +9,7 @@ import styles from '../../../styles/OrderChat.module.css';
 import { IMessage, MessageType } from 'src/interfaces/chat';
 import MessageChat from './MessageChat';
 import dayjs, { Dayjs } from 'dayjs';
-import MessagesLoader from '../MessagesLoader';
+import MessagesLoader from '../Loaders/MessagesLoader';
 
 const keys = {
     ENTER: 13,
