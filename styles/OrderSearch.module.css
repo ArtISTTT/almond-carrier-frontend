@@ -276,6 +276,8 @@
     gap: 5px;
 }
 
+
+
 @media screen and (max-width: 1240px) {
     .doubleditem {
         font-size: 15px;

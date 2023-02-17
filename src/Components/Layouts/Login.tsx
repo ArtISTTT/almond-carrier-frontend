@@ -21,12 +21,6 @@ const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
                     />
                     {children}
                 </div>
-                <svg viewBox='0 0 500 250' preserveAspectRatio='xMinYMin meet'>
-                    <path
-                        d='M0,100 C150,200 350,0 500,100 L500,00 L0,0 Z'
-                        style={{ stroke: 'none', fill: '#87a9ff' }}
-                    ></path>
-                </svg>
             </div>
         </MainLayoutLogin>
     </PrivateLayout>

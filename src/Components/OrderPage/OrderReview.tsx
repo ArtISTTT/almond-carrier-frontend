@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../../../styles/ReviewBlock.module.css';
 import { Rating, TextField, Button, Typography } from '@mui/material';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import CloseIcon from '@mui/icons-material/Close';
 import { useFormik } from 'formik';
 import { ReviewSchema } from 'src/schemas/ReviewSchema';
 import { useTranslation } from 'react-i18next';
@@ -37,7 +37,7 @@ const OrderReview = ({ setIsReviewBlockOpen }: IProps) => {
     return (
         <div className={styles.reviewBlockWrapper}>
             <div className={styles.closeIcon}>
-                <HighlightOffIcon
+                <CloseIcon
                     onClick={() => setIsReviewBlockOpen(false)}
                     sx={{ cursor: 'pointer' }}
                 />
