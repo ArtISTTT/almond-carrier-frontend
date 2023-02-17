@@ -36,7 +36,6 @@ const NotificationsMenu = ({ notifications, setNotifications }: IProps) => {
 
     return (
         <>
-            {/* <IconButton aria-label='cart'> */}
             <Badge
                 className={styles.notificationsBadge}
                 color='primary'
@@ -51,7 +50,6 @@ const NotificationsMenu = ({ notifications, setNotifications }: IProps) => {
                     sx={{ width: 30, height: 30, cursor: 'pointer' }}
                 />
             </Badge>
-            {/* </IconButton> */}
 
             <Popper
                 open={open}
