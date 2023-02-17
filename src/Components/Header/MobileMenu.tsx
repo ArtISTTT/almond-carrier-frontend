@@ -42,13 +42,13 @@ interface IProps {
     setIsSettingsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const MobileMenu = ({
+const MobileMenu: React.FC<IProps> = ({
     notifications,
     setNotifications,
     showSignInOutIfUnauthorized,
     isSettingsPopupOpen,
     setIsSettingsPopupOpen,
-}: IProps) => {
+}) => {
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
     const [animate, setAnimate] = React.useState<boolean>(false);
 

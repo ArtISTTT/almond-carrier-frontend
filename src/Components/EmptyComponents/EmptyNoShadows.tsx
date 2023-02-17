@@ -3,7 +3,11 @@ import styles from '../../../styles/EmptyOrders.module.css';
 import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-const EmptyNoShadows = ({ text }: { text: string }) => {
+interface IProps {
+    text: string;
+}
+
+const EmptyNoShadows: React.FC<IProps> = ({ text }) => {
     const { t } = useTranslation();
 
     return (

@@ -3,7 +3,11 @@ import ProfileCard from '../MyProfile/ProfileCard';
 import ProfileNavbar from '../MyProfile/ProfileNavbar';
 import styles from '../../../styles/Profile.module.css';
 
-const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
+interface IProps {
+    children: React.ReactNode;
+}
+
+const ProfileLayout: React.FC<IProps> = ({ children }) => {
     return (
         <div className={styles.profileLayoutWrapper}>
             <div className={styles.menuWrapper}>

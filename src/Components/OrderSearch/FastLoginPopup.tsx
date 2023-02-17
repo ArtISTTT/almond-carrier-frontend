@@ -6,11 +6,11 @@ import { useRouter } from 'next/router';
 import { navigateTo } from 'src/interfaces/navigate';
 import CloseIcon from '@mui/icons-material/Close';
 
-const FastLoginPopup = ({
-    setIsFastLoginPopupOpen,
-}: {
+interface IProps {
     setIsFastLoginPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+}
+
+const FastLoginPopup: React.FC<IProps> = ({ setIsFastLoginPopupOpen }) => {
     const { t } = useTranslation();
     const router = useRouter();
     const handleClose = () => setIsFastLoginPopupOpen(false);
