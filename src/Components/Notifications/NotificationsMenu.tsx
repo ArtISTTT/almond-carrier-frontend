@@ -8,9 +8,9 @@ import {
     Grow,
     MenuList,
     Paper,
+    Badge,
     Popper,
 } from '@mui/material';
-
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 
@@ -36,20 +36,28 @@ const NotificationsMenu = ({ notifications, setNotifications }: IProps) => {
 
     return (
         <>
-            <NotificationsNoneIcon
-                ref={anchorRef}
-                onClick={handleToggle}
-                aria-haspopup='true'
-                aria-controls={open ? 'menu-list-grow' : undefined}
-                className={styles.notificationsIconHeader}
-                sx={{ width: 37, height: 37, cursor: 'pointer' }}
-            />
+            {/* <IconButton aria-label='cart'> */}
+            <Badge
+                className={styles.notificationsBadge}
+                color='primary'
+                badgeContent={notifications.length}
+            >
+                <NotificationsNoneIcon
+                    ref={anchorRef}
+                    onClick={handleToggle}
+                    aria-haspopup='true'
+                    aria-controls={open ? 'menu-list-grow' : undefined}
+                    className={styles.notificationsIconHeader}
+                    sx={{ width: 30, height: 30, cursor: 'pointer' }}
+                />
+            </Badge>
+            {/* </IconButton> */}
 
             <Popper
                 open={open}
                 anchorEl={anchorRef.current}
                 role={undefined}
-                placement='bottom-end'
+                placement='bottom-start'
                 transition
                 disablePortal
             >

@@ -32,6 +32,7 @@ import ClearAllIcon from '@mui/icons-material/ClearAll';
 import SearchIcon from '@mui/icons-material/Search';
 import { IUserNotification } from 'src/interfaces/user';
 import NotificationsMobileItem from '../Notifications/NotificationsMobileItem';
+import NotificationsMenu from '../Notifications/NotificationsMenu';
 
 interface IProps {
     notifications: IUserNotification[];
@@ -104,10 +105,16 @@ const MobileMenu = ({
             />
             <div className={styles.mobileMenuWrapper}>
                 {isAuthorized && (
-                    <MenuIcon
-                        onClick={toggleMobileMenu}
-                        sx={{ width: 30, height: 30, cursor: 'pointer' }}
-                    />
+                    <div className={styles.mobileMenuContent}>
+                        <NotificationsMenu
+                            notifications={notifications}
+                            setNotifications={setNotifications}
+                        />
+                        <MenuIcon
+                            onClick={toggleMobileMenu}
+                            sx={{ width: 30, height: 30, cursor: 'pointer' }}
+                        />
+                    </div>
                 )}
                 {isSettingsPopupOpen && (
                     <SettingsPopup
@@ -210,55 +217,6 @@ const MobileMenu = ({
                                         {t('logOut')}
                                     </MenuItem>
                                 </MenuList>
-                                {notifications.length > 0 && (
-                                    <>
-                                        <div
-                                            className={
-                                                styles.notificationsMobileTitle
-                                            }
-                                        >
-                                            {t('notifications')}
-                                        </div>
-                                        <div
-                                            className={
-                                                styles.notificationsMobileBlock
-                                            }
-                                        >
-                                            {notifications.map(notification => (
-                                                <NotificationsMobileItem
-                                                    setNotifications={
-                                                        setNotifications
-                                                    }
-                                                    currentDate={
-                                                        notification.date
-                                                    }
-                                                    id={notification.id}
-                                                    text={notification.text}
-                                                    deal={notification.deal}
-                                                />
-                                            ))}
-                                        </div>
-                                        <div
-                                            className={
-                                                styles.notificationsMarkAllButton
-                                            }
-                                            onClick={clearNotifications}
-                                        >
-                                            <ClearAllIcon
-                                                sx={{
-                                                    width: 17,
-                                                    height: 17,
-                                                }}
-                                            />
-                                            <div>{t('markAllAsRead')}</div>
-                                        </div>
-                                    </>
-                                )}
-                                {notifications.length === 0 && (
-                                    <div className={styles.emplyNotifications}>
-                                        {t('noNotifications')}
-                                    </div>
-                                )}
                             </Paper>
                         </ClickAwayListener>
                     </div>

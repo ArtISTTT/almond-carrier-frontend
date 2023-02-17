@@ -266,6 +266,11 @@
     display: none;
 }
 
+.mobileMenuContent {
+    display: flex;
+    gap: 10px;
+}
+
 .notificationsMobileTitle {
     padding-top: 20px;
     padding-bottom: 5px;

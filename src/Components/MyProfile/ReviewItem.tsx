@@ -56,6 +56,7 @@ const ReviewItem: React.FC<IReview> = ({
                     <Rating
                         className={styles.reviewRating}
                         defaultValue={rating}
+                        readOnly
                         precision={0.5}
                     />
                     <Typography

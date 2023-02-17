@@ -1,21 +1,24 @@
 .notificationsIconHeader {
-    color: var(--cTextPrimary);
+    color: var(--cTextLow);
     margin-right: 10px;
 }
 
 .growMenu {
-    margin-top: 21px;
+    margin-top: 25px;
     background: var(--cBgSecondary);
     box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
         0px 8px 10px 1px rgba(0, 0, 0, 0.14),
         0px 3px 14px 2px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
+    position: absolute;
+    right: -105px;
 }
 
 .notificationWrapper {
     width: 400px;
     padding: 15px 10px;
     margin: 3px 2px;
+
     border-radius: 4px;
 }
 
@@ -82,6 +85,11 @@
     color: var(--cTextThird);
 }
 
+.notificationsBadge :global .MuiBadge-badge {
+    top: 7px;
+    right: 14px;
+}
+
 .notificationsMarkAllButton {
     margin-top: 8px;
     justify-content: flex-end;
@@ -146,4 +154,13 @@
 .notficationsBlock {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+@media screen and (max-width: 560px) {
+    .notificationWrapper {
+        width: 290px;
+    }
+    .emplyNotifications {
+        width: 290px;
+    }
 }
