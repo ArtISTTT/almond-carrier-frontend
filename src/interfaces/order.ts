@@ -30,6 +30,7 @@ export interface IOrder {
 }
 
 export type IPureReview = {
+    _id: string;
     orderId: string;
     rating: number;
     reviewerType: ViewType;
@@ -43,7 +44,8 @@ export interface IOrderFull extends IOrder {
     byReceiverSuggestedChanges?: Partial<IOrder>;
     dealConfirmedByCarrier?: boolean;
     dealConfirmedByReceiver?: boolean;
-    reviews: IPureReview[];
+    myReview: IPureReview;
+    partnerReview: IPureReview;
 }
 
 export interface ICreateOrderReciever {
