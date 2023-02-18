@@ -44,14 +44,14 @@ const OrderReview: React.FC<IProps> = ({
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: 'Отзыв успешно оставлен',
+                text: 'Отзыв успешно оставлен', // ЛОКАЛИЗАЦИЯ
             });
 
             setIsReviewBlockOpen(false);
         } else {
             triggerOpen({
                 severity: 'error',
-                text: 'Ошибка при оставлении отзыва',
+                text: 'Ошибка при оставлении отзыва', // ЛОКАЛИЗАЦИЯ
             });
         }
         setIsSendButtonDisabled(false);
