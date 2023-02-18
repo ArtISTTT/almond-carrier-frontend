@@ -1,10 +1,13 @@
 import { Pagination, Typography } from '@mui/material';
 import styles from '../../../styles/ProfileReviews.module.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
 import ReviewItem from './ReviewItem';
 import { useTranslation } from 'react-i18next';
 import { userRole } from 'src/interfaces/order-search';
+import { useLoadReviews } from 'src/redux/hooks/useLoadReviews';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'src/redux/selectors/user';
 
 const reviews = [
     {
@@ -47,6 +50,13 @@ const reviews = [
 
 const ProfileReviews = () => {
     const { t } = useTranslation();
+    const { id } = useSelector(selectUser);
+    const { reload, isLoading, error } = useLoadReviews(id);
+
+    useEffect(() => {
+        reload();
+    }, []);
+
     return (
         <div className={styles.reviewsWrapper}>
             <Typography
