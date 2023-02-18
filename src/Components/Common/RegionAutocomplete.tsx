@@ -16,6 +16,15 @@ const RegionAutocomplete: React.FC<IProps> = ({ textFieldProps, setValue }) => {
         apiKey: 'AIzaSyDTDQ8q7QaBnBfDNHzYTAe7eNt34l-bUis',
         onPlaceSelected: setValueLocal,
         inputAutocompleteValue: textFieldProps.id,
+        options: {
+            types: [
+                'locality',
+                'sublocality',
+                'country',
+                'administrative_area_level_1',
+                'administrative_area_level_2',
+            ],
+        },
     });
 
     return (
