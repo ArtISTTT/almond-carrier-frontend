@@ -6,7 +6,7 @@ import OrderInformation from './OrderInformation';
 import { confirmPayment, getOrderById } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { IOrder, IOrderFull } from '../../interfaces/order';
-import OrderLoader from '../OrderLoader';
+import OrderLoader from '../Loaders/OrderLoader';
 import Link from 'next/link';
 import { Button, Collapse } from '@mui/material';
 import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';

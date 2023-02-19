@@ -181,7 +181,6 @@
     font-weight: 600;
 }
 
-
 @media screen and (max-width: 1130px) {
     .chatWrapper {
         margin-top: 0;
@@ -198,8 +197,10 @@
 
 @media screen and (max-width: 470px) {
     .chatWrapper {
-        width: 90%;
-        margin: 0 auto;
+        margin-left: 10px;
+        margin-right: 10px;
+        max-width: unset;
+        width: calc(100% - 20px);
     }
     .chatMemberName {
         font-size: 15px;

@@ -395,7 +395,6 @@
     align-items: center;
 }
 
-
 @media screen and (max-width: 1130px) {
     .orderConent {
         flex-direction: column;
@@ -459,6 +458,10 @@
 }
 
 @media screen and (max-width: 560px) {
+    .multiline {
+        width: 100%;
+        margin-right: 0;
+    }
     .orderDetails {
         flex-direction: column;
         gap: 20px;
@@ -522,7 +525,7 @@
     .infoRight {
         text-align: left;
     }
-    .infoRight span{
+    .infoRight span {
         font-size: 13px;
     }
     .infoRight svg {

@@ -12,3 +12,10 @@ export type IUser = {
     completedOrders: number;
     id: string;
 };
+
+export interface IUserNotification {
+    text: string;
+    id: string;
+    deal: string;
+    date: Dayjs;
+}

@@ -1,5 +1,6 @@
 import { Dayjs } from 'dayjs';
 import { OrderStatus } from './profile';
+import { ViewType } from 'src/Components/OrderPage/OrderInputItem';
 
 export interface IOrder {
     id: string;
@@ -28,11 +29,23 @@ export interface IOrder {
     };
 }
 
+export type IPureReview = {
+    _id: string;
+    orderId: string;
+    rating: number;
+    reviewerType: ViewType;
+    text: string;
+    userForId: string;
+    userReviewerId: string;
+};
+
 export interface IOrderFull extends IOrder {
     byCarrierSuggestedChanges?: Partial<IOrder>;
     byReceiverSuggestedChanges?: Partial<IOrder>;
     dealConfirmedByCarrier?: boolean;
     dealConfirmedByReceiver?: boolean;
+    myReview: IPureReview;
+    partnerReview: IPureReview;
 }
 
 export interface ICreateOrderReciever {

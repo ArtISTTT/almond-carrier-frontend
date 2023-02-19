@@ -1,0 +1,166 @@
+.notificationsIconHeader {
+    color: var(--cTextLow);
+    margin-right: 10px;
+}
+
+.growMenu {
+    margin-top: 25px;
+    background: var(--cBgSecondary);
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+        0px 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    position: absolute;
+    right: -105px;
+}
+
+.notificationWrapper {
+    width: 400px;
+    padding: 15px 10px;
+    margin: 3px 2px;
+
+    border-radius: 4px;
+}
+
+.notificationTitle {
+    text-decoration: underline;
+    color: var(--cTextPrimary);
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.notificationInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.notificationContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notificationContentInner {
+    width: 100%;
+}
+
+.notificationText {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--cTextPrimary);
+    padding: 5px 0;
+}
+
+.notificationText > span {
+    color: var(--cTextThird);
+    letter-spacing: 0.2px;
+}
+
+.notificationTime {
+    color: var(--cTextLow);
+    font-size: 10px;
+}
+
+.checkNotificationIcon {
+    cursor: pointer;
+    margin-top: 7px;
+    transition-duration: 200ms;
+    color: var(--cTextLow);
+}
+
+.checkNotificationIcon:hover {
+    color: var(--cTextPrimary);
+}
+
+.notificationWrapper:hover {
+    background-color: var(--cBgThird);
+}
+
+.notificationsTitle {
+    margin-bottom: 8px;
+    text-align: center;
+    font-size: 18px;
+    color: var(--cTextThird);
+}
+
+.notificationsBadge :global .MuiBadge-badge {
+    top: 7px;
+    right: 14px;
+}
+
+.notificationsMarkAllButton {
+    margin-top: 8px;
+    justify-content: flex-end;
+    margin-right: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: var(--cTextThird);
+    transition-duration: 300ms;
+}
+
+.notificationsMarkAllButton > span {
+    margin-left: 5px;
+}
+
+.notificationsMarkAllButton:hover {
+    color: var(--cTextPrimary);
+}
+
+.emplyNotifications {
+    text-align: center;
+    padding: 10px 0;
+    width: 350px;
+}
+
+.notificationMobileWrapper {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 3px 2px;
+    border-radius: 4px;
+}
+
+.notificationMobileText {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-right: 5px;
+    color: var(--cTextPrimary);
+    padding: 5px 0;
+}
+
+.notificationMobileTextInfo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.notificationMobileText > div > span {
+    color: var(--cTextThird);
+}
+
+.notficationsBlock {
+    max-height: 540px;
+    overflow-y: scroll;
+}
+
+.notficationsBlock::-webkit-scrollbar {
+    display: none;
+}
+
+.notficationsBlock {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+@media screen and (max-width: 560px) {
+    .notificationWrapper {
+        width: 290px;
+    }
+    .emplyNotifications {
+        width: 290px;
+    }
+}

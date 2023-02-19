@@ -5,7 +5,7 @@ import OrderItem from 'src/Components/OrderComponents/OrderItem';
 import { useSelector } from 'react-redux';
 import { selectMyOrders } from '../../redux/selectors/orders';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
-import OrderLoader from '../OrderLoader';
+import OrderLoader from '../Loaders/OrderLoader';
 import cn from 'classnames';
 import EmptyOrdersBlock from '../EmptyComponents/EmptyNoShadows';
 import { useTranslation } from 'react-i18next';
