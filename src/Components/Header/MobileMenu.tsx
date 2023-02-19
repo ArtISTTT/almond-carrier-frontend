@@ -62,7 +62,7 @@ const MobileMenu: React.FC<IProps> = ({
     const handleCloseMenu = () => {
         setTimeout(() => {
             setMobileMenuOpen(false);
-        }, 295);
+        }, 280);
         setAnimate(false);
     };
 
@@ -91,7 +91,6 @@ const MobileMenu: React.FC<IProps> = ({
         }
     };
 
-    const clearNotifications = () => setNotifications([]);
     const goToProfile = () => router.push(navigateTo.PROFILE_ORDERS);
     const goToDashboard = () => router.push(navigateTo.DASHBOARD);
     const goToOrdersSearch = () => router.push(navigateTo.ORDER_SEARCH);
@@ -105,7 +104,7 @@ const MobileMenu: React.FC<IProps> = ({
             />
             <div className={styles.mobileMenuWrapper}>
                 {isAuthorized && (
-                    <div className={styles.mobileMenuContent}>
+                    <div className={cn(styles.mobileMenuContent)}>
                         <NotificationsMenu
                             notifications={notifications}
                             setNotifications={setNotifications}

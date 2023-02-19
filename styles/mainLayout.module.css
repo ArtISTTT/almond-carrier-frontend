@@ -155,10 +155,12 @@
 .openMobileMenu {
     animation-name: slide;
     animation-duration: 0.3s;
+    z-index: 2;
 }
 
 .closeMobileMenu {
     animation-name: backSlide;
+    z-index: 2;
     animation-duration: 0.3s;
 }
 
@@ -264,6 +266,11 @@
 
 .mobileMenuWrapper {
     display: none;
+}
+
+.contentWhenMobileOpen {
+    position: relative;
+    z-index: 1;
 }
 
 .mobileMenuContent {
@@ -373,7 +380,8 @@
     .mobileMenuWrapper {
         display: flex;
         align-items: center;
-        z-index: 2;
+        position: relative;
+        z-index: 4;
         font-size: 10px;
         margin-right: 24px;
     }
