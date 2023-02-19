@@ -6,5 +6,5 @@ import { Language } from 'src/interfaces/settings';
 export const parseOrderDataFromApi = (orders: (IOrder | IOrderFull)[]) =>
     orders.map(order => ({
         ...order,
-        arrivalDate: dayjs(order.arrivalDate),
+        arrivalDate: order.arrivalDate ? dayjs(order.arrivalDate) : undefined,
     }));
