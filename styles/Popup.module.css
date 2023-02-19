@@ -1,18 +1,11 @@
 .popup {
     background-color: var(--cBgSecondary);
     width: 100%;
-    max-width: 800px;
+    height: 100%;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    padding: 30px;
-    padding-top: 16px;
-    border-radius: 20px;
-    transform: translate(-50%, -50%);
-}
-
-.stack {
-    /* margin-top: 10px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .currency {
@@ -23,13 +16,15 @@
     position: absolute;
     top: 16px;
     right: 16px;
+    color: var(--cTextPrimary);
     cursor: pointer;
 }
 
 .popupTitle {
     font-weight: 700;
     margin-bottom: 20px;
-    font-size: 24px;
+    margin-top: 30px;
+    font-size: 30px;
     line-height: 24px;
     letter-spacing: 0.4px;
     color: var(--cTextThird);
@@ -40,6 +35,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    max-width: 400px;
     margin-top: 10px;
 }
 
@@ -88,7 +84,12 @@
 
 .form {
     width: 100%;
-    max-width: 804px;
+    max-width: 800px;
+}
+
+.inputsWrapper {
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .formGeneral {
@@ -104,9 +105,6 @@
 }
 
 @media screen and (max-width: 820px) {
-    .popup {
-        width: 90%;
-    }
 }
 
 @media screen and (max-width: 600px) {
@@ -117,9 +115,6 @@
         margin-left: 0px !important;
         padding-top: 10px;
     }
-    .inputItem.noMargin {
-        margin-left: 0;
-    }
 }
 
 @media screen and (max-width: 500px) {
@@ -127,8 +122,9 @@
         font-size: 20px;
     }
     .inputItem > label {
-        font-size: 10px;
+        font-size: 14px;
         line-height: 12px;
+        margin-bottom: 5px;
     }
     .confirmButton {
         margin: 20px auto !important;
@@ -148,5 +144,23 @@
     }
     .inputBig :global .MuiInputBase-root {
         height: 125px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .inputItem {
+        margin: 0 auto;
+    }
+    .inputItem > label {
+        margin-left: 20px;
+    }
+
+    .input {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .descriptionInput {
+        width: 90%;
+        margin: 0 auto;
     }
 }

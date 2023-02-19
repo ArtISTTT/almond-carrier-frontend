@@ -85,6 +85,11 @@
     color: var(--cTextThird);
 }
 
+.notificationsBadge {
+    position: relative;
+    z-index: 1;
+}
+
 .notificationsBadge :global .MuiBadge-badge {
     top: 7px;
     right: 14px;

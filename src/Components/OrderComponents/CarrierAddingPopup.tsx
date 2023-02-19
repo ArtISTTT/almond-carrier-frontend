@@ -95,167 +95,155 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
     };
 
     return (
-        <Popup title={'Send new item'} closePopup={closePopup}>
+        <Popup title={t('sendNewItem') as string} closePopup={closePopup}>
             <form className={styles.form} onSubmit={formik.handleSubmit}>
-                <Stack direction='column'  width='100%'>
-                    <Stack direction='row' spacing={2} className={styles.stack}>
-                        <div className={styles.inputItem}>
-                            <label htmlFor='fromLocation'>
-                                {t('deliverFrom')}
-                            </label>
-                            <RegionAutocomplete
-                                textFieldProps={{
-                                    id: 'fromLocation',
-                                    name: 'fromLocation',
-                                    type: 'string',
-                                    variant: 'outlined',
-                                    value: formik.values.fromLocation,
-                                    onChange: formik.handleChange,
-                                    error:
-                                        formik.errors.fromLocation !==
-                                        undefined,
-                                    helperText:
-                                        formik.errors.fromLocation &&
-                                        (t(
-                                            formik.errors.fromLocation
-                                        ) as string),
-                                    className: styles.input,
-                                }}
-                                setValue={setLocationValue}
-                            />
-                        </div>
-                        <div
-                            className={cn(
-                                styles.inputItem,
-                                styles.Second,
-                                styles.noMargin
+                <Stack
+                    className={styles.inputsWrapper}
+                    direction='column'
+                    spacing={1.5}
+                    width='100%'
+                >
+                    <div className={styles.inputItem}>
+                        <label htmlFor='fromLocation'>{t('deliverFrom')}</label>
+                        <RegionAutocomplete
+                            textFieldProps={{
+                                id: 'fromLocation',
+                                name: 'fromLocation',
+                                type: 'string',
+                                variant: 'outlined',
+                                value: formik.values.fromLocation,
+                                onChange: formik.handleChange,
+                                error: formik.errors.fromLocation !== undefined,
+                                helperText:
+                                    formik.errors.fromLocation &&
+                                    (t(formik.errors.fromLocation) as string),
+                                className: styles.input,
+                            }}
+                            setValue={setLocationValue}
+                        />
+                    </div>
+                    <div
+                        className={cn(
+                            styles.inputItem,
+                            styles.Second,
+                            styles.noMargin
+                        )}
+                    >
+                        <label htmlFor='toLocation'>{t('deliverTo')}</label>
+                        <RegionAutocomplete
+                            textFieldProps={{
+                                id: 'toLocation',
+                                name: 'toLocation',
+                                type: 'string',
+                                variant: 'outlined',
+                                value: formik.values.toLocation,
+                                onChange: formik.handleChange,
+                                error: formik.errors.toLocation !== undefined,
+                                helperText:
+                                    formik.errors.toLocation &&
+                                    (t(formik.errors.toLocation) as string),
+                                className: styles.input,
+                            }}
+                            setValue={setLocationValue}
+                        />
+                    </div>
+
+                    <div className={styles.inputItem}>
+                        <label htmlFor='rewardAmount'>{t('reward')}</label>
+                        <TextField
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position='end'>
+                                        <span className={styles.currency}>
+                                            {t(userCurrency[currency])}
+                                        </span>
+                                    </InputAdornment>
+                                ),
+                            }}
+                            id='rewardAmount'
+                            name='rewardAmount'
+                            type='number'
+                            placeholder='0'
+                            variant='outlined'
+                            value={formik.values.rewardAmount}
+                            onChange={formik.handleChange}
+                            error={formik.errors.rewardAmount !== undefined}
+                            helperText={
+                                formik.errors.rewardAmount &&
+                                (t(formik.errors.rewardAmount) as string)
+                            }
+                            className={styles.input}
+                        />
+                    </div>
+                    <div
+                        className={cn(
+                            styles.inputItem,
+                            styles.Second,
+                            styles.noMargin
+                        )}
+                    >
+                        <label htmlFor='arrivalDate'>{t('arrivalDate')}</label>
+                        <DesktopDatePicker
+                            inputFormat='DD.MM.YYYY'
+                            value={formik.values.arrivalDate}
+                            disablePast={true}
+                            onChange={value => {
+                                formik.setFieldValue('arrivalDate', value);
+                            }}
+                            renderInput={params => (
+                                <TextField
+                                    {...params}
+                                    id='arrivalDate'
+                                    name='arrivalDate'
+                                    variant='outlined'
+                                    className={styles.input}
+                                    error={
+                                        formik.errors.arrivalDate !== undefined
+                                    }
+                                    helperText={
+                                        formik.errors.arrivalDate &&
+                                        t('correctDate')
+                                    }
+                                />
                             )}
-                        >
-                            <label htmlFor='toLocation'>{t('deliverTo')}</label>
-                            <RegionAutocomplete
-                                textFieldProps={{
-                                    id: 'toLocation',
-                                    name: 'toLocation',
-                                    type: 'string',
-                                    variant: 'outlined',
-                                    value: formik.values.toLocation,
-                                    onChange: formik.handleChange,
-                                    error:
-                                        formik.errors.toLocation !== undefined,
-                                    helperText:
-                                        formik.errors.toLocation &&
-                                        (t(formik.errors.toLocation) as string),
-                                    className: styles.input,
-                                }}
-                                setValue={setLocationValue}
-                            />
-                        </div>
-                    </Stack>
-                    <Stack direction='row' spacing={2} className={styles.stack}>
-                        <div className={styles.inputItem}>
-                            <label htmlFor='rewardAmount'>{t('reward')}</label>
-                            <TextField
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position='end'>
-                                            <span className={styles.currency}>
-                                                {t(userCurrency[currency])}
-                                            </span>
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                id='rewardAmount'
-                                name='rewardAmount'
-                                type='number'
-                                placeholder='0'
-                                variant='outlined'
-                                value={formik.values.rewardAmount}
-                                onChange={formik.handleChange}
-                                error={formik.errors.rewardAmount !== undefined}
-                                helperText={
-                                    formik.errors.rewardAmount &&
-                                    (t(formik.errors.rewardAmount) as string)
-                                }
-                                className={styles.input}
-                            />
-                        </div>
-                        <div
-                            className={cn(
-                                styles.inputItem,
-                                styles.Second,
-                                styles.noMargin
-                            )}
-                        >
-                            <label htmlFor='arrivalDate'>
-                                {t('arrivalDate')}
-                            </label>
-                            <DesktopDatePicker
-                                inputFormat='DD.MM.YYYY'
-                                value={formik.values.arrivalDate}
-                                disablePast={true}
-                                onChange={value => {
-                                    formik.setFieldValue('arrivalDate', value);
-                                }}
-                                renderInput={params => (
-                                    <TextField
-                                        {...params}
-                                        id='arrivalDate'
-                                        name='arrivalDate'
-                                        variant='outlined'
-                                        className={styles.input}
-                                        error={
-                                            formik.errors.arrivalDate !==
-                                            undefined
-                                        }
-                                        helperText={
-                                            formik.errors.arrivalDate &&
-                                            t('correctDate')
-                                        }
-                                    />
-                                )}
-                            />
-                        </div>
-                    </Stack>
-                    <Stack direction='row' spacing={2}>
-                        <div className={styles.inputItem}>
-                            <label htmlFor='carrierMaxWeight'>
-                                {t('maxWeight')}
-                            </label>
-                            <TextField
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position='end'>
-                                            {t('kg')}
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                id='carrierMaxWeight'
-                                name='carrierMaxWeight'
-                                placeholder={t('maxWeight') as string}
-                                variant='outlined'
-                                type='number'
-                                value={formik.values.carrierMaxWeight}
-                                onChange={formik.handleChange}
-                                error={
-                                    formik.errors.carrierMaxWeight !== undefined
-                                }
-                                helperText={
-                                    formik.errors.carrierMaxWeight &&
-                                    (t(
-                                        formik.errors.carrierMaxWeight
-                                    ) as string)
-                                }
-                                className={styles.input}
-                            />
-                        </div>
-                    </Stack>
+                        />
+                    </div>
+
+                    <div className={styles.inputItem}>
+                        <label htmlFor='carrierMaxWeight'>
+                            {t('maxWeight')}
+                        </label>
+                        <TextField
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position='end'>
+                                        {t('kg')}
+                                    </InputAdornment>
+                                ),
+                            }}
+                            id='carrierMaxWeight'
+                            name='carrierMaxWeight'
+                            placeholder={t('maxWeight') as string}
+                            variant='outlined'
+                            type='number'
+                            value={formik.values.carrierMaxWeight}
+                            onChange={formik.handleChange}
+                            error={formik.errors.carrierMaxWeight !== undefined}
+                            helperText={
+                                formik.errors.carrierMaxWeight &&
+                                (t(formik.errors.carrierMaxWeight) as string)
+                            }
+                            className={styles.input}
+                        />
+                    </div>
+
                     <Button
                         variant='contained'
                         className={styles.confirmButton}
                         type='submit'
                         disabled={formik.isSubmitting}
                     >
-                        {t('createOrder')}
+                        {t('sendItem')}
                     </Button>
                 </Stack>
             </form>

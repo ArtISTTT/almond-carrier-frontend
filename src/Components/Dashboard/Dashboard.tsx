@@ -114,7 +114,7 @@ const Dashboard: React.FC = () => {
                                         variant='contained'
                                     >
                                         <AddIcon sx={{ fontSize: 22 }} />
-                                        {t('orderNewItem')}
+                                        {t('orderItem')}
                                     </Button>
                                     <Button
                                         onClick={toggleCarrierPopup}
@@ -125,7 +125,7 @@ const Dashboard: React.FC = () => {
                                         variant='contained'
                                     >
                                         <AddIcon sx={{ fontSize: 22 }} />
-                                        {t('sendNewItem')}
+                                        {t('sendItem')}
                                     </Button>
                                 </div>
                             </div>
