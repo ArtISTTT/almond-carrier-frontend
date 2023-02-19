@@ -122,13 +122,7 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             setValue={setLocationValue}
                         />
                     </div>
-                    <div
-                        className={cn(
-                            styles.inputItem,
-                            styles.Second,
-                            styles.noMargin
-                        )}
-                    >
+                    <div className={cn(styles.inputItem)}>
                         <label htmlFor='toLocation'>{t('deliverTo')}</label>
                         <RegionAutocomplete
                             textFieldProps={{
@@ -175,13 +169,7 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             className={styles.input}
                         />
                     </div>
-                    <div
-                        className={cn(
-                            styles.inputItem,
-                            styles.Second,
-                            styles.noMargin
-                        )}
-                    >
+                    <div className={cn(styles.inputItem)}>
                         <label htmlFor='arrivalDate'>{t('arrivalDate')}</label>
                         <DesktopDatePicker
                             inputFormat='DD.MM.YYYY'
@@ -208,7 +196,6 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             )}
                         />
                     </div>
-
                     <div className={styles.inputItem}>
                         <label htmlFor='carrierMaxWeight'>
                             {t('maxWeight')}

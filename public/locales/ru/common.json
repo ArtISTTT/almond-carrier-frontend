@@ -147,6 +147,7 @@
     "orderItem": "Заказать товар",
     "orderNewItem": "Заказать новый товар",
     "orders": "заказы",
+    "mustBeLink": "Введите корректную ссылку",
     "orderSearch": "Поиск заказов",
     "orderSuccessAdd": "Заказ успешно добавлен",
     "other": "Другой",

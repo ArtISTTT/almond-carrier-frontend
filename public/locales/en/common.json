@@ -16,6 +16,7 @@
     "benefit": "Benefit",
     "sendNewItem": "Send new item",
     "orderNewItem": "Order new item",
+    "mustBeLink": "Must be a link",
     "billing": "Billing",
     "cancelled": "Cancelled",
     "cancelOrder": "Cancel order",

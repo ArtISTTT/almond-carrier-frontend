@@ -28,6 +28,7 @@ const userCurrency = {
 const defaultValues = {
     fromLocation: undefined,
     fromLocation_placeId: undefined,
+    productLink: '',
     toLocation: '',
     toLocation_placeId: '',
     productName: '',
@@ -160,6 +161,23 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             className={styles.input}
                         />
                     </div>
+                    <div className={styles.inputItem}>
+                        <label htmlFor='productLink'>{t('productLink')}</label>
+                        <TextField
+                            id='productLink'
+                            name='productLink'
+                            placeholder={t('productLink') as string}
+                            variant='outlined'
+                            value={formik.values.productLink}
+                            onChange={formik.handleChange}
+                            error={formik.errors.productLink !== undefined}
+                            helperText={
+                                formik.errors.productLink &&
+                                (t(formik.errors.productLink) as string)
+                            }
+                            className={styles.input}
+                        />
+                    </div>
                     <div className={cn(styles.inputItem)}>
                         <label htmlFor='productWeight'>{t('weight')}</label>
                         <TextField
@@ -266,7 +284,6 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             )}
                         />
                     </div>
-
                     <Button
                         variant='contained'
                         className={styles.confirmButton}

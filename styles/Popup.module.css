@@ -5,6 +5,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
     align-items: center;
 }
 
@@ -13,9 +14,9 @@
 }
 
 .icon {
-    position: absolute;
+    position: fixed;
     top: 16px;
-    right: 16px;
+    right: 36px;
     color: var(--cTextPrimary);
     cursor: pointer;
 }
@@ -90,6 +91,7 @@
 .inputsWrapper {
     max-width: 400px;
     margin: 0 auto;
+    margin-bottom: 30px;
 }
 
 .formGeneral {
