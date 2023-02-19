@@ -295,24 +295,28 @@ const OrderInformation: React.FC<IProps> = ({
 
     return (
         <>
-            {isMySentReviewBlockOpen && !isPersonReviewBlockOpen && (
-                <ReviewPopup
-                    closeReviewPopup={setIsMySentReviewBlockOpen}
-                    fullName={myFullName}
-                    rating={order.myReview.rating}
-                    reviewText={order.myReview.text}
-                    reviewerType={order.myReview.reviewerType}
-                />
-            )}
-            {isPersonReviewBlockOpen && !isMySentReviewBlockOpen && (
-                <ReviewPopup
-                    closeReviewPopup={setIsPersonReviewBlockOpen}
-                    fullName={personFullName}
-                    rating={order.partnerReview.rating}
-                    reviewText={order.partnerReview.text}
-                    reviewerType={order.partnerReview.reviewerType}
-                />
-            )}
+            {order.myReview &&
+                isMySentReviewBlockOpen &&
+                !isPersonReviewBlockOpen && (
+                    <ReviewPopup
+                        closeReviewPopup={setIsMySentReviewBlockOpen}
+                        fullName={myFullName}
+                        rating={order.myReview.rating}
+                        reviewText={order.myReview.text}
+                        reviewerType={order.myReview.reviewerType}
+                    />
+                )}
+            {order.partnerReview &&
+                isPersonReviewBlockOpen &&
+                !isMySentReviewBlockOpen && (
+                    <ReviewPopup
+                        closeReviewPopup={setIsPersonReviewBlockOpen}
+                        fullName={personFullName}
+                        rating={order.partnerReview.rating}
+                        reviewText={order.partnerReview.text}
+                        reviewerType={order.partnerReview.reviewerType}
+                    />
+                )}
             <div className={styles.orderInformation}>
                 {!order.myReview && isReviewBlockOpen ? (
                     <OrderReview
