@@ -12,17 +12,29 @@ type IProps = {
     order: IOrderFull;
     viewType: ViewType;
     setIsReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsMySentReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsPersonReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const OrderDetails: React.FC<IProps> = ({
     order,
     setIsReviewBlockOpen,
+    setIsMySentReviewBlockOpen,
+    setIsPersonReviewBlockOpen,
     viewType,
 }) => {
     const { t } = useTranslation();
     const statusToText = useConvertStatusToText();
 
     const openReviewBlock = () => setIsReviewBlockOpen(true);
+    const operPersonReviewBlock = () => {
+        setIsMySentReviewBlockOpen(false);
+        setIsPersonReviewBlockOpen(true);
+    };
+    const openMySentReviewBlock = () => {
+        setIsPersonReviewBlockOpen(false);
+        setIsMySentReviewBlockOpen(true);
+    };
 
     return (
         <div className={styles.orderDetails}>
@@ -46,7 +58,10 @@ const OrderDetails: React.FC<IProps> = ({
                     </span>
                     {order.myReview
                         ? order.status === OrderStatus.success && (
-                              <span className={styles.feedBackSentBlock}>
+                              <span
+                                  onClick={openMySentReviewBlock}
+                                  className={styles.feedBackSentBlock}
+                              >
                                   {t('myFeedback')}
                               </span>
                           )
@@ -61,8 +76,8 @@ const OrderDetails: React.FC<IProps> = ({
                     {order.partnerReview &&
                         order.status === OrderStatus.success && (
                             <span
+                                onClick={operPersonReviewBlock}
                                 className={styles.partnerFeedBack}
-                                onClick={openReviewBlock}
                             >
                                 {viewType === ViewType.receiver
                                     ? t('partnerCarrierReview')

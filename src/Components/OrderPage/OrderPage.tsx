@@ -55,6 +55,10 @@ const OrderPage = () => {
     const router = useRouter();
     const user = useSelector(selectUser);
     const [isReviewBlockOpen, setIsReviewBlockOpen] = useState<boolean>(false);
+    const [isPersonReviewBlockOpen, setIsPersonReviewBlockOpen] =
+        useState<boolean>(false);
+    const [isMySentReviewBlockOpen, setIsMySentReviewBlockOpen] =
+        useState<boolean>(false);
 
     const { order, updateOrder, isLoading } = useGetOrder(
         router.query.orderId as string
@@ -97,6 +101,8 @@ const OrderPage = () => {
     return (
         <div className={styles.wrapper}>
             <OrderDetails
+                setIsMySentReviewBlockOpen={setIsMySentReviewBlockOpen}
+                setIsPersonReviewBlockOpen={setIsPersonReviewBlockOpen}
                 setIsReviewBlockOpen={setIsReviewBlockOpen}
                 order={order}
                 viewType={viewType}
@@ -111,8 +117,12 @@ const OrderPage = () => {
 
             <div className={styles.orderConent}>
                 <OrderInformation
+                    isMySentReviewBlockOpen={isMySentReviewBlockOpen}
+                    isPersonReviewBlockOpen={isPersonReviewBlockOpen}
                     isReviewBlockOpen={isReviewBlockOpen}
                     setIsReviewBlockOpen={setIsReviewBlockOpen}
+                    setIsMySentReviewBlockOpen={setIsMySentReviewBlockOpen}
+                    setIsPersonReviewBlockOpen={setIsPersonReviewBlockOpen}
                     order={order}
                     updateOrder={updateOrder}
                     user={user}

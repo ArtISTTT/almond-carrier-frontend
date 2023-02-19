@@ -27,6 +27,7 @@ import { OpenAlertContext } from '../Layouts/Snackbar';
 import { IUser } from 'src/interfaces/user';
 import { useTranslation } from 'react-i18next';
 import OrderReview from './OrderReview';
+import ReviewPopup from './ReviewPopup';
 
 type IProps = {
     order: IOrderFull;
@@ -34,7 +35,11 @@ type IProps = {
     suggestedChanged: Partial<IOrder> | undefined;
     hasByYouSuggestedChanged: boolean;
     isReviewBlockOpen: boolean;
+    isMySentReviewBlockOpen: boolean;
+    isPersonReviewBlockOpen: boolean;
     setIsReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsMySentReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsPersonReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
     user: IUser;
     updateOrder: (withoutLoading?: true) => Promise<void>;
 };
@@ -42,12 +47,16 @@ type IProps = {
 const OrderInformation: React.FC<IProps> = ({
     order,
     viewType,
+    user,
+    updateOrder,
     suggestedChanged,
     hasByYouSuggestedChanged,
     isReviewBlockOpen,
+    isMySentReviewBlockOpen,
+    isPersonReviewBlockOpen,
     setIsReviewBlockOpen,
-    user,
-    updateOrder,
+    setIsMySentReviewBlockOpen,
+    setIsPersonReviewBlockOpen,
 }) => {
     const [editingFields, setEditingFields] = useState<(keyof IOrderFull)[]>(
         []
@@ -270,67 +279,79 @@ const OrderInformation: React.FC<IProps> = ({
         order.carrier?.firstName,
     ]);
 
+    const myFullName = useMemo(() => {
+        if (viewType === ViewType.receiver) {
+            return `${order.receiver?.firstName} ${order.receiver?.lastName}`;
+        }
+
+        return `${order.carrier?.firstName} ${order.carrier?.lastName}`;
+    }, [
+        viewType,
+        order.receiver?.firstName,
+        order.receiver?.lastName,
+        order.carrier?.lastName,
+        order.carrier?.firstName,
+    ]);
+
     return (
-        <div className={styles.orderInformation}>
-            {!order.myReview && isReviewBlockOpen ? (
-                <OrderReview
-                    setIsReviewBlockOpen={setIsReviewBlockOpen}
-                    orderId={order.id}
-                    personFullName={personFullName}
-                    userForId={
-                        viewType === ViewType.receiver
-                            ? (order.carrier?.id as string)
-                            : (order.receiver?.id as string)
-                    }
-                    reviewerType={viewType}
+        <>
+            {isMySentReviewBlockOpen && !isPersonReviewBlockOpen && (
+                <ReviewPopup
+                    closeReviewPopup={setIsMySentReviewBlockOpen}
+                    fullName={myFullName}
+                    rating={order.myReview.rating}
+                    reviewText={order.myReview.text}
+                    reviewerType={order.myReview.reviewerType}
                 />
-            ) : (
-                <form onSubmit={formik.handleSubmit}>
-                    <div className={styles.orderInformationTitle}>
-                        {t('orderInformation')}
-                    </div>
-                    <div className={styles.personInfo}>
-                        <div className={styles.personRole}>
-                            {viewType === ViewType.carrier
-                                ? t('receiver')
-                                : t('carrier')}
+            )}
+            {isPersonReviewBlockOpen && !isMySentReviewBlockOpen && (
+                <ReviewPopup
+                    closeReviewPopup={setIsPersonReviewBlockOpen}
+                    fullName={personFullName}
+                    rating={order.partnerReview.rating}
+                    reviewText={order.partnerReview.text}
+                    reviewerType={order.partnerReview.reviewerType}
+                />
+            )}
+            <div className={styles.orderInformation}>
+                {!order.myReview && isReviewBlockOpen ? (
+                    <OrderReview
+                        setIsReviewBlockOpen={setIsReviewBlockOpen}
+                        orderId={order.id}
+                        personFullName={personFullName}
+                        userForId={
+                            viewType === ViewType.receiver
+                                ? (order.carrier?.id as string)
+                                : (order.receiver?.id as string)
+                        }
+                        reviewerType={viewType}
+                    />
+                ) : (
+                    <form onSubmit={formik.handleSubmit}>
+                        <div className={styles.orderInformationTitle}>
+                            {t('orderInformation')}
                         </div>
-                        <div className={styles.personName}>
-                            {personFullName}
+                        <div className={styles.personInfo}>
+                            <div className={styles.personRole}>
+                                {viewType === ViewType.carrier
+                                    ? t('receiver')
+                                    : t('carrier')}
+                            </div>
+                            <div className={styles.personName}>
+                                {personFullName}
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles.editableForm}>
-                        {order.productName && (
-                            <div className={styles.productName}>
-                                <OrderInputItem
-                                    formik={formik}
-                                    editingFields={editingFields}
-                                    order={order}
-                                    id='productName'
-                                    label={t('productName') as string}
-                                    type='string'
-                                    placeholder={t('productName') as string}
-                                    availableLabels={availableLabels}
-                                    addToEditingFields={addToEditingFields}
-                                    removeFromEditingFields={
-                                        removeFromEditingFields
-                                    }
-                                    viewType={viewType}
-                                />
-                            </div>
-                        )}
-                        <div className={styles.valuesByColumns}>
-                            <div className={styles.column}>
-                                {order.fromLocation && (
+                        <div className={styles.editableForm}>
+                            {order.productName && (
+                                <div className={styles.productName}>
                                     <OrderInputItem
                                         formik={formik}
                                         editingFields={editingFields}
                                         order={order}
-                                        id='fromLocation'
+                                        id='productName'
+                                        label={t('productName') as string}
                                         type='string'
-                                        isLocation={true}
-                                        placeholder={t('from') as string}
-                                        label={t('from') as string}
+                                        placeholder={t('productName') as string}
                                         availableLabels={availableLabels}
                                         addToEditingFields={addToEditingFields}
                                         removeFromEditingFields={
@@ -338,135 +359,20 @@ const OrderInformation: React.FC<IProps> = ({
                                         }
                                         viewType={viewType}
                                     />
-                                )}
-                                {order.toLocation && (
-                                    <OrderInputItem
-                                        formik={formik}
-                                        editingFields={editingFields}
-                                        order={order}
-                                        id='toLocation'
-                                        type='string'
-                                        isLocation={true}
-                                        placeholder={t('to') as string}
-                                        label={t('to') as string}
-                                        availableLabels={availableLabels}
-                                        addToEditingFields={addToEditingFields}
-                                        removeFromEditingFields={
-                                            removeFromEditingFields
-                                        }
-                                        viewType={viewType}
-                                    />
-                                )}
-                                {order.arrivalDate && (
-                                    <OrderInputItem
-                                        formik={formik}
-                                        editingFields={editingFields}
-                                        order={order}
-                                        id='arrivalDate'
-                                        type='date'
-                                        placeholder={t('arrivalDate') as string}
-                                        label={t('arrivalDate') as string}
-                                        availableLabels={availableLabels}
-                                        addToEditingFields={addToEditingFields}
-                                        removeFromEditingFields={
-                                            removeFromEditingFields
-                                        }
-                                        viewType={viewType}
-                                    />
-                                )}
-                            </div>
-                            <div className={styles.column}>
-                                {order.productAmount && (
-                                    <OrderInputItem
-                                        formik={formik}
-                                        editingFields={editingFields}
-                                        order={order}
-                                        id='productAmount'
-                                        type='number'
-                                        placeholder={
-                                            t('productAmount') as string
-                                        }
-                                        label={t('productAmount') as string}
-                                        availableLabels={availableLabels}
-                                        addToEditingFields={addToEditingFields}
-                                        removeFromEditingFields={
-                                            removeFromEditingFields
-                                        }
-                                        viewType={viewType}
-                                    />
-                                )}
-                                {order.rewardAmount && (
-                                    <OrderInputItem
-                                        formik={formik}
-                                        editingFields={editingFields}
-                                        order={order}
-                                        id='rewardAmount'
-                                        type='number'
-                                        placeholder={
-                                            t('rewardAmount') as string
-                                        }
-                                        label={t('rewardAmount') as string}
-                                        availableLabels={availableLabels}
-                                        addToEditingFields={addToEditingFields}
-                                        removeFromEditingFields={
-                                            removeFromEditingFields
-                                        }
-                                        viewType={viewType}
-                                    />
-                                )}
-                                {order.rewardAmount && order.productAmount && (
-                                    <div className={styles.inputItem}>
-                                        <label>{t('totalAmount')}</label>
-                                        <div
-                                            className={
-                                                styles.orderInputValueWrapper
-                                            }
-                                        >
-                                            <span
-                                                className={
-                                                    styles.orderInputValue
-                                                }
-                                            >
-                                                {calculateTotalAmount(
-                                                    order.productAmount,
-                                                    order.rewardAmount,
-                                                    Currency.RUB
-                                                )}
-                                            </span>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                            <div className={styles.column}>
-                                {order.productWeight && (
-                                    <OrderInputItem
-                                        formik={formik}
-                                        editingFields={editingFields}
-                                        order={order}
-                                        id='productWeight'
-                                        placeholder={t('weight') as string}
-                                        label={t('weight') as string}
-                                        type='number'
-                                        availableLabels={availableLabels}
-                                        addToEditingFields={addToEditingFields}
-                                        removeFromEditingFields={
-                                            removeFromEditingFields
-                                        }
-                                        viewType={viewType}
-                                    />
-                                )}
-                                {!order.productWeight &&
-                                    order.carrierMaxWeight && (
+                                </div>
+                            )}
+                            <div className={styles.valuesByColumns}>
+                                <div className={styles.column}>
+                                    {order.fromLocation && (
                                         <OrderInputItem
                                             formik={formik}
                                             editingFields={editingFields}
                                             order={order}
-                                            id='carrierMaxWeight'
-                                            type='number'
-                                            placeholder={
-                                                t('maxWeight') as string
-                                            }
-                                            label={t('maxWeight') as string}
+                                            id='fromLocation'
+                                            type='string'
+                                            isLocation={true}
+                                            placeholder={t('from') as string}
+                                            label={t('from') as string}
                                             availableLabels={availableLabels}
                                             addToEditingFields={
                                                 addToEditingFields
@@ -477,145 +383,306 @@ const OrderInformation: React.FC<IProps> = ({
                                             viewType={viewType}
                                         />
                                     )}
+                                    {order.toLocation && (
+                                        <OrderInputItem
+                                            formik={formik}
+                                            editingFields={editingFields}
+                                            order={order}
+                                            id='toLocation'
+                                            type='string'
+                                            isLocation={true}
+                                            placeholder={t('to') as string}
+                                            label={t('to') as string}
+                                            availableLabels={availableLabels}
+                                            addToEditingFields={
+                                                addToEditingFields
+                                            }
+                                            removeFromEditingFields={
+                                                removeFromEditingFields
+                                            }
+                                            viewType={viewType}
+                                        />
+                                    )}
+                                    {order.arrivalDate && (
+                                        <OrderInputItem
+                                            formik={formik}
+                                            editingFields={editingFields}
+                                            order={order}
+                                            id='arrivalDate'
+                                            type='date'
+                                            placeholder={
+                                                t('arrivalDate') as string
+                                            }
+                                            label={t('arrivalDate') as string}
+                                            availableLabels={availableLabels}
+                                            addToEditingFields={
+                                                addToEditingFields
+                                            }
+                                            removeFromEditingFields={
+                                                removeFromEditingFields
+                                            }
+                                            viewType={viewType}
+                                        />
+                                    )}
+                                </div>
+                                <div className={styles.column}>
+                                    {order.productAmount && (
+                                        <OrderInputItem
+                                            formik={formik}
+                                            editingFields={editingFields}
+                                            order={order}
+                                            id='productAmount'
+                                            type='number'
+                                            placeholder={
+                                                t('productAmount') as string
+                                            }
+                                            label={t('productAmount') as string}
+                                            availableLabels={availableLabels}
+                                            addToEditingFields={
+                                                addToEditingFields
+                                            }
+                                            removeFromEditingFields={
+                                                removeFromEditingFields
+                                            }
+                                            viewType={viewType}
+                                        />
+                                    )}
+                                    {order.rewardAmount && (
+                                        <OrderInputItem
+                                            formik={formik}
+                                            editingFields={editingFields}
+                                            order={order}
+                                            id='rewardAmount'
+                                            type='number'
+                                            placeholder={
+                                                t('rewardAmount') as string
+                                            }
+                                            label={t('rewardAmount') as string}
+                                            availableLabels={availableLabels}
+                                            addToEditingFields={
+                                                addToEditingFields
+                                            }
+                                            removeFromEditingFields={
+                                                removeFromEditingFields
+                                            }
+                                            viewType={viewType}
+                                        />
+                                    )}
+                                    {order.rewardAmount &&
+                                        order.productAmount && (
+                                            <div className={styles.inputItem}>
+                                                <label>
+                                                    {t('totalAmount')}
+                                                </label>
+                                                <div
+                                                    className={
+                                                        styles.orderInputValueWrapper
+                                                    }
+                                                >
+                                                    <span
+                                                        className={
+                                                            styles.orderInputValue
+                                                        }
+                                                    >
+                                                        {calculateTotalAmount(
+                                                            order.productAmount,
+                                                            order.rewardAmount,
+                                                            Currency.RUB
+                                                        )}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        )}
+                                </div>
+                                <div className={styles.column}>
+                                    {order.productWeight && (
+                                        <OrderInputItem
+                                            formik={formik}
+                                            editingFields={editingFields}
+                                            order={order}
+                                            id='productWeight'
+                                            placeholder={t('weight') as string}
+                                            label={t('weight') as string}
+                                            type='number'
+                                            availableLabels={availableLabels}
+                                            addToEditingFields={
+                                                addToEditingFields
+                                            }
+                                            removeFromEditingFields={
+                                                removeFromEditingFields
+                                            }
+                                            viewType={viewType}
+                                        />
+                                    )}
+                                    {!order.productWeight &&
+                                        order.carrierMaxWeight && (
+                                            <OrderInputItem
+                                                formik={formik}
+                                                editingFields={editingFields}
+                                                order={order}
+                                                id='carrierMaxWeight'
+                                                type='number'
+                                                placeholder={
+                                                    t('maxWeight') as string
+                                                }
+                                                label={t('maxWeight') as string}
+                                                availableLabels={
+                                                    availableLabels
+                                                }
+                                                addToEditingFields={
+                                                    addToEditingFields
+                                                }
+                                                removeFromEditingFields={
+                                                    removeFromEditingFields
+                                                }
+                                                viewType={viewType}
+                                            />
+                                        )}
+                                </div>
                             </div>
-                        </div>
-                        {order.productDescription && (
-                            <div
-                                className={cn(
-                                    styles.inputItem,
-                                    styles.multilineItem
-                                )}
-                            >
-                                <label htmlFor='productDescription'>
-                                    {t('description')}
-                                </label>
-                                <div className={styles.editingWrapper}>
-                                    <TextField
-                                        id='productDescription'
-                                        name='productDescription'
-                                        variant='outlined'
-                                        type='string'
-                                        multiline
-                                        placeholder={t('description') as string}
-                                        minRows={4}
-                                        maxRows={4}
-                                        disabled={
-                                            !editingFields.includes(
+                            {order.productDescription && (
+                                <div
+                                    className={cn(
+                                        styles.inputItem,
+                                        styles.multilineItem
+                                    )}
+                                >
+                                    <label htmlFor='productDescription'>
+                                        {t('description')}
+                                    </label>
+                                    <div className={styles.editingWrapper}>
+                                        <TextField
+                                            id='productDescription'
+                                            name='productDescription'
+                                            variant='outlined'
+                                            type='string'
+                                            multiline
+                                            placeholder={
+                                                t('description') as string
+                                            }
+                                            minRows={4}
+                                            maxRows={4}
+                                            disabled={
+                                                !editingFields.includes(
+                                                    'productDescription'
+                                                )
+                                            }
+                                            value={
+                                                formik.values.productDescription
+                                            }
+                                            onChange={formik.handleChange}
+                                            error={
+                                                formik.errors
+                                                    .productDescription !==
+                                                undefined
+                                            }
+                                            helperText={
+                                                formik.errors.productDescription
+                                            }
+                                            className={cn(styles.multiline, {
+                                                [styles.green]:
+                                                    descriptionChangedType ===
+                                                    ChangedType.byOther,
+                                                [styles.orange]:
+                                                    descriptionChangedType ===
+                                                    ChangedType.byMe,
+                                            })}
+                                        />
+                                        {availableLabels.productDescription &&
+                                            descriptionChangedType ===
+                                                ChangedType.notChanged &&
+                                            (editingFields.includes(
                                                 'productDescription'
-                                            )
-                                        }
-                                        value={formik.values.productDescription}
-                                        onChange={formik.handleChange}
-                                        error={
-                                            formik.errors.productDescription !==
-                                            undefined
-                                        }
-                                        helperText={
-                                            formik.errors.productDescription
-                                        }
-                                        className={cn(styles.multiline, {
-                                            [styles.green]:
-                                                descriptionChangedType ===
-                                                ChangedType.byOther,
-                                            [styles.orange]:
-                                                descriptionChangedType ===
-                                                ChangedType.byMe,
-                                        })}
-                                    />
-                                    {availableLabels.productDescription &&
-                                        descriptionChangedType ===
-                                            ChangedType.notChanged &&
-                                        (editingFields.includes(
-                                            'productDescription'
-                                        ) ? (
-                                            <CloseIcon
-                                                fontSize='medium'
-                                                onClick={() =>
-                                                    removeFromEditingFields(
-                                                        'productDescription'
-                                                    )
-                                                }
-                                            />
-                                        ) : (
-                                            <EditIcon
-                                                fontSize='medium'
-                                                onClick={() =>
-                                                    addToEditingFields(
-                                                        'productDescription'
-                                                    )
-                                                }
-                                            />
-                                        ))}
+                                            ) ? (
+                                                <CloseIcon
+                                                    fontSize='medium'
+                                                    onClick={() =>
+                                                        removeFromEditingFields(
+                                                            'productDescription'
+                                                        )
+                                                    }
+                                                />
+                                            ) : (
+                                                <EditIcon
+                                                    fontSize='medium'
+                                                    onClick={() =>
+                                                        addToEditingFields(
+                                                            'productDescription'
+                                                        )
+                                                    }
+                                                />
+                                            ))}
+                                    </div>
                                 </div>
-                            </div>
-                        )}
-                    </div>
-                    {((!order.dealConfirmedByReceiver &&
-                        viewType === ViewType.receiver) ||
-                        (!order.dealConfirmedByCarrier &&
-                            viewType === ViewType.carrier)) &&
-                        order.byCarrierSuggestedChanges === undefined &&
-                        order.byReceiverSuggestedChanges === undefined && (
-                            <>
-                                <div className={styles.buttons}>
-                                    <Button
-                                        className={styles.buttonItem}
-                                        variant='contained'
-                                        color='primary'
-                                        disabled={!hasAnyChanges}
-                                        type='submit'
-                                    >
-                                        {t('confirmChanges')}
-                                    </Button>
-                                </div>
-                                <div className={styles.buttons}>
-                                    <Button
-                                        className={styles.buttonItem}
-                                        variant='contained'
-                                        color='primary'
-                                        onClick={confirmDealClick}
-                                    >
-                                        {t('startTheDeal')}
-                                    </Button>
-                                </div>
-                            </>
-                        )}
-                    {suggestedChanged && (
-                        <div className={styles.buttons}>
-                            <Button
-                                className={styles.buttonItem}
-                                variant='contained'
-                                color='success'
-                                onClick={agreeWithChangesClick}
-                            >
-                                {t('agreeWithChanges')}
-                            </Button>
-                            <Button
-                                className={styles.buttonItem}
-                                variant='contained'
-                                color='error'
-                                onClick={disagreeWithChangesClick}
-                            >
-                                {t('rejectChanges')}
-                            </Button>
+                            )}
                         </div>
-                    )}
-                    {viewType === ViewType.receiver &&
-                        order.status === OrderStatus.awaitingDelivery && (
+                        {((!order.dealConfirmedByReceiver &&
+                            viewType === ViewType.receiver) ||
+                            (!order.dealConfirmedByCarrier &&
+                                viewType === ViewType.carrier)) &&
+                            order.byCarrierSuggestedChanges === undefined &&
+                            order.byReceiverSuggestedChanges === undefined && (
+                                <>
+                                    <div className={styles.buttons}>
+                                        <Button
+                                            className={styles.buttonItem}
+                                            variant='contained'
+                                            color='primary'
+                                            disabled={!hasAnyChanges}
+                                            type='submit'
+                                        >
+                                            {t('confirmChanges')}
+                                        </Button>
+                                    </div>
+                                    <div className={styles.buttons}>
+                                        <Button
+                                            className={styles.buttonItem}
+                                            variant='contained'
+                                            color='primary'
+                                            onClick={confirmDealClick}
+                                        >
+                                            {t('startTheDeal')}
+                                        </Button>
+                                    </div>
+                                </>
+                            )}
+                        {suggestedChanged && (
                             <div className={styles.buttons}>
                                 <Button
                                     className={styles.buttonItem}
                                     variant='contained'
                                     color='success'
-                                    onClick={completeOrderClick}
+                                    onClick={agreeWithChangesClick}
                                 >
-                                    {t('productDelivered')}
+                                    {t('agreeWithChanges')}
+                                </Button>
+                                <Button
+                                    className={styles.buttonItem}
+                                    variant='contained'
+                                    color='error'
+                                    onClick={disagreeWithChangesClick}
+                                >
+                                    {t('rejectChanges')}
                                 </Button>
                             </div>
                         )}
-                </form>
-            )}
-        </div>
+                        {viewType === ViewType.receiver &&
+                            order.status === OrderStatus.awaitingDelivery && (
+                                <div className={styles.buttons}>
+                                    <Button
+                                        className={styles.buttonItem}
+                                        variant='contained'
+                                        color='success'
+                                        onClick={completeOrderClick}
+                                    >
+                                        {t('productDelivered')}
+                                    </Button>
+                                </div>
+                            )}
+                    </form>
+                )}
+            </div>
+        </>
     );
 };
 
