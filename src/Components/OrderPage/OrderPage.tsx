@@ -120,12 +120,15 @@ const OrderPage = () => {
                     suggestedChanged={suggestedChanged}
                     hasByYouSuggestedChanged={hasByYouSuggestedChanged}
                 />
-                <OrderChat
-                    viewType={viewType}
-                    order={order}
-                    user={user}
-                    updateOrder={updateOrder}
-                />
+                {((viewType === ViewType.carrier && order.receiver) ||
+                    (viewType === ViewType.receiver && order.carrier)) && (
+                    <OrderChat
+                        viewType={viewType}
+                        order={order}
+                        user={user}
+                        updateOrder={updateOrder}
+                    />
+                )}
             </div>
 
             <OrderPayment order={order} updateOrder={updateOrder} />
