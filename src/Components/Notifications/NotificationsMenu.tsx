@@ -90,6 +90,9 @@ const NotificationsMenu = ({ notifications, setNotifications }: IProps) => {
                                                 {notifications.map(
                                                     notification => (
                                                         <NotificationsItem
+                                                            key={
+                                                                notification.id
+                                                            }
                                                             setNotifications={
                                                                 setNotifications
                                                             }
