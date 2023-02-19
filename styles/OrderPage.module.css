@@ -386,6 +386,35 @@
     padding: 2px 12px;
 }
 
+.feedBackSentBlock {
+    font-size: 16px;
+    border-radius: 15px;
+    margin-left: 5px;
+    margin-top: 3px;
+    height: 28px;
+    color: var(--cTextPrimary);
+    text-transform: none;
+    font-weight: 600;
+    padding: 2px 12px;
+}
+
+.partnerFeedBack {
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-left: 5px;
+    margin-top: 3px;
+    height: 28px;
+    color: var(--cTextPrimary);
+    text-transform: none;
+    font-weight: 600;
+    padding: 2px 12px;
+}
+
+.partnerFeedBack:hover {
+    text-decoration: underline;
+}
+
 .openReviewPopupButton:hover {
     text-decoration: underline;
 }

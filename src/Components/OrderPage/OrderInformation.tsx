@@ -261,9 +261,7 @@ const OrderInformation: React.FC<IProps> = ({
             return `${order.carrier?.firstName} ${order.carrier?.lastName}`;
         }
 
-        if (viewType === ViewType.carrier) {
-            return `${order.receiver?.firstName} ${order.receiver?.lastName}`;
-        }
+        return `${order.receiver?.firstName} ${order.receiver?.lastName}`;
     }, [
         viewType,
         order.receiver?.firstName,
@@ -274,7 +272,19 @@ const OrderInformation: React.FC<IProps> = ({
 
     return (
         <div className={styles.orderInformation}>
-            {!isReviewBlockOpen ? (
+            {!order.myReview && isReviewBlockOpen ? (
+                <OrderReview
+                    setIsReviewBlockOpen={setIsReviewBlockOpen}
+                    orderId={order.id}
+                    personFullName={personFullName}
+                    userForId={
+                        viewType === ViewType.receiver
+                            ? (order.carrier?.id as string)
+                            : (order.receiver?.id as string)
+                    }
+                    reviewerType={viewType}
+                />
+            ) : (
                 <form onSubmit={formik.handleSubmit}>
                     <div className={styles.orderInformationTitle}>
                         {t('orderInformation')}
@@ -578,7 +588,7 @@ const OrderInformation: React.FC<IProps> = ({
                                 color='success'
                                 onClick={agreeWithChangesClick}
                             >
-                                {t('AgreeWithChanges')}
+                                {t('agreeWithChanges')}
                             </Button>
                             <Button
                                 className={styles.buttonItem}
@@ -586,7 +596,7 @@ const OrderInformation: React.FC<IProps> = ({
                                 color='error'
                                 onClick={disagreeWithChangesClick}
                             >
-                                {t('RejectChanges')}
+                                {t('rejectChanges')}
                             </Button>
                         </div>
                     )}
@@ -604,17 +614,6 @@ const OrderInformation: React.FC<IProps> = ({
                             </div>
                         )}
                 </form>
-            ) : (
-                <OrderReview
-                    setIsReviewBlockOpen={setIsReviewBlockOpen}
-                    orderId={order.id}
-                    userForId={
-                        viewType === ViewType.receiver
-                            ? (order.carrier?.id as string)
-                            : (order.receiver?.id as string)
-                    }
-                    reviewerType={viewType}
-                />
             )}
         </div>
     );

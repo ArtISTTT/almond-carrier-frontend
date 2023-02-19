@@ -6,18 +6,18 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useTranslation } from 'react-i18next';
 import { IOrderFull } from '../../interfaces/order';
 import { OrderStatus } from 'src/interfaces/profile';
-import Button from '@mui/material/Button';
+import { ViewType } from './OrderInputItem';
 
 type IProps = {
     order: IOrderFull;
-    isReviewBlockOpen: boolean;
+    viewType: ViewType;
     setIsReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const OrderDetails: React.FC<IProps> = ({
     order,
     setIsReviewBlockOpen,
-    isReviewBlockOpen,
+    viewType,
 }) => {
     const { t } = useTranslation();
     const statusToText = useConvertStatusToText();
@@ -44,13 +44,29 @@ const OrderDetails: React.FC<IProps> = ({
                     >
                         {statusToText(order.status)}
                     </span>
-                    {!isReviewBlockOpen &&
+                    {order.myReview
+                        ? order.status === OrderStatus.success && (
+                              <span className={styles.feedBackSentBlock}>
+                                  {t('myFeedback')}
+                              </span>
+                          )
+                        : order.status === OrderStatus.success && (
+                              <span
+                                  className={styles.openReviewPopupButton}
+                                  onClick={openReviewBlock}
+                              >
+                                  {t('leaveFeedback')}
+                              </span>
+                          )}
+                    {order.partnerReview &&
                         order.status === OrderStatus.success && (
                             <span
-                                className={styles.openReviewPopupButton}
+                                className={styles.partnerFeedBack}
                                 onClick={openReviewBlock}
                             >
-                                {t('leaveFeedback')}
+                                {viewType === ViewType.receiver
+                                    ? t('partnerCarrierReview')
+                                    : t('partnerReceiverReview')}
                             </span>
                         )}
                 </div>

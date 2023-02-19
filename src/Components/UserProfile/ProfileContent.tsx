@@ -5,55 +5,12 @@ import StarIcon from '@mui/icons-material/Star';
 import PersonIcon from '@mui/icons-material/Person';
 import styles from '../../../styles/ProfileForNewUser.module.css';
 import ReviewItem from '../MyProfile/ReviewItem';
-import dayjs from 'dayjs';
 import OrderItem from 'src/Components/OrderComponents/OrderItem';
 import EmptyNoShadows from '../EmptyComponents/EmptyNoShadows';
-import { IReview } from '../../interfaces/profile';
 import { IGetUser } from 'src/interfaces/api/user';
 import { useTranslation } from 'react-i18next';
-
-const reviews: IReview[] = [
-    {
-        id: 1,
-        avatar: 'P',
-        name: 'Sarah',
-        role: 'Receiver',
-        text: 'Very Good, Dastin Fantastish',
-        rating: 4,
-        benefit: 993,
-        date: dayjs('2019-01-25'),
-    },
-    {
-        id: 2,
-        avatar: 'P',
-        name: 'Sarah',
-        role: 'Receiver',
-        text: 'Very Good, Dastin Fantastish',
-        rating: 4,
-        benefit: 993,
-        date: dayjs('2019-01-25'),
-    },
-    {
-        id: 3,
-        avatar: 'P',
-        name: 'Sarah',
-        role: 'Receiver',
-        text: 'Very Good, Dastin Fantastish',
-        rating: 4,
-        benefit: 993,
-        date: dayjs('2019-01-25'),
-    },
-    {
-        id: 4,
-        avatar: 'P',
-        name: 'Sarah',
-        role: 'Receiver',
-        text: 'Very Good, Dastin Fantastish',
-        rating: 4,
-        benefit: 993,
-        date: dayjs('2019-01-25'),
-    },
-];
+import { useLoadReviews } from 'src/redux/hooks/useLoadReviews';
+import ReviewsLoader from '../Loaders/ReviewsLoader';
 
 enum profileContent {
     ORDERS = 0,
@@ -64,12 +21,21 @@ const ProfileConent = ({ user }: { user: IGetUser }) => {
     const [content, setContent] = React.useState<profileContent>(
         profileContent.ORDERS
     );
+    const { reload, isLoading, error, reviews } = useLoadReviews(user.id);
 
     const { t } = useTranslation();
 
     const handleChange = (_: React.SyntheticEvent, newValue: number) => {
         setContent(newValue);
     };
+
+    React.useEffect(() => {
+        reload();
+    }, []);
+
+    if (isLoading) {
+        return <ReviewsLoader />;
+    }
 
     return (
         <div className={styles.contentWrapper}>
@@ -107,7 +73,7 @@ const ProfileConent = ({ user }: { user: IGetUser }) => {
                     {reviews.length > 0 &&
                         content === profileContent.REVIEWS &&
                         reviews.map(review => (
-                            <ReviewItem key={review.id} {...review} />
+                            <ReviewItem key={review._id} {...review} />
                         ))}
                     {reviews.length === 0 &&
                         content === profileContent.REVIEWS && (

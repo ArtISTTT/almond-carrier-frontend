@@ -14,6 +14,7 @@ interface IProps {
     orderId: string;
     reviewerType: ViewType;
     userForId: string;
+    personFullName: string;
 }
 interface Iform {
     reviewText: string;
@@ -22,6 +23,7 @@ interface Iform {
 
 const OrderReview: React.FC<IProps> = ({
     setIsReviewBlockOpen,
+    personFullName,
     orderId,
     reviewerType,
     userForId,
@@ -32,7 +34,6 @@ const OrderReview: React.FC<IProps> = ({
 
     const sendReviewFormik = async (form: Iform) => {
         setIsSendButtonDisabled(true);
-        // console.log(form);
         const data = await sendReview({
             orderId,
             reviewerType,
@@ -46,7 +47,6 @@ const OrderReview: React.FC<IProps> = ({
                 severity: 'success',
                 text: 'Отзыв успешно оставлен', // ЛОКАЛИЗАЦИЯ
             });
-
             setIsReviewBlockOpen(false);
         } else {
             triggerOpen({
@@ -95,8 +95,12 @@ const OrderReview: React.FC<IProps> = ({
                 >
                     <div className={styles.ratingBlock}>
                         <div className={styles.ratingBlockText}>
-                            {t('rateCarrier')}{' '}
-                            <span className={styles.rateName}>Nikita</span>
+                            {reviewerType === ViewType.receiver
+                                ? t('rateCarrier')
+                                : t('rateReceiver')}
+                            <span className={styles.rateName}>
+                                {personFullName}
+                            </span>
                         </div>
                         <Rating
                             className={styles.ratingStars}

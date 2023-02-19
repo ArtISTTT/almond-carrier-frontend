@@ -55,8 +55,6 @@ const MessagesPanel: React.FC<IProps> = ({
     const onKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
         const newKeys = pushedKeys.concat([event.keyCode]);
 
-        console.log(newKeys);
-
         if (newKeys.includes(keys.ENTER)) {
             if (newKeys.includes(keys.TAB) || newKeys.includes(keys.CTRL)) {
                 return;

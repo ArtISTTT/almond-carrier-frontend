@@ -1,21 +1,20 @@
 import { Avatar, Rating, Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import React from 'react';
-import { IReview } from '../../interfaces/profile';
+import { IReview } from 'src/interfaces/api/review';
 import styles from '../../../styles/ReviewItem.module.css';
 import { useTranslation } from 'react-i18next';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
-import { Currency } from 'src/interfaces/settings';
 
 const ReviewItem: React.FC<IReview> = ({
-    role,
+    reviewerType,
     text,
     rating,
-    benefit,
-    date,
-    avatar,
-    name,
+    payment,
+    order,
+    userReviewer,
 }) => {
+    //product name
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
 
@@ -24,7 +23,7 @@ const ReviewItem: React.FC<IReview> = ({
             <div className={styles.reviewProfile}>
                 <Avatar
                     className={styles.reviewAvatar}
-                    src={avatar}
+                    src={userReviewer.avatarImage}
                     alt={'Avatar'}
                 />
                 <div className={styles.reviewTextData}>
@@ -33,14 +32,14 @@ const ReviewItem: React.FC<IReview> = ({
                         variant='h3'
                         component='h3'
                     >
-                        {name}
+                        {`${userReviewer.firstName} ${userReviewer.lastName}`}
                     </Typography>
                     <Typography
                         className={styles.reviewRole}
                         variant='h4'
                         component='h4'
                     >
-                        {t(role)}
+                        {t(reviewerType)}
                     </Typography>
                 </div>
             </div>
@@ -65,14 +64,20 @@ const ReviewItem: React.FC<IReview> = ({
                         component='p'
                     >
                         {t('benefit')}{' '}
-                        <span>{formatAmount(benefit, Currency.RUB, true)}</span>
+                        <span>
+                            {formatAmount(
+                                payment.rewardAmount,
+                                payment.currency,
+                                true
+                            )}
+                        </span>
                     </Typography>
                     <Typography
                         className={styles.reviewDate}
                         variant='h3'
                         component='p'
                     >
-                        {dayjs(date).format('DD.MM.YYYY')}
+                        {dayjs(order.completedDate).format('DD.MM.YYYY')}
                     </Typography>
                 </div>
             </div>

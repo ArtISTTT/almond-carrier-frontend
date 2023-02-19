@@ -97,9 +97,9 @@ const OrderPage = () => {
     return (
         <div className={styles.wrapper}>
             <OrderDetails
-                isReviewBlockOpen={isReviewBlockOpen}
                 setIsReviewBlockOpen={setIsReviewBlockOpen}
                 order={order}
+                viewType={viewType}
             />
 
             <OrderLabels

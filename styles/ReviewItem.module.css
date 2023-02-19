@@ -65,7 +65,7 @@
     line-height: 23px;
     letter-spacing: 0.4px;
     flex: 1;
-    /* white-space: nowrap; */
+    overflow-y: auto;
 }
 
 .reviewBenefit {
