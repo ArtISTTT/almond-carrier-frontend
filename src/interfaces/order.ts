@@ -44,8 +44,8 @@ export interface IOrderFull extends IOrder {
     byReceiverSuggestedChanges?: Partial<IOrder>;
     dealConfirmedByCarrier?: boolean;
     dealConfirmedByReceiver?: boolean;
-    myReview: IPureReview;
-    partnerReview: IPureReview;
+    myReview?: IPureReview;
+    partnerReview?: IPureReview;
 }
 
 export interface ICreateOrderReciever {
