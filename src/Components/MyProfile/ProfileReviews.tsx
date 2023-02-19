@@ -1,61 +1,25 @@
 import { Pagination, Typography } from '@mui/material';
 import styles from '../../../styles/ProfileReviews.module.css';
 import React, { useEffect } from 'react';
-import dayjs from 'dayjs';
 import ReviewItem from './ReviewItem';
 import { useTranslation } from 'react-i18next';
-import { userRole } from 'src/interfaces/order-search';
 import { useLoadReviews } from 'src/redux/hooks/useLoadReviews';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'src/redux/selectors/user';
-
-const reviews = [
-    {
-        avatar: 'P',
-        name: 'Sarah',
-        role: userRole.receiver,
-        text: 'Very Good, Dastin Fantastish',
-        rating: 4,
-        benefit: 1993,
-        date: dayjs('2019-01-25'),
-    },
-    {
-        avatar: 'P',
-        name: 'Sarah',
-        role: userRole.receiver,
-        text: 'Very Good, Dastin Fantastish',
-        rating: 4,
-        benefit: 1993,
-        date: dayjs('2019-01-25'),
-    },
-    {
-        avatar: 'P',
-        name: 'Sarah',
-        role: userRole.carrier,
-        text: 'Very Good, Dastin Fantastish',
-        rating: 4,
-        benefit: 11993,
-        date: dayjs('2019-01-25'),
-    },
-    {
-        avatar: 'P',
-        name: 'Sarah',
-        role: userRole.receiver,
-        text: 'Very Good, Dastin Fantastish',
-        rating: 4,
-        benefit: 993,
-        date: dayjs('2019-01-25'),
-    },
-];
+import ReviewsLoader from '../Loaders/ReviewsLoader';
 
 const ProfileReviews = () => {
     const { t } = useTranslation();
     const { id } = useSelector(selectUser);
-    const { reload, isLoading, error } = useLoadReviews(id);
+    const { reload, isLoading, error, reviews } = useLoadReviews(id);
 
     useEffect(() => {
         reload();
     }, []);
+
+    if (isLoading) {
+        return <ReviewsLoader />;
+    }
 
     return (
         <div className={styles.reviewsWrapper}>

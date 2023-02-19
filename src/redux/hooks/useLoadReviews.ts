@@ -28,7 +28,6 @@ export const useLoadReviews = (userId: string): IReturn => {
 
         if (data.ok) {
             setReviews(data.reviews);
-            console.log(data.reviews);
             setError(undefined);
         } else {
             setError('Ошибка при загрузке отзывов' as string); // ЛОКАЛИЗАЦИЯ

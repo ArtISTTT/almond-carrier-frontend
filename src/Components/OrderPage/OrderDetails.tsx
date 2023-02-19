@@ -6,23 +6,35 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useTranslation } from 'react-i18next';
 import { IOrderFull } from '../../interfaces/order';
 import { OrderStatus } from 'src/interfaces/profile';
-import Button from '@mui/material/Button';
+import { ViewType } from './OrderInputItem';
 
 type IProps = {
     order: IOrderFull;
-    isReviewBlockOpen: boolean;
+    viewType: ViewType;
     setIsReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsMySentReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsPersonReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const OrderDetails: React.FC<IProps> = ({
     order,
     setIsReviewBlockOpen,
-    isReviewBlockOpen,
+    setIsMySentReviewBlockOpen,
+    setIsPersonReviewBlockOpen,
+    viewType,
 }) => {
     const { t } = useTranslation();
     const statusToText = useConvertStatusToText();
 
     const openReviewBlock = () => setIsReviewBlockOpen(true);
+    const operPersonReviewBlock = () => {
+        setIsMySentReviewBlockOpen(false);
+        setIsPersonReviewBlockOpen(true);
+    };
+    const openMySentReviewBlock = () => {
+        setIsPersonReviewBlockOpen(false);
+        setIsMySentReviewBlockOpen(true);
+    };
 
     return (
         <div className={styles.orderDetails}>
@@ -44,13 +56,32 @@ const OrderDetails: React.FC<IProps> = ({
                     >
                         {statusToText(order.status)}
                     </span>
-                    {!isReviewBlockOpen &&
+                    {order.myReview
+                        ? order.status === OrderStatus.success && (
+                              <span
+                                  onClick={openMySentReviewBlock}
+                                  className={styles.feedBackSentBlock}
+                              >
+                                  {t('myFeedback')}
+                              </span>
+                          )
+                        : order.status === OrderStatus.success && (
+                              <span
+                                  className={styles.openReviewPopupButton}
+                                  onClick={openReviewBlock}
+                              >
+                                  {t('leaveFeedback')}
+                              </span>
+                          )}
+                    {order.partnerReview &&
                         order.status === OrderStatus.success && (
                             <span
-                                className={styles.openReviewPopupButton}
-                                onClick={openReviewBlock}
+                                onClick={operPersonReviewBlock}
+                                className={styles.partnerFeedBack}
                             >
-                                {t('leaveFeedback')}
+                                {viewType === ViewType.receiver
+                                    ? t('partnerCarrierReview')
+                                    : t('partnerReceiverReview')}
                             </span>
                         )}
                 </div>
