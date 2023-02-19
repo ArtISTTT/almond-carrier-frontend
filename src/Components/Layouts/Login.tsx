@@ -5,7 +5,11 @@ import { privateTypes } from '../../interfaces/private';
 import PrivateLayout from './Private';
 import MainLayoutLogin from './MainLayoutLogin';
 
-const LoginLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+interface IProps {
+    children: React.ReactNode;
+}
+
+const LoginLayout: React.FC<IProps> = ({ children }) => (
     <PrivateLayout privateType={privateTypes.onlyUnauthorized}>
         <MainLayoutLogin
             showContinueIfAuthorized={false}

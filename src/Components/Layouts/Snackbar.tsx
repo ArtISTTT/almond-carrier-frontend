@@ -11,10 +11,11 @@ type ITriggerOpen = {
 export const OpenAlertContext = createContext({
     triggerOpen: (props: ITriggerOpen) => {},
 });
+interface IProps {
+    children: React.ReactNode;
+}
 
-const SnackBarLayout: React.FC<{ children: React.ReactNode }> = ({
-    children,
-}) => {
+const SnackBarLayout: React.FC<IProps> = ({ children }) => {
     const [open, setOpen] = React.useState(false);
     const [data, setData] = React.useState<ITriggerOpen>({
         text: '',

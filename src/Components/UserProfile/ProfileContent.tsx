@@ -60,7 +60,11 @@ enum profileContent {
     REVIEWS = 1,
 }
 
-const ProfileConent = ({ user }: { user: IGetUser }) => {
+interface IProps {
+    user: IGetUser;
+}
+
+const ProfileConent: React.FC<IProps> = ({ user }) => {
     const [content, setContent] = React.useState<profileContent>(
         profileContent.ORDERS
     );

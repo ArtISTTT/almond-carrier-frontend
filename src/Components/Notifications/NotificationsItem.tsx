@@ -16,13 +16,13 @@ interface IProps {
     setNotifications: React.Dispatch<React.SetStateAction<IUserNotification[]>>;
 }
 
-const NotificationsItem = ({
+const NotificationsItem: React.FC<IProps> = ({
     text,
     deal,
     id,
     setNotifications,
     currentDate,
-}: IProps) => {
+}) => {
     const { t } = useTranslation();
     const notificationsTime = useDifferenceTime(dayjs());
 

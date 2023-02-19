@@ -19,7 +19,10 @@ interface IProps {
     setNotifications: React.Dispatch<React.SetStateAction<IUserNotification[]>>;
 }
 
-const NotificationsMenu = ({ notifications, setNotifications }: IProps) => {
+const NotificationsMenu: React.FC<IProps> = ({
+    notifications,
+    setNotifications,
+}) => {
     const [open, setOpen] = React.useState<boolean>(false);
 
     const anchorRef = React.useRef(null);

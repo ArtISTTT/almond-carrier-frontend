@@ -2,9 +2,11 @@ import React from 'react';
 import styles from '../../../styles/mainLayout.module.css';
 import MainLayout from './MainLayout';
 
-const CarrierLayout: React.FC<{ children: React.ReactNode }> = ({
-    children,
-}) => {
+interface IProps {
+    children: React.ReactNode;
+}
+
+const CarrierLayout: React.FC<IProps> = ({ children }) => {
     return (
         <MainLayout
             showContinueIfAuthorized={false}
