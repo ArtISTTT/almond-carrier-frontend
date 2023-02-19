@@ -151,6 +151,8 @@
 
 .productName {
     margin-bottom: 32px;
+
+    width: fit-content;
 }
 
 .orderInformation {
@@ -414,6 +416,10 @@
 }
 
 .partnerFeedBack:hover {
+    text-decoration: underline;
+}
+
+.feedBackSentBlock:hover {
     text-decoration: underline;
 }
 

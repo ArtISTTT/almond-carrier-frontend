@@ -3,7 +3,7 @@ import styles from '../../../styles/OrderPage.module.css';
 import { IOrder, IOrderFull } from '../../interfaces/order';
 import { OrderStatus } from '../../interfaces/profile';
 import { useFormik } from 'formik';
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Tooltip } from '@mui/material';
 import OrderInputItem, {
     ChangedType,
     ILabels,
@@ -343,23 +343,32 @@ const OrderInformation: React.FC<IProps> = ({
                         </div>
                         <div className={styles.editableForm}>
                             {order.productName && (
-                                <div className={styles.productName}>
-                                    <OrderInputItem
-                                        formik={formik}
-                                        editingFields={editingFields}
-                                        order={order}
-                                        id='productName'
-                                        label={t('productName') as string}
-                                        type='string'
-                                        placeholder={t('productName') as string}
-                                        availableLabels={availableLabels}
-                                        addToEditingFields={addToEditingFields}
-                                        removeFromEditingFields={
-                                            removeFromEditingFields
-                                        }
-                                        viewType={viewType}
-                                    />
-                                </div>
+                                <Tooltip
+                                    placement='right'
+                                    title={order.productName}
+                                >
+                                    <div className={styles.productName}>
+                                        <OrderInputItem
+                                            formik={formik}
+                                            editingFields={editingFields}
+                                            order={order}
+                                            id='productName'
+                                            label={t('productName') as string}
+                                            type='string'
+                                            placeholder={
+                                                t('productName') as string
+                                            }
+                                            availableLabels={availableLabels}
+                                            addToEditingFields={
+                                                addToEditingFields
+                                            }
+                                            removeFromEditingFields={
+                                                removeFromEditingFields
+                                            }
+                                            viewType={viewType}
+                                        />
+                                    </div>
+                                </Tooltip>
                             )}
                             <div className={styles.valuesByColumns}>
                                 <div className={styles.column}>
