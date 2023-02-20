@@ -20,6 +20,7 @@ export interface IGetUser {
     id: string;
     lastName: string;
     avatar?: string;
+    rating?: number;
     successOrders: IOrderFull[];
     verifiedByEmail: boolean;
     verifiedByPhone: boolean;

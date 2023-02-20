@@ -83,7 +83,7 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                     <Rating
                         className={styles.profileRating}
                         name='half-rating'
-                        defaultValue={4.5}
+                        defaultValue={user.rating ?? 0}
                         readOnly
                         precision={0.5}
                     />
