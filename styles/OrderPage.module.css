@@ -230,7 +230,10 @@
 .inputItem .input {
     width: 100%;
     margin-right: 12px;
+    background-color: var(--cBgSecondary);
+    border-radius: 16px;
 }
+
 .inputItem .input :global .MuiInputBase-root {
     border-radius: 15px;
     height: 40px;
@@ -245,10 +248,31 @@
     color: var(--cTextLow);
 }
 
+.userPhoneBlock {
+    display: flex;
+    align-items: center;
+}
+
+.confirmPhoneButton {
+    font-size: 14px;
+    color: var(--cTextSecondary);
+    width: fit-content;
+    border-radius: 16px;
+    white-space: nowrap;
+}
+
 .valuesByColumns {
     display: flex;
     gap: 64px;
     margin-bottom: 24px;
+}
+
+.inputPhoneBlock {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 16px;
 }
 
 .column {
@@ -353,11 +377,19 @@
 }
 
 .phone:hover {
+    border: none;
+    outline: none;
     background-color: #fcfcfc;
 }
 
+.input.inputPhone :global .MuiInputAdornment-root {
+    display: none;
+}
+
 .name {
-    margin-bottom: 16px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .orderConfirmPaymentButton {
@@ -436,6 +468,13 @@
 .detailsButtons {
     display: flex;
     align-items: center;
+}
+
+.detailsBlock {
+    margin-bottom: 16px;
+    line-height: 22px;
+    letter-spacing: 0.25px;
+    font-size: 16px;
 }
 
 @media screen and (max-width: 1130px) {

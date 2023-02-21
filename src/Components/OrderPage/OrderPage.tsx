@@ -20,6 +20,7 @@ import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
 import { OrderStatus } from 'src/interfaces/profile';
 import CircleLoader from '../Loaders/CircleLoader';
 import { LoaderColors } from 'src/interfaces/loader';
+import OrderPaymentSuccess from './OrderPaymentSuccess';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -147,6 +148,8 @@ const OrderPage = () => {
             </div>
 
             <OrderPayment order={order} updateOrder={updateOrder} />
+            <OrderPaymentSuccess order={order} updateOrder={updateOrder} />
+            
             <div className={styles.haveSomeProblems}>
                 <Link href='#'>{t('haveSomeProblems')}</Link>
             </div>
