@@ -74,7 +74,12 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({
                                     styles.infoItemRating
                                 )}
                             >
-                                {t('rating')}: <span>4.64</span>
+                                {t('rating')}:{' '}
+                                <span>
+                                    {order.receiver?.rating
+                                        ? order.receiver?.rating
+                                        : '-'}
+                                </span>
                             </div>
                             <div
                                 className={cn(

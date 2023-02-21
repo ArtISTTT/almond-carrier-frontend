@@ -19,11 +19,13 @@ export interface IOrder {
     isPayed: boolean;
     receiver?: {
         id: string;
+        rating: number;
         firstName: string;
         lastName: string;
     };
     carrier?: {
         id: string;
+        rating: number;
         firstName: string;
         lastName: string;
     };
