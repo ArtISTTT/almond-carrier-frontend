@@ -10,9 +10,10 @@ import SearchFilters from './SearchFilters';
 import SearchTable from './SearchTable';
 import { useSearchOrders } from '../../redux/hooks/useSearchOrders';
 import { IOrder } from '../../interfaces/order';
-import OrderLoader from '../Loaders/OrderLoader';
 import CarrierApplyPopup from './CarrierApplyPopup';
 import ReceiverApplyPopup from './ReceiverApplyPopup';
+import CircleLoader from '../Loaders/CircleLoader';
+import { LoaderColors } from 'src/interfaces/loader';
 
 const OrderSearch: React.FC = () => {
     const [type, setType] = useState(OrderSeachType.carriers);
@@ -62,7 +63,7 @@ const OrderSearch: React.FC = () => {
                 />
                 {isLoading ? (
                     <div className={styles.loaderWrapper}>
-                        <OrderLoader />
+                        <CircleLoader color={LoaderColors.PRIMARY} />
                     </div>
                 ) : (
                     <SearchTable

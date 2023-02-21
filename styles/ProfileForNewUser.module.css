@@ -154,6 +154,11 @@
     gap: 25px;
 }
 
+.loaderWrapper {
+    height: 90vh;
+    padding-top: 40px;
+}
+
 @media screen and (max-width: 630px) {
     .profileName {
         font-size: 24px;
@@ -183,7 +188,7 @@
 }
 @media screen and (max-width: 617px) {
     .profileButtonWrapper {
-       text-align: center;
+        text-align: center;
     }
     .profileButton {
         width: 240px;

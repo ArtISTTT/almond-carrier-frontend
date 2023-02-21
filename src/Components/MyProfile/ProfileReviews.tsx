@@ -6,7 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { useLoadReviews } from 'src/redux/hooks/useLoadReviews';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'src/redux/selectors/user';
-import ReviewsLoader from '../Loaders/ReviewsLoader';
+import CircleLoader from '../Loaders/CircleLoader';
+import { LoaderColors } from 'src/interfaces/loader';
 
 const ProfileReviews = () => {
     const { t } = useTranslation();
@@ -18,7 +19,7 @@ const ProfileReviews = () => {
     }, []);
 
     if (isLoading) {
-        return <ReviewsLoader />;
+        return <CircleLoader color={LoaderColors.PRIMARY} />;
     }
 
     return (

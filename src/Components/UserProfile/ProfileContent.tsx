@@ -10,7 +10,8 @@ import EmptyNoShadows from '../EmptyComponents/EmptyNoShadows';
 import { IGetUser } from 'src/interfaces/api/user';
 import { useTranslation } from 'react-i18next';
 import { useLoadReviews } from 'src/redux/hooks/useLoadReviews';
-import ReviewsLoader from '../Loaders/ReviewsLoader';
+import CircleLoader from '../Loaders/CircleLoader';
+import { LoaderColors } from 'src/interfaces/loader';
 
 enum profileContent {
     ORDERS = 0,
@@ -38,7 +39,7 @@ const ProfileConent: React.FC<IProps> = ({ user }) => {
     }, []);
 
     if (isLoading) {
-        return <ReviewsLoader />;
+        return <CircleLoader color={LoaderColors.PRIMARY} />;
     }
 
     return (

@@ -84,14 +84,23 @@
 }
 
 .detailsButton {
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 26px;
-    letter-spacing: 0.46px;
     padding: 6px 30px;
     border-radius: 16px;
     margin-top: 20px;
     margin-bottom: 30px;
+}
+
+.detailsButtonLink {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 26px;
+    letter-spacing: 0.46px;
+    color: var(--cTextSecondary);
+    text-decoration: none;
+}
+
+.detailsButtonLink:hover {
+    text-decoration: none;
 }
 
 .status {

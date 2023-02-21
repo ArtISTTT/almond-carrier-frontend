@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from 'styles/OrderItem.module.css';
-import { Button, Typography } from '@mui/material';
+import { Button, Typography, Link as MUILink } from '@mui/material';
 import cn from 'classnames';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { OrderStatus } from '../../interfaces/profile';
@@ -9,10 +9,12 @@ import OrderPeopleCard from './OrderPeopleCard';
 import { useConvertStatusToText } from '../../redux/hooks/useConvertStatusToText';
 import { useTranslation } from 'react-i18next';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
-import { Currency, Language } from 'src/interfaces/settings';
+import { Currency } from 'src/interfaces/settings';
 import Tooltip from '@mui/material/Tooltip';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
-import DetailsLoader from '../Loaders/DetailsLoader';
+import CircleLoader from '../Loaders/CircleLoader';
+import { LoaderColors } from 'src/interfaces/loader';
+import { useAppSelector } from 'src/redux/hooks';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
@@ -37,6 +39,8 @@ const OrderItem: React.FC<IOrder> = ({
         React.useState<boolean>(false);
 
     const navigateToDetailsLoading = () => setIsDetailsLoading(true);
+
+    const ourId = useAppSelector(({ user }) => user.data?.id);
 
     return (
         <div
@@ -191,22 +195,28 @@ const OrderItem: React.FC<IOrder> = ({
                 </div>
                 <div className={styles.orderDetails}>
                     <div className={styles.detailsBlock}>
-                        <Button
-                            className={styles.detailsButton}
-                            variant='contained'
-                            disabled={status === OrderStatus.cancelled}
-                        >
-                            {!isDetailsLoading ? (
-                                <LinkBehaviour
-                                    onClick={navigateToDetailsLoading}
-                                    href={`/order/${id}`}
-                                >
-                                    {t('orderDetailsButton')}
-                                </LinkBehaviour>
-                            ) : (
-                                <DetailsLoader />
-                            )}
-                        </Button>
+                        {(ourId === carrier?.id || ourId === receiver?.id) && (
+                            <Button
+                                className={styles.detailsButton}
+                                variant='contained'
+                                disabled={status === OrderStatus.cancelled}
+                            >
+                                {isDetailsLoading ? (
+                                    <CircleLoader
+                                        color={LoaderColors.SECONDARY}
+                                    />
+                                ) : (
+                                    <MUILink
+                                        className={styles.detailsButtonLink}
+                                        component={LinkBehaviour}
+                                        onClick={navigateToDetailsLoading}
+                                        href={`/order/${id}`}
+                                    >
+                                        {t('orderDetailsButton')}
+                                    </MUILink>
+                                )}
+                            </Button>
+                        )}
                         <div>
                             <Typography
                                 variant='h3'

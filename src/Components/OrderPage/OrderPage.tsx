@@ -6,7 +6,6 @@ import OrderInformation from './OrderInformation';
 import { getOrderById } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { IOrderFull } from '../../interfaces/order';
-import OrderLoader from '../Loaders/OrderLoader';
 import Link from 'next/link';
 import { Button } from '@mui/material';
 import OrderPayment from './OrderPayment';
@@ -19,6 +18,8 @@ import { navigateTo } from 'src/interfaces/navigate';
 import { useTranslation } from 'react-i18next';
 import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
 import { OrderStatus } from 'src/interfaces/profile';
+import CircleLoader from '../Loaders/CircleLoader';
+import { LoaderColors } from 'src/interfaces/loader';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -85,7 +86,11 @@ const OrderPage = () => {
     );
 
     if (isLoading || !order) {
-        return <OrderLoader />;
+        return (
+            <div className={styles.loaderWrapper}>
+                <CircleLoader color={LoaderColors.PRIMARY} />
+            </div>
+        );
     }
 
     const suggestedChanged =

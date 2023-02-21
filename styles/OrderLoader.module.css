@@ -1,24 +1,4 @@
-.orderLoaderWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 400px;
-    flex: 1;
-}
 
-.messagesLoaderWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-}
-
-.userLoaderWrapper {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .detailsLoaderWrapper {
     display: flex;
@@ -83,6 +63,7 @@
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: var(--cBg) transparent transparent transparent;
 }
+
 .ldsRingReview div:nth-child(1) {
     animation-delay: -0.45s;
 }
