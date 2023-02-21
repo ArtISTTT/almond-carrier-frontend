@@ -52,7 +52,7 @@ const OrderPeopleCard: React.FC<IProps> = ({ people }) => {
                     component='h6'
                 >
                     {t('rating')}:{' '}
-                    <span>{people.rating ? people.rating : 0}</span>
+                    <span>{people.rating ? people.rating : '-'}</span>
                 </Typography>
                 <Typography
                     className={styles.completedOrders}

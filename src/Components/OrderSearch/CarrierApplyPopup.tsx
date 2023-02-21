@@ -114,7 +114,9 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     >
                         {t('rating')}:{' '}
                         <span>
-                            {order.carrier?.rating ? order.carrier?.rating : 0}
+                            {order.carrier?.rating
+                                ? order.carrier?.rating
+                                : '-'}
                         </span>
                     </Typography>
                     <Typography

@@ -114,7 +114,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         <span>
                             {order.receiver?.rating
                                 ? order.receiver?.rating
-                                : 0}
+                                : '-'}
                         </span>
                     </Typography>
                     <Typography

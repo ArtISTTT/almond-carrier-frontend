@@ -78,7 +78,7 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({
                                 <span>
                                     {order.carrier?.rating
                                         ? order.carrier?.rating
-                                        : 0}
+                                        : '-'}
                                 </span>
                             </div>
                             <div
