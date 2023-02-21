@@ -27,8 +27,8 @@ const ProfileCard = () => {
                     variant='h4'
                     component='h2'
                 >
-                    {t('from')} 
-                    <span>Moscow</span> 
+                    {t('from')}
+                    <span>Moscow</span>
                 </Typography>
                 <div className={styles.statisticItem}>
                     <div className={styles.statisticTitle}>
@@ -45,7 +45,9 @@ const ProfileCard = () => {
                 </div>
                 <div className={styles.statisticItem}>
                     <div className={styles.statisticTitle}>{t('rating')}</div>
-                    <div className={styles.statisticValue}>0</div>
+                    <div className={styles.statisticValue}>
+                        {user.rating ?? '-'}
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { Avatar, Button, Rating, Typography } from '@mui/material';
+import { Avatar } from '@mui/material';
 import styles from '../../../styles/Profile.module.css';
 import React, { useContext } from 'react';
 import cn from 'classnames';
