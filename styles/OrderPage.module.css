@@ -235,7 +235,7 @@
 }
 
 .inputItem .input :global .MuiInputBase-root {
-    border-radius: 15px;
+    border-radius: 16px;
     height: 40px;
     width: 100%;
 }
@@ -369,8 +369,8 @@
     display: flex;
     align-items: center;
     width: fit-content;
-    background-color: #ebebeb;
-    border-radius: 15px;
+    background-color: var(--cBg);
+    border-radius: 16px;
     color: var(--cTextThird);
     margin-bottom: 20px;
     transition: background-color 0.1s linear;
@@ -486,9 +486,21 @@
     }
 }
 
+@media screen and (max-width: 1283px) {
+    .inputItem .input :global .MuiInputBase-root {
+        height: 34px;
+    }
+}
+
 @media screen and (max-width: 820px) {
     .valuesByColumns {
         gap: 20px;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .inputItem .input :global .MuiInputBase-root {
+        height: 32px;
     }
 }
 
@@ -509,6 +521,9 @@
     .infoRight svg {
         width: 16px;
         height: 16px;
+    }
+    .inputItem .input :global .MuiInputBase-root {
+        height: 32px;
     }
     .orderDetails {
         padding: 32px 10px;
