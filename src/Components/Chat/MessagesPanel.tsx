@@ -8,8 +8,9 @@ import { useTranslation } from 'react-i18next';
 import styles from '../../../styles/OrderChat.module.css';
 import { IMessage, MessageType } from 'src/interfaces/chat';
 import MessageChat from './MessageChat';
-import dayjs, { Dayjs } from 'dayjs';
-import MessagesLoader from '../Loaders/MessagesLoader';
+import dayjs from 'dayjs';
+import CircleLoader from '../Loaders/CircleLoader';
+import { LoaderColors } from 'src/interfaces/loader';
 
 const keys = {
     ENTER: 13,
@@ -134,7 +135,7 @@ const MessagesPanel: React.FC<IProps> = ({
                     )}
                 </div>
             ) : (
-                <MessagesLoader />
+                <CircleLoader color={LoaderColors.PRIMARY} />
             )}
 
             {!errorMessage ? (

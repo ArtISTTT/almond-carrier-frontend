@@ -46,8 +46,8 @@ const TypeSwitcher: React.FC<IProps> = ({ type, setType }) => {
                 className={styles.typeTitle}
             >
                 {type === OrderSeachType.carriers
-                    ? t('currentlyLookingForAReceiver')
-                    : t('currentlyLookingForACarrier')}
+                    ? t('currentlyLookingForACarrier')
+                    : t('currentlyLookingForAReceiver')}
             </Typography>
         </div>
     );

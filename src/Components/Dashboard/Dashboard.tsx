@@ -10,10 +10,11 @@ import CarrierAddingPopup from '../OrderComponents/CarrierAddingPopup';
 import { useSelector } from 'react-redux';
 import { selectMyLiveOrders } from '../../redux/selectors/orders';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
-import OrderLoader from '../Loaders/OrderLoader';
 import EmptyOrdersBlock from '../EmptyComponents/Empty';
 import { useTranslation } from 'next-i18next';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
+import CircleLoader from '../Loaders/CircleLoader';
+import { LoaderColors } from 'src/interfaces/loader';
 
 enum PopupType {
     none,
@@ -91,7 +92,7 @@ const Dashboard: React.FC = () => {
                     </Typography>
                     <div className={styles.receiverContent}>
                         {isLoading ? (
-                            <OrderLoader />
+                            <CircleLoader color={LoaderColors.PRIMARY} />
                         ) : (
                             <div className={styles.ordersWindow}>
                                 <div

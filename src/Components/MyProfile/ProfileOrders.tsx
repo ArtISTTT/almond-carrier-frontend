@@ -5,10 +5,11 @@ import OrderItem from 'src/Components/OrderComponents/OrderItem';
 import { useSelector } from 'react-redux';
 import { selectMyOrders } from '../../redux/selectors/orders';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
-import OrderLoader from '../Loaders/OrderLoader';
 import cn from 'classnames';
 import EmptyOrdersBlock from '../EmptyComponents/EmptyNoShadows';
 import { useTranslation } from 'react-i18next';
+import CircleLoader from '../Loaders/CircleLoader';
+import { LoaderColors } from 'src/interfaces/loader';
 
 const ProfileOrders = () => {
     const orders = useSelector(selectMyOrders);
@@ -29,7 +30,7 @@ const ProfileOrders = () => {
                 {t('myOrders')}
             </Typography>
             {isLoading ? (
-                <OrderLoader />
+                <CircleLoader color={LoaderColors.PRIMARY} />
             ) : (
                 <div
                     className={cn(styles.ordersList, {
