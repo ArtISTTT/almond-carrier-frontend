@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 interface IProps {
     people: {
         id: string;
+        rating: number;
         firstName: string;
         lastName: string;
     };
@@ -50,7 +51,8 @@ const OrderPeopleCard: React.FC<IProps> = ({ people }) => {
                     variant='h6'
                     component='h6'
                 >
-                    {t('rating')}: <span>4.6</span>
+                    {t('rating')}:{' '}
+                    <span>{people.rating ? people.rating : 0}</span>
                 </Typography>
                 <Typography
                     className={styles.completedOrders}

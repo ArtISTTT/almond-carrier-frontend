@@ -43,7 +43,6 @@ const ProfileNavbar: React.FC = () => {
 
     const handleChange = (_: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
-
         setTimeout(() => router.push(selectTabHref(newValue)), 200);
     };
 

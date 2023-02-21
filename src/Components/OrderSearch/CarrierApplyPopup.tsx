@@ -112,7 +112,10 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h4'
                         component='h3'
                     >
-                        {t('rating')}: <span>5</span>
+                        {t('rating')}:{' '}
+                        <span>
+                            {order.carrier?.rating ? order.carrier?.rating : 0}
+                        </span>
                     </Typography>
                     <Typography
                         className={styles.carrierCompletedOrders}

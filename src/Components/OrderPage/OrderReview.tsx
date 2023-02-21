@@ -60,7 +60,7 @@ const OrderReview: React.FC<IProps> = ({
     const formik = useFormik({
         initialValues: {
             reviewText: '',
-            rating: 0,
+            rating: 5,
         },
         onSubmit: sendReviewFormik,
         validationSchema: ReviewSchema,
