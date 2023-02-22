@@ -78,6 +78,8 @@ export const getMyOrders = (): Promise<IGetMyOrdersReturn> =>
 export const searchOrders = (requestData: {
     filters: carriersFilter | receiversFilter;
     type: OrderSeachType;
+    start: number;
+    limit: number;
 }): Promise<IGetMyOrdersReturn> =>
     mainInstance
         .post('/order/search-orders', JSON.stringify(requestData))

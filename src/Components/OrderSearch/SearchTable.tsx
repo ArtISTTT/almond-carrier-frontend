@@ -17,7 +17,6 @@ type IProps = {
     orders: IOrder[];
     setApplyedOrder: React.Dispatch<React.SetStateAction<IOrder | undefined>>;
 };
-const n = 4;
 const SearchTable: React.FC<IProps> = ({ type, orders, setApplyedOrder }) => {
     const [isFastLoginPopupOpen, setIsFastLoginPopupOpen] =
         React.useState<boolean>(false);
@@ -87,12 +86,6 @@ const SearchTable: React.FC<IProps> = ({ type, orders, setApplyedOrder }) => {
                     )
                 )}
             </div>
-            <Pagination
-                className={styles.pagination}
-                count={n}
-                variant='outlined'
-                color='primary'
-            />
         </div>
     );
 };

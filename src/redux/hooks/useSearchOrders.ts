@@ -14,10 +14,13 @@ type IReturn = {
     isLoading: boolean;
     reload: (
         filters: carriersFilter | receiversFilter,
-        type: OrderSeachType
-    ) => Promise<IOrder[]>;
+        type: OrderSeachType,
+        page: number
+    ) => Promise<{ orders: IOrder[]; count: number }>;
     error: string | undefined;
 };
+
+export const SEARCH_TABLE_LIMIT = 8;
 
 export const useSearchOrders = (): IReturn => {
     const { t } = useTranslation();
@@ -27,17 +30,26 @@ export const useSearchOrders = (): IReturn => {
 
     const reload = async (
         filters: carriersFilter | receiversFilter,
-        type: OrderSeachType
-    ): Promise<IOrder[]> => {
+        type: OrderSeachType,
+        page: number
+    ): Promise<{ orders: IOrder[]; count: number }> => {
         setIsLoading(true);
         setError(undefined);
-        const data = await searchOrders({ filters, type });
+        const data = await searchOrders({
+            filters,
+            type,
+            start: SEARCH_TABLE_LIMIT * (page - 1),
+            limit: SEARCH_TABLE_LIMIT,
+        });
 
         if (data.ok && data.orders) {
             setError(undefined);
             setIsLoading(false);
 
-            return parseOrderDataFromApi(data.orders);
+            return {
+                orders: parseOrderDataFromApi(data.orders),
+                count: data.count ?? 1,
+            };
         } else {
             setError(t('errorSearchingOrders') as string);
 
@@ -49,7 +61,7 @@ export const useSearchOrders = (): IReturn => {
 
         setIsLoading(false);
 
-        return [];
+        return { orders: [], count: 1 };
     };
 
     return { reload, isLoading, error };

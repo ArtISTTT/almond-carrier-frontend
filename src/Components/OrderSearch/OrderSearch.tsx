@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from '../../../styles/OrderSearch.module.css';
 import TypeSwitcher from './TypeSwitcher';
 import {
@@ -14,25 +14,54 @@ import CarrierApplyPopup from './CarrierApplyPopup';
 import ReceiverApplyPopup from './ReceiverApplyPopup';
 import CircleLoader from '../Loaders/CircleLoader';
 import { LoaderColors } from 'src/interfaces/loader';
+import { Pagination } from '@mui/material';
 
 const OrderSearch: React.FC = () => {
     const [type, setType] = useState(OrderSeachType.carriers);
     const { reload, isLoading } = useSearchOrders();
     const [applyedOrder, setApplyedOrder] = React.useState<IOrder>();
     const [orders, setOrders] = useState<IOrder[]>([]);
+    const [lastFilters, setLastFilters] = useState({});
+    const [page, setPage] = useState(1);
+    const [totalCount, setTotalCount] = useState(1);
 
     const updateByFiltersAndType = async (
-        data: carriersFilter | receiversFilter
+        data?: carriersFilter | receiversFilter,
+        pageNumber?: number
     ) => {
         setOrders([]);
-        const awaitedOrders = await reload(data, type);
-        setOrders(awaitedOrders);
+        if (data) {
+            setLastFilters(data);
+            const { orders, count } = await reload(
+                data,
+                type,
+                pageNumber ?? page
+            );
+            setOrders(orders);
+            setTotalCount(count);
+        } else {
+            const { orders, count } = await reload(
+                lastFilters,
+                type,
+                pageNumber ?? page
+            );
+            setOrders(orders);
+            setTotalCount(count);
+        }
+    };
+
+    const handleChangePagination = async (
+        _: React.ChangeEvent<unknown>,
+        value: number
+    ) => {
+        setPage(value);
+        await updateByFiltersAndType(undefined, value);
     };
 
     const closePopup = () => setApplyedOrder(undefined);
 
     useEffect(() => {
-        updateByFiltersAndType({});
+        updateByFiltersAndType();
     }, [type]);
 
     if (applyedOrder) {
@@ -70,8 +99,16 @@ const OrderSearch: React.FC = () => {
                         setApplyedOrder={setApplyedOrder}
                         type={type}
                         orders={orders}
+                        handleChangePagination={handleChangePagination}
                     />
                 )}
+                <Pagination
+                    className={styles.pagination}
+                    count={totalCount}
+                    variant='outlined'
+                    color='primary'
+                    onChange={handleChangePagination}
+                />
             </div>
         </div>
     );
