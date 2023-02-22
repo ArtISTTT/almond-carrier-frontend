@@ -13,6 +13,7 @@ import { ViewType } from '../OrderPage/OrderInputItem';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { useRouter } from 'next/router';
 import { navigateTo } from 'src/interfaces/navigate';
+import { SocketIoContext } from '../Layouts/SockerIo';
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URI as string;
 interface IProps {
@@ -37,6 +38,11 @@ const OrderChat: React.FC<IProps> = ({
     const { t } = useTranslation();
     const { triggerOpen } = useContext(OpenAlertContext);
     const router = useRouter();
+    const [messages, setMessages] = React.useState<IMessage[]>([]);
+    const socket = useContext(SocketIoContext);
+    const [errorMessage, setErrorMessage] = React.useState<string>('');
+    const [isMessagesLoading, setIsMessagesLoading] =
+        React.useState<boolean>(false);
 
     const initialize = async () => {
         await loadMessages();
@@ -45,13 +51,11 @@ const OrderChat: React.FC<IProps> = ({
 
     React.useEffect(() => {
         initialize();
-    }, []);
 
-    const [messages, setMessages] = React.useState<IMessage[]>([]);
-    const [socket, setSocket] = React.useState<Socket | null>(null);
-    const [errorMessage, setErrorMessage] = React.useState<string>('');
-    const [isMessagesLoading, setIsMessagesLoading] =
-        React.useState<boolean>(false);
+        return () => {
+            socket?.emit('disconnect-from-order', order.id);
+        };
+    }, []);
 
     const dialogPesron = React.useMemo(() => {
         const person =
@@ -66,24 +70,22 @@ const OrderChat: React.FC<IProps> = ({
     }, [viewType, order.carrier, order.receiver]);
 
     const configureSocket = () => {
-        const socket = io(SERVER, {
-            transports: ['websocket'],
-            forceNew: true,
-        });
-
-        socket.on('connected', () => {
+        if (socket && socket.connected) {
             socket.emit('connect-to-order', order.id);
-        });
 
-        socket.on('new-message', ({ message }: { message: IMessageServer }) => {
-            setMessages(prev => prev.concat(parseMessages(user.id, [message])));
-        });
+            socket.on(
+                'new-message',
+                ({ message }: { message: IMessageServer }) => {
+                    setMessages(prev =>
+                        prev.concat(parseMessages(user.id, [message]))
+                    );
+                }
+            );
 
-        socket.on('new-status', async () => {
-            await updateOrder();
-        });
-
-        setSocket(socket);
+            socket.on('new-status', async () => {
+                await updateOrder();
+            });
+        }
     };
 
     const loadMessages = async () => {
@@ -125,7 +127,10 @@ const OrderChat: React.FC<IProps> = ({
         <div className={styles.chatWrapper}>
             <div className={styles.chatHeader}>
                 <div onClick={navigateToUserPage} className={styles.chatPerson}>
-                    <Avatar sx={{ height: 50, width: 50 }} className={styles.avatar} />
+                    <Avatar
+                        sx={{ height: 50, width: 50 }}
+                        className={styles.avatar}
+                    />
                     <div className={styles.chatMember}>
                         <Typography
                             className={styles.chatMemberName}

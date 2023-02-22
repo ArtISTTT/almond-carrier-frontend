@@ -12,6 +12,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import RelativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from 'dayjs';
+import SocketIoLayout from 'src/Components/Layouts/SockerIo';
 
 const App = ({ Component, pageProps }: AppProps) => {
     dayjs.extend(RelativeTime);
@@ -23,7 +24,9 @@ const App = ({ Component, pageProps }: AppProps) => {
                     <AuthLayout>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <SnackBarLayout>
-                                <Component {...pageProps} />
+                                <SocketIoLayout>
+                                    <Component {...pageProps} />
+                                </SocketIoLayout>
                             </SnackBarLayout>
                         </LocalizationProvider>
                     </AuthLayout>
