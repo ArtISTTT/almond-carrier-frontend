@@ -12,7 +12,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import RelativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from 'dayjs';
-import SocketIoLayout from 'src/Components/Layouts/SockerIo';
+import SocketIoLayout from 'src/Components/Layouts/SocketIo';
 
 const App = ({ Component, pageProps }: AppProps) => {
     dayjs.extend(RelativeTime);
