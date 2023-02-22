@@ -13,7 +13,7 @@ import { ViewType } from '../OrderPage/OrderInputItem';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { useRouter } from 'next/router';
 import { navigateTo } from 'src/interfaces/navigate';
-import { SocketIoContext } from '../Layouts/SockerIo';
+import { SocketIoContext } from '../Layouts/SocketIo';
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URI as string;
 interface IProps {
