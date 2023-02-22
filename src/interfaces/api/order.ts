@@ -10,6 +10,7 @@ export type IGetMyOrdersReturn = {
     error?: string | undefined;
     ok: boolean;
     orders?: IOrder[];
+    count?: number;
 };
 
 export type IApplyOrderReturn = {
