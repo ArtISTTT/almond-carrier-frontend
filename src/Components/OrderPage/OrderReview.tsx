@@ -121,7 +121,6 @@ const OrderReview: React.FC<IProps> = ({
                             className={styles.reviewTextInput}
                             multiline
                             rows={11}
-                            maxRows={12}
                             value={formik.values.reviewText}
                             onChange={formik.handleChange}
                             error={formik.errors.reviewText !== undefined}

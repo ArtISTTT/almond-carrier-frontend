@@ -126,6 +126,10 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
+.MuiPaper-root {
+    max-height: 400px;
+}
+
 a {
     color: inherit;
     text-decoration: none;

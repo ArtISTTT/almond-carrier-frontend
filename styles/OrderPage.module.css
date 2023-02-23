@@ -227,14 +227,42 @@
     width: 100%;
 }
 
+#menu-bank {
+    max-height: 400px;
+}
+
+.inputTitle {
+    color: var(--cTextSecondary);
+}
+
+.bankElement {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.bankElement > img {
+    width: 25px;
+}
+
 .inputItem .input {
     width: 100%;
     margin-right: 12px;
+    height: 40px;
+    margin-bottom: 10px;
+    margin-top: 1px;
+    background-color: var(--cBgSecondary);
+    border-radius: 16px;
 }
+
 .inputItem .input :global .MuiInputBase-root {
-    border-radius: 15px;
+    border-radius: 16px;
     height: 40px;
     width: 100%;
+}
+
+.inputItem .input :global .MuiInputBase-root > div > img {
+    display: none;
 }
 
 .inputItem > label {
@@ -242,13 +270,35 @@
     font-size: 16px;
     line-height: 22px;
     letter-spacing: 0.4px;
-    color: var(--cTextLow);
+    /* color: var(--cTextLow); */
+}
+
+.userPhoneBlock {
+    display: flex;
+    align-items: center;
+}
+
+.confirmPhoneButton {
+    font-size: 14px;
+    color: var(--cTextSecondary);
+    width: fit-content;
+    border-radius: 16px;
+    white-space: nowrap;
 }
 
 .valuesByColumns {
     display: flex;
     gap: 64px;
     margin-bottom: 24px;
+}
+
+.inputPhoneBlock {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding-right: 20px;
+    margin-bottom: 16px;
 }
 
 .column {
@@ -331,6 +381,7 @@
     padding: 16px;
     border-radius: 15px;
     max-width: 450px;
+    width: 100%;
     color: var(--cTextSecondary);
 }
 
@@ -345,19 +396,27 @@
     display: flex;
     align-items: center;
     width: fit-content;
-    background-color: #ebebeb;
-    border-radius: 15px;
+    background-color: var(--cBgSecondary);
+    border-radius: 16px;
     color: var(--cTextThird);
     margin-bottom: 20px;
     transition: background-color 0.1s linear;
 }
 
 .phone:hover {
+    border: none;
+    outline: none;
     background-color: #fcfcfc;
 }
 
+.input.inputPhone :global .MuiInputAdornment-root {
+    display: none;
+}
+
 .name {
-    margin-bottom: 16px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .orderConfirmPaymentButton {
@@ -438,6 +497,13 @@
     align-items: center;
 }
 
+.detailsBlock {
+    margin-bottom: 16px;
+    line-height: 22px;
+    letter-spacing: 0.25px;
+    font-size: 16px;
+}
+
 @media screen and (max-width: 1130px) {
     .orderConent {
         flex-direction: column;
@@ -447,9 +513,28 @@
     }
 }
 
+@media screen and (max-width: 1283px) {
+    .inputItem .input :global .MuiInputBase-root {
+        height: 34px;
+    }
+    .inputItem .input {
+        height: 34px;
+    }
+}
+
 @media screen and (max-width: 820px) {
     .valuesByColumns {
         gap: 20px;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .inputItem .input :global .MuiInputBase-root {
+        height: 32px;
+    }
+    .inputItem .input {
+        margin-top: 1px;
+        height: 32px;
     }
 }
 
@@ -470,6 +555,9 @@
     .infoRight svg {
         width: 16px;
         height: 16px;
+    }
+    .inputItem .input :global .MuiInputBase-root {
+        height: 32px;
     }
     .orderDetails {
         padding: 32px 10px;
@@ -505,6 +593,17 @@
         width: 100%;
         margin-right: 0;
     }
+    .haveSomeProblems {
+        text-align: center;
+        font-size: 14px;
+    }
+    .orderPaymentWrapper {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        margin: 0 10px;
+        justify-content: flex-start;
+    }
     .orderDetails {
         flex-direction: column;
         gap: 20px;
@@ -523,9 +622,26 @@
     }
 }
 
+@media screen and (max-width: 530px) {
+    .collapsedPayment {
+        max-width: 350px;
+    }
+
+    .confirmPhoneButton {
+        margin-top: 30px;
+    }
+}
+
 @media screen and (max-width: 484px) {
     .orderInputValueWrapper {
         width: 400px;
+    }
+    .inputItem .input {
+        height: 32px;
+    }
+    .inputItem .input :global .MuiInputBase-root {
+        height: 33px;
+        margin-top: -1px;
     }
     .orderInformationTitle {
         margin-bottom: 30px;
@@ -546,17 +662,25 @@
         font-size: 12px;
         padding: 10px;
     }
-    .haveSomeProblems {
-        margin-top: 32px;
-    }
     .cancelButton {
         width: 180px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .inputItem .input {
+        height: 32px;
+        margin-top: 2px;
     }
 }
 
 @media screen and (max-width: 430px) {
     .orderInputValue {
         max-width: 350px;
+    }
+    .inputItem .input {
+        height: 32px;
+        margin-top: 2px;
     }
 }
 
