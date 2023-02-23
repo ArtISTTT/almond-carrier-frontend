@@ -1,26 +1,32 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../../../styles/OrderPage.module.css';
-import { IOrderFull } from 'src/interfaces/order';
-import { Collapse, Button, Typography } from '@mui/material';
+import {
+    Collapse,
+    Button,
+    InputLabel,
+    Typography,
+    MenuItem,
+    Select,
+    FormControl,
+} from '@mui/material';
 import { useAppSelector } from 'src/redux/hooks';
-import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import cn from 'classnames';
 import { MuiTelInput } from 'mui-tel-input';
 import { useFormik } from 'formik';
-
-type IProps = {
-    order: IOrderFull;
-    updateOrder: (withoutLoading?: true) => Promise<void>;
-};
+import { Banks } from 'src/interfaces/user';
+import { OrderPaymentSuccessSchema } from 'src/schemas/OrderPaymentSuccess';
+import { useGetBanks } from 'src/redux/hooks/useGetBanks';
 
 type IForm = {
+    bank: Banks;
     phone: string;
 };
 
-const OrderPaymentSuccess: React.FC<IProps> = ({ order, updateOrder }) => {
+const OrderPaymentSuccess: React.FC = ({}) => {
     const [paymentOpened, setPaymentOpened] = React.useState<boolean>(false);
     const { t } = useTranslation();
+    const banksArray = useGetBanks();
 
     const carrierPhoneNumber = useAppSelector(
         ({ user }) => user.data?.phoneNumber
@@ -31,18 +37,15 @@ const OrderPaymentSuccess: React.FC<IProps> = ({ order, updateOrder }) => {
     const handlePhoneChange = (phone: string) =>
         formik.setFieldValue('phone', phone);
 
-    const enterUserPhone = () =>
-        formik.setFieldValue('phone', carrierPhoneNumber);
-
-    const confirmPhoneNumber = () => setPaymentOpened(false);
-
     const handleSubmit = (form: IForm) => {};
 
     const formik = useFormik({
         initialValues: {
-            phone: '',
+            phone: carrierPhoneNumber || '',
+            bank: Banks.SBER,
         },
         onSubmit: handleSubmit,
+        validationSchema: OrderPaymentSuccessSchema,
         validateOnBlur: false,
         validateOnChange: false,
     });
@@ -69,9 +72,15 @@ const OrderPaymentSuccess: React.FC<IProps> = ({ order, updateOrder }) => {
                     <form onSubmit={formik.handleSubmit} action='submit'>
                         <div className={styles.inputPhoneBlock}>
                             <div className={styles.inputItem}>
+                                <InputLabel
+                                    className={styles.inputTitle}
+                                    id='phone'
+                                >
+                                    {t('phoneNumber')}
+                                </InputLabel>
                                 <MuiTelInput
-                                    id='phoneNumber'
-                                    name='phoneNumber'
+                                    id='phone'
+                                    name='phone'
                                     placeholder={t('phoneNumber') as string}
                                     variant='outlined'
                                     MenuProps={{
@@ -85,25 +94,56 @@ const OrderPaymentSuccess: React.FC<IProps> = ({ order, updateOrder }) => {
                                     )}
                                 />
                             </div>
-
-                            <Button
-                                variant='text'
-                                className={styles.confirmPhoneButton}
-                                onClick={enterUserPhone}
-                                color='primary'
-                            >
-                                {t('useYourPhone')}
-                            </Button>
+                            <div className={styles.inputItem}>
+                                <InputLabel
+                                    className={styles.inputTitle}
+                                    id='bank'
+                                >
+                                    {t('bank')}
+                                </InputLabel>
+                                <FormControl
+                                    sx={{ width: 250 }}
+                                    className={styles.input}
+                                >
+                                    <Select
+                                        id='bank'
+                                        name='bank'
+                                        placeholder={t('bank') as string}
+                                        value={formik.values.bank}
+                                        onChange={formik.handleChange}
+                                        MenuProps={{
+                                            disableScrollLock: true,
+                                        }}
+                                        className={styles.select}
+                                    >
+                                        {banksArray.map(bank => {
+                                            return (
+                                                <MenuItem
+                                                    className={
+                                                        styles.bankElement
+                                                    }
+                                                    key={bank.value}
+                                                    value={bank.value}
+                                                >
+                                                    <img src={bank.image.src} />
+                                                    {bank.text}
+                                                </MenuItem>
+                                            );
+                                        })}
+                                    </Select>
+                                </FormControl>
+                            </div>
                         </div>
+                        <Button
+                            variant='contained'
+                            type='submit'
+                            className={styles.orderConfirmPaymentButton}
+                            color='primary'
+                            onClick={handleChange}
+                        >
+                            {t('confirm')}
+                        </Button>
                     </form>
-                    <Button
-                        variant='contained'
-                        className={styles.orderConfirmPaymentButton}
-                        color='primary'
-                        onClick={confirmPhoneNumber}
-                    >
-                        {t('confirm')}
-                    </Button>
                 </div>
             </Collapse>
         </div>
