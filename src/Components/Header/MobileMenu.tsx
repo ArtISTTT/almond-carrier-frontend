@@ -30,9 +30,9 @@ import PaymentsIcon from '@mui/icons-material/Payments';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import SearchIcon from '@mui/icons-material/Search';
-import { IUserNotification } from 'src/interfaces/user';
 import NotificationsMobileItem from '../Notifications/NotificationsMobileItem';
 import NotificationsMenu from '../Notifications/NotificationsMenu';
+import { IUserNotification } from 'src/interfaces/notifications';
 
 interface IProps {
     notifications: IUserNotification[];

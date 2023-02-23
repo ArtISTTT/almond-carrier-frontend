@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import NotificationsItem from './NotificationsItem';
-import { IUserNotification } from 'src/interfaces/user';
+
 import styles from '../../../styles/Notifications.module.css';
 import {
     ClickAwayListener,
@@ -11,8 +11,10 @@ import {
     Badge,
     Popper,
 } from '@mui/material';
+import cn from 'classnames';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
+import { IUserNotification } from 'src/interfaces/notifications';
 
 interface IProps {
     notifications: IUserNotification[];
@@ -71,7 +73,9 @@ const NotificationsMenu: React.FC<IProps> = ({
                                     ? 'center top'
                                     : 'center top',
                         }}
-                        className={styles.growMenu}
+                        className={cn(styles.growMenu, {
+                            [styles.emptyGrowMenu]: notifications.length === 0,
+                        })}
                     >
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
@@ -96,18 +100,21 @@ const NotificationsMenu: React.FC<IProps> = ({
                                                             key={
                                                                 notification.id
                                                             }
+                                                            orderId={
+                                                                notification.orderId
+                                                            }
                                                             setNotifications={
                                                                 setNotifications
                                                             }
                                                             currentDate={
-                                                                notification.date
+                                                                notification.createdDate
                                                             }
                                                             id={notification.id}
                                                             text={
                                                                 notification.text
                                                             }
                                                             deal={
-                                                                notification.deal
+                                                                notification.productName
                                                             }
                                                         />
                                                     )

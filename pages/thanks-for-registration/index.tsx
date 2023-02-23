@@ -20,7 +20,11 @@ const SignIn: React.FC = () => {
         <PrivateLayout privateType={privateTypes.all}>
             <div className={styles.thanksForRegistrationWrapper}>
                 <div className={styles.thanksForRegistrationText}>
-                    <Typography variant='h3' component='h2' className={styles.text}>
+                    <Typography
+                        variant='h3'
+                        component='h2'
+                        className={styles.text}
+                    >
                         {t('thanksForResistration')}
                     </Typography>
                     <Button

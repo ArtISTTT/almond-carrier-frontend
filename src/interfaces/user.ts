@@ -14,13 +14,6 @@ export type IUser = {
     id: string;
 };
 
-export interface IUserNotification {
-    text: string;
-    id: string;
-    deal: string;
-    date: Dayjs;
-}
-
 export enum Banks {
     SBER = 'sberbank',
     TINKOFF = 'tinkoff',

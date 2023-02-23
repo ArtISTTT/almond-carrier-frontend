@@ -1,19 +1,19 @@
 import { Avatar, Button, Link as MUILink } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
-
 import styles from '../../../styles/mainLayout.module.css';
 import { selectIsAuthorized } from '../../redux/selectors/user';
 import HeaderAvatar from './Avatar';
-
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { navigateTo } from 'src/interfaces/navigate';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
 import MobileMenu from './MobileMenu';
 import NotificationsMenu from '../Notifications/NotificationsMenu';
-import { IUserNotification } from 'src/interfaces/user';
-import dayjs from 'dayjs';
+import { useLoadOwnNotifications } from 'src/redux/hooks/useLoadOwnNotifications';
+import { SocketIoContext } from '../Layouts/SocketIo';
+import { IUserNotification } from 'src/interfaces/notifications';
+import { parseNotificationsFromApi } from 'src/helpers/parceNotificationsFromApi';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -26,62 +26,32 @@ const Header: React.FC<IProps> = ({
 }) => {
     const router = useRouter();
     const { t } = useTranslation();
+
+    const socket = useContext(SocketIoContext);
     const isAuthorized = useSelector(selectIsAuthorized);
+
     const [isSettingsPopupOpen, setIsSettingsPopupOpen] =
         React.useState<boolean>(false);
 
-    const [notifications, setNotifications] = React.useState<
-        IUserNotification[]
-    >([
-        {
-            text: 'New message from carrier',
-            deal: 'God of War: Ragnarok',
-            id: 'lox',
-            date: dayjs().set('hour', 5).set('minute', 55).set('second', 15),
-        },
-        {
-            text: 'New message from receiver',
-            deal: 'Crack',
-            id: 'lox1',
-            date: dayjs().set('hour', 4).set('minute', 55).set('second', 15),
-        },
-        {
-            text: 'Payment success',
-            deal: 'Mefedron',
-            id: 'lox2',
-            date: dayjs().set('hour', 2).set('minute', 55).set('second', 15),
-        },
-        {
-            text: 'New changes',
-            deal: 'Baby',
-            id: 'lox3',
-            date: dayjs().set('hour', 22).set('minute', 55).set('second', 15),
-        },
-        {
-            text: 'New message from carrier',
-            deal: 'God of War: Ragnarok',
-            id: 'lox4',
-            date: dayjs().set('hour', 5).set('minute', 55).set('second', 15),
-        },
-        {
-            text: 'New message from carrier',
-            deal: 'God of War: Ragnarok',
-            id: 'lox5',
-            date: dayjs().set('hour', 5).set('minute', 55).set('second', 15),
-        },
-        {
-            text: 'New message from carrier',
-            deal: 'God of War: Ragnarok',
-            id: 'lox5',
-            date: dayjs().set('hour', 5).set('minute', 55).set('second', 15),
-        },
-        {
-            text: 'New message from carrier',
-            deal: 'God of War: Ragnarok',
-            id: 'lox5',
-            date: dayjs().set('hour', 5).set('minute', 55).set('second', 15),
-        },
-    ]);
+    const { reload, isLoading, notifications, setNotifications } =
+        useLoadOwnNotifications();
+
+    React.useEffect(() => {
+        isAuthorized && reload();
+        isAuthorized && configureSocket();
+    }, []);
+
+    const configureSocket = () => {
+        if (socket && socket.connected) {
+            socket.on(
+                'new-notification',
+                ({ notification }: { notification: IUserNotification }) =>
+                    setNotifications(prev =>
+                        prev.concat(parseNotificationsFromApi([notification]))
+                    )
+            );
+        }
+    };
 
     const changePageIfAuthorized = () => {
         if (isAuthorized) {
