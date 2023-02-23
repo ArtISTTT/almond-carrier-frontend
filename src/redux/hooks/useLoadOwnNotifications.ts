@@ -8,6 +8,7 @@ import { parseNotificationsFromApi } from 'src/helpers/parceNotificationsFromApi
 type IReturn = {
     isLoading: boolean;
     notifications: IUserNotification[];
+    setNotifications: React.Dispatch<React.SetStateAction<IUserNotification[]>>;
     reload: () => Promise<void>;
     error: string | undefined;
 };
@@ -42,5 +43,5 @@ export const useLoadOwnNotifications = (): IReturn => {
         setIsLoading(false);
     };
 
-    return { reload, isLoading, notifications, error };
+    return { reload, isLoading, notifications, setNotifications, error };
 };

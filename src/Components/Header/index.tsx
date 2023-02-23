@@ -1,11 +1,9 @@
 import { Avatar, Button, Link as MUILink } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
-
 import styles from '../../../styles/mainLayout.module.css';
 import { selectIsAuthorized } from '../../redux/selectors/user';
 import HeaderAvatar from './Avatar';
-
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { navigateTo } from 'src/interfaces/navigate';
@@ -13,6 +11,9 @@ import { LinkBehaviour } from '../Common/LinkBehaviour';
 import MobileMenu from './MobileMenu';
 import NotificationsMenu from '../Notifications/NotificationsMenu';
 import { useLoadOwnNotifications } from 'src/redux/hooks/useLoadOwnNotifications';
+import { SocketIoContext } from '../Layouts/SocketIo';
+import { IUserNotification } from 'src/interfaces/notifications';
+import { parseNotificationsFromApi } from 'src/helpers/parceNotificationsFromApi';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -25,15 +26,32 @@ const Header: React.FC<IProps> = ({
 }) => {
     const router = useRouter();
     const { t } = useTranslation();
+
+    const socket = useContext(SocketIoContext);
     const isAuthorized = useSelector(selectIsAuthorized);
+
     const [isSettingsPopupOpen, setIsSettingsPopupOpen] =
         React.useState<boolean>(false);
 
-    const { reload, isLoading, notifications } = useLoadOwnNotifications();
+    const { reload, isLoading, notifications, setNotifications } =
+        useLoadOwnNotifications();
 
     React.useEffect(() => {
-        reload();
+        isAuthorized && reload();
+        isAuthorized && configureSocket();
     }, []);
+
+    const configureSocket = () => {
+        if (socket && socket.connected) {
+            socket.on(
+                'new-notification',
+                ({ notification }: { notification: IUserNotification }) =>
+                    setNotifications(prev =>
+                        prev.concat(parseNotificationsFromApi([notification]))
+                    )
+            );
+        }
+    };
 
     const changePageIfAuthorized = () => {
         if (isAuthorized) {
@@ -107,7 +125,7 @@ const Header: React.FC<IProps> = ({
                     <div className={styles.authoridedIcons}>
                         <NotificationsMenu
                             notifications={notifications}
-                            // setNotifications={setNotifications}
+                            setNotifications={setNotifications}
                         />
                         <HeaderAvatar
                             setIsSettingsPopupOpen={setIsSettingsPopupOpen}
@@ -118,7 +136,7 @@ const Header: React.FC<IProps> = ({
             </div>
 
             <MobileMenu
-                // setNotifications={setNotifications}
+                setNotifications={setNotifications}
                 notifications={notifications}
                 isSettingsPopupOpen={isSettingsPopupOpen}
                 setIsSettingsPopupOpen={setIsSettingsPopupOpen}

@@ -11,18 +11,19 @@ import {
     Badge,
     Popper,
 } from '@mui/material';
+import cn from 'classnames';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import { IUserNotification } from 'src/interfaces/notifications';
 
 interface IProps {
     notifications: IUserNotification[];
-    // setNotifications: React.Dispatch<React.SetStateAction<IUserNotification[]>>;
+    setNotifications: React.Dispatch<React.SetStateAction<IUserNotification[]>>;
 }
 
 const NotificationsMenu: React.FC<IProps> = ({
     notifications,
-    // setNotifications,
+    setNotifications,
 }) => {
     const [open, setOpen] = React.useState<boolean>(false);
 
@@ -34,7 +35,7 @@ const NotificationsMenu: React.FC<IProps> = ({
         prevOpen.current = open;
     }, [open]);
 
-    const clearNotifications = () => {};
+    const clearNotifications = () => setNotifications([]);
     const handleClose = () => setOpen(false);
     const handleToggle = () => setOpen(prevOpen => !prevOpen);
 
@@ -72,7 +73,9 @@ const NotificationsMenu: React.FC<IProps> = ({
                                     ? 'center top'
                                     : 'center top',
                         }}
-                        className={styles.growMenu}
+                        className={cn(styles.growMenu, {
+                            [styles.emptyGrowMenu]: notifications.length === 0,
+                        })}
                     >
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
@@ -97,9 +100,12 @@ const NotificationsMenu: React.FC<IProps> = ({
                                                             key={
                                                                 notification.id
                                                             }
-                                                            // setNotifications={
-                                                            //     setNotifications
-                                                            // }
+                                                            orderId={
+                                                                notification.orderId
+                                                            }
+                                                            setNotifications={
+                                                                setNotifications
+                                                            }
                                                             currentDate={
                                                                 notification.createdDate
                                                             }
