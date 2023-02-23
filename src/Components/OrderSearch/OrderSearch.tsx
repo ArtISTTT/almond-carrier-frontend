@@ -99,7 +99,6 @@ const OrderSearch: React.FC = () => {
                         setApplyedOrder={setApplyedOrder}
                         type={type}
                         orders={orders}
-                        handleChangePagination={handleChangePagination}
                     />
                 )}
                 <Pagination
