@@ -108,13 +108,12 @@ const OrderPaymentSuccess: React.FC = ({}) => {
                                     <Select
                                         id='bank'
                                         name='bank'
-                                        placeholder={t('bank') as string}
                                         value={formik.values.bank}
                                         onChange={formik.handleChange}
                                         MenuProps={{
                                             disableScrollLock: true,
                                         }}
-                                        className={styles.select}
+                                        className={styles.selectBank}
                                     >
                                         {banksArray.map(bank => {
                                             return (

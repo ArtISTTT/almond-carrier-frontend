@@ -150,12 +150,7 @@ const OrderPage = () => {
             <OrderPayment order={order} updateOrder={updateOrder} />
 
             {order.status === OrderStatus.success &&
-                viewType === ViewType.carrier && (
-                    <OrderPaymentSuccess
-                        order={order}
-                        updateOrder={updateOrder}
-                    />
-                )}
+                viewType === ViewType.carrier && <OrderPaymentSuccess />}
 
             <div className={styles.haveSomeProblems}>
                 <Link href='#'>{t('haveSomeProblems')}</Link>

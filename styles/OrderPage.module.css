@@ -227,6 +227,10 @@
     width: 100%;
 }
 
+#menu-bank {
+    max-height: 400px;
+}
+
 .inputTitle {
     color: var(--cTextSecondary);
 }
@@ -239,15 +243,6 @@
 
 .bankElement > img {
     width: 25px;
-}
-
-.select {
-    font-size: 16px;
-    padding-top: 1px;
-}
-
-.select::-webkit-scrollbar {
-    display: none;
 }
 
 .inputItem .input {
@@ -401,7 +396,7 @@
     display: flex;
     align-items: center;
     width: fit-content;
-    background-color: var(--cBg);
+    background-color: var(--cBgSecondary);
     border-radius: 16px;
     color: var(--cTextThird);
     margin-bottom: 20px;
@@ -598,6 +593,17 @@
         width: 100%;
         margin-right: 0;
     }
+    .haveSomeProblems {
+        text-align: center;
+        font-size: 14px;
+    }
+    .orderPaymentWrapper {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        margin: 0 10px;
+        justify-content: flex-start;
+    }
     .orderDetails {
         flex-direction: column;
         gap: 20px;
@@ -655,9 +661,6 @@
     .multiline :global .MuiInputBase-root {
         font-size: 12px;
         padding: 10px;
-    }
-    .haveSomeProblems {
-        margin-top: 32px;
     }
     .cancelButton {
         width: 180px;

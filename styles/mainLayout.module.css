@@ -132,6 +132,7 @@
 }
 
 .blurWrapper {
+    display: none;
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -140,12 +141,13 @@
 }
 
 .blurWrapperOn {
+    display: block;
     backdrop-filter: blur(1px);
 }
 
 .mobileMenu {
     position: fixed;
-    height: 100vh;
+    min-height: 100vh;
     width: 50%;
     top: 0;
     right: 0;
@@ -239,7 +241,7 @@
 }
 
 .mobileMenuPaper {
-    height: 100vh;
+    min-height: 100vh;
     padding: 0;
 }
 
@@ -371,10 +373,6 @@
     }
     .rightMenu {
         display: none;
-    }
-
-    .blurWrapper {
-        display: block;
     }
 
     .mobileMenuWrapper {
