@@ -2,11 +2,12 @@ import React from 'react';
 import { Tooltip } from '@mui/material';
 import styles from '../../../styles/Notifications.module.css';
 import { useTranslation } from 'react-i18next';
-import { IUserNotification } from 'src/interfaces/user';
+
 import { useDifferenceTime } from 'src/redux/hooks/useDifferenceTime';
 import FmdBadIcon from '@mui/icons-material/FmdBad';
 import MarkChatReadIcon from '@mui/icons-material/MarkChatRead';
 import dayjs, { Dayjs } from 'dayjs';
+import { IUserNotification } from 'src/interfaces/notifications';
 
 interface IProps {
     id: string;

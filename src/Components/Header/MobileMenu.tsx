@@ -30,13 +30,13 @@ import PaymentsIcon from '@mui/icons-material/Payments';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import SearchIcon from '@mui/icons-material/Search';
-import { IUserNotification } from 'src/interfaces/user';
 import NotificationsMobileItem from '../Notifications/NotificationsMobileItem';
 import NotificationsMenu from '../Notifications/NotificationsMenu';
+import { IUserNotification } from 'src/interfaces/notifications';
 
 interface IProps {
     notifications: IUserNotification[];
-    setNotifications: React.Dispatch<React.SetStateAction<IUserNotification[]>>;
+    // setNotifications: React.Dispatch<React.SetStateAction<IUserNotification[]>>;
     showSignInOutIfUnauthorized: boolean;
     isSettingsPopupOpen: boolean;
     setIsSettingsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -44,7 +44,7 @@ interface IProps {
 
 const MobileMenu: React.FC<IProps> = ({
     notifications,
-    setNotifications,
+    // setNotifications,
     showSignInOutIfUnauthorized,
     isSettingsPopupOpen,
     setIsSettingsPopupOpen,
@@ -107,7 +107,7 @@ const MobileMenu: React.FC<IProps> = ({
                     <div className={cn(styles.mobileMenuContent)}>
                         <NotificationsMenu
                             notifications={notifications}
-                            setNotifications={setNotifications}
+                            // setNotifications={setNotifications}
                         />
                         <MenuIcon
                             onClick={toggleMobileMenu}
