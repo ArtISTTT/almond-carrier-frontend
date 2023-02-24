@@ -37,6 +37,10 @@ const Header: React.FC<IProps> = ({
         useLoadOwnNotifications();
 
     React.useEffect(() => {
+        if (isAuthorized) {
+            reload();
+            configureSocket();
+        }
         isAuthorized && reload();
         isAuthorized && configureSocket();
     }, []);
