@@ -15,6 +15,7 @@ import { useTranslation } from 'next-i18next';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
 import CircleLoader from '../Loaders/CircleLoader';
 import { LoaderColors } from 'src/interfaces/loader';
+import { useGetThisPageOrders } from 'src/redux/hooks/useGetThisPageOrders';
 
 enum PopupType {
     none,
@@ -26,16 +27,20 @@ const Dashboard: React.FC = () => {
     const orders = useSelector(selectMyLiveOrders);
     const { t } = useTranslation();
     const [page, setPage] = React.useState<number>(1);
-    const [totalCount, setTotalCount] = React.useState<number>(1);
     const [openedPopup, setOpenedPopup] = React.useState<PopupType>(
         PopupType.none
     );
 
     const { reload, isLoading, error } = useLoadOwnOrders();
+    const thisPageOrders = useGetThisPageOrders({ orders, page });
 
     useEffect(() => {
         reload();
     }, []);
+
+    const totalCountPages = React.useMemo(() => {
+        return Math.ceil(orders.length / 4);
+    }, [orders]);
 
     const toggleCarrierPopup = () =>
         setOpenedPopup(prev => {
@@ -110,8 +115,8 @@ const Dashboard: React.FC = () => {
                                             orders.length === 0,
                                     })}
                                 >
-                                    {orders?.map(order => (
-                                        <OrderItem key={order.id} {...order} />
+                                    {thisPageOrders?.map(order => (
+                                        <OrderItem key={order?.id} {...order} />
                                     ))}
                                     {orders.length === 0 && (
                                         <EmptyOrdersBlock />
@@ -120,7 +125,7 @@ const Dashboard: React.FC = () => {
                                 <div className={styles.newOrderButtons}>
                                     <Pagination
                                         className={styles.pagination}
-                                        count={totalCount}
+                                        count={totalCountPages}
                                         variant='outlined'
                                         color='primary'
                                         onChange={handleChangePagination}
