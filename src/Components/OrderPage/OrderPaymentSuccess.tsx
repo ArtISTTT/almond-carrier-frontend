@@ -23,7 +23,7 @@ type IForm = {
     phone: string;
 };
 
-const OrderPaymentSuccess: React.FC = ({}) => {
+const OrderPaymentSuccess: React.FC = () => {
     const [paymentOpened, setPaymentOpened] = React.useState<boolean>(false);
     const { t } = useTranslation();
     const banksArray = useGetBanks();
