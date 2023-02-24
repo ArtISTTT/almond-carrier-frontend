@@ -1,23 +1,14 @@
 import { IOrder } from 'src/interfaces/order';
+import React from 'react';
 
-export const useGetThisPageOrders = ({
-    orders,
-    page,
-}: {
+interface IProps {
     orders: IOrder[];
     page: number;
-}) => {
-    const pageOrders = orders.map((order, i) => {
-        if (i < 4 * page && i > 4 * page - 5) {
-            return order;
-        } else {
-            return null;
-        }
-    });
+}
 
-    const thisPageOrdersArray = pageOrders.filter(order => {
-        return order !== null;
-    });
+export const useGetThisPageOrders = ({ orders, page }: IProps) => {
+    
+    const [start, end] = React.useMemo(() => [page * 4 - 4, page * 4], [page]);
 
-    return thisPageOrdersArray as IOrder[];
+    return orders.slice(start, end) as IOrder[];
 };
