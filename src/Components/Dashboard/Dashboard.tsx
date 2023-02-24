@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from '../../../styles/Dashboard.module.css';
-import { Button, Container, Typography } from '@mui/material';
+import { Button, Container, Typography, Pagination } from '@mui/material';
 import cn from 'classnames';
 import AddIcon from '@mui/icons-material/Add';
 import ReceiverAddingPopup from 'src/Components/OrderComponents/ReceiverAddingPopup';
@@ -25,6 +25,8 @@ enum PopupType {
 const Dashboard: React.FC = () => {
     const orders = useSelector(selectMyLiveOrders);
     const { t } = useTranslation();
+    const [page, setPage] = React.useState<number>(1);
+    const [totalCount, setTotalCount] = React.useState<number>(1);
     const [openedPopup, setOpenedPopup] = React.useState<PopupType>(
         PopupType.none
     );
@@ -56,6 +58,13 @@ const Dashboard: React.FC = () => {
             toggleHtmlScroll(false);
             return PopupType.none;
         });
+
+    const handleChangePagination = async (
+        _: React.ChangeEvent<unknown>,
+        value: number
+    ) => {
+        setPage(value);
+    };
 
     return (
         <>
@@ -109,6 +118,13 @@ const Dashboard: React.FC = () => {
                                     )}
                                 </div>
                                 <div className={styles.newOrderButtons}>
+                                    <Pagination
+                                        className={styles.pagination}
+                                        count={totalCount}
+                                        variant='outlined'
+                                        color='primary'
+                                        onChange={handleChangePagination}
+                                    />
                                     <Button
                                         onClick={toggleReceiverPopup}
                                         className={styles.newOrderButton}

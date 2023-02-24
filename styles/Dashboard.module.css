@@ -80,7 +80,12 @@
 .newOrderButtons {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     gap: 16px;
+}
+
+.pagination {
+    margin-top: 4px;
 }
 
 .newOrderButton {

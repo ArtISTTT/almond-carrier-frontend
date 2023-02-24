@@ -119,6 +119,12 @@
     gap: 8px;
 }
 
+.createdDate {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
 .infoRightId > div {
     height: 22px;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import cn from 'classnames';
 import { useConvertStatusToText } from '../../redux/hooks/useConvertStatusToText';
 import styles from '../../../styles/OrderPage.module.css';
@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { IOrderFull } from '../../interfaces/order';
 import { OrderStatus } from 'src/interfaces/profile';
 import { ViewType } from './OrderInputItem';
+import { OpenAlertContext } from '../Layouts/Snackbar';
 
 type IProps = {
     order: IOrderFull;
@@ -25,6 +26,7 @@ const OrderDetails: React.FC<IProps> = ({
 }) => {
     const { t } = useTranslation();
     const statusToText = useConvertStatusToText();
+    const { triggerOpen } = useContext(OpenAlertContext);
 
     const openReviewBlock = () => setIsReviewBlockOpen(true);
     const operPersonReviewBlock = () => {
@@ -34,6 +36,14 @@ const OrderDetails: React.FC<IProps> = ({
     const openMySentReviewBlock = () => {
         setIsPersonReviewBlockOpen(false);
         setIsMySentReviewBlockOpen(true);
+    };
+
+    const copyId = () => {
+        navigator.clipboard.writeText(order.id);
+        triggerOpen({
+            severity: 'info',
+            text: t('copied'),
+        });
     };
 
     return (
@@ -95,10 +105,16 @@ const OrderDetails: React.FC<IProps> = ({
                     <div className={styles.infoRightId}>
                         <span>{order.id}</span>
                         <div>
-                            <ContentCopyIcon fontSize='small' />
+                            <ContentCopyIcon
+                                onClick={copyId}
+                                fontSize='small'
+                            />
                         </div>
                     </div>
-                    <div>10.12.2024 13:43:12</div>
+                    <div className={styles.createdDate}>
+                        <div>{order.createdDate.format('hh:mm')}</div>
+                        <div>{order.createdDate.format('MM.D.YYYY')}</div>
+                    </div>
                 </div>
             </div>
         </div>

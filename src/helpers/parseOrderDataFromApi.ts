@@ -7,4 +7,5 @@ export const parseOrderDataFromApi = (orders: (IOrder | IOrderFull)[]) =>
     orders.map(order => ({
         ...order,
         arrivalDate: order.arrivalDate ? dayjs(order.arrivalDate) : undefined,
+        createdDate: dayjs(order.createdDate),
     }));

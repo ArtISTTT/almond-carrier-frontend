@@ -7,6 +7,7 @@ export interface IOrder {
     toLocation: string;
     toLocation_placeId: string;
     fromLocation?: string;
+    createdDate: Dayjs;
     fromLocation_placeId?: string;
     productName?: string;
     rewardAmount: number;
