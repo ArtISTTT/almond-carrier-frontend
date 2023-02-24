@@ -87,6 +87,7 @@ export const searchOrders = (requestData: {
             return {
                 ok: true,
                 orders: data.data.orders as IOrder[],
+                count: data.data.count as number,
             };
         })
         .catch(data => {

@@ -48,7 +48,9 @@ export const useSearchOrders = (): IReturn => {
 
             return {
                 orders: parseOrderDataFromApi(data.orders),
-                count: data.count ?? 1,
+                count: data.count
+                    ? Math.ceil(data.count / SEARCH_TABLE_LIMIT)
+                    : 1,
             };
         } else {
             setError(t('errorSearchingOrders') as string);
