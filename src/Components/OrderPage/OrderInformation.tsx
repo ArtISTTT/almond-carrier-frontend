@@ -28,6 +28,8 @@ import { IUser } from 'src/interfaces/user';
 import { useTranslation } from 'react-i18next';
 import OrderReview from './OrderReview';
 import ReviewPopup from './ReviewPopup';
+import { useAppSelector } from 'src/redux/hooks';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 
 type IProps = {
     order: IOrderFull;
@@ -293,6 +295,12 @@ const OrderInformation: React.FC<IProps> = ({
         order.carrier?.firstName,
     ]);
 
+    const userCurrency = useAppSelector(
+        ({ settings }) => settings.generalSettings.currency
+    );
+
+    const formatAmount = useFormatAmount();
+
     return (
         <>
             {order.myReview &&
@@ -445,6 +453,8 @@ const OrderInformation: React.FC<IProps> = ({
                                 <div className={styles.column}>
                                     {order.productAmount && (
                                         <OrderInputItem
+                                            formatAmount={formatAmount}
+                                            unit={userCurrency}
                                             formik={formik}
                                             editingFields={editingFields}
                                             order={order}
@@ -466,6 +476,8 @@ const OrderInformation: React.FC<IProps> = ({
                                     )}
                                     {order.rewardAmount && (
                                         <OrderInputItem
+                                            formatAmount={formatAmount}
+                                            unit={userCurrency}
                                             formik={formik}
                                             editingFields={editingFields}
                                             order={order}
@@ -501,11 +513,15 @@ const OrderInformation: React.FC<IProps> = ({
                                                             styles.orderInputValue
                                                         }
                                                     >
-                                                        {calculateTotalAmount(
-                                                            order.productAmount,
-                                                            order.rewardAmount,
-                                                            Currency.RUB
-                                                        )}
+                                                        {formatAmount(
+                                                            calculateTotalAmount(
+                                                                order.productAmount,
+                                                                order.rewardAmount,
+                                                                Currency.RUB
+                                                            ),
+                                                            userCurrency
+                                                        )}{' '}
+                                                        {t(userCurrency)}
                                                     </span>
                                                 </div>
                                             </div>
@@ -514,6 +530,7 @@ const OrderInformation: React.FC<IProps> = ({
                                 <div className={styles.column}>
                                     {order.productWeight && (
                                         <OrderInputItem
+                                            unit={'kg'}
                                             formik={formik}
                                             editingFields={editingFields}
                                             order={order}
@@ -534,6 +551,7 @@ const OrderInformation: React.FC<IProps> = ({
                                     {!order.productWeight &&
                                         order.carrierMaxWeight && (
                                             <OrderInputItem
+                                                unit={'kg'}
                                                 formik={formik}
                                                 editingFields={editingFields}
                                                 order={order}

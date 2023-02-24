@@ -41,8 +41,6 @@ const Header: React.FC<IProps> = ({
             reload();
             configureSocket();
         }
-        isAuthorized && reload();
-        isAuthorized && configureSocket();
     }, []);
 
     const configureSocket = () => {

@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { InputAdornment, TextField } from '@mui/material';
 import React, { useMemo } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
@@ -7,6 +7,9 @@ import { IOrderFull } from '../../interfaces/order';
 import dayjs, { Dayjs } from 'dayjs';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
 import cn from 'classnames';
+import { Currency } from 'src/interfaces/settings';
+import { useTranslation } from 'react-i18next';
+import { useAppSelector } from 'src/redux/hooks';
 
 export type ILabels = {
     [key in keyof IOrderFull]?: boolean;
@@ -62,6 +65,7 @@ export const getChangedType = (
 };
 
 type IProps = {
+    unit?: string | Currency;
     formik: any;
     editingFields: (keyof IOrderFull)[];
     order: OrderWithoutUsers;
@@ -72,6 +76,11 @@ type IProps = {
     availableLabels: ILabels;
     isLocation?: true;
     viewType: ViewType;
+    formatAmount?: (
+        sum: string | number,
+        customCurrency: Currency,
+        addCurrency?: boolean | undefined
+    ) => string;
     addToEditingFields: (name: keyof IOrderFull) => void;
     removeFromEditingFields: (name: keyof IOrderFull) => void;
 };
@@ -82,10 +91,12 @@ const OrderInputItem: React.FC<IProps> = ({
     order,
     id,
     label,
+    unit,
     type,
     isLocation,
     availableLabels,
     placeholder,
+    formatAmount,
     viewType,
     addToEditingFields,
     removeFromEditingFields,
@@ -99,9 +110,15 @@ const OrderInputItem: React.FC<IProps> = ({
         await formik.setFieldValue(id + '_placeId', placeId);
     };
 
+    const { t } = useTranslation();
+
     const changedType = useMemo(
         () => getChangedType(order, viewType, id),
         [order, viewType, id]
+    );
+
+    const userCurrency = useAppSelector(
+        ({ settings }) => settings.generalSettings.currency
     );
 
     return (
@@ -127,6 +144,13 @@ const OrderInputItem: React.FC<IProps> = ({
                             />
                         ) : (
                             <TextField
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position='end'>
+                                            <span>{unit && t(unit)}</span>
+                                        </InputAdornment>
+                                    ),
+                                }}
                                 id={id}
                                 name={id}
                                 placeholder={placeholder}
@@ -155,7 +179,13 @@ const OrderInputItem: React.FC<IProps> = ({
                     >
                         {id === 'arrivalDate'
                             ? dayjs(formik.values[id]).format('DD.MM.YYYY')
-                            : formik.values[id]}
+                            : (formatAmount &&
+                                  formatAmount(
+                                      formik.values[id],
+                                      userCurrency
+                                  )) ||
+                              formik.values[id]}{' '}
+                        {unit && t(unit)}
                     </span>
                     {availableLabels[id] &&
                         changedType === ChangedType.notChanged && (
