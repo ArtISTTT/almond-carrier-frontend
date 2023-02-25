@@ -236,6 +236,24 @@ export const completeOrder = (requestData: {
             };
         });
 
+export const cancelOrder = (requestData: {
+    orderId: string;
+}): Promise<ISuggestChanges> =>
+    mainInstance
+        .post('/order/cancel-order', JSON.stringify(requestData))
+        .then(data => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ?? 'Error with cancel order',
+            };
+        });
+
 export const disagreeWithChanges = (requestData: {
     orderId: string;
 }): Promise<ISuggestChanges> =>
