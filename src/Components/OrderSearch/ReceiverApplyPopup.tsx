@@ -3,6 +3,7 @@ import {
     Button,
     Typography,
     TextField,
+    Link as MUILink,
     Stack,
     Tooltip,
 } from '@mui/material';
@@ -22,6 +23,7 @@ import { Currency } from 'src/interfaces/settings';
 import { ReceiverApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
 import { navigateTo } from 'src/interfaces/navigate';
+import { LinkBehaviour } from '../Common/LinkBehaviour';
 
 interface IProps {
     closePopup: () => void;
@@ -142,7 +144,14 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     component='p'
                 >
                     <p>{t('link')}</p>
-                    <span>{'example.com'}</span>
+                    <span>
+                        <MUILink
+                            component={LinkBehaviour}
+                            href={order.productUri}
+                        >
+                            {order.productUri}
+                        </MUILink>
+                    </span>
                 </Typography>
 
                 <Typography

@@ -1,4 +1,4 @@
-import { InputAdornment, TextField } from '@mui/material';
+import { InputAdornment, TextField, Link as MUILink } from '@mui/material';
 import React, { useMemo } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
@@ -10,6 +10,7 @@ import cn from 'classnames';
 import { Currency } from 'src/interfaces/settings';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from 'src/redux/hooks';
+import { LinkBehaviour } from '../Common/LinkBehaviour';
 
 export type ILabels = {
     [key in keyof IOrderFull]?: boolean;
@@ -159,7 +160,7 @@ const OrderInputItem: React.FC<IProps> = ({
                                 value={formik.values[id]}
                                 onChange={formik.handleChange}
                                 error={formik.errors[id] !== undefined}
-                                helperText={formik.errors[id]}
+                                helperText={t(formik.errors[id]) as string}
                                 className={styles.input}
                             />
                         )}
@@ -171,22 +172,36 @@ const OrderInputItem: React.FC<IProps> = ({
                 </>
             ) : (
                 <div className={styles.orderInputValueWrapper}>
-                    <span
-                        className={cn(styles.orderInputValue, {
-                            [styles.green]: changedType === ChangedType.byOther,
-                            [styles.orange]: changedType === ChangedType.byMe,
-                        })}
-                    >
-                        {id === 'arrivalDate'
-                            ? dayjs(formik.values[id]).format('DD.MM.YYYY')
-                            : (formatAmount &&
-                                  formatAmount(
-                                      formik.values[id],
-                                      userCurrency
-                                  )) ||
-                              formik.values[id]}{' '}
-                        {unit && t(unit)}
-                    </span>
+                    {id === 'productUri' ? (
+                        <MUILink
+                            component={LinkBehaviour}
+                            href={formik.values[id]}
+                            className={cn(styles.orderInputValue, {
+                                [styles.productUri]: id === 'productUri',
+                            })}
+                        >
+                            {formik.values[id]}
+                        </MUILink>
+                    ) : (
+                        <span
+                            className={cn(styles.orderInputValue, {
+                                [styles.green]:
+                                    changedType === ChangedType.byOther,
+                                [styles.orange]:
+                                    changedType === ChangedType.byMe,
+                            })}
+                        >
+                            {id === 'arrivalDate'
+                                ? dayjs(formik.values[id]).format('DD.MM.YYYY')
+                                : (formatAmount &&
+                                      formatAmount(
+                                          formik.values[id],
+                                          userCurrency
+                                      )) ||
+                                  formik.values[id]}{' '}
+                            {unit && t(unit)}
+                        </span>
+                    )}
                     {availableLabels[id] &&
                         changedType === ChangedType.notChanged && (
                             <EditIcon

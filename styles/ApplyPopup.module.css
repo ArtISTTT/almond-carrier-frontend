@@ -148,9 +148,16 @@
     color: var(--cTextPrimary);
 }
 
-.infoItemLink > span:hover {
+.infoItemLink :global .MuiLink-root {
+    transition-duration: 200ms;
+    color: var(--cTextThird);
+    text-decoration: none;
+    text-transform: none;
+}
+
+.infoItemLink :global .MuiLink-root:hover {
     cursor: pointer;
-    text-decoration: underline;
+    color: var(--cTextPrimary);
     text-decoration-color: var(--cTextPrimary);
 }
 

@@ -157,7 +157,6 @@
 
 .productName {
     margin-bottom: 32px;
-
     width: fit-content;
 }
 
@@ -189,6 +188,18 @@
 
 .orderInputValueWrapper svg:hover > path {
     color: var(--cTextThird);
+}
+
+.productUri {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--cTextThird);
+    transition-duration: 200ms;
+}
+
+.productUri:hover {
+    color: var(--cTextPrimary);
+    /* text-decoration: underline; */
 }
 
 .orderInputValue {
