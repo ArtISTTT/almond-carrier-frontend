@@ -94,6 +94,8 @@ const OrderPage = () => {
         );
     }
 
+    const cancelOrder = () => {};
+
     const suggestedChanged =
         viewType === ViewType.receiver
             ? order.byCarrierSuggestedChanges
@@ -162,6 +164,7 @@ const OrderPage = () => {
             ].includes(order.status) && (
                 <div className={styles.cancelButtonWrapper}>
                     <Button
+                        onClick={cancelOrder}
                         color='error'
                         variant='contained'
                         className={styles.cancelButton}

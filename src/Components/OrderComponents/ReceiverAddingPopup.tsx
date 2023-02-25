@@ -28,7 +28,7 @@ const userCurrency = {
 const defaultValues = {
     fromLocation: undefined,
     fromLocation_placeId: undefined,
-    productLink: '',
+    productUri: '',
     toLocation: '',
     toLocation_placeId: '',
     productName: '',
@@ -162,18 +162,18 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                         />
                     </div>
                     <div className={styles.inputItem}>
-                        <label htmlFor='productLink'>{t('productLink')}</label>
+                        <label htmlFor='productUri'>{t('productLink')}</label>
                         <TextField
-                            id='productLink'
-                            name='productLink'
+                            id='productUri'
+                            name='productUri'
                             placeholder={t('productLink') as string}
                             variant='outlined'
-                            value={formik.values.productLink}
+                            value={formik.values.productUri}
                             onChange={formik.handleChange}
-                            error={formik.errors.productLink !== undefined}
+                            error={formik.errors.productUri !== undefined}
                             helperText={
-                                formik.errors.productLink &&
-                                (t(formik.errors.productLink) as string)
+                                formik.errors.productUri &&
+                                (t(formik.errors.productUri) as string)
                             }
                             className={styles.input}
                         />

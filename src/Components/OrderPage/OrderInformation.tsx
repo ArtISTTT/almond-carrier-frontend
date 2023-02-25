@@ -30,6 +30,7 @@ import OrderReview from './OrderReview';
 import ReviewPopup from './ReviewPopup';
 import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { ReceiverPopupSchema } from 'src/schemas/PopupSchema';
 
 type IProps = {
     order: IOrderFull;
@@ -96,6 +97,7 @@ const OrderInformation: React.FC<IProps> = ({
                 labels.toLocation = true;
                 labels.productAmount = true;
                 labels.rewardAmount = true;
+                labels.productUri = true;
                 labels.productWeight = true;
                 labels.productDescription = true;
             } else if (order.status === OrderStatus.inDiscussion) {
@@ -126,6 +128,7 @@ const OrderInformation: React.FC<IProps> = ({
             fromLocation: order.fromLocation,
             fromLocation_placeId: order.fromLocation_placeId,
             productName: order.productName,
+            productUri: order.productUri,
             rewardAmount: order.rewardAmount,
             productAmount: order.productAmount,
             productWeight: order.productWeight,
@@ -255,6 +258,7 @@ const OrderInformation: React.FC<IProps> = ({
     const formik = useFormik({
         initialValues,
         onSubmit: suggestChanges,
+        validationSchema: ReceiverPopupSchema,
     });
 
     const hasAnyChanges = useMemo(() => {
@@ -373,6 +377,34 @@ const OrderInformation: React.FC<IProps> = ({
                                             type='string'
                                             placeholder={
                                                 t('productName') as string
+                                            }
+                                            availableLabels={availableLabels}
+                                            addToEditingFields={
+                                                addToEditingFields
+                                            }
+                                            removeFromEditingFields={
+                                                removeFromEditingFields
+                                            }
+                                            viewType={viewType}
+                                        />
+                                    </div>
+                                </Tooltip>
+                            )}
+                            {order.productUri && (
+                                <Tooltip
+                                    placement='right'
+                                    title={order.productUri}
+                                >
+                                    <div className={styles.productName}>
+                                        <OrderInputItem
+                                            formik={formik}
+                                            editingFields={editingFields}
+                                            order={order}
+                                            id='productUri'
+                                            label={t('productUri') as string}
+                                            type='string'
+                                            placeholder={
+                                                t('productUri') as string
                                             }
                                             availableLabels={availableLabels}
                                             addToEditingFields={

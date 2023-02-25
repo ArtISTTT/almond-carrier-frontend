@@ -11,6 +11,7 @@ export interface IOrder {
     fromLocation_placeId?: string;
     productName?: string;
     rewardAmount: number;
+    productUri?: string;
     productAmount?: number;
     productWeight?: number;
     productDescription?: string;
@@ -55,7 +56,7 @@ export interface ICreateOrderReciever {
     toLocation: string;
     toLocation_placeId: string;
     fromLocation?: string;
-    productLink?: string;
+    productUri?: string;
     fromLocation_placeId?: string;
     productName: string;
     rewardAmount: number | null;
@@ -68,7 +69,7 @@ export interface ICreateOrderCarrier {
     toLocation: string;
     toLocation_placeId: string;
     fromLocation: string;
-    productLink?: string;
+    productUri?: string;
     fromLocation_placeId: string;
     carrierMaxWeight: number | null;
     arrivalDate: Date;
