@@ -8,14 +8,16 @@ export const useConvertStatusToText = () => {
         switch (status) {
             case OrderStatus.cancelled:
                 return t('cancelled');
+            case OrderStatus.avaitingPayout:
+                return t('avaitingPayout');
             case OrderStatus.awaitingDelivery:
                 return t('waitingForDelivery');
             case OrderStatus.inDiscussion:
                 return t('inDiscussion');
             case OrderStatus.waitingForPayment:
-                return 'waitingForPayment'; // ЛОКАЛИЗАЦИЯ
+                return t('waitingForPayment');
             case OrderStatus.waitingForPaymentVerification:
-                return 'Подтверждение оплаты'; // ЛОКАЛИЗАЦИЯ
+                return t('waitingForPaymentVerification');
             case OrderStatus.waitingCarrier:
                 return t('searchingForCarrier');
             case OrderStatus.waitingReciever:

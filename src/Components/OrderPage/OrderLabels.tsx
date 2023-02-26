@@ -76,6 +76,10 @@ const OrderLabels: React.FC<IProps> = ({
                     {t('paymentConfirmed')} {order.arrivalDate?.format('LL')}
                 </div>
             )}
+            {order.status === OrderStatus.success &&
+                viewType === ViewType.carrier && (
+                    <div className={styles.byOther}>{t('avaitingPayout')}</div>
+                )}
         </>
     );
 };

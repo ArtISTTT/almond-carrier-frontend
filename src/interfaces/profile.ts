@@ -12,6 +12,7 @@ export interface IReview {
 }
 
 export enum OrderStatus {
+    avaitingPayout = 'avaitingPayout',
     waitingReciever = 'waitingReciever',
     waitingCarrier = 'waitingCarrier',
     inDiscussion = 'inDiscussion',

@@ -1,7 +1,5 @@
 import { getReviews } from './../../api/review';
-import { useAppDispatch } from './index';
 import { useContext, useState } from 'react';
-import { getMyOrders } from '../../api/order';
 import { OpenAlertContext } from '../../Components/Layouts/Snackbar';
 import { useTranslation } from 'react-i18next';
 import { IReview } from 'src/interfaces/api/review';
@@ -14,7 +12,6 @@ type IReturn = {
 };
 
 export const useLoadReviews = (userId: string): IReturn => {
-    const dispatch = useAppDispatch();
     const { t } = useTranslation();
     const [reviews, setReviews] = useState<IReview[]>([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -30,11 +27,11 @@ export const useLoadReviews = (userId: string): IReturn => {
             setReviews(data.reviews);
             setError(undefined);
         } else {
-            setError('Ошибка при загрузке отзывов' as string); // ЛОКАЛИЗАЦИЯ
+            setError(t('errorLoadingReviews') as string);
 
             triggerOpen({
                 severity: 'error',
-                text: 'Ошибка при загрузке отзывов' as string, // ЛОКАЛИЗАЦИЯ
+                text: t('errorLoadingReviews'),
             });
         }
 

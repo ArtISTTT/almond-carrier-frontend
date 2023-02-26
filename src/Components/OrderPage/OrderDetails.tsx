@@ -46,6 +46,13 @@ const OrderDetails: React.FC<IProps> = ({
         });
     };
 
+    const orderStatusSuccessForPerson = React.useMemo(() => {
+        return order.status === OrderStatus.success &&
+            viewType === ViewType.carrier
+            ? OrderStatus.avaitingPayout
+            : order.status;
+    }, [order.status]);
+
     return (
         <div className={styles.orderDetails}>
             <div className={styles.orderDetailsMain}>
@@ -64,7 +71,7 @@ const OrderDetails: React.FC<IProps> = ({
                                 order.status === OrderStatus.cancelled,
                         })}
                     >
-                        {statusToText(order.status)}
+                        {statusToText(orderStatusSuccessForPerson)}
                     </span>
                     {order.myReview
                         ? order.status === OrderStatus.success && (

@@ -153,7 +153,10 @@ const MessagesPanel: React.FC<IProps> = ({
                             disableUnderline: true,
                         }}
                         id='text'
-                        disabled={orderStatus === OrderStatus.cancelled}
+                        disabled={
+                            orderStatus === OrderStatus.cancelled ||
+                            orderStatus === OrderStatus.success
+                        }
                         name='text'
                         variant='filled'
                         className={styles.inputMessage}
