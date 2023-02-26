@@ -305,8 +305,6 @@ const OrderInformation: React.FC<IProps> = ({
 
     const formatAmount = useFormatAmount();
 
-    console.log(order);
-
     return (
         <>
             {order.myReview &&

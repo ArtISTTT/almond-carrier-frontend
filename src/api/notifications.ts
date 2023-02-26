@@ -44,11 +44,9 @@ export const deleteNotification = (
             };
         });
 
-export const deleteAllNotifications = (
-    userId: string
-): Promise<IUserNotificationReturn> =>
+export const deleteAllNotifications = (): Promise<IUserNotificationReturn> =>
     mainInstance
-        .delete('/notifications/all', { params: { userId } })
+        .delete('/notifications/all')
         .then(() => {
             return {
                 ok: true,

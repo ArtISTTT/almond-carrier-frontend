@@ -40,7 +40,7 @@ const NotificationsMenu: React.FC<IProps> = ({
     }, [open]);
 
     const clearNotifications = async () => {
-        await deleteAllNotifications(user.id);
+        await deleteAllNotifications();
         setNotifications([]);
     };
     const handleClose = () => setOpen(false);
