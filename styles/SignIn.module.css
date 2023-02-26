@@ -44,7 +44,7 @@
 
 .loginInner :global .MuiAvatar-root {
     margin: 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 
 .loginInner h2 {

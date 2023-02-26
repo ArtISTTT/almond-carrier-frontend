@@ -267,7 +267,7 @@
     margin-right: 10px;
     height: 40px;
     /* margin-bottom: 10px; */
-    margin-top: 1px;
+    /* margin-top: 1px; */
     background-color: var(--cBgSecondary);
     border-radius: 16px;
 }
@@ -539,7 +539,13 @@
     }
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 840px) {
+    .inputItem .inputPhone {
+        margin-top: 0;
+    }
+    .inputItem .input {
+        margin-top: 1px;
+    }
     .valuesByColumns {
         gap: 20px;
     }
@@ -631,6 +637,9 @@
     .infoLeft {
         text-align: left;
     }
+    .inputItem .inputPhone {
+        margin-top: 0;
+    }
     .buttons {
         margin-top: 20px;
     }
@@ -646,6 +655,10 @@
 
     .confirmPhoneButton {
         margin-top: 30px;
+    }
+    .inputItem .input {
+        height: 32px;
+        margin-top: 0;
     }
 }
 
