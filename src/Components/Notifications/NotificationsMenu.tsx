@@ -15,6 +15,9 @@ import cn from 'classnames';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import { IUserNotification } from 'src/interfaces/notifications';
+import { deleteAllNotifications } from 'src/api/notifications';
+import { useAppSelector } from 'src/redux/hooks';
+import { selectUser } from 'src/redux/selectors/user';
 
 interface IProps {
     notifications: IUserNotification[];
@@ -29,13 +32,17 @@ const NotificationsMenu: React.FC<IProps> = ({
 
     const anchorRef = React.useRef(null);
     const prevOpen = React.useRef(open);
+    const user = useAppSelector(selectUser);
     const { t } = useTranslation();
 
     React.useEffect(() => {
         prevOpen.current = open;
     }, [open]);
 
-    const clearNotifications = () => setNotifications([]);
+    const clearNotifications = async () => {
+        await deleteAllNotifications(user.id);
+        setNotifications([]);
+    };
     const handleClose = () => setOpen(false);
     const handleToggle = () => setOpen(prevOpen => !prevOpen);
 

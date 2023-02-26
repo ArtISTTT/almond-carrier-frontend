@@ -6,6 +6,7 @@ import FmdBadIcon from '@mui/icons-material/FmdBad';
 import MarkChatReadIcon from '@mui/icons-material/MarkChatRead';
 import { useRouter } from 'next/router';
 import { IUserNotification } from 'src/interfaces/notifications';
+import { deleteNotification } from 'src/api/notifications';
 
 interface IProps {
     id: string;
@@ -26,11 +27,12 @@ const NotificationsItem: React.FC<IProps> = ({
 }) => {
     const { t } = useTranslation();
     const router = useRouter();
-    const removeNotification = () =>
+    const removeNotification = async () => {
+        await deleteNotification(id);
         setNotifications(prev =>
             prev.filter(notification => notification.id !== id)
         );
-
+    };
     const navigateToDeal = () => router.push(`/order/${orderId}`);
 
     return (
