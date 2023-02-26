@@ -12,8 +12,10 @@ export const useConvertStatusToText = () => {
                 return t('waitingForDelivery');
             case OrderStatus.inDiscussion:
                 return t('inDiscussion');
+            case OrderStatus.waitingForPayment:
+                return 'waitingForPayment'; // ЛОКАЛИЗАЦИЯ
             case OrderStatus.waitingForPaymentVerification:
-                return 'Подтверждение оплаты';
+                return 'Подтверждение оплаты'; // ЛОКАЛИЗАЦИЯ
             case OrderStatus.waitingCarrier:
                 return t('searchingForCarrier');
             case OrderStatus.waitingReciever:
