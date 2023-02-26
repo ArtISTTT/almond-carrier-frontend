@@ -11,6 +11,7 @@ import MessageChat from './MessageChat';
 import dayjs from 'dayjs';
 import CircleLoader from '../Loaders/CircleLoader';
 import { LoaderColors } from 'src/interfaces/loader';
+import { OrderStatus } from 'src/interfaces/profile';
 
 const keys = {
     ENTER: 13,
@@ -26,6 +27,7 @@ interface IDialogMessage {
 
 interface IProps {
     onSendMessage: (text: string) => void;
+    orderStatus: OrderStatus;
     messages: IMessage[];
     isMessagesLoading: boolean;
     loadMessages: () => Promise<void>;
@@ -33,6 +35,7 @@ interface IProps {
 }
 
 const MessagesPanel: React.FC<IProps> = ({
+    orderStatus,
     onSendMessage,
     messages,
     isMessagesLoading,
@@ -77,15 +80,6 @@ const MessagesPanel: React.FC<IProps> = ({
         } else {
             await onSendMessage(form.text.trim());
             await formik.setFieldValue('text', '');
-        }
-    };
-
-    const keyDownSendMessage = async (
-        e: React.KeyboardEvent<HTMLDivElement>
-    ) => {
-        if (e.keyCode === 13 && !(e.altKey || e.shiftKey)) {
-            await formik.submitForm();
-            await e.preventDefault();
         }
     };
 
@@ -138,7 +132,17 @@ const MessagesPanel: React.FC<IProps> = ({
                 <CircleLoader color={LoaderColors.PRIMARY} />
             )}
 
-            {!errorMessage ? (
+            {errorMessage ? (
+                <>
+                    <Button
+                        onClick={loadMessages}
+                        className={styles.errorButton}
+                        variant='contained'
+                    >
+                        {t('refresh')}
+                    </Button>
+                </>
+            ) : (
                 <form
                     className={styles.sendMessageBlock}
                     onSubmit={formik.handleSubmit}
@@ -149,6 +153,7 @@ const MessagesPanel: React.FC<IProps> = ({
                             disableUnderline: true,
                         }}
                         id='text'
+                        disabled={orderStatus === OrderStatus.cancelled}
                         name='text'
                         variant='filled'
                         className={styles.inputMessage}
@@ -169,16 +174,6 @@ const MessagesPanel: React.FC<IProps> = ({
                         />
                     </Button>
                 </form>
-            ) : (
-                <>
-                    <Button
-                        onClick={loadMessages}
-                        className={styles.errorButton}
-                        variant='contained'
-                    >
-                        {t('refresh')}
-                    </Button>
-                </>
             )}
         </div>
     );

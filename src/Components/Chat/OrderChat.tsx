@@ -150,6 +150,7 @@ const OrderChat: React.FC<IProps> = ({
                 </div>
             </div>
             <MessagesPanel
+                orderStatus={order.status}
                 errorMessage={errorMessage}
                 loadMessages={loadMessages}
                 isMessagesLoading={isMessagesLoading}

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useMemo, useState } from 'react';
 import styles from '../../../styles/OrderPage.module.css';
 import OrderDetails from './OrderDetails';
 import OrderInformation from './OrderInformation';
-import { getOrderById } from '../../api/order';
+import { cancelOrder, getOrderById } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { IOrderFull } from '../../interfaces/order';
 import Link from 'next/link';
@@ -94,7 +94,7 @@ const OrderPage = () => {
         );
     }
 
-    const cancelOrder = () => {};
+    const cancelOrderClick = () => cancelOrder({ orderId: order.id });
 
     const suggestedChanged =
         viewType === ViewType.receiver
@@ -164,7 +164,7 @@ const OrderPage = () => {
             ].includes(order.status) && (
                 <div className={styles.cancelButtonWrapper}>
                     <Button
-                        onClick={cancelOrder}
+                        onClick={cancelOrderClick}
                         color='error'
                         variant='contained'
                         className={styles.cancelButton}

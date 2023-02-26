@@ -695,7 +695,11 @@ const OrderInformation: React.FC<IProps> = ({
                                             className={styles.buttonItem}
                                             variant='contained'
                                             color='primary'
-                                            disabled={!hasAnyChanges}
+                                            disabled={
+                                                !hasAnyChanges ||
+                                                order.status ===
+                                                    OrderStatus.cancelled
+                                            }
                                             type='submit'
                                         >
                                             {t('confirmChanges')}
@@ -703,6 +707,10 @@ const OrderInformation: React.FC<IProps> = ({
                                     </div>
                                     <div className={styles.buttons}>
                                         <Button
+                                            disabled={
+                                                order.status ===
+                                                OrderStatus.cancelled
+                                            }
                                             className={styles.buttonItem}
                                             variant='contained'
                                             color='primary'
