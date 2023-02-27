@@ -47,11 +47,20 @@ const OrderDetails: React.FC<IProps> = ({
     };
 
     const orderStatusSuccessForPerson = React.useMemo(() => {
-        return order.status === OrderStatus.success &&
-            viewType === ViewType.carrier
-            ? OrderStatus.awaitingPayout
-            : order.status;
-    }, [order.status]);
+        if (viewType === ViewType.carrier) {
+            return order.status;
+        }
+
+        if (
+            [OrderStatus.itemRecieved, OrderStatus.awaitingPayout].includes(
+                order.status
+            )
+        ) {
+            return OrderStatus.success;
+        }
+
+        return order.status;
+    }, [order.status, viewType]);
 
     return (
         <div className={styles.orderDetails}>
@@ -63,12 +72,25 @@ const OrderDetails: React.FC<IProps> = ({
                     <span
                         className={cn(styles.orderStatus, {
                             [styles.statusInProcess]:
-                                order.status !== OrderStatus.success &&
-                                order.status !== OrderStatus.cancelled,
+                                orderStatusSuccessForPerson !==
+                                    OrderStatus.success &&
+                                orderStatusSuccessForPerson !==
+                                    OrderStatus.cancelled &&
+                                (orderStatusSuccessForPerson ===
+                                    OrderStatus.itemRecieved ||
+                                    orderStatusSuccessForPerson ===
+                                        OrderStatus.awaitingPayout),
+
                             [styles.statusSuccess]:
-                                order.status === OrderStatus.success,
+                                orderStatusSuccessForPerson ===
+                                    OrderStatus.success ||
+                                orderStatusSuccessForPerson ===
+                                    OrderStatus.itemRecieved ||
+                                orderStatusSuccessForPerson ===
+                                    OrderStatus.awaitingPayout,
                             [styles.statusCancelled]:
-                                order.status === OrderStatus.cancelled,
+                                orderStatusSuccessForPerson ===
+                                OrderStatus.cancelled,
                         })}
                     >
                         {statusToText(orderStatusSuccessForPerson)}
