@@ -78,7 +78,7 @@ const OrderLabels: React.FC<IProps> = ({
             )}
             {order.status === OrderStatus.success &&
                 viewType === ViewType.carrier && (
-                    <div className={styles.byOther}>{t('avaitingPayout')}</div>
+                    <div className={styles.byOther}>{t('awaitingPayout')}</div>
                 )}
         </>
     );

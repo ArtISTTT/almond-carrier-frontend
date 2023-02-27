@@ -8,8 +8,8 @@ export const useConvertStatusToText = () => {
         switch (status) {
             case OrderStatus.cancelled:
                 return t('cancelled');
-            case OrderStatus.avaitingPayout:
-                return t('avaitingPayout');
+            case OrderStatus.awaitingPayout:
+                return t('awaitingPayout');
             case OrderStatus.awaitingDelivery:
                 return t('waitingForDelivery');
             case OrderStatus.inDiscussion:

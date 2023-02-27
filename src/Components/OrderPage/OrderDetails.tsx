@@ -49,7 +49,7 @@ const OrderDetails: React.FC<IProps> = ({
     const orderStatusSuccessForPerson = React.useMemo(() => {
         return order.status === OrderStatus.success &&
             viewType === ViewType.carrier
-            ? OrderStatus.avaitingPayout
+            ? OrderStatus.awaitingPayout
             : order.status;
     }, [order.status]);
 
