@@ -21,3 +21,41 @@ export const getMyNotifications = (): Promise<IUserNotificationReturn> =>
                 error: err,
             };
         });
+
+export const deleteNotification = (
+    notificationId: string
+): Promise<IUserNotificationReturn> =>
+    mainInstance
+        .delete('/notifications/', {
+            params: {
+                notificationId,
+            },
+        })
+        .then(() => {
+            return {
+                ok: true,
+                error: undefined,
+            };
+        })
+        .catch(err => {
+            return {
+                ok: false,
+                error: err,
+            };
+        });
+
+export const deleteAllNotifications = (): Promise<IUserNotificationReturn> =>
+    mainInstance
+        .delete('/notifications/all')
+        .then(() => {
+            return {
+                ok: true,
+                error: undefined,
+            };
+        })
+        .catch(err => {
+            return {
+                ok: false,
+                error: err,
+            };
+        });

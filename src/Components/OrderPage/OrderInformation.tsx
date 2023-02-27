@@ -705,20 +705,25 @@ const OrderInformation: React.FC<IProps> = ({
                                             {t('confirmChanges')}
                                         </Button>
                                     </div>
-                                    <div className={styles.buttons}>
-                                        <Button
-                                            disabled={
-                                                order.status ===
-                                                OrderStatus.cancelled
-                                            }
-                                            className={styles.buttonItem}
-                                            variant='contained'
-                                            color='primary'
-                                            onClick={confirmDealClick}
-                                        >
-                                            {t('startTheDeal')}
-                                        </Button>
-                                    </div>
+                                    {((viewType === ViewType.carrier &&
+                                        order.receiver) ||
+                                        (viewType === ViewType.receiver &&
+                                            order.carrier)) && (
+                                        <div className={styles.buttons}>
+                                            <Button
+                                                disabled={
+                                                    order.status ===
+                                                    OrderStatus.cancelled
+                                                }
+                                                className={styles.buttonItem}
+                                                variant='contained'
+                                                color='primary'
+                                                onClick={confirmDealClick}
+                                            >
+                                                {t('startTheDeal')}
+                                            </Button>
+                                        </div>
+                                    )}
                                 </>
                             )}
                         {suggestedChanged && (

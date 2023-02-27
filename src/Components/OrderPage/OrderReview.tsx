@@ -45,13 +45,13 @@ const OrderReview: React.FC<IProps> = ({
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: 'Отзыв успешно оставлен', // ЛОКАЛИЗАЦИЯ
+                text: t('feedbackSentSeccess'),
             });
             setIsReviewBlockOpen(false);
         } else {
             triggerOpen({
                 severity: 'error',
-                text: 'Ошибка при оставлении отзыва', // ЛОКАЛИЗАЦИЯ
+                text: t('errorCreatingReview'),
             });
         }
         setIsSendButtonDisabled(false);

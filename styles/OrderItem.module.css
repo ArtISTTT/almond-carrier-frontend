@@ -84,6 +84,7 @@
 }
 
 .detailsButton {
+    white-space: pre-line;
     padding: 6px 30px;
     border-radius: 16px;
     margin-top: 20px;
@@ -293,8 +294,8 @@
     }
 }
 
-@media screen and (max-width: 807px) {
-    .detailsButton {
+@media screen and (max-width: 830px) {
+    /* .detailsButton {
         margin-top: 5px;
         font-size: 10px;
         line-height: 15px;
@@ -303,9 +304,7 @@
     .status {
         text-align: center;
     }
-    .orderDetails {
-        padding: 0;
-    }
+     */
 }
 
 @media screen and (max-width: 770px) {
@@ -337,9 +336,13 @@
     }
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 830px) {
     .orderDetails {
         padding: 0;
+        height: 155px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
     .moneyBlock {
         display: none;
@@ -350,8 +353,12 @@
     .orderDescriptions {
         border-right: 1px solid rgba(0, 0, 0, 0.12);
     }
+    .detailsButton {
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
     .detailsBlock {
-        height: 99px;
+        height: fit-content;
         width: 100%;
     }
     .moneyBlockNew {
@@ -360,8 +367,7 @@
         flex-direction: column;
         margin-top: 10px;
         font-size: 11px;
-        width: 150px;
-        padding-left: 6px;
+        gap: 4px;
         justify-content: flex-start;
     }
     .benefitBlock {
@@ -381,6 +387,7 @@
     }
     .status {
         font-size: 11px;
+        text-align: center;
     }
     .rating {
         font-size: 10px;
@@ -389,6 +396,12 @@
     .completedOrders {
         font-size: 10px;
         line-height: 11px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .moneyBlockNew {
+        margin-bottom: 9px;
     }
 }
 

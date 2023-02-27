@@ -138,21 +138,23 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     <p>{t('productItem')}</p>
                     <span>{order.productName}</span>
                 </Typography>
-                <Typography
-                    className={cn(styles.infoItem, styles.infoItemLink)}
-                    variant='h5'
-                    component='p'
-                >
-                    <p>{t('link')}</p>
-                    <span>
-                        <MUILink
-                            component={LinkBehaviour}
-                            href={order.productUri}
-                        >
-                            {order.productUri}
-                        </MUILink>
-                    </span>
-                </Typography>
+                {order.productUri && (
+                    <Typography
+                        className={cn(styles.infoItem, styles.infoItemLink)}
+                        variant='h5'
+                        component='p'
+                    >
+                        <p>{t('link')}</p>
+                        <span>
+                            <MUILink
+                                component={LinkBehaviour}
+                                href={order.productUri}
+                            >
+                                {order.productUri}
+                            </MUILink>
+                        </span>
+                    </Typography>
+                )}
 
                 <Typography
                     className={styles.infoItem}
