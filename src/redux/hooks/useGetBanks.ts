@@ -60,7 +60,6 @@ import BANK_URALSIB from 'public/static/images/bankIcons/BANKURALSIB.png';
 import BANK_FINSERVIS from 'public/static/images/bankIcons/BankFinservice.jpg';
 import BANK_CHBRR from 'public/static/images/bankIcons/BankChBRR.jpg';
 import BELGOROD_SOTS_BANK from 'public/static/images/bankIcons/Belgorodsotsbank.jpg';
-import BJF_BANK from 'public/static/images/bankIcons/BZHFBank.jpg';
 import BKS_BANK from 'public/static/images/bankIcons/BCSBank.jpg';
 import BLANK_BANK from 'public/static/images/bankIcons/Blankbank.png';
 import BRATSKIY_ANKB from 'public/static/images/bankIcons/FraternalASKB.jpg';
@@ -80,7 +79,6 @@ import GUTA_BANK from 'public/static/images/bankIcons/GUTABANK.jpg';
 import DALNEVOSTOCHNIY_BANK from 'public/static/images/bankIcons/FarEasternBank.jpg';
 import DATA_BANK from 'public/static/images/bankIcons/Databank.jpg';
 import DJEY_AND_TI_BANK from 'public/static/images/bankIcons/J&TBank.jpg';
-import DOLINSK from 'public/static/images/bankIcons/Dolinsk.jpg';
 import DRIVE_KLIK_BANK from 'public/static/images/bankIcons/DriveClickBank.jpg';
 import ENISEYSKIY_OBYEDINENNIY_BANK from 'public/static/images/bankIcons/YeniseiUnitedBank.jpg';
 import ZEMSKIY_BANK from 'public/static/images/bankIcons/Zemskybank.jpg';
@@ -442,7 +440,6 @@ export const useGetBanks = () => {
             text: t(Banks.BELGOROD_SOTS_BANK),
             image: BELGOROD_SOTS_BANK,
         },
-        { value: Banks.BJF_BANK, text: t(Banks.BJF_BANK), image: BJF_BANK },
         { value: Banks.BKS_BANK, text: t(Banks.BKS_BANK), image: BKS_BANK },
         {
             value: Banks.BLANK_BANK,
@@ -510,7 +507,6 @@ export const useGetBanks = () => {
             text: t(Banks.DJEY_AND_TI_BANK),
             image: DJEY_AND_TI_BANK,
         },
-        { value: Banks.DOLINSK, text: t(Banks.DOLINSK), image: DOLINSK },
         {
             value: Banks.DRIVE_KLIK_BANK,
             text: t(Banks.DRIVE_KLIK_BANK),
