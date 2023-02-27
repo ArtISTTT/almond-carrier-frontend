@@ -22,8 +22,6 @@ export const useConvertStatusToText = () => {
                 return t('searchingForCarrier');
             case OrderStatus.waitingReciever:
                 return t('searchingForReceiver');
-            case OrderStatus.waitingForPayment:
-                return t('waitingForPayment');
             default:
                 return t('success');
         }
