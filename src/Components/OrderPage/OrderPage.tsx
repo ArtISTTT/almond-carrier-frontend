@@ -55,6 +55,7 @@ const useGetOrder = (orderId: string) => {
 
 const OrderPage = () => {
     const router = useRouter();
+    const payoutRef = React.useRef<null | HTMLDivElement>(null);
     const user = useSelector(selectUser);
     const [isReviewBlockOpen, setIsReviewBlockOpen] = useState<boolean>(false);
     const [isPersonReviewBlockOpen, setIsPersonReviewBlockOpen] =
@@ -116,6 +117,7 @@ const OrderPage = () => {
     return (
         <div className={styles.wrapper}>
             <OrderDetails
+                payoutRef={payoutRef}
                 setIsMySentReviewBlockOpen={setIsMySentReviewBlockOpen}
                 setIsPersonReviewBlockOpen={setIsPersonReviewBlockOpen}
                 setIsReviewBlockOpen={setIsReviewBlockOpen}
@@ -156,7 +158,9 @@ const OrderPage = () => {
                 )}
             </div>
 
-            <OrderPayment order={order} updateOrder={updateOrder} />
+            <div ref={payoutRef}>
+                <OrderPayment order={order} updateOrder={updateOrder} />
+            </div>
 
             {[OrderStatus.itemRecieved, OrderStatus.awaitingPayout].includes(
                 order.status

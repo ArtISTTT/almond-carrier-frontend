@@ -3,6 +3,7 @@ import cn from 'classnames';
 import { useConvertStatusToText } from '../../redux/hooks/useConvertStatusToText';
 import styles from '../../../styles/OrderPage.module.css';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import ReceiptIcon from '@mui/icons-material/Receipt';
 import { useTranslation } from 'react-i18next';
 import { IOrderFull } from '../../interfaces/order';
 import { OrderStatus } from 'src/interfaces/profile';
@@ -10,6 +11,7 @@ import { ViewType } from './OrderInputItem';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 
 type IProps = {
+    payoutRef: React.MutableRefObject<HTMLDivElement | null>;
     order: IOrderFull;
     viewType: ViewType;
     setIsReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,6 +20,7 @@ type IProps = {
 };
 
 const OrderDetails: React.FC<IProps> = ({
+    payoutRef,
     order,
     setIsReviewBlockOpen,
     setIsMySentReviewBlockOpen,
@@ -44,6 +47,10 @@ const OrderDetails: React.FC<IProps> = ({
             severity: 'info',
             text: t('copied'),
         });
+    };
+
+    const paymentScroll = () => {
+        payoutRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
     const orderStatusSuccessForPerson = React.useMemo(() => {
@@ -91,6 +98,7 @@ const OrderDetails: React.FC<IProps> = ({
                     >
                         {statusToText(orderStatusSuccessForPerson)}
                     </span>
+
                     {order.myReview
                         ? [
                               OrderStatus.itemRecieved,
@@ -132,6 +140,18 @@ const OrderDetails: React.FC<IProps> = ({
                             </span>
                         )}
                 </div>
+                {order.status === OrderStatus.itemRecieved &&
+                    viewType === ViewType.carrier && (
+                        <div
+                            onClick={paymentScroll}
+                            className={styles.reminerBlock}
+                        >
+                            <ReceiptIcon />
+                            <span>
+                                {t('toReceivePaymentProvideYourDetails')}
+                            </span>
+                        </div>
+                    )}
             </div>
             <div className={styles.orderDetailsInfo}>
                 <div className={styles.infoLeft}>
