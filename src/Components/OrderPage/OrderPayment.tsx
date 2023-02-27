@@ -1,13 +1,10 @@
-import { useRouter } from 'next/router';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import styles from '../../../styles/OrderPage.module.css';
-import OrderDetails from './OrderDetails';
-import OrderInformation from './OrderInformation';
-import { confirmPayment, getOrderById } from '../../api/order';
+
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { IOrder, IOrderFull } from '../../interfaces/order';
 import { Button, Collapse } from '@mui/material';
-import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
+
 import { calculateTotalAmount } from 'src/helpers/calculateTotalAmount';
 import { Currency } from 'src/interfaces/settings';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -15,6 +12,9 @@ import { useSelector } from 'react-redux';
 import { selectUser } from 'src/redux/selectors/user';
 import { OrderStatus } from 'src/interfaces/profile';
 import { useTranslation } from 'react-i18next';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { useAppSelector } from 'src/redux/hooks';
+import { confirmPayment } from 'src/api/order';
 
 type IProps = {
     order: IOrderFull;
@@ -27,11 +27,16 @@ const PAYMENT_CREDENTIALS = {
 };
 
 const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
-    const [paymentOpened, setPaymentOpened] = useState(false);
+    const [paymentOpened, setPaymentOpened] = React.useState(false);
+    const formatAmount = useFormatAmount();
     const { id } = useSelector(selectUser);
     const { triggerOpen } = useContext(OpenAlertContext);
 
     const { t } = useTranslation();
+
+    const userCurrency = useAppSelector(
+        ({ settings }) => settings.generalSettings.currency
+    );
 
     const handleChange = () => {
         setPaymentOpened(prev => !prev);
@@ -74,10 +79,14 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
                 <div className={styles.orderPaymentWrapperTotalSum}>
                     {t('totalSum')}:&nbsp;
                     <span>
-                        {calculateTotalAmount(
-                            order.productAmount as number,
-                            order.rewardAmount,
-                            Currency.RUB
+                        {formatAmount(
+                            calculateTotalAmount(
+                                order.productAmount as number,
+                                order.rewardAmount,
+                                userCurrency
+                            ),
+                            userCurrency,
+                            true
                         )}
                     </span>
                 </div>

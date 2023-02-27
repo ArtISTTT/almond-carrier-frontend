@@ -75,11 +75,7 @@ const OrderDetails: React.FC<IProps> = ({
                                 orderStatusSuccessForPerson !==
                                     OrderStatus.success &&
                                 orderStatusSuccessForPerson !==
-                                    OrderStatus.cancelled &&
-                                (orderStatusSuccessForPerson ===
-                                    OrderStatus.itemRecieved ||
-                                    orderStatusSuccessForPerson ===
-                                        OrderStatus.awaitingPayout),
+                                    OrderStatus.cancelled,
 
                             [styles.statusSuccess]:
                                 orderStatusSuccessForPerson ===
@@ -96,7 +92,11 @@ const OrderDetails: React.FC<IProps> = ({
                         {statusToText(orderStatusSuccessForPerson)}
                     </span>
                     {order.myReview
-                        ? order.status === OrderStatus.success && (
+                        ? [
+                              OrderStatus.itemRecieved,
+                              OrderStatus.awaitingPayout,
+                              OrderStatus.success,
+                          ].includes(order.status) && (
                               <span
                                   onClick={openMySentReviewBlock}
                                   className={styles.feedBackSentBlock}
@@ -104,7 +104,11 @@ const OrderDetails: React.FC<IProps> = ({
                                   {t('myFeedback')}
                               </span>
                           )
-                        : order.status === OrderStatus.success && (
+                        : [
+                              OrderStatus.itemRecieved,
+                              OrderStatus.awaitingPayout,
+                              OrderStatus.success,
+                          ].includes(order.status) && (
                               <span
                                   className={styles.openReviewPopupButton}
                                   onClick={openReviewBlock}
@@ -113,7 +117,11 @@ const OrderDetails: React.FC<IProps> = ({
                               </span>
                           )}
                     {order.partnerReview &&
-                        order.status === OrderStatus.success && (
+                        [
+                            OrderStatus.itemRecieved,
+                            OrderStatus.awaitingPayout,
+                            OrderStatus.success,
+                        ].includes(order.status) && (
                             <span
                                 onClick={operPersonReviewBlock}
                                 className={styles.partnerFeedBack}

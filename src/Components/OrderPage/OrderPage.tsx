@@ -73,7 +73,14 @@ const OrderPage = () => {
     }, []);
 
     useEffect(() => {
-        if (order?.status === OrderStatus.success) {
+        if (
+            order?.status &&
+            [
+                OrderStatus.itemRecieved,
+                OrderStatus.awaitingPayout,
+                OrderStatus.success,
+            ].includes(order.status)
+        ) {
             setIsReviewBlockOpen(true);
         }
     }, [order]);
@@ -154,7 +161,9 @@ const OrderPage = () => {
             {[OrderStatus.itemRecieved, OrderStatus.awaitingPayout].includes(
                 order.status
             ) &&
-                viewType === ViewType.carrier && <OrderPaymentSuccess />}
+                viewType === ViewType.carrier && (
+                    <OrderPaymentSuccess order={order} />
+                )}
 
             <div className={styles.haveSomeProblems}>
                 <Link href='#'>{t('haveSomeProblems')}</Link>

@@ -305,6 +305,15 @@ const OrderInformation: React.FC<IProps> = ({
 
     const formatAmount = useFormatAmount();
 
+    console.log(
+        viewType === ViewType.receiver &&
+            [
+                OrderStatus.itemRecieved,
+                OrderStatus.awaitingPayout,
+                OrderStatus.success,
+            ].includes(order.status)
+    );
+
     return (
         <>
             {order.myReview &&
@@ -330,7 +339,13 @@ const OrderInformation: React.FC<IProps> = ({
                     />
                 )}
             <div className={styles.orderInformation}>
-                {!order.myReview && isReviewBlockOpen ? (
+                {!order.myReview &&
+                isReviewBlockOpen &&
+                [
+                    OrderStatus.itemRecieved,
+                    OrderStatus.awaitingPayout,
+                    OrderStatus.success,
+                ].includes(order.status) ? (
                     <OrderReview
                         setIsReviewBlockOpen={setIsReviewBlockOpen}
                         orderId={order.id}
@@ -348,8 +363,7 @@ const OrderInformation: React.FC<IProps> = ({
                             {t('orderInformation')}
                         </div>
                         {((viewType === ViewType.carrier && order.receiver) ||
-                            (viewType === ViewType.receiver &&
-                                order.carrier)) && (
+                            order.carrier) && (
                             <div className={styles.personInfo}>
                                 <div className={styles.personRole}>
                                     {viewType === ViewType.carrier
@@ -683,8 +697,7 @@ const OrderInformation: React.FC<IProps> = ({
                                 </div>
                             )}
                         </div>
-                        {((!order.dealConfirmedByReceiver &&
-                            viewType === ViewType.receiver) ||
+                        {(!order.dealConfirmedByReceiver ||
                             (!order.dealConfirmedByCarrier &&
                                 viewType === ViewType.carrier)) &&
                             order.byCarrierSuggestedChanges === undefined &&
@@ -707,8 +720,7 @@ const OrderInformation: React.FC<IProps> = ({
                                     </div>
                                     {((viewType === ViewType.carrier &&
                                         order.receiver) ||
-                                        (viewType === ViewType.receiver &&
-                                            order.carrier)) && (
+                                        order.carrier) && (
                                         <div className={styles.buttons}>
                                             <Button
                                                 disabled={
@@ -746,8 +758,8 @@ const OrderInformation: React.FC<IProps> = ({
                                 </Button>
                             </div>
                         )}
-                        {viewType === ViewType.receiver &&
-                            order.status === OrderStatus.awaitingDelivery && (
+                        {order.status === OrderStatus.awaitingDelivery &&
+                            viewType === ViewType.receiver && (
                                 <div className={styles.buttons}>
                                     <Button
                                         className={styles.buttonItem}

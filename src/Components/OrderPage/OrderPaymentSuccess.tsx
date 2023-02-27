@@ -17,13 +17,19 @@ import { useFormik } from 'formik';
 import { Banks } from 'src/interfaces/user';
 import { OrderPaymentSuccessSchema } from 'src/schemas/OrderPaymentSuccess';
 import { useGetBanks } from 'src/redux/hooks/useGetBanks';
+import { IOrderFull } from 'src/interfaces/order';
+import { OrderStatus } from 'src/interfaces/profile';
 
 type IForm = {
     bank: Banks;
     phone: string;
 };
 
-const OrderPaymentSuccess: React.FC = () => {
+interface IProps {
+    order: IOrderFull;
+}
+
+const OrderPaymentSuccess: React.FC<IProps> = ({ order }) => {
     const [paymentOpened, setPaymentOpened] = React.useState<boolean>(false);
     const { t } = useTranslation();
     const banksArray = useGetBanks();
@@ -86,6 +92,10 @@ const OrderPaymentSuccess: React.FC = () => {
                                     MenuProps={{
                                         disableScrollLock: true,
                                     }}
+                                    disabled={
+                                        order.status ===
+                                        OrderStatus.awaitingPayout
+                                    }
                                     value={formik.values.phone}
                                     onChange={handlePhoneChange}
                                     className={cn(
@@ -110,6 +120,10 @@ const OrderPaymentSuccess: React.FC = () => {
                                         name='bank'
                                         value={formik.values.bank}
                                         onChange={formik.handleChange}
+                                        disabled={
+                                            order.status ===
+                                            OrderStatus.awaitingPayout
+                                        }
                                         MenuProps={{
                                             disableScrollLock: true,
                                         }}
