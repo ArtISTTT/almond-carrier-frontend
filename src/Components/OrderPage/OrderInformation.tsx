@@ -305,15 +305,6 @@ const OrderInformation: React.FC<IProps> = ({
 
     const formatAmount = useFormatAmount();
 
-    console.log(
-        viewType === ViewType.receiver &&
-            [
-                OrderStatus.itemRecieved,
-                OrderStatus.awaitingPayout,
-                OrderStatus.success,
-            ].includes(order.status)
-    );
-
     return (
         <>
             {order.myReview &&

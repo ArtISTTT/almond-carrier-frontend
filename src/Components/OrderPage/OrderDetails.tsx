@@ -53,7 +53,7 @@ const OrderDetails: React.FC<IProps> = ({
         payoutRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
-    const orderStatusSuccessForPerson = React.useMemo(() => {
+    const displayOrderStatus = React.useMemo(() => {
         if (viewType === ViewType.carrier) {
             return order.status;
         }
@@ -69,6 +69,14 @@ const OrderDetails: React.FC<IProps> = ({
         return order.status;
     }, [order.status, viewType]);
 
+    const isReviewButtonsShowed = React.useMemo(() => {
+        return [
+            OrderStatus.itemRecieved,
+            OrderStatus.awaitingPayout,
+            OrderStatus.success,
+        ].includes(displayOrderStatus);
+    }, [displayOrderStatus]);
+
     return (
         <div className={styles.orderDetails}>
             <div className={styles.orderDetailsMain}>
@@ -79,32 +87,21 @@ const OrderDetails: React.FC<IProps> = ({
                     <span
                         className={cn(styles.orderStatus, {
                             [styles.statusInProcess]:
-                                orderStatusSuccessForPerson !==
-                                    OrderStatus.success &&
-                                orderStatusSuccessForPerson !==
-                                    OrderStatus.cancelled,
+                                displayOrderStatus !== OrderStatus.success &&
+                                displayOrderStatus !== OrderStatus.cancelled,
 
                             [styles.statusSuccess]:
-                                orderStatusSuccessForPerson ===
-                                    OrderStatus.success ||
-                                orderStatusSuccessForPerson ===
-                                    OrderStatus.itemRecieved ||
-                                orderStatusSuccessForPerson ===
-                                    OrderStatus.awaitingPayout,
+                                displayOrderStatus === OrderStatus.success,
+
                             [styles.statusCancelled]:
-                                orderStatusSuccessForPerson ===
-                                OrderStatus.cancelled,
+                                displayOrderStatus === OrderStatus.cancelled,
                         })}
                     >
-                        {statusToText(orderStatusSuccessForPerson)}
+                        {statusToText(displayOrderStatus)}
                     </span>
 
                     {order.myReview
-                        ? [
-                              OrderStatus.itemRecieved,
-                              OrderStatus.awaitingPayout,
-                              OrderStatus.success,
-                          ].includes(order.status) && (
+                        ? isReviewButtonsShowed && (
                               <span
                                   onClick={openMySentReviewBlock}
                                   className={styles.feedBackSentBlock}
@@ -112,11 +109,7 @@ const OrderDetails: React.FC<IProps> = ({
                                   {t('myFeedback')}
                               </span>
                           )
-                        : [
-                              OrderStatus.itemRecieved,
-                              OrderStatus.awaitingPayout,
-                              OrderStatus.success,
-                          ].includes(order.status) && (
+                        : isReviewButtonsShowed && (
                               <span
                                   className={styles.openReviewPopupButton}
                                   onClick={openReviewBlock}
@@ -124,23 +117,18 @@ const OrderDetails: React.FC<IProps> = ({
                                   {t('leaveFeedback')}
                               </span>
                           )}
-                    {order.partnerReview &&
-                        [
-                            OrderStatus.itemRecieved,
-                            OrderStatus.awaitingPayout,
-                            OrderStatus.success,
-                        ].includes(order.status) && (
-                            <span
-                                onClick={operPersonReviewBlock}
-                                className={styles.partnerFeedBack}
-                            >
-                                {viewType === ViewType.receiver
-                                    ? t('partnerCarrierReview')
-                                    : t('partnerReceiverReview')}
-                            </span>
-                        )}
+                    {order.partnerReview && isReviewButtonsShowed && (
+                        <span
+                            onClick={operPersonReviewBlock}
+                            className={styles.partnerFeedBack}
+                        >
+                            {viewType === ViewType.receiver
+                                ? t('partnerCarrierReview')
+                                : t('partnerReceiverReview')}
+                        </span>
+                    )}
                 </div>
-                {order.status === OrderStatus.itemRecieved &&
+                {displayOrderStatus === OrderStatus.itemRecieved &&
                     viewType === ViewType.carrier && (
                         <div
                             onClick={paymentScroll}
