@@ -1,0 +1,145 @@
+
+
+.document {
+    width: 80%;
+    margin: 50px auto;
+}
+
+
+.headTitle {
+    font-size: 2em;
+    text-transform: uppercase;
+    color: var(--cTextThird)
+}
+
+.data {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--cTextLow);
+}
+
+.title {
+    padding-top: 10px;
+    font-size: 1.5em;
+    color: var(--cTextThird);
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.text {
+    font-size: 1em;
+    color: var(--cTextThird);
+    margin-bottom: 20px;
+    line-height: 1.4em;
+}
+
+.textMargin {
+    margin-left: 30px;
+}
+
+.textBottom {
+    margin-bottom: 5px;
+}
+
+.bold {
+    font-weight: 800;
+    color: var(--cTextThird);
+}
+
+.text a {
+    color: var(--cTextPrimary);
+    text-decoration: underline;
+}
+
+.textItalic {
+    font-style: italic;
+}
+
+.textBold {
+    font-weight: 700;
+}
+
+.textUnderline {
+    text-decoration: underline;
+}
+
+.listSpace a {
+    color: var(--cTextPrimary);
+    text-decoration: underline;
+}
+
+.textAboveLine {
+    border-top: 1px solid var(--cTextThird);
+    padding-top: 10px;
+    width: 80px;
+}
+
+.subtitle {
+    font-size: 1.3em;
+    color: var(--cTextThird);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.list {
+    margin-left: 50px;
+    line-height: 1.4em;
+    margin-bottom: 20px;
+}
+
+.listSpace {
+    margin-left: 50px;
+    line-height: 1.6em;
+}
+
+.listSpace li {
+    margin-bottom: 20px;
+}
+
+.head {
+    margin-left: 30px;
+    line-height: 1.8em;
+    margin-bottom: 40px;
+    color: var(--cTextPrimary);
+    text-decoration: underline;
+}
+
+.table {
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid var(--cTextThird);
+    margin-bottom: 30px;
+}
+
+.border{
+    border: 1px solid var(--cTextThird);
+    padding: 3px;
+    height: 90px;
+}
+
+.borderCenter {
+    text-align: center;
+}
+
+.firstColumn {
+    width: 30%;
+    height: 40px;
+    text-align: left;
+}
+
+.secondColumn {
+    width: 55%;
+    height: 40px;
+    text-align: left;
+}
+
+.thirdColumn {
+    width: 15%;
+    height: 40px;
+}
+
+.left {
+    margin-left: 5px;
+}

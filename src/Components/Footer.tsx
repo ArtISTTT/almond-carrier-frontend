@@ -145,14 +145,14 @@ const Footer = () => {
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
-                            href='#'
+                            href='privacy-policy'
                         >
                             {t('privacy')}
                         </MUILink>
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
-                            href='#'
+                            href='user-agreement'
                         >
                             {t('serviceTerms')}
                         </MUILink>
