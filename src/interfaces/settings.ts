@@ -28,12 +28,12 @@ export enum Country {
 }
 
 export type IGeneralSettings = {
-    country: Country;
+    country?: Country;
     language: Language;
-    currency: Currency;
+    currency?: Currency;
     theme: Theme;
-    isAllowToTransferMoney: boolean;
-    isUseTwoStepAuthenticationByPhoneNumber: boolean;
+    isAllowToTransferMoney?: boolean;
+    isUseTwoStepAuthenticationByPhoneNumber?: boolean;
 };
 
 export type INotifications = {

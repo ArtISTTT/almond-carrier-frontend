@@ -84,7 +84,7 @@ const GeneralSettings: React.FC = () => {
             <form onSubmit={formik.handleSubmit}>
                 <div className={styles.selectors}>
                     <Stack direction='row' spacing={2} className={styles.stack}>
-                        <div className={styles.inputItem}>
+                        {/* <div className={styles.inputItem}>
                             <label htmlFor='country'>{t('country')}</label>
                             <Select
                                 id='country'
@@ -102,7 +102,7 @@ const GeneralSettings: React.FC = () => {
                                     </MenuItem>
                                 ))}
                             </Select>
-                        </div>
+                        </div> */}
                         <div
                             className={cn(
                                 styles.inputItem,
@@ -127,9 +127,34 @@ const GeneralSettings: React.FC = () => {
                                 ))}
                             </Select>
                         </div>
+                        <div
+                            className={cn(
+                                styles.inputItem,
+                                styles.inputItemSecond
+                            )}
+                        >
+                            <label htmlFor='theme'>{t('theme')}</label>
+                            <Select
+                                id='theme'
+                                name='theme'
+                                disabled={true}
+                                value={formik.values.theme}
+                                onChange={formik.handleChange}
+                                MenuProps={{
+                                    disableScrollLock: true,
+                                }}
+                                className={styles.select}
+                            >
+                                {themes.map((theme, i) => (
+                                    <MenuItem key={i} value={theme.value}>
+                                        {theme.text}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </div>
                     </Stack>
                     <Stack direction='row' spacing={2} className={styles.stack}>
-                        <div className={styles.inputItem}>
+                        {/* <div className={styles.inputItem}>
                             <label htmlFor='currency'>{t('currency')}</label>
                             <Select
                                 id='currency'
@@ -147,31 +172,7 @@ const GeneralSettings: React.FC = () => {
                                     </MenuItem>
                                 ))}
                             </Select>
-                        </div>
-                        <div
-                            className={cn(
-                                styles.inputItem,
-                                styles.inputItemSecond
-                            )}
-                        >
-                            <label htmlFor='theme'>{t('theme')}</label>
-                            <Select
-                                id='theme'
-                                name='theme'
-                                value={formik.values.theme}
-                                onChange={formik.handleChange}
-                                MenuProps={{
-                                    disableScrollLock: true,
-                                }}
-                                className={styles.select}
-                            >
-                                {themes.map((theme, i) => (
-                                    <MenuItem key={i} value={theme.value}>
-                                        {theme.text}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </div>
+                        </div> */}
                     </Stack>
                 </div>
                 <div className={styles.checkBoxes}>
@@ -189,6 +190,7 @@ const GeneralSettings: React.FC = () => {
                             }}
                             id='isAllowToTransferMoney'
                             name='isAllowToTransferMoney'
+                            disabled={true}
                             value={formik.values.isAllowToTransferMoney}
                             onChange={formik.handleChange}
                         />
@@ -206,6 +208,7 @@ const GeneralSettings: React.FC = () => {
                                 '& .MuiSvgIcon-root': { fontSize: 16 },
                             }}
                             id='isUseTwoStepAuthenticationByPhoneNumber'
+                            disabled={true}
                             name='isUseTwoStepAuthenticationByPhoneNumber'
                             value={
                                 formik.values
