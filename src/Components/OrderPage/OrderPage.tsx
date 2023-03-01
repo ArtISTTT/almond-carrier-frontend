@@ -55,6 +55,7 @@ const useGetOrder = (orderId: string) => {
 
 const OrderPage = () => {
     const router = useRouter();
+    const payoutRef = React.useRef<null | HTMLDivElement>(null);
     const user = useSelector(selectUser);
     const [isReviewBlockOpen, setIsReviewBlockOpen] = useState<boolean>(false);
     const [isPersonReviewBlockOpen, setIsPersonReviewBlockOpen] =
@@ -73,7 +74,14 @@ const OrderPage = () => {
     }, []);
 
     useEffect(() => {
-        if (order?.status === OrderStatus.success) {
+        if (
+            order?.status &&
+            [
+                OrderStatus.itemRecieved,
+                OrderStatus.awaitingPayout,
+                OrderStatus.success,
+            ].includes(order.status)
+        ) {
             setIsReviewBlockOpen(true);
         }
     }, [order]);
@@ -109,6 +117,7 @@ const OrderPage = () => {
     return (
         <div className={styles.wrapper}>
             <OrderDetails
+                payoutRef={payoutRef}
                 setIsMySentReviewBlockOpen={setIsMySentReviewBlockOpen}
                 setIsPersonReviewBlockOpen={setIsPersonReviewBlockOpen}
                 setIsReviewBlockOpen={setIsReviewBlockOpen}
@@ -149,10 +158,16 @@ const OrderPage = () => {
                 )}
             </div>
 
-            <OrderPayment order={order} updateOrder={updateOrder} />
+            <div ref={payoutRef}>
+                <OrderPayment order={order} updateOrder={updateOrder} />
+            </div>
 
-            {order.status === OrderStatus.success &&
-                viewType === ViewType.carrier && <OrderPaymentSuccess />}
+            {[OrderStatus.itemRecieved, OrderStatus.awaitingPayout].includes(
+                order.status
+            ) &&
+                viewType === ViewType.carrier && (
+                    <OrderPaymentSuccess order={order} />
+                )}
 
             <div className={styles.haveSomeProblems}>
                 <Link href='#'>{t('haveSomeProblems')}</Link>

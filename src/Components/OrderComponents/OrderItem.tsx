@@ -15,6 +15,8 @@ import { LinkBehaviour } from '../Common/LinkBehaviour';
 import CircleLoader from '../Loaders/CircleLoader';
 import { LoaderColors } from 'src/interfaces/loader';
 import { useAppSelector } from 'src/redux/hooks';
+import { ViewType } from '../OrderPage/OrderInputItem';
+import { selectUser } from 'src/redux/selectors/user';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
@@ -34,6 +36,7 @@ const OrderItem: React.FC<IOrder> = ({
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
     const convertStatus = useConvertStatusToText();
+    const user = useAppSelector(selectUser);
 
     const [isDetailsLoading, setIsDetailsLoading] =
         React.useState<boolean>(false);
@@ -42,11 +45,34 @@ const OrderItem: React.FC<IOrder> = ({
 
     const ourId = useAppSelector(({ user }) => user.data?.id);
 
+    const viewType = React.useMemo(
+        () => (receiver?.id === user.id ? ViewType.receiver : ViewType.carrier),
+        [receiver?.id, user.id]
+    );
+
+    const displayOrderStatus = React.useMemo(() => {
+        if (viewType === ViewType.carrier) {
+            return status;
+        }
+
+        if (
+            [OrderStatus.itemRecieved, OrderStatus.awaitingPayout].includes(
+                status
+            )
+        ) {
+            return OrderStatus.success;
+        }
+
+        return status;
+    }, [status, viewType]);
+
     return (
         <div
             className={cn(styles.order, {
-                [styles.orderSuccess]: status === OrderStatus.success,
-                [styles.orderCancelled]: status === OrderStatus.cancelled,
+                [styles.orderSuccess]:
+                    displayOrderStatus === OrderStatus.success,
+                [styles.orderCancelled]:
+                    displayOrderStatus === OrderStatus.cancelled,
             })}
         >
             <div className={styles.orderData}>
@@ -223,7 +249,7 @@ const OrderItem: React.FC<IOrder> = ({
                                 component='p'
                                 className={styles.status}
                             >
-                                {convertStatus(status)}
+                                {convertStatus(displayOrderStatus)}
                             </Typography>
                         </div>
                     </div>
