@@ -45,6 +45,7 @@
     cursor: pointer;
     flex-direction: column;
     align-items: center;
+    color: var(--cTextLow);
     user-select: none;
 }
 
@@ -153,6 +154,7 @@
 
 .generalContainer {
     padding: 0 40px;
+    min-height: 340px;
 }
 
 .notificationsContainer {
@@ -175,7 +177,12 @@
     color: var(--cTextThird);
     right: 16px;
     top: 16px;
-    transition: .3s linear;
+    transition: 0.3s linear;
+    transition-duration: 100ms;
+}
+
+.closeIcon:hover {
+    color: var(--cTextPrimary);
 }
 
 @media screen and (max-width: 620px) {

@@ -14,10 +14,8 @@ interface IProps {
 }
 
 const SettingsPopup: React.FC<IProps> = ({ setIsSettingsPopupOpen }) => {
-    const [isGeneralMenu, setIsGeneralMenu] = React.useState<boolean>(true);
     const { t } = useTranslation();
-    const selectGeneral = () => setIsGeneralMenu(true);
-    const selectNotifiations = () => setIsGeneralMenu(false);
+
     const closePopup = () => setIsSettingsPopupOpen(prev => !prev);
 
     return (
@@ -27,12 +25,7 @@ const SettingsPopup: React.FC<IProps> = ({ setIsSettingsPopupOpen }) => {
                     <CloseIcon />
                 </div>
                 <div className={styles.selectSettings}>
-                    <div
-                        onClick={selectGeneral}
-                        className={cn(styles.generalSettingsChoose, {
-                            [styles.thirdText]: !isGeneralMenu,
-                        })}
-                    >
+                    <div className={styles.generalSettingsChoose}>
                         <SettingsIcon sx={{ fontSize: 30 }} />
                         <Typography
                             className={styles.SettingsChooseText}
@@ -42,12 +35,7 @@ const SettingsPopup: React.FC<IProps> = ({ setIsSettingsPopupOpen }) => {
                             {t('general')}
                         </Typography>
                     </div>
-                    <div
-                        onClick={selectNotifiations}
-                        className={cn(styles.notificationsChoose, {
-                            [styles.thirdText]: isGeneralMenu,
-                        })}
-                    >
+                    <div className={styles.notificationsChoose}>
                         <NotificationsIcon sx={{ fontSize: 30 }} />
                         <Typography
                             className={styles.SettingsChooseText}
@@ -59,7 +47,7 @@ const SettingsPopup: React.FC<IProps> = ({ setIsSettingsPopupOpen }) => {
                     </div>
                 </div>
                 <div className={styles.settingsContent}>
-                    {isGeneralMenu ? <GeneralSettings /> : <Notifications />}
+                    {<GeneralSettings />}
                 </div>
             </div>
         </div>

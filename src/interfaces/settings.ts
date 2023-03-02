@@ -37,7 +37,7 @@ export type IGeneralSettings = {
 };
 
 export type INotifications = {
-    notificationsAboutNewsByEmail: boolean;
-    notificationsAboutOtherUsersMessages: boolean;
-    notificationsAboutChangingOrderStates: boolean;
+    notificationsAboutNewsByEmail?: boolean;
+    notificationsAboutOtherUsersMessages?: boolean;
+    notificationsAboutChangingOrderStates?: boolean;
 };
