@@ -45,6 +45,7 @@ const Notifications: React.FC = () => {
                         sx={{
                             '& .MuiSvgIcon-root': { fontSize: 16 },
                         }}
+                        disabled={true}
                         id='notificationsAboutNewsByEmail'
                         name='notificationsAboutNewsByEmail'
                         value={formik.values.notificationsAboutNewsByEmail}
@@ -63,6 +64,7 @@ const Notifications: React.FC = () => {
                         sx={{
                             '& .MuiSvgIcon-root': { fontSize: 16 },
                         }}
+                        disabled={true}
                         id='notificationsAboutOtherUsersMessages'
                         name='notificationsAboutOtherUsersMessages'
                         value={
@@ -83,6 +85,7 @@ const Notifications: React.FC = () => {
                         sx={{
                             '& .MuiSvgIcon-root': { fontSize: 16 },
                         }}
+                        disabled={true}
                         id='notificationsAboutChangingOrderStates'
                         name='notificationsAboutChangingOrderStates'
                         value={

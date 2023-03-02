@@ -81,10 +81,10 @@ const GeneralSettings: React.FC = () => {
 
     return (
         <Container className={styles.generalContainer} maxWidth={false}>
-            <form onSubmit={formik.handleSubmit}>
+            <form className={styles.generalForm} onSubmit={formik.handleSubmit}>
                 <div className={styles.selectors}>
                     <Stack direction='row' spacing={2} className={styles.stack}>
-                        <div className={styles.inputItem}>
+                        {/* <div className={styles.inputItem}>
                             <label htmlFor='country'>{t('country')}</label>
                             <Select
                                 id='country'
@@ -102,7 +102,7 @@ const GeneralSettings: React.FC = () => {
                                     </MenuItem>
                                 ))}
                             </Select>
-                        </div>
+                        </div> */}
                         <div
                             className={cn(
                                 styles.inputItem,
@@ -127,9 +127,9 @@ const GeneralSettings: React.FC = () => {
                                 ))}
                             </Select>
                         </div>
-                    </Stack>
-                    <Stack direction='row' spacing={2} className={styles.stack}>
-                        <div className={styles.inputItem}>
+                        {/* </Stack>
+                    <Stack direction='row' spacing={2} className={styles.stack}> */}
+                        {/* <div className={styles.inputItem}>
                             <label htmlFor='currency'>{t('currency')}</label>
                             <Select
                                 id='currency'
@@ -147,7 +147,7 @@ const GeneralSettings: React.FC = () => {
                                     </MenuItem>
                                 ))}
                             </Select>
-                        </div>
+                        </div> */}
                         <div
                             className={cn(
                                 styles.inputItem,
@@ -158,6 +158,7 @@ const GeneralSettings: React.FC = () => {
                             <Select
                                 id='theme'
                                 name='theme'
+                                disabled={true}
                                 value={formik.values.theme}
                                 onChange={formik.handleChange}
                                 MenuProps={{
@@ -172,50 +173,50 @@ const GeneralSettings: React.FC = () => {
                                 ))}
                             </Select>
                         </div>
+                        {/* <div className={styles.checkBoxes}>
+                            <div className={styles.checkBox}>
+                                <Typography
+                                    className={styles.checkBoxText}
+                                    variant='body1'
+                                    component='p'
+                                >
+                                    {t('allowToTransferMyMoney')}
+                                </Typography>
+                                <Checkbox
+                                    sx={{
+                                        '& .MuiSvgIcon-root': { fontSize: 16 },
+                                    }}
+                                    id='isAllowToTransferMoney'
+                                    name='isAllowToTransferMoney'
+                                    value={formik.values.isAllowToTransferMoney}
+                                    onChange={formik.handleChange}
+                                />
+                            </div>
+                            <div className={styles.checkBox}>
+                                <Typography
+                                    className={styles.checkBoxText}
+                                    variant='body1'
+                                    component='p'
+                                >
+                                    {t('useTwoStepAuthentication')}
+                                </Typography>
+                                <Checkbox
+                                    sx={{
+                                        '& .MuiSvgIcon-root': { fontSize: 16 },
+                                    }}
+                                    id='isUseTwoStepAuthenticationByPhoneNumber'
+                                    name='isUseTwoStepAuthenticationByPhoneNumber'
+                                    value={
+                                        formik.values
+                                            .isUseTwoStepAuthenticationByPhoneNumber
+                                    }
+                                    onChange={formik.handleChange}
+                                />
+                            </div>
+                        </div> */}
                     </Stack>
                 </div>
-                <div className={styles.checkBoxes}>
-                    <div className={styles.checkBox}>
-                        <Typography
-                            className={styles.checkBoxText}
-                            variant='body1'
-                            component='p'
-                        >
-                            {t('allowToTransferMyMoney')}
-                        </Typography>
-                        <Checkbox
-                            sx={{
-                                '& .MuiSvgIcon-root': { fontSize: 16 },
-                            }}
-                            id='isAllowToTransferMoney'
-                            name='isAllowToTransferMoney'
-                            value={formik.values.isAllowToTransferMoney}
-                            onChange={formik.handleChange}
-                        />
-                    </div>
-                    <div className={styles.checkBox}>
-                        <Typography
-                            className={styles.checkBoxText}
-                            variant='body1'
-                            component='p'
-                        >
-                            {t('useTwoStepAuthentication')}
-                        </Typography>
-                        <Checkbox
-                            sx={{
-                                '& .MuiSvgIcon-root': { fontSize: 16 },
-                            }}
-                            id='isUseTwoStepAuthenticationByPhoneNumber'
-                            name='isUseTwoStepAuthenticationByPhoneNumber'
-                            value={
-                                formik.values
-                                    .isUseTwoStepAuthenticationByPhoneNumber
-                            }
-                            onChange={formik.handleChange}
-                        />
-                    </div>
-                </div>
-                <div className={styles.deleteAccountBlock}>
+                {/* <div className={styles.deleteAccountBlock}>
                     <Button className={styles.deleteAccountButton}>
                         {t('deleteMyAccount')}
                     </Button>
@@ -226,7 +227,7 @@ const GeneralSettings: React.FC = () => {
                     >
                         {t('cannotDeleteAccount')}
                     </Typography>
-                </div>
+                </div> */}
             </form>
         </Container>
     );
