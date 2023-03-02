@@ -7,13 +7,13 @@ type ITriggerOpen = {
     severity: AlertProps['severity'];
     text: string;
 };
+interface IProps {
+    children: React.ReactNode;
+}
 
 export const OpenAlertContext = createContext({
     triggerOpen: (props: ITriggerOpen) => {},
 });
-interface IProps {
-    children: React.ReactNode;
-}
 
 const SnackBarLayout: React.FC<IProps> = ({ children }) => {
     const [open, setOpen] = React.useState(false);
