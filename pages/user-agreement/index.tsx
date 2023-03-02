@@ -3,7 +3,7 @@ import PrivateLayout from '../../src/Components/Layouts/Private';
 import { privateTypes } from '../../src/interfaces/private';
 import CarrierLayout from '../../src/Components/Layouts/Carrier';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import UserAgreement from 'src/Components/documents/userAgreement';
+import UserAgreement from 'src/Components/documents/UserAgreement';
 
 const ReceiverPage: React.FC = () => (
     <PrivateLayout privateType={privateTypes.all}>
