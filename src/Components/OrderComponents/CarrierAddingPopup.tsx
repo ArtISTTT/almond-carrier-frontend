@@ -149,11 +149,7 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                                 endAdornment: (
                                     <InputAdornment position='end'>
                                         <span className={styles.currency}>
-                                            {t(
-                                                userCurrency[
-                                                    currency as Currency
-                                                ]
-                                            )}
+                                            {t(userCurrency[currency])}
                                         </span>
                                     </InputAdornment>
                                 ),

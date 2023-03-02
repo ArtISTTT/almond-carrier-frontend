@@ -211,7 +211,7 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position='end'>
-                                        {t(userCurrency[currency as Currency])}
+                                        {t(userCurrency[currency])}
                                     </InputAdornment>
                                 ),
                             }}
@@ -238,7 +238,7 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position='end'>
-                                        {t(userCurrency[currency as Currency])}
+                                        {t(userCurrency[currency])}
                                     </InputAdornment>
                                 ),
                             }}
