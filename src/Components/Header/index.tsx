@@ -47,10 +47,11 @@ const Header: React.FC<IProps> = ({
         if (socket && socket.connected) {
             socket.on(
                 'new-notification',
-                ({ notification }: { notification: IUserNotification }) =>
+                ({ notification }: { notification: IUserNotification }) => {
                     setNotifications(prev =>
                         prev.concat(parseNotificationsFromApi([notification]))
-                    )
+                    );
+                }
             );
         }
     };

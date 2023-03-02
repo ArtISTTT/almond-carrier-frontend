@@ -13,6 +13,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import RelativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from 'dayjs';
 import SocketIoLayout from 'src/Components/Layouts/SocketIo';
+import ConfirmDialogLayout from 'src/Components/Layouts/ConfirmDialog';
 
 const App = ({ Component, pageProps }: AppProps) => {
     dayjs.extend(RelativeTime);
@@ -23,11 +24,13 @@ const App = ({ Component, pageProps }: AppProps) => {
                 <StoreProvider store={store}>
                     <AuthLayout>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <SnackBarLayout>
-                                <SocketIoLayout>
-                                    <Component {...pageProps} />
-                                </SocketIoLayout>
-                            </SnackBarLayout>
+                            <ConfirmDialogLayout>
+                                <SnackBarLayout>
+                                    <SocketIoLayout>
+                                        <Component {...pageProps} />
+                                    </SocketIoLayout>
+                                </SnackBarLayout>
+                            </ConfirmDialogLayout>
                         </LocalizationProvider>
                     </AuthLayout>
                 </StoreProvider>

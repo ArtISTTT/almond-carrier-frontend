@@ -310,3 +310,21 @@ export const confirmPayment = (requestData: {
                     'Error with confirming the payment',
             };
         });
+
+export const declineOrder = (requestData: {
+    orderId: string;
+}): Promise<ISuggestChanges> =>
+    mainInstance
+        .post('/order/decline-order', JSON.stringify(requestData))
+        .then(() => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ?? 'Error with decline order',
+            };
+        });

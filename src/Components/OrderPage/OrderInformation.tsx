@@ -556,9 +556,9 @@ const OrderInformation: React.FC<IProps> = ({
                                                                 order.rewardAmount,
                                                                 Currency.RUB
                                                             ),
-                                                            userCurrency
+                                                            Currency.RUB
                                                         )}{' '}
-                                                        {t(userCurrency)}
+                                                        {t(Currency.RUB)}
                                                     </span>
                                                 </div>
                                             </div>

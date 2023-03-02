@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useMemo, useState } from 'react';
 import styles from '../../../styles/OrderPage.module.css';
 import OrderDetails from './OrderDetails';
 import OrderInformation from './OrderInformation';
-import { cancelOrder, getOrderById } from '../../api/order';
+import { cancelOrder, declineOrder, getOrderById } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { IOrderFull } from '../../interfaces/order';
 import Link from 'next/link';
@@ -21,6 +21,7 @@ import { OrderStatus } from 'src/interfaces/profile';
 import CircleLoader from '../Loaders/CircleLoader';
 import { LoaderColors } from 'src/interfaces/loader';
 import OrderPaymentSuccess from './OrderPaymentSuccess';
+import { OpenDialogContext } from '../Layouts/ConfirmDialog';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -56,12 +57,15 @@ const useGetOrder = (orderId: string) => {
 const OrderPage = () => {
     const router = useRouter();
     const payoutRef = React.useRef<null | HTMLDivElement>(null);
+    const { triggerDialogOpen } = useContext(OpenDialogContext);
     const user = useSelector(selectUser);
+
     const [isReviewBlockOpen, setIsReviewBlockOpen] = useState<boolean>(false);
     const [isPersonReviewBlockOpen, setIsPersonReviewBlockOpen] =
         useState<boolean>(false);
     const [isMySentReviewBlockOpen, setIsMySentReviewBlockOpen] =
         useState<boolean>(false);
+    const [openCancelDialog, setOpenCancelDialog] = useState<boolean>(false);
 
     const { order, updateOrder, isLoading } = useGetOrder(
         router.query.orderId as string
@@ -102,12 +106,34 @@ const OrderPage = () => {
         );
     }
 
-    const cancelOrderClick = () => cancelOrder({ orderId: order.id });
+    const cancelOrderClick = () => {
+        triggerDialogOpen({
+            text: 'doYouReallyWantToCancelOrder?',
+            completeCallBack: async () =>
+                await cancelOrder({ orderId: order.id }),
+        });
+    };
+
+    const declineCLick = () => {
+        triggerDialogOpen({
+            text:
+                order.creatorId === user.id
+                    ? t('doYouReallyWantToDeclinePartner?')
+                    : t('doYouReallyWantToDeclineOrder?'),
+            completeCallBack: async () => {
+                const data = await declineOrder({ orderId: order.id });
+                if (data.ok) {
+                    router.push(navigateTo.DASHBOARD);
+                }
+            },
+        });
+    };
 
     const suggestedChanged =
         viewType === ViewType.receiver
             ? order.byCarrierSuggestedChanges
             : order.byReceiverSuggestedChanges;
+
     const hasByYouSuggestedChanged = Boolean(
         viewType === ViewType.receiver
             ? order.byReceiverSuggestedChanges
@@ -172,22 +198,39 @@ const OrderPage = () => {
             <div className={styles.haveSomeProblems}>
                 <Link href='#'>{t('haveSomeProblems')}</Link>
             </div>
-            {[
-                OrderStatus.waitingReciever,
-                OrderStatus.waitingCarrier,
-                OrderStatus.inDiscussion,
-            ].includes(order.status) && (
-                <div className={styles.cancelButtonWrapper}>
-                    <Button
-                        onClick={cancelOrderClick}
-                        color='error'
-                        variant='contained'
-                        className={styles.cancelButton}
-                    >
-                        {t('cancelOrder')}
-                    </Button>
-                </div>
-            )}
+            <div className={styles.cancelButtons}>
+                {[OrderStatus.inDiscussion].includes(order.status) && (
+                    <div className={styles.cancelButtonWrapper}>
+                        <Button
+                            onClick={declineCLick}
+                            color='error'
+                            variant='contained'
+                            className={styles.cancelButton}
+                        >
+                            {order.creatorId === user.id
+                                ? t('declinePartner')
+                                : t('declineOrder')}
+                        </Button>
+                    </div>
+                )}
+                {order.creatorId === user.id &&
+                    [
+                        OrderStatus.waitingReciever,
+                        OrderStatus.waitingCarrier,
+                        OrderStatus.inDiscussion,
+                    ].includes(order.status) && (
+                        <div className={styles.cancelButtonWrapper}>
+                            <Button
+                                onClick={cancelOrderClick}
+                                color='error'
+                                variant='contained'
+                                className={styles.cancelButton}
+                            >
+                                {t('cancelOrder')}
+                            </Button>
+                        </div>
+                    )}
+            </div>
         </div>
     );
 };
