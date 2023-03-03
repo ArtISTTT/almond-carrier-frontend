@@ -1,6 +1,12 @@
-import { Button, TextField, Link as MUILink, Typography } from '@mui/material';
+import {
+    Button,
+    TextField,
+    Link as MUILink,
+    Typography,
+    Checkbox,
+} from '@mui/material';
 import { Stack } from '@mui/system';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
@@ -35,6 +41,17 @@ const SignIn: React.FC = () => {
 
     const { triggerOpen } = useContext(OpenAlertContext);
 
+    const [isAllowPrivatePolicity, setIsAllowPrivatePolicity] =
+        useState<boolean>(false);
+    const [isAllowUserAgreement, setIsAllowUserAgreement] =
+        useState<boolean>(false);
+
+    const toggleIsAllowPrivatePolicity = () =>
+        setIsAllowPrivatePolicity(prev => !prev);
+
+    const toggleIsAllowUserAgreement = () =>
+        setIsAllowUserAgreement(prev => !prev);
+
     React.useEffect(() => {
         if (!router.isReady) return;
 
@@ -42,6 +59,14 @@ const SignIn: React.FC = () => {
             formik.setValues({ ...formik.values, email: router.query.email });
         }
     }, [router.isReady]);
+
+    const navigateToPrivacyPolicity = () => {
+        router.push(navigateTo.PRIVACY_POLICITY);
+    };
+
+    const navigateToUserAgreement = () => {
+        router.push(navigateTo.USER_AGREEMENT);
+    };
 
     const handleSignUp = async (form: IForm) => {
         const data = await signUp(form);
@@ -193,11 +218,60 @@ const SignIn: React.FC = () => {
                                 (t(formik.errors.confirmPassword) as string)
                             }
                         />
+                        <Typography
+                            className={style.checkBoxTitle}
+                            variant='body1'
+                            component='p'
+                        >
+                            {t('clickingRegisterIAccept')}
+                        </Typography>
+                        <div className={style.checkBox}>
+                            <Typography
+                                className={style.checkBoxText}
+                                onClick={navigateToPrivacyPolicity}
+                                variant='body1'
+                                component='p'
+                            >
+                                {t('privacyPolicity')}
+                            </Typography>
+                            <Checkbox
+                                sx={{
+                                    '& .MuiSvgIcon-root': { fontSize: 16 },
+                                }}
+                                id='isAllowPrivacyPolicity'
+                                name='isAllowPrivacyPolicity'
+                                value={isAllowPrivatePolicity}
+                                onChange={toggleIsAllowPrivatePolicity}
+                            />
+                        </div>
+                        <div className={style.checkBox}>
+                            <Typography
+                                className={style.checkBoxText}
+                                onClick={navigateToUserAgreement}
+                                variant='body1'
+                                component='p'
+                            >
+                                {t('userAgreement')}
+                            </Typography>
+                            <Checkbox
+                                sx={{
+                                    '& .MuiSvgIcon-root': { fontSize: 16 },
+                                }}
+                                id='isAllowUserAgreement'
+                                name='iAallowUserAgreement'
+                                value={isAllowUserAgreement}
+                                onChange={toggleIsAllowUserAgreement}
+                            />
+                        </div>
                         <Button
                             variant='contained'
                             className={style.confirmButton}
                             type='submit'
-                            disabled={formik.isSubmitting}
+                            disabled={
+                                formik.isSubmitting ||
+                                !isAllowUserAgreement ||
+                                !isAllowPrivatePolicity
+                            }
                         >
                             {t('register')}
                         </Button>
