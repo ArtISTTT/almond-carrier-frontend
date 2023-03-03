@@ -276,7 +276,7 @@
 
 .inputPhone {
     width: 100%;
-    margin-top: 0;
+    margin-top: 1px;
     margin-right: 10px;
     height: 40px;
     background-color: var(--cBgSecondary);

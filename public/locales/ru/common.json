@@ -408,6 +408,8 @@
     "payoutDataSeccessfullySent": "Данные для оплаты успешно отправлены",
     "errorSendPayoutData": "Ошибка при отправке данных",
     "SBP": "СБП",
+    "payoutSuccess": "Выплата прошла успешно",
+    "paymentVerification": "Подтверждение оплаты",
     "sdmBank": "СДМ-Банк",
     "searchingForANewPartner": "Поиск нового партнера.",
     "searchingForCarrier": "Поиск перевозчика",

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../../../styles/OrderPage.module.css';
 import {
@@ -124,6 +124,11 @@ const OrderPaymentSuccess: React.FC<IProps> = ({ order }) => {
                                         styles.input,
                                         styles.inputPhone
                                     )}
+                                    error={formik.errors.phone !== undefined}
+                                    helperText={
+                                        formik.errors.phone &&
+                                        (t(formik.errors.phone) as string)
+                                    }
                                 />
                             </div>
                             <div className={styles.inputItem}>

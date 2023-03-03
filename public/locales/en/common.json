@@ -132,6 +132,8 @@
     "deliverTo": "Deliver to",
     "description": "Description",
     "djeyAndTiBank": "J&T Bank",
+    "payoutSuccess": "Payment was successful",
+    "paymentVerification": "Payment verification",
     "dolinsk": "Dolinsk",
     "payoutDataSeccessfullySent": "Payment data was successfully sent",
     "errorSendPayoutData": "Failed to send data",
