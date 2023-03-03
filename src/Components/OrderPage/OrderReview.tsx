@@ -45,7 +45,7 @@ const OrderReview: React.FC<IProps> = ({
         if (data.ok) {
             triggerOpen({
                 severity: 'success',
-                text: t('feedbackSentSeccess'),
+                text: t('feedbackWasSuccessfullySent'),
             });
             setIsReviewBlockOpen(false);
         } else {
@@ -112,9 +112,9 @@ const OrderReview: React.FC<IProps> = ({
                         />
                     </div>
                     <div className={styles.reviewInput}>
-                        <label htmlFor='Review'></label>
+                        <label htmlFor='Review' />
                         <TextField
-                            label='Review'
+                            label={t('review') as string}
                             name='reviewText'
                             variant='outlined'
                             color='primary'

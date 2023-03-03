@@ -65,7 +65,6 @@ const OrderPage = () => {
         useState<boolean>(false);
     const [isMySentReviewBlockOpen, setIsMySentReviewBlockOpen] =
         useState<boolean>(false);
-    const [openCancelDialog, setOpenCancelDialog] = useState<boolean>(false);
 
     const { order, updateOrder, isLoading } = useGetOrder(
         router.query.orderId as string
