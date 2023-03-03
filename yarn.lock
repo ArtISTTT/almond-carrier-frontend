@@ -216,6 +216,11 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     "to-fast-properties" "^2.0.0"
 
+"@corex/deepmerge@^4.0.37":
+  "integrity" "sha512-PX90bEnrLdxd5e6rSFWsghExMuSw0Uov3fWJuuaoFuUQIS/446diu/4seExK5b+43L+SOBbd2uBGwYUkG1JfCw=="
+  "resolved" "https://registry.npmjs.org/@corex/deepmerge/-/deepmerge-4.0.37.tgz"
+  "version" "4.0.37"
+
 "@date-io/core@^2.15.0", "@date-io/core@^2.16.0":
   "integrity" "sha512-DYmSzkr+jToahwWrsiRA2/pzMEtz9Bq1euJwoOuYwuwIYXnZFtHajY2E6a1VNVDc9jP8YUXK1BvnZH9mmT19Zg=="
   "resolved" "https://registry.npmjs.org/@date-io/core/-/core-2.16.0.tgz"
@@ -553,7 +558,7 @@
     "react-transition-group" "^4.4.5"
     "rifm" "^0.12.1"
 
-"@next/env@13.0.7":
+"@next/env@*", "@next/env@13.0.7":
   "integrity" "sha512-ZBclBRB7DbkSswXgbJ+muF5RxfgmAuQKAWL8tcm86aZmoiL1ZainxQK0hMcMYdh+IYG8UObAKV2wKB5O+6P4ng=="
   "resolved" "https://registry.npmjs.org/@next/env/-/env-13.0.7.tgz"
   "version" "13.0.7"
@@ -2212,10 +2217,10 @@
   dependencies:
     "brace-expansion" "^1.1.7"
 
-"minimist@^1.2.0", "minimist@^1.2.6":
-  "integrity" "sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g=="
-  "resolved" "https://registry.npmjs.org/minimist/-/minimist-1.2.7.tgz"
-  "version" "1.2.7"
+"minimist@^1.2.0", "minimist@^1.2.6", "minimist@^1.2.8":
+  "integrity" "sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA=="
+  "resolved" "https://registry.npmjs.org/minimist/-/minimist-1.2.8.tgz"
+  "version" "1.2.8"
 
 "ms@^2.1.1", "ms@2.1.2":
   "integrity" "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
@@ -2265,7 +2270,15 @@
     "hoist-non-react-statics" "^3.3.2"
     "i18next-fs-backend" "^2.1.0"
 
-"next@>= 12.0.0", "next@13.0.7":
+"next-sitemap@^4.0.1":
+  "integrity" "sha512-dY6vKE/uayNYSfhXA64U9NZYSJtFzK01oBouY+XqgQieksKBG9BWNmq8yGSJUermyux4wCnNa9gLHwSk38emhA=="
+  "resolved" "https://registry.npmjs.org/next-sitemap/-/next-sitemap-4.0.1.tgz"
+  "version" "4.0.1"
+  dependencies:
+    "@corex/deepmerge" "^4.0.37"
+    "minimist" "^1.2.8"
+
+"next@*", "next@>= 12.0.0", "next@13.0.7":
   "integrity" "sha512-YfTifqX9vfHm+rSU/H/3xvzOHDkYuMuh4wsvTjiqj9h7qHEF7KHB66X4qrH96Po+ohdid4JY8YVGPziDwdXL0A=="
   "resolved" "https://registry.npmjs.org/next/-/next-13.0.7.tgz"
   "version" "13.0.7"

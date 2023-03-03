@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://friendlycarrier.com
+
+# Sitemaps
+Sitemap: https://friendlycarrier.com/sitemap.xml
