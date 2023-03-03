@@ -484,6 +484,11 @@
     padding: 2px 12px;
 }
 
+.inputItem .input > div > input {
+    height: 0;
+    padding: 20px 0;
+}
+
 .reminerBlock {
     font-size: 16px;
     height: 28px;
@@ -568,6 +573,10 @@
     .inputItem .input {
         height: 34px;
     }
+    .inputItem .input > div > input {
+        height: 0;
+        padding: 17px 0;
+    }
 }
 
 @media screen and (max-width: 980px) {
@@ -602,6 +611,10 @@
     .inputItem .input {
         margin-top: 2px;
         height: 32px;
+    }
+    .inputItem .input > div > input {
+        height: 0;
+        padding: 16px 0;
     }
 }
 

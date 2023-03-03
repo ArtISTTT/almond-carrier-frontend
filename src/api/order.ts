@@ -346,6 +346,7 @@ export const startPayout = (requestData: {
             return {
                 ok: false,
                 error:
-                    data.response?.data?.message ?? 'Error with decline order',
+                    data.response?.data?.message ??
+                    'Error with sending payout data',
             };
         });
