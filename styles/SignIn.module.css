@@ -171,6 +171,27 @@
     top: calc(50% - 400px / 2);
 }
 
+.checkBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkBoxText {
+    cursor: pointer;
+    transition-duration: 200ms;
+    color: var(--CTextThird);
+}
+
+.checkBoxTitle {
+    font-size: 14px;
+    text-align: center;
+}
+
+.checkBoxText:hover {
+    color: var(--cTextPrimary);
+}
+
 @media screen and (max-width: 1278px) {
     .loginImage {
         display: none;

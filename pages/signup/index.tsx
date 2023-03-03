@@ -1,6 +1,12 @@
-import { Button, TextField, Link as MUILink, Typography } from '@mui/material';
+import {
+    Button,
+    TextField,
+    Link as MUILink,
+    Typography,
+    Checkbox,
+} from '@mui/material';
 import { Stack } from '@mui/system';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
@@ -193,6 +199,30 @@ const SignIn: React.FC = () => {
                                 (t(formik.errors.confirmPassword) as string)
                             }
                         />
+                        <Typography
+                            className={style.checkBoxTitle}
+                            variant='body1'
+                            component='p'
+                        >
+                            {t('clickingRegisterIAccept')}
+                            <MUILink
+                                className={style.allowLink}
+                                href={navigateTo.PRIVACY_POLICITY}
+                                component={LinkBehaviour}
+                            >
+                                {t('privacyPolicity')}
+                            </MUILink>{' '}
+                            {t('and')}{' '}
+                            <MUILink
+                                className={style.allowLink}
+                                href={navigateTo.USER_AGREEMENT}
+                                component={LinkBehaviour}
+                            >
+                                {t('userAgreement')}
+                            </MUILink>{' '}
+                            {t('friendlyCarrier')}.
+                        </Typography>
+
                         <Button
                             variant='contained'
                             className={style.confirmButton}
