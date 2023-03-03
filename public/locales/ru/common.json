@@ -409,6 +409,7 @@
     "payoutDataSeccessfullySent": "Данные для оплаты успешно отправлены",
     "errorSendPayoutData": "Ошибка при отправке данных",
     "SBP": "СБП",
+    "enterLocation": "Введите местоположение",
     "payoutSuccess": "Выплата прошла успешно",
     "paymentVerification": "Подтверждение оплаты",
     "sdmBank": "СДМ-Банк",

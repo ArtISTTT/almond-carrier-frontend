@@ -116,7 +116,7 @@ const Footer = () => {
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
-                            href='/profile/general'
+                            href={navigateTo.PROFILE_GENERAL}
                         >
                             {t('myInfo')}
                         </MUILink>
@@ -146,14 +146,14 @@ const Footer = () => {
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
-                            href='privacy-policy'
+                            href={navigateTo.PRIVACY_POLICITY}
                         >
                             {t('privacy')}
                         </MUILink>
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
-                            href='user-agreement'
+                            href={navigateTo.USER_AGREEMENT}
                         >
                             {t('serviceTerms')}
                         </MUILink>
@@ -202,14 +202,26 @@ const Footer = () => {
                     <div className={styles.rightsText}>{t('copyright')}</div>
                 </div>
                 <div className={styles.icons}>
-                    <MUILink component={LinkBehaviour} href='#'>
-                        <EmailIcon className={styles.footerIcon} />
+                    <MUILink
+                        className={styles.footerIcon}
+                        component={LinkBehaviour}
+                        href='#'
+                    >
+                        <EmailIcon sx={{ fontSize: 30 }} />
                     </MUILink>
-                    <MUILink component={LinkBehaviour} href='#'>
-                        <TelegramIcon className={styles.footerIcon} />
+                    <MUILink
+                        className={styles.footerIcon}
+                        component={LinkBehaviour}
+                        href='#'
+                    >
+                        <TelegramIcon sx={{ fontSize: 30 }} />
                     </MUILink>
-                    <MUILink component={LinkBehaviour} href='#'>
-                        <InstagramIcon className={styles.footerIcon} />
+                    <MUILink
+                        className={styles.footerIcon}
+                        component={LinkBehaviour}
+                        href='#'
+                    >
+                        <InstagramIcon sx={{ fontSize: 30 }} />
                     </MUILink>
                 </div>
             </div>

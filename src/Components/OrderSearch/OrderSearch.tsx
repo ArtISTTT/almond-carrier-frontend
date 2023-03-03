@@ -126,13 +126,15 @@ const OrderSearch: React.FC = () => {
                         orders={orders}
                     />
                 )}
-                <Pagination
-                    className={styles.pagination}
-                    count={totalCount}
-                    variant='outlined'
-                    color='primary'
-                    onChange={handleChangePagination}
-                />
+                {totalCount !== 0 && totalCount !== 1 && (
+                    <Pagination
+                        className={styles.pagination}
+                        count={totalCount}
+                        variant='outlined'
+                        color='primary'
+                        onChange={handleChangePagination}
+                    />
+                )}
             </div>
         </div>
     );

@@ -57,11 +57,7 @@ const Header: React.FC<IProps> = ({
     };
 
     const changePageIfAuthorized = () => {
-        if (isAuthorized) {
-            router.push(navigateTo.DASHBOARD);
-        } else {
-            router.push(navigateTo.SIGNIN);
-        }
+        router.push(navigateTo.LANDING);
     };
 
     return (

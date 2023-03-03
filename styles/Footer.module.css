@@ -96,9 +96,13 @@
 }
 
 .footerIcon {
-    font-size: 30px;
     margin-left: 17px;
     color: var(--cTextThird);
+    transition-duration: 250ms;
+}
+
+.footerIcon:hover {
+    color: var(--cTextPrimary);
 }
 
 @media screen and (max-width: 1125px) {

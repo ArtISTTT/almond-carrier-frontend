@@ -3,6 +3,7 @@ export enum navigateTo {
     THANKS_FOR_REGISTRATION = '/thanks-for-registration',
     SIGNIN = '/signin',
     PROFILE_ORDERS = '/profile/orders',
+    PROFILE_GENERAL = '/profile/general',
     SIGNUP = '/signup',
     LANDING = '/',
     ORDER_SEARCH = '/order-search',

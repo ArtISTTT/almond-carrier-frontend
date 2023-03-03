@@ -81,6 +81,7 @@ const General = () => {
     const formik = useFormik({
         initialValues: {
             ...user,
+            gender: Genders.NONE,
         },
         onSubmit: handleChangeUserInfo,
         validationSchema: ChangeUserSchema,
