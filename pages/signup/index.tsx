@@ -41,17 +41,6 @@ const SignIn: React.FC = () => {
 
     const { triggerOpen } = useContext(OpenAlertContext);
 
-    const [isAllowPrivatePolicity, setIsAllowPrivatePolicity] =
-        useState<boolean>(false);
-    const [isAllowUserAgreement, setIsAllowUserAgreement] =
-        useState<boolean>(false);
-
-    const toggleIsAllowPrivatePolicity = () =>
-        setIsAllowPrivatePolicity(prev => !prev);
-
-    const toggleIsAllowUserAgreement = () =>
-        setIsAllowUserAgreement(prev => !prev);
-
     React.useEffect(() => {
         if (!router.isReady) return;
 
@@ -59,14 +48,6 @@ const SignIn: React.FC = () => {
             formik.setValues({ ...formik.values, email: router.query.email });
         }
     }, [router.isReady]);
-
-    const navigateToPrivacyPolicity = () => {
-        router.push(navigateTo.PRIVACY_POLICITY);
-    };
-
-    const navigateToUserAgreement = () => {
-        router.push(navigateTo.USER_AGREEMENT);
-    };
 
     const handleSignUp = async (form: IForm) => {
         const data = await signUp(form);
@@ -224,54 +205,29 @@ const SignIn: React.FC = () => {
                             component='p'
                         >
                             {t('clickingRegisterIAccept')}
-                        </Typography>
-                        <div className={style.checkBox}>
-                            <Typography
-                                className={style.checkBoxText}
-                                onClick={navigateToPrivacyPolicity}
-                                variant='body1'
-                                component='p'
+                            <MUILink
+                                className={style.allowLink}
+                                href={navigateTo.PRIVACY_POLICITY}
+                                component={LinkBehaviour}
                             >
                                 {t('privacyPolicity')}
-                            </Typography>
-                            <Checkbox
-                                sx={{
-                                    '& .MuiSvgIcon-root': { fontSize: 16 },
-                                }}
-                                id='isAllowPrivacyPolicity'
-                                name='isAllowPrivacyPolicity'
-                                value={isAllowPrivatePolicity}
-                                onChange={toggleIsAllowPrivatePolicity}
-                            />
-                        </div>
-                        <div className={style.checkBox}>
-                            <Typography
-                                className={style.checkBoxText}
-                                onClick={navigateToUserAgreement}
-                                variant='body1'
-                                component='p'
+                            </MUILink>{' '}
+                            {t('and')}{' '}
+                            <MUILink
+                                className={style.allowLink}
+                                href={navigateTo.USER_AGREEMENT}
+                                component={LinkBehaviour}
                             >
                                 {t('userAgreement')}
-                            </Typography>
-                            <Checkbox
-                                sx={{
-                                    '& .MuiSvgIcon-root': { fontSize: 16 },
-                                }}
-                                id='isAllowUserAgreement'
-                                name='iAallowUserAgreement'
-                                value={isAllowUserAgreement}
-                                onChange={toggleIsAllowUserAgreement}
-                            />
-                        </div>
+                            </MUILink>{' '}
+                            {t('friendlyCarrier')}.
+                        </Typography>
+
                         <Button
                             variant='contained'
                             className={style.confirmButton}
                             type='submit'
-                            disabled={
-                                formik.isSubmitting ||
-                                !isAllowUserAgreement ||
-                                !isAllowPrivatePolicity
-                            }
+                            disabled={formik.isSubmitting}
                         >
                             {t('register')}
                         </Button>
