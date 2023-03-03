@@ -71,6 +71,11 @@
     line-height: 20px;
     text-align: justify;
     letter-spacing: 0.4px;
+    transition-duration: 200ms;
+}
+
+.centerLink:hover {
+    color: var(--cTextPrimary);
 }
 
 .columnTitle {

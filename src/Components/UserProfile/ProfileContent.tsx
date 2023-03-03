@@ -7,11 +7,12 @@ import styles from '../../../styles/ProfileForNewUser.module.css';
 import ReviewItem from '../MyProfile/ReviewItem';
 import OrderItem from 'src/Components/OrderComponents/OrderItem';
 import EmptyNoShadows from '../EmptyComponents/EmptyNoShadows';
-import { IGetUser } from 'src/interfaces/api/user';
 import { useTranslation } from 'react-i18next';
 import { useLoadReviews } from 'src/redux/hooks/useLoadReviews';
 import CircleLoader from '../Loaders/CircleLoader';
 import { LoaderColors } from 'src/interfaces/loader';
+import { IOrder } from 'src/interfaces/order';
+import { IGetUser } from 'src/interfaces/api/user';
 
 enum profileContent {
     ORDERS = 0,
@@ -67,7 +68,7 @@ const ProfileConent: React.FC<IProps> = ({ user }) => {
                 <div className={styles.contentItems}>
                     {user.successOrders.length > 0 &&
                         content === profileContent.ORDERS &&
-                        user.successOrders.map(order => (
+                        user.successOrders.map((order: IOrder) => (
                             <OrderItem key={order.id} {...order} />
                         ))}
                     {user.successOrders.length === 0 &&

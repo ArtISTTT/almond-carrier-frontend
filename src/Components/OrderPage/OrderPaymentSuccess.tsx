@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../../../styles/OrderPage.module.css';
 import {
@@ -19,6 +19,8 @@ import { OrderPaymentSuccessSchema } from 'src/schemas/OrderPaymentSuccess';
 import { useGetBanks } from 'src/redux/hooks/useGetBanks';
 import { IOrderFull } from 'src/interfaces/order';
 import { OrderStatus } from 'src/interfaces/profile';
+import { startPayout } from 'src/api/order';
+import { OpenAlertContext } from '../Layouts/Snackbar';
 
 type IForm = {
     bank: Banks;
@@ -31,6 +33,7 @@ interface IProps {
 
 const OrderPaymentSuccess: React.FC<IProps> = ({ order }) => {
     const [paymentOpened, setPaymentOpened] = React.useState<boolean>(false);
+    const { triggerOpen } = useContext(OpenAlertContext);
     const { t } = useTranslation();
     const banksArray = useGetBanks();
 
@@ -40,10 +43,29 @@ const OrderPaymentSuccess: React.FC<IProps> = ({ order }) => {
 
     const handleChange = () => setPaymentOpened(prev => !prev);
 
+    const handleSubmit = async (form: IForm) => {
+        const data = await startPayout({
+            orderId: order.id,
+            phoneNumber: form.phone,
+            bank: form.bank,
+        });
+
+        if (data.ok) {
+            triggerOpen({
+                severity: 'success',
+                text: t('payoutDataSeccessfullySent'),
+            });
+            setPaymentOpened(prev => !prev);
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || t('errorSendPayoutData'),
+            });
+        }
+    };
+
     const handlePhoneChange = (phone: string) =>
         formik.setFieldValue('phone', phone);
-
-    const handleSubmit = (form: IForm) => {};
 
     const formik = useFormik({
         initialValues: {
@@ -102,6 +124,11 @@ const OrderPaymentSuccess: React.FC<IProps> = ({ order }) => {
                                         styles.input,
                                         styles.inputPhone
                                     )}
+                                    error={formik.errors.phone !== undefined}
+                                    helperText={
+                                        formik.errors.phone &&
+                                        (t(formik.errors.phone) as string)
+                                    }
                                 />
                             </div>
                             <div className={styles.inputItem}>
@@ -152,7 +179,6 @@ const OrderPaymentSuccess: React.FC<IProps> = ({ order }) => {
                             type='submit'
                             className={styles.orderConfirmPaymentButton}
                             color='primary'
-                            onClick={handleChange}
                         >
                             {t('confirm')}
                         </Button>

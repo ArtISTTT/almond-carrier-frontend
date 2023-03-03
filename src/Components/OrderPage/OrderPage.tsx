@@ -65,7 +65,6 @@ const OrderPage = () => {
         useState<boolean>(false);
     const [isMySentReviewBlockOpen, setIsMySentReviewBlockOpen] =
         useState<boolean>(false);
-    const [openCancelDialog, setOpenCancelDialog] = useState<boolean>(false);
 
     const { order, updateOrder, isLoading } = useGetOrder(
         router.query.orderId as string
@@ -188,9 +187,7 @@ const OrderPage = () => {
                 <OrderPayment order={order} updateOrder={updateOrder} />
             </div>
 
-            {[OrderStatus.itemRecieved, OrderStatus.awaitingPayout].includes(
-                order.status
-            ) &&
+            {order.status === OrderStatus.itemRecieved &&
                 viewType === ViewType.carrier && (
                     <OrderPaymentSuccess order={order} />
                 )}

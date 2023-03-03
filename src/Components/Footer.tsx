@@ -20,6 +20,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useCreateQueryParams } from 'src/redux/hooks/useCreateQueryParams';
 import { LinkBehaviour } from './Common/LinkBehaviour';
+import { navigateTo } from 'src/interfaces/navigate';
 
 const Footer = () => {
     const dispatch = useAppDispatch();
@@ -94,21 +95,21 @@ const Footer = () => {
                         <MUILink
                             className={styles.centerLink}
                             component={LinkBehaviour}
-                            href='/dashboard'
+                            href={navigateTo.DASHBOARD}
                         >
                             {t('dashboard')}
                         </MUILink>
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
-                            href='/order-search'
+                            href={navigateTo.ORDER_SEARCH}
                         >
                             {t('orderSearch')}
                         </MUILink>
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
-                            href='/profile/orders'
+                            href={navigateTo.PROFILE_ORDERS}
                         >
                             {t('profileOrders')}
                         </MUILink>

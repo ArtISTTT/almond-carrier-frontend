@@ -1,7 +1,7 @@
 export enum navigateTo {
     DASHBOARD = '/dashboard',
     THANKS_FOR_REGISTRATION = '/thanks-for-registration',
-    SIGNIN = 'signin',
+    SIGNIN = '/signin',
     PROFILE_ORDERS = '/profile/orders',
     SIGNUP = '/signup',
     LANDING = '/',
@@ -9,4 +9,6 @@ export enum navigateTo {
     FORGOT_PASSWORD = '/forgot-password',
     ORDER = '/order/[orderId]',
     USER = '/user/[userId]',
+    PRIVACY_POLICITY = '/privacy-policy',
+    USER_AGREEMENT = 'user-agreement',
 }
