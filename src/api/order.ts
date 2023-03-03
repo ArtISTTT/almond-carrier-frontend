@@ -1,3 +1,4 @@
+import { Banks } from 'src/interfaces/user';
 import { IRecoverReturn } from '../interfaces/api/auth';
 import {
     IAddAsACarrierReturn,
@@ -316,6 +317,26 @@ export const declineOrder = (requestData: {
 }): Promise<ISuggestChanges> =>
     mainInstance
         .post('/order/decline-order', JSON.stringify(requestData))
+        .then(() => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ?? 'Error with decline order',
+            };
+        });
+
+export const startPayout = (requestData: {
+    orderId: string;
+    phoneNumber: string;
+    bank: Banks;
+}): Promise<ISuggestChanges> =>
+    mainInstance
+        .post('/order/start-payout', JSON.stringify(requestData))
         .then(() => {
             return {
                 ok: true,

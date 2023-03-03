@@ -405,6 +405,8 @@
     "safety": "Безопасность",
     "sanktPeterburg": "Санкт-Петербург",
     "sberbank": "Сбербанк",
+    "payoutDataSeccessfullySent": "Данные для оплаты успешно отправлены",
+    "errorSendPayoutData": "Ошибка при отправке данных",
     "SBP": "СБП",
     "sdmBank": "СДМ-Банк",
     "searchingForANewPartner": "Поиск нового партнера.",
