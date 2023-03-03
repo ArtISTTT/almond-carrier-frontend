@@ -15,6 +15,7 @@ import ReceiverApplyPopup from './ReceiverApplyPopup';
 import CircleLoader from '../Loaders/CircleLoader';
 import { LoaderColors } from 'src/interfaces/loader';
 import { Pagination } from '@mui/material';
+import Head from 'next/head';
 
 const OrderSearch: React.FC = () => {
     const [type, setType] = useState(OrderSeachType.carriers);
@@ -84,6 +85,30 @@ const OrderSearch: React.FC = () => {
 
     return (
         <div className={styles.wrapper}>
+            <Head>
+                <title>Friendly carrier - Orders search</title>
+                <meta
+                    name='description'
+                    content='Search for delivery or ordering some goods'
+                />
+                <meta
+                    property='og:title'
+                    content='Friendly carrier - P2P delivery platform'
+                />
+                <meta
+                    property='og:description'
+                    content='Search for delivery or ordering some goods'
+                />
+                <meta
+                    property='v:url'
+                    content='https://friendlycarrier.com/order-search'
+                />
+                <meta
+                    property='og:image'
+                    content='/static/images/main-page/background2.png'
+                />
+                <meta property='og:type' content='website' />
+            </Head>
             <TypeSwitcher setType={setType} type={type} />
             <div className={styles.content}>
                 <SearchFilters
