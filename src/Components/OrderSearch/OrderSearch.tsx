@@ -100,14 +100,14 @@ const OrderSearch: React.FC = () => {
                     content='Search for delivery or ordering some goods'
                 />
                 <meta
+                    property='og:url'
+                    content='https://friendlycarrier.com/order-search'
+                />
+                <meta property='og:type' content='website' />
+                <meta
                     property='v:url'
                     content='https://friendlycarrier.com/order-search'
                 />
-                <meta
-                    property='og:image'
-                    content='/static/images/main-page/background2.png'
-                />
-                <meta property='og:type' content='website' />
             </Head>
             <TypeSwitcher setType={setType} type={type} />
             <div className={styles.content}>

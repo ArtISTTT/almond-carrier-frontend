@@ -62,11 +62,11 @@ export default function Welcome() {
                         property='og:url'
                         content='https://friendlycarrier.com/'
                     />
-                    <meta
-                        property='og:image'
-                        content='/static/images/main-page/background2.png'
-                    />
                     <meta property='og:type' content='website' />
+                    <meta
+                        property='v:url'
+                        content='https://friendlycarrier.com/'
+                    />
                 </Head>
                 <div className={styles.banner}>
                     <Typography
