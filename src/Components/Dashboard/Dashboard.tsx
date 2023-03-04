@@ -71,8 +71,6 @@ const Dashboard: React.FC = () => {
         setPage(value);
     };
 
-    console.log(totalCountPages);
-
     return (
         <>
             <div
