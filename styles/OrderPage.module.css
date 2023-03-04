@@ -214,6 +214,11 @@
     white-space: nowrap;
 }
 
+.comission {
+    font-size: 14px;
+    color: var(--cTextLow);
+}
+
 .orderInputValue.green {
     color: var(--cTextSuccess);
 }
@@ -375,6 +380,10 @@
 
 .cancelButtons {
     display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--cBgSecondary);
+    padding-left: 32px;
 }
 
 .orderPaymentWrapperButton {
@@ -452,9 +461,6 @@
     border-radius: 15px;
 }
 
-.cancelButtonWrapper {
-    padding: 32px;
-}
 .cancelButton {
     width: 250px;
     border-radius: 15px;
@@ -561,9 +567,9 @@
     .orderConent {
         flex-direction: column;
     }
-    .haveSomeProblems {
+    /* .haveSomeProblems {
         width: 90%;
-    }
+    } */
 }
 
 @media screen and (max-width: 1283px) {
@@ -614,7 +620,8 @@
     }
     .inputItem .input > div > input {
         height: 0;
-        padding: 16px 0;
+        padding-top: 20px;
+        padding-left: 16px;
     }
 }
 
@@ -652,26 +659,27 @@
         height: 16px;
         width: 16px;
     }
-    .editingWrapper svg {
+    /* .editingWrapper svg {
         height: 16px;
         width: 16px;
-    }
+    } */
     .column:last-child {
         max-width: 100px;
     }
     .haveSomeProblems {
         margin-left: 10px;
-        width: 95%;
     }
     .cancelButtonWrapper {
         padding-left: 10px;
+    }
+    .cancelButtons {
+        padding-left: 0;
     }
 }
 
 @media screen and (max-width: 560px) {
     .multiline {
         width: 100%;
-        margin-right: 0;
     }
     .haveSomeProblems {
         text-align: center;
@@ -719,6 +727,20 @@
     }
 }
 
+@media screen and (max-width: 600px) {
+    .haveSomeProblems {
+        width: 95%;
+        margin: 0 auto;
+    }
+    .cancelButtons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .cancelButton {
+        white-space: nowrap;
+    }
+}
+
 @media screen and (max-width: 484px) {
     .orderInputValueWrapper {
         width: 400px;
@@ -749,8 +771,9 @@
         font-size: 12px;
         padding: 10px;
     }
-    .cancelButton {
-        width: 180px;
+    .buttons {
+        display: flex;
+        justify-content: center;
     }
 }
 

@@ -13,6 +13,7 @@ import { IOrder } from '../../interfaces/order';
 import ApplyPopup from './ApplyPopup';
 import cn from 'classnames';
 import { useFormik } from 'formik';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
 import { useRouter } from 'next/router';
 import { OpenAlertContext } from '../Layouts/Snackbar';
@@ -131,12 +132,22 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
 
             <div className={styles.receiverInfo}>
                 <Typography
-                    className={styles.infoItem}
+                    className={cn(styles.infoItem, styles.infoItemFirst)}
                     variant='h5'
                     component='p'
                 >
-                    <p>{t('productItem')}</p>
-                    <span>{order.productName}</span>
+                    <p>{t('productName')}:</p>
+                    <span>
+                        <ShoppingBasketIcon
+                            className={styles.productIcon}
+                            sx={{ height: 17, width: 17 }}
+                        />
+                        <span>{order.productName}</span>
+                        <ShoppingBasketIcon
+                            className={styles.productIcon}
+                            sx={{ height: 17, width: 17 }}
+                        />
+                    </span>
                 </Typography>
                 {order.productUri && (
                     <Typography
@@ -144,11 +155,12 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        <p>{t('link')}</p>
+                        <p>{t('link')}:</p>
                         <span>
                             <MUILink
                                 component={LinkBehaviour}
                                 href={order.productUri}
+                                target='_blank'
                             >
                                 {order.productUri}
                             </MUILink>
@@ -171,7 +183,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         variant='h5'
                         component='p'
                     >
-                        {t('from')}: <span>{order.fromLocation}</span>
+                        <p>{t('from')}:</p> <span>{order.fromLocation}</span>
                     </Typography>
                 )}
 

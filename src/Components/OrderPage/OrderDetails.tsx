@@ -160,7 +160,7 @@ const OrderDetails: React.FC<IProps> = ({
                     </div>
                     <div className={styles.createdDate}>
                         <div>{order.createdDate.format('hh:mm')}</div>
-                        <div>{order.createdDate.format('MM.D.YYYY')}</div>
+                        <div>{order.createdDate.format('DD.MM.YYYY')}</div>
                     </div>
                 </div>
             </div>

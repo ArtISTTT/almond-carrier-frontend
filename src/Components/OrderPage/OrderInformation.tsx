@@ -550,15 +550,37 @@ const OrderInformation: React.FC<IProps> = ({
                                                             styles.orderInputValue
                                                         }
                                                     >
-                                                        {formatAmount(
-                                                            calculateTotalAmount(
-                                                                order.productAmount,
-                                                                order.rewardAmount,
-                                                                Currency.RUB
-                                                            ),
-                                                            Currency.RUB
-                                                        )}{' '}
+                                                        {viewType ===
+                                                        ViewType.receiver
+                                                            ? formatAmount(
+                                                                  calculateTotalAmount(
+                                                                      order.productAmount,
+                                                                      order.rewardAmount,
+                                                                      Currency.RUB
+                                                                  ),
+                                                                  Currency.RUB
+                                                              )
+                                                            : formatAmount(
+                                                                  order.productAmount +
+                                                                      order.rewardAmount,
+                                                                  Currency.RUB
+                                                              )}{' '}
                                                         {t(Currency.RUB)}
+                                                        {viewType ===
+                                                            ViewType.receiver && (
+                                                            <span
+                                                                className={
+                                                                    styles.comission
+                                                                }
+                                                            >
+                                                                {' '}
+                                                                (1500 {t(
+                                                                    'RUB'
+                                                                )}{' '}
+                                                                {t('comission')}
+                                                                )
+                                                            </span>
+                                                        )}
                                                     </span>
                                                 </div>
                                             </div>
