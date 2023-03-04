@@ -92,6 +92,8 @@ const MessagesPanel: React.FC<IProps> = ({
         onSubmit: addMessage,
     });
 
+    console.log(messages);
+
     return (
         <div className={styles.contentBlock}>
             {!isMessagesLoading ? (

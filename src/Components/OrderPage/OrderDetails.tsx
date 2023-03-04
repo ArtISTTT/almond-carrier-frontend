@@ -100,35 +100,36 @@ const OrderDetails: React.FC<IProps> = ({
                     >
                         {statusToText(displayOrderStatus)}
                     </span>
-
-                    {order.myReview
-                        ? isReviewButtonsShowed && (
-                              <span
-                                  onClick={openMySentReviewBlock}
-                                  className={styles.feedBackSentBlock}
-                              >
-                                  {t('myFeedback')}
-                              </span>
-                          )
-                        : isReviewButtonsShowed && (
-                              <span
-                                  className={styles.openReviewPopupButton}
-                                  onClick={openReviewBlock}
-                              >
-                                  <AddCommentIcon />
-                                  {t('leaveFeedback')}
-                              </span>
-                          )}
-                    {order.partnerReview && isReviewButtonsShowed && (
-                        <span
-                            onClick={operPersonReviewBlock}
-                            className={styles.partnerFeedBack}
-                        >
-                            {viewType === ViewType.receiver
-                                ? t('partnerCarrierReview')
-                                : t('partnerReceiverReview')}
-                        </span>
-                    )}
+                    <div>
+                        {order.myReview
+                            ? isReviewButtonsShowed && (
+                                  <span
+                                      onClick={openMySentReviewBlock}
+                                      className={styles.feedBackSentBlock}
+                                  >
+                                      {t('myFeedback')}
+                                  </span>
+                              )
+                            : isReviewButtonsShowed && (
+                                  <span
+                                      className={styles.openReviewPopupButton}
+                                      onClick={openReviewBlock}
+                                  >
+                                      <AddCommentIcon />
+                                      {t('leaveFeedback')}
+                                  </span>
+                              )}
+                        {order.partnerReview && isReviewButtonsShowed && (
+                            <span
+                                onClick={operPersonReviewBlock}
+                                className={styles.partnerFeedBack}
+                            >
+                                {viewType === ViewType.receiver
+                                    ? t('partnerCarrierReview')
+                                    : t('partnerReceiverReview')}
+                            </span>
+                        )}
+                    </div>
                 </div>
                 {displayOrderStatus === OrderStatus.itemRecieved &&
                     viewType === ViewType.carrier && (
