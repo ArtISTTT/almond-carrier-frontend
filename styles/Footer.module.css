@@ -26,6 +26,7 @@
 
 .centerBlock {
     margin: auto 0;
+    padding-left: 75px;
     display: flex;
     flex: 1;
 }
@@ -88,6 +89,7 @@
 
 .rightBlock {
     margin-top: auto;
+    padding-right: 75px;
     display: flex;
 }
 
@@ -184,8 +186,12 @@
         width: 40px;
         height: 40px;
     }
+    .centerBlock {
+        padding-left: 0;
+    }
     .rightBlock {
         display: flex;
+        padding-right: 0;
         flex-direction: column-reverse;
     }
     .icons {

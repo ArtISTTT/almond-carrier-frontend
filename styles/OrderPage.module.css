@@ -33,7 +33,6 @@
 
 .orderDetails {
     padding: 32px;
-    padding-bottom: 10px;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -196,13 +195,11 @@
 .productUri {
     cursor: pointer;
     text-decoration: none;
-    color: var(--cTextThird);
-    transition-duration: 200ms;
+    color: var(--cTextPrimary);
 }
 
 .productUri:hover {
-    color: var(--cTextPrimary);
-    /* text-decoration: underline; */
+    text-decoration: underline;
 }
 
 .orderInputValue {
@@ -480,6 +477,9 @@
     color: var(--cTextPrimary);
     text-transform: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
     font-weight: 600;
     padding: 2px 12px;
 }

@@ -132,17 +132,17 @@ const Footer = () => {
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
-                            href='#'
+                            href={navigateTo.LANDING}
                         >
                             {t('about')}
                         </MUILink>
-                        <MUILink
+                        {/* <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
                             href='#'
                         >
                             {t('founders')}
-                        </MUILink>
+                        </MUILink> */}
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
@@ -159,7 +159,7 @@ const Footer = () => {
                         </MUILink>
                     </div>
 
-                    <div className={styles.centerColumn}>
+                    {/* <div className={styles.centerColumn}>
                         <Typography
                             variant='h3'
                             component='h3'
@@ -188,7 +188,7 @@ const Footer = () => {
                         >
                             {t('contactUs')}
                         </MUILink>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className={styles.rightBlock}>
@@ -205,24 +205,26 @@ const Footer = () => {
                     <MUILink
                         className={styles.footerIcon}
                         component={LinkBehaviour}
-                        href='#'
+                        target='_blank'
+                        href='mailto:support@friendlycarrier.com'
                     >
                         <EmailIcon sx={{ fontSize: 30 }} />
                     </MUILink>
                     <MUILink
                         className={styles.footerIcon}
                         component={LinkBehaviour}
-                        href='#'
+                        target='_blank'
+                        href='https://web.telegram.org/k/#@friendlycarrier'
                     >
                         <TelegramIcon sx={{ fontSize: 30 }} />
                     </MUILink>
-                    <MUILink
+                    {/* <MUILink
                         className={styles.footerIcon}
                         component={LinkBehaviour}
                         href='#'
                     >
                         <InstagramIcon sx={{ fontSize: 30 }} />
-                    </MUILink>
+                    </MUILink> */}
                 </div>
             </div>
         </footer>
