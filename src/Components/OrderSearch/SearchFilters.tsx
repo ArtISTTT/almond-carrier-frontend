@@ -100,6 +100,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                     type: 'string',
                                     variant: 'outlined',
                                     value: carriersFormik.values.fromLocation,
+                                    placeholder: t('enterLocation') as string,
                                     onChange: carriersFormik.handleChange,
                                     error:
                                         carriersFormik.errors.fromLocation !==
@@ -123,6 +124,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                     type: 'string',
                                     variant: 'outlined',
                                     value: carriersFormik.values.toLocation,
+                                    placeholder: t('enterLocation') as string,
                                     onChange: carriersFormik.handleChange,
                                     error:
                                         carriersFormik.errors.toLocation !==
@@ -208,6 +210,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                     name: 'fromLocation',
                                     type: 'string',
                                     variant: 'outlined',
+                                    placeholder: t('enterLocation') as string,
                                     value: receiversFormik.values.fromLocation,
                                     onChange: receiversFormik.handleChange,
                                     error:
@@ -231,6 +234,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                     name: 'toLocation',
                                     type: 'string',
                                     variant: 'outlined',
+                                    placeholder: t('enterLocation') as string,
                                     value: receiversFormik.values.toLocation,
                                     onChange: receiversFormik.handleChange,
                                     error:

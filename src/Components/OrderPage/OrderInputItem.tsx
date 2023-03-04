@@ -135,6 +135,7 @@ const OrderInputItem: React.FC<IProps> = ({
                                     name: id,
                                     type: 'string',
                                     variant: 'outlined',
+                                    placeholder: t('enterLocation') as string,
                                     value: formik.values[id],
                                     onChange: formik.handleChange,
                                     error: formik.errors[id] !== undefined,

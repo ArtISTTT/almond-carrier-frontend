@@ -33,6 +33,10 @@
     letter-spacing: 0.4px;
 }
 
+.descriptionWithoutFastSignUp {
+    margin-bottom: 150px;
+}
+
 .fastSignUp {
     margin-top: 140px;
 }

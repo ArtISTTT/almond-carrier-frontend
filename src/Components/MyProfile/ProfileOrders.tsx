@@ -58,13 +58,15 @@ const ProfileOrders = () => {
                                     <OrderItem key={i} {...order} />
                                 ))}
                             </div>
-                            <Pagination
-                                className={styles.pagination}
-                                count={totalCountPages}
-                                variant='outlined'
-                                color='primary'
-                                onChange={handleChangePagination}
-                            />
+                            {totalCountPages > 1 && (
+                                <Pagination
+                                    className={styles.pagination}
+                                    count={totalCountPages}
+                                    variant='outlined'
+                                    color='primary'
+                                    onChange={handleChangePagination}
+                                />
+                            )}
                         </>
                     )}
                     {orders.length === 0 && (
