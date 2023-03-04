@@ -18,6 +18,10 @@ const ProfileReviews = () => {
         reload();
     }, []);
 
+    const totalCountPages = React.useMemo(() => {
+        return Math.ceil(reviews.length / 4);
+    }, [reviews]);
+
     if (isLoading) {
         return <CircleLoader color={LoaderColors.PRIMARY} />;
     }
@@ -36,12 +40,14 @@ const ProfileReviews = () => {
                     <ReviewItem key={i} {...review} />
                 ))}
             </div>
-            <Pagination
-                className={styles.pagination}
-                count={Math.round(reviews.length / 5)}
-                variant='outlined'
-                color='primary'
-            />
+            {totalCountPages > 1 && (
+                <Pagination
+                    className={styles.pagination}
+                    count={totalCountPages}
+                    variant='outlined'
+                    color='primary'
+                />
+            )}
         </div>
     );
 };

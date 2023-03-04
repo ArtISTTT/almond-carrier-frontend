@@ -5,7 +5,6 @@ import {
     carriersFilter,
     receiversFilter,
 } from '../../interfaces/order-search';
-import { Pagination } from '@mui/material';
 import SearchTableOrderCarrier from './SearchTableOrderCarrier';
 import SearchTableOrderReceiver from './SearchTableOrderReceiver';
 import cn from 'classnames';

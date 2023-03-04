@@ -7,6 +7,7 @@ import ReceiptIcon from '@mui/icons-material/Receipt';
 import { useTranslation } from 'react-i18next';
 import { IOrderFull } from '../../interfaces/order';
 import { OrderStatus } from 'src/interfaces/profile';
+import AddCommentIcon from '@mui/icons-material/AddComment';
 import { ViewType } from './OrderInputItem';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 
@@ -114,6 +115,7 @@ const OrderDetails: React.FC<IProps> = ({
                                   className={styles.openReviewPopupButton}
                                   onClick={openReviewBlock}
                               >
+                                  <AddCommentIcon />
                                   {t('leaveFeedback')}
                               </span>
                           )}

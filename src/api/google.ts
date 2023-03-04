@@ -16,11 +16,8 @@ export const getGooglePlaceDetails = (
             }
         )
         .then(data => {
-            console.log(data);
             return 'OK';
         })
         .catch(err => {
-            console.log(err);
-
             return 'NOT OK';
         });

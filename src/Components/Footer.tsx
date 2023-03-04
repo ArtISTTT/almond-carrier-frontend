@@ -116,7 +116,7 @@ const Footer = () => {
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
-                            href='/profile/general'
+                            href={navigateTo.PROFILE_GENERAL}
                         >
                             {t('myInfo')}
                         </MUILink>
@@ -132,34 +132,34 @@ const Footer = () => {
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
-                            href='#'
+                            href={navigateTo.LANDING}
                         >
                             {t('about')}
                         </MUILink>
-                        <MUILink
+                        {/* <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
                             href='#'
                         >
                             {t('founders')}
-                        </MUILink>
+                        </MUILink> */}
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
-                            href='privacy-policy'
+                            href={navigateTo.PRIVACY_POLICITY}
                         >
                             {t('privacy')}
                         </MUILink>
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
-                            href='user-agreement'
+                            href={navigateTo.USER_AGREEMENT}
                         >
                             {t('serviceTerms')}
                         </MUILink>
                     </div>
 
-                    <div className={styles.centerColumn}>
+                    {/* <div className={styles.centerColumn}>
                         <Typography
                             variant='h3'
                             component='h3'
@@ -188,7 +188,7 @@ const Footer = () => {
                         >
                             {t('contactUs')}
                         </MUILink>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className={styles.rightBlock}>
@@ -202,15 +202,29 @@ const Footer = () => {
                     <div className={styles.rightsText}>{t('copyright')}</div>
                 </div>
                 <div className={styles.icons}>
-                    <MUILink component={LinkBehaviour} href='#'>
-                        <EmailIcon className={styles.footerIcon} />
+                    <MUILink
+                        className={styles.footerIcon}
+                        component={LinkBehaviour}
+                        target='_blank'
+                        href='mailto:support@friendlycarrier.com'
+                    >
+                        <EmailIcon sx={{ fontSize: 30 }} />
                     </MUILink>
-                    <MUILink component={LinkBehaviour} href='#'>
-                        <TelegramIcon className={styles.footerIcon} />
+                    <MUILink
+                        className={styles.footerIcon}
+                        component={LinkBehaviour}
+                        target='_blank'
+                        href='https://t.me/friendlycarrier'
+                    >
+                        <TelegramIcon sx={{ fontSize: 30 }} />
                     </MUILink>
-                    <MUILink component={LinkBehaviour} href='#'>
-                        <InstagramIcon className={styles.footerIcon} />
-                    </MUILink>
+                    {/* <MUILink
+                        className={styles.footerIcon}
+                        component={LinkBehaviour}
+                        href='#'
+                    >
+                        <InstagramIcon sx={{ fontSize: 30 }} />
+                    </MUILink> */}
                 </div>
             </div>
         </footer>

@@ -22,14 +22,14 @@ const ProfileCard = () => {
                 >
                     {user.firstName} {user.lastName}
                 </Typography>
-                <Typography
+                {/* <Typography
                     className={styles.cardCity}
                     variant='h4'
                     component='h2'
                 >
                     {t('from')}
                     <span>Moscow</span>
-                </Typography>
+                </Typography> */}
                 <div className={styles.statisticItem}>
                     <div className={styles.statisticTitle}>
                         {t('completedOrders')}

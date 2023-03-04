@@ -235,6 +235,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                                     name: 'fromLocation',
                                     type: 'string',
                                     variant: 'outlined',
+                                    placeholder: t('enterLocation') as string,
                                     value: formik.values.fromLocation,
                                     onChange: formik.handleChange,
                                     className: styles.input,

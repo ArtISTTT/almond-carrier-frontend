@@ -12,6 +12,8 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { navigateTo } from 'src/interfaces/navigate';
 import Head from 'next/head';
+import { selectIsAuthorized } from 'src/redux/selectors/user';
+import { useSelector } from 'react-redux';
 
 type IForm = {
     email: string;
@@ -20,6 +22,7 @@ type IForm = {
 export default function Welcome() {
     const router = useRouter();
     const { t } = useTranslation();
+    const isAuthorized = useSelector(selectIsAuthorized);
 
     const handleSubmit = (form: IForm) => {
         router.push({
@@ -79,42 +82,46 @@ export default function Welcome() {
                     <Typography
                         variant='h3'
                         component='h2'
-                        className={styles.description}
+                        className={cn(styles.description, {
+                            [styles.descriptionWithoutFastSignUp]: isAuthorized,
+                        })}
                     >
                         {t('companyThatUnitesPeopleETC')}
                     </Typography>
-                    <div className={styles.fastSignUp}>
-                        <form
-                            className={styles.form}
-                            onSubmit={formik.handleSubmit}
-                            action='submit'
-                        >
-                            <TextField
-                                id='email'
-                                name='email'
-                                variant='outlined'
-                                color='primary'
-                                placeholder={t('email') as string}
-                                className={styles.emailInput}
-                                value={formik.values.email}
-                                onChange={formik.handleChange}
-                                error={formik.errors.email !== undefined}
-                                helperText={
-                                    formik.errors.email &&
-                                    (t(formik.errors.email) as string)
-                                }
-                            />
-                            <Button
-                                type='submit'
-                                color='primary'
-                                disabled={formik.isSubmitting}
-                                className={styles.submitButton}
-                                variant='contained'
+                    {!isAuthorized && (
+                        <div className={styles.fastSignUp}>
+                            <form
+                                className={styles.form}
+                                onSubmit={formik.handleSubmit}
+                                action='submit'
                             >
-                                {t('registerNow')}
-                            </Button>
-                        </form>
-                    </div>
+                                <TextField
+                                    id='email'
+                                    name='email'
+                                    variant='outlined'
+                                    color='primary'
+                                    placeholder={t('email') as string}
+                                    className={styles.emailInput}
+                                    value={formik.values.email}
+                                    onChange={formik.handleChange}
+                                    error={formik.errors.email !== undefined}
+                                    helperText={
+                                        formik.errors.email &&
+                                        (t(formik.errors.email) as string)
+                                    }
+                                />
+                                <Button
+                                    type='submit'
+                                    color='primary'
+                                    disabled={formik.isSubmitting}
+                                    className={styles.submitButton}
+                                    variant='contained'
+                                >
+                                    {t('registerNow')}
+                                </Button>
+                            </form>
+                        </div>
+                    )}
                 </div>
                 <div className={styles.rolesWrapper}>
                     <div className={styles.roleBlock}>

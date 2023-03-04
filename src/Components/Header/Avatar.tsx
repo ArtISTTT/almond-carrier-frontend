@@ -7,7 +7,7 @@ import {
     Paper,
     Popper,
 } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from '../../../styles/mainLayout.module.css';
 import { signOut } from '../../api/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -17,6 +17,7 @@ import SettingsPopup from '../SettingsPopup/SettingsPopup';
 import { setIsAuthorized } from '../../redux/slices/userSlice';
 import { useTranslation } from 'next-i18next';
 import { navigateTo } from 'src/interfaces/navigate';
+import { OpenAlertContext } from '../Layouts/Snackbar';
 
 interface IProps {
     isSettingsPopupOpen: boolean;
@@ -32,6 +33,7 @@ const HeaderAvatar: React.FC<IProps> = ({
     const user = useAppSelector(selectUser);
     const dispatch = useAppDispatch();
     const anchorRef = React.useRef(null);
+    const { triggerOpen } = useContext(OpenAlertContext);
     const { t } = useTranslation();
 
     const handleToggle = () => setOpen(prevOpen => !prevOpen);
@@ -54,7 +56,10 @@ const HeaderAvatar: React.FC<IProps> = ({
             dispatch(setIsAuthorized(false));
             router.push(navigateTo.LANDING);
         } else {
-            console.log('Sign out error');
+            triggerOpen({
+                severity: 'error',
+                text: data.error || t('signOutError'),
+            });
         }
     };
 
