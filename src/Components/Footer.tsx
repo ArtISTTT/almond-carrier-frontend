@@ -214,7 +214,7 @@ const Footer = () => {
                         className={styles.footerIcon}
                         component={LinkBehaviour}
                         target='_blank'
-                        href='https://web.telegram.org/k/#@friendlycarrier'
+                        href='https://t.me/friendlycarrier'
                     >
                         <TelegramIcon sx={{ fontSize: 30 }} />
                     </MUILink>

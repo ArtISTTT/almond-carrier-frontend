@@ -123,18 +123,15 @@ const Dashboard: React.FC = () => {
                                     )}
                                 </div>
                                 <div className={styles.newOrderButtons}>
-                                    {totalCountPages !== 0 &&
-                                        totalCountPages !== 1 && (
-                                            <Pagination
-                                                className={styles.pagination}
-                                                count={totalCountPages}
-                                                variant='outlined'
-                                                color='primary'
-                                                onChange={
-                                                    handleChangePagination
-                                                }
-                                            />
-                                        )}
+                                    {totalCountPages > 1 && (
+                                        <Pagination
+                                            className={styles.pagination}
+                                            count={totalCountPages}
+                                            variant='outlined'
+                                            color='primary'
+                                            onChange={handleChangePagination}
+                                        />
+                                    )}
                                     <Button
                                         onClick={toggleReceiverPopup}
                                         className={styles.newOrderButton}

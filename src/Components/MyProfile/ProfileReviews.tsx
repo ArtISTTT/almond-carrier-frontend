@@ -40,7 +40,7 @@ const ProfileReviews = () => {
                     <ReviewItem key={i} {...review} />
                 ))}
             </div>
-            {totalCountPages !== 0 && totalCountPages !== 1 && (
+            {totalCountPages > 1 && (
                 <Pagination
                     className={styles.pagination}
                     count={totalCountPages}

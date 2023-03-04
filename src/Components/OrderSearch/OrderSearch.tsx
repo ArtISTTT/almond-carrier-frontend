@@ -126,7 +126,7 @@ const OrderSearch: React.FC = () => {
                         orders={orders}
                     />
                 )}
-                {totalCount !== 0 && totalCount !== 1 && (
+                {totalCount > 1 && (
                     <Pagination
                         className={styles.pagination}
                         count={totalCount}
