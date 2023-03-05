@@ -716,9 +716,18 @@
 @media screen and (max-width: 630px) {
     .orderDetails {
         flex-direction: column;
-        gap: 20px;
+        gap: 10px;
+    }
+    .orderDetailsInfo {
+        justify-content: flex-start;
+    }
+    .openReviewPopupButton {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
     }
     .infoLeft {
+        text-align: start;
         gap: 8px;
     }
     .infoRight {
