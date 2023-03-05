@@ -31,6 +31,7 @@ import ReviewPopup from './ReviewPopup';
 import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { ReceiverPopupSchema } from 'src/schemas/PopupSchema';
+import { OUR_COMISSION_RUB } from 'src/helpers/comission';
 
 type IProps = {
     order: IOrderFull;
@@ -550,15 +551,39 @@ const OrderInformation: React.FC<IProps> = ({
                                                             styles.orderInputValue
                                                         }
                                                     >
-                                                        {formatAmount(
-                                                            calculateTotalAmount(
-                                                                order.productAmount,
-                                                                order.rewardAmount,
-                                                                Currency.RUB
-                                                            ),
-                                                            Currency.RUB
-                                                        )}{' '}
+                                                        {viewType ===
+                                                        ViewType.receiver
+                                                            ? formatAmount(
+                                                                  calculateTotalAmount(
+                                                                      order.productAmount,
+                                                                      order.rewardAmount,
+                                                                      Currency.RUB
+                                                                  ),
+                                                                  Currency.RUB
+                                                              )
+                                                            : formatAmount(
+                                                                  order.productAmount +
+                                                                      order.rewardAmount,
+                                                                  Currency.RUB
+                                                              )}{' '}
                                                         {t(Currency.RUB)}
+                                                        {viewType ===
+                                                            ViewType.receiver && (
+                                                            <span
+                                                                className={
+                                                                    styles.comission
+                                                                }
+                                                            >
+                                                                {' '}
+                                                                (
+                                                                {
+                                                                    OUR_COMISSION_RUB
+                                                                }{' '}
+                                                                {t('RUB')}{' '}
+                                                                {t('comission')}
+                                                                )
+                                                            </span>
+                                                        )}
                                                     </span>
                                                 </div>
                                             </div>

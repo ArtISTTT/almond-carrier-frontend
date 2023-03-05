@@ -21,6 +21,8 @@ import { IOrderFull } from 'src/interfaces/order';
 import { OrderStatus } from 'src/interfaces/profile';
 import { startPayout } from 'src/api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { Currency } from 'src/interfaces/settings';
 
 type IForm = {
     bank: Banks;
@@ -34,6 +36,7 @@ interface IProps {
 const OrderPaymentSuccess: React.FC<IProps> = ({ order }) => {
     const [paymentOpened, setPaymentOpened] = React.useState<boolean>(false);
     const { triggerOpen } = useContext(OpenAlertContext);
+    const formatAmount = useFormatAmount();
     const { t } = useTranslation();
     const banksArray = useGetBanks();
 
@@ -95,7 +98,8 @@ const OrderPaymentSuccess: React.FC<IProps> = ({ order }) => {
                         component='h4'
                         className={styles.detailsBlock}
                     >
-                        {t('specifyTheDetailsRequiredToReceiveTheAward')}
+                        {t('provideDetailsForReceivingTheRewardOf')}{' '}
+                        {formatAmount(order.rewardAmount, Currency.RUB, true)}
                     </Typography>
                     <form onSubmit={formik.handleSubmit} action='submit'>
                         <div className={styles.inputPhoneBlock}>

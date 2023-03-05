@@ -6,8 +6,7 @@ import OrderInformation from './OrderInformation';
 import { cancelOrder, declineOrder, getOrderById } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { IOrderFull } from '../../interfaces/order';
-import Link from 'next/link';
-import { Button } from '@mui/material';
+import { Button, Link as MUILink } from '@mui/material';
 import OrderPayment from './OrderPayment';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'src/redux/selectors/user';
@@ -22,6 +21,7 @@ import CircleLoader from '../Loaders/CircleLoader';
 import { LoaderColors } from 'src/interfaces/loader';
 import OrderPaymentSuccess from './OrderPaymentSuccess';
 import { OpenDialogContext } from '../Layouts/ConfirmDialog';
+import { LinkBehaviour } from '../Common/LinkBehaviour';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -193,7 +193,12 @@ const OrderPage = () => {
                 )}
 
             <div className={styles.haveSomeProblems}>
-                <Link href='#'>{t('haveSomeProblems')}</Link>
+                <MUILink
+                    component={LinkBehaviour}
+                    href='mailto:support@friendlycarrier.com'
+                >
+                    {t('haveSomeProblems')}
+                </MUILink>
             </div>
             <div className={styles.cancelButtons}>
                 {[OrderStatus.inDiscussion].includes(order.status) && (
