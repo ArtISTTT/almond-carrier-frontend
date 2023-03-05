@@ -1,8 +1,9 @@
 import { Currency } from '../interfaces/settings';
-
-const OUR_COMISSION_RUB = 1500;
-const OUR_COMISSION_USD_USD = 20;
-const OUR_COMISSION_USD_EUR = 18;
+import {
+    OUR_COMISSION_RUB,
+    OUR_COMISSION_USD_EUR,
+    OUR_COMISSION_USD_USD,
+} from './comission';
 
 export const calculateTotalAmount = (
     productAmount: number,

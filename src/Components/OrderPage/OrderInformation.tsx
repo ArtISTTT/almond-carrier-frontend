@@ -31,6 +31,7 @@ import ReviewPopup from './ReviewPopup';
 import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { ReceiverPopupSchema } from 'src/schemas/PopupSchema';
+import { OUR_COMISSION_RUB } from 'src/helpers/comission';
 
 type IProps = {
     order: IOrderFull;
@@ -574,9 +575,11 @@ const OrderInformation: React.FC<IProps> = ({
                                                                 }
                                                             >
                                                                 {' '}
-                                                                (1500 {t(
-                                                                    'RUB'
-                                                                )}{' '}
+                                                                (
+                                                                {
+                                                                    OUR_COMISSION_RUB
+                                                                }{' '}
+                                                                {t('RUB')}{' '}
                                                                 {t('comission')}
                                                                 )
                                                             </span>
