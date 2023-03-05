@@ -601,17 +601,10 @@
 }
 
 @media screen and (max-width: 930px) {
-    .orderDetailsTitle {
-        text-align: center;
-    }
     .detailsButtons {
         flex-direction: column;
         gap: 16px;
         align-items: flex-start;
-    }
-    .detailsButtons > span {
-        width: 100%;
-        text-align: center;
     }
     .detailsButtons > div > span {
         padding-left: 5px;
@@ -634,7 +627,6 @@
     }
     .orderDetailsTitle {
         font-size: 30px;
-        text-align: center;
     }
     .infoLeft {
         font-size: 14px;
@@ -645,13 +637,8 @@
     .infoRightId > span {
         font-size: 14px;
     }
-    .detailsButtons > span {
-        width: 80%;
-        margin: 0 auto;
-        text-align: center;
-    }
     .detailsButtons > div > span {
-        font-size: 15px;
+        font-size: 16px;
         padding-left: 5px;
     }
 }
@@ -721,21 +708,15 @@
     .cancelButtons {
         padding-left: 0;
     }
+    .detailsButtons {
+        gap: 8px;
+    }
 }
 
 @media screen and (max-width: 630px) {
     .orderDetails {
         flex-direction: column;
         gap: 20px;
-    }
-    .orderDetailsInfo {
-        justify-content: center;
-    }
-    .orderInformationTitle {
-        justify-content: center;
-    }
-    .orderDetailsMain {
-        align-items: center;
     }
     .infoLeft {
         gap: 8px;
