@@ -122,7 +122,7 @@ const Dashboard: React.FC = () => {
                                         <EmptyOrdersBlock />
                                     )}
                                 </div>
-                                <div className={styles.newOrderButtons}>
+                                <div className={styles.newOrderButtonsWrapper}>
                                     {totalCountPages > 1 && (
                                         <Pagination
                                             className={styles.pagination}
@@ -132,25 +132,27 @@ const Dashboard: React.FC = () => {
                                             onChange={handleChangePagination}
                                         />
                                     )}
-                                    <Button
-                                        onClick={toggleReceiverPopup}
-                                        className={styles.newOrderButton}
-                                        variant='contained'
-                                    >
-                                        <AddIcon sx={{ fontSize: 22 }} />
-                                        {t('orderItem')}
-                                    </Button>
-                                    <Button
-                                        onClick={toggleCarrierPopup}
-                                        className={cn(
-                                            styles.newOrderButton,
-                                            styles.sending
-                                        )}
-                                        variant='contained'
-                                    >
-                                        <AddIcon sx={{ fontSize: 22 }} />
-                                        {t('sendItem')}
-                                    </Button>
+                                    <div className={styles.newOrderButtons}>
+                                        <Button
+                                            onClick={toggleReceiverPopup}
+                                            className={styles.newOrderButton}
+                                            variant='contained'
+                                        >
+                                            <AddIcon sx={{ fontSize: 22 }} />
+                                            {t('orderItem')}
+                                        </Button>
+                                        <Button
+                                            onClick={toggleCarrierPopup}
+                                            className={cn(
+                                                styles.newOrderButton,
+                                                styles.sending
+                                            )}
+                                            variant='contained'
+                                        >
+                                            <AddIcon sx={{ fontSize: 22 }} />
+                                            {t('sendItem')}
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                         )}
