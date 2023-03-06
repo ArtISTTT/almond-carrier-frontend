@@ -4,7 +4,7 @@ import { Button, Container, Typography, Pagination } from '@mui/material';
 import cn from 'classnames';
 import AddIcon from '@mui/icons-material/Add';
 import ReceiverAddingPopup from 'src/Components/OrderComponents/ReceiverAddingPopup';
-import CarrierLayout from '../Layouts/Carrier';
+import UserLayout from '../Layouts/User';
 import OrderItem from 'src/Components/OrderComponents/OrderItem';
 import CarrierAddingPopup from '../OrderComponents/CarrierAddingPopup';
 import { useSelector } from 'react-redux';
@@ -92,7 +92,7 @@ const Dashboard: React.FC = () => {
                     />
                 )}
             </div>
-            <CarrierLayout>
+            <UserLayout>
                 <Container
                     maxWidth={false}
                     className={styles.dashboardContainer}
@@ -158,7 +158,7 @@ const Dashboard: React.FC = () => {
                         )}
                     </div>
                 </Container>
-            </CarrierLayout>
+            </UserLayout>
         </>
     );
 };
