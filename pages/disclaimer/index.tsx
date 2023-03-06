@@ -1,15 +1,15 @@
 import React from 'react';
 import PrivateLayout from '../../src/Components/Layouts/Private';
 import { privateTypes } from '../../src/interfaces/private';
-import CarrierLayout from '../../src/Components/Layouts/Carrier';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Disclaimer from 'src/Components/documents/Disclaimer';
+import UserLayout from 'src/Components/Layouts/User';
 
 const ReceiverPage: React.FC = () => (
     <PrivateLayout privateType={privateTypes.all}>
-        <CarrierLayout>
+        <UserLayout>
             <Disclaimer />
-        </CarrierLayout>
+        </UserLayout>
     </PrivateLayout>
 );
 
