@@ -84,7 +84,6 @@
     text-align: center;
     margin: 15px 0;
     margin-left: 30px;
-    padding-bottom: 4px;
     color: var(--cTextPrimary);
 }
 
@@ -245,6 +244,9 @@
     .loginInner {
         padding: 30px 40px;
     }
+    .confirmLetterSent {
+        margin-top: 0;
+    }
     .loginWrapper::before {
         height: 370px;
         width: 750px;
@@ -261,6 +263,18 @@
 }
 
 @media screen and (max-width: 600px) {
+    .confirmLetterSent {
+        font-size: 15px;
+    }
+    .confirmLetterEmail {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-top: 2px;
+        font-size: 15px;
+    }
+    .confirmFinishRegistr {
+        font-size: 11px;
+    }
     .loginWrapper {
         padding-top: 40px;
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import CarrierLayout from 'src/Components/Layouts/Carrier';
+import UserLayout from 'src/Components/Layouts/User';
 import ProfileLayout from 'src/Components/Layouts/ProfileLayout';
 import PrivateLayout from 'src/Components/Layouts/Private';
 import General from 'src/Components/MyProfile/General';
@@ -9,11 +9,11 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 const index = () => {
     return (
         <PrivateLayout privateType={privateTypes.onlyAuthorized}>
-            <CarrierLayout>
+            <UserLayout>
                 <ProfileLayout>
                     <General />
                 </ProfileLayout>
-            </CarrierLayout>
+            </UserLayout>
         </PrivateLayout>
     );
 };

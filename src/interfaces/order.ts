@@ -22,12 +22,14 @@ export interface IOrder {
     isPayed: boolean;
     receiver?: {
         id: string;
+        avatar?: string;
         rating: number;
         firstName: string;
         lastName: string;
     };
     carrier?: {
         id: string;
+        avatar?: string;
         rating: number;
         firstName: string;
         lastName: string;

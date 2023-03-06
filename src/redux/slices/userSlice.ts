@@ -26,9 +26,18 @@ export const userSlice = createSlice({
         setInitializeAuthChecked: (state, action: PayloadAction<boolean>) => {
             state.initializeAuthChecked = action.payload;
         },
+        uploadAvatar: (state, action: PayloadAction<string>) => {
+            if (state.data) {
+                state.data.avatar = action.payload;
+            }
+        },
     },
 });
 
-export const { addUserData, setIsAuthorized, setInitializeAuthChecked } =
-    userSlice.actions;
+export const {
+    addUserData,
+    setIsAuthorized,
+    setInitializeAuthChecked,
+    uploadAvatar,
+} = userSlice.actions;
 export default userSlice.reducer;

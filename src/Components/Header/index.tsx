@@ -2,6 +2,7 @@ import { Avatar, Button, Link as MUILink } from '@mui/material';
 import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import styles from '../../../styles/mainLayout.module.css';
+import cn from 'classnames';
 import { selectIsAuthorized } from '../../redux/selectors/user';
 import HeaderAvatar from './Avatar';
 import { useRouter } from 'next/router';
@@ -62,7 +63,11 @@ const Header: React.FC<IProps> = ({
 
     return (
         <header className={styles.header}>
-            <div className={styles.leftMenu}>
+            <div
+                className={cn(styles.leftMenu, {
+                    [styles.leftMenuAuth]: !isAuthorized,
+                })}
+            >
                 <Avatar
                     onClick={changePageIfAuthorized}
                     sx={{ width: 55, height: 55, cursor: 'pointer' }}
@@ -70,8 +75,20 @@ const Header: React.FC<IProps> = ({
                     src='/static/images/logo.png'
                 />
 
-                <div className={styles.leftMenuLinks}>
-                    {isAuthorized && (
+                {!isAuthorized && (
+                    <div className={cn(styles.leftMenuLinks)}>
+                        <MUILink
+                            href={navigateTo.ORDER_SEARCH}
+                            className={styles.link}
+                            component={LinkBehaviour}
+                            underline='none'
+                        >
+                            {t('orderSearch')}
+                        </MUILink>
+                    </div>
+                )}
+                {isAuthorized && (
+                    <div className={cn(styles.leftMenuLinksAuth)}>
                         <MUILink
                             href={navigateTo.DASHBOARD}
                             className={styles.link}
@@ -80,16 +97,17 @@ const Header: React.FC<IProps> = ({
                         >
                             {t('dashboard')}
                         </MUILink>
-                    )}
-                    <MUILink
-                        href={navigateTo.ORDER_SEARCH}
-                        className={styles.link}
-                        component={LinkBehaviour}
-                        underline='none'
-                    >
-                        {t('orderSearch')}
-                    </MUILink>
-                </div>
+
+                        <MUILink
+                            href={navigateTo.ORDER_SEARCH}
+                            className={styles.link}
+                            component={LinkBehaviour}
+                            underline='none'
+                        >
+                            {t('orderSearch')}
+                        </MUILink>
+                    </div>
+                )}
             </div>
             <div className={styles.rightMenu}>
                 <div className={styles.rightMenuButtons}>

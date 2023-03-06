@@ -77,11 +77,17 @@
     letter-spacing: 0.46px;
 }
 
-.newOrderButtons {
+.newOrderButtonsWrapper {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 16px;
+}
+
+.newOrderButtons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .pagination {
@@ -95,6 +101,7 @@
     padding-right: 35px;
     display: flex;
     gap: 6px;
+    white-space: nowrap;
     align-items: center;
 }
 
@@ -135,14 +142,28 @@
         font-size: 30px;
         font-weight: 700;
     }
+    .newOrderButtonsWrapper {
+        flex-wrap: wrap;
+    }
+    .newOrderButton {
+        max-width: 250px;
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 500px) {
+    .ordersWrapper {
+        margin-bottom: 10px;
+    }
+    .newOrderButtonsWrapper {
+        flex-direction: column;
+    }
     .newOrderButtons {
-        margin: 0 auto;
+        flex-direction: column;
     }
     .newOrderButton {
-        font-size: 10px;
+        font-size: 14px;
+        width: 300px;
     }
     .receiverTitle {
         font-size: 20px;

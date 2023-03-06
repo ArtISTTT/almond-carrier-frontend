@@ -5,8 +5,6 @@ import styles from '../../../styles/ProfileForNewUser.module.css';
 import { Container } from '@mui/system';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
-import { useRouter } from 'next/router';
-import { navigateTo } from 'src/interfaces/navigate';
 import { IGetUser } from 'src/interfaces/api/user';
 import { Genders } from 'src/interfaces/settings';
 import dayjs from 'dayjs';
@@ -23,10 +21,6 @@ const genders = {
 };
 
 const ProfileInfo: React.FC<IProps> = ({ user }) => {
-    const router = useRouter();
-
-    const navigateToSignUp = () => router.push(navigateTo.SIGNUP);
-
     const { t } = useTranslation();
 
     return (
@@ -35,7 +29,7 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                 <div className={styles.profileBlock}>
                     <div className={styles.profileCard}>
                         <Avatar
-                            src='/static/images/signin-image.png'
+                            src={user.avatar}
                             sx={{ width: 140, height: 140 }}
                             className={styles.avatar}
                         />
@@ -94,18 +88,27 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                         component='h5'
                         className={styles.confirmItem}
                     >
-                        {t('email')}{' '}
                         {user.verifiedByEmail ? (
-                            <CheckCircleIcon
-                                sx={{ color: 'green', width: 18, height: 18 }}
-                            />
+                            <>
+                                {t('emailConfirmed')}{' '}
+                                <CheckCircleIcon
+                                    sx={{
+                                        color: 'green',
+                                        width: 18,
+                                        height: 18,
+                                    }}
+                                />
+                            </>
                         ) : (
-                            <CancelIcon
-                                sx={{ color: 'red', width: 18, height: 18 }}
-                            />
+                            <>
+                                {t('emailNotConfirmed')}{' '}
+                                <CancelIcon
+                                    sx={{ color: 'red', width: 18, height: 18 }}
+                                />
+                            </>
                         )}
                     </Typography>
-                    <Typography
+                    {/* <Typography
                         variant='h6'
                         component='h5'
                         className={styles.confirmItem}
@@ -120,7 +123,7 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                                 sx={{ color: 'red', width: 18, height: 18 }}
                             />
                         )}
-                    </Typography>
+                    </Typography> */}
                 </div>
                 <div className={styles.infoBlock}>
                     <div className={styles.infoItem}>
@@ -149,7 +152,7 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                             {user?.completedOrdersAsReceiver}
                         </Typography>
                     </div>
-                    <div className={styles.infoItem}>
+                    {/* <div className={styles.infoItem}>
                         <Typography
                             variant='h4'
                             component='h4'
@@ -164,7 +167,7 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                         >
                             {user?.completionRate}%
                         </Typography>
-                    </div>
+                    </div> */}
                     <div className={styles.infoItem}>
                         <Typography
                             variant='h4'
@@ -183,7 +186,7 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                             </>
                         </Typography>
                     </div>
-                    <div className={styles.infoItem}>
+                    {/* <div className={styles.infoItem}>
                         <Typography
                             variant='h4'
                             component='h4'
@@ -198,9 +201,9 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                         >
                             18 {t('days')}
                         </Typography>
-                    </div>
+                    </div> */}
                 </div>
-                <div className={styles.profileButtonWrapper}>
+                {/* <div className={styles.profileButtonWrapper}>
                     <Button
                         onClick={navigateToSignUp}
                         className={styles.profileButton}
@@ -208,7 +211,7 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                     >
                         {t('requestCarrierService')}
                     </Button>
-                </div>
+                </div> */}
             </Container>
         </div>
     );

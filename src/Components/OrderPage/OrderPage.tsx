@@ -7,6 +7,7 @@ import { cancelOrder, declineOrder, getOrderById } from '../../api/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import { IOrderFull } from '../../interfaces/order';
 import { Button, Link as MUILink } from '@mui/material';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import OrderPayment from './OrderPayment';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'src/redux/selectors/user';
@@ -193,6 +194,7 @@ const OrderPage = () => {
                 )}
 
             <div className={styles.haveSomeProblems}>
+                <SupportAgentIcon />
                 <MUILink
                     component={LinkBehaviour}
                     href='mailto:support@friendlycarrier.com'

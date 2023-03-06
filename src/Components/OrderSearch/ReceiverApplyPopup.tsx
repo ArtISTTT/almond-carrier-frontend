@@ -97,6 +97,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
             <div className={styles.carrierCard}>
                 <Avatar
                     onClick={navigateToUserPage}
+                    src={order.receiver?.avatar}
                     sx={{ width: 80, height: 80, cursor: 'pointer' }}
                 />
                 <div className={styles.carrierCardInfo}>
@@ -129,7 +130,6 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </Typography>
                 </div>
             </div>
-
             <div className={styles.receiverInfo}>
                 <Typography
                     className={cn(styles.infoItem, styles.infoItemFirst)}
@@ -229,7 +229,6 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </Typography>
                 </Stack>
             </div>
-
             <div className={styles.carrierDescription}>
                 <div className={styles.productName}>{t('description')}</div>
                 <div className={styles.productDescription}>

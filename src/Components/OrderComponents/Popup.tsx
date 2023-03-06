@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Typography, Avatar } from '@mui/material';
 import styles from '../../../styles/Popup.module.css';
 import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
@@ -16,6 +16,8 @@ interface IProps {
 const Popup: React.FC<IProps> = ({ title, closePopup, children }) => {
     return (
         <div className={styles.popup}>
+            <div className={styles.bgTop} />
+
             <div onClick={closePopup} className={styles.icon}>
                 <CloseIcon />
             </div>
@@ -27,6 +29,10 @@ const Popup: React.FC<IProps> = ({ title, closePopup, children }) => {
                 {title}
             </Typography>
             {children}
+            <img
+                className={styles.bgBottom}
+                src='/static/images/add-order/AddOrderBottom.png'
+            />
         </div>
     );
 };

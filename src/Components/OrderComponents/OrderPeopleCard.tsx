@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 interface IProps {
     people: {
         id: string;
+        avatar?: string;
         rating: number;
         firstName: string;
         lastName: string;
@@ -33,6 +34,7 @@ const OrderPeopleCard: React.FC<IProps> = ({ people }) => {
                     height: 65,
                     cursor: 'pointer',
                 }}
+                src={people.avatar}
                 onClick={navigateToUserPage}
                 className={styles.roundIcon}
             />
