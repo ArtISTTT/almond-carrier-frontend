@@ -38,6 +38,7 @@ export type IProcessRecover = {
 export type ISignInReturn = {
     error?: string | undefined;
     ok: boolean;
+    notVerified?: boolean;
     user?: IUser;
 };
 
@@ -78,4 +79,15 @@ export type IUpdateAvatar = {
 export type IUpdatePasswordReturn = {
     error?: string | undefined;
     ok: boolean;
+};
+
+export type IVerifyEmail = {
+    token: string;
+    userId: string;
+};
+
+export type IVerifyEmailReturn = {
+    ok: boolean;
+    user?: IUser;
+    error?: string;
 };

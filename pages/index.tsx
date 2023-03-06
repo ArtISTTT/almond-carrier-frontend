@@ -86,7 +86,16 @@ export default function Welcome() {
                             [styles.descriptionWithoutFastSignUp]: isAuthorized,
                         })}
                     >
-                        {t('companyThatUnitesPeopleETC')}
+                        {t('companyThatUnitesPeople')}
+                    </Typography>
+                    <Typography
+                        variant='h3'
+                        component='h2'
+                        className={cn(styles.descriptionSecond, {
+                            [styles.descriptionWithoutFastSignUp]: isAuthorized,
+                        })}
+                    >
+                        {t('ifYouNeedAnythingWhatYouDontHaveETC')}
                     </Typography>
                     {!isAuthorized && (
                         <div className={styles.fastSignUp}>

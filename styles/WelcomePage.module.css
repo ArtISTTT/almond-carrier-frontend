@@ -33,6 +33,15 @@
     letter-spacing: 0.4px;
 }
 
+.descriptionSecond {
+    font-weight: 500;
+    max-width: 90%;
+    font-size: 42px;
+    line-height: 66px;
+    text-align: center;
+    letter-spacing: 0.4px;
+}
+
 .descriptionWithoutFastSignUp {
     margin-bottom: 150px;
 }
@@ -302,6 +311,13 @@ z .emailInput > div > fieldset {
         padding-left: 20px;
         white-space: normal;
     }
+    .descriptionSecond {
+        font-size: 32px;
+        line-height: 50px;
+        padding-right: 20px;
+        padding-left: 20px;
+        white-space: normal;
+    }
 }
 
 @media screen and (max-width: 1036px) {
@@ -383,6 +399,9 @@ z .emailInput > div > fieldset {
         font-size: 42px;
     }
     .description {
+        font-size: 26px;
+    }
+    .descriptionSecond {
         font-size: 26px;
     }
     .roleTitle {
@@ -494,6 +513,10 @@ z .emailInput > div > fieldset {
         font-size: 24px;
         line-height: 35px;
     }
+    .descriptionSecond {
+        font-size: 24px;
+        line-height: 35px;
+    }
     .roleTitle {
         font-size: 28px;
     }
@@ -530,6 +553,9 @@ z .emailInput > div > fieldset {
         font-size: 36px;
     }
     .description {
+        line-height: 30px;
+    }
+    .descriptionSecond {
         line-height: 30px;
     }
     .fastSignUp {
