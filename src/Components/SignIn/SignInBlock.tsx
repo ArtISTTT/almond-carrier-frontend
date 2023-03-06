@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import style from '../../styles/SignIn.module.css';
+import style from '../../../styles/SignIn.module.css';
 import { Button, Link as MUILink, TextField, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import { navigateTo } from 'src/interfaces/navigate';
@@ -28,7 +28,7 @@ const SignInBlock = () => {
     const handleSignIn = async (form: IForm) => {
         const data = await signIn(form);
 
-        if (data.ok && data.user) {
+        if (data.ok && data.user && !data.notVerified) {
             dispatch(addUserData(parseUserDataFromApi(data.user)));
             dispatch(setIsAuthorized(true));
             triggerOpen({
@@ -36,6 +36,12 @@ const SignInBlock = () => {
                 text: t('successSignIn'),
             });
             router.push(navigateTo.DASHBOARD);
+        } else if (data.notVerified) {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || t('mailIsNotYetVerified'),
+            });
+            formik.setSubmitting(false);
         } else {
             triggerOpen({
                 severity: 'error',
