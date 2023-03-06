@@ -78,6 +78,7 @@ export type IUpdateAvatar = {
 
 export type IUpdatePasswordReturn = {
     error?: string | undefined;
+    avatar?: string;
     ok: boolean;
 };
 

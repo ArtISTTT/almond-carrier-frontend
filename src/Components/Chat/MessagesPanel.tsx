@@ -32,9 +32,13 @@ interface IProps {
     isMessagesLoading: boolean;
     loadMessages: () => Promise<void>;
     errorMessage: string;
+    personAvatar?: string;
+    myDataAvatar?: string;
 }
 
 const MessagesPanel: React.FC<IProps> = ({
+    personAvatar,
+    myDataAvatar,
     orderStatus,
     onSendMessage,
     messages,
@@ -105,6 +109,8 @@ const MessagesPanel: React.FC<IProps> = ({
                             {messages &&
                                 messages.map((message: IMessage) => (
                                     <MessageChat
+                                        personAvatar={personAvatar}
+                                        myDataAvatar={myDataAvatar}
                                         currentDate={currentDate}
                                         key={message.createdAt.toISOString()}
                                         type={message.type}

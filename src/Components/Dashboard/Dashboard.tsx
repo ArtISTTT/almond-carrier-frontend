@@ -4,7 +4,7 @@ import { Button, Container, Typography, Pagination } from '@mui/material';
 import cn from 'classnames';
 import AddIcon from '@mui/icons-material/Add';
 import ReceiverAddingPopup from 'src/Components/OrderComponents/ReceiverAddingPopup';
-import CarrierLayout from '../Layouts/Carrier';
+import UserLayout from '../Layouts/User';
 import OrderItem from 'src/Components/OrderComponents/OrderItem';
 import CarrierAddingPopup from '../OrderComponents/CarrierAddingPopup';
 import { useSelector } from 'react-redux';
@@ -92,7 +92,7 @@ const Dashboard: React.FC = () => {
                     />
                 )}
             </div>
-            <CarrierLayout>
+            <UserLayout>
                 <Container
                     maxWidth={false}
                     className={styles.dashboardContainer}
@@ -122,7 +122,7 @@ const Dashboard: React.FC = () => {
                                         <EmptyOrdersBlock />
                                     )}
                                 </div>
-                                <div className={styles.newOrderButtons}>
+                                <div className={styles.newOrderButtonsWrapper}>
                                     {totalCountPages > 1 && (
                                         <Pagination
                                             className={styles.pagination}
@@ -132,31 +132,33 @@ const Dashboard: React.FC = () => {
                                             onChange={handleChangePagination}
                                         />
                                     )}
-                                    <Button
-                                        onClick={toggleReceiverPopup}
-                                        className={styles.newOrderButton}
-                                        variant='contained'
-                                    >
-                                        <AddIcon sx={{ fontSize: 22 }} />
-                                        {t('orderItem')}
-                                    </Button>
-                                    <Button
-                                        onClick={toggleCarrierPopup}
-                                        className={cn(
-                                            styles.newOrderButton,
-                                            styles.sending
-                                        )}
-                                        variant='contained'
-                                    >
-                                        <AddIcon sx={{ fontSize: 22 }} />
-                                        {t('sendItem')}
-                                    </Button>
+                                    <div className={styles.newOrderButtons}>
+                                        <Button
+                                            onClick={toggleReceiverPopup}
+                                            className={styles.newOrderButton}
+                                            variant='contained'
+                                        >
+                                            <AddIcon sx={{ fontSize: 22 }} />
+                                            {t('orderItem')}
+                                        </Button>
+                                        <Button
+                                            onClick={toggleCarrierPopup}
+                                            className={cn(
+                                                styles.newOrderButton,
+                                                styles.sending
+                                            )}
+                                            variant='contained'
+                                        >
+                                            <AddIcon sx={{ fontSize: 22 }} />
+                                            {t('sendItem')}
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                         )}
                     </div>
                 </Container>
-            </CarrierLayout>
+            </UserLayout>
         </>
     );
 };

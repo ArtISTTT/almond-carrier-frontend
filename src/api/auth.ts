@@ -198,8 +198,9 @@ export const updateAvatar = (
                 'Content-Type': 'multipart/form-data',
             },
         })
-        .then(() => {
+        .then(data => {
             return {
+                avatar: data.data.avatarImage,
                 ok: true,
             };
         })

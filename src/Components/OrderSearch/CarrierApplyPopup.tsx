@@ -96,6 +96,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
             <div className={styles.carrierCard}>
                 <Avatar
                     onClick={navigateToUserPage}
+                    src={order.carrier?.avatar}
                     sx={{ width: 80, height: 80, cursor: 'pointer' }}
                 />
                 <div className={styles.carrierCardInfo}>
@@ -128,7 +129,6 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </Typography>
                 </div>
             </div>
-
             <div className={styles.carrierInfo}>
                 <Typography
                     className={styles.infoItem}
@@ -175,7 +175,6 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     </span>
                 </Typography>
             </div>
-
             <form onSubmit={formik.handleSubmit} action='submit'>
                 <Stack direction='column' className={styles.stackDistance}>
                     <div className={styles.inputItem}>

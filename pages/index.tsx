@@ -82,9 +82,7 @@ export default function Welcome() {
                     <Typography
                         variant='h3'
                         component='h2'
-                        className={cn(styles.description, {
-                            [styles.descriptionWithoutFastSignUp]: isAuthorized,
-                        })}
+                        className={cn(styles.description)}
                     >
                         {t('companyThatUnitesPeople')}
                     </Typography>

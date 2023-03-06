@@ -58,6 +58,7 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({
                         <Avatar
                             sx={{ width: 60, height: 60, cursor: 'pointer' }}
                             alt='logo'
+                            src={order.carrier?.avatar}
                             className={styles.avatar}
                         />
                         <div className={styles.userInfo}>
@@ -81,14 +82,14 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({
                                         : '-'}
                                 </span>
                             </div>
-                            <div
+                            {/* <div
                                 className={cn(
                                     styles.infoItem,
                                     styles.infoItemCompleted
                                 )}
                             >
-                                {t('completedOrders')}: <span>16</span>
-                            </div>
+                                {t('completedOrders')}: <span>16666</span>
+                            </div> */}
                         </div>
                     </div>
                     <div

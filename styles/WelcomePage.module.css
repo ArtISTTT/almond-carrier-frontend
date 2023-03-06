@@ -33,6 +33,10 @@
     letter-spacing: 0.4px;
 }
 
+.descriptionWithoutFastSignUp {
+    margin-bottom: 150px;
+}
+
 .descriptionSecond {
     font-weight: 500;
     max-width: 90%;
@@ -40,10 +44,6 @@
     line-height: 66px;
     text-align: center;
     letter-spacing: 0.4px;
-}
-
-.descriptionWithoutFastSignUp {
-    margin-bottom: 150px;
 }
 
 .fastSignUp {
@@ -303,7 +303,6 @@ z .emailInput > div > fieldset {
     .title {
         font-size: 50px;
     }
-
     .description {
         font-size: 32px;
         line-height: 50px;
@@ -510,6 +509,7 @@ z .emailInput > div > fieldset {
 
 @media screen and (max-width: 560px) {
     .description {
+        margin-top: 10px;
         font-size: 24px;
         line-height: 35px;
     }

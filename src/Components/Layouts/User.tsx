@@ -6,7 +6,7 @@ interface IProps {
     children: React.ReactNode;
 }
 
-const CarrierLayout: React.FC<IProps> = ({ children }) => {
+const UserLayout: React.FC<IProps> = ({ children }) => {
     return (
         <MainLayout
             showContinueIfAuthorized={false}
@@ -17,4 +17,4 @@ const CarrierLayout: React.FC<IProps> = ({ children }) => {
     );
 };
 
-export default CarrierLayout;
+export default UserLayout;

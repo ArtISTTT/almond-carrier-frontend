@@ -57,10 +57,13 @@ const OrderChat: React.FC<IProps> = ({
         };
     }, []);
 
-    const dialogPesron = React.useMemo(() => {
-        const person =
-            viewType === ViewType.carrier ? order.receiver : order.carrier;
+    const person =
+        viewType === ViewType.carrier ? order.receiver : order.carrier;
 
+    const myData =
+        viewType === ViewType.carrier ? order.carrier : order.receiver;
+
+    const dialogPesron = React.useMemo(() => {
         const personId =
             viewType === ViewType.carrier
                 ? order.receiver?.id
@@ -129,6 +132,7 @@ const OrderChat: React.FC<IProps> = ({
                 <div onClick={navigateToUserPage} className={styles.chatPerson}>
                     <Avatar
                         sx={{ height: 50, width: 50 }}
+                        src={person?.avatar}
                         className={styles.avatar}
                     />
                     <div className={styles.chatMember}>
@@ -150,6 +154,8 @@ const OrderChat: React.FC<IProps> = ({
                 </div>
             </div>
             <MessagesPanel
+                personAvatar={person?.avatar}
+                myDataAvatar={myData?.avatar}
                 orderStatus={order.status}
                 errorMessage={errorMessage}
                 loadMessages={loadMessages}
