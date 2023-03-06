@@ -3,6 +3,7 @@ import MainLayoutLogin from 'src/Components/Layouts/MainLayoutLogin';
 import PrivateLayout from 'src/Components/Layouts/Private';
 import Verification from 'src/Components/Verification/Verification';
 import { privateTypes } from 'src/interfaces/private';
+import React from 'react';
 
 const VerificationPage: React.FC = () => {
     return (
