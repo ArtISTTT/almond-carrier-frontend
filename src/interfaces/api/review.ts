@@ -14,7 +14,7 @@ export interface IReview {
     text: string;
     rating: number;
     userReviewer: {
-        avatarImage: string;
+        avatarImage?: string;
         firstName: string;
         lastName: string;
     };

@@ -11,6 +11,8 @@ import { useTranslation } from 'react-i18next';
 interface IProps {
     errorMessage?: string;
     messageText: string;
+    myDataAvatar?: string;
+    personAvatar?: string;
     type: MessageType;
     createdAt: Dayjs;
     readByRecipients: boolean;
@@ -19,6 +21,8 @@ interface IProps {
 
 const MessageChat: React.FC<IProps> = ({
     messageText,
+    myDataAvatar,
+    personAvatar,
     type,
     createdAt,
     errorMessage,
@@ -37,7 +41,9 @@ const MessageChat: React.FC<IProps> = ({
             {type !== MessageType.Admin && (
                 <Avatar
                     className={styles.messageAvatar}
-                    src='/static/images/thanks-for-registration/background.jpg'
+                    src={
+                        type === MessageType.Mine ? myDataAvatar : personAvatar
+                    }
                     sx={{ height: 35, width: 35 }}
                 />
             )}

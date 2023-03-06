@@ -74,6 +74,7 @@
     max-width: 1200px;
     width: 100%;
     padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .wrapper {
@@ -86,7 +87,6 @@
     justify-content: center;
     gap: 10px;
     margin-top: 24px;
-    margin-bottom: 34px;
 }
 
 .infoItem {
