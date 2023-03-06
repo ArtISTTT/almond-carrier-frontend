@@ -24,7 +24,7 @@ const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
     const authChecked = useSelector(selectIsInitializeAuthChecked);
     const dispatch = useAppDispatch();
     const { locale } = useRouter();
-    const { push, route } = useRouter();
+    const { push, asPath } = useRouter();
 
     const updateUser = (data: IGetCurrentUserReturn) => {
         if (data.ok && data.user) {
@@ -39,7 +39,7 @@ const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
             dayjs.locale(savedLocale);
 
             if (savedLocale !== locale) {
-                push(route, undefined, { locale: savedLocale });
+                push(asPath, undefined, { locale: savedLocale });
             }
         } else {
             dispatch(

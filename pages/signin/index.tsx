@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginLayout from '../../src/Components/Layouts/Login';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import SignInBlock from './SignInBlock';
+import SignInBlock from '../../src/Components/SignIn/SignInBlock';
 
 const SignIn: React.FC = () => {
     return (

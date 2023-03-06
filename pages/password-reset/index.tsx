@@ -4,7 +4,6 @@ import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import LoginLayout from '../../src/Components/Layouts/Login';
-
 import style from '../../styles/SignIn.module.css';
 import { processRecoverPassword } from '../../src/api/auth';
 import { RecoverPasswordSchema } from '../../src/schemas/RecoverPasswordSchema';
@@ -24,10 +23,8 @@ type IForm = {
 const SignIn: React.FC = () => {
     const router = useRouter();
     const { t } = useTranslation();
-
-    const { token, id } = router.query;
-
     const { triggerOpen } = useContext(OpenAlertContext);
+    const { token, id } = router.query;
 
     React.useEffect(() => {
         if (!router.isReady) return;

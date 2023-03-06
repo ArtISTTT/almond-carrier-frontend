@@ -10,6 +10,8 @@ import {
     IUpdateUserInfo,
     IUpdateUserInfoReturn,
     IUpdateUserPassword,
+    IVerifyEmail,
+    IVerifyEmailReturn,
 } from './../interfaces/api/auth';
 import { localStorageUserData } from '../helpers/localStorageUserData';
 import {
@@ -59,6 +61,13 @@ export const signIn = (requestData: ISignIn): Promise<ISignInReturn> =>
             };
         })
         .catch(data => {
+            if (data.response?.data.notVerified) {
+                return {
+                    ok: false,
+                    notVerified: true,
+                };
+            }
+
             return {
                 ok: false,
                 error: data.response?.data?.message ?? 'Error',
@@ -201,3 +210,21 @@ export const updateAvatar = (
             };
         });
 };
+
+export const verifyEmail = (
+    requestData: IVerifyEmail
+): Promise<IVerifyEmailReturn> =>
+    mainInstance
+        .post('/auth/verify', JSON.stringify(requestData))
+        .then(data => {
+            return {
+                user: data.data,
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error: data.response?.data?.message ?? 'Error',
+            };
+        });
