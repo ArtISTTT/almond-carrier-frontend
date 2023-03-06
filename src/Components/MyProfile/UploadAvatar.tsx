@@ -9,10 +9,13 @@ import { OpenAlertContext } from '../Layouts/Snackbar';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/selectors/user';
 import { useTranslation } from 'react-i18next';
+import { useAppDispatch } from 'src/redux/hooks';
+import { uploadAvatar } from 'src/redux/slices/userSlice';
 
 const UploadAvatar = () => {
     const { pathname } = useRouter();
     const user = useSelector(selectUser);
+    const dispatch = useAppDispatch();
     const paths = pathname.split('/');
     const { triggerOpen } = useContext(OpenAlertContext);
     const { t } = useTranslation();
@@ -23,11 +26,12 @@ const UploadAvatar = () => {
         if (event.target.files && event.target.files.length > 0) {
             const data = await updateAvatar({ avatar: event.target.files[0] });
 
-            if (data.ok) {
+            if (data.ok && data.avatar) {
                 triggerOpen({
                     severity: 'success',
                     text: t('successUpdateAvatar'),
                 });
+                dispatch(uploadAvatar(data.avatar));
             } else {
                 triggerOpen({
                     severity: 'error',
