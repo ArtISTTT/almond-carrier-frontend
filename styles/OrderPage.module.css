@@ -48,6 +48,7 @@
 .orderDetailsTitle {
     font-size: 32px;
     line-height: 32px;
+    white-space: nowrap;
     font-weight: 600;
     margin-bottom: 16px;
 }
@@ -124,6 +125,7 @@
 .createdDate {
     display: flex;
     justify-content: flex-end;
+    margin-right: 28px;
     gap: 20px;
 }
 
@@ -169,6 +171,7 @@
 }
 
 .orderInformationTitle {
+    display: flex;
     font-size: 24px;
     line-height: 30px;
     font-weight: 600;
@@ -212,6 +215,11 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.comission {
+    font-size: 14px;
+    color: var(--cTextLow);
 }
 
 .orderInputValue.green {
@@ -375,6 +383,10 @@
 
 .cancelButtons {
     display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--cBgSecondary);
+    padding-left: 32px;
 }
 
 .orderPaymentWrapperButton {
@@ -452,9 +464,6 @@
     border-radius: 15px;
 }
 
-.cancelButtonWrapper {
-    padding: 32px;
-}
 .cancelButton {
     width: 250px;
     border-radius: 15px;
@@ -476,6 +485,7 @@
     height: 28px;
     color: var(--cTextPrimary);
     text-transform: none;
+    white-space: nowrap;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -511,6 +521,7 @@
     font-size: 16px;
     border-radius: 15px;
     cursor: pointer;
+    white-space: nowrap;
     margin-top: 3px;
     height: 28px;
     color: var(--cTextPrimary);
@@ -522,6 +533,7 @@
 .partnerFeedBack {
     font-size: 16px;
     cursor: pointer;
+    white-space: nowrap;
     border-radius: 15px;
     cursor: pointer;
     height: 28px;
@@ -561,9 +573,9 @@
     .orderConent {
         flex-direction: column;
     }
-    .haveSomeProblems {
+    /* .haveSomeProblems {
         width: 90%;
-    }
+    } */
 }
 
 @media screen and (max-width: 1283px) {
@@ -588,6 +600,17 @@
     }
 }
 
+@media screen and (max-width: 930px) {
+    .detailsButtons {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+    .detailsButtons > div > span {
+        padding-left: 5px;
+    }
+}
+
 @media screen and (max-width: 840px) {
     .inputItem .inputPhone {
         margin-top: 1px;
@@ -602,6 +625,22 @@
     .inputItem .inputPhone {
         margin-top: 2px;
     }
+    .orderDetailsTitle {
+        font-size: 30px;
+    }
+    .infoLeft {
+        font-size: 14px;
+    }
+    .infoRight {
+        font-size: 14px;
+    }
+    .infoRightId > span {
+        font-size: 14px;
+    }
+    .detailsButtons > div > span {
+        font-size: 16px;
+        padding-left: 5px;
+    }
 }
 
 @media screen and (max-width: 720px) {
@@ -614,7 +653,8 @@
     }
     .inputItem .input > div > input {
         height: 0;
-        padding: 16px 0;
+        padding-top: 20px;
+        padding-left: 16px;
     }
 }
 
@@ -622,6 +662,10 @@
     .orderDetailsTitle {
         font-size: 28px;
         margin-bottom: 10px;
+    }
+    .createdDate {
+        margin-right: 24px;
+        gap: 15px;
     }
     .orderStatus {
         font-size: 15px;
@@ -652,30 +696,55 @@
         height: 16px;
         width: 16px;
     }
-    .editingWrapper svg {
-        height: 16px;
-        width: 16px;
-    }
     .column:last-child {
         max-width: 100px;
     }
     .haveSomeProblems {
         margin-left: 10px;
-        width: 95%;
     }
     .cancelButtonWrapper {
         padding-left: 10px;
+    }
+    .cancelButtons {
+        padding-left: 0;
+    }
+    .detailsButtons {
+        gap: 8px;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .orderDetails {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .orderDetailsInfo {
+        justify-content: flex-start;
+    }
+    .openReviewPopupButton {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+    .infoLeft {
+        text-align: start;
+        gap: 8px;
+    }
+    .infoRight {
+        gap: 8px;
     }
 }
 
 @media screen and (max-width: 560px) {
     .multiline {
         width: 100%;
-        margin-right: 0;
     }
     .haveSomeProblems {
         text-align: center;
         font-size: 14px;
+    }
+    .orderStatus {
+        margin-right: 0;
     }
     .orderPaymentWrapper {
         display: flex;
@@ -684,24 +753,11 @@
         margin: 0 10px;
         justify-content: flex-start;
     }
-    .orderDetails {
-        flex-direction: column;
-        gap: 20px;
-    }
-    .orderDetailsInfo {
-        justify-content: flex-start;
-    }
-    .infoLeft {
-        text-align: left;
-    }
     .inputItem .inputPhone {
         margin-top: 0;
     }
     .buttons {
         margin-top: 20px;
-    }
-    .infoRight {
-        text-align: left;
     }
 }
 
@@ -719,6 +775,26 @@
     }
 }
 
+@media screen and (max-width: 600px) {
+    .haveSomeProblems {
+        width: 95%;
+        margin: 0 auto;
+    }
+    .cancelButtons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .cancelButton {
+        white-space: nowrap;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .valuesByColumns {
+        flex-direction: column;
+    }
+}
+
 @media screen and (max-width: 484px) {
     .orderInputValueWrapper {
         width: 400px;
@@ -733,9 +809,6 @@
     .orderInformationTitle {
         margin-bottom: 30px;
     }
-    .valuesByColumns {
-        flex-direction: column;
-    }
     .orderInputValue {
         max-width: 400px;
     }
@@ -749,8 +822,9 @@
         font-size: 12px;
         padding: 10px;
     }
-    .cancelButton {
-        width: 180px;
+    .buttons {
+        display: flex;
+        justify-content: center;
     }
 }
 
@@ -775,6 +849,10 @@
     .orderDetailsInfo {
         font-size: 13px;
         gap: 5px;
+    }
+    .createdDate {
+        margin-right: 18px;
+        gap: 10px;
     }
     .infoRight {
         text-align: left;

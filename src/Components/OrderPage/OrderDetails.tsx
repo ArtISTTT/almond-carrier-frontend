@@ -100,34 +100,35 @@ const OrderDetails: React.FC<IProps> = ({
                     >
                         {statusToText(displayOrderStatus)}
                     </span>
-
-                    {order.myReview
-                        ? isReviewButtonsShowed && (
-                              <span
-                                  onClick={openMySentReviewBlock}
-                                  className={styles.feedBackSentBlock}
-                              >
-                                  {t('myFeedback')}
-                              </span>
-                          )
-                        : isReviewButtonsShowed && (
-                              <span
-                                  className={styles.openReviewPopupButton}
-                                  onClick={openReviewBlock}
-                              >
-                                  <AddCommentIcon />
-                                  {t('leaveFeedback')}
-                              </span>
-                          )}
-                    {order.partnerReview && isReviewButtonsShowed && (
-                        <span
-                            onClick={operPersonReviewBlock}
-                            className={styles.partnerFeedBack}
-                        >
-                            {viewType === ViewType.receiver
-                                ? t('partnerCarrierReview')
-                                : t('partnerReceiverReview')}
-                        </span>
+                    {isReviewButtonsShowed && (
+                        <div>
+                            {order.myReview ? (
+                                <span
+                                    onClick={openMySentReviewBlock}
+                                    className={styles.feedBackSentBlock}
+                                >
+                                    {t('myFeedback')}
+                                </span>
+                            ) : (
+                                <span
+                                    className={styles.openReviewPopupButton}
+                                    onClick={openReviewBlock}
+                                >
+                                    <AddCommentIcon />
+                                    {t('leaveFeedback')}
+                                </span>
+                            )}
+                            {order.partnerReview && (
+                                <span
+                                    onClick={operPersonReviewBlock}
+                                    className={styles.partnerFeedBack}
+                                >
+                                    {viewType === ViewType.receiver
+                                        ? t('partnerCarrierReview')
+                                        : t('partnerReceiverReview')}
+                                </span>
+                            )}
+                        </div>
                     )}
                 </div>
                 {displayOrderStatus === OrderStatus.itemRecieved &&
@@ -160,7 +161,7 @@ const OrderDetails: React.FC<IProps> = ({
                     </div>
                     <div className={styles.createdDate}>
                         <div>{order.createdDate.format('hh:mm')}</div>
-                        <div>{order.createdDate.format('MM.D.YYYY')}</div>
+                        <div>{order.createdDate.format('DD.MM.YYYY')}</div>
                     </div>
                 </div>
             </div>

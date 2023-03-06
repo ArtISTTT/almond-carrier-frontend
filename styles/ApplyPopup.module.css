@@ -24,6 +24,7 @@
 
 .carrierCard {
     display: flex;
+    align-items: center;
 }
 
 .carrierCardInfo {
@@ -73,7 +74,7 @@
 .receiverInfo {
     padding-top: 35px;
     display: flex;
-    max-width: 400px;
+    max-width: 800px;
     flex-direction: column;
     gap: 15px;
     padding-bottom: 20px;
@@ -118,7 +119,6 @@
 
 .input {
     width: 100%;
-    max-width: 500px;
 }
 
 .select {
@@ -144,7 +144,7 @@
     justify-content: space-between;
     width: 100%;
     gap: 20px;
-    max-width: 200px;
+    max-width: 500px;
     color: var(--cTextPrimary);
 }
 
@@ -194,9 +194,6 @@
 }
 
 .infoItemWay > span {
-    /* text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap; */
     text-transform: none;
     width: 100%;
     /* max-width: 200px; */
@@ -215,8 +212,12 @@
 
 .infoItem > span {
     text-transform: none;
-    width: 65px;
+    width: 100%;
+    max-width: 370px;
     font-weight: 500;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     font-size: 16px;
     color: var(--cTextThird);
 }
@@ -275,6 +276,11 @@
     margin-bottom: 6px;
 }
 
+.productIcon {
+    color: var(--cTextPrimary);
+    display: none;
+}
+
 .productDescription {
     background-color: rgba(0, 0, 0, 0.058);
     padding: 7px 15px;
@@ -291,12 +297,6 @@
     display: flex;
     gap: 10px;
     margin: 25px 0;
-}
-
-@media screen and (max-width: 850px) {
-    .popup {
-        width: 90%;
-    }
 }
 
 @media screen and (max-width: 700px) {
@@ -318,15 +318,13 @@
     .infoItem {
         font-size: 12px;
     }
-    .infoItem > span {
-        font-size: 14px;
-    }
     .productName {
         font-size: 12px;
     }
     .inputItem > label {
         font-size: 12px;
         line-height: 14px;
+        margin-bottom: 5px;
     }
     .input :global .MuiInputBase-root {
         font-size: 12px;
@@ -340,14 +338,27 @@
 }
 
 @media screen and (max-width: 610px) {
-    .receiverInfo {
-        flex-direction: column;
+    .infoItemFirst > p {
+        display: none;
     }
-    .infoItem {
-        justify-content: start;
+    .productIcon {
+        display: block;
     }
-    .infoItemWay > span {
-        max-width: 300px;
+    .infoItemFirst {
+        max-width: 800px;
+        width: 100%;
+    }
+    .infoItemFirst > span {
+        max-width: 800px;
+        margin-left: 62px;
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        align-items: flex-end;
+        width: 100%;
+        font-size: 16px;
+        font-weight: 700;
+        margin-left: 0;
     }
     .infoWayItems {
         gap: 15px;
@@ -355,11 +366,14 @@
     .infoItem > p {
         width: 100px;
     }
-    .infoCol {
-        margin-top: -20px;
-    }
     .carrierInfo {
         flex-direction: column;
+    }
+    .infoCol {
+        margin-top: 10px;
+        margin-bottom: 15px;
+        gap: 7px;
+        display: flex;
     }
     .stack {
         margin-top: 0px;
@@ -373,6 +387,19 @@
     .carrierInfo {
         padding-bottom: 15px;
     }
+    .infoItem > span {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    .carrierApplyButton {
+        max-width: 300px;
+        width: 100%;
+        white-space: nowrap;
+        margin: 0 auto;
+    }
+    .popup {
+        padding: 15px;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -383,21 +410,25 @@
         margin-left: 0 !important;
         padding-top: 10px;
     }
+    .infoItemFirst > span > span {
+        font-size: 12px;
+    }
     .infoItem {
-        font-size: 10px;
+        font-size: 12px;
     }
     .infoItemWay {
-        font-size: 10px;
+        font-size: 12px;
         max-width: 250px;
     }
     .infoItem > p {
         width: 80px;
     }
     .inputItem > label {
-        font-size: 10px;
+        font-size: 12px;
+        margin-bottom: 5px;
     }
     .carrierDescriptionTitle {
-        font-size: 10px;
+        font-size: 12px;
     }
     .stackDistance {
         gap: 10px;
@@ -415,20 +446,21 @@
         line-height: 12px;
     }
     .receiverInfo {
-        padding-top: 20px;
+        padding-top: 25px;
         padding-bottom: 0px;
     }
     .productName {
-        font-size: 10px;
+        font-size: 12px;
     }
     .formItems {
         margin: 10px 0;
     }
     .carrierApplyButton {
-        width: 120px;
-        font-size: 10px;
-        padding: 5px;
-        margin-top: 15px;
+        max-width: 250px;
+        width: 100%;
+        font-size: 14px;
+        padding: 10px;
+        margin-top: 25px;
         line-height: 14px;
     }
 }
