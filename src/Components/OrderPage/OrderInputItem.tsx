@@ -5,7 +5,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import styles from '../../../styles/OrderPage.module.css';
 import { IOrderFull } from '../../interfaces/order';
 import dayjs, { Dayjs } from 'dayjs';
-import RegionAutocomplete from '../Common/RegionAutocomplete';
 import cn from 'classnames';
 import { Currency } from 'src/interfaces/settings';
 import { useTranslation } from 'react-i18next';
@@ -94,7 +93,6 @@ const OrderInputItem: React.FC<IProps> = ({
     label,
     unit,
     type,
-    isLocation,
     availableLabels,
     placeholder,
     formatAmount,
@@ -102,15 +100,6 @@ const OrderInputItem: React.FC<IProps> = ({
     addToEditingFields,
     removeFromEditingFields,
 }) => {
-    const setLocationValue = async (
-        id: 'fromLocation' | 'toLocation',
-        value: string,
-        placeId: string
-    ) => {
-        await formik.setFieldValue(id, value);
-        await formik.setFieldValue(id + '_placeId', placeId);
-    };
-
     const { t } = useTranslation();
 
     const changedType = useMemo(
@@ -128,43 +117,26 @@ const OrderInputItem: React.FC<IProps> = ({
             {editingFields.includes(id) ? (
                 <>
                     <div className={styles.editingWrapper}>
-                        {isLocation ? (
-                            <RegionAutocomplete
-                                textFieldProps={{
-                                    id,
-                                    name: id,
-                                    type: 'string',
-                                    variant: 'outlined',
-                                    placeholder: t('enterLocation') as string,
-                                    value: formik.values[id],
-                                    onChange: formik.handleChange,
-                                    error: formik.errors[id] !== undefined,
-                                    helperText: formik.errors[id],
-                                    className: styles.input,
-                                }}
-                                setValue={setLocationValue}
-                            />
-                        ) : (
-                            <TextField
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position='end'>
-                                            <span>{unit && t(unit)}</span>
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                id={id}
-                                name={id}
-                                placeholder={placeholder}
-                                variant='outlined'
-                                type={type}
-                                value={formik.values[id]}
-                                onChange={formik.handleChange}
-                                error={formik.errors[id] !== undefined}
-                                helperText={t(formik.errors[id]) as string}
-                                className={styles.input}
-                            />
-                        )}
+                        <TextField
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position='end'>
+                                        <span>{unit && t(unit)}</span>
+                                    </InputAdornment>
+                                ),
+                            }}
+                            id={id}
+                            name={id}
+                            placeholder={placeholder}
+                            variant='outlined'
+                            type={type}
+                            value={formik.values[id]}
+                            onChange={formik.handleChange}
+                            error={formik.errors[id] !== undefined}
+                            helperText={t(formik.errors[id]) as string}
+                            className={styles.input}
+                        />
+
                         <CloseIcon
                             fontSize='medium'
                             onClick={() => removeFromEditingFields(id)}

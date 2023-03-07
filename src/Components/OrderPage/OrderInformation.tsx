@@ -124,6 +124,8 @@ const OrderInformation: React.FC<IProps> = ({
 
     const initialValues = useMemo(() => {
         return {
+            toLocationBounds: null,
+            fromLocationBounds: null,
             toLocation: order.toLocation,
             toLocation_placeId: order.toLocation_placeId,
             fromLocation: order.fromLocation,

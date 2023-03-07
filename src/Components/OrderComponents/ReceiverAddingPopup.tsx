@@ -13,6 +13,7 @@ import { Stack } from '@mui/system';
 import { useFormik } from 'formik';
 import Popup from './Popup';
 import cn from 'classnames';
+import { IBounds } from 'src/interfaces/geometry';
 
 interface IProps {
     togglePopup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,9 +29,11 @@ const userCurrency = {
 const defaultValues = {
     fromLocation: undefined,
     fromLocation_placeId: undefined,
+    fromLocationBounds: {},
     productUri: '',
     toLocation: '',
     toLocation_placeId: '',
+    toLocationBounds: {},
     productName: '',
     rewardAmount: null,
     productAmount: null,
@@ -80,6 +83,7 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
     const formik = useFormik({
         initialValues: defaultValues,
         onSubmit: addOrderFunc,
+
         validationSchema: ReceiverPopupSchema,
         validateOnBlur: false,
         validateOnChange: false,
@@ -88,10 +92,12 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
     const setLocationValue = async (
         id: 'fromLocation' | 'toLocation',
         value: string,
-        placeId: string
+        placeId: string,
+        bounds: IBounds
     ) => {
         await formik.setFieldValue(id, value);
         await formik.setFieldValue(id + '_placeId', placeId);
+        await formik.setFieldValue(id + 'Bounds', bounds);
     };
 
     return (
