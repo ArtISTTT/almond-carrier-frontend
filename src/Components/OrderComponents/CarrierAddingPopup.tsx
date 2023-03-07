@@ -14,6 +14,7 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { useAppSelector } from 'src/redux/hooks';
 import { Currency } from 'src/interfaces/settings';
 import cn from 'classnames';
+import { IBounds } from 'src/interfaces/geometry';
 
 interface IProps {
     togglePopup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,8 +24,10 @@ interface IProps {
 const defaultValues = {
     toLocation: '',
     toLocation_placeId: '',
+    toLocationBounds: {},
     fromLocation: '',
     fromLocation_placeId: '',
+    fromLocationBounds: {},
     carrierMaxWeight: null,
     arrivalDate: new Date(),
     rewardAmount: null,
@@ -88,10 +91,12 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
     const setLocationValue = async (
         id: 'fromLocation' | 'toLocation',
         value: string,
-        placeId: string
+        placeId: string,
+        bounds: IBounds
     ) => {
         await formik.setFieldValue(id, value);
         await formik.setFieldValue(id + '_placeId', placeId);
+        await formik.setFieldValue(id + 'Bounds', bounds);
     };
 
     return (

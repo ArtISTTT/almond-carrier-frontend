@@ -13,6 +13,7 @@ import RegionAutocomplete from '../Common/RegionAutocomplete';
 import { useTranslation } from 'next-i18next';
 import { Currency } from 'src/interfaces/settings';
 import { useAppSelector } from 'src/redux/hooks';
+import { IBounds } from 'src/interfaces/geometry';
 
 type IProps = {
     updateByFiltersAndType: (
@@ -38,7 +39,10 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
         initialValues: {
             fromLocation: undefined,
             fromLocation_placeId: undefined,
+            fromLocationBounds: undefined,
             toLocation: undefined,
+            toLocation_placeId: undefined,
+            toLocationBounds: undefined,
             maxBenefit: undefined,
             maxWeight: undefined,
         },
@@ -51,7 +55,10 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
         initialValues: {
             fromLocation: undefined,
             fromLocation_placeId: undefined,
+            fromLocationBounds: undefined,
             toLocation: undefined,
+            toLocation_placeId: undefined,
+            toLocationBounds: undefined,
             maxPrice: undefined,
             minBenefit: undefined,
             maxWeight: undefined,
@@ -72,18 +79,22 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
     const setLocationValueReceivers = async (
         id: 'fromLocation' | 'toLocation',
         value: string,
-        placeId: string
+        placeId: string,
+        bounds: IBounds
     ) => {
         await receiversFormik.setFieldValue(id, value);
         await receiversFormik.setFieldValue(id + '_placeId', placeId);
+        await receiversFormik.setFieldValue(id + 'Bounds', bounds);
     };
     const setLocationValueCarriers = async (
         id: 'fromLocation' | 'toLocation',
         value: string,
-        placeId: string
+        placeId: string,
+        bounds: IBounds
     ) => {
         await carriersFormik.setFieldValue(id, value);
         await carriersFormik.setFieldValue(id + '_placeId', placeId);
+        await carriersFormik.setFieldValue(id + 'Bounds', bounds);
     };
 
     return (

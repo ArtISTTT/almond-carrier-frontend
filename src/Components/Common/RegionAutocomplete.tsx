@@ -1,15 +1,24 @@
 import { TextField, TextFieldProps } from '@mui/material';
 import React, { useState } from 'react';
 import { usePlacesWidget } from 'react-google-autocomplete';
+import { IBounds } from 'src/interfaces/geometry';
 
 type IProps = {
     textFieldProps: TextFieldProps;
-    setValue: (id: any, value: string, placeId: string) => void;
+    setValue: (
+        id: any,
+        value: string,
+        placeId: string,
+        bounds: IBounds
+    ) => void;
 };
 
 const RegionAutocomplete: React.FC<IProps> = ({ textFieldProps, setValue }) => {
-    const setValueLocal = (value: any) => {
-        setValue(textFieldProps.id, value.formatted_address, value.place_id);
+    const setValueLocal = (value: google.maps.places.PlaceResult) => {
+        setValue(textFieldProps.id, value.formatted_address, value.place_id, {
+            northeast: value.geometry.viewport.getNorthEast(),
+            southwest: value.geometry.viewport.getSouthWest(),
+        });
     };
 
     const { ref } = usePlacesWidget({
@@ -17,6 +26,12 @@ const RegionAutocomplete: React.FC<IProps> = ({ textFieldProps, setValue }) => {
         onPlaceSelected: setValueLocal,
         inputAutocompleteValue: textFieldProps.id,
         options: {
+            fields: [
+                'formatted_address',
+                'place_id',
+                'geometry',
+                'address_components',
+            ],
             types: [
                 'locality',
                 'sublocality',
