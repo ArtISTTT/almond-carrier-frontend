@@ -15,10 +15,17 @@ type IProps = {
 
 const RegionAutocomplete: React.FC<IProps> = ({ textFieldProps, setValue }) => {
     const setValueLocal = (value: google.maps.places.PlaceResult) => {
-        setValue(textFieldProps.id, value.formatted_address, value.place_id, {
-            northeast: value.geometry.viewport.getNorthEast(),
-            southwest: value.geometry.viewport.getSouthWest(),
-        });
+        if (value.geometry) {
+            setValue(
+                textFieldProps.id,
+                value.formatted_address,
+                value.place_id,
+                {
+                    northeast: value.geometry.viewport.getNorthEast(),
+                    southwest: value.geometry.viewport.getSouthWest(),
+                }
+            );
+        }
     };
 
     const { ref } = usePlacesWidget({
