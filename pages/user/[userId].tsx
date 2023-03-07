@@ -20,6 +20,9 @@ import { LoaderColors } from 'src/interfaces/loader';
 
 const useGetCurrentUser = ({ userId }: { userId: string }) => {
     const { t } = useTranslation();
+    const language = useAppSelector(
+        state => state.settings.generalSettings.language
+    );
     const { triggerOpen } = useContext(OpenAlertContext);
 
     const [user, setUser] = React.useState<IGetUser | undefined>(undefined);
@@ -32,7 +35,10 @@ const useGetCurrentUser = ({ userId }: { userId: string }) => {
         if (data.ok && data.user) {
             setUser({
                 ...data.user,
-                successOrders: parseOrderDataFromApi(data.user.successOrders),
+                successOrders: await parseOrderDataFromApi(
+                    data.user.successOrders,
+                    language
+                ),
             });
             setIsLoading(false);
         } else {

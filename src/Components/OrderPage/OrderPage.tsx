@@ -23,6 +23,7 @@ import { LoaderColors } from 'src/interfaces/loader';
 import OrderPaymentSuccess from './OrderPaymentSuccess';
 import { OpenDialogContext } from '../Layouts/ConfirmDialog';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
+import { useAppSelector } from 'src/redux/hooks';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -30,6 +31,9 @@ const useGetOrder = (orderId: string) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const { push } = useRouter();
     const { t } = useTranslation();
+    const language = useAppSelector(
+        state => state.settings.generalSettings.language
+    );
 
     const updateOrder = async (withoutLoading?: true) => {
         if (!withoutLoading) {
@@ -39,7 +43,7 @@ const useGetOrder = (orderId: string) => {
         const data = await getOrderById({ orderId });
 
         if (data.ok && data.order) {
-            setOrder(parseOrderDataFromApi([data.order])[0]);
+            setOrder((await parseOrderDataFromApi([data.order], language))[0]);
         } else {
             triggerOpen({
                 severity: 'error',

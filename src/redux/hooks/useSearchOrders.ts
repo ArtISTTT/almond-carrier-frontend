@@ -9,6 +9,7 @@ import {
     receiversFilter,
 } from '../../interfaces/order-search';
 import { IOrder } from '../../interfaces/order';
+import { useAppSelector } from '.';
 
 type IReturn = {
     isLoading: boolean;
@@ -27,6 +28,9 @@ export const useSearchOrders = (): IReturn => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | undefined>(undefined);
     const { triggerOpen } = useContext(OpenAlertContext);
+    const language = useAppSelector(
+        state => state.settings.generalSettings.language
+    );
 
     const reload = async (
         filters: carriersFilter | receiversFilter,
@@ -65,10 +69,14 @@ export const useSearchOrders = (): IReturn => {
 
         if (data.ok && data.orders) {
             setError(undefined);
+            const parsedOrders = await parseOrderDataFromApi(
+                data.orders,
+                language
+            );
             setIsLoading(false);
 
             return {
-                orders: parseOrderDataFromApi(data.orders),
+                orders: parsedOrders,
                 count: data.count
                     ? Math.ceil(data.count / SEARCH_TABLE_LIMIT)
                     : 1,

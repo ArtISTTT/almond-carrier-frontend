@@ -350,3 +350,16 @@ export const startPayout = (requestData: {
                     'Error with sending payout data',
             };
         });
+
+export const getGoogleLozalizedName = (requestData: {
+    place_id: string;
+    language: string;
+}): Promise<string> =>
+    mainInstance
+        .get('/get-localized-name', { params: requestData })
+        .then(data => {
+            return data.data.address;
+        })
+        .catch(data => {
+            return 'Load error';
+        });

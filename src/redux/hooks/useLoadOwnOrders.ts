@@ -1,4 +1,4 @@
-import { useAppDispatch } from './index';
+import { useAppDispatch, useAppSelector } from './index';
 import { useContext, useState } from 'react';
 import { getMyOrders } from '../../api/order';
 import { setMyOrders } from '../slices/ordersSlice';
@@ -18,6 +18,9 @@ export const useLoadOwnOrders = (): IReturn => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | undefined>(undefined);
     const { triggerOpen } = useContext(OpenAlertContext);
+    const language = useAppSelector(
+        state => state.settings.generalSettings.language
+    );
 
     const reload = async () => {
         setIsLoading(true);
@@ -25,7 +28,9 @@ export const useLoadOwnOrders = (): IReturn => {
         const data = await getMyOrders();
 
         if (data.ok && data.orders) {
-            dispatch(setMyOrders(parseOrderDataFromApi(data.orders)));
+            dispatch(
+                setMyOrders(await parseOrderDataFromApi(data.orders, language))
+            );
             setError(undefined);
         } else {
             setError(t('errorUploadingOrders') as string);
