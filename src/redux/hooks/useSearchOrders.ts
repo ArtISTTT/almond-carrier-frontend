@@ -35,6 +35,27 @@ export const useSearchOrders = (): IReturn => {
     ): Promise<{ orders: IOrder[]; count: number }> => {
         setIsLoading(true);
         setError(undefined);
+
+        const searchFilters = filters;
+
+        if (
+            !searchFilters.fromLocation ||
+            searchFilters.fromLocation?.length === 0
+        ) {
+            searchFilters.fromLocationBounds = undefined;
+            searchFilters.fromLocation_placeId = undefined;
+            searchFilters.fromLocation = undefined;
+        }
+
+        if (
+            !searchFilters.toLocation ||
+            searchFilters.toLocation?.length === 0
+        ) {
+            searchFilters.toLocationBounds = undefined;
+            searchFilters.toLocation_placeId = undefined;
+            searchFilters.toLocation = undefined;
+        }
+
         const data = await searchOrders({
             filters,
             type,
