@@ -5,8 +5,8 @@ import {
     carriersFilter,
     receiversFilter,
 } from '../../interfaces/order-search';
-import { useFormik } from 'formik';
-import { Button, TextField, InputAdornment, Tooltip } from '@mui/material';
+import { useFormik, useFormikContext } from 'formik';
+import { Button, TextField, InputAdornment } from '@mui/material';
 import cn from 'classnames';
 import LoopIcon from '@mui/icons-material/Loop';
 import RegionAutocomplete from '../Common/RegionAutocomplete';
@@ -46,6 +46,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
             maxBenefit: undefined,
             maxWeight: undefined,
         },
+
         onSubmit: updateByFiltersAndType,
         validateOnBlur: false,
         validateOnChange: false,
@@ -63,6 +64,7 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
             minBenefit: undefined,
             maxWeight: undefined,
         },
+
         onSubmit: updateByFiltersAndType,
         validateOnBlur: false,
         validateOnChange: false,
@@ -337,14 +339,16 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                     </div>
                 </form>
             )}
-            <Button
-                variant='contained'
-                className={styles.refreshButton}
-                onClick={refresh}
-            >
-                <LoopIcon fontSize='small' />
-                {t('refresh')}
-            </Button>
+            <div className={styles.searchButtons}>
+                <Button
+                    variant='contained'
+                    className={styles.refreshButton}
+                    onClick={refresh}
+                >
+                    <LoopIcon fontSize='small' />
+                    {t('refresh')}
+                </Button>
+            </div>
         </div>
     );
 };

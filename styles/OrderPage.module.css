@@ -321,7 +321,8 @@
 
 .valuesByColumns {
     display: flex;
-    gap: 64px;
+    flex-wrap: wrap;
+    row-gap: 16px;
     margin-bottom: 24px;
 }
 
@@ -379,7 +380,7 @@
     margin-left: 32px;
     margin-right: 32px;
     max-width: 1000px;
-    width: 100%;
+    /* width: 100%; */
     border-top: 1px solid rgba(0, 0, 0, 0.12);
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
@@ -393,6 +394,8 @@
 }
 
 .orderPaymentWrapperButton {
+    max-width: 200px;
+    width: 100%;
     border-radius: 15px;
 }
 
@@ -401,7 +404,7 @@
     margin-left: 32px;
     margin-right: 32px;
     max-width: 1000px;
-    width: 100%;
+    /* width: 100%; */
     border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
@@ -500,6 +503,7 @@
 .inputItem .input > div > input {
     height: 0;
     padding: 20px 0;
+    padding-left: 16px;
 }
 
 .reminerBlock {
@@ -572,15 +576,6 @@
     font-size: 16px;
 }
 
-@media screen and (max-width: 1130px) {
-    .orderConent {
-        flex-direction: column;
-    }
-    /* .haveSomeProblems {
-        width: 90%;
-    } */
-}
-
 @media screen and (max-width: 1283px) {
     .inputItem .input :global .MuiInputBase-root {
         height: 34px;
@@ -591,6 +586,7 @@
     .inputItem .input > div > input {
         height: 0;
         padding: 17px 0;
+        padding-left: 16px;
     }
 }
 
@@ -618,7 +614,9 @@
     .inputItem .inputPhone {
         margin-top: 1px;
     }
-
+    .orderConent {
+        flex-direction: column;
+    }
     .valuesByColumns {
         gap: 20px;
     }
@@ -657,7 +655,6 @@
     .inputItem .input > div > input {
         height: 0;
         padding-top: 20px;
-        padding-left: 16px;
     }
 }
 
@@ -665,6 +662,9 @@
     .orderDetailsTitle {
         font-size: 28px;
         margin-bottom: 10px;
+    }
+    .orderPaymentWrapper {
+        margin-left: 10px;
     }
     .createdDate {
         margin-right: 24px;
@@ -752,7 +752,7 @@
     .orderPaymentWrapper {
         display: flex;
         flex-direction: column;
-        width: fit-content;
+        width: auto;
         margin: 0 10px;
         justify-content: flex-start;
     }

@@ -25,6 +25,7 @@ import { ReceiverApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
 import { navigateTo } from 'src/interfaces/navigate';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
+import { IBounds } from 'src/interfaces/geometry';
 
 interface IProps {
     closePopup: () => void;
@@ -38,6 +39,7 @@ interface IForm {
 
 const defaultValues = {
     fromLocation: '',
+    fromLocationBounds: {},
     fromLocation_placeId: '',
     arrivalDate: new Date(),
 };
@@ -79,10 +81,12 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
     const setLocationValue = async (
         id: 'fromLocation' | 'toLocation',
         value: string,
-        placeId: string
+        placeId: string,
+        bounds: IBounds
     ) => {
         await formik.setFieldValue(id, value);
         await formik.setFieldValue(id + '_placeId', placeId);
+        await formik.setFieldValue(id + 'Bounds', bounds);
     };
 
     const navigateToUserPage = (): void => {
