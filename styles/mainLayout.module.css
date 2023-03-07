@@ -37,6 +37,21 @@
     margin-right: 10px;
 }
 
+.frindlyAvatar {
+    position: relative;
+    overflow: visible;
+}
+
+.frindlyAvatar::before {
+    position: absolute;
+    content: 'Beta';
+    font-size: 14px;
+    font-weight: bold;
+    bottom: -6px;
+    right: -14px;
+    color: var(--cTextPrimary);
+}
+
 .rightMenu {
     display: flex;
     align-items: center;

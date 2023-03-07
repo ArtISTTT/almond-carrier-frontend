@@ -69,6 +69,7 @@ const Header: React.FC<IProps> = ({
                 })}
             >
                 <Avatar
+                    className={styles.frindlyAvatar}
                     onClick={changePageIfAuthorized}
                     sx={{ width: 55, height: 55, cursor: 'pointer' }}
                     alt='logo'
