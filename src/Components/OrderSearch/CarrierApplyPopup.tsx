@@ -243,7 +243,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                                         {t('kg')}
                                     </InputAdornment>
                                 ),
-                                inputProps: { max: 40 },
+                                inputProps: { max: order.carrierMaxWeight },
                             }}
                             id='productWeight'
                             name='productWeight'

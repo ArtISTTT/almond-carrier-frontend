@@ -86,18 +86,22 @@
 }
 
 .infoLeft {
-    white-space: nowrap;
     display: flex;
-    gap: 23px;
+    gap: 3px;
     flex-direction: column;
     color: var(--cTextLow);
     text-align: right;
 }
 
+.infoLeft > p {
+    white-space: nowrap;
+}
+
 .infoRight {
     display: flex;
     flex-direction: column;
-    gap: 23px;
+
+    gap: 3px;
     color: var(--cTextThird);
     font-weight: 600;
     text-align: right;
@@ -232,11 +236,13 @@
 
 .editingWrapper {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    margin-right: 10px;
 }
 
 .editingWrapper svg {
     cursor: pointer;
+    margin-top: 8px;
 }
 
 .editingWrapper svg > path {
@@ -281,11 +287,16 @@
 
 .inputPhone {
     width: 100%;
-    margin-top: 1px;
+
     margin-right: 10px;
     height: 40px;
+    padding-left: 0px;
     background-color: var(--cBgSecondary);
     border-radius: 16px;
+}
+
+.inputPhone > div {
+    padding-left: 0px;
 }
 
 .inputItem .input :global .MuiInputBase-root {
@@ -524,6 +535,11 @@
     color: var(--cTextPrimary);
 }
 
+.reviewsButtons {
+    display: flex;
+    align-items: center;
+}
+
 .feedBackSentBlock {
     font-size: 16px;
     border-radius: 15px;
@@ -539,13 +555,15 @@
 
 .partnerFeedBack {
     font-size: 16px;
-    cursor: pointer;
-    white-space: nowrap;
     border-radius: 15px;
-    cursor: pointer;
     height: 28px;
     color: var(--cTextPrimary);
     text-transform: none;
+    white-space: nowrap;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
     font-weight: 600;
     padding: 2px 12px;
 }
@@ -581,22 +599,25 @@
         height: 34px;
     }
     .inputItem .input {
+        margin-top: 1px;
         height: 34px;
     }
+    .editingWrapper svg {
+        margin-top: 5.5px;
+    }
     .inputItem .input > div > input {
-        height: 0;
         padding: 17px 0;
         padding-left: 16px;
     }
 }
 
 @media screen and (max-width: 980px) {
-    .inputItem .inputPhone {
+    /* .inputItem .inputPhone {
         margin-top: 1px;
     }
     .inputItem .selectBank {
         margin-top: 0;
-    }
+    } */
 }
 
 @media screen and (max-width: 930px) {
@@ -605,15 +626,21 @@
         gap: 16px;
         align-items: flex-start;
     }
-    .detailsButtons > div > span {
-        padding-left: 5px;
+    .inputItem .input {
+        margin-top: 0px;
+    }
+    .openReviewPopupButton {
+        padding-left: 0;
+    }
+    .partnerFeedBack {
+        padding-left: 0;
     }
 }
 
 @media screen and (max-width: 840px) {
-    .inputItem .inputPhone {
+    /* .inputItem .inputPhone {
         margin-top: 1px;
-    }
+    } */
     .orderConent {
         flex-direction: column;
     }
@@ -622,10 +649,10 @@
     }
 }
 
-@media screen and (max-width: 780px) {
-    .inputItem .inputPhone {
+@media screen and (max-width: 817px) {
+    /* .inputItem .inputPhone {
         margin-top: 2px;
-    }
+    } */
     .orderDetailsTitle {
         font-size: 30px;
     }
@@ -638,20 +665,16 @@
     .infoRightId > span {
         font-size: 14px;
     }
-    .detailsButtons > div > span {
-        font-size: 16px;
-        padding-left: 5px;
-    }
 }
 
 @media screen and (max-width: 720px) {
-    .inputItem .input :global .MuiInputBase-root {
+    /* .inputItem .input :global .MuiInputBase-root {
         height: 32px;
-    }
-    .inputItem .input {
-        margin-top: 2px;
-        height: 32px;
-    }
+    } */
+    /* .inputItem .input {
+        /* margin-top: 2px; */
+    /* height: 32px;
+    } */
     .inputItem .input > div > input {
         height: 0;
         padding-top: 20px;
@@ -684,7 +707,8 @@
         height: 16px;
     }
     .inputItem .input :global .MuiInputBase-root {
-        height: 32px;
+        height: 35px;
+        margin-top: 0px;
     }
     .orderDetails {
         padding: 32px 10px;
@@ -698,9 +722,6 @@
     .orderInputValueWrapper svg {
         height: 16px;
         width: 16px;
-    }
-    .column:last-child {
-        max-width: 100px;
     }
     .haveSomeProblems {
         margin-left: 10px;
@@ -716,17 +737,22 @@
     }
 }
 
-@media screen and (max-width: 630px) {
+@media screen and (max-width: 730px) {
     .orderDetails {
         flex-direction: column;
         gap: 10px;
+    }
+    .inputItem .input {
+        margin-top: 1px;
+    }
+    .reminerBlock {
+        font-size: 12.5px;
     }
     .orderDetailsInfo {
         justify-content: flex-start;
     }
     .openReviewPopupButton {
         display: flex;
-        flex-direction: row-reverse;
         justify-content: flex-end;
     }
     .infoLeft {
@@ -741,6 +767,9 @@
 @media screen and (max-width: 560px) {
     .multiline {
         width: 100%;
+    }
+    .inputItem .input {
+        margin-top: 1px;
     }
     .haveSomeProblems {
         text-align: center;
@@ -757,7 +786,7 @@
         justify-content: flex-start;
     }
     .inputItem .inputPhone {
-        margin-top: 0;
+        margin-top: 1px;
     }
     .buttons {
         margin-top: 20px;
@@ -772,10 +801,10 @@
     .confirmPhoneButton {
         margin-top: 30px;
     }
-    .inputItem .input {
+    /* .inputItem .input {
         height: 32px;
         margin-top: 2px;
-    }
+    } */
 }
 
 @media screen and (max-width: 600px) {
@@ -802,13 +831,13 @@
     .orderInputValueWrapper {
         width: 400px;
     }
-    .inputItem .input {
+    /* .inputItem .input {
         height: 32px;
-    }
-    .inputItem .input :global .MuiInputBase-root {
+    } */
+    /* .inputItem .input :global .MuiInputBase-root {
         height: 33px;
         margin-top: -1px;
-    }
+    } */
     .orderInformationTitle {
         margin-bottom: 30px;
     }
@@ -832,26 +861,29 @@
 }
 
 @media screen and (max-width: 460px) {
-    .inputItem .input {
+    /* .inputItem .input {
         height: 32px;
         margin-top: 2px;
-    }
+    } */
 }
 
 @media screen and (max-width: 430px) {
     .orderInputValue {
         max-width: 350px;
     }
-    .inputItem .input {
+    /* .inputItem .input {
         height: 32px;
         margin-top: 2px;
-    }
+    } */
 }
 
 @media screen and (max-width: 390px) {
     .orderDetailsInfo {
         font-size: 13px;
         gap: 5px;
+    }
+    .orderDetailsInfo {
+        justify-content: space-between;
     }
     .createdDate {
         margin-right: 18px;

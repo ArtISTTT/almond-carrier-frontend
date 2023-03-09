@@ -6,7 +6,7 @@ export const CarrierApplyPopupSchema = Yup.object().shape({
         .max(60, 'tooLong')
         .required('required'),
     productAmount: Yup.number().min(0).required('required'),
-    productWeight: Yup.number().min(0.1, 'greaterWeight').required('required'),
+    // productWeight: Yup.number().min(0.1, 'greaterWeight').required('required'),
     productDescription: Yup.string(),
 });
 

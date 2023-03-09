@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { IOrderFull } from '../../interfaces/order';
 import { OrderStatus } from 'src/interfaces/profile';
 import AddCommentIcon from '@mui/icons-material/AddComment';
+import PersonIcon from '@mui/icons-material/Person';
 import { ViewType } from './OrderInputItem';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 
@@ -101,7 +102,7 @@ const OrderDetails: React.FC<IProps> = ({
                         {statusToText(displayOrderStatus)}
                     </span>
                     {isReviewButtonsShowed && (
-                        <div>
+                        <div className={styles.reviewsButtons}>
                             {order.myReview ? (
                                 <span
                                     onClick={openMySentReviewBlock}
@@ -123,6 +124,7 @@ const OrderDetails: React.FC<IProps> = ({
                                     onClick={operPersonReviewBlock}
                                     className={styles.partnerFeedBack}
                                 >
+                                    <PersonIcon />
                                     {viewType === ViewType.receiver
                                         ? t('partnerCarrierReview')
                                         : t('partnerReceiverReview')}

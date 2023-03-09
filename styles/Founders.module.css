@@ -1,0 +1,98 @@
+.foundersWrapper {
+    background-color: var(--cBg);
+    width: 100%;
+    padding: 60px 40px;
+}
+
+.ourTeam {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 50px;
+    color: var(--cTextSecondary);
+}
+
+.founderWrapper {
+    background-color: var(--cBgSecondary);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 462px;
+    padding-bottom: 12px;
+    width: 100%;
+}
+
+.founders {
+    display: flex;
+    column-gap: 20px;
+    row-gap: 150px;
+    flex-wrap: wrap;
+    margin-top: 180px;
+    justify-content: center;
+}
+
+.founderRole {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: center;
+    color: var(--cTextThird);
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.founderImage {
+    margin-top: -125px;
+    max-width: 250px;
+    max-height: 250px;
+}
+
+.founderName {
+    font-weight: 600;
+    text-transform: none;
+    font-size: 32px;
+    margin-top: 15px;
+    line-height: 32px;
+}
+
+.founderIcon {
+    width: 40px;
+    height: 40px;
+    color: var(--cTextPrimary);
+}
+
+@media screen and (max-width: 560px) {
+    .founderImage {
+        max-width: 200px;
+        max-height: 200px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .ourTeam {
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .founderImage {
+        max-width: 170px;
+        max-height: 170px;
+    }
+    .founders {
+        margin-top: 140px;
+    }
+    .founderName {
+        font-size: 23px;
+        margin-top: 10px;
+    }
+    .ourTeam {
+        text-align: center;
+    }
+    .founderRole {
+        margin-top: 9px;
+        margin-bottom: 9px;
+    }
+}

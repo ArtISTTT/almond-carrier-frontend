@@ -13,4 +13,5 @@ export enum navigateTo {
     PRIVACY_POLICITY = '/privacy-policy',
     USER_AGREEMENT = 'user-agreement',
     VERIFICATION = 'verification',
+    FOUNDERS = 'founders',
 }
