@@ -33,6 +33,7 @@ import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { ReceiverPopupSchema } from 'src/schemas/PopupSchema';
 import { OUR_COMISSION_RUB } from 'src/helpers/comission';
+import { Dayjs } from 'dayjs';
 
 type IProps = {
     order: IOrderFull;
@@ -152,9 +153,16 @@ const OrderInformation: React.FC<IProps> = ({
 
         const asArray = Object.entries(form);
 
-        const filtered = asArray.filter(
-            ([key, value]) => value !== (initialValues as any)[key]
-        );
+        const filtered = asArray.filter(([key, value]) => {
+            if (key === 'arrivalDate') {
+                return (
+                    initialValues.arrivalDate &&
+                    !initialValues.arrivalDate.isSame(value as Dayjs)
+                );
+            }
+
+            return value !== (initialValues as any)[key];
+        });
 
         const data = await method({
             changes: Object.fromEntries(filtered),
