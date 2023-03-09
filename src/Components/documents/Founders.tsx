@@ -35,8 +35,9 @@ const Founders = () => {
             </Typography>
 
             <div className={styles.founders}>
-                {founders.map(founder => (
+                {founders.map((founder, index) => (
                     <Founder
+                        key={index}
                         name={founder.name}
                         telegramLink={founder.telegramLink}
                         role={founder.role}
