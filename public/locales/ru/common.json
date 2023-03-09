@@ -172,6 +172,8 @@
     "errorSignUp": "Ошибка при регистрации",
     "errorToResetPassword": "Ошибка при изменении пароля",
     "reset": "Сбросить",
+    "ourTeam": "Наша команда",
+    "CEOCTOBackendDevFrontDev": "CEO/CTO\n Back-end разработчик/Front-end разработчик",
     "errorUpdateAvatar": "Ошибка при обновлении аватара",
     "errorUpdated": "Ошибка при обновлении данных",
     "errorUpdatePassword": "Ошибка при обновлении пароля",

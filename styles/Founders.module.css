@@ -1,0 +1,52 @@
+.foundersWrapper {
+    background-color: var(--cBg);
+    width: 100%;
+    padding: 60px 40px;
+}
+
+.ourTeam {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 50px;
+    color: var(--cTextSecondary);
+}
+
+.founderWrapper {
+    background-color: var(--cBgSecondary);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 450px;
+    padding-bottom: 12px;
+    width: 100%;
+}
+
+.founderRole {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.founderImage {
+    margin-top: -125px;
+    max-width: 250px;
+    max-height: 250px;
+}
+
+.founderName {
+    font-weight: 600;
+    text-transform: none;
+    font-size: 32px;
+    margin-top: 15px;
+    line-height: 32px;
+}
+
+.founderIcon {
+    width: 40px;
+    height: 40px;
+    color: var(--cTextPrimary);
+}
