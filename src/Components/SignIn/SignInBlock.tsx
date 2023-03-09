@@ -39,13 +39,13 @@ const SignInBlock = () => {
         } else if (data.notVerified) {
             triggerOpen({
                 severity: 'error',
-                text: data.error || t('mailIsNotYetVerified'),
+                text: t('mailIsNotYetVerified'),
             });
             formik.setSubmitting(false);
         } else {
             triggerOpen({
                 severity: 'error',
-                text: data.error || t('errorSignIn'),
+                text: t('errorSignIn'),
             });
             formik.setSubmitting(false);
         }
