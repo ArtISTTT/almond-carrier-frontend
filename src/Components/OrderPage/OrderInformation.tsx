@@ -19,6 +19,7 @@ import {
     agreeWithChanges,
     completeOrder,
     confirmDeal,
+    disagreeWithChanges,
     suggestChangesByCarrier,
     suggestChangesByReceiver,
 } from 'src/api/order';
@@ -197,7 +198,7 @@ const OrderInformation: React.FC<IProps> = ({
     };
 
     const disagreeWithChangesClick = async () => {
-        const data = await agreeWithChanges({
+        const data = await disagreeWithChanges({
             orderId: order.id,
         });
 
