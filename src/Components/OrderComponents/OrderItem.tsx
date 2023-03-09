@@ -66,6 +66,8 @@ const OrderItem: React.FC<IOrder> = ({
         return status;
     }, [status, viewType]);
 
+
+    
     return (
         <div
             className={cn(styles.order, {

@@ -41,6 +41,18 @@
     display: none;
 }
 
+.inputPhone > div {
+    padding-left: 0px;
+}
+
+.inputPhone > div > input {
+    padding: 8px 14px;
+}
+
+.input > div > input {
+    padding: 8px 14px;
+}
+
 .select {
     border-radius: 15px;
     height: 40px;

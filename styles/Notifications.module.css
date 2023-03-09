@@ -1,6 +1,11 @@
 .notificationsIconHeader {
     color: var(--cTextLow);
     margin-right: 10px;
+    transition: color 0.2s linear;
+}
+
+.notificationsIconHeader:hover {
+    color: var(--cTextPrimary);
 }
 
 .growMenu {

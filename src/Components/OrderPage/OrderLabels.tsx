@@ -20,6 +20,8 @@ const OrderLabels: React.FC<IProps> = ({
 }) => {
     const { t } = useTranslation();
 
+    
+
     return (
         <>
             {order.status === OrderStatus.inDiscussion && (
@@ -76,9 +78,13 @@ const OrderLabels: React.FC<IProps> = ({
                     {t('paymentConfirmed')} {order.arrivalDate?.format('LL')}
                 </div>
             )}
-            {order.status === OrderStatus.success &&
+            {order.status === OrderStatus.awaitingPayout &&
                 viewType === ViewType.carrier && (
                     <div className={styles.byOther}>{t('awaitingPayout')}</div>
+                )}
+            {order.status === OrderStatus.success &&
+                viewType === ViewType.carrier && (
+                    <div className={styles.byOther}>{t('success')}</div>
                 )}
         </>
     );
