@@ -17,6 +17,8 @@ import { LoaderColors } from 'src/interfaces/loader';
 import { useAppSelector } from 'src/redux/hooks';
 import { ViewType } from '../OrderPage/OrderInputItem';
 import { selectUser } from 'src/redux/selectors/user';
+import { useRouter } from 'next/router';
+import { navigateTo } from 'src/interfaces/navigate';
 
 const OrderItem: React.FC<IOrder> = ({
     status,
@@ -37,6 +39,7 @@ const OrderItem: React.FC<IOrder> = ({
     const formatAmount = useFormatAmount();
     const convertStatus = useConvertStatusToText();
     const user = useAppSelector(selectUser);
+    const router = useRouter();
 
     const [isDetailsLoading, setIsDetailsLoading] =
         React.useState<boolean>(false);
@@ -66,6 +69,25 @@ const OrderItem: React.FC<IOrder> = ({
         return status;
     }, [status, viewType]);
 
+    const navigateToUserPage = (id: string): void => {
+        router.push({
+            pathname: navigateTo.USER,
+            query: { userId: id },
+        });
+    };
+
+    const navigateToCarrier = () => {
+        if (carrier) {
+            navigateToUserPage(carrier.id);
+        }
+    };
+
+    const navigateToReceiver = () => {
+        if (receiver) {
+            navigateToUserPage(receiver.id);
+        }
+    };
+
     return (
         <div
             className={cn(styles.order, {
@@ -78,7 +100,12 @@ const OrderItem: React.FC<IOrder> = ({
             <div className={styles.orderData}>
                 <div className={styles.orderInfo}>
                     <div className={styles.orderTitle}>
-                        <div className={styles.userBlock}>
+                        <div
+                            className={cn(styles.userBlock, {
+                                [styles.userBlockHover]: carrier,
+                            })}
+                            onClick={navigateToCarrier}
+                        >
                             <Typography
                                 className={styles.blockTitle}
                                 variant='h4'
@@ -98,7 +125,12 @@ const OrderItem: React.FC<IOrder> = ({
                                 />
                             )}
                         </div>
-                        <div className={styles.userBlock}>
+                        <div
+                            className={cn(styles.userBlock, {
+                                [styles.userBlockHover]: receiver,
+                            })}
+                            onClick={navigateToReceiver}
+                        >
                             <Typography
                                 className={styles.blockTitle}
                                 variant='h4'
