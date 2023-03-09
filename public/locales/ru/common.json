@@ -171,6 +171,7 @@
     "errorSignIn": "Ошибка авторизации",
     "errorSignUp": "Ошибка при регистрации",
     "errorToResetPassword": "Ошибка при изменении пароля",
+    "reset": "Сбросить",
     "errorUpdateAvatar": "Ошибка при обновлении аватара",
     "errorUpdated": "Ошибка при обновлении данных",
     "errorUpdatePassword": "Ошибка при обновлении пароля",

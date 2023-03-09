@@ -14,6 +14,7 @@ import { useTranslation } from 'next-i18next';
 import { Currency } from 'src/interfaces/settings';
 import { useAppSelector } from 'src/redux/hooks';
 import { IBounds } from 'src/interfaces/geometry';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 type IProps = {
     updateByFiltersAndType: (
@@ -28,6 +29,29 @@ const userCurrency = {
     [Currency.USD]: 'USD',
 };
 
+const carriersInitialValues = {
+    fromLocation: undefined,
+    fromLocation_placeId: undefined,
+    fromLocationBounds: undefined,
+    toLocation: undefined,
+    toLocation_placeId: undefined,
+    toLocationBounds: undefined,
+    maxBenefit: undefined,
+    maxWeight: undefined,
+};
+
+const recieversInitialValues = {
+    fromLocation: undefined,
+    fromLocation_placeId: undefined,
+    fromLocationBounds: undefined,
+    toLocation: undefined,
+    toLocation_placeId: undefined,
+    toLocationBounds: undefined,
+    maxPrice: undefined,
+    minBenefit: undefined,
+    maxWeight: undefined,
+};
+
 const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
     const { t } = useTranslation();
 
@@ -36,46 +60,38 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
     );
 
     const carriersFormik = useFormik({
-        initialValues: {
-            fromLocation: undefined,
-            fromLocation_placeId: undefined,
-            fromLocationBounds: undefined,
-            toLocation: undefined,
-            toLocation_placeId: undefined,
-            toLocationBounds: undefined,
-            maxBenefit: undefined,
-            maxWeight: undefined,
-        },
-
+        initialValues: carriersInitialValues,
         onSubmit: updateByFiltersAndType,
         validateOnBlur: false,
         validateOnChange: false,
     });
 
     const receiversFormik = useFormik({
-        initialValues: {
-            fromLocation: undefined,
-            fromLocation_placeId: undefined,
-            fromLocationBounds: undefined,
-            toLocation: undefined,
-            toLocation_placeId: undefined,
-            toLocationBounds: undefined,
-            maxPrice: undefined,
-            minBenefit: undefined,
-            maxWeight: undefined,
-        },
-
+        initialValues: recieversInitialValues,
         onSubmit: updateByFiltersAndType,
         validateOnBlur: false,
         validateOnChange: false,
     });
 
-    const refresh = async () => {
+    const refresh = async (
+        forceData?: typeof carriersFormik.values | typeof receiversFormik.values
+    ) => {
         if (type === OrderSeachType.carriers) {
-            await updateByFiltersAndType(carriersFormik.values);
+            await updateByFiltersAndType(forceData ?? carriersFormik.values);
         } else {
-            await updateByFiltersAndType(receiversFormik.values);
+            await updateByFiltersAndType(forceData ?? receiversFormik.values);
         }
+    };
+
+    const onRefreshClick = async () => {
+        await refresh();
+    };
+
+    const reset = async () => {
+        carriersFormik.resetForm();
+        receiversFormik.resetForm();
+
+        await refresh({} as typeof carriersFormik.values);
     };
 
     const setLocationValueReceivers = async (
@@ -112,7 +128,9 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                     name: 'fromLocation',
                                     type: 'string',
                                     variant: 'outlined',
-                                    value: carriersFormik.values.fromLocation,
+                                    value:
+                                        carriersFormik.values.fromLocation ??
+                                        '',
                                     placeholder: t('enterLocation') as string,
                                     onChange: carriersFormik.handleChange,
                                     error:
@@ -136,7 +154,8 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                     name: 'toLocation',
                                     type: 'string',
                                     variant: 'outlined',
-                                    value: carriersFormik.values.toLocation,
+                                    value:
+                                        carriersFormik.values.toLocation ?? '',
                                     placeholder: t('enterLocation') as string,
                                     onChange: carriersFormik.handleChange,
                                     error:
@@ -175,7 +194,9 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                             </InputAdornment>
                                         ),
                                     }}
-                                    value={carriersFormik.values.maxWeight}
+                                    value={
+                                        carriersFormik.values.maxWeight ?? ''
+                                    }
                                     onChange={carriersFormik.handleChange}
                                     className={styles.input}
                                 />
@@ -203,7 +224,9 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                             </InputAdornment>
                                         ),
                                     }}
-                                    value={carriersFormik.values.maxBenefit}
+                                    value={
+                                        carriersFormik.values.maxBenefit ?? ''
+                                    }
                                     onChange={carriersFormik.handleChange}
                                     className={styles.input}
                                 />
@@ -281,7 +304,9 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                             </InputAdornment>
                                         ),
                                     }}
-                                    value={receiversFormik.values.maxPrice}
+                                    value={
+                                        receiversFormik.values.maxPrice ?? ''
+                                    }
                                     onChange={receiversFormik.handleChange}
                                     className={styles.input}
                                 />
@@ -303,7 +328,9 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                         ),
                                     }}
                                     variant='outlined'
-                                    value={receiversFormik.values.maxWeight}
+                                    value={
+                                        receiversFormik.values.maxWeight ?? ''
+                                    }
                                     onChange={receiversFormik.handleChange}
                                     className={styles.input}
                                 />
@@ -330,7 +357,9 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                                             </InputAdornment>
                                         ),
                                     }}
-                                    value={receiversFormik.values.minBenefit}
+                                    value={
+                                        receiversFormik.values.minBenefit ?? ''
+                                    }
                                     onChange={receiversFormik.handleChange}
                                     className={styles.input}
                                 />
@@ -343,7 +372,15 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                 <Button
                     variant='contained'
                     className={styles.refreshButton}
-                    onClick={refresh}
+                    onClick={reset}
+                >
+                    <DeleteIcon fontSize='small' />
+                    {t('reset')}
+                </Button>
+                <Button
+                    variant='contained'
+                    className={styles.refreshButton}
+                    onClick={onRefreshClick}
                 >
                     <LoopIcon fontSize='small' />
                     {t('refresh')}

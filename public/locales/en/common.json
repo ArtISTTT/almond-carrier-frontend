@@ -172,6 +172,7 @@
     "errorSignIn": "Error when trying to sign in",
     "errorSignUp": "Error when trying to sign up",
     "errorToResetPassword": "Error when trying to reset the password",
+    "reset": "Reset",
     "errorUpdateAvatar": "Error while trying to update avatar",
     "errorUpdated": "Error when trying to update user",
     "errorUpdatePassword": "Error when trying to change the password",
