@@ -1,20 +1,20 @@
+import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { getCurrentUser } from '../../api/auth';
+import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
+import { IGetCurrentUserReturn } from '../../interfaces/api/auth';
+import { Language } from '../../interfaces/settings';
 import { useAppDispatch } from '../../redux/hooks';
+import { selectIsInitializeAuthChecked } from '../../redux/selectors/user';
+import { changeLanguage } from '../../redux/slices/settingsSlice';
 import {
     addUserData,
     setInitializeAuthChecked,
     setIsAuthorized,
 } from '../../redux/slices/userSlice';
-import { useSelector } from 'react-redux';
-import { selectIsInitializeAuthChecked } from '../../redux/selectors/user';
 import Loader from '../Loaders/Loader';
-import { IGetCurrentUserReturn } from '../../interfaces/api/auth';
-import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
-import { changeLanguage } from '../../redux/slices/settingsSlice';
-import { Language } from '../../interfaces/settings';
-import dayjs from 'dayjs';
 
 type IAuthLayout = {
     children: React.ReactNode;
@@ -42,6 +42,7 @@ const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
                 push(asPath, undefined, { locale: savedLocale });
             }
         } else {
+            localStorage.setItem('language', locale ?? Language.EN);
             dispatch(
                 changeLanguage({
                     language: (locale as Language) ?? Language.EN,
