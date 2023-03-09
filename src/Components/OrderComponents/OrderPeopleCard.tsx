@@ -9,7 +9,7 @@ interface IProps {
     people: {
         id: string;
         avatar?: string;
-        rating: number;
+        rating?: number;
         firstName: string;
         lastName: string;
     };
@@ -17,14 +17,6 @@ interface IProps {
 
 const OrderPeopleCard: React.FC<IProps> = ({ people }) => {
     const { t } = useTranslation();
-    const router = useRouter();
-
-    const navigateToUserPage = (): void => {
-        router.push({
-            pathname: navigateTo.USER,
-            query: { userId: people.id },
-        });
-    };
 
     return (
         <div className={styles.carrierCard}>
@@ -35,26 +27,18 @@ const OrderPeopleCard: React.FC<IProps> = ({ people }) => {
                     cursor: 'pointer',
                 }}
                 src={people.avatar}
-                onClick={navigateToUserPage}
                 className={styles.roundIcon}
             />
             <div className={styles.info}>
-                <Typography
-                    onClick={navigateToUserPage}
-                    className={styles.name}
-                    variant='h5'
-                    component='h5'
-                >
-                    {people?.firstName ? people?.firstName : 'Vladimir'}{' '}
-                    {people?.lastName ? people?.lastName : 'Putin'}
+                <Typography className={styles.name} variant='h5' component='h5'>
+                    {people.firstName} {people.lastName}
                 </Typography>
                 <Typography
                     className={styles.rating}
                     variant='h6'
                     component='h6'
                 >
-                    {t('rating')}:{' '}
-                    <span>{people.rating ? people.rating : '-'}</span>
+                    {t('rating')}: <span>{people.rating ?? '-'}</span>
                 </Typography>
                 {/* <Typography
                     className={styles.completedOrders}

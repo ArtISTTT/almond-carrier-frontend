@@ -34,6 +34,7 @@ interface IProps {
     errorMessage: string;
     personAvatar?: string;
     myDataAvatar?: string;
+    messagesPanelRef: React.RefObject<HTMLDivElement>;
 }
 
 const MessagesPanel: React.FC<IProps> = ({
@@ -45,6 +46,7 @@ const MessagesPanel: React.FC<IProps> = ({
     isMessagesLoading,
     loadMessages,
     errorMessage,
+    messagesPanelRef,
 }) => {
     const [currentDate, setCurrentDate] = useState(dayjs());
     const [pushedKeys, setPushedKeys] = useState<number[]>([]);
@@ -100,6 +102,7 @@ const MessagesPanel: React.FC<IProps> = ({
         <div className={styles.contentBlock}>
             {!isMessagesLoading ? (
                 <div
+                    ref={messagesPanelRef}
                     className={cn(styles.messages, {
                         [styles.errorMessageBlock]: errorMessage,
                     })}

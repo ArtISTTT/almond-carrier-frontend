@@ -29,6 +29,17 @@ export enum Positions {
     CENTER = 'Center',
 }
 
+function useChatScroll<T>(dep: T): React.RefObject<HTMLDivElement> {
+    const ref = React.useRef<HTMLDivElement>(null);
+    React.useEffect(() => {
+        if (ref.current) {
+            ref.current.scrollTop = ref.current.scrollHeight;
+        }
+    }, [dep]);
+
+    return ref;
+}
+
 const OrderChat: React.FC<IProps> = ({
     user,
     order,
@@ -43,6 +54,7 @@ const OrderChat: React.FC<IProps> = ({
     const [errorMessage, setErrorMessage] = React.useState<string>('');
     const [isMessagesLoading, setIsMessagesLoading] =
         React.useState<boolean>(false);
+    const messagesPanelRef = useChatScroll(messages);
 
     const initialize = async () => {
         await loadMessages();
@@ -162,6 +174,7 @@ const OrderChat: React.FC<IProps> = ({
                 isMessagesLoading={isMessagesLoading}
                 messages={messages}
                 onSendMessage={handleSendMessage}
+                messagesPanelRef={messagesPanelRef}
             />
         </div>
     );
