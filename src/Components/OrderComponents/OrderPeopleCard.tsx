@@ -9,7 +9,7 @@ interface IProps {
     people: {
         id: string;
         avatar?: string;
-        rating: number;
+        rating?: number;
         firstName: string;
         lastName: string;
     };
@@ -31,16 +31,14 @@ const OrderPeopleCard: React.FC<IProps> = ({ people }) => {
             />
             <div className={styles.info}>
                 <Typography className={styles.name} variant='h5' component='h5'>
-                    {people?.firstName ? people?.firstName : 'Vladimir'}{' '}
-                    {people?.lastName ? people?.lastName : 'Putin'}
+                    {people.firstName} {people.lastName}
                 </Typography>
                 <Typography
                     className={styles.rating}
                     variant='h6'
                     component='h6'
                 >
-                    {t('rating')}:{' '}
-                    <span>{people.rating ? people.rating : '-'}</span>
+                    {t('rating')}: <span>{people.rating ?? '-'}</span>
                 </Typography>
                 {/* <Typography
                     className={styles.completedOrders}
