@@ -26,6 +26,7 @@ export type IRecover = {
 
 export type IRecoverReturn = {
     error?: string | undefined;
+    notVerified?: boolean;
     ok: boolean;
 };
 

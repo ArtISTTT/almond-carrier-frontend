@@ -55,15 +55,20 @@ const SignIn: React.FC = () => {
 
     const handleRecover = (form: IForm) => {
         recoverPassword(form).then(data => {
-            if (data.ok) {
+            if (data.ok && !data.notVerified) {
                 handleOpenModal();
+            } else if (data.notVerified) {
+                triggerOpen({
+                    severity: 'error',
+                    text: t('mailIsNotYetVerified'),
+                });
+                formik.setSubmitting(false);
             } else {
                 triggerOpen({
                     severity: 'error',
-                    text: data.error || t('errorToResetPassword'),
+                    text: t('errorToResetPassword'),
                 });
             }
-
             formik.setSubmitting(false);
         });
     };
