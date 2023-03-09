@@ -15,17 +15,7 @@ export const parseOrderDataFromApi = async (
                 ? dayjs(order.arrivalDate)
                 : undefined,
             createdDate: dayjs(order.createdDate),
-            fromLocation: order.fromLocation_placeId
-                ? await getGoogleLozalizedName({
-                      place_id: order.fromLocation_placeId,
-                      language,
-                  })
-                : order.fromLocation,
-            toLocation: order.toLocation_placeId
-                ? await getGoogleLozalizedName({
-                      place_id: order.toLocation_placeId,
-                      language,
-                  })
-                : order.toLocation,
+            fromLocation: order.fromLocation,
+            toLocation: order.toLocation,
         }))
     );

@@ -20,13 +20,16 @@ import {
 } from '../interfaces/order-search';
 import { mainInstance } from './instance';
 
+const getLanguage = () => localStorage.getItem('language');
+
 export const addOrderAsACarrier = (
     requestData: ICreateOrderCarrier
 ): Promise<IAddAsACarrierReturn> =>
     mainInstance
         .post(
             '/order/create-order-as-carrier',
-            JSON.stringify({ ...requestData, currency: 'RUB' })
+            JSON.stringify({ ...requestData, currency: 'RUB' }),
+            { params: { language: getLanguage() } }
         )
         .then(data => {
             return {
@@ -46,7 +49,8 @@ export const addOrderAsAReceiver = (
     mainInstance
         .post(
             '/order/create-order-as-receiver',
-            JSON.stringify({ ...requestData, currency: 'RUB' })
+            JSON.stringify({ ...requestData, currency: 'RUB' }),
+            { params: { language: getLanguage() } }
         )
         .then(data => {
             return {
@@ -62,7 +66,7 @@ export const addOrderAsAReceiver = (
 
 export const getMyOrders = (): Promise<IGetMyOrdersReturn> =>
     mainInstance
-        .get('/order/get-my-orders')
+        .get('/order/get-my-orders', { params: { language: getLanguage() } })
         .then(data => {
             return {
                 ok: true,
@@ -83,7 +87,9 @@ export const searchOrders = (requestData: {
     limit: number;
 }): Promise<IGetMyOrdersReturn> =>
     mainInstance
-        .post('/order/search-orders', JSON.stringify(requestData))
+        .post('/order/search-orders', JSON.stringify(requestData), {
+            params: { language: getLanguage() },
+        })
         .then(data => {
             return {
                 ok: true,
@@ -105,7 +111,9 @@ export const applyOrderAsCarrier = (requestData: {
     orderId: string;
 }): Promise<IApplyOrderReturn> =>
     mainInstance
-        .post('/order/apply-as-carrier', JSON.stringify(requestData))
+        .post('/order/apply-as-carrier', JSON.stringify(requestData), {
+            params: { language: getLanguage() },
+        })
         .then(data => {
             return {
                 ok: true,
@@ -127,7 +135,9 @@ export const applyOrderAsReceiver = (requestData: {
     orderId: string;
 }): Promise<IApplyOrderReturn> =>
     mainInstance
-        .post('/order/apply-as-receiver', JSON.stringify(requestData))
+        .post('/order/apply-as-receiver', JSON.stringify(requestData), {
+            params: { language: getLanguage() },
+        })
         .then(data => {
             return {
                 ok: true,
@@ -146,7 +156,7 @@ export const getOrderById = (requestData: {
 }): Promise<IGetOrderByIdReturn> =>
     mainInstance
         .get('/order/get-order-by-id', {
-            params: requestData,
+            params: { ...requestData, language: getLanguage() },
         })
         .then(data => {
             return {
@@ -167,7 +177,11 @@ export const suggestChangesByCarrier = (requestData: {
     orderId: string;
 }): Promise<ISuggestChanges> =>
     mainInstance
-        .post('/order/suggest-changes-by-carrier', JSON.stringify(requestData))
+        .post(
+            '/order/suggest-changes-by-carrier',
+            JSON.stringify(requestData),
+            { params: { language: getLanguage() } }
+        )
         .then(data => {
             return {
                 ok: true,
@@ -203,7 +217,9 @@ export const agreeWithChanges = (requestData: {
     orderId: string;
 }): Promise<ISuggestChanges> =>
     mainInstance
-        .post('/order/agree-with-changes', JSON.stringify(requestData))
+        .post('/order/agree-with-changes', JSON.stringify(requestData), {
+            params: { language: getLanguage() },
+        })
         .then(data => {
             return {
                 ok: true,
@@ -241,7 +257,9 @@ export const cancelOrder = (requestData: {
     orderId: string;
 }): Promise<ISuggestChanges> =>
     mainInstance
-        .post('/order/cancel-order', JSON.stringify(requestData))
+        .post('/order/cancel-order', JSON.stringify(requestData), {
+            params: { language: getLanguage() },
+        })
         .then(data => {
             return {
                 ok: true,
@@ -259,7 +277,9 @@ export const disagreeWithChanges = (requestData: {
     orderId: string;
 }): Promise<ISuggestChanges> =>
     mainInstance
-        .post('/order/disagree-with-changes', JSON.stringify(requestData))
+        .post('/order/disagree-with-changes', JSON.stringify(requestData), {
+            params: { language: getLanguage() },
+        })
         .then(data => {
             return {
                 ok: true,
@@ -278,7 +298,9 @@ export const confirmDeal = (requestData: {
     orderId: string;
 }): Promise<ISuggestChanges> =>
     mainInstance
-        .post('/order/confirm-deal', JSON.stringify(requestData))
+        .post('/order/confirm-deal', JSON.stringify(requestData), {
+            params: { language: getLanguage() },
+        })
         .then(() => {
             return {
                 ok: true,
@@ -316,7 +338,9 @@ export const declineOrder = (requestData: {
     orderId: string;
 }): Promise<ISuggestChanges> =>
     mainInstance
-        .post('/order/decline-order', JSON.stringify(requestData))
+        .post('/order/decline-order', JSON.stringify(requestData), {
+            params: { language: getLanguage() },
+        })
         .then(() => {
             return {
                 ok: true,
@@ -336,7 +360,9 @@ export const startPayout = (requestData: {
     bank: Banks;
 }): Promise<ISuggestChanges> =>
     mainInstance
-        .post('/order/start-payout', JSON.stringify(requestData))
+        .post('/order/start-payout', JSON.stringify(requestData), {
+            params: { language: getLanguage() },
+        })
         .then(() => {
             return {
                 ok: true,
@@ -356,7 +382,9 @@ export const getGoogleLozalizedName = (requestData: {
     language: string;
 }): Promise<string> =>
     mainInstance
-        .get('/get-localized-name', { params: requestData })
+        .get('/get-localized-name', {
+            params: { ...requestData, language: getLanguage() },
+        })
         .then(data => {
             return data.data.address;
         })
