@@ -232,11 +232,13 @@
 
 .editingWrapper {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    margin-right: 10px;
 }
 
 .editingWrapper svg {
     cursor: pointer;
+    margin-top: 8px;
 }
 
 .editingWrapper svg > path {
@@ -583,6 +585,9 @@
     .inputItem .input {
         height: 34px;
     }
+    .editingWrapper svg {
+        margin-top: 5.5px;
+    }
     .inputItem .input > div > input {
         height: 0;
         padding: 17px 0;
@@ -698,9 +703,6 @@
     .orderInputValueWrapper svg {
         height: 16px;
         width: 16px;
-    }
-    .column:last-child {
-        max-width: 100px;
     }
     .haveSomeProblems {
         margin-left: 10px;

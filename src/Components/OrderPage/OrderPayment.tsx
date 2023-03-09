@@ -106,8 +106,6 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
                             <b>{t('SBP')}</b> <br />
                             {t('banks')}: <b>{t('tinkoff')}</b>,{' '}
                             <b>{t('sberbank')}</b>
-                            {t('banks')}: <b>{t('tinkoff')}</b>,{' '}
-                            <b>{t('sberbank')}</b>
                         </div>
                         <div className={styles.name}>
                             {t('name')}: <b>{PAYMENT_CREDENTIALS.NAME}</b>

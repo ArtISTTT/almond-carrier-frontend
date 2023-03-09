@@ -5,33 +5,38 @@ import styles from '../../../styles/Founders.module.css';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
 
-const Founder = () => {
+interface IProps {
+    name: string;
+    role: string;
+    image: string;
+    telegramLink: string;
+}
+
+const Founder: React.FC<IProps> = ({ name, role, image, telegramLink }) => {
     const { t } = useTranslation();
 
     return (
         <div className={styles.founderWrapper}>
-            <img
-                className={styles.founderImage}
-                src='/static/images/founders/founderArtem.png'
-            />
+            <img className={styles.founderImage} src={image} />
             <Typography
                 className={styles.founderName}
                 variant='h6'
                 component='h5'
             >
-                Artem Gazukin
+                {t(name)}
             </Typography>
             <Typography
                 className={styles.founderRole}
                 variant='h6'
                 component='h4'
             >
-                {t('CEOCTOBackendDevFrontDev')}
+                {t(role)}
             </Typography>
             <MUILink
                 className={styles.founderIcon}
                 component={LinkBehaviour}
-                href=''
+                target='_blank'
+                href={'https://web.telegram.org/k/#' + telegramLink}
             >
                 <TelegramIcon className={styles.founderIcon} />
             </MUILink>
