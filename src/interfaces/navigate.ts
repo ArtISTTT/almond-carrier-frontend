@@ -11,7 +11,7 @@ export enum navigateTo {
     ORDER = '/order/[orderId]',
     USER = '/user/[userId]',
     PRIVACY_POLICITY = '/privacy-policy',
-    USER_AGREEMENT = 'user-agreement',
-    VERIFICATION = 'verification',
-    FOUNDERS = 'founders',
+    USER_AGREEMENT = '/user-agreement',
+    VERIFICATION = '/verification',
+    FOUNDERS = '/founders',
 }
