@@ -47,10 +47,31 @@
     color: var(--cTextSecondary);
 }
 
+.typeSwitcher > span.on {
+    border-radius: 10px;
+    transition: all 0.15s linear;
+}
+
+.typeSwitcher > span.off {
+    border-radius: 10px;
+    transition: all 0.15s linear;
+}
+
+.typeSwitcher > span.on:hover {
+    background-color: #6691fd94;
+    color: var(--cTextSecondary);
+}
+
+.typeSwitcher > span.off:hover {
+    background-color: #1d9e1194;
+    color: var(--cTextSecondary);
+}
+
 .typeSwitcher > span.off.selected {
     background-color: var(--cStatusSuccess);
     border-radius: 10px;
     color: var(--cTextSecondary);
+    transition-duration: 0.15s;
 }
 
 .typeTitle {

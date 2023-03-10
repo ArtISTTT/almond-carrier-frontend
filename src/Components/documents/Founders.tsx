@@ -9,19 +9,19 @@ const founders = [
         name: 'nikitaBogdankov',
         role: 'designer',
         image: '/static/images/founders/founderNikita.png',
-        telegramLink: '@nikibog',
+        telegramLink: 'nikibog',
     },
     {
         name: 'artemGazukin',
         role: 'CEOCTOBackendDevFrontDev',
         image: '/static/images/founders/founderArtem.png',
-        telegramLink: '@pBagueTT3',
+        telegramLink: 'pBagueTT3',
     },
     {
         name: 'vadimChetoshnikov',
         role: 'frontendDeveloper',
         image: '/static/images/founders/founderVadim.png',
-        telegramLink: '@NSPMSolyanka',
+        telegramLink: 'NSPMSolyanka',
     },
 ];
 

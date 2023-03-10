@@ -149,6 +149,7 @@ const OrderInputItem: React.FC<IProps> = ({
                         <MUILink
                             component={LinkBehaviour}
                             href={formik.values[id]}
+                            target='_blank'
                             className={cn(styles.orderInputValue, {
                                 [styles.productUri]: id === 'productUri',
                             })}
