@@ -36,7 +36,7 @@ const Founder: React.FC<IProps> = ({ name, role, image, telegramLink }) => {
                 className={styles.founderIcon}
                 component={LinkBehaviour}
                 target='_blank'
-                href={'https://web.telegram.org/k/#' + telegramLink}
+                href={'https://T.me/' + telegramLink}
             >
                 <TelegramIcon className={styles.founderIcon} />
             </MUILink>
