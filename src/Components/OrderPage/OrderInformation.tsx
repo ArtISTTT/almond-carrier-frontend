@@ -1,20 +1,11 @@
-import React, { useMemo, useState } from 'react';
-import styles from '../../../styles/OrderPage.module.css';
-import { IOrder, IOrderFull } from '../../interfaces/order';
-import { OrderStatus } from '../../interfaces/profile';
-import { useFormik } from 'formik';
-import { Button, TextField, Tooltip } from '@mui/material';
-import OrderInputItem, {
-    ChangedType,
-    ILabels,
-    ViewType,
-    getChangedType,
-} from './OrderInputItem';
-import { calculateTotalAmount } from '../../helpers/calculateTotalAmount';
-import { Currency } from '../../interfaces/settings';
-import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
+import EditIcon from '@mui/icons-material/Edit';
+import { Button, TextField, Tooltip } from '@mui/material';
 import cn from 'classnames';
+import { Dayjs } from 'dayjs';
+import { useFormik } from 'formik';
+import React, { useContext, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
     agreeWithChanges,
     completeOrder,
@@ -23,17 +14,25 @@ import {
     suggestChangesByCarrier,
     suggestChangesByReceiver,
 } from 'src/api/order';
-import { useContext } from 'react';
-import { OpenAlertContext } from '../Layouts/Snackbar';
+import { OUR_COMISSION_RUB } from 'src/helpers/comission';
 import { IUser } from 'src/interfaces/user';
-import { useTranslation } from 'react-i18next';
-import OrderReview from './OrderReview';
-import ReviewPopup from './ReviewPopup';
 import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { ReceiverPopupSchema } from 'src/schemas/PopupSchema';
-import { OUR_COMISSION_RUB } from 'src/helpers/comission';
-import { Dayjs } from 'dayjs';
+import styles from '../../../styles/OrderPage.module.css';
+import { calculateTotalAmount } from '../../helpers/calculateTotalAmount';
+import { IOrder, IOrderFull } from '../../interfaces/order';
+import { OrderStatus } from '../../interfaces/profile';
+import { Currency } from '../../interfaces/settings';
+import { OpenAlertContext } from '../Layouts/Snackbar';
+import OrderInputItem, {
+    ChangedType,
+    getChangedType,
+    ILabels,
+    ViewType,
+} from './OrderInputItem';
+import OrderReview from './OrderReview';
+import ReviewPopup from './ReviewPopup';
 
 type IProps = {
     order: IOrderFull;
@@ -500,7 +499,7 @@ const OrderInformation: React.FC<IProps> = ({
                                     )}
                                 </div>
                                 <div className={styles.column}>
-                                    {order.productAmount && (
+                                    {order.productAmount !== undefined && (
                                         <OrderInputItem
                                             formatAmount={formatAmount}
                                             unit={userCurrency}
@@ -547,7 +546,7 @@ const OrderInformation: React.FC<IProps> = ({
                                         />
                                     )}
                                     {order.rewardAmount &&
-                                        order.productAmount && (
+                                        order.productAmount !== undefined && (
                                             <div className={styles.inputItem}>
                                                 <label>
                                                     {t('totalAmount')}

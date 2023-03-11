@@ -1,15 +1,15 @@
-import React from 'react';
-import styles from '../../../styles/OrderSearch.module.css';
 import { Avatar, Button, Tooltip } from '@mui/material';
 import cn from 'classnames';
-import { IOrder } from '../../interfaces/order';
 import { useTranslation } from 'next-i18next';
-import useFormatAmount from 'src/redux/hooks/useFormatAmount';
-import { Currency } from 'src/interfaces/settings';
 import { useRouter } from 'next/router';
-import { navigateTo } from 'src/interfaces/navigate';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import { navigateTo } from 'src/interfaces/navigate';
+import { Currency } from 'src/interfaces/settings';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { selectIsAuthorized } from 'src/redux/selectors/user';
+import styles from '../../../styles/OrderSearch.module.css';
+import { IOrder } from '../../interfaces/order';
 import FastLoginPopup from './FastLoginPopup';
 
 type IProps = {
@@ -146,7 +146,7 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({
                                     {t('price')}:
                                 </span>
                                 <span className={styles.benefitPriceValue}>
-                                    {order.productAmount &&
+                                    {order.productAmount !== undefined &&
                                         formatAmount(
                                             order.productAmount,
                                             Currency.RUB,
