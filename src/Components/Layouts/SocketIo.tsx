@@ -1,10 +1,10 @@
-import React, { createContext, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import MainLayout from './MainLayout';
 import { Alert, AlertProps, Snackbar } from '@mui/material';
-import { Socket, io } from 'socket.io-client';
+import { useRouter } from 'next/router';
+import React, { createContext, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { io, Socket } from 'socket.io-client';
 import { selectUser } from 'src/redux/selectors/user';
+import MainLayout from './MainLayout';
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URI as string;
 

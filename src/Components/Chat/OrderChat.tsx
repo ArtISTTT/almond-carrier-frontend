@@ -85,12 +85,14 @@ const OrderChat: React.FC<IProps> = ({
     }, [viewType, order.carrier, order.receiver]);
 
     const configureSocket = () => {
+        console.log(socket, socket?.connected);
         if (socket && socket.connected) {
             socket.emit('connect-to-order', order.id);
 
             socket.on(
                 'new-message',
                 ({ message }: { message: IMessageServer }) => {
+                    console.log(message);
                     setMessages(prev =>
                         prev.concat(parseMessages(user.id, [message]))
                     );
