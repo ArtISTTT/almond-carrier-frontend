@@ -94,10 +94,7 @@ const MobileMenu: React.FC<IProps> = ({
     const goToProfile = () => router.push(navigateTo.PROFILE_ORDERS);
     const goToDashboard = () => router.push(navigateTo.DASHBOARD);
     const goToOrdersSearch = () => router.push(navigateTo.ORDER_SEARCH);
-    const navigateToBilling = () => {
-        handleCloseMenu();
-        router.push(navigateTo.PAYMENTS);
-    };
+    const navigateToBilling = () => router.push(navigateTo.PAYOUTS);
 
     return (
         <>
@@ -193,7 +190,7 @@ const MobileMenu: React.FC<IProps> = ({
                                         <PaymentsIcon
                                             className={styles.mobileMenuIcon}
                                         />
-                                        <span>{t('billing')}</span>
+                                        <span>{t('payout')}</span>
                                     </MenuItem>
                                     <MenuItem
                                         onClick={goToDashboard}

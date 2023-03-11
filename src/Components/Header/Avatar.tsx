@@ -50,7 +50,7 @@ const HeaderAvatar: React.FC<IProps> = ({
     };
 
     const navigateToBilling = () => {
-        router.push(navigateTo.PAYMENTS);
+        router.push(navigateTo.PAYOUTS);
         setOpen(false);
     };
 
@@ -132,7 +132,7 @@ const HeaderAvatar: React.FC<IProps> = ({
                                         {t('settings')}
                                     </MenuItem>
                                     <MenuItem onClick={navigateToBilling}>
-                                        {t('billing')}
+                                        {t('payout')}
                                     </MenuItem>
                                     <MenuItem
                                         className={styles.logoutItem}
