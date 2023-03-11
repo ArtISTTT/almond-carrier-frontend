@@ -751,7 +751,13 @@ const OrderInformation: React.FC<IProps> = ({
                                             <Button
                                                 disabled={
                                                     order.status ===
-                                                    OrderStatus.cancelled
+                                                        OrderStatus.cancelled ||
+                                                    (order.dealConfirmedByCarrier &&
+                                                        viewType ===
+                                                            ViewType.carrier) ||
+                                                    (order.dealConfirmedByReceiver &&
+                                                        viewType ===
+                                                            ViewType.receiver)
                                                 }
                                                 className={styles.buttonItem}
                                                 variant='contained'
