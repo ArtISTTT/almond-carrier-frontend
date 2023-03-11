@@ -1,4 +1,4 @@
-import { IOrder, IOrderFull } from '../order';
+import { IOrder, IOrderFull, IPayout } from '../order';
 
 export type IAddAsACarrierReturn = {
     error?: string | undefined;
@@ -26,6 +26,12 @@ export type IGetOrderByIdReturn = {
 };
 
 export type ISuggestChanges = {
+    error?: string | undefined;
+    ok: boolean;
+};
+
+export type IGetPayouts = {
+    payouts?: IPayout[];
     error?: string | undefined;
     ok: boolean;
 };

@@ -14,4 +14,5 @@ export enum navigateTo {
     USER_AGREEMENT = '/user-agreement',
     VERIFICATION = '/verification',
     FOUNDERS = '/founders',
+    PAYMENTS = '/payments',
 }

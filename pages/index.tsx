@@ -1,19 +1,19 @@
-import styles from '../styles/WelcomePage.module.css';
-import React from 'react';
 import { Button, TextField, Typography } from '@mui/material';
 import cn from 'classnames';
 import { useFormik } from 'formik';
-import { useRouter } from 'next/router';
-import { EmailSchema } from '../src/schemas/EmailSchema';
-import PrivateLayout from '../src/Components/Layouts/Private';
-import { privateTypes } from '../src/interfaces/private';
-import MainLayout from '../src/Components/Layouts/MainLayout';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { navigateTo } from 'src/interfaces/navigate';
 import Head from 'next/head';
-import { selectIsAuthorized } from 'src/redux/selectors/user';
+import { useRouter } from 'next/router';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import { navigateTo } from 'src/interfaces/navigate';
+import { selectIsAuthorized } from 'src/redux/selectors/user';
+import MainLayout from '../src/Components/Layouts/MainLayout';
+import PrivateLayout from '../src/Components/Layouts/Private';
+import { privateTypes } from '../src/interfaces/private';
+import { EmailSchema } from '../src/schemas/EmailSchema';
+import styles from '../styles/WelcomePage.module.css';
 
 type IForm = {
     email: string;
@@ -51,15 +51,23 @@ export default function Welcome() {
                     <title>Friendly carrier - P2P delivery platform</title>
                     <meta
                         name='description'
-                        content='P2P platform to deliver goods anywhere in the world'
+                        content={
+                            t(
+                                'P2PPlatformDeliverGoodsAnywhereInTheWorld'
+                            ) as string
+                        }
                     />
                     <meta
                         property='og:title'
-                        content='Friendly carrier - P2P delivery platform'
+                        content={
+                            t('friendlyCarrierP2PDeliveryPlatform') as string
+                        }
                     />
                     <meta
                         property='og:description'
-                        content='Order any product from anywhere in the world'
+                        content={
+                            t('orderAnyProductFromAnywhereInTheWorld') as string
+                        }
                     />
                     <meta
                         property='og:url'
