@@ -85,7 +85,6 @@ const OrderChat: React.FC<IProps> = ({
     }, [viewType, order.carrier, order.receiver]);
 
     const configureSocket = () => {
-        console.log(socket, socket?.connected);
         if (socket) {
             socket.emit('connect-to-order', order.id);
 
