@@ -7,17 +7,17 @@ import {
     Paper,
     Popper,
 } from '@mui/material';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
+import { navigateTo } from 'src/interfaces/navigate';
 import styles from '../../../styles/mainLayout.module.css';
 import { signOut } from '../../api/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { selectUser } from '../../redux/selectors/user';
-import { useRouter } from 'next/router';
-import SettingsPopup from '../SettingsPopup/SettingsPopup';
 import { setIsAuthorized } from '../../redux/slices/userSlice';
-import { useTranslation } from 'next-i18next';
-import { navigateTo } from 'src/interfaces/navigate';
 import { OpenAlertContext } from '../Layouts/Snackbar';
+import SettingsPopup from '../SettingsPopup/SettingsPopup';
 
 interface IProps {
     isSettingsPopupOpen: boolean;
@@ -46,7 +46,7 @@ const HeaderAvatar: React.FC<IProps> = ({
     };
 
     const goToProfile = () => {
-        router.push(navigateTo.PROFILE_ORDERS);
+        router.push(navigateTo.PROFILE_GENERAL);
     };
 
     const handleSignOut = async () => {
