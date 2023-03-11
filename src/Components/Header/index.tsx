@@ -1,20 +1,20 @@
 import { Avatar, Button, Link as MUILink } from '@mui/material';
+import cn from 'classnames';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
-import styles from '../../../styles/mainLayout.module.css';
-import cn from 'classnames';
-import { selectIsAuthorized } from '../../redux/selectors/user';
-import HeaderAvatar from './Avatar';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
-import { navigateTo } from 'src/interfaces/navigate';
-import { LinkBehaviour } from '../Common/LinkBehaviour';
-import MobileMenu from './MobileMenu';
-import NotificationsMenu from '../Notifications/NotificationsMenu';
-import { useLoadOwnNotifications } from 'src/redux/hooks/useLoadOwnNotifications';
-import { SocketIoContext } from '../Layouts/SocketIo';
-import { IUserNotification } from 'src/interfaces/notifications';
 import { parseNotificationsFromApi } from 'src/helpers/parceNotificationsFromApi';
+import { navigateTo } from 'src/interfaces/navigate';
+import { IUserNotification } from 'src/interfaces/notifications';
+import { useLoadOwnNotifications } from 'src/redux/hooks/useLoadOwnNotifications';
+import styles from '../../../styles/mainLayout.module.css';
+import { selectIsAuthorized } from '../../redux/selectors/user';
+import { LinkBehaviour } from '../Common/LinkBehaviour';
+import { SocketIoContext } from '../Layouts/SocketIo';
+import NotificationsMenu from '../Notifications/NotificationsMenu';
+import HeaderAvatar from './Avatar';
+import MobileMenu from './MobileMenu';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -48,11 +48,11 @@ const Header: React.FC<IProps> = ({
         if (socket && socket.connected) {
             socket.on(
                 'new-notification',
-                ({ notification }: { notification: IUserNotification }) => {
-                    setNotifications(prev =>
-                        prev.concat(parseNotificationsFromApi([notification]))
-                    );
-                }
+                ({ notification }: { notification: IUserNotification }) =>
+                    setNotifications(prev => [
+                        ...parseNotificationsFromApi([notification]),
+                        ...prev,
+                    ])
             );
         }
     };

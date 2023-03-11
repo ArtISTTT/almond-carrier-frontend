@@ -1,19 +1,19 @@
 import { Avatar, Typography } from '@mui/material';
+import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
-import { IUser } from 'src/interfaces/user';
-import styles from '../../../styles/OrderChat.module.css';
 import { useTranslation } from 'react-i18next';
-import { Socket, io } from 'socket.io-client';
-import MessagesPanel from './MessagesPanel';
+import { io, Socket } from 'socket.io-client';
 import { getMessages, postMessage } from 'src/api/chat';
-import { IOrderFull } from 'src/interfaces/order';
 import { parseMessages } from 'src/helpers/parseMessages';
 import { IMessage, IMessageServer } from 'src/interfaces/chat';
-import { ViewType } from '../OrderPage/OrderInputItem';
-import { OpenAlertContext } from '../Layouts/Snackbar';
-import { useRouter } from 'next/router';
 import { navigateTo } from 'src/interfaces/navigate';
+import { IOrderFull } from 'src/interfaces/order';
+import { IUser } from 'src/interfaces/user';
+import styles from '../../../styles/OrderChat.module.css';
+import { OpenAlertContext } from '../Layouts/Snackbar';
 import { SocketIoContext } from '../Layouts/SocketIo';
+import { ViewType } from '../OrderPage/OrderInputItem';
+import MessagesPanel from './MessagesPanel';
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URI as string;
 interface IProps {
