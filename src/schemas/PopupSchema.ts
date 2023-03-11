@@ -11,7 +11,7 @@ export const ReceiverPopupSchema = Yup.object().shape({
         .required('required'),
     productAmount: Yup.number()
         .nullable()
-        .min(1, 'correctProductPrice')
+        .min(0, 'correctProductPrice')
         .required('required'),
     productWeight: Yup.number()
         .nullable()
