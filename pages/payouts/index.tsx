@@ -5,7 +5,7 @@ import PrivateLayout from '../../src/Components/Layouts/Private';
 import UserLayout from '../../src/Components/Layouts/User';
 import { privateTypes } from '../../src/interfaces/private';
 
-const ReceiverPage: React.FC = () => (
+const PayoutsPage: React.FC = () => (
     <PrivateLayout privateType={privateTypes.onlyAuthorized}>
         <UserLayout>
             <Payouts />
@@ -21,4 +21,4 @@ export async function getStaticProps({ locale }: { locale: string }) {
     };
 }
 
-export default ReceiverPage;
+export default PayoutsPage;
