@@ -1,22 +1,22 @@
-import React, { useEffect } from 'react';
-import styles from '../../../styles/ProfileOrders.module.css';
 import { Pagination, Typography } from '@mui/material';
-import OrderItem from 'src/Components/OrderComponents/OrderItem';
-import { useSelector } from 'react-redux';
-import { selectMyOrders } from '../../redux/selectors/orders';
-import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 import cn from 'classnames';
-import EmptyOrdersBlock from '../EmptyComponents/EmptyNoShadows';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import CircleLoader from '../Loaders/CircleLoader';
+import { useSelector } from 'react-redux';
+import OrderItem from 'src/Components/OrderComponents/OrderItem';
 import { LoaderColors } from 'src/interfaces/loader';
-import { useGetThisPageOrders } from 'src/redux/hooks/useGetThisPageOrders';
+import { useGetCurrentPageOrders } from 'src/redux/hooks/useGetCurrentPage';
+import styles from '../../../styles/ProfileOrders.module.css';
+import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
+import { selectMyOrders } from '../../redux/selectors/orders';
+import EmptyOrdersBlock from '../EmptyComponents/EmptyNoShadows';
+import CircleLoader from '../Loaders/CircleLoader';
 
 const ProfileOrders = () => {
     const orders = useSelector(selectMyOrders);
     const { reload, isLoading, error } = useLoadOwnOrders();
     const [page, setPage] = React.useState<number>(1);
-    const thisPageOrders = useGetThisPageOrders({ orders, page });
+    const thisPageOrders = useGetCurrentPageOrders({ orders, page });
     const { t } = useTranslation();
 
     const totalCountPages = React.useMemo(() => {

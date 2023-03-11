@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
-import styles from '../../../styles/Dashboard.module.css';
-import { Button, Container, Typography, Pagination } from '@mui/material';
-import cn from 'classnames';
 import AddIcon from '@mui/icons-material/Add';
-import ReceiverAddingPopup from 'src/Components/OrderComponents/ReceiverAddingPopup';
-import UserLayout from '../Layouts/User';
-import OrderItem from 'src/Components/OrderComponents/OrderItem';
-import CarrierAddingPopup from '../OrderComponents/CarrierAddingPopup';
-import { useSelector } from 'react-redux';
-import { selectMyLiveOrders } from '../../redux/selectors/orders';
-import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
-import EmptyOrdersBlock from '../EmptyComponents/Empty';
+import { Button, Container, Pagination, Typography } from '@mui/material';
+import cn from 'classnames';
 import { useTranslation } from 'next-i18next';
-import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
-import CircleLoader from '../Loaders/CircleLoader';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import OrderItem from 'src/Components/OrderComponents/OrderItem';
+import ReceiverAddingPopup from 'src/Components/OrderComponents/ReceiverAddingPopup';
 import { LoaderColors } from 'src/interfaces/loader';
-import { useGetThisPageOrders } from 'src/redux/hooks/useGetThisPageOrders';
+import { useGetCurrentPageOrders } from 'src/redux/hooks/useGetCurrentPage';
+import styles from '../../../styles/Dashboard.module.css';
+import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
+import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
+import { selectMyLiveOrders } from '../../redux/selectors/orders';
+import EmptyOrdersBlock from '../EmptyComponents/Empty';
+import UserLayout from '../Layouts/User';
+import CircleLoader from '../Loaders/CircleLoader';
+import CarrierAddingPopup from '../OrderComponents/CarrierAddingPopup';
 
 enum PopupType {
     none,
@@ -32,7 +32,7 @@ const Dashboard: React.FC = () => {
     );
 
     const { reload, isLoading, error } = useLoadOwnOrders();
-    const thisPageOrders = useGetThisPageOrders({ orders, page });
+    const thisPageOrders = useGetCurrentPageOrders({ orders, page });
 
     useEffect(() => {
         reload();

@@ -132,7 +132,7 @@ const HeaderAvatar: React.FC<IProps> = ({
                                         {t('settings')}
                                     </MenuItem>
                                     <MenuItem onClick={navigateToBilling}>
-                                        {t('payout')}
+                                        {t('payouts')}
                                     </MenuItem>
                                     <MenuItem
                                         className={styles.logoutItem}

@@ -190,7 +190,7 @@ const MobileMenu: React.FC<IProps> = ({
                                         <PaymentsIcon
                                             className={styles.mobileMenuIcon}
                                         />
-                                        <span>{t('payout')}</span>
+                                        <span>{t('payouts')}</span>
                                     </MenuItem>
                                     <MenuItem
                                         onClick={goToDashboard}

@@ -81,10 +81,10 @@ export interface ICreateOrderCarrier {
 
 export interface IPayout {
     id: string;
-    completedDate: Date;
+    completedDate: string;
     productName: string;
     rewardAmount: number;
-    bank: string;
+    bank?: string;
     phoneNumber: string;
     status: string;
 }

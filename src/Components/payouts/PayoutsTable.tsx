@@ -13,15 +13,6 @@ const payoutsHeaders = [
     'benefit',
 ];
 
-const payoutsHeadersMobile = [
-    'orderNoun',
-    'completionDate',
-    'bank',
-    'phoneNumber',
-    'status',
-    'benefit',
-];
-
 interface IProps {
     payouts: IPayout[];
 }

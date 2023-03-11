@@ -2,11 +2,12 @@ import { Pagination } from '@mui/material';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getPayouts } from 'src/api/order';
+import { parsePayoutsFromApi } from 'src/helpers/parsePayoutsFromApi';
 import { LoaderColors } from 'src/interfaces/loader';
 import { IPayout } from 'src/interfaces/order';
 import { Currency } from 'src/interfaces/settings';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
-import { useGetThisPagePayouts } from 'src/redux/hooks/useGetThisPageOrders';
+import { useGetCurrentPagePayouts } from 'src/redux/hooks/useGetCurrentPage';
 import styles from '../../../styles/Payments.module.css';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import CircleLoader from '../Loaders/CircleLoader';
@@ -19,14 +20,14 @@ const Payouts = () => {
     const formatAmount = useFormatAmount();
     const { triggerOpen } = useContext(OpenAlertContext);
     const [payouts, setPayouts] = useState<IPayout[]>([]);
-    const thisPagePayouts = useGetThisPagePayouts({ payouts, page });
+    const currentPagePayouts = useGetCurrentPagePayouts({ payouts, page });
 
     const getUserPayouts = async () => {
         setIsLoading(true);
         const data = await getPayouts();
 
         if (data.ok && data.payouts) {
-            setPayouts(data.payouts);
+            setPayouts(parsePayoutsFromApi(data.payouts));
             setIsLoading(false);
         } else {
             triggerOpen({
@@ -71,7 +72,7 @@ const Payouts = () => {
                     <CircleLoader color={LoaderColors.PRIMARY} />
                 </div>
             ) : (
-                <PaymentsTable payouts={thisPagePayouts} />
+                <PaymentsTable payouts={currentPagePayouts} />
             )}
             {totalCountPages > 1 && (
                 <Pagination
