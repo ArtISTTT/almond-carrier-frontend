@@ -1,38 +1,38 @@
+import cn from 'classnames';
+import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
-import styles from '../../../styles/mainLayout.module.css';
-import SettingsPopup from '../SettingsPopup/SettingsPopup';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { signOut } from 'src/api/auth';
 import { navigateTo } from 'src/interfaces/navigate';
-import { LinkBehaviour } from '../Common/LinkBehaviour';
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks';
 import { selectIsAuthorized, selectUser } from 'src/redux/selectors/user';
-import { useRouter } from 'next/router';
-import { signOut } from 'src/api/auth';
-import { OpenAlertContext } from '../Layouts/Snackbar';
 import { setIsAuthorized } from 'src/redux/slices/userSlice';
-import { useSelector } from 'react-redux';
-import cn from 'classnames';
+import styles from '../../../styles/mainLayout.module.css';
+import { LinkBehaviour } from '../Common/LinkBehaviour';
+import { OpenAlertContext } from '../Layouts/Snackbar';
+import SettingsPopup from '../SettingsPopup/SettingsPopup';
 
 import {
-    ClickAwayListener,
-    Paper,
-    MenuList,
-    MenuItem,
-    Link as MUILink,
     Avatar,
     Button,
+    ClickAwayListener,
+    Link as MUILink,
+    MenuItem,
+    MenuList,
+    Paper,
 } from '@mui/material';
 
-import MenuIcon from '@mui/icons-material/Menu';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import SettingsIcon from '@mui/icons-material/Settings';
-import PaymentsIcon from '@mui/icons-material/Payments';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import MenuIcon from '@mui/icons-material/Menu';
+import PaymentsIcon from '@mui/icons-material/Payments';
 import SearchIcon from '@mui/icons-material/Search';
-import NotificationsMobileItem from '../Notifications/NotificationsMobileItem';
-import NotificationsMenu from '../Notifications/NotificationsMenu';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { IUserNotification } from 'src/interfaces/notifications';
+import NotificationsMenu from '../Notifications/NotificationsMenu';
+import NotificationsMobileItem from '../Notifications/NotificationsMobileItem';
 
 interface IProps {
     notifications: IUserNotification[];
@@ -62,7 +62,7 @@ const MobileMenu: React.FC<IProps> = ({
     const handleCloseMenu = () => {
         setTimeout(() => {
             setMobileMenuOpen(false);
-        }, 280);
+        }, 310);
         setAnimate(false);
     };
 
@@ -94,6 +94,7 @@ const MobileMenu: React.FC<IProps> = ({
     const goToProfile = () => router.push(navigateTo.PROFILE_ORDERS);
     const goToDashboard = () => router.push(navigateTo.DASHBOARD);
     const goToOrdersSearch = () => router.push(navigateTo.ORDER_SEARCH);
+    const navigateToBilling = () => router.push(navigateTo.PAYOUTS);
 
     return (
         <>
@@ -182,11 +183,14 @@ const MobileMenu: React.FC<IProps> = ({
                                         />
                                         <span>{t('settings')}</span>
                                     </MenuItem>
-                                    <MenuItem className={styles.bullingItem}>
+                                    <MenuItem
+                                        onClick={navigateToBilling}
+                                        className={styles.bullingItem}
+                                    >
                                         <PaymentsIcon
                                             className={styles.mobileMenuIcon}
                                         />
-                                        <span>{t('billing')}</span>
+                                        <span>{t('payouts')}</span>
                                     </MenuItem>
                                     <MenuItem
                                         onClick={goToDashboard}

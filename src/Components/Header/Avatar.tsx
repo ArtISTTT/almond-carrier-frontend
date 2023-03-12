@@ -49,6 +49,11 @@ const HeaderAvatar: React.FC<IProps> = ({
         router.push(navigateTo.PROFILE_GENERAL);
     };
 
+    const navigateToBilling = () => {
+        router.push(navigateTo.PAYOUTS);
+        setOpen(false);
+    };
+
     const handleSignOut = async () => {
         const data = await signOut();
 
@@ -126,8 +131,8 @@ const HeaderAvatar: React.FC<IProps> = ({
                                     <MenuItem onClick={handleOpenSettingsPopup}>
                                         {t('settings')}
                                     </MenuItem>
-                                    <MenuItem onClick={handleClose}>
-                                        {t('billing')}
+                                    <MenuItem onClick={navigateToBilling}>
+                                        {t('payouts')}
                                     </MenuItem>
                                     <MenuItem
                                         className={styles.logoutItem}

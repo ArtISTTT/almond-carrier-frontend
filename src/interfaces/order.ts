@@ -1,6 +1,6 @@
 import { Dayjs } from 'dayjs';
-import { OrderStatus } from './profile';
 import { ViewType } from 'src/Components/OrderPage/OrderInputItem';
+import { OrderStatus } from './profile';
 
 export interface IOrder {
     id: string;
@@ -77,4 +77,14 @@ export interface ICreateOrderCarrier {
     carrierMaxWeight: number | null;
     arrivalDate: Date;
     rewardAmount: number | null;
+}
+
+export interface IPayout {
+    id: string;
+    completedDate: string;
+    productName: string;
+    rewardAmount: number;
+    bank?: string;
+    phoneNumber: string;
+    status: string;
 }

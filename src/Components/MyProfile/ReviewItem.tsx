@@ -1,10 +1,9 @@
 import { Avatar, Rating, Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { IReview } from 'src/interfaces/api/review';
 import styles from '../../../styles/ReviewItem.module.css';
-import { useTranslation } from 'react-i18next';
-import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 
 const ReviewItem: React.FC<IReview> = ({
     reviewerType,
@@ -16,7 +15,6 @@ const ReviewItem: React.FC<IReview> = ({
 }) => {
     //product name
     const { t } = useTranslation();
-    const formatAmount = useFormatAmount();
 
     return (
         <div className={styles.review}>
@@ -58,20 +56,6 @@ const ReviewItem: React.FC<IReview> = ({
                         readOnly
                         precision={0.5}
                     />
-                    <Typography
-                        className={styles.reviewBenefit}
-                        variant='h3'
-                        component='p'
-                    >
-                        {t('benefit')}{' '}
-                        <span>
-                            {formatAmount(
-                                payment.rewardAmount,
-                                payment.currency,
-                                true
-                            )}
-                        </span>
-                    </Typography>
                     <Typography
                         className={styles.reviewDate}
                         variant='h3'

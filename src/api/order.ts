@@ -5,6 +5,7 @@ import {
     IApplyOrderReturn,
     IGetMyOrdersReturn,
     IGetOrderByIdReturn,
+    IGetPayouts,
     ISuggestChanges,
 } from '../interfaces/api/order';
 import {
@@ -14,8 +15,8 @@ import {
     IOrderFull,
 } from '../interfaces/order';
 import {
-    OrderSeachType,
     carriersFilter,
+    OrderSeachType,
     receiversFilter,
 } from '../interfaces/order-search';
 import { mainInstance } from './instance';
@@ -390,4 +391,22 @@ export const getGoogleLozalizedName = (requestData: {
         })
         .catch(data => {
             return 'Load error';
+        });
+
+export const getPayouts = (): Promise<IGetPayouts> =>
+    mainInstance
+        .get('/get-payouts', {
+            params: { language: getLanguage() },
+        })
+        .then(data => {
+            return {
+                payouts: data.data.payouts,
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error: data.response?.data?.message ?? 'Error get payouts',
+            };
         });

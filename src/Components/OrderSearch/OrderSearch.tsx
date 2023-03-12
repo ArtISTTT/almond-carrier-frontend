@@ -1,21 +1,22 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import styles from '../../../styles/OrderSearch.module.css';
-import TypeSwitcher from './TypeSwitcher';
-import {
-    OrderSeachType,
-    carriersFilter,
-    receiversFilter,
-} from '../../interfaces/order-search';
-import SearchFilters from './SearchFilters';
-import SearchTable from './SearchTable';
-import { useSearchOrders } from '../../redux/hooks/useSearchOrders';
-import { IOrder } from '../../interfaces/order';
-import CarrierApplyPopup from './CarrierApplyPopup';
-import ReceiverApplyPopup from './ReceiverApplyPopup';
-import CircleLoader from '../Loaders/CircleLoader';
-import { LoaderColors } from 'src/interfaces/loader';
 import { Pagination } from '@mui/material';
 import Head from 'next/head';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { LoaderColors } from 'src/interfaces/loader';
+import styles from '../../../styles/OrderSearch.module.css';
+import { IOrder } from '../../interfaces/order';
+import {
+    carriersFilter,
+    OrderSeachType,
+    receiversFilter,
+} from '../../interfaces/order-search';
+import { useSearchOrders } from '../../redux/hooks/useSearchOrders';
+import CircleLoader from '../Loaders/CircleLoader';
+import CarrierApplyPopup from './CarrierApplyPopup';
+import ReceiverApplyPopup from './ReceiverApplyPopup';
+import SearchFilters from './SearchFilters';
+import SearchTable from './SearchTable';
+import TypeSwitcher from './TypeSwitcher';
 
 const OrderSearch: React.FC = () => {
     const [type, setType] = useState(OrderSeachType.carriers);
@@ -25,6 +26,8 @@ const OrderSearch: React.FC = () => {
     const [lastFilters, setLastFilters] = useState({});
     const [page, setPage] = useState(1);
     const [totalCount, setTotalCount] = useState(1);
+
+    const { t } = useTranslation();
 
     const updateByFiltersAndType = async (
         data?: carriersFilter | receiversFilter,
@@ -89,15 +92,19 @@ const OrderSearch: React.FC = () => {
                 <title>Friendly carrier - Orders search</title>
                 <meta
                     name='description'
-                    content='Search for delivery or ordering some goods'
+                    content={
+                        t('searchForDeliveryOrOrderingSomeGoods') as string
+                    }
                 />
                 <meta
                     property='og:title'
-                    content='Friendly carrier - P2P delivery platform'
+                    content={t('friendlyCarrierP2PDeliveryPlatform') as string}
                 />
                 <meta
                     property='og:description'
-                    content='Search for delivery or ordering some goods'
+                    content={
+                        t('searchForDeliveryOrOrderingSomeGoods') as string
+                    }
                 />
                 <meta
                     property='og:url'
