@@ -587,11 +587,59 @@
     align-items: center;
 }
 
+.form {
+    position: relative;
+}
+
 .detailsBlock {
     margin-bottom: 16px;
     line-height: 22px;
     letter-spacing: 0.25px;
     font-size: 16px;
+}
+
+.payoutWrapper {
+    position: absolute;
+    right: 0;
+    z-index: 2;
+    top: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(91, 137, 255, 0.9) 0%,
+        rgba(102, 144, 253, 0.7) 36%,
+        rgba(145, 197, 255, 1) 100%
+    );
+    border-radius: 15px;
+    padding: 6px;
+    padding-bottom: 12px;
+    max-width: 270px;
+    width: 100%;
+    color: var(--cTextSecondary);
+}
+
+.payoutTitle {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.payoutItems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5px;
+    gap: 9px;
+}
+
+.payoutItem {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.payoutImage {
+    border-radius: 15px;
 }
 
 @media screen and (max-width: 1283px) {
@@ -611,13 +659,13 @@
     }
 }
 
-@media screen and (max-width: 980px) {
-    /* .inputItem .inputPhone {
-        margin-top: 1px;
+@media screen and (max-width: 1100px) {
+    .payoutWrapper {
+        position: relative;
     }
-    .inputItem .selectBank {
-        margin-top: 0;
-    } */
+    .orderInformationTitle {
+        margin-bottom: 20px;
+    }
 }
 
 @media screen and (max-width: 930px) {
@@ -871,10 +919,6 @@
     .orderInputValue {
         max-width: 350px;
     }
-    /* .inputItem .input {
-        height: 32px;
-        margin-top: 2px;
-    } */
 }
 
 @media screen and (max-width: 390px) {

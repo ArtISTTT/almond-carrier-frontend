@@ -1,6 +1,7 @@
 import { Dayjs } from 'dayjs';
 import { ViewType } from 'src/Components/OrderPage/OrderInputItem';
 import { OrderStatus } from './profile';
+import { Banks } from './user';
 
 export interface IOrder {
     id: string;
@@ -11,6 +12,10 @@ export interface IOrder {
     creatorId: string;
     fromLocation_placeId?: string;
     productName?: string;
+    payoutInfo: {
+        bank: Banks;
+        phoneNumber: string;
+    };
     rewardAmount: number;
     productUri?: string;
     productAmount?: number;
