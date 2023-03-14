@@ -24,5 +24,5 @@ export interface IGetUser {
     successOrders: IOrderFull[];
     verifiedByEmail: boolean;
     verifiedByPhone: boolean;
-    ordersInLastMonth: IOrderFull[];
+    ordersInLastMonth: number;
 }

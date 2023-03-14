@@ -1,13 +1,14 @@
-import { Button, Avatar, Typography, Rating } from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
-import styles from '../../../styles/ProfileForNewUser.module.css';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { Avatar, Button, Rating, Typography } from '@mui/material';
 import { Container } from '@mui/system';
-import { useTranslation } from 'react-i18next';
+import dayjs from 'dayjs';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { IGetUser } from 'src/interfaces/api/user';
 import { Genders } from 'src/interfaces/settings';
-import dayjs from 'dayjs';
+import useFixEndings from 'src/redux/hooks/useFixEndings';
+import styles from '../../../styles/ProfileForNewUser.module.css';
 
 interface IProps {
     user: IGetUser;
@@ -22,6 +23,7 @@ const genders = {
 
 const ProfileInfo: React.FC<IProps> = ({ user }) => {
     const { t } = useTranslation();
+    const fixEndings = useFixEndings();
 
     return (
         <div className={styles.wrapper}>
@@ -139,7 +141,7 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                             component='h4'
                             className={styles.infoParam}
                         >
-                            {user?.completedOrders} {t('orders')}
+                            {fixEndings(user?.completedOrders)}
                         </Typography>
                         <Typography
                             variant='h6'
@@ -181,9 +183,7 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                             component='h4'
                             className={styles.infoParam}
                         >
-                            <>
-                                {user?.ordersInLastMonth} {t('orders')}
-                            </>
+                            <>{fixEndings(user?.ordersInLastMonth)}</>
                         </Typography>
                     </div>
                     {/* <div className={styles.infoItem}>
