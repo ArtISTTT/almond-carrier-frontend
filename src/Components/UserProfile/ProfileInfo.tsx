@@ -7,7 +7,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { IGetUser } from 'src/interfaces/api/user';
 import { Genders } from 'src/interfaces/settings';
-import useFixEndings from 'src/redux/hooks/useFixEndings';
+import usePlural from 'src/redux/hooks/usePlural';
 import styles from '../../../styles/ProfileForNewUser.module.css';
 
 interface IProps {
@@ -23,7 +23,7 @@ const genders = {
 
 const ProfileInfo: React.FC<IProps> = ({ user }) => {
     const { t } = useTranslation();
-    const fixEndings = useFixEndings();
+    const plural = usePlural();
 
     return (
         <div className={styles.wrapper}>
@@ -141,7 +141,11 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                             component='h4'
                             className={styles.infoParam}
                         >
-                            {fixEndings(user?.completedOrders)}
+                            {plural(user?.completedOrders, [
+                                t('oneOrder'),
+                                t('twoFourOrders'),
+                                t('elevenOrders'),
+                            ])}
                         </Typography>
                         <Typography
                             variant='h6'
@@ -183,7 +187,13 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                             component='h4'
                             className={styles.infoParam}
                         >
-                            <>{fixEndings(user?.ordersInLastMonth)}</>
+                            <>
+                                {plural(user?.ordersInLastMonth, [
+                                    t('oneOrder'),
+                                    t('twoFourOrders'),
+                                    t('elevenOrders'),
+                                ])}
+                            </>
                         </Typography>
                     </div>
                     {/* <div className={styles.infoItem}>
