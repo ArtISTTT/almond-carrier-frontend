@@ -1,28 +1,28 @@
-import React, { useContext, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import styles from '../../../styles/OrderPage.module.css';
 import {
-    Collapse,
     Button,
+    Collapse,
+    FormControl,
     InputLabel,
-    Typography,
     MenuItem,
     Select,
-    FormControl,
+    Typography,
 } from '@mui/material';
-import { useAppSelector } from 'src/redux/hooks';
 import cn from 'classnames';
-import { MuiTelInput } from 'mui-tel-input';
 import { useFormik } from 'formik';
-import { Banks } from 'src/interfaces/user';
-import { OrderPaymentSuccessSchema } from 'src/schemas/OrderPaymentSuccess';
-import { useGetBanks } from 'src/redux/hooks/useGetBanks';
+import { MuiTelInput } from 'mui-tel-input';
+import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { startPayout } from 'src/api/order';
 import { IOrderFull } from 'src/interfaces/order';
 import { OrderStatus } from 'src/interfaces/profile';
-import { startPayout } from 'src/api/order';
-import { OpenAlertContext } from '../Layouts/Snackbar';
-import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
+import { Banks } from 'src/interfaces/user';
+import { useAppSelector } from 'src/redux/hooks';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { useGetBanks } from 'src/redux/hooks/useGetBanks';
+import { OrderPaymentSuccessSchema } from 'src/schemas/OrderPaymentSuccess';
+import styles from '../../../styles/OrderPage.module.css';
+import { OpenAlertContext } from '../Layouts/Snackbar';
 
 type IForm = {
     bank: Banks;
@@ -38,7 +38,7 @@ const OrderPaymentSuccess: React.FC<IProps> = ({ order }) => {
     const { triggerOpen } = useContext(OpenAlertContext);
     const formatAmount = useFormatAmount();
     const { t } = useTranslation();
-    const banksArray = useGetBanks();
+    const { banksArray } = useGetBanks({});
 
     const carrierPhoneNumber = useAppSelector(
         ({ user }) => user.data?.phoneNumber
@@ -52,7 +52,6 @@ const OrderPaymentSuccess: React.FC<IProps> = ({ order }) => {
             phoneNumber: form.phone,
             bank: form.bank,
         });
-
         if (data.ok) {
             triggerOpen({
                 severity: 'success',

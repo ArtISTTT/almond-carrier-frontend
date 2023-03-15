@@ -18,6 +18,7 @@ import { OUR_COMISSION_RUB } from 'src/helpers/comission';
 import { IUser } from 'src/interfaces/user';
 import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { useGetBanks } from 'src/redux/hooks/useGetBanks';
 import { ReceiverPopupSchema } from 'src/schemas/PopupSchema';
 import styles from '../../../styles/OrderPage.module.css';
 import { calculateTotalAmount } from '../../helpers/calculateTotalAmount';
@@ -31,6 +32,7 @@ import OrderInputItem, {
     ILabels,
     ViewType,
 } from './OrderInputItem';
+import OrderPayoutInfoBlock from './OrderPayoutInfoBlock';
 import OrderReview from './OrderReview';
 import ReviewPopup from './ReviewPopup';
 
@@ -69,6 +71,10 @@ const OrderInformation: React.FC<IProps> = ({
 
     const { t } = useTranslation();
     const { triggerOpen } = useContext(OpenAlertContext);
+    const formatAmount = useFormatAmount();
+    const { banksArray, userBank } = useGetBanks({
+        bank: order.payoutInfo.bank,
+    });
 
     const addToEditingFields = (name: keyof IOrderFull) => {
         setEditingFields(editingFields.concat([name]));
@@ -314,8 +320,6 @@ const OrderInformation: React.FC<IProps> = ({
         ({ settings }) => settings.generalSettings.currency
     );
 
-    const formatAmount = useFormatAmount();
-
     return (
         <>
             {order.myReview &&
@@ -360,12 +364,22 @@ const OrderInformation: React.FC<IProps> = ({
                         reviewerType={viewType}
                     />
                 ) : (
-                    <form onSubmit={formik.handleSubmit}>
+                    <form
+                        className={styles.form}
+                        onSubmit={formik.handleSubmit}
+                    >
                         <div className={styles.orderInformationTitle}>
                             {t('orderInformation')}
                         </div>
+                        <OrderPayoutInfoBlock
+                            bank={userBank}
+                            status={order.status}
+                            viewType={viewType}
+                            phoneNumer={order.payoutInfo.phoneNumber}
+                        />
                         {((viewType === ViewType.carrier && order.receiver) ||
-                            order.carrier) && (
+                            (viewType === ViewType.receiver &&
+                                order.carrier)) && (
                             <div className={styles.personInfo}>
                                 <div className={styles.personRole}>
                                     {viewType === ViewType.carrier

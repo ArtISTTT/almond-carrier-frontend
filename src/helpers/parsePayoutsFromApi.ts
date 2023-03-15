@@ -3,10 +3,10 @@ import { IPayout } from 'src/interfaces/order';
 import { useGetBanks } from 'src/redux/hooks/useGetBanks';
 
 export const parsePayoutsFromApi = (payouts: IPayout[]) => {
-    const banks = useGetBanks();
+    const { banksArray } = useGetBanks({});
 
     return payouts.map(payout => {
-        const payoutBank = banks.find(
+        const payoutBank = banksArray.find(
             payoutBank => payoutBank.value === payout.bank
         );
 
