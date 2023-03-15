@@ -53,12 +53,20 @@
     text-decoration: underline;
 }
 
+.textInfo {
+    margin-top: 5px;
+}
+
 .textItalic {
     font-style: italic;
 }
 
 .textBold {
     font-weight: 700;
+}
+
+.textInfoBlock {
+    padding-top: 20px;
 }
 
 .textUnderline {

@@ -5,28 +5,30 @@ import cn from 'classnames';
 const Disclaimer: React.FC = () => {
     return (
         <div className={styles.document}>
-            <h1 className={styles.headTitle}>DISCLAIMER</h1>
-            <p className={styles.data}>Last updated March 06, 2023</p>
-            <p className={styles.title}>WEBSITE DISCLAIMER</p>
-            <p className={styles.text}>The information provided by Friendly Carrier (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) on 
-            <a href="https://friendlycarrier.com/"> https://friendlycarrier.com/</a>  (the &quot;Site&quot;) is for general informational purposes 
-            only. All information on the Site is provided in good faith, however we make no representation or warranty of any kind, express or 
-            implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the Site. 
-            UNDER NO CIRCUMSTANCE SHALL WE HAVE ANY LIABILITY TO YOU FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF THE 
-            SITE OR RELIANCE ON ANY INFORMATION PROVIDED ON THE SITE. YOUR USE OF THE SITE AND YOUR RELIANCE ON ANY INFORMATION ON THE SITE IS 
-            SOLELY AT YOUR OWN RISK.</p>
-            <p className={styles.title}>TESTIMONIALS DISCLAIMER</p>
-            <p className={styles.text}>The Site may contain testimonials by users of our products and/or services. These testimonials reflect the 
-            real-life experiences and opinions of such users. However, the experiences are personal to those particular users, and may not 
-            necessarily be representative of all users of our products and/or services. We do not claim, and you should not assume, that all 
-            users will have the same experiences. YOUR INDIVIDUAL RESULTS MAY VARY.</p>
-            <p className={styles.text}>The testimonials on the Site are submitted in various forms such as text, audio and/or video, and are 
-            reviewed by us before being posted. They appear on the Site verbatim as given by the users, except for the correction of grammar 
-            or typing errors. Some testimonials may have been shortened for the sake of brevity where the full testimonial contained extraneous 
-            information not relevant to the general public.</p>
-            <p className={styles.text}>The views and opinions contained in the testimonials belong solely to the individual user and do not 
-            reflect our views and opinions. We are not affiliated with users who provide testimonials, and users are not paid or otherwise 
-            compensated for their testimonials.</p>
+            <h1 className={styles.headTitle}>Оферта и договор на услуги Friendly Carrier</h1>
+            <p className={styles.data}>Last updated March 15, 2023</p>
+            <p className={styles.text}>Friendly Carrier предлагает заключить договор на условиях оферты:</p>
+            <p className={styles.text}>1. Клиенты — физические лица.</p>
+            <p className={styles.text}>2. Предмет — услуга предоставления Перевозчика или Получателя клиенту.</p>
+            <p className={styles.text}>3. Договор считается заключенным на неопределенный срок с момента акцепта оферты — нажатия на кнопку 
+            “Начать сделку” или “Start the deal”.</p>
+            <p className={styles.text}>4. Friendly Carrier вправе изменить оферту и договор. Изменения вступают в силу через 2 дня с момента 
+            публикации на сайте <a href="https://friendlycarrier.com/ru">https://friendlycarrier.com/ru</a>.</p>
+            <p className={styles.text}>5. Стоимость услуги составляет 1500 рублей при оплате в рублях, 20 долларов при оплате в долларах. </p>
+            <p className={styles.text}>6. Клиенты оплачивают услугу по безналичному расчету.</p>
+            <p className={styles.text}>7. Friendly Carrier и клиенты не подписывают акты. Оплата и получение вознаграждения подтверждают 
+            качество услуг.</p>
+            <p className={styles.text}>8. Friendly Carrier предоставляет клиентам право находить Перевозчика/Получателя, заключать с ними сделку и 
+            не предоставляет другие права.</p>
+            <p className={styles.text}>9. Досудебный порядок урегулирования споров обязателен. Подсудность споров — описывается в Пользовательском
+            Соглашении по ссылке: <a href="https://friendlycarrier.com/ru/user-agreement">https://friendlycarrier.com/ru/user-agreement</a></p>
+            <p className={styles.text}>10. В случае конфликтных ситуаций между пользователями Friendly Carrier не несет никакой ответственности. </p>
+            <p className={cn(styles.textInfo, styles.textInfoBlock)}>ИП Газукин Артём Юрьевич</p>
+            <p className={styles.textInfo}> 656048, РОССИЯ, Алтайский, Барнаул, Улица Алтайская, д. 30а </p> 
+            <p className={styles.textInfo}> ИНН: 222262127729, ОГРН: 323220200021810</p>
+            <p className={styles.textInfo}>Счет: 40802810523100007474</p>
+            <p className={styles.textInfo}>в СИБИРСКОЕ ГУ БАНКА РОССИИ ФИЛИАЛ &quot;НОВОСИБИРСКИЙ&quot; АО &quot;АЛЬФА-БАНК&quot;</p>
+            <p className={styles.textInfo}>БИК: 045004774, К/C: 30101810600000000774</p>
         </div>
     )
 }
