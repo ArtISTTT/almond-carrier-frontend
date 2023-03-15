@@ -15,4 +15,5 @@ export enum navigateTo {
     VERIFICATION = '/verification',
     FOUNDERS = '/founders',
     PAYOUTS = '/payouts',
+    CONTACT_DETAILS = '/contact-details'
 }

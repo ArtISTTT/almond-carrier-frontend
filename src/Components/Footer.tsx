@@ -157,6 +157,13 @@ const Footer = () => {
                         >
                             {t('serviceTerms')}
                         </MUILink>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href={navigateTo.CONTACT_DETAILS}
+                        >
+                            {t('contactDetails')}
+                        </MUILink>
                     </div>
 
                     {/* <div className={styles.centerColumn}>

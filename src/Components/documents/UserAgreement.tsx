@@ -530,7 +530,12 @@ const UserAgreement: React.FC = () => {
             <p className={styles.title} id="26">26. CONTACT US</p>
             <p className={styles.text}>In order to resolve a complaint regarding the Services or to receive further information regarding 
             use of the Services, please contact us at:</p>
-            <p className={styles.text}><span className={styles.bold}>Friendly Carrier</span></p>
+            <p className={styles.text}>
+                <p className={styles.bold}>Friendly Carrier</p>
+                <p className={styles.bold}>Altayskaya street, b. 30a</p>
+                <p className={styles.bold}>Barnaul, Altai Krai 656048</p>
+                <p className={styles.bold}>Russia</p>
+            </p>
             <p className={cn(styles.text, styles.textAboveLine)}><span className={styles.bold}>support@friendlycarrier.com</span></p>
         </div>
     )
