@@ -95,6 +95,7 @@
     font-weight: 500;
     font-size: 15px;
     line-height: 26px;
+    white-space: nowrap;
     letter-spacing: 0.46px;
     color: var(--cTextSecondary);
     text-decoration: none;
@@ -301,54 +302,14 @@
     .orderDetails {
         width: 150px;
     }
-}
-
-@media screen and (max-width: 830px) {
-    /* .detailsButton {
-        margin-top: 5px;
-        font-size: 10px;
-        line-height: 15px;
-        margin-bottom: 5px;
-    }
-    .status {
-        text-align: center;
-    }
-     */
-}
-
-@media screen and (max-width: 770px) {
-    .userBlock {
-        padding: 8px;
-        height: 100px;
-    }
-    .moneyBlock {
-        padding: 2px;
-        height: 100px;
-    }
-    .carrierCard {
-        margin-top: 0px;
-    }
-    .roundIconQuestion {
-        margin-top: -5px;
-    }
-    .blockTitle {
-        font-size: 10px;
-    }
-    .moneyTitle {
-        font-size: 12px;
-    }
-    .moneyValue {
-        font-size: 12px;
-    }
-    .orderDescriptions {
-        gap: 6px;
+    .detailsButtonLink {
+        white-space: normal;
     }
 }
 
 @media screen and (max-width: 830px) {
     .orderDetails {
         padding: 0;
-        height: 155px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -363,8 +324,7 @@
         border-right: 1px solid rgba(0, 0, 0, 0.12);
     }
     .detailsButton {
-        margin-bottom: 10px;
-        margin-top: 10px;
+        max-width: 100px;
     }
     .detailsBlock {
         height: fit-content;
@@ -409,8 +369,37 @@
 }
 
 @media screen and (max-width: 770px) {
-    .moneyBlockNew {
-        margin-bottom: 9px;
+    .userBlock {
+        padding: 8px;
+        height: 100px;
+    }
+    .moneyBlock {
+        padding: 2px;
+        height: 100px;
+    }
+    .carrierCard {
+        margin-top: 0px;
+    }
+    .roundIconQuestion {
+        margin-top: -5px;
+    }
+    .blockTitle {
+        font-size: 10px;
+    }
+    .moneyTitle {
+        font-size: 12px;
+    }
+    .moneyValue {
+        font-size: 12px;
+    }
+    .orderDescriptions {
+        gap: 6px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .name {
+        font-size: 13px;
     }
 }
 
@@ -456,6 +445,7 @@
     }
     .detailsButton {
         margin-top: 10px;
+        margin-bottom: 10px;
     }
     .status {
         padding-right: 5px;

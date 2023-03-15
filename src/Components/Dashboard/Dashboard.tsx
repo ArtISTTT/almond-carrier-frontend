@@ -116,7 +116,10 @@ const Dashboard: React.FC = () => {
                                     })}
                                 >
                                     {thisPageOrders?.map(order => (
-                                        <OrderItem key={order?.id} {...order} />
+                                        <OrderItem
+                                            key={order?.id}
+                                            order={order}
+                                        />
                                     ))}
                                     {orders.length === 0 && (
                                         <EmptyOrdersBlock />

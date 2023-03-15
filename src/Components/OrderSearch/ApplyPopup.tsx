@@ -1,5 +1,5 @@
-import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import React from 'react';
 import styles from '../../../styles/ApplyPopup.module.css';
 
 interface IProps {

@@ -4,12 +4,14 @@ import { OrderStatus } from './profile';
 import { Banks } from './user';
 
 export interface IOrder {
+    isOrderFromUserPage?: boolean;
     id: string;
     toLocation: string;
     toLocation_placeId: string;
     fromLocation?: string;
     createdDate: Dayjs;
     creatorId: string;
+    setApplyedOrder?: React.Dispatch<React.SetStateAction<IOrder | undefined>>;
     fromLocation_placeId?: string;
     productName?: string;
     payoutInfo: {

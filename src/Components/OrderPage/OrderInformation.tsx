@@ -15,7 +15,7 @@ import {
     suggestChangesByReceiver,
 } from 'src/api/order';
 import { OUR_COMISSION_RUB } from 'src/helpers/comission';
-import { IUser } from 'src/interfaces/user';
+import { Banks, IUser } from 'src/interfaces/user';
 import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { useGetBanks } from 'src/redux/hooks/useGetBanks';
@@ -73,7 +73,7 @@ const OrderInformation: React.FC<IProps> = ({
     const { triggerOpen } = useContext(OpenAlertContext);
     const formatAmount = useFormatAmount();
     const { banksArray, userBank } = useGetBanks({
-        bank: order.payoutInfo.bank,
+        bank: order?.payoutInfo?.bank || Banks.SBER,
     });
 
     const addToEditingFields = (name: keyof IOrderFull) => {
@@ -375,7 +375,7 @@ const OrderInformation: React.FC<IProps> = ({
                             bank={userBank}
                             status={order.status}
                             viewType={viewType}
-                            phoneNumer={order.payoutInfo.phoneNumber}
+                            phoneNumer={order?.payoutInfo?.phoneNumber || ''}
                         />
                         {((viewType === ViewType.carrier && order.receiver) ||
                             (viewType === ViewType.receiver &&
