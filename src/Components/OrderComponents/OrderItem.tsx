@@ -1,39 +1,34 @@
-import React from 'react';
-import styles from 'styles/OrderItem.module.css';
-import { Button, Typography, Link as MUILink } from '@mui/material';
-import cn from 'classnames';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import { OrderStatus } from '../../interfaces/profile';
-import { IOrder } from '../../interfaces/order';
-import OrderPeopleCard from './OrderPeopleCard';
-import { useConvertStatusToText } from '../../redux/hooks/useConvertStatusToText';
-import { useTranslation } from 'react-i18next';
-import useFormatAmount from 'src/redux/hooks/useFormatAmount';
-import { Currency } from 'src/interfaces/settings';
+import { Button, Typography } from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
-import { LinkBehaviour } from '../Common/LinkBehaviour';
-import CircleLoader from '../Loaders/CircleLoader';
-import { LoaderColors } from 'src/interfaces/loader';
-import { useAppSelector } from 'src/redux/hooks';
-import { ViewType } from '../OrderPage/OrderInputItem';
-import { selectUser } from 'src/redux/selectors/user';
+import cn from 'classnames';
 import { useRouter } from 'next/router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { LoaderColors } from 'src/interfaces/loader';
 import { navigateTo } from 'src/interfaces/navigate';
+import { Currency } from 'src/interfaces/settings';
+import { useAppSelector } from 'src/redux/hooks';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { selectUser } from 'src/redux/selectors/user';
+import styles from 'styles/OrderItem.module.css';
+import { IOrder } from '../../interfaces/order';
+import { OrderStatus } from '../../interfaces/profile';
+import { useConvertStatusToText } from '../../redux/hooks/useConvertStatusToText';
+import CircleLoader from '../Loaders/CircleLoader';
+import { ViewType } from '../OrderPage/OrderInputItem';
+import OrderPeopleCard from './OrderPeopleCard';
 
-const OrderItem: React.FC<IOrder> = ({
-    status,
-    productName,
-    fromLocation,
-    toLocation,
-    rewardAmount,
-    fromLocation_placeId,
-    arrivalDate,
-    productWeight,
-    productAmount,
-    receiver,
-    carrierMaxWeight,
-    carrier,
-    id,
+type IProps = {
+    order: IOrder;
+    isOrderFromUserPage?: boolean;
+    setApplyedOrder?: React.Dispatch<React.SetStateAction<IOrder | undefined>>;
+};
+
+const OrderItem: React.FC<IProps> = ({
+    order,
+    isOrderFromUserPage,
+    setApplyedOrder,
 }) => {
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
@@ -44,30 +39,36 @@ const OrderItem: React.FC<IOrder> = ({
     const [isDetailsLoading, setIsDetailsLoading] =
         React.useState<boolean>(false);
 
-    const navigateToDetailsLoading = () => setIsDetailsLoading(true);
+    const navigateToOrderPage = () => {
+        setIsDetailsLoading(true);
+        router.push(`/order/${order.id}`);
+    };
 
     const ourId = useAppSelector(({ user }) => user.data?.id);
 
     const viewType = React.useMemo(
-        () => (receiver?.id === user.id ? ViewType.receiver : ViewType.carrier),
-        [receiver?.id, user.id]
+        () =>
+            order.receiver?.id === user.id
+                ? ViewType.receiver
+                : ViewType.carrier,
+        [order.receiver?.id, user.id]
     );
 
     const displayOrderStatus = React.useMemo(() => {
         if (viewType === ViewType.carrier) {
-            return status;
+            return order.status;
         }
 
         if (
             [OrderStatus.itemRecieved, OrderStatus.awaitingPayout].includes(
-                status
+                order.status
             )
         ) {
             return OrderStatus.success;
         }
 
-        return status;
-    }, [status, viewType]);
+        return order.status;
+    }, [order.status, viewType]);
 
     const navigateToUserPage = (id: string): void => {
         router.push({
@@ -77,14 +78,20 @@ const OrderItem: React.FC<IOrder> = ({
     };
 
     const navigateToCarrier = () => {
-        if (carrier) {
-            navigateToUserPage(carrier.id);
+        if (order.carrier) {
+            navigateToUserPage(order.carrier.id);
         }
     };
 
     const navigateToReceiver = () => {
-        if (receiver) {
-            navigateToUserPage(receiver.id);
+        if (order.receiver) {
+            navigateToUserPage(order.receiver.id);
+        }
+    };
+
+    const applyUserOrder = () => {
+        if (order && setApplyedOrder) {
+            setApplyedOrder(order);
         }
     };
 
@@ -102,7 +109,7 @@ const OrderItem: React.FC<IOrder> = ({
                     <div className={styles.orderTitle}>
                         <div
                             className={cn(styles.userBlock, {
-                                [styles.userBlockHover]: carrier,
+                                [styles.userBlockHover]: order.carrier,
                             })}
                             onClick={navigateToCarrier}
                         >
@@ -113,8 +120,8 @@ const OrderItem: React.FC<IOrder> = ({
                             >
                                 {t('carrier')}
                             </Typography>
-                            {carrier?.id ? (
-                                <OrderPeopleCard people={carrier} />
+                            {order.carrier?.id ? (
+                                <OrderPeopleCard people={order.carrier} />
                             ) : (
                                 <HelpOutlineIcon
                                     sx={{
@@ -127,7 +134,7 @@ const OrderItem: React.FC<IOrder> = ({
                         </div>
                         <div
                             className={cn(styles.userBlock, {
-                                [styles.userBlockHover]: receiver,
+                                [styles.userBlockHover]: order.receiver,
                             })}
                             onClick={navigateToReceiver}
                         >
@@ -138,8 +145,8 @@ const OrderItem: React.FC<IOrder> = ({
                             >
                                 {t('receiver')}
                             </Typography>
-                            {receiver?.id ? (
-                                <OrderPeopleCard people={receiver} />
+                            {order.receiver?.id ? (
+                                <OrderPeopleCard people={order.receiver} />
                             ) : (
                                 <HelpOutlineIcon
                                     sx={{
@@ -165,7 +172,7 @@ const OrderItem: React.FC<IOrder> = ({
                                     component='p'
                                 >
                                     {formatAmount(
-                                        rewardAmount,
+                                        order.rewardAmount,
                                         Currency.RUB,
                                         true
                                     )}
@@ -185,9 +192,9 @@ const OrderItem: React.FC<IOrder> = ({
                                     variant='h6'
                                     component='p'
                                 >
-                                    {productAmount
+                                    {order.productAmount
                                         ? formatAmount(
-                                              productAmount,
+                                              order.productAmount,
                                               Currency.RUB,
                                               true
                                           )
@@ -206,26 +213,30 @@ const OrderItem: React.FC<IOrder> = ({
                             )}
                         >
                             <span>{t('product')}: </span>
-                            {productName ? productName : t('undefined')}
+                            {order.productName
+                                ? order.productName
+                                : t('undefined')}
                         </Typography>
-                        <Tooltip placement='bottom' title={toLocation}>
+                        <Tooltip placement='bottom' title={order.toLocation}>
                             <Typography
                                 variant='h3'
                                 component='p'
                                 className={styles.description}
                             >
                                 <span>{t('to')}: </span>
-                                {toLocation}
+                                {order.toLocation}
                             </Typography>
                         </Tooltip>
-                        <Tooltip placement='bottom' title={fromLocation}>
+                        <Tooltip placement='bottom' title={order.fromLocation}>
                             <Typography
                                 variant='h3'
                                 component='p'
                                 className={styles.description}
                             >
                                 <span>{t('from')}: </span>
-                                {fromLocation ? fromLocation : t('undefined')}
+                                {order.fromLocation
+                                    ? order.fromLocation
+                                    : t('undefined')}
                             </Typography>
                         </Tooltip>
                         <Typography
@@ -234,8 +245,8 @@ const OrderItem: React.FC<IOrder> = ({
                             className={styles.description}
                         >
                             <span>{t('flightDate')}:</span>{' '}
-                            {arrivalDate
-                                ? arrivalDate.format('DD.MM.YYYY')
+                            {order.arrivalDate
+                                ? order.arrivalDate.format('DD.MM.YYYY')
                                 : t('undefined')}
                         </Typography>
 
@@ -245,35 +256,59 @@ const OrderItem: React.FC<IOrder> = ({
                             className={styles.description}
                         >
                             <span>{t('weight')}:</span>{' '}
-                            {productWeight
-                                ? `${productWeight} ${t('kg')}`
+                            {order.productWeight
+                                ? `${order.productWeight} ${t('kg')}`
                                 : t('undefined')}
                         </Typography>
                     </div>
                 </div>
                 <div className={styles.orderDetails}>
                     <div className={styles.detailsBlock}>
-                        {(ourId === carrier?.id || ourId === receiver?.id) && (
+                        {isOrderFromUserPage &&
+                        ((order.receiver && !order.carrier) ||
+                            (order.carrier && !order.receiver)) ? (
                             <Button
                                 className={styles.detailsButton}
                                 variant='contained'
-                                disabled={status === OrderStatus.cancelled}
+                                onClick={applyUserOrder}
+                                disabled={
+                                    order.status === OrderStatus.cancelled
+                                }
                             >
                                 {isDetailsLoading ? (
                                     <CircleLoader
                                         color={LoaderColors.SECONDARY}
                                     />
                                 ) : (
-                                    <MUILink
-                                        className={styles.detailsButtonLink}
-                                        component={LinkBehaviour}
-                                        onClick={navigateToDetailsLoading}
-                                        href={`/order/${id}`}
-                                    >
-                                        {t('orderDetailsButton')}
-                                    </MUILink>
+                                    <span className={styles.detailsButtonLink}>
+                                        {t('apply')}
+                                    </span>
                                 )}
                             </Button>
+                        ) : (
+                            (ourId === order.carrier?.id ||
+                                ourId === order.receiver?.id) && (
+                                <Button
+                                    className={styles.detailsButton}
+                                    variant='contained'
+                                    onClick={navigateToOrderPage}
+                                    disabled={
+                                        order.status === OrderStatus.cancelled
+                                    }
+                                >
+                                    {isDetailsLoading ? (
+                                        <CircleLoader
+                                            color={LoaderColors.SECONDARY}
+                                        />
+                                    ) : (
+                                        <span
+                                            className={styles.detailsButtonLink}
+                                        >
+                                            {t('detailsButton')}
+                                        </span>
+                                    )}
+                                </Button>
+                            )
                         )}
                         <div>
                             <Typography
@@ -299,9 +334,9 @@ const OrderItem: React.FC<IOrder> = ({
                                 variant='h6'
                                 component='p'
                             >
-                                {productAmount
+                                {order.productAmount
                                     ? formatAmount(
-                                          productAmount,
+                                          order.productAmount,
                                           Currency.RUB,
                                           true
                                       )
@@ -322,7 +357,11 @@ const OrderItem: React.FC<IOrder> = ({
                                 variant='h6'
                                 component='p'
                             >
-                                {formatAmount(rewardAmount, Currency.RUB, true)}
+                                {formatAmount(
+                                    order.rewardAmount,
+                                    Currency.RUB,
+                                    true
+                                )}
                             </Typography>
                         </div>
                     </div>

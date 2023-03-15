@@ -1,18 +1,18 @@
-import React from 'react';
-import { Container } from '@mui/system';
-import { Tabs, Tab } from '@mui/material';
-import StarIcon from '@mui/icons-material/Star';
 import PersonIcon from '@mui/icons-material/Person';
-import styles from '../../../styles/ProfileForNewUser.module.css';
-import ReviewItem from '../MyProfile/ReviewItem';
-import OrderItem from 'src/Components/OrderComponents/OrderItem';
-import EmptyNoShadows from '../EmptyComponents/EmptyNoShadows';
+import StarIcon from '@mui/icons-material/Star';
+import { Tab, Tabs } from '@mui/material';
+import { Container } from '@mui/system';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLoadReviews } from 'src/redux/hooks/useLoadReviews';
-import CircleLoader from '../Loaders/CircleLoader';
+import OrderItem from 'src/Components/OrderComponents/OrderItem';
+import { IGetUser } from 'src/interfaces/api/user';
 import { LoaderColors } from 'src/interfaces/loader';
 import { IOrder } from 'src/interfaces/order';
-import { IGetUser } from 'src/interfaces/api/user';
+import { useLoadReviews } from 'src/redux/hooks/useLoadReviews';
+import styles from '../../../styles/ProfileForNewUser.module.css';
+import EmptyNoShadows from '../EmptyComponents/EmptyNoShadows';
+import CircleLoader from '../Loaders/CircleLoader';
+import ReviewItem from '../MyProfile/ReviewItem';
 
 enum profileContent {
     ORDERS = 0,
@@ -21,9 +21,10 @@ enum profileContent {
 
 interface IProps {
     user: IGetUser;
+    setApplyedOrder: React.Dispatch<React.SetStateAction<IOrder | undefined>>;
 }
 
-const ProfileConent: React.FC<IProps> = ({ user }) => {
+const ProfileConent: React.FC<IProps> = ({ user, setApplyedOrder }) => {
     const [content, setContent] = React.useState<profileContent>(
         profileContent.ORDERS
     );
@@ -69,7 +70,12 @@ const ProfileConent: React.FC<IProps> = ({ user }) => {
                     {user.successOrders.length > 0 &&
                         content === profileContent.ORDERS &&
                         user.successOrders.map((order: IOrder) => (
-                            <OrderItem key={order.id} {...order} />
+                            <OrderItem
+                                setApplyedOrder={setApplyedOrder}
+                                isOrderFromUserPage={true}
+                                key={order.id}
+                                order={order}
+                            />
                         ))}
                     {user.successOrders.length === 0 &&
                         content === profileContent.ORDERS && (

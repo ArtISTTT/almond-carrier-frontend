@@ -55,7 +55,7 @@ const ProfileOrders = () => {
                         <>
                             <div className={styles.orders}>
                                 {thisPageOrders.map((order, i) => (
-                                    <OrderItem key={i} {...order} />
+                                    <OrderItem key={i} order={order} />
                                 ))}
                             </div>
                             {totalCountPages > 1 && (
