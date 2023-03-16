@@ -498,7 +498,14 @@ const PolicyPrivacy: React.FC = () => {
             privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. 
             We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.</p>
             <p className={styles.title} id="15">15. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</p>
-            <p className={styles.text}>If you have questions or comments about this notice, you may email us at support@friendlycarrier.com</p>
+            <p className={styles.text}>If you have questions or comments about this notice, you may email us at support@friendlycarrier.com or by 
+            post to:</p>
+            <p className={styles.text}>
+                <p>Friendly Carrier</p>
+                <p>Altayskaya street, b. 30a</p>
+                <p>Barnaul, Altai Krai 656048</p>
+                <p>Russia</p>
+            </p>
             <p className={styles.title} id="16">16. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</p>
             <p className={styles.text}>Based on the applicable laws of your country, you may have the right to request access to the personal 
             information we collect from you, change that information, or delete it. To request to review, update, or delete your 

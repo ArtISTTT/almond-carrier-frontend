@@ -1,26 +1,26 @@
-import styles from '../../styles/Footer.module.css';
-import React from 'react';
+import EmailIcon from '@mui/icons-material/Email';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TelegramIcon from '@mui/icons-material/Telegram';
 import {
     Avatar,
-    SelectChangeEvent,
     FormControl,
     InputLabel,
     Link as MUILink,
-    Select,
     MenuItem,
+    Select,
+    SelectChangeEvent,
     Typography,
 } from '@mui/material';
-import EmailIcon from '@mui/icons-material/Email';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import InstagramIcon from '@mui/icons-material/Instagram';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { navigateTo } from 'src/interfaces/navigate';
+import { useCreateQueryParams } from 'src/redux/hooks/useCreateQueryParams';
+import styles from '../../styles/Footer.module.css';
+import { Language } from '../interfaces/settings';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { changeLanguage } from '../redux/slices/settingsSlice';
-import { Language } from '../interfaces/settings';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
-import { useCreateQueryParams } from 'src/redux/hooks/useCreateQueryParams';
 import { LinkBehaviour } from './Common/LinkBehaviour';
-import { navigateTo } from 'src/interfaces/navigate';
 
 const Footer = () => {
     const dispatch = useAppDispatch();
@@ -156,6 +156,13 @@ const Footer = () => {
                             href={navigateTo.USER_AGREEMENT}
                         >
                             {t('serviceTerms')}
+                        </MUILink>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href={navigateTo.CONTACT_DETAILS}
+                        >
+                            {t('contactDetails')}
                         </MUILink>
                         <MUILink
                             component={LinkBehaviour}
