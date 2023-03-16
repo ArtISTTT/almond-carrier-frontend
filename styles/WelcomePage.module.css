@@ -127,11 +127,11 @@ z .emailInput > div > fieldset {
 
 .roleTitle {
     margin-top: 25px;
-    font-weight: 500;
-    font-size: 45px;
+    font-weight: 600;
+    font-size: 42px;
     line-height: 50px;
     text-align: center;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.5px;
 }
 
 .roleDescription {
@@ -139,9 +139,9 @@ z .emailInput > div > fieldset {
     margin-top: 17px;
     margin-bottom: 60px;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 28px;
-    text-align: justify;
+    text-align: center;
     letter-spacing: 0.4px;
     white-space: normal;
 }
@@ -170,16 +170,41 @@ z .emailInput > div > fieldset {
     z-index: 2;
 }
 
-.stepsText {
-    width: 80%;
+.stepsSubTitle {
+    padding-top: 30px;
+    font-weight: 700;
+    font-size: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    letter-spacing: 0.6px;
+    color: var(--cTextSecondary);
+    position: relative;
+    z-index: 2;
+}
+
+.firstStepText {
+    margin-left: 5px;
 }
 
 .stepText {
     color: var(--cTextSecondary);
-    font-size: 24px;
+    font-size: 20px;
+    font-weight: 500;
     line-height: 30px;
-    margin-top: 20px;
-    text-align: justify;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.stepTextRight {
+    text-align: end;
+}
+
+.stepTextTitle {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--cTextSecondary);
+    text-decoration: underline;
 }
 
 .leftPartContent {
@@ -199,7 +224,6 @@ z .emailInput > div > fieldset {
     padding: 0 10px;
     display: flex;
     padding-bottom: 40px;
-    padding-top: 60px;
     flex-direction: column;
 }
 
@@ -233,14 +257,15 @@ z .emailInput > div > fieldset {
 
 .stepPartReverse {
     align-items: flex-end;
-    padding-right: 60px;
+    padding-right: 50px;
 }
 
 .stepTitle {
     text-align: left;
     color: var(--cTextSecondary);
     font-size: 36px;
-    font-weight: 600;
+    margin-bottom: 15px;
+    font-weight: 800;
 }
 
 .stepTitleRight {
@@ -265,6 +290,24 @@ z .emailInput > div > fieldset {
     width: 33%;
 }
 
+.safeDataBlock {
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+.safeDataText {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+    margin-top: 60px;
+    color: var(--cTextPrimary);
+    font-weight: 600;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    width: 100%;
+    border-color: var(--cTextPrimary);
+}
+
 .advantage > img {
     width: 100%;
 }
@@ -274,7 +317,7 @@ z .emailInput > div > fieldset {
     margin: 0 25px;
     margin-top: 60px;
     color: var(--cTextPrimary);
-    padding-bottom: 120px;
+    padding-bottom: 20px;
 }
 
 .advantageText {
@@ -295,7 +338,16 @@ z .emailInput > div > fieldset {
     font-weight: 400;
     font-size: 26px;
     line-height: 30px;
-    text-align: justify;
+    text-align: center;
+    letter-spacing: 0.4px;
+}
+
+.advantageDescriptionSecond {
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 26px;
+    line-height: 30px;
+    text-align: center;
     letter-spacing: 0.4px;
 }
 
