@@ -12,6 +12,13 @@
     color: var(--cTextThird)
 }
 
+.headTitleSpace {
+    font-size: 2em;
+    text-transform: uppercase;
+    color: var(--cTextThird);
+    margin-bottom: 50px;
+}
+
 .data {
     margin-top: 30px;
     margin-bottom: 50px;
@@ -26,6 +33,16 @@
     color: var(--cTextThird);
     font-weight: 800;
     margin-bottom: 30px;
+}
+
+.dTitle {
+    padding-top: 10px;
+    font-size: 1.5em;
+    color: var(--cTextThird);
+    font-weight: 800;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    text-align: center;
 }
 
 .text {
@@ -51,6 +68,18 @@
 .text a {
     color: var(--cTextPrimary);
     text-decoration: underline;
+}
+
+.textNoSpace a {
+    color: var(--cTextPrimary);
+    text-decoration: underline;
+}
+
+.textNoSpace {
+    font-size: 1em;
+    color: var(--cTextThird);
+    line-height: 1.4em;
+    text-align: justify;
 }
 
 .textInfo {
