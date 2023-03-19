@@ -1,5 +1,4 @@
 import { Banks } from 'src/interfaces/user';
-import { IRecoverReturn } from '../interfaces/api/auth';
 import {
     IAddAsACarrierReturn,
     IApplyOrderReturn,

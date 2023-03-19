@@ -4,7 +4,6 @@ import { privateTypes } from '../../src/interfaces/private';
 import OrderSearch from '../../src/Components/OrderSearch/OrderSearch';
 import UserLayout from '../../src/Components/Layouts/User';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Head from 'next/head';
 
 const ReceiverPage: React.FC = () => (
     <PrivateLayout privateType={privateTypes.all}>

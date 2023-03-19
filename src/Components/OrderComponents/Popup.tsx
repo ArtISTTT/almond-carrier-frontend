@@ -1,4 +1,4 @@
-import { Typography, Avatar } from '@mui/material';
+import { Typography } from '@mui/material';
 import styles from '../../../styles/Popup.module.css';
 import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';

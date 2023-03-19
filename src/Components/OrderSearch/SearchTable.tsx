@@ -2,8 +2,6 @@ import React from 'react';
 import styles from '../../../styles/OrderSearch.module.css';
 import {
     OrderSeachType,
-    carriersFilter,
-    receiversFilter,
 } from '../../interfaces/order-search';
 import SearchTableOrderCarrier from './SearchTableOrderCarrier';
 import SearchTableOrderReceiver from './SearchTableOrderReceiver';

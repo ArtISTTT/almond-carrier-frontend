@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 import styles from '../../../styles/OrderPage.module.css';
 
 import { OpenAlertContext } from '../Layouts/Snackbar';
-import { IOrder, IOrderFull } from '../../interfaces/order';
+import { IOrderFull } from '../../interfaces/order';
 import { Button, Collapse } from '@mui/material';
 
 import { calculateTotalAmount } from 'src/helpers/calculateTotalAmount';
-import { Currency } from 'src/interfaces/settings';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'src/redux/selectors/user';

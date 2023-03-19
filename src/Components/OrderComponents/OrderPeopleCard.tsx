@@ -2,8 +2,6 @@ import React from 'react';
 import { Avatar, Typography } from '@mui/material';
 import styles from 'styles/OrderItem.module.css';
 import { useTranslation } from 'react-i18next';
-import { navigateTo } from '../../interfaces/navigate';
-import { useRouter } from 'next/router';
 
 interface IProps {
     people: {

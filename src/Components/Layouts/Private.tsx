@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useAppSelector } from '../../redux/hooks';
 import { privateTypes } from '../../interfaces/private';
-import { selectIsAuthorized, selectUser } from '../../redux/selectors/user';
+import { selectIsAuthorized } from '../../redux/selectors/user';
 import { navigateTo } from 'src/interfaces/navigate';
 
 type IAuthLayout = {

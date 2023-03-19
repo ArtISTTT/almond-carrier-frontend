@@ -1,5 +1,4 @@
 import { NextRouter } from 'next/router';
-import React from 'react';
 import { navigateTo } from 'src/interfaces/navigate';
 
 export const useCreateQueryParams = (route: string, router: NextRouter) => {

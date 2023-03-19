@@ -1,6 +1,6 @@
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { Avatar, Button, Rating, Typography } from '@mui/material';
+import { Avatar, Rating, Typography } from '@mui/material';
 import { Container } from '@mui/system';
 import dayjs from 'dayjs';
 import React from 'react';
