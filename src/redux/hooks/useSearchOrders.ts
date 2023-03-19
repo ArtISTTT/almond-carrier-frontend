@@ -1,15 +1,14 @@
 import { useTranslation } from 'next-i18next';
-import { parseOrderDataFromApi } from './../../helpers/parseOrderDataFromApi';
 import { useContext, useState } from 'react';
 import { searchOrders } from '../../api/order';
 import { OpenAlertContext } from '../../Components/Layouts/Snackbar';
+import { IOrder } from '../../interfaces/order';
 import {
-    OrderSeachType,
     carriersFilter,
+    OrderSeachType,
     receiversFilter,
 } from '../../interfaces/order-search';
-import { IOrder } from '../../interfaces/order';
-import { useAppSelector } from '.';
+import { parseOrderDataFromApi } from './../../helpers/parseOrderDataFromApi';
 
 type IReturn = {
     isLoading: boolean;
@@ -28,9 +27,6 @@ export const useSearchOrders = (): IReturn => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | undefined>(undefined);
     const { triggerOpen } = useContext(OpenAlertContext);
-    const language = useAppSelector(
-        state => state.settings.generalSettings.language
-    );
 
     const reload = async (
         filters: carriersFilter | receiversFilter,
@@ -69,10 +65,7 @@ export const useSearchOrders = (): IReturn => {
 
         if (data.ok && data.orders) {
             setError(undefined);
-            const parsedOrders = await parseOrderDataFromApi(
-                data.orders,
-                language
-            );
+            const parsedOrders = await parseOrderDataFromApi(data.orders);
             setIsLoading(false);
 
             return {

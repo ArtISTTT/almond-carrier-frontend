@@ -5,7 +5,6 @@ import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getUser } from 'src/api/user';
 import { OpenAlertContext } from 'src/Components/Layouts/Snackbar';
-import UserLayout from 'src/Components/Layouts/User';
 import CircleLoader from 'src/Components/Loaders/CircleLoader';
 import CarrierApplyPopup from 'src/Components/OrderSearch/CarrierApplyPopup';
 import ReceiverApplyPopup from 'src/Components/OrderSearch/ReceiverApplyPopup';
@@ -14,7 +13,6 @@ import { IGetUser } from 'src/interfaces/api/user';
 import { LoaderColors } from 'src/interfaces/loader';
 import { navigateTo } from 'src/interfaces/navigate';
 import { IOrder } from 'src/interfaces/order';
-import { OrderSeachType } from 'src/interfaces/order-search';
 import { useAppSelector } from 'src/redux/hooks';
 import MainLayout from '../../src/Components/Layouts/MainLayout';
 import PrivateLayout from '../../src/Components/Layouts/Private';
@@ -25,9 +23,6 @@ import styles from '../../styles/ProfileForNewUser.module.css';
 
 const useGetCurrentUser = ({ userId }: { userId: string }) => {
     const { t } = useTranslation();
-    const language = useAppSelector(
-        state => state.settings.generalSettings.language
-    );
     const { triggerOpen } = useContext(OpenAlertContext);
     const [user, setUser] = useState<IGetUser | undefined>(undefined);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -40,8 +35,7 @@ const useGetCurrentUser = ({ userId }: { userId: string }) => {
             setUser({
                 ...data.user,
                 successOrders: await parseOrderDataFromApi(
-                    data.user.successOrders,
-                    language
+                    data.user.successOrders
                 ),
             });
             setIsLoading(false);
