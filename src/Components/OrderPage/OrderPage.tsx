@@ -8,7 +8,6 @@ import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
 import { LoaderColors } from 'src/interfaces/loader';
 import { navigateTo } from 'src/interfaces/navigate';
 import { OrderStatus } from 'src/interfaces/profile';
-import { useAppSelector } from 'src/redux/hooks';
 import { selectUser } from 'src/redux/selectors/user';
 import styles from '../../../styles/OrderPage.module.css';
 import { cancelOrder, declineOrder, getOrderById } from '../../api/order';

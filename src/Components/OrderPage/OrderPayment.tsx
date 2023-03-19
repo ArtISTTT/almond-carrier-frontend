@@ -7,11 +7,10 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { confirmPayment } from 'src/api/order';
 import { OrderStatus } from 'src/interfaces/profile';
-import { Currency } from 'src/interfaces/settings';
 import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { selectUser } from 'src/redux/selectors/user';
-import { IOrder, IOrderFull } from '../../interfaces/order';
+import { IOrderFull } from '../../interfaces/order';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 
 type IProps = {

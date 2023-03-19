@@ -15,7 +15,6 @@ import {
     suggestChangesByReceiver,
 } from 'src/api/order';
 import { calculateComission } from 'src/helpers/calculateComission';
-import { OUR_COMISSION_RUB } from 'src/helpers/comission';
 import { Banks, IUser } from 'src/interfaces/user';
 import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
