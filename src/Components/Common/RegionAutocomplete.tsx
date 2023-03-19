@@ -1,5 +1,5 @@
 import { TextField, TextFieldProps } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import { usePlacesWidget } from 'react-google-autocomplete';
 import { IBounds } from 'src/interfaces/geometry';
 

@@ -1,12 +1,10 @@
 import React from 'react';
 import styles from '../../../styles/Settings.module.css';
 import GeneralSettings from './General';
-import Notifications from './Notifications';
 import SettingsIcon from '@mui/icons-material/Settings';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 
 interface IProps {

@@ -4,7 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
 import styles from '../../../styles/OrderPage.module.css';
 import { IOrderFull } from '../../interfaces/order';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import cn from 'classnames';
 import { Currency } from 'src/interfaces/settings';
 import { useTranslation } from 'react-i18next';

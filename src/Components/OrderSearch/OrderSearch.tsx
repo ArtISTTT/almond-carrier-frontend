@@ -1,6 +1,6 @@
 import { Pagination } from '@mui/material';
 import Head from 'next/head';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LoaderColors } from 'src/interfaces/loader';
 import styles from '../../../styles/OrderSearch.module.css';

@@ -5,7 +5,7 @@ import {
     carriersFilter,
     receiversFilter,
 } from '../../interfaces/order-search';
-import { useFormik, useFormikContext } from 'formik';
+import { useFormik } from 'formik';
 import { Button, TextField, InputAdornment } from '@mui/material';
 import cn from 'classnames';
 import LoopIcon from '@mui/icons-material/Loop';

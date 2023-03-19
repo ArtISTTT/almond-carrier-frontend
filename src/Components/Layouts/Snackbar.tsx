@@ -1,6 +1,4 @@
 import React, { createContext } from 'react';
-import { useRouter } from 'next/router';
-import MainLayout from './MainLayout';
 import { Alert, AlertProps, Snackbar } from '@mui/material';
 
 type ITriggerOpen = {

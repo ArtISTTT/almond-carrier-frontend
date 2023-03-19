@@ -24,7 +24,6 @@ import {
 } from '@mui/material';
 
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import ClearAllIcon from '@mui/icons-material/ClearAll';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import MenuIcon from '@mui/icons-material/Menu';
 import PaymentsIcon from '@mui/icons-material/Payments';
@@ -32,7 +31,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { IUserNotification } from 'src/interfaces/notifications';
 import NotificationsMenu from '../Notifications/NotificationsMenu';
-import NotificationsMobileItem from '../Notifications/NotificationsMobileItem';
 
 interface IProps {
     notifications: IUserNotification[];
