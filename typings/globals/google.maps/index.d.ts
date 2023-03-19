@@ -169,7 +169,7 @@ declare namespace google.maps {
         toGeoJson(callback: (feature: Object) => void): void;
     }
 
-    export module Data {
+    export namespace Data {
         export interface DataOptions {
             controlPosition?: ControlPosition;
             controls?: string[];
@@ -190,7 +190,7 @@ declare namespace google.maps {
             editable?: boolean;
             fillColor?: string;
             fillOpacity?: number;
-            icon?: string | Icon | Symbol;
+            icon?: string | Icon | symbol;
             shape?: MarkerShape;
             strokeColor?: string;
             strokeOpacity?: number;
@@ -334,7 +334,7 @@ declare namespace google.maps {
         getClickable(): boolean;
         getCursor(): string;
         getDraggable(): boolean;
-        getIcon(): string | Icon | Symbol;
+        getIcon(): string | Icon | symbol;
         getLabel(): MarkerLabel;
         getMap(): Map | StreetViewPanorama;
         getOpacity(): number;
@@ -349,7 +349,7 @@ declare namespace google.maps {
         setClickable(flag: boolean): void;
         setCursor(cursor: string): void;
         setDraggable(flag: boolean): void;
-        setIcon(icon: string | Icon | Symbol): void;
+        setIcon(icon: string | Icon | symbol): void;
         setLabel(label: string | MarkerLabel): void;
         setMap(map: Map | StreetViewPanorama): void;
         setOpacity(opacity: number): void;
@@ -387,7 +387,7 @@ declare namespace google.maps {
          * If a string is provided, it is treated as though it were an Icon with the string as url.
          * @type {(string|Icon|Symbol)}
          */
-        icon?: string | Icon | Symbol;
+        icon?: string | Icon | symbol;
         /**
          * Adds a label to the marker. The label can either be a string, or a MarkerLabel object.
          * Only the first character of the string will be displayed.
@@ -666,7 +666,7 @@ declare namespace google.maps {
 
     export interface IconSequence {
         fixedRotation?: boolean;
-        icon?: Symbol;
+        icon?: symbol;
         offset?: string;
         repeat?: string;
     }
@@ -1973,7 +1973,7 @@ declare namespace google.maps {
     }
 
     /***** Geometry Library *****/
-    export module geometry {
+    export namespace geometry {
         export class encoding {
             static decodePath(encodedPath: string): LatLng[];
             static encodePath(path: any[]): string; // LatLng[]|MVCArray<LatLng>
@@ -2060,7 +2060,7 @@ declare namespace google.maps {
     }
 
     /***** AdSense Library *****/
-    export module adsense {
+    export namespace adsense {
         export class AdUnit extends MVCObject {
             constructor(container: Element, opts: AdUnitOptions);
             getBackgroundColor(): string;
@@ -2121,7 +2121,7 @@ declare namespace google.maps {
     }
 
     /***** Places Library *****/
-    export module places {
+    export namespace places {
         export class Autocomplete extends MVCObject {
             constructor(
                 inputField: HTMLInputElement,
@@ -2360,7 +2360,7 @@ declare namespace google.maps {
     }
 
     /***** Drawing Library *****/
-    export module drawing {
+    export namespace drawing {
         export class DrawingManager extends MVCObject {
             constructor(options?: DrawingManagerOptions);
             getDrawingMode(): OverlayType;
@@ -2402,7 +2402,7 @@ declare namespace google.maps {
     }
 
     /***** Visualization Library *****/
-    export module visualization {
+    export namespace visualization {
         export class MapsEngineLayer extends MVCObject {
             constructor(options: MapsEngineLayerOptions);
             getLayerId(): string;

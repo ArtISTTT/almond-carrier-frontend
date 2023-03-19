@@ -2,7 +2,6 @@ import { Tab, Tabs } from '@mui/material';
 import React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import StarIcon from '@mui/icons-material/Star';
-import SettingsIcon from '@mui/icons-material/Settings';
 import RestoreIcon from '@mui/icons-material/Restore';
 import { useRouter } from 'next/router';
 import styles from '../../../styles/Profile.module.css';

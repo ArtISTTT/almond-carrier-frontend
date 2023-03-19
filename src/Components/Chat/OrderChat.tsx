@@ -2,7 +2,6 @@ import { Avatar, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { io, Socket } from 'socket.io-client';
 import { getMessages, postMessage } from 'src/api/chat';
 import { parseMessages } from 'src/helpers/parseMessages';
 import { IMessage, IMessageServer } from 'src/interfaces/chat';

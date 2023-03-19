@@ -5,7 +5,6 @@ import {
     TextField,
     Link as MUILink,
     Stack,
-    Tooltip,
 } from '@mui/material';
 import React, { useContext } from 'react';
 import styles from '../../../styles/ApplyPopup.module.css';
