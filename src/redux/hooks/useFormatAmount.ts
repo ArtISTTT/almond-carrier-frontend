@@ -21,7 +21,7 @@ const useFormatAmount = () => {
         const finalSum = reversedSum.join('');
 
         if (addCurrency) {
-            return finalSum.concat(`${t(customCurrency)}`);
+            return finalSum.concat(` ${t(customCurrency)}`);
         }
 
         return finalSum;
