@@ -59,6 +59,7 @@ export interface IOrderFull extends IOrder {
     dealConfirmedByCarrier?: boolean;
     dealConfirmedByReceiver?: boolean;
     myReview?: IPureReview;
+    totalPaymentAmount?: number;
     partnerReview?: IPureReview;
 }
 

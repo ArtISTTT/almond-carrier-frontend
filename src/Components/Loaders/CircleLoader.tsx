@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from '../../../styles/OrderLoader.module.css';
 import cn from 'classnames';
+import React from 'react';
 import { LoaderColors } from 'src/interfaces/loader';
+import styles from '../../../styles/CircleLoader.module.css';
 interface IProps {
     color: string;
 }

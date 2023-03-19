@@ -1,29 +1,28 @@
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import { Button, Link as MUILink } from '@mui/material';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
+import { LoaderColors } from 'src/interfaces/loader';
+import { navigateTo } from 'src/interfaces/navigate';
+import { OrderStatus } from 'src/interfaces/profile';
+import { selectUser } from 'src/redux/selectors/user';
 import styles from '../../../styles/OrderPage.module.css';
+import { cancelOrder, declineOrder, getOrderById } from '../../api/order';
+import { IOrderFull } from '../../interfaces/order';
+import OrderChat from '../Chat/OrderChat';
+import { LinkBehaviour } from '../Common/LinkBehaviour';
+import { OpenDialogContext } from '../Layouts/ConfirmDialog';
+import { OpenAlertContext } from '../Layouts/Snackbar';
+import CircleLoader from '../Loaders/CircleLoader';
 import OrderDetails from './OrderDetails';
 import OrderInformation from './OrderInformation';
-import { cancelOrder, declineOrder, getOrderById } from '../../api/order';
-import { OpenAlertContext } from '../Layouts/Snackbar';
-import { IOrderFull } from '../../interfaces/order';
-import { Button, Link as MUILink } from '@mui/material';
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import OrderPayment from './OrderPayment';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'src/redux/selectors/user';
 import { ViewType } from './OrderInputItem';
 import OrderLabels from './OrderLabels';
-import OrderChat from '../Chat/OrderChat';
-import { navigateTo } from 'src/interfaces/navigate';
-import { useTranslation } from 'react-i18next';
-import { parseOrderDataFromApi } from 'src/helpers/parseOrderDataFromApi';
-import { OrderStatus } from 'src/interfaces/profile';
-import CircleLoader from '../Loaders/CircleLoader';
-import { LoaderColors } from 'src/interfaces/loader';
+import OrderPayment from './OrderPayment';
 import OrderPaymentSuccess from './OrderPaymentSuccess';
-import { OpenDialogContext } from '../Layouts/ConfirmDialog';
-import { LinkBehaviour } from '../Common/LinkBehaviour';
-import { useAppSelector } from 'src/redux/hooks';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);
@@ -31,9 +30,6 @@ const useGetOrder = (orderId: string) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const { push } = useRouter();
     const { t } = useTranslation();
-    const language = useAppSelector(
-        state => state.settings.generalSettings.language
-    );
 
     const updateOrder = async (withoutLoading?: true) => {
         if (!withoutLoading) {
@@ -43,7 +39,7 @@ const useGetOrder = (orderId: string) => {
         const data = await getOrderById({ orderId });
 
         if (data.ok && data.order) {
-            setOrder((await parseOrderDataFromApi([data.order], language))[0]);
+            setOrder((await parseOrderDataFromApi([data.order]))[0]);
         } else {
             triggerOpen({
                 severity: 'error',

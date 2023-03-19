@@ -14,14 +14,13 @@ import {
     suggestChangesByCarrier,
     suggestChangesByReceiver,
 } from 'src/api/order';
-import { OUR_COMISSION_RUB } from 'src/helpers/comission';
+import { calculateComission } from 'src/helpers/calculateComission';
 import { Banks, IUser } from 'src/interfaces/user';
 import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { useGetBanks } from 'src/redux/hooks/useGetBanks';
 import { ReceiverPopupSchema } from 'src/schemas/PopupSchema';
 import styles from '../../../styles/OrderPage.module.css';
-import { calculateTotalAmount } from '../../helpers/calculateTotalAmount';
 import { IOrder, IOrderFull } from '../../interfaces/order';
 import { OrderStatus } from '../../interfaces/profile';
 import { Currency } from '../../interfaces/settings';
@@ -559,7 +558,9 @@ const OrderInformation: React.FC<IProps> = ({
                                             viewType={viewType}
                                         />
                                     )}
-                                    {order.rewardAmount &&
+                                    {order.rewardAmount !== undefined &&
+                                        order.totalPaymentAmount !==
+                                            undefined &&
                                         order.productAmount !== undefined && (
                                             <div className={styles.inputItem}>
                                                 <label>
@@ -577,12 +578,9 @@ const OrderInformation: React.FC<IProps> = ({
                                                     >
                                                         {viewType ===
                                                         ViewType.receiver
-                                                            ? formatAmount(
-                                                                  calculateTotalAmount(
-                                                                      order.productAmount,
-                                                                      order.rewardAmount,
-                                                                      Currency.RUB
-                                                                  ),
+                                                            ? order.totalPaymentAmount &&
+                                                              formatAmount(
+                                                                  order.totalPaymentAmount,
                                                                   Currency.RUB
                                                               )
                                                             : formatAmount(
@@ -598,11 +596,13 @@ const OrderInformation: React.FC<IProps> = ({
                                                                     styles.comission
                                                                 }
                                                             >
-                                                                {' '}
                                                                 (
-                                                                {
-                                                                    OUR_COMISSION_RUB
-                                                                }{' '}
+                                                                {order.totalPaymentAmount &&
+                                                                    calculateComission(
+                                                                        order.totalPaymentAmount,
+                                                                        order.productAmount,
+                                                                        order.rewardAmount
+                                                                    )}{' '}
                                                                 {t('RUB')}{' '}
                                                                 {t('comission')}
                                                                 )

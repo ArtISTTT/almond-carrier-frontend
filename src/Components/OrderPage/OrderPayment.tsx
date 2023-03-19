@@ -1,19 +1,17 @@
 import React, { useContext } from 'react';
 import styles from '../../../styles/OrderPage.module.css';
 
-import { OpenAlertContext } from '../Layouts/Snackbar';
-import { IOrderFull } from '../../interfaces/order';
-import { Button, Collapse } from '@mui/material';
-
-import { calculateTotalAmount } from 'src/helpers/calculateTotalAmount';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'src/redux/selectors/user';
-import { OrderStatus } from 'src/interfaces/profile';
+import { Button, Collapse } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import useFormatAmount from 'src/redux/hooks/useFormatAmount';
-import { useAppSelector } from 'src/redux/hooks';
+import { useSelector } from 'react-redux';
 import { confirmPayment } from 'src/api/order';
+import { OrderStatus } from 'src/interfaces/profile';
+import { useAppSelector } from 'src/redux/hooks';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { selectUser } from 'src/redux/selectors/user';
+import { IOrderFull } from '../../interfaces/order';
+import { OpenAlertContext } from '../Layouts/Snackbar';
 
 type IProps = {
     order: IOrderFull;
@@ -75,20 +73,18 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
     ) {
         return (
             <div className={styles.orderPaymentWrapper}>
-                <div className={styles.orderPaymentWrapperTotalSum}>
-                    {t('totalSum')}:&nbsp;
-                    <span>
-                        {formatAmount(
-                            calculateTotalAmount(
-                                order.productAmount as number,
-                                order.rewardAmount,
-                                userCurrency
-                            ),
-                            userCurrency,
-                            true
-                        )}
-                    </span>
-                </div>
+                {order.totalPaymentAmount !== undefined && (
+                    <div className={styles.orderPaymentWrapperTotalSum}>
+                        {t('totalSum')}:&nbsp;
+                        <span>
+                            {formatAmount(
+                                order.totalPaymentAmount,
+                                userCurrency,
+                                true
+                            )}
+                        </span>
+                    </div>
+                )}
                 <Button
                     variant='outlined'
                     className={styles.orderPaymentWrapperButton}

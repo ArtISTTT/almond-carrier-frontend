@@ -23,9 +23,6 @@ import styles from '../../styles/ProfileForNewUser.module.css';
 
 const useGetCurrentUser = ({ userId }: { userId: string }) => {
     const { t } = useTranslation();
-    const language = useAppSelector(
-        state => state.settings.generalSettings.language
-    );
     const { triggerOpen } = useContext(OpenAlertContext);
     const [user, setUser] = useState<IGetUser | undefined>(undefined);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -38,8 +35,7 @@ const useGetCurrentUser = ({ userId }: { userId: string }) => {
             setUser({
                 ...data.user,
                 successOrders: await parseOrderDataFromApi(
-                    data.user.successOrders,
-                    language
+                    data.user.successOrders
                 ),
             });
             setIsLoading(false);

@@ -1,10 +1,8 @@
 import { IOrder, IOrderFull } from './../interfaces/order';
 import dayjs from 'dayjs';
-import { Language } from 'src/interfaces/settings';
 
 export const parseOrderDataFromApi = async (
     orders: (IOrder | IOrderFull)[],
-    language: Language
 ) =>
     await Promise.all(
         orders.map(async order => ({
