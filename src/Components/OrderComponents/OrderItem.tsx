@@ -2,6 +2,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { Button, Typography } from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
 import cn from 'classnames';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -38,11 +39,6 @@ const OrderItem: React.FC<IProps> = ({
 
     const [isDetailsLoading, setIsDetailsLoading] =
         React.useState<boolean>(false);
-
-    const navigateToOrderPage = () => {
-        setIsDetailsLoading(true);
-        router.push(`/order/${order.id}`);
-    };
 
     const ourId = useAppSelector(({ user }) => user.data?.id);
 
@@ -93,6 +89,10 @@ const OrderItem: React.FC<IProps> = ({
         if (order && setApplyedOrder) {
             setApplyedOrder(order);
         }
+    };
+
+    const disableButton = () => {
+        setIsDetailsLoading(true);
     };
 
     return (
@@ -288,26 +288,24 @@ const OrderItem: React.FC<IProps> = ({
                         ) : (
                             (ourId === order.carrier?.id ||
                                 ourId === order.receiver?.id) && (
-                                <Button
-                                    className={styles.detailsButton}
-                                    variant='contained'
-                                    onClick={navigateToOrderPage}
-                                    disabled={
-                                        order.status === OrderStatus.cancelled
-                                    }
-                                >
-                                    {isDetailsLoading ? (
-                                        <CircleLoader
-                                            color={LoaderColors.SECONDARY}
-                                        />
-                                    ) : (
+                                <Link prefetch href={`/order/${order.id}`}>
+                                    <Button
+                                        className={styles.detailsButton}
+                                        variant='contained'
+                                        onClick={disableButton}
+                                        disabled={
+                                            isDetailsLoading ||
+                                            order.status ===
+                                                OrderStatus.cancelled
+                                        }
+                                    >
                                         <span
                                             className={styles.detailsButtonLink}
                                         >
                                             {t('detailsButton')}
                                         </span>
-                                    )}
-                                </Button>
+                                    </Button>
+                                </Link>
                             )
                         )}
                         <div>
