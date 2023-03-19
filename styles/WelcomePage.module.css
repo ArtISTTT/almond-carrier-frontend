@@ -183,10 +183,6 @@ z .emailInput > div > fieldset {
     z-index: 2;
 }
 
-.firstStepText {
-    margin-left: 5px;
-}
-
 .stepText {
     color: var(--cTextSecondary);
     font-size: 20px;
@@ -201,10 +197,10 @@ z .emailInput > div > fieldset {
 }
 
 .stepTextTitle {
-    font-size: 24px;
+    font-size: 36px;
     font-weight: 800;
     color: var(--cTextSecondary);
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 .leftPartContent {
@@ -213,8 +209,20 @@ z .emailInput > div > fieldset {
 
 .stepImage {
     width: auto;
-    height: 300px;
-    border-radius: 20px;
+    height: 320px;
+}
+
+.firstStepImage {
+    height: 430px;
+}
+
+.secondStepImage {
+    height: 410px;
+}
+
+.fourStepImage {
+    height: 350px;
+    width: 700px;
 }
 
 .stepsBlock {
@@ -229,11 +237,16 @@ z .emailInput > div > fieldset {
 
 .stepBlock {
     display: flex;
+    align-items: center;
     width: 100%;
 }
 
 .stepBlockReverse {
     flex-direction: row-reverse;
+}
+
+.secondStepBlockMargin {
+    margin-top: 40px;
 }
 
 .stepPart {
@@ -273,6 +286,7 @@ z .emailInput > div > fieldset {
 }
 
 .advantagesBlock {
+    padding-bottom: 100px;
     background: linear-gradient(180deg, #6690fd 0%, #ffffff 100%);
 }
 
@@ -288,24 +302,6 @@ z .emailInput > div > fieldset {
 
 .advantage {
     width: 33%;
-}
-
-.safeDataBlock {
-    width: 100%;
-    padding-bottom: 100px;
-}
-
-.safeDataText {
-    text-align: center;
-    padding: 20px 0;
-    font-size: 30px;
-    margin-top: 60px;
-    color: var(--cTextPrimary);
-    font-weight: 600;
-    border-top: 2px solid;
-    border-bottom: 2px solid;
-    width: 100%;
-    border-color: var(--cTextPrimary);
 }
 
 .advantage > img {
@@ -371,6 +367,23 @@ z .emailInput > div > fieldset {
     }
 }
 
+@media screen and (max-width: 1180px) {
+    .firstStepImage {
+        height: 400px;
+    }
+    .secondStepImage {
+        height: 380px;
+    }
+
+    .fourStepImage {
+        height: 300px;
+        width: auto;
+    }
+    .stepImage {
+        height: 280px;
+    }
+}
+
 @media screen and (max-width: 1036px) {
     .stepOne {
         height: 350px;
@@ -416,6 +429,7 @@ z .emailInput > div > fieldset {
     }
     .stepTitle {
         font-size: 28px;
+        margin-bottom: 5px;
     }
     .stepText {
         font-size: 20px;
@@ -423,9 +437,6 @@ z .emailInput > div > fieldset {
     }
     .stepImage {
         height: 250px;
-    }
-    .rightPart {
-        padding-left: 10px;
     }
     .stepPartReverse {
         padding-right: 30px;
@@ -442,6 +453,28 @@ z .emailInput > div > fieldset {
 @media screen and (max-width: 960px) {
     .stepsBlock {
         justify-content: center;
+    }
+    .stepsSubTitle {
+        font-size: 20px;
+        margin: 0 15px;
+    }
+    .firstStepImage {
+        height: 350px;
+    }
+    .secondStepImage {
+        height: 330px;
+    }
+    .leftPart {
+        height: auto;
+    }
+    .secondStepBlockMargin {
+        margin-top: 5px;
+    }
+    .fourStepImage {
+        height: 240px;
+    }
+    .stepImage {
+        height: 220px;
     }
 }
 
@@ -470,6 +503,46 @@ z .emailInput > div > fieldset {
     .advantageDescription {
         font-size: 20px;
         line-height: 25px;
+    }
+    .firstStepImage {
+        height: 300px;
+    }
+    .advantagesBlock {
+        padding-bottom: 0px;
+    }
+    .secondStepImage {
+        height: 280px;
+    }
+    .fourStepImage {
+        height: 215px;
+    }
+    .stepImage {
+        height: 200px;
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .stepBlock {
+        flex-direction: column-reverse;
+    }
+    .firstStepImage {
+        height: 350px;
+    }
+    .secondStepImage {
+        height: 330px;
+    }
+    .fourStepImage {
+        height: 240px;
+    }
+    .stepImage {
+        height: 220px;
+    }
+    .stepPartReverse {
+        align-items: flex-start;
+    }
+    .stepTextRight {
+        text-align: start;
     }
 }
 
@@ -537,6 +610,15 @@ z .emailInput > div > fieldset {
         width: 80%;
         margin: 0 auto;
     }
+    .safeDataText {
+        font-size: 20px;
+    }
+    .stepsSubTitle {
+        margin: 0 5px;
+    }
+    .stepPart {
+        margin-top: 20px;
+    }
     .rightPart {
         padding-left: 0;
     }
@@ -559,7 +641,7 @@ z .emailInput > div > fieldset {
     }
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 565px) {
     .description {
         margin-top: 10px;
         font-size: 24px;
@@ -580,9 +662,6 @@ z .emailInput > div > fieldset {
         line-height: 20px;
         margin-top: 0;
     }
-    .stepsBlock {
-        padding-left: 20px;
-    }
     .form {
         display: flex;
         flex-direction: column;
@@ -598,11 +677,42 @@ z .emailInput > div > fieldset {
     .submitButton {
         margin-left: 0;
     }
+    .firstStepImage {
+        height: 300px;
+    }
+    .secondStepImage {
+        height: 250px;
+    }
+    .fourStepImage {
+        height: 200px;
+    }
+    .stepImage {
+        height: 190px;
+    }
+    .stepBlock {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .fourStepImage {
+        height: 180px;
+    }
+    .safeDataText {
+        margin-top: 10px;
+        font-size: 15px;
+    }
+    .safeDataBlock {
+        padding-bottom: 50px;
+    }
 }
 
 @media screen and (max-width: 440px) {
     .title {
         font-size: 36px;
+    }
+    .stepBlock {
+        width: 90%;
     }
     .description {
         line-height: 30px;
@@ -661,7 +771,16 @@ z .emailInput > div > fieldset {
         font-size: 16px;
         line-height: 18px;
     }
-    .stepBlock {
-        width: 90%;
+}
+
+@media screen and (max-width: 400px) {
+    .secondStepImage {
+        height: 215px;
+    }
+    .fourStepImage {
+        height: 165px;
+    }
+    .safeDataText {
+        font-size: 13px;
     }
 }

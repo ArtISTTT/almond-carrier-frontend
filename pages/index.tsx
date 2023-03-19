@@ -219,7 +219,7 @@ export default function Welcome() {
                             >
                                 <div className={styles.leftPartContent}>
                                     <img
-                                        className={styles.stepImage}
+                                        className={styles.firstStepImage}
                                         src='/static/images/main-page/choose.png'
                                         alt='choose'
                                     />
@@ -231,20 +231,13 @@ export default function Welcome() {
                                     styles.stepPart
                                 )}
                             >
-                                <Typography
-                                    variant='h3'
-                                    component='h3'
-                                    className={styles.stepTitle}
-                                >
-                                    {t('oneChoose')}
-                                </Typography>
                                 <div className={styles.stepsText}>
                                     <Typography
-                                        className={styles.stepTextTitle}
+                                        className={styles.stepTitle}
                                         variant='body1'
                                         component='p'
                                     >
-                                        {t('create')}
+                                        {t('creating')}
                                     </Typography>
                                     <Typography
                                         className={cn(
@@ -257,11 +250,11 @@ export default function Welcome() {
                                         {t('oneIfYouReceiver')}
                                     </Typography>
                                     <Typography
-                                        className={styles.stepTextTitle}
+                                        className={styles.stepTitle}
                                         variant='body1'
                                         component='p'
                                     >
-                                        {t('take')}
+                                        {t('response')}
                                     </Typography>
                                     <Typography
                                         className={cn(
@@ -279,7 +272,8 @@ export default function Welcome() {
                         <div
                             className={cn(
                                 styles.stepBlock,
-                                styles.stepBlockReverse
+                                styles.stepBlockReverse,
+                                styles.secondStepBlockMargin
                             )}
                         >
                             <div
@@ -287,7 +281,7 @@ export default function Welcome() {
                             >
                                 <div className={styles.leftPartContent}>
                                     <img
-                                        className={styles.stepImage}
+                                        className={styles.secondStepImage}
                                         src='/static/images/main-page/purchase.png'
                                         alt='purchase'
                                     />
@@ -324,7 +318,12 @@ export default function Welcome() {
                                 </div>
                             </div>
                         </div>
-                        <div className={styles.stepBlock}>
+                        <div
+                            className={cn(
+                                styles.stepBlock,
+                                styles.secondStepBlockMargin
+                            )}
+                        >
                             <div
                                 className={cn(styles.leftPart, styles.stepPart)}
                             >
@@ -373,8 +372,8 @@ export default function Welcome() {
                             >
                                 <div className={styles.leftPartContent}>
                                     <img
-                                        className={styles.stepImage}
-                                        src='/static/images/main-page/purchase.png'
+                                        className={styles.fourStepImage}
+                                        src='/static/images/main-page/result.png'
                                         alt='purchase'
                                     />
                                 </div>
@@ -411,7 +410,7 @@ export default function Welcome() {
                                     </Typography>
                                 </div>
                             </div>
-                        </div>{' '}
+                        </div>
                     </div>
                 </div>
                 <div className={styles.advantagesBlock}>
@@ -496,15 +495,6 @@ export default function Welcome() {
                                 </Typography>
                             </div>
                         </div>
-                    </div>
-                    <div className={styles.safeDataBlock}>
-                        <Typography
-                            variant='h5'
-                            component='h4'
-                            className={styles.safeDataText}
-                        >
-                            {t('yourAllDataWillBe')}
-                        </Typography>
                     </div>
                 </div>
             </MainLayout>
