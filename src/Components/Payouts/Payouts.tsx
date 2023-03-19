@@ -7,36 +7,55 @@ import { LoaderColors } from 'src/interfaces/loader';
 import { IPayout } from 'src/interfaces/order';
 import { Currency } from 'src/interfaces/settings';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { useGetBanks } from 'src/redux/hooks/useGetBanks';
 import { useGetCurrentPagePayouts } from 'src/redux/hooks/useGetCurrentPage';
 import styles from '../../../styles/Payments.module.css';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import CircleLoader from '../Loaders/CircleLoader';
 import PaymentsTable from './PayoutsTable';
 
-const Payouts = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [page, setPage] = React.useState<number>(1);
+const useGetUserPayouts = () => {
     const { t } = useTranslation();
-    const formatAmount = useFormatAmount();
     const { triggerOpen } = useContext(OpenAlertContext);
+    const [isLoading, setIsLoading] = useState(false);
     const [payouts, setPayouts] = useState<IPayout[]>([]);
-    const currentPagePayouts = useGetCurrentPagePayouts({ payouts, page });
+    const { banksArray } = useGetBanks({});
 
-    const getUserPayouts = async () => {
+    const userPayouts = async () => {
         setIsLoading(true);
         const data = await getPayouts();
 
         if (data.ok && data.payouts) {
-            setPayouts(parsePayoutsFromApi(data.payouts));
-            setIsLoading(false);
+            setPayouts(
+                await parsePayoutsFromApi({
+                    payouts: data.payouts,
+                    banks: banksArray,
+                })
+            );
         } else {
             triggerOpen({
                 severity: 'error',
                 text: data.error || t('errorLoadingPayouts'),
             });
-            setIsLoading(false);
+            setPayouts([]);
         }
+        setIsLoading(false);
     };
+
+    return { payouts, userPayouts, isLoading };
+};
+
+const Payouts = () => {
+    const [page, setPage] = useState<number>(1);
+    const { t } = useTranslation();
+    const formatAmount = useFormatAmount();
+    const { payouts, userPayouts, isLoading } = useGetUserPayouts();
+
+    useEffect(() => {
+        userPayouts();
+    }, []);
+
+    const currentPagePayouts = useGetCurrentPagePayouts({ payouts, page });
 
     const handleChangePagination = async (
         _: React.ChangeEvent<unknown>,
@@ -53,10 +72,6 @@ const Payouts = () => {
         return payouts.reduce((acc, payout) => acc + payout.rewardAmount, 0);
     }, [payouts]);
 
-    useEffect(() => {
-        getUserPayouts();
-    }, []);
-
     return (
         <div className={styles.paymentWrapper}>
             <div className={styles.payoutHeader}>
@@ -72,7 +87,12 @@ const Payouts = () => {
                     <CircleLoader color={LoaderColors.PRIMARY} />
                 </div>
             ) : (
-                <PaymentsTable payouts={currentPagePayouts} />
+                <>
+                    {currentPagePayouts.length > 0 && (
+                        <PaymentsTable payouts={currentPagePayouts} />
+                    )}
+                    {currentPagePayouts.length === 0 && <div>qwe</div>}
+                </>
             )}
             {totalCountPages > 1 && (
                 <Pagination

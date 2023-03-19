@@ -1,12 +1,20 @@
 import dayjs from 'dayjs';
+import { StaticImageData } from 'next/image';
 import { IPayout } from 'src/interfaces/order';
-import { useGetBanks } from 'src/redux/hooks/useGetBanks';
+import { Banks } from 'src/interfaces/user';
 
-export const parsePayoutsFromApi = (payouts: IPayout[]) => {
-    const { banksArray } = useGetBanks({});
+interface IProps {
+    payouts: IPayout[];
+    banks: {
+        value: Banks;
+        text: string;
+        image: StaticImageData;
+    }[];
+}
 
+export const parsePayoutsFromApi = ({ payouts, banks }: IProps) => {
     return payouts.map(payout => {
-        const payoutBank = banksArray.find(
+        const actuallyBank = banks.find(
             payoutBank => payoutBank.value === payout.bank
         );
 
@@ -15,7 +23,7 @@ export const parsePayoutsFromApi = (payouts: IPayout[]) => {
             completedDate: dayjs(payout.completedDate).format(
                 'DD.MM.YYYY'
             ) as string,
-            bank: payoutBank?.text,
+            bank: actuallyBank?.text,
         };
-    });
+    }) as IPayout[];
 };
