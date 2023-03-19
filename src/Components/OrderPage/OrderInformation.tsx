@@ -558,7 +558,9 @@ const OrderInformation: React.FC<IProps> = ({
                                             viewType={viewType}
                                         />
                                     )}
-                                    {order.rewardAmount &&
+                                    {order.rewardAmount !== undefined &&
+                                        order.totalPaymentAmount !==
+                                            undefined &&
                                         order.productAmount !== undefined && (
                                             <div className={styles.inputItem}>
                                                 <label>

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import styles from '../../../styles/OrderPage.module.css';
 
-import { Button, Collapse } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { Button, Collapse } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { confirmPayment } from 'src/api/order';
@@ -73,16 +73,18 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
     ) {
         return (
             <div className={styles.orderPaymentWrapper}>
-                <div className={styles.orderPaymentWrapperTotalSum}>
-                    {t('totalSum')}:&nbsp;
-                    <span>
-                        {formatAmount(
-                            order.totalPaymentAmount,
-                            userCurrency,
-                            true
-                        )}
-                    </span>
-                </div>
+                {order.totalPaymentAmount !== undefined && (
+                    <div className={styles.orderPaymentWrapperTotalSum}>
+                        {t('totalSum')}:&nbsp;
+                        <span>
+                            {formatAmount(
+                                order.totalPaymentAmount,
+                                userCurrency,
+                                true
+                            )}
+                        </span>
+                    </div>
+                )}
                 <Button
                     variant='outlined'
                     className={styles.orderPaymentWrapperButton}
