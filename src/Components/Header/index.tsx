@@ -15,6 +15,7 @@ import { SocketIoContext } from '../Layouts/SocketIo';
 import NotificationsMenu from '../Notifications/NotificationsMenu';
 import HeaderAvatar from './Avatar';
 import MobileMenu from './MobileMenu';
+import {motion} from "framer-motion"
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -68,13 +69,17 @@ const Header: React.FC<IProps> = ({
                     [styles.leftMenuAuth]: !isAuthorized,
                 })}
             >
-                <Avatar
-                    className={styles.frindlyAvatar}
-                    onClick={changePageIfAuthorized}
-                    sx={{ width: 55, height: 55, cursor: 'pointer' }}
-                    alt='logo'
-                    src='/static/images/logo.png'
-                />
+                <motion.div animate={{rotate: [0, 360]}}
+                transition={{repeat: Infinity, duration: 8}}>
+                    <Avatar
+                        className={styles.frindlyAvatar}
+                        onClick={changePageIfAuthorized}
+                        sx={{ width: 55, height: 55, cursor: 'pointer' }}
+                        alt='logo'
+                        src='/static/images/logo.png'
+                    />
+                </motion.div>
+
 
                 {!isAuthorized && (
                     <div className={cn(styles.leftMenuLinks)}>

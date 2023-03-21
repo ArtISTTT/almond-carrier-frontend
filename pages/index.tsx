@@ -14,6 +14,7 @@ import PrivateLayout from '../src/Components/Layouts/Private';
 import { privateTypes } from '../src/interfaces/private';
 import { EmailSchema } from '../src/schemas/EmailSchema';
 import styles from '../styles/WelcomePage.module.css';
+import {motion} from 'framer-motion';
 
 type IForm = {
     email: string;
@@ -40,6 +41,8 @@ export default function Welcome() {
         validateOnBlur: false,
         validateOnChange: false,
     });
+
+    const [move, setMove] = React.useState(false);
 
     return (
         <PrivateLayout privateType={privateTypes.all}>
@@ -148,52 +151,58 @@ export default function Welcome() {
                             {t('possibleRoles')}
                         </Typography>
                         <div className={styles.possibleRoles}>
-                            <div className={styles.role}>
-                                <img
-                                    className={styles.roleLeft}
-                                    src='/static/images/main-page/carrier.png'
-                                    alt='man1'
-                                />
-                                <div className={styles.roleInfo}>
-                                    <Typography
-                                        variant='h3'
-                                        component='h3'
-                                        className={styles.roleTitle}
-                                    >
-                                        {t('carrier')}
-                                    </Typography>
-                                    <Typography
-                                        variant='h4'
-                                        component='h4'
-                                        className={styles.roleDescription}
-                                    >
-                                        {t('ifYouWantToVisitAnotherCountry')}
-                                    </Typography>
+                            <motion.div whileInView={{x: 350}} 
+                            transition={{type: "tween", duration: 1.2}}>
+                                <div className={styles.role}>
+                                    <img
+                                        className={styles.roleLeft}
+                                        src='/static/images/main-page/carrier.png'
+                                        alt='man1'
+                                    />
+                                    <div className={styles.roleInfo}>
+                                        <Typography
+                                            variant='h3'
+                                            component='h3'
+                                            className={styles.roleTitle}
+                                        >
+                                            {t('carrier')}
+                                        </Typography>
+                                        <Typography
+                                            variant='h4'
+                                            component='h4'
+                                            className={styles.roleDescription}
+                                        >
+                                            {t('ifYouWantToVisitAnotherCountry')}
+                                        </Typography>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className={styles.role}>
-                                <img
-                                    className={styles.roleRight}
-                                    src='/static/images/main-page/receiver.png'
-                                    alt='man2'
-                                />
-                                <div className={styles.roleInfo}>
-                                    <Typography
-                                        variant='h3'
-                                        component='h3'
-                                        className={styles.roleTitle}
-                                    >
-                                        {t('receiver')}
-                                    </Typography>
-                                    <Typography
-                                        variant='h4'
-                                        component='h4'
-                                        className={styles.roleDescription}
-                                    >
-                                        {t('orderWhatYouNeed')}
-                                    </Typography>
+                            </motion.div>
+                            <motion.div whileInView={{x: -350}}
+                            transition={{type: "tween", duration: 1.2}}>
+                                <div className={styles.role}>
+                                    <img
+                                        className={styles.roleRight}
+                                        src='/static/images/main-page/receiver.png'
+                                        alt='man2'
+                                    />
+                                    <div className={styles.roleInfo}>
+                                        <Typography
+                                            variant='h3'
+                                            component='h3'
+                                            className={styles.roleTitle}
+                                        >
+                                            {t('receiver')}
+                                        </Typography>
+                                        <Typography
+                                            variant='h4'
+                                            component='h4'
+                                            className={styles.roleDescription}
+                                        >
+                                            {t('orderWhatYouNeed')}
+                                        </Typography>
+                                    </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </div>
