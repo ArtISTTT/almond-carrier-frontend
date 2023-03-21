@@ -150,7 +150,7 @@ export default function Welcome() {
                         </Typography>
                         <div className={styles.possibleRoles}>
                             <motion.div initial={{x: -200, opacity: 0}} whileInView={{x: 0,opacity: 1}} 
-                            transition={{type: "tween", duration: 1.2}}>
+                            transition={{duration: 1.2}}>
                                 <div className={styles.role}>
                                     <img
                                         className={styles.roleLeft}
@@ -176,7 +176,7 @@ export default function Welcome() {
                                 </div>
                             </motion.div>
                             <motion.div initial={{x: 200, opacity: 0}} whileInView={{x: 0, opacity: 1}}
-                            transition={{type: "tween", duration: 1.2}}>
+                            transition={{duration: 1.2}}>
                                 <div className={styles.role}>
                                     <img
                                         className={styles.roleRight}
