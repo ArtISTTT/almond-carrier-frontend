@@ -476,6 +476,9 @@ z .emailInput > div > fieldset {
     .stepImage {
         height: 220px;
     }
+    .role {
+        max-width: 450px;
+    }
 }
 
 @media screen and (max-width: 850px) {
@@ -520,6 +523,9 @@ z .emailInput > div > fieldset {
         height: 200px;
         width: auto;
     }
+    .role {
+        max-width: 400px
+    }
 }
 
 @media screen and (max-width: 750px) {
@@ -544,9 +550,9 @@ z .emailInput > div > fieldset {
     .stepTextRight {
         text-align: start;
     }
-}
-
-@media screen and (max-width: 730px) {
+    .role {
+        max-width: 360px;
+    }
     .role > img {
         height: 300px;
     }
@@ -601,6 +607,12 @@ z .emailInput > div > fieldset {
     }
     .leftPart {
         height: 200px;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .role {
+        max-width: 300px;
     }
 }
 
@@ -692,6 +704,9 @@ z .emailInput > div > fieldset {
     .stepBlock {
         width: 90%;
     }
+    .role {
+        max-width: 250px;
+    }
 }
 
 @media screen and (max-width: 450px) {
@@ -704,6 +719,9 @@ z .emailInput > div > fieldset {
     }
     .safeDataBlock {
         padding-bottom: 50px;
+    }
+    .role {
+        max-width: 210px;
     }
 }
 
@@ -782,5 +800,8 @@ z .emailInput > div > fieldset {
     }
     .safeDataText {
         font-size: 13px;
+    }
+    .role {
+        max-width: 170px;
     }
 }

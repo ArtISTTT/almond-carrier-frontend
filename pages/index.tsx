@@ -149,7 +149,7 @@ export default function Welcome() {
                             {t('possibleRoles')}
                         </Typography>
                         <div className={styles.possibleRoles}>
-                            <motion.div initial={{x: -100, opacity: 0}} whileInView={{x: 0,opacity: 1}} 
+                            <motion.div initial={{x: -100, opacity: 0}} whileInView={{x: 0, opacity: 1}} 
                             transition={{duration: 1.2}}>
                                 <div className={styles.role}>
                                     <img
