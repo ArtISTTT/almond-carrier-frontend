@@ -1,27 +1,27 @@
-import '../styles/globals.css';
-import React from 'react';
-import type { AppProps } from 'next/app';
 import { StyledEngineProvider, ThemeProvider } from '@mui/material';
-import { theme } from '../src/helpers/themes';
-import AuthLayout from '../src/Components/Layouts/Auth';
-import { Provider as StoreProvider } from 'react-redux';
-import { store } from '../src/redux';
-import SnackBarLayout from '../src/Components/Layouts/Snackbar';
-import { appWithTranslation } from 'next-i18next';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import RelativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from 'dayjs';
-import SocketIoLayout from 'src/Components/Layouts/SocketIo';
+import RelativeTime from 'dayjs/plugin/relativeTime';
+import { appWithTranslation } from 'next-i18next';
+import type { AppProps } from 'next/app';
+import React from 'react';
+import { Provider as StoreProvider } from 'react-redux';
 import ConfirmDialogLayout from 'src/Components/Layouts/ConfirmDialog';
+import SocketIoLayout from 'src/Components/Layouts/SocketIo';
+import ThemeProviderLayout from 'src/Components/Layouts/ThemeProviderlayout';
+import AuthLayout from '../src/Components/Layouts/Auth';
+import SnackBarLayout from '../src/Components/Layouts/Snackbar';
+import { store } from '../src/redux';
+import '../styles/globals.css';
 
 const App = ({ Component, pageProps }: AppProps) => {
     dayjs.extend(RelativeTime);
 
     return (
         <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={theme}>
-                <StoreProvider store={store}>
+            <StoreProvider store={store}>
+                <ThemeProviderLayout>
                     <AuthLayout>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <ConfirmDialogLayout>
@@ -33,8 +33,8 @@ const App = ({ Component, pageProps }: AppProps) => {
                             </ConfirmDialogLayout>
                         </LocalizationProvider>
                     </AuthLayout>
-                </StoreProvider>
-            </ThemeProvider>
+                </ThemeProviderLayout>
+            </StoreProvider>
         </StyledEngineProvider>
     );
 };
