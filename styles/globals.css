@@ -60,6 +60,43 @@
     --cStatusCancelled: #8b8b8b;
 }
 
+body {
+    --cTextPrimary: #6690fd;
+    --cTextSecondary: #ffffff;
+    --cTextThird: #000000cc;
+    --cTextLow: #00000099;
+    --cTextSuccess: #1c9e11;
+    --cTextError: #c43219;
+
+    --cBg: #6690fd;
+    --cBgSecondary: #ffffff;
+    --cBgThird: #f3f3f3;
+    --cBgSuccess: #1c9e11;
+    --cBgAwaiting: #df821e;
+    --cBgCancelled: #c43219;
+
+    --cBgLandingMain: #6690fd;
+
+    --cBorderPrimary: #6690fd;
+
+    --cStatusInProgress: #6690fd;
+    --cStatusSuccess: #1c9e11;
+    --cStatusCancelled: #8b8b8b;
+}
+
+body.dark {
+    --cTextSecondary: #ffffff;
+    --cTextThird: #ffffff;
+    --cTextLow: ##ffffffcc;
+
+    --cBgSecondary: #282828;
+    --cBgThird: #444444;
+
+    --cBgLandingMain: #444444;
+
+    --cStatusCancelled: #8b8b8b;
+}
+
 @media (prefers-color-scheme: dark) {
     :root {
         --foreground-rgb: 255, 255, 255;

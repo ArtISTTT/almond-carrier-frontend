@@ -13,3 +13,18 @@ export const theme = createTheme({
         fontFamily: 'Nunito',
     },
 });
+
+export const darkTheme = createTheme({
+    palette: {
+        primary: {
+            main: '#6690FD',
+        },
+        success: {
+            main: '#1c9e11',
+        },
+        mode: 'dark',
+    },
+    typography: {
+        fontFamily: 'Nunito',
+    },
+});

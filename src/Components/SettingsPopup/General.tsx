@@ -1,13 +1,11 @@
-import {
-    MenuItem,
-    Select,
-    Container,
-} from '@mui/material';
+import { Container, MenuItem, Select } from '@mui/material';
 import { Stack } from '@mui/system';
+import cn from 'classnames';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useCreateQueryParams } from 'src/redux/hooks/useCreateQueryParams';
 import styles from '../../../styles/Settings.module.css';
 import {
     Country,
@@ -18,8 +16,6 @@ import {
 } from '../../interfaces/settings';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { changeGeneralSettings } from '../../redux/slices/settingsSlice';
-import cn from 'classnames';
-import { useCreateQueryParams } from 'src/redux/hooks/useCreateQueryParams';
 
 const GeneralSettings: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -155,7 +151,6 @@ const GeneralSettings: React.FC = () => {
                             <Select
                                 id='theme'
                                 name='theme'
-                                disabled={true}
                                 value={formik.values.theme}
                                 onChange={formik.handleChange}
                                 MenuProps={{
