@@ -1,5 +1,6 @@
 import { Avatar, Button, Link as MUILink } from '@mui/material';
 import cn from 'classnames';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
@@ -15,7 +16,6 @@ import { SocketIoContext } from '../Layouts/SocketIo';
 import NotificationsMenu from '../Notifications/NotificationsMenu';
 import HeaderAvatar from './Avatar';
 import MobileMenu from './MobileMenu';
-import {motion} from "framer-motion"
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -69,8 +69,10 @@ const Header: React.FC<IProps> = ({
                     [styles.leftMenuAuth]: !isAuthorized,
                 })}
             >
-                <motion.div animate={{rotate: [0, 360]}}
-                transition={{repeat: Infinity, duration: 8}}>
+                <motion.div
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ repeat: Infinity, duration: 8 }}
+                >
                     <Avatar
                         className={styles.frindlyAvatar}
                         onClick={changePageIfAuthorized}
@@ -79,7 +81,6 @@ const Header: React.FC<IProps> = ({
                         src='/static/images/logo.png'
                     />
                 </motion.div>
-
 
                 {!isAuthorized && (
                     <div className={cn(styles.leftMenuLinks)}>

@@ -1,4 +1,4 @@
-import { StyledEngineProvider, ThemeProvider } from '@mui/material';
+import { StyledEngineProvider } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
