@@ -87,7 +87,11 @@ z .emailInput > div > fieldset {
 }
 
 .rolesWrapper {
-    background: linear-gradient(180deg, #ffffff 0%, #6690fd 100%);
+    background: linear-gradient(
+        180deg,
+        var(--cBgSecondary) 0%,
+        var(--cBgLandingMain) 100%
+    );
     width: 100%;
 
     color: var(--cTextThird);
@@ -155,7 +159,7 @@ z .emailInput > div > fieldset {
 }
 
 .stepsWrapper {
-    background: var(--cTextPrimary);
+    background: var(--cBgLandingMain);
 }
 
 .stepsTitle {
@@ -287,7 +291,11 @@ z .emailInput > div > fieldset {
 
 .advantagesBlock {
     padding-bottom: 100px;
-    background: linear-gradient(180deg, #6690fd 0%, #ffffff 100%);
+    background: linear-gradient(
+        180deg,
+        var(--cBgLandingMain) 0%,
+        var(--cBgSecondary) 100%
+    );
 }
 
 .advantagesTitle {
@@ -524,7 +532,7 @@ z .emailInput > div > fieldset {
         width: auto;
     }
     .role {
-        max-width: 400px
+        max-width: 400px;
     }
 }
 
