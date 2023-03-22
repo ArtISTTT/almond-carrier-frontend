@@ -1,6 +1,7 @@
 import { Button, TextField, Typography } from '@mui/material';
 import cn from 'classnames';
 import { useFormik } from 'formik';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
@@ -14,7 +15,6 @@ import PrivateLayout from '../src/Components/Layouts/Private';
 import { privateTypes } from '../src/interfaces/private';
 import { EmailSchema } from '../src/schemas/EmailSchema';
 import styles from '../styles/WelcomePage.module.css';
-import {motion} from 'framer-motion';
 
 type IForm = {
     email: string;
@@ -149,8 +149,12 @@ export default function Welcome() {
                             {t('possibleRoles')}
                         </Typography>
                         <div className={styles.possibleRoles}>
-                            <motion.div initial={{x: -100, opacity: 0}} whileInView={{x: 0, opacity: 1}} 
-                            transition={{duration: 1.2}}>
+                            <motion.div
+                                initial={{ x: -100, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                transition={{ duration: 1.2 }}
+                                viewport={{ once: true }}
+                            >
                                 <div className={styles.role}>
                                     <img
                                         className={styles.roleLeft}
@@ -170,13 +174,19 @@ export default function Welcome() {
                                             component='h4'
                                             className={styles.roleDescription}
                                         >
-                                            {t('ifYouWantToVisitAnotherCountry')}
+                                            {t(
+                                                'ifYouWantToVisitAnotherCountry'
+                                            )}
                                         </Typography>
                                     </div>
                                 </div>
                             </motion.div>
-                            <motion.div initial={{x: 100, opacity: 0}} whileInView={{x: 0, opacity: 1}}
-                            transition={{duration: 1.2}}>
+                            <motion.div
+                                initial={{ x: 100, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                transition={{ duration: 1.2 }}
+                                viewport={{ once: true }}
+                            >
                                 <div className={styles.role}>
                                     <img
                                         className={styles.roleRight}
@@ -220,11 +230,18 @@ export default function Welcome() {
                         {t('youCanCreateOwnOrdersOrRespondExistingOnes')}
                     </Typography>
                     <div className={styles.stepsBlock}>
-                        <motion.div initial={{opacity: 0, x: -100}} whileInView={{opacity: 1, x: 0}}
-                        transition={{delay: 0.5, duration: 1}}>
+                        <motion.div
+                            initial={{ opacity: 0, x: -100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.5, duration: 1 }}
+                            viewport={{ once: true }}
+                        >
                             <div className={styles.stepBlock}>
                                 <div
-                                    className={cn(styles.leftPart, styles.stepPart)}
+                                    className={cn(
+                                        styles.leftPart,
+                                        styles.stepPart
+                                    )}
                                 >
                                     <div className={styles.leftPartContent}>
                                         <img
@@ -277,10 +294,14 @@ export default function Welcome() {
                                         </Typography>
                                     </div>
                                 </div>
-                            </div>                            
+                            </div>
                         </motion.div>
-                        <motion.div initial={{opacity: 0, x: 100}} whileInView={{opacity: 1, x: 0}}
-                        transition={{delay: 0.5, duration: 1}}>
+                        <motion.div
+                            initial={{ opacity: 0, x: 100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.5, duration: 1 }}
+                            viewport={{ once: true }}
+                        >
                             <div
                                 className={cn(
                                     styles.stepBlock,
@@ -289,7 +310,10 @@ export default function Welcome() {
                                 )}
                             >
                                 <div
-                                    className={cn(styles.leftPart, styles.stepPart)}
+                                    className={cn(
+                                        styles.leftPart,
+                                        styles.stepPart
+                                    )}
                                 >
                                     <div className={styles.leftPartContent}>
                                         <img
@@ -329,10 +353,14 @@ export default function Welcome() {
                                         </Typography>
                                     </div>
                                 </div>
-                            </div>                            
+                            </div>
                         </motion.div>
-                        <motion.div initial={{opacity: 0, x: -100}} whileInView={{opacity: 1, x: 0}}
-                        transition={{delay: 0.5, duration: 1}}>  
+                        <motion.div
+                            initial={{ opacity: 0, x: -100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.5, duration: 1 }}
+                            viewport={{ once: true }}
+                        >
                             <div
                                 className={cn(
                                     styles.stepBlock,
@@ -340,7 +368,10 @@ export default function Welcome() {
                                 )}
                             >
                                 <div
-                                    className={cn(styles.leftPart, styles.stepPart)}
+                                    className={cn(
+                                        styles.leftPart,
+                                        styles.stepPart
+                                    )}
                                 >
                                     <div className={styles.leftPartContent}>
                                         <img
@@ -376,9 +407,13 @@ export default function Welcome() {
                                     </div>
                                 </div>
                             </div>
-                        </motion.div>      
-                        <motion.div initial={{opacity: 0, x: 100}} whileInView={{opacity: 1, x: 0}}
-                        transition={{delay: 0.5, duration: 1}}> 
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, x: 100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.5, duration: 1 }}
+                            viewport={{ once: true }}
+                        >
                             <div
                                 className={cn(
                                     styles.stepBlock,
@@ -386,7 +421,10 @@ export default function Welcome() {
                                 )}
                             >
                                 <div
-                                    className={cn(styles.leftPart, styles.stepPart)}
+                                    className={cn(
+                                        styles.leftPart,
+                                        styles.stepPart
+                                    )}
                                 >
                                     <div className={styles.leftPartContent}>
                                         <img
