@@ -1,4 +1,4 @@
-import { StyledEngineProvider, ThemeProvider } from '@mui/material';
+import { StyledEngineProvider } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
@@ -9,7 +9,7 @@ import React from 'react';
 import { Provider as StoreProvider } from 'react-redux';
 import ConfirmDialogLayout from 'src/Components/Layouts/ConfirmDialog';
 import SocketIoLayout from 'src/Components/Layouts/SocketIo';
-import ThemeProviderLayout from 'src/Components/Layouts/ThemeProviderlayout';
+import { ThemeProviderLayout } from 'src/Components/Layouts/ThemeProviderLayout';
 import AuthLayout from '../src/Components/Layouts/Auth';
 import SnackBarLayout from '../src/Components/Layouts/Snackbar';
 import { store } from '../src/redux';

@@ -8,7 +8,7 @@ type IProps = {
     children: React.ReactNode;
 };
 
-const ThemeProviderLayout: React.FC<IProps> = ({ children }) => {
+export const ThemeProviderLayout: React.FC<IProps> = ({ children }) => {
     const currentTheme = useAppSelector(
         state => state.settings.generalSettings.theme
     );
@@ -19,5 +19,3 @@ const ThemeProviderLayout: React.FC<IProps> = ({ children }) => {
         </ThemeProvider>
     );
 };
-
-export default ThemeProviderLayout;

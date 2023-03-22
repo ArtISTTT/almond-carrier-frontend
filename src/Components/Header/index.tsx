@@ -68,13 +68,15 @@ const Header: React.FC<IProps> = ({
                     [styles.leftMenuAuth]: !isAuthorized,
                 })}
             >
-                <Avatar
-                    className={styles.frindlyAvatar}
-                    onClick={changePageIfAuthorized}
-                    sx={{ width: 55, height: 55, cursor: 'pointer' }}
-                    alt='logo'
-                    src='/static/images/logo.png'
-                />
+                <div>
+                    <Avatar
+                        className={styles.frindlyAvatar}
+                        onClick={changePageIfAuthorized}
+                        sx={{ width: 55, height: 55, cursor: 'pointer' }}
+                        alt='logo'
+                        src='/static/images/logo.png'
+                    />
+                </div>
 
                 {!isAuthorized && (
                     <div className={cn(styles.leftMenuLinks)}>

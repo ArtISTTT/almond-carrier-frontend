@@ -1,6 +1,7 @@
 import { Button, TextField, Typography } from '@mui/material';
 import cn from 'classnames';
 import { useFormik } from 'formik';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
@@ -148,52 +149,68 @@ export default function Welcome() {
                             {t('possibleRoles')}
                         </Typography>
                         <div className={styles.possibleRoles}>
-                            <div className={styles.role}>
-                                <img
-                                    className={styles.roleLeft}
-                                    src='/static/images/main-page/carrier.png'
-                                    alt='man1'
-                                />
-                                <div className={styles.roleInfo}>
-                                    <Typography
-                                        variant='h3'
-                                        component='h3'
-                                        className={styles.roleTitle}
-                                    >
-                                        {t('carrier')}
-                                    </Typography>
-                                    <Typography
-                                        variant='h4'
-                                        component='h4'
-                                        className={styles.roleDescription}
-                                    >
-                                        {t('ifYouWantToVisitAnotherCountry')}
-                                    </Typography>
+                            <motion.div
+                                initial={{ x: -100, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                transition={{ duration: 1.2 }}
+                                viewport={{ once: true }}
+                            >
+                                <div className={styles.role}>
+                                    <img
+                                        className={styles.roleLeft}
+                                        src='/static/images/main-page/carrier.png'
+                                        alt='man1'
+                                    />
+                                    <div className={styles.roleInfo}>
+                                        <Typography
+                                            variant='h3'
+                                            component='h3'
+                                            className={styles.roleTitle}
+                                        >
+                                            {t('carrier')}
+                                        </Typography>
+                                        <Typography
+                                            variant='h4'
+                                            component='h4'
+                                            className={styles.roleDescription}
+                                        >
+                                            {t(
+                                                'ifYouWantToVisitAnotherCountry'
+                                            )}
+                                        </Typography>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className={styles.role}>
-                                <img
-                                    className={styles.roleRight}
-                                    src='/static/images/main-page/receiver.png'
-                                    alt='man2'
-                                />
-                                <div className={styles.roleInfo}>
-                                    <Typography
-                                        variant='h3'
-                                        component='h3'
-                                        className={styles.roleTitle}
-                                    >
-                                        {t('receiver')}
-                                    </Typography>
-                                    <Typography
-                                        variant='h4'
-                                        component='h4'
-                                        className={styles.roleDescription}
-                                    >
-                                        {t('orderWhatYouNeed')}
-                                    </Typography>
+                            </motion.div>
+                            <motion.div
+                                initial={{ x: 100, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                transition={{ duration: 1.2 }}
+                                viewport={{ once: true }}
+                            >
+                                <div className={styles.role}>
+                                    <img
+                                        className={styles.roleRight}
+                                        src='/static/images/main-page/receiver.png'
+                                        alt='man2'
+                                    />
+                                    <div className={styles.roleInfo}>
+                                        <Typography
+                                            variant='h3'
+                                            component='h3'
+                                            className={styles.roleTitle}
+                                        >
+                                            {t('receiver')}
+                                        </Typography>
+                                        <Typography
+                                            variant='h4'
+                                            component='h4'
+                                            className={styles.roleDescription}
+                                        >
+                                            {t('orderWhatYouNeed')}
+                                        </Typography>
+                                    </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </div>
@@ -213,204 +230,244 @@ export default function Welcome() {
                         {t('youCanCreateOwnOrdersOrRespondExistingOnes')}
                     </Typography>
                     <div className={styles.stepsBlock}>
-                        <div className={styles.stepBlock}>
-                            <div
-                                className={cn(styles.leftPart, styles.stepPart)}
-                            >
-                                <div className={styles.leftPartContent}>
-                                    <img
-                                        className={styles.firstStepImage}
-                                        src='/static/images/main-page/choose.png'
-                                        alt='choose'
-                                    />
-                                </div>
-                            </div>
-                            <div
-                                className={cn(
-                                    styles.rightPart,
-                                    styles.stepPart
-                                )}
-                            >
-                                <div className={styles.stepsText}>
-                                    <Typography
-                                        className={styles.stepTitle}
-                                        variant='body1'
-                                        component='p'
-                                    >
-                                        {t('creating')}
-                                    </Typography>
-                                    <Typography
-                                        className={cn(
-                                            styles.stepText,
-                                            styles.firstStepText
-                                        )}
-                                        variant='body1'
-                                        component='p'
-                                    >
-                                        {t('oneIfYouReceiver')}
-                                    </Typography>
-                                    <Typography
-                                        className={styles.stepTitle}
-                                        variant='body1'
-                                        component='p'
-                                    >
-                                        {t('response')}
-                                    </Typography>
-                                    <Typography
-                                        className={cn(
-                                            styles.stepText,
-                                            styles.firstStepText
-                                        )}
-                                        variant='body1'
-                                        component='p'
-                                    >
-                                        {t('oneIfYouCarrier')}
-                                    </Typography>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            className={cn(
-                                styles.stepBlock,
-                                styles.stepBlockReverse,
-                                styles.secondStepBlockMargin
-                            )}
+                        <motion.div
+                            initial={{ opacity: 0, x: -100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.5, duration: 1 }}
+                            viewport={{ once: true }}
                         >
-                            <div
-                                className={cn(styles.leftPart, styles.stepPart)}
-                            >
-                                <div className={styles.leftPartContent}>
-                                    <img
-                                        className={styles.secondStepImage}
-                                        src='/static/images/main-page/purchase.png'
-                                        alt='purchase'
-                                    />
-                                </div>
-                            </div>
-                            <div
-                                className={cn(
-                                    styles.rightPart,
-                                    styles.stepPart,
-                                    styles.stepPartReverse
-                                )}
-                            >
-                                <Typography
-                                    variant='h3'
-                                    component='h3'
+                            <div className={styles.stepBlock}>
+                                <div
                                     className={cn(
-                                        styles.stepTitle,
-                                        styles.stepTitleRight
+                                        styles.leftPart,
+                                        styles.stepPart
                                     )}
                                 >
-                                    {t('details')}
-                                </Typography>
-                                <div className={styles.stepsText}>
-                                    <Typography
-                                        className={cn(
-                                            styles.stepText,
-                                            styles.stepTextRight
-                                        )}
-                                        variant='body1'
-                                        component='p'
-                                    >
-                                        {t('priceSum')}
-                                    </Typography>
+                                    <div className={styles.leftPartContent}>
+                                        <img
+                                            className={styles.firstStepImage}
+                                            src='/static/images/main-page/choose.png'
+                                            alt='choose'
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div
-                            className={cn(
-                                styles.stepBlock,
-                                styles.secondStepBlockMargin
-                            )}
-                        >
-                            <div
-                                className={cn(styles.leftPart, styles.stepPart)}
-                            >
-                                <div className={styles.leftPartContent}>
-                                    <img
-                                        className={styles.stepImage}
-                                        src='/static/images/main-page/receiving.png'
-                                        alt='choose'
-                                    />
-                                </div>
-                            </div>
-                            <div
-                                className={cn(
-                                    styles.rightPart,
-                                    styles.stepPart
-                                )}
-                            >
-                                <Typography
-                                    variant='h3'
-                                    component='h3'
-                                    className={styles.stepTitle}
-                                >
-                                    {t('paymentDelivery')}
-                                </Typography>
-                                <div className={styles.stepsText}>
-                                    <Typography
-                                        className={styles.stepText}
-                                        variant='body1'
-                                        component='p'
-                                    >
-                                        {t(
-                                            'recipientPaysForTheGoodsAndThenTheCarrierDelivers'
-                                        )}
-                                    </Typography>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            className={cn(
-                                styles.stepBlock,
-                                styles.stepBlockReverse
-                            )}
-                        >
-                            <div
-                                className={cn(styles.leftPart, styles.stepPart)}
-                            >
-                                <div className={styles.leftPartContent}>
-                                    <img
-                                        className={styles.fourStepImage}
-                                        src='/static/images/main-page/result.png'
-                                        alt='purchase'
-                                    />
-                                </div>
-                            </div>
-                            <div
-                                className={cn(
-                                    styles.rightPart,
-                                    styles.stepPart,
-                                    styles.stepPartReverse
-                                )}
-                            >
-                                <Typography
-                                    variant='h3'
-                                    component='h3'
+                                <div
                                     className={cn(
-                                        styles.stepTitle,
-                                        styles.stepTitleRight
+                                        styles.rightPart,
+                                        styles.stepPart
                                     )}
                                 >
-                                    {t('result')}
-                                </Typography>
-                                <div className={styles.stepsText}>
-                                    <Typography
-                                        className={cn(
-                                            styles.stepText,
-                                            styles.stepTextRight
-                                        )}
-                                        variant='body1'
-                                        component='p'
-                                    >
-                                        {t(
-                                            'recipientConfirmsReceiptAndTheCarrierGetsReward'
-                                        )}
-                                    </Typography>
+                                    <div className={styles.stepsText}>
+                                        <Typography
+                                            className={styles.stepTitle}
+                                            variant='body1'
+                                            component='p'
+                                        >
+                                            {t('creating')}
+                                        </Typography>
+                                        <Typography
+                                            className={cn(
+                                                styles.stepText,
+                                                styles.firstStepText
+                                            )}
+                                            variant='body1'
+                                            component='p'
+                                        >
+                                            {t('oneIfYouReceiver')}
+                                        </Typography>
+                                        <Typography
+                                            className={styles.stepTitle}
+                                            variant='body1'
+                                            component='p'
+                                        >
+                                            {t('response')}
+                                        </Typography>
+                                        <Typography
+                                            className={cn(
+                                                styles.stepText,
+                                                styles.firstStepText
+                                            )}
+                                            variant='body1'
+                                            component='p'
+                                        >
+                                            {t('oneIfYouCarrier')}
+                                        </Typography>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, x: 100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.5, duration: 1 }}
+                            viewport={{ once: true }}
+                        >
+                            <div
+                                className={cn(
+                                    styles.stepBlock,
+                                    styles.stepBlockReverse,
+                                    styles.secondStepBlockMargin
+                                )}
+                            >
+                                <div
+                                    className={cn(
+                                        styles.leftPart,
+                                        styles.stepPart
+                                    )}
+                                >
+                                    <div className={styles.leftPartContent}>
+                                        <img
+                                            className={styles.secondStepImage}
+                                            src='/static/images/main-page/purchase.png'
+                                            alt='purchase'
+                                        />
+                                    </div>
+                                </div>
+                                <div
+                                    className={cn(
+                                        styles.rightPart,
+                                        styles.stepPart,
+                                        styles.stepPartReverse
+                                    )}
+                                >
+                                    <Typography
+                                        variant='h3'
+                                        component='h3'
+                                        className={cn(
+                                            styles.stepTitle,
+                                            styles.stepTitleRight
+                                        )}
+                                    >
+                                        {t('details')}
+                                    </Typography>
+                                    <div className={styles.stepsText}>
+                                        <Typography
+                                            className={cn(
+                                                styles.stepText,
+                                                styles.stepTextRight
+                                            )}
+                                            variant='body1'
+                                            component='p'
+                                        >
+                                            {t('priceSum')}
+                                        </Typography>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, x: -100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.5, duration: 1 }}
+                            viewport={{ once: true }}
+                        >
+                            <div
+                                className={cn(
+                                    styles.stepBlock,
+                                    styles.secondStepBlockMargin
+                                )}
+                            >
+                                <div
+                                    className={cn(
+                                        styles.leftPart,
+                                        styles.stepPart
+                                    )}
+                                >
+                                    <div className={styles.leftPartContent}>
+                                        <img
+                                            className={styles.stepImage}
+                                            src='/static/images/main-page/receiving.png'
+                                            alt='choose'
+                                        />
+                                    </div>
+                                </div>
+                                <div
+                                    className={cn(
+                                        styles.rightPart,
+                                        styles.stepPart
+                                    )}
+                                >
+                                    <Typography
+                                        variant='h3'
+                                        component='h3'
+                                        className={styles.stepTitle}
+                                    >
+                                        {t('paymentDelivery')}
+                                    </Typography>
+                                    <div className={styles.stepsText}>
+                                        <Typography
+                                            className={styles.stepText}
+                                            variant='body1'
+                                            component='p'
+                                        >
+                                            {t(
+                                                'recipientPaysForTheGoodsAndThenTheCarrierDelivers'
+                                            )}
+                                        </Typography>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, x: 100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.5, duration: 1 }}
+                            viewport={{ once: true }}
+                        >
+                            <div
+                                className={cn(
+                                    styles.stepBlock,
+                                    styles.stepBlockReverse
+                                )}
+                            >
+                                <div
+                                    className={cn(
+                                        styles.leftPart,
+                                        styles.stepPart
+                                    )}
+                                >
+                                    <div className={styles.leftPartContent}>
+                                        <img
+                                            className={styles.fourStepImage}
+                                            src='/static/images/main-page/result.png'
+                                            alt='purchase'
+                                        />
+                                    </div>
+                                </div>
+                                <div
+                                    className={cn(
+                                        styles.rightPart,
+                                        styles.stepPart,
+                                        styles.stepPartReverse
+                                    )}
+                                >
+                                    <Typography
+                                        variant='h3'
+                                        component='h3'
+                                        className={cn(
+                                            styles.stepTitle,
+                                            styles.stepTitleRight
+                                        )}
+                                    >
+                                        {t('result')}
+                                    </Typography>
+                                    <div className={styles.stepsText}>
+                                        <Typography
+                                            className={cn(
+                                                styles.stepText,
+                                                styles.stepTextRight
+                                            )}
+                                            variant='body1'
+                                            component='p'
+                                        >
+                                            {t(
+                                                'recipientConfirmsReceiptAndTheCarrierGetsReward'
+                                            )}
+                                        </Typography>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
                     </div>
                 </div>
                 <div className={styles.advantagesBlock}>
