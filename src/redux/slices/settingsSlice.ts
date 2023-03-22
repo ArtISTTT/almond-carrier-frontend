@@ -1,14 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
+import { toggleTheme } from 'src/helpers/changeTheme';
 import {
+    Country,
     Currency,
     IGeneralSettings,
     INotifications,
     Language,
     Theme,
-    Country,
 } from '../../interfaces/settings';
+
+export const DEFAULT_THEME = Theme.DARK;
 
 interface IInitialState {
     generalSettings: IGeneralSettings;
@@ -20,7 +23,7 @@ const initialState: IInitialState = {
         country: Country.RUSSIA,
         language: Language.RU,
         currency: Currency.RUB,
-        theme: Theme.LIGHT,
+        theme: DEFAULT_THEME,
         isAllowToTransferMoney: false,
         isUseTwoStepAuthenticationByPhoneNumber: false,
     },
@@ -39,10 +42,17 @@ export const settingsSlice = createSlice({
             state,
             action: PayloadAction<IGeneralSettings>
         ) => {
+            // Theme changing
+            localStorage.setItem('theme', action.payload.theme);
+            toggleTheme(action.payload.theme);
+
+            // Locale changing
             if (state.generalSettings.language !== action.payload.language) {
                 localStorage.setItem('language', action.payload.language);
                 dayjs.locale(action.payload.language);
             }
+
+            // Other settings
             state.generalSettings = action.payload;
         },
         changeNotifications: (state, action: PayloadAction<INotifications>) => {
@@ -63,9 +73,21 @@ export const settingsSlice = createSlice({
                 localStorage.setItem('language', action.payload.language);
             }
         },
+        changeTheme: (
+            state,
+            action: PayloadAction<{
+                theme: Theme;
+            }>
+        ) => {
+            state.generalSettings.theme = action.payload.theme;
+        },
     },
 });
 
-export const { changeGeneralSettings, changeNotifications, changeLanguage } =
-    settingsSlice.actions;
+export const {
+    changeGeneralSettings,
+    changeNotifications,
+    changeLanguage,
+    changeTheme,
+} = settingsSlice.actions;
 export default settingsSlice.reducer;

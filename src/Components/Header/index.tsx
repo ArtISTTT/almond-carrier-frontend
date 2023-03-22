@@ -1,3 +1,5 @@
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import SearchIcon from '@mui/icons-material/Search';
 import { Avatar, Button, Link as MUILink } from '@mui/material';
 import cn from 'classnames';
 import { useTranslation } from 'next-i18next';
@@ -68,16 +70,19 @@ const Header: React.FC<IProps> = ({
                     [styles.leftMenuAuth]: !isAuthorized,
                 })}
             >
-                <Avatar
-                    className={styles.frindlyAvatar}
-                    onClick={changePageIfAuthorized}
-                    sx={{ width: 55, height: 55, cursor: 'pointer' }}
-                    alt='logo'
-                    src='/static/images/logo.png'
-                />
+                <div>
+                    <Avatar
+                        className={styles.frindlyAvatar}
+                        onClick={changePageIfAuthorized}
+                        sx={{ width: 55, height: 55, cursor: 'pointer' }}
+                        alt='logo'
+                        src='/static/images/logo.png'
+                    />
+                </div>
 
                 {!isAuthorized && (
                     <div className={cn(styles.leftMenuLinks)}>
+                        <SearchIcon className={styles.headerIcon} />
                         <MUILink
                             href={navigateTo.ORDER_SEARCH}
                             className={styles.link}
@@ -90,23 +95,28 @@ const Header: React.FC<IProps> = ({
                 )}
                 {isAuthorized && (
                     <div className={cn(styles.leftMenuLinksAuth)}>
-                        <MUILink
-                            href={navigateTo.DASHBOARD}
-                            className={styles.link}
-                            component={LinkBehaviour}
-                            underline='none'
-                        >
-                            {t('dashboard')}
-                        </MUILink>
-
-                        <MUILink
-                            href={navigateTo.ORDER_SEARCH}
-                            className={styles.link}
-                            component={LinkBehaviour}
-                            underline='none'
-                        >
-                            {t('orderSearch')}
-                        </MUILink>
+                        <div className={styles.linkBlock}>
+                            <DashboardIcon className={styles.headerIcon} />
+                            <MUILink
+                                href={navigateTo.DASHBOARD}
+                                className={styles.link}
+                                component={LinkBehaviour}
+                                underline='none'
+                            >
+                                {t('dashboard')}
+                            </MUILink>
+                        </div>
+                        <div className={styles.linkBlock}>
+                            <SearchIcon className={styles.headerIcon} />
+                            <MUILink
+                                href={navigateTo.ORDER_SEARCH}
+                                className={styles.link}
+                                component={LinkBehaviour}
+                                underline='none'
+                            >
+                                {t('orderSearch')}
+                            </MUILink>
+                        </div>
                     </div>
                 )}
             </div>

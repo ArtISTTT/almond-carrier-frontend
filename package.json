@@ -27,6 +27,7 @@
         "dayjs": "^1.11.7",
         "eslint-config-next": "13.0.7",
         "formik": "^2.2.9",
+        "framer-motion": "^10.8.4",
         "i18next": "^22.4.9",
         "mui-tel-input": "^3.0.2",
         "next": "13.0.7",

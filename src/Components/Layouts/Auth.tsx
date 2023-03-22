@@ -2,13 +2,18 @@ import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { toggleTheme } from 'src/helpers/changeTheme';
 import { getCurrentUser } from '../../api/auth';
 import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
 import { IGetCurrentUserReturn } from '../../interfaces/api/auth';
-import { Language } from '../../interfaces/settings';
+import { Language, Theme } from '../../interfaces/settings';
 import { useAppDispatch } from '../../redux/hooks';
 import { selectIsInitializeAuthChecked } from '../../redux/selectors/user';
-import { changeLanguage } from '../../redux/slices/settingsSlice';
+import {
+    changeLanguage,
+    changeTheme,
+    DEFAULT_THEME,
+} from '../../redux/slices/settingsSlice';
 import {
     addUserData,
     setInitializeAuthChecked,
@@ -32,6 +37,10 @@ const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
             dispatch(setIsAuthorized(true));
         }
 
+        dispatch(setInitializeAuthChecked(true));
+    };
+
+    useEffect(() => {
         const savedLocale = localStorage.getItem('language');
 
         if (savedLocale) {
@@ -50,10 +59,14 @@ const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
             );
         }
 
-        dispatch(setInitializeAuthChecked(true));
-    };
+        const savedTheme = localStorage.getItem('theme') as Theme | undefined;
 
-    useEffect(() => {
+        if (savedTheme) {
+            changeTheme({ theme: savedTheme });
+        }
+
+        toggleTheme(savedTheme ?? DEFAULT_THEME);
+
         getCurrentUser().then(data => {
             updateUser(data);
         });

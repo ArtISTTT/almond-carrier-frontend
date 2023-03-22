@@ -87,7 +87,11 @@ z .emailInput > div > fieldset {
 }
 
 .rolesWrapper {
-    background: linear-gradient(180deg, #ffffff 0%, #6690fd 100%);
+    background: linear-gradient(
+        180deg,
+        var(--cBgSecondary) 0%,
+        var(--cBgLandingMain) 100%
+    );
     width: 100%;
 
     color: var(--cTextThird);
@@ -155,7 +159,7 @@ z .emailInput > div > fieldset {
 }
 
 .stepsWrapper {
-    background: var(--cTextPrimary);
+    background: var(--cBgLandingMain);
 }
 
 .stepsTitle {
@@ -287,7 +291,11 @@ z .emailInput > div > fieldset {
 
 .advantagesBlock {
     padding-bottom: 100px;
-    background: linear-gradient(180deg, #6690fd 0%, #ffffff 100%);
+    background: linear-gradient(
+        180deg,
+        var(--cBgLandingMain) 0%,
+        var(--cBgSecondary) 100%
+    );
 }
 
 .advantagesTitle {
@@ -476,6 +484,9 @@ z .emailInput > div > fieldset {
     .stepImage {
         height: 220px;
     }
+    .role {
+        max-width: 450px;
+    }
 }
 
 @media screen and (max-width: 850px) {
@@ -520,6 +531,9 @@ z .emailInput > div > fieldset {
         height: 200px;
         width: auto;
     }
+    .role {
+        max-width: 400px;
+    }
 }
 
 @media screen and (max-width: 750px) {
@@ -544,9 +558,9 @@ z .emailInput > div > fieldset {
     .stepTextRight {
         text-align: start;
     }
-}
-
-@media screen and (max-width: 730px) {
+    .role {
+        max-width: 360px;
+    }
     .role > img {
         height: 300px;
     }
@@ -601,6 +615,12 @@ z .emailInput > div > fieldset {
     }
     .leftPart {
         height: 200px;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .role {
+        max-width: 300px;
     }
 }
 
@@ -692,6 +712,9 @@ z .emailInput > div > fieldset {
     .stepBlock {
         width: 90%;
     }
+    .role {
+        max-width: 250px;
+    }
 }
 
 @media screen and (max-width: 450px) {
@@ -704,6 +727,9 @@ z .emailInput > div > fieldset {
     }
     .safeDataBlock {
         padding-bottom: 50px;
+    }
+    .role {
+        max-width: 210px;
     }
 }
 
@@ -782,5 +808,8 @@ z .emailInput > div > fieldset {
     }
     .safeDataText {
         font-size: 13px;
+    }
+    .role {
+        max-width: 170px;
     }
 }

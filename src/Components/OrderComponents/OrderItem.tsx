@@ -192,7 +192,7 @@ const OrderItem: React.FC<IProps> = ({
                                     variant='h6'
                                     component='p'
                                 >
-                                    {order.productAmount
+                                    {order.productAmount !== undefined
                                         ? formatAmount(
                                               order.productAmount,
                                               Currency.RUB,
@@ -332,7 +332,7 @@ const OrderItem: React.FC<IProps> = ({
                                 variant='h6'
                                 component='p'
                             >
-                                {order.productAmount
+                                {order.productAmount !== undefined
                                     ? formatAmount(
                                           order.productAmount,
                                           Currency.RUB,

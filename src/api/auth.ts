@@ -1,3 +1,9 @@
+import { localStorageUserData } from '../helpers/localStorageUserData';
+import {
+    IGetCurrentUserReturn,
+    ISignUp,
+    ISignUpReturn,
+} from '../interfaces/api/auth';
 import {
     IProcessRecover,
     IRecover,
@@ -13,12 +19,6 @@ import {
     IVerifyEmail,
     IVerifyEmailReturn,
 } from './../interfaces/api/auth';
-import { localStorageUserData } from '../helpers/localStorageUserData';
-import {
-    IGetCurrentUserReturn,
-    ISignUp,
-    ISignUpReturn,
-} from '../interfaces/api/auth';
 import { mainInstance } from './instance';
 
 export const signUp = (requestData: ISignUp): Promise<ISignUpReturn> =>
@@ -200,7 +200,7 @@ export const updateAvatar = (
         })
         .then(data => {
             return {
-                avatar: data.data.avatarImage,
+                avatar: data.data.avatar,
                 ok: true,
             };
         })

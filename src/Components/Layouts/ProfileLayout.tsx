@@ -1,7 +1,7 @@
 import React from 'react';
+import styles from '../../../styles/Profile.module.css';
 import ProfileCard from '../MyProfile/ProfileCard';
 import ProfileNavbar from '../MyProfile/ProfileNavbar';
-import styles from '../../../styles/Profile.module.css';
 
 interface IProps {
     children: React.ReactNode;

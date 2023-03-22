@@ -44,6 +44,7 @@
     --cTextThird: #000000cc;
     --cTextLow: #00000099;
     --cTextSuccess: #1c9e11;
+    --cTextAwaiting: #df821e;
     --cTextError: #c43219;
 
     --cBg: #6690fd;
@@ -58,6 +59,56 @@
     --cStatusInProgress: #6690fd;
     --cStatusSuccess: #1c9e11;
     --cStatusCancelled: #8b8b8b;
+}
+
+body {
+    --cTextPrimary: #6690fd;
+    --cTextSecondary: #ffffff;
+    --cTextThird: #000000cc;
+    --cTextLow: #00000099;
+    --cTextSuccess: #1c9e11;
+    --cTextError: #c43219;
+
+    --cBg: #6690fd;
+    --cBgSecondary: #ffffff;
+    --cBgThird: #f3f3f3;
+    --cBgSuccess: #1c9e11;
+    --cBgAwaiting: #df821e;
+    --cBgCancelled: #c43219;
+    --cBgLandingMain: #6690fd;
+
+    --cBorderPrimary: #6690fd;
+    --cBorderSecondary: #e9e9e9;
+    --cBorderLow: #0000001f;
+
+    --cStatusInProgress: #6690fd;
+    --cStatusSuccess: #1c9e11;
+    --cStatusCancelled: #8b8b8b;
+
+    --cBoxShadowLow: #6690fd40;
+    --cBoxShadowSecondary: #6690fd40;
+    --cBoxShadowHeader: #223c5099;
+}
+
+body.dark {
+    --cTextSecondary: #ffffff;
+    --cTextThird: #ffffff;
+    --cTextLow: #ffffffcc;
+
+    --cBg: #444444;
+    --cBgSecondary: #282828;
+    --cBgThird: #444444;
+
+    --cBgLandingMain: #444444;
+
+    --cBorderLow: #6d6d6d57;
+    --cBorderSecondary: #3b3b3b;
+
+    --cStatusCancelled: #8b8b8b;
+
+    --cBoxShadowLow: #1a1a1d6f;
+    --cBoxShadowSecondary: #6a6a6a40;
+    --cBoxShadowHeader: #778591c2;
 }
 
 @media (prefers-color-scheme: dark) {
