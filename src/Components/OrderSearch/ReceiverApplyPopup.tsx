@@ -1,30 +1,30 @@
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import {
     Avatar,
     Button,
-    Typography,
-    TextField,
     Link as MUILink,
     Stack,
+    TextField,
+    Typography,
 } from '@mui/material';
-import React, { useContext } from 'react';
-import styles from '../../../styles/ApplyPopup.module.css';
-import { IOrder } from '../../interfaces/order';
-import ApplyPopup from './ApplyPopup';
+import { DesktopDatePicker } from '@mui/x-date-pickers';
 import cn from 'classnames';
 import { useFormik } from 'formik';
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import RegionAutocomplete from '../Common/RegionAutocomplete';
 import { useRouter } from 'next/router';
-import { OpenAlertContext } from '../Layouts/Snackbar';
-import { applyOrderAsCarrier } from '../../api/order';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import useFormatAmount from 'src/redux/hooks/useFormatAmount';
-import { Currency } from 'src/interfaces/settings';
-import { ReceiverApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
-import { DesktopDatePicker } from '@mui/x-date-pickers';
-import { navigateTo } from 'src/interfaces/navigate';
-import { LinkBehaviour } from '../Common/LinkBehaviour';
 import { IBounds } from 'src/interfaces/geometry';
+import { navigateTo } from 'src/interfaces/navigate';
+import { Currency } from 'src/interfaces/settings';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { ReceiverApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
+import styles from '../../../styles/ApplyPopup.module.css';
+import { applyOrderAsCarrier } from '../../api/order';
+import { IOrder } from '../../interfaces/order';
+import { LinkBehaviour } from '../Common/LinkBehaviour';
+import RegionAutocomplete from '../Common/RegionAutocomplete';
+import { OpenAlertContext } from '../Layouts/Snackbar';
+import ApplyPopup from './ApplyPopup';
 
 interface IProps {
     closePopup: () => void;
@@ -198,7 +198,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                     >
                         <p>{t('price')}:</p>
                         <span className={styles.infoPriceValue}>
-                            {order.productAmount &&
+                            {order.productAmount !== undefined &&
                                 formatAmount(
                                     order.productAmount,
                                     Currency.RUB,

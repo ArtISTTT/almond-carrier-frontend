@@ -1,14 +1,15 @@
 import { Typography } from '@mui/material';
-import styles from '../../../styles/Profile.module.css';
-import React from 'react';
 import classNames from 'classnames';
-import UploadAvatar from './UploadAvatar';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../redux/selectors/user';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { IUser } from 'src/interfaces/user';
+import styles from '../../../styles/Profile.module.css';
+import { selectUser } from '../../redux/selectors/user';
+import UploadAvatar from './UploadAvatar';
 
 const ProfileCard = () => {
-    const user = useSelector(selectUser);
+    const user: IUser = useSelector(selectUser);
     const { t } = useTranslation();
 
     return (

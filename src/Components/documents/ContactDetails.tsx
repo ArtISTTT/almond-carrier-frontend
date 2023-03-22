@@ -11,9 +11,9 @@ const ContactDetails: React.FC = () => {
             <h1 className={styles.title}>{t('contactDetails')}</h1>
             <p className={styles.text}>
                 <p className={styles.bold}>Friendly Carrier</p>
-                <p>Altayskaya street, b. 30a</p>
-                <p>Barnaul, Altai Krai 656048</p>
-                <p>Russia</p>
+                <p>{t('altayskayaStreetB30A')}</p>
+                <p>{t('barnaulAltaiKrai656048')}</p>
+                <p>{t('russia')}</p>
             </p>
             <p className={cn(styles.textInfo, styles.textInfoBlock)}>
                 ИП Газукин Артём Юрьевич
@@ -36,7 +36,7 @@ const ContactDetails: React.FC = () => {
             </p>
             <p className={styles.text}></p>
             <p className={styles.text}>
-                Write to this email in case of any questions:{' '}
+                {t('writeThisEmailInCaseOfAnyQuestions')}:{' '}
                 <span className={styles.bold}>support@friendlycarrier.com</span>
             </p>
         </div>

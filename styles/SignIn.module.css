@@ -174,7 +174,7 @@
 
 .modalDoneIcon {
     font-size: 35px;
-    color: #1c9e11;
+    color: var(--cTextSuccess);
     left: 0px;
     top: 0px;
 }

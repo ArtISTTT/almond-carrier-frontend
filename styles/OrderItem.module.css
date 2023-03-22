@@ -1,7 +1,7 @@
 .order {
     max-width: 100%;
-    box-shadow: 0px 0px 15px 1px rgba(102, 144, 253, 0.25);
-    border-radius: 20px;
+    box-shadow: 0px 0px 15px 1px var(--cBoxShadowSecondary);
+    border-radius: 23px;
     background-color: var(--cStatusInProgress);
 }
 
@@ -23,7 +23,7 @@
 
 .orderInfo {
     flex: 1;
-    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    border-right: 1px solid var(--cBorderLow);
     color: var(--cTextPrimary);
 }
 
@@ -33,7 +33,7 @@
 }
 
 .orderDescriptions {
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-top: 1px solid var(--cBorderLow);
     display: flex;
     padding: 12px;
     flex-wrap: wrap;
@@ -121,7 +121,7 @@
     max-width: 500px;
     width: 100%;
     padding: 12px 12px;
-    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    border-right: 1px solid var(--cBorderLow);
     text-align: left;
     height: 120px;
 }
@@ -131,7 +131,7 @@
 }
 
 .userBlockHover:hover {
-    background-color: rgba(102, 144, 253, 0.3);
+    background-color: var(--cBoxShadowLow);
     cursor: pointer;
 }
 
@@ -321,7 +321,7 @@
         border: none;
     }
     .orderDescriptions {
-        border-right: 1px solid rgba(0, 0, 0, 0.12);
+        border-right: 1px solid var(--cBorderLow);
     }
     .detailsButton {
         max-width: 100px;
@@ -413,7 +413,7 @@
         align-items: center;
         width: 100%;
         padding: 0px 6px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        border-bottom: 1px solid var(--cBorderLow);
         margin-top: 0;
     }
     .detailsBlock {
@@ -434,7 +434,7 @@
     }
     .orderDescriptions {
         border-right: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        border-bottom: 1px solid var(--cBorderLow);
     }
     .orderDetails {
         flex-direction: column-reverse;
@@ -455,7 +455,7 @@
         border: none;
     }
     .userBlock:first-child {
-        border-right: 1px solid rgba(0, 0, 0, 0.12);
+        border-right: 1px solid var(--cBorderLow);
     }
 }
 
@@ -470,7 +470,7 @@
         border: none;
     }
     .userBlock:first-child {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        border-bottom: 1px solid var(--cBorderLow);
     }
     .userBlock {
         width: 100%;
