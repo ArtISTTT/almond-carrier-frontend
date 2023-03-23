@@ -87,11 +87,17 @@
 }
 
 .link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 80px;
+    padding: 0 14px;
+    transition-duration: 0.3s;
     font-size: 19px;
     line-height: 20px;
 }
 
-.linkBlock:hover {
+.link:hover {
     background: var(--cBgThird);
 }
 

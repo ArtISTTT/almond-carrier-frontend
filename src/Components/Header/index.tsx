@@ -2,6 +2,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import SearchIcon from '@mui/icons-material/Search';
 import { Avatar, Button, Link as MUILink } from '@mui/material';
 import cn from 'classnames';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
@@ -17,7 +18,6 @@ import { SocketIoContext } from '../Layouts/SocketIo';
 import NotificationsMenu from '../Notifications/NotificationsMenu';
 import HeaderAvatar from './Avatar';
 import MobileMenu from './MobileMenu';
-import {motion} from 'framer-motion';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -96,28 +96,24 @@ const Header: React.FC<IProps> = ({
                 )}
                 {isAuthorized && (
                     <div className={cn(styles.leftMenuLinksAuth)}>
-                        <div className={styles.linkBlock}>
+                        <MUILink
+                            href={navigateTo.DASHBOARD}
+                            className={styles.link}
+                            component={LinkBehaviour}
+                            underline='none'
+                        >
                             <DashboardIcon className={styles.headerIcon} />
-                            <MUILink
-                                href={navigateTo.DASHBOARD}
-                                className={styles.link}
-                                component={LinkBehaviour}
-                                underline='none'
-                            >
-                                {t('dashboard')}
-                            </MUILink>
-                        </div>
-                        <div className={styles.linkBlock}>
+                            {t('dashboard')}
+                        </MUILink>
+                        <MUILink
+                            href={navigateTo.ORDER_SEARCH}
+                            className={styles.link}
+                            component={LinkBehaviour}
+                            underline='none'
+                        >
                             <SearchIcon className={styles.headerIcon} />
-                            <MUILink
-                                href={navigateTo.ORDER_SEARCH}
-                                className={styles.link}
-                                component={LinkBehaviour}
-                                underline='none'
-                            >
-                                {t('orderSearch')}
-                            </MUILink>
-                        </div>
+                            {t('orderSearch')}
+                        </MUILink>
                     </div>
                 )}
             </div>
@@ -125,7 +121,10 @@ const Header: React.FC<IProps> = ({
                 <div className={styles.rightMenuButtons}>
                     {!isAuthorized && showSignInOutIfUnauthorized && (
                         <div className={styles.displayFlex}>
-                            <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                            <motion.div
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                            >
                                 <Button
                                     className={styles.button}
                                     variant='outlined'
@@ -138,7 +137,10 @@ const Header: React.FC<IProps> = ({
                                     </MUILink>
                                 </Button>
                             </motion.div>
-                            <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                            <motion.div
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                            >
                                 <Button
                                     className={styles.button}
                                     variant='outlined'
@@ -157,9 +159,9 @@ const Header: React.FC<IProps> = ({
                 {isAuthorized && (
                     <div className={styles.authoridedIcons}>
                         <NotificationsMenu
-                                    notifications={notifications}
-                                    setNotifications={setNotifications}
-                                />
+                            notifications={notifications}
+                            setNotifications={setNotifications}
+                        />
                         <HeaderAvatar
                             setIsSettingsPopupOpen={setIsSettingsPopupOpen}
                             isSettingsPopupOpen={isSettingsPopupOpen}
