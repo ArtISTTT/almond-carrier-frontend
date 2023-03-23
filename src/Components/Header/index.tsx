@@ -15,6 +15,7 @@ import { SocketIoContext } from '../Layouts/SocketIo';
 import NotificationsMenu from '../Notifications/NotificationsMenu';
 import HeaderAvatar from './Avatar';
 import MobileMenu from './MobileMenu';
+import {motion} from 'framer-motion';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -115,38 +116,42 @@ const Header: React.FC<IProps> = ({
             <div className={styles.rightMenu}>
                 <div className={styles.rightMenuButtons}>
                     {!isAuthorized && showSignInOutIfUnauthorized && (
-                        <>
-                            <Button
-                                className={styles.button}
-                                variant='outlined'
-                            >
-                                <MUILink
-                                    component={LinkBehaviour}
-                                    href={navigateTo.SIGNIN}
+                        <div className={styles.displayFlex}>
+                            <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                                <Button
+                                    className={styles.button}
+                                    variant='outlined'
                                 >
-                                    {t('signIn')}
-                                </MUILink>
-                            </Button>
-                            <Button
-                                className={styles.button}
-                                variant='outlined'
-                            >
-                                <MUILink
-                                    component={LinkBehaviour}
-                                    href={navigateTo.SIGNUP}
+                                    <MUILink
+                                        component={LinkBehaviour}
+                                        href={navigateTo.SIGNIN}
+                                    >
+                                        {t('signIn')}
+                                    </MUILink>
+                                </Button>
+                            </motion.div>
+                            <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                                <Button
+                                    className={styles.button}
+                                    variant='outlined'
                                 >
-                                    {t('signUp')}
-                                </MUILink>
-                            </Button>
-                        </>
+                                    <MUILink
+                                        component={LinkBehaviour}
+                                        href={navigateTo.SIGNUP}
+                                    >
+                                        {t('signUp')}
+                                    </MUILink>
+                                </Button>
+                            </motion.div>
+                        </div>
                     )}
                 </div>
                 {isAuthorized && (
                     <div className={styles.authoridedIcons}>
                         <NotificationsMenu
-                            notifications={notifications}
-                            setNotifications={setNotifications}
-                        />
+                                    notifications={notifications}
+                                    setNotifications={setNotifications}
+                                />
                         <HeaderAvatar
                             setIsSettingsPopupOpen={setIsSettingsPopupOpen}
                             isSettingsPopupOpen={isSettingsPopupOpen}

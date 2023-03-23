@@ -15,4 +15,9 @@
     margin: 0 10px;
     padding: 6px 16px;
     font-weight: 600;
+    scale: 1.2 !important;
+}
+
+.flexDisplay {
+    display: flex;
 }

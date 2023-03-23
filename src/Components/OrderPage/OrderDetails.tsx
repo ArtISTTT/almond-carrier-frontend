@@ -11,6 +11,7 @@ import AddCommentIcon from '@mui/icons-material/AddComment';
 import PersonIcon from '@mui/icons-material/Person';
 import { ViewType } from './OrderInputItem';
 import { OpenAlertContext } from '../Layouts/Snackbar';
+import {motion} from 'framer-motion';
 
 type IProps = {
     payoutRef: React.MutableRefObject<HTMLDivElement | null>;
@@ -154,12 +155,12 @@ const OrderDetails: React.FC<IProps> = ({
                 <div className={styles.infoRight}>
                     <div className={styles.infoRightId}>
                         <span>{order.id}</span>
-                        <div>
+                        <motion.div whileHover={{scale: 1.2}} whileTap={{scale: 0.8}}>
                             <ContentCopyIcon
                                 onClick={copyId}
                                 fontSize='small'
                             />
-                        </div>
+                        </motion.div>
                     </div>
                     <div className={styles.createdDate}>
                         <div>{order.createdDate.format('hh:mm')}</div>

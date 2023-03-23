@@ -8,6 +8,10 @@
     flex: 1;
 }
 
+.displayFlex {
+    display: flex;
+}
+
 .header {
     display: flex;
     height: 80px;

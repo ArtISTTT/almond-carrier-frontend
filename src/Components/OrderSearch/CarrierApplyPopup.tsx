@@ -54,7 +54,7 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
     const { triggerOpen } = useContext(OpenAlertContext);
 
     const { currency } = useAppSelector(
-        ({ settings }) => settings.generalSettings
+        ({ settings:a }) => settings.generalSettings
     );
 
     const apply = async (form: IForm) => {

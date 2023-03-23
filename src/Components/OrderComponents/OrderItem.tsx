@@ -19,6 +19,7 @@ import { useConvertStatusToText } from '../../redux/hooks/useConvertStatusToText
 import CircleLoader from '../Loaders/CircleLoader';
 import { ViewType } from '../OrderPage/OrderInputItem';
 import OrderPeopleCard from './OrderPeopleCard';
+import {motion} from 'framer-motion';
 
 type IProps = {
     order: IOrder;
@@ -267,44 +268,49 @@ const OrderItem: React.FC<IProps> = ({
                         {isOrderFromUserPage &&
                         ((order.receiver && !order.carrier) ||
                             (order.carrier && !order.receiver)) ? (
-                            <Button
-                                className={styles.detailsButton}
-                                variant='contained'
-                                onClick={applyUserOrder}
-                                disabled={
-                                    order.status === OrderStatus.cancelled
-                                }
-                            >
-                                {isDetailsLoading ? (
-                                    <CircleLoader
-                                        color={LoaderColors.SECONDARY}
-                                    />
-                                ) : (
-                                    <span className={styles.detailsButtonLink}>
-                                        {t('apply')}
-                                    </span>
-                                )}
-                            </Button>
+                            <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                                <Button
+                                    className={styles.detailsButton}
+                                    variant='contained'
+                                    onClick={applyUserOrder}
+                                    disabled={
+                                        order.status === OrderStatus.cancelled
+                                    }
+                                >
+                                    {isDetailsLoading ? (
+                                        <CircleLoader
+                                            color={LoaderColors.SECONDARY}
+                                        />
+                                    ) : (
+                                        <span className={styles.detailsButtonLink}>
+                                            {t('apply')}
+                                        </span>
+                                    )}
+                                </Button>
+                            </motion.div>
+
                         ) : (
                             (ourId === order.carrier?.id ||
                                 ourId === order.receiver?.id) && (
                                 <Link prefetch href={`/order/${order.id}`}>
-                                    <Button
-                                        className={styles.detailsButton}
-                                        variant='contained'
-                                        onClick={disableButton}
-                                        disabled={
-                                            isDetailsLoading ||
-                                            order.status ===
-                                                OrderStatus.cancelled
-                                        }
-                                    >
-                                        <span
-                                            className={styles.detailsButtonLink}
+                                    <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                                        <Button
+                                            className={styles.detailsButton}
+                                            variant='contained'
+                                            onClick={disableButton}
+                                            disabled={
+                                                isDetailsLoading ||
+                                                order.status ===
+                                                    OrderStatus.cancelled
+                                            }
                                         >
-                                            {t('detailsButton')}
-                                        </span>
-                                    </Button>
+                                            <span
+                                                className={styles.detailsButtonLink}
+                                            >
+                                                {t('detailsButton')}
+                                            </span>
+                                        </Button>
+                                    </motion.div>
                                 </Link>
                             )
                         )}

@@ -292,14 +292,14 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             )}
                         />
                     </div>
-                    <Button
-                        variant='contained'
-                        className={styles.confirmButton}
-                        type='submit'
-                        disabled={formik.isSubmitting}
-                    >
-                        {t('orderItem')}
-                    </Button>
+                        <Button
+                            variant='contained'
+                            className={styles.confirmButton}
+                            type='submit'
+                            disabled={formik.isSubmitting}
+                        >
+                            {t('orderItem')}
+                        </Button>
                 </Stack>
             </form>
         </Popup>

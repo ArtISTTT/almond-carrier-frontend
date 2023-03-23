@@ -15,6 +15,7 @@ import { Currency } from 'src/interfaces/settings';
 import { useAppSelector } from 'src/redux/hooks';
 import { IBounds } from 'src/interfaces/geometry';
 import DeleteIcon from '@mui/icons-material/Delete';
+import {motion} from "framer-motion"
 
 type IProps = {
     updateByFiltersAndType: (
@@ -369,22 +370,26 @@ const SearchFilters: React.FC<IProps> = ({ updateByFiltersAndType, type }) => {
                 </form>
             )}
             <div className={styles.searchButtons}>
-                <Button
-                    variant='contained'
-                    className={styles.refreshButton}
-                    onClick={reset}
-                >
-                    <DeleteIcon fontSize='small' />
-                    {t('reset')}
-                </Button>
-                <Button
-                    variant='contained'
-                    className={styles.refreshButton}
-                    onClick={onRefreshClick}
-                >
-                    <LoopIcon fontSize='small' />
-                    {t('refresh')}
-                </Button>
+                <motion.div whileHover={{scale: 1.05}} whileTap={{scale:0.95}}>
+                    <Button
+                        variant='contained'
+                        className={styles.refreshButton}
+                        onClick={reset}
+                    >
+                        <DeleteIcon fontSize='small' />
+                        {t('reset')}
+                    </Button>
+                </motion.div>
+                <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                    <Button
+                        variant='contained'
+                        className={styles.refreshButton}
+                        onClick={onRefreshClick}
+                    >
+                        <LoopIcon fontSize='small' />
+                        {t('refresh')}
+                    </Button>                    
+                </motion.div>                    
             </div>
         </div>
     );
