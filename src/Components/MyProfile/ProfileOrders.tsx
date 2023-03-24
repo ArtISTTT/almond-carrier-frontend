@@ -9,7 +9,7 @@ import { useGetCurrentPageOrders } from 'src/redux/hooks/useGetCurrentPage';
 import styles from '../../../styles/ProfileOrders.module.css';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 import { selectMyOrders } from '../../redux/selectors/orders';
-import EmptyOrdersBlock from '../EmptyComponents/EmptyNoShadows';
+import EmptyBlock from '../EmptyComponents/EmptyNoShadows';
 import CircleLoader from '../Loaders/CircleLoader';
 
 const ProfileOrders = () => {
@@ -70,7 +70,7 @@ const ProfileOrders = () => {
                         </>
                     )}
                     {orders.length === 0 && (
-                        <EmptyOrdersBlock text={'youHaveNoOrdersYet'} />
+                        <EmptyBlock text={'youHaveNoOrdersYet'} />
                     )}
                 </div>
             )}

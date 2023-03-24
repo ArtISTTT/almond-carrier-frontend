@@ -7,3 +7,6 @@ export const selectIsAuthorized = (state: RootState) => state.user.isAuthorized;
 
 export const selectIsInitializeAuthChecked = (state: RootState) =>
     state.user.initializeAuthChecked;
+
+export const selectTheme = (state: RootState) =>
+    state.settings.generalSettings.theme;
