@@ -54,7 +54,12 @@ const DropFileInput: React.FC<IProps> = ({ confirmPurchaseData }) => {
                     />
                     <p>{t('dragDropYourFilesHere')}</p>
                 </div>
-                <input type='file' value='' onChange={onFileDrop} />
+                <input
+                    type='file'
+                    value=''
+                    onChange={onFileDrop}
+                    accept='.pdf,.jpg,.jpeg,.png'
+                />
             </div>
             {fileList.length > 0 ? (
                 <div className={styles.dropFilePreview}>
