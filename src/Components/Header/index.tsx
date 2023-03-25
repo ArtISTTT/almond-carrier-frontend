@@ -83,36 +83,29 @@ const Header: React.FC<IProps> = ({
 
                 <div className={cn(styles.leftMenuLinksAuth)}>
                     {isAuthorized && (
-                        <div className={styles.linkBlock}>
+                        <MUILink
+                            href={navigateTo.DASHBOARD}
+                            className={styles.linkBlock}
+                            component={LinkBehaviour}
+                            underline='none'
+                        >
                             <DashboardIcon className={styles.headerIcon} />
-                            <MUILink
-                                href={navigateTo.DASHBOARD}
-                                className={styles.link}
-                                component={LinkBehaviour}
-                                underline='none'
-                            >
+                            <span className={styles.link}>
                                 {t('dashboard')}
-                            </MUILink>
-                        </div>
+                            </span>
+                        </MUILink>
                     )}
-                    <div className={styles.linkBlock}>
-                        <MUILink
-                            href={navigateTo.ORDER_SEARCH}
-                            className={styles.headerIconNoAuthorized}
-                            component={LinkBehaviour}
-                            underline='none'
-                        >
+                    <MUILink
+                        underline='none'
+                        href={navigateTo.ORDER_SEARCH}
+                        component={LinkBehaviour}
+                        className={styles.linkBlock}
+                    >
+                        <span className={styles.headerIconNoAuthorized}>
                             <SearchIcon />
-                        </MUILink>
-                        <MUILink
-                            href={navigateTo.ORDER_SEARCH}
-                            className={styles.link}
-                            component={LinkBehaviour}
-                            underline='none'
-                        >
-                            {t('orderSearch')}
-                        </MUILink>
-                    </div>
+                        </span>
+                        <span className={styles.link}>{t('orderSearch')}</span>
+                    </MUILink>
                 </div>
             </div>
             <div className={styles.rightMenu}>

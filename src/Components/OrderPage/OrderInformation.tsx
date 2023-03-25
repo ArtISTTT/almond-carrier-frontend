@@ -33,6 +33,7 @@ import OrderInputItem, {
     ViewType,
 } from './OrderInputItem';
 import OrderPayoutInfoBlock from './OrderPayoutInfoBlock';
+import OrderReceiverPhotoConfirmation from './OrderReceiverPhotoConfirmation';
 import OrderReview from './OrderReview';
 import ReviewPopup from './ReviewPopup';
 
@@ -349,6 +350,11 @@ const OrderInformation: React.FC<IProps> = ({
                 {order.status === OrderStatus.awaitingPurchase &&
                     viewType === ViewType.carrier && (
                         <OrderConfirmPurchase orderId={order.id} />
+                    )}{' '}
+                {order.status ===
+                    OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation &&
+                    viewType === ViewType.receiver && (
+                        <OrderReceiverPhotoConfirmation />
                     )}
                 {!order.myReview &&
                 isReviewBlockOpen &&
@@ -743,11 +749,14 @@ const OrderInformation: React.FC<IProps> = ({
                                 </div>
                             )}
                         </div>
+
                         {(!order.dealConfirmedByReceiver ||
                             (!order.dealConfirmedByCarrier &&
                                 viewType === ViewType.carrier)) &&
                             order.byCarrierSuggestedChanges === undefined &&
-                            order.byReceiverSuggestedChanges === undefined && (
+                            order.byReceiverSuggestedChanges === undefined &&
+                            order.status !== OrderStatus.waitingCarrier &&
+                            order.status !== OrderStatus.waitingReciever && (
                                 <>
                                     <div className={styles.buttons}>
                                         <Button
@@ -790,6 +799,7 @@ const OrderInformation: React.FC<IProps> = ({
                                     )}
                                 </>
                             )}
+
                         {suggestedChanged && (
                             <div className={styles.buttons}>
                                 <Button

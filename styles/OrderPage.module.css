@@ -405,7 +405,8 @@
 }
 
 .orderPaymentWrapperButton {
-    max-width: 200px;
+    white-space: nowrap;
+    max-width: 220px;
     width: 100%;
     border-radius: 15px;
 }
@@ -607,9 +608,42 @@
 
 .detailsBlock {
     margin-bottom: 16px;
+    margin-left: 7px;
     line-height: 22px;
     letter-spacing: 0.25px;
     font-size: 16px;
+}
+
+.purchaseDataBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 11px;
+}
+
+.purchasePhoto {
+    width: 400px;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.purchaseZoomPhoto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+}
+
+.acceptPurchaseButton {
+    margin-left: auto;
+    white-space: nowrap;
+    margin-top: 10px;
+    margin-right: 10px;
+    max-width: 200px;
+    width: 100%;
+    border-radius: 15px;
+    display: flex;
 }
 
 .payoutWrapper {
