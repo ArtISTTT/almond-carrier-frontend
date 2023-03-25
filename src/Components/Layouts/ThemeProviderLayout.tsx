@@ -9,9 +9,7 @@ type IProps = {
 };
 
 export const ThemeProviderLayout: React.FC<IProps> = ({ children }) => {
-    const currentTheme = useAppSelector(
-        state => state.settings.generalSettings.theme
-    );
+    const currentTheme = localStorage.getItem('theme');
 
     return (
         <ThemeProvider theme={currentTheme === Theme.DARK ? darkTheme : theme}>
