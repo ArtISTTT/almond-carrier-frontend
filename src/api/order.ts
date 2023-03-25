@@ -423,7 +423,7 @@ export const sendPurchaseData = (requestData: {
     formData.append('orderId', requestData.orderId);
 
     return mainInstance
-        .post('/confirm-purchase', formData, {
+        .post('/order/confirm-purchase', formData, {
             params: { language: getLanguage() },
             headers: {
                 'Content-Type': 'multipart/form-data',
