@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-
+import { Button } from '@mui/material';
+import React, { useContext, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { sendPurchaseData } from 'src/api/order';
 import styles from '../../../styles/drop-file-input.module.css';
-
+import { OpenAlertContext } from '../Layouts/Snackbar';
 import { ImageConfig } from './ImageConfig';
 
 interface IProps {
-    onFileChange: (file: File[]) => void;
+    confirmPurchaseData: (fileList: File[]) => void;
 }
 
-const DropFileInput: React.FC<IProps> = ({ onFileChange }) => {
-    const wrapperRef = React.useRef<HTMLDivElement>(null);
+const DropFileInput: React.FC<IProps> = ({ confirmPurchaseData }) => {
+    const wrapperRef = useRef<any>(null);
+    const { t } = useTranslation();
 
     const [fileList, setFileList] = useState<File[]>([]);
 
@@ -19,12 +22,13 @@ const DropFileInput: React.FC<IProps> = ({ onFileChange }) => {
 
     const onDrop = () => wrapperRef.current?.classList.remove('dragover');
 
+    const sendData = () => confirmPurchaseData(fileList);
+
     const onFileDrop = (e: any) => {
         const newFile = e.target.files[0];
-        if (newFile) {
+        if (newFile && fileList.length <= 2) {
             const updatedList = [...fileList, newFile];
             setFileList(updatedList);
-            onFileChange(updatedList);
         }
     };
 
@@ -32,7 +36,6 @@ const DropFileInput: React.FC<IProps> = ({ onFileChange }) => {
         const updatedList = [...fileList];
         updatedList.splice(fileList.indexOf(file), 1);
         setFileList(updatedList);
-        onFileChange(updatedList);
     };
 
     return (
@@ -49,14 +52,14 @@ const DropFileInput: React.FC<IProps> = ({ onFileChange }) => {
                         src='/static/images/drop-file-input/cloud-upload-regular-240.png'
                         alt=''
                     />
-                    <p>Drag & Drop your files here</p>
+                    <p>{t('dragDropYourFilesHere')}</p>
                 </div>
                 <input type='file' value='' onChange={onFileDrop} />
             </div>
             {fileList.length > 0 ? (
                 <div className={styles.dropFilePreview}>
                     <p className={styles.dropFilePreviewTitle}>
-                        Ready to upload
+                        {t('uploadedFiles')}
                     </p>
                     {fileList.map((item, index) => (
                         <div key={index} className={styles.dropFilePreviewItem}>
@@ -66,13 +69,12 @@ const DropFileInput: React.FC<IProps> = ({ onFileChange }) => {
                                         item.type.split(
                                             '/'
                                         )[1] as keyof typeof ImageConfig
-                                    ].src || ImageConfig['default'].src
+                                    ]?.src || ImageConfig['default']?.src
                                 }
                                 alt=''
                             />
                             <div className={styles.dropFilePreviewItemInfo}>
                                 <p>{item.name}</p>
-                                <p>{item.size}B</p>
                             </div>
                             <span
                                 className={styles.dropFilePreviewItemDel}
@@ -82,6 +84,14 @@ const DropFileInput: React.FC<IProps> = ({ onFileChange }) => {
                             </span>
                         </div>
                     ))}
+                    <Button
+                        variant='contained'
+                        onClick={sendData}
+                        className={styles.confirmPurchaseButton}
+                        color='primary'
+                    >
+                        {t('send')}
+                    </Button>
                 </div>
             ) : null}
         </>

@@ -12,6 +12,8 @@ const ThemeSwitcher = () => {
     const dispatch = useAppDispatch();
     const currentTheme = useAppSelector(selectTheme);
 
+    // const currentTheme = localStorage.getItem('theme');
+
     const toggleThemeClick = () => {
         const changedTheme =
             currentTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK;

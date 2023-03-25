@@ -25,6 +25,7 @@ import { IOrder, IOrderFull } from '../../interfaces/order';
 import { OrderStatus } from '../../interfaces/profile';
 import { Currency } from '../../interfaces/settings';
 import { OpenAlertContext } from '../Layouts/Snackbar';
+import OrderConfirmPurchase from './OrderConfirmPurchase';
 import OrderInputItem, {
     ChangedType,
     getChangedType,
@@ -343,7 +344,12 @@ const OrderInformation: React.FC<IProps> = ({
                         reviewerType={order.partnerReview.reviewerType}
                     />
                 )}
+
             <div className={styles.orderInformation}>
+                {order.status === OrderStatus.awaitingPurchase &&
+                    viewType === ViewType.carrier && (
+                        <OrderConfirmPurchase orderId={order.id} />
+                    )}
                 {!order.myReview &&
                 isReviewBlockOpen &&
                 [

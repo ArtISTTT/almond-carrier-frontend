@@ -409,3 +409,37 @@ export const getPayouts = (): Promise<IGetPayouts> =>
                 error: data.response?.data?.message ?? 'Error get payouts',
             };
         });
+
+export const sendPurchaseData = (requestData: {
+    files: File[];
+    orderId: string;
+}): Promise<ISuggestChanges> => {
+    const formData = new FormData();
+
+    for (const file of requestData.files) {
+        formData.append('file', file);
+    }
+
+    formData.append('orderId', requestData.orderId);
+
+    return mainInstance
+        .post('/confirm-purchase', formData, {
+            params: { language: getLanguage() },
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+        .then(() => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ??
+                    'Error with sending purchase data',
+            };
+        });
+};
