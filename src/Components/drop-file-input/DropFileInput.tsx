@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import styles from '../../../styles/drop-file-input.module.css';
 
-import { ImageConfig } from './imageConfig';
+import { ImageConfig } from './ImageConfig';
 
 interface IProps {
     onFileChange: (file: File[]) => void;
@@ -63,8 +63,10 @@ const DropFileInput: React.FC<IProps> = ({ onFileChange }) => {
                             <img
                                 src={
                                     ImageConfig[
-                                        item.type.split('/')[1] as any
-                                    ] || ImageConfig['default']
+                                        item.type.split(
+                                            '/'
+                                        )[1] as keyof typeof ImageConfig
+                                    ].src || ImageConfig['default'].src
                                 }
                                 alt=''
                             />
