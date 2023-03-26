@@ -25,6 +25,7 @@ import { DesktopDatePicker } from '@mui/x-date-pickers';
 import { navigateTo } from 'src/interfaces/navigate';
 import { LinkBehaviour } from '../Common/LinkBehaviour';
 import { IBounds } from 'src/interfaces/geometry';
+import {motion} from 'framer-motion'
 
 interface IProps {
     closePopup: () => void;
@@ -298,13 +299,15 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         />
                     </div>
                 </Stack>
-                <Button
-                    type='submit'
-                    className={styles.carrierApplyButton}
-                    variant='contained'
-                >
-                    {t('applyToOrder')}
-                </Button>
+                <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                    <Button
+                        type='submit'
+                        className={styles.carrierApplyButton}
+                        variant='contained'
+                    >
+                        {t('applyToOrder')}
+                    </Button>
+                </motion.div>
             </form>
         </ApplyPopup>
     );

@@ -89,6 +89,7 @@
     white-space: nowrap;
 }
 
+
 .carrierInfo {
     padding-top: 35px;
     display: flex;
@@ -239,7 +240,7 @@
 
 .carrierApplyButton {
     display: block;
-    margin-left: auto;
+    margin: 0 auto;
     margin-top: 10px;
     background: var(--cBg);
     font-weight: 500;

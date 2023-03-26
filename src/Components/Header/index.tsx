@@ -117,7 +117,7 @@ const Header: React.FC<IProps> = ({
                 <div className={styles.rightMenuButtons}>
                     {!isAuthorized && showSignInOutIfUnauthorized && (
                         <div className={styles.displayFlex}>
-                            <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                            <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
                                 <Button
                                     className={styles.button}
                                     variant='outlined'
@@ -130,7 +130,7 @@ const Header: React.FC<IProps> = ({
                                     </MUILink>
                                 </Button>
                             </motion.div>
-                            <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                            <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
                                 <Button
                                     className={styles.button}
                                     variant='outlined'

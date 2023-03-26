@@ -20,6 +20,7 @@ import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { Currency } from 'src/interfaces/settings';
 import { useAppSelector } from 'src/redux/hooks';
 import { navigateTo } from 'src/interfaces/navigate';
+import {motion} from 'framer-motion'
 
 interface IProps {
     closePopup: () => void;
@@ -286,13 +287,15 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         }
                     />
                 </div>
-                <Button
-                    type='submit'
-                    className={styles.carrierApplyButton}
-                    variant='contained'
-                >
-                    {t('applyForOrder')}
-                </Button>
+                <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                    <Button
+                        type='submit'
+                        className={styles.carrierApplyButton}
+                        variant='contained'
+                    >
+                        {t('applyForOrder')}
+                    </Button>
+                </motion.div>
             </form>
         </ApplyPopup>
     );

@@ -268,7 +268,7 @@ const OrderItem: React.FC<IProps> = ({
                         {isOrderFromUserPage &&
                         ((order.receiver && !order.carrier) ||
                             (order.carrier && !order.receiver)) ? (
-                            <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                            <motion.div whileHover={{scale: 1.07}} whileTap={{scale: 0.93}}>
                                 <Button
                                     className={styles.detailsButton}
                                     variant='contained'
@@ -293,7 +293,7 @@ const OrderItem: React.FC<IProps> = ({
                             (ourId === order.carrier?.id ||
                                 ourId === order.receiver?.id) && (
                                 <Link prefetch href={`/order/${order.id}`}>
-                                    <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                                    <motion.div whileHover={{scale: 1.07}} whileTap={{scale: 0.93}}>
                                         <Button
                                             className={styles.detailsButton}
                                             variant='contained'

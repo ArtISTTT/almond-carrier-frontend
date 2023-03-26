@@ -21,6 +21,7 @@ import cn from 'classnames';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { Genders } from 'src/interfaces/settings';
 import dayjs, { Dayjs } from 'dayjs';
+import {motion} from 'framer-motion'
 
 type IPasswordForm = {
     oldPassword: string;
@@ -269,14 +270,18 @@ const General = () => {
                             />
                         </div>
                     </Stack>
-                    <Button
-                        variant='contained'
-                        className={styles.confirmButton}
-                        type='submit'
-                        disabled={formik.isSubmitting}
-                    >
-                        {t('change')}
-                    </Button>
+                    <div className={styles.changeToRight}>
+                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                            <Button
+                                variant='contained'
+                                className={styles.confirmButton}
+                                type='submit'
+                                disabled={formik.isSubmitting}
+                            >
+                                {t('change')}
+                            </Button>
+                        </motion.div>
+                    </div>
                 </Stack>
             </form>
             <form
@@ -334,14 +339,19 @@ const General = () => {
                             />
                         </div>
                     </Stack>
-                    <Button
-                        variant='contained'
-                        className={styles.confirmButton}
-                        type='submit'
-                        disabled={formikChangePassword.isSubmitting}
-                    >
-                        {t('updatePassword')}
-                    </Button>
+                    <div className={styles.changeToRight}>
+                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                            <Button
+                            variant='contained'
+                            className={styles.confirmButton}
+                            type='submit'
+                            disabled={formikChangePassword.isSubmitting}
+                            >
+                                {t('updatePassword')}
+                            </Button>
+                        </motion.div>
+                    </div>
+
                 </Stack>
             </form>
         </div>

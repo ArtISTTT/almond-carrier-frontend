@@ -15,6 +15,7 @@ import { useAppSelector } from 'src/redux/hooks';
 import { Currency } from 'src/interfaces/settings';
 import cn from 'classnames';
 import { IBounds } from 'src/interfaces/geometry';
+import {motion} from 'framer-motion'
 
 interface IProps {
     togglePopup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -230,15 +231,18 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             className={styles.input}
                         />
                     </div>
-
-                    <Button
-                        variant='contained'
-                        className={styles.confirmButton}
-                        type='submit'
-                        disabled={formik.isSubmitting}
-                    >
-                        {t('sendItem')}
-                    </Button>
+                    <div className={styles.alignCenter}>
+                        <motion.div whileHover={{scale: 1.07}} whileTap={{scale: 0.93}}>
+                            <Button
+                                variant='contained'
+                                className={styles.confirmButton}
+                                type='submit'
+                                disabled={formik.isSubmitting}
+                            >
+                                {t('sendItem')}
+                            </Button>
+                        </motion.div>
+                    </div>
                 </Stack>
             </form>
         </Popup>
