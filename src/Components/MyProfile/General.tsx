@@ -1,28 +1,26 @@
-import React, { useContext } from 'react';
-import styles from 'styles/General.module.css';
 import { Button, MenuItem, Select, TextField, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../redux/selectors/user';
+import { Stack } from '@mui/system';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { default as classNames, default as cn } from 'classnames';
+import dayjs, { Dayjs } from 'dayjs';
 import { useFormik } from 'formik';
+import { MuiTelInput } from 'mui-tel-input';
+import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { Genders } from 'src/interfaces/settings';
+import styles from 'styles/General.module.css';
+import { updateUserInfo, updateUserPassword } from '../../api/auth';
+import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
+import { useAppDispatch } from '../../redux/hooks';
+import { selectUser } from '../../redux/selectors/user';
+import { addUserData } from '../../redux/slices/userSlice';
 import {
     ChangePasswordSchema,
     ChangeUserSchema,
 } from '../../schemas/ChangeUserSchema';
-import { Stack } from '@mui/system';
-import classNames from 'classnames';
-import { updateUserInfo, updateUserPassword } from '../../api/auth';
-import { OpenAlertContext } from '../Layouts/Snackbar';
-import { useAppDispatch } from '../../redux/hooks';
-import { addUserData } from '../../redux/slices/userSlice';
-import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
-import { MuiTelInput } from 'mui-tel-input';
-import { useTranslation } from 'react-i18next';
-import cn from 'classnames';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { Genders } from 'src/interfaces/settings';
-import dayjs, { Dayjs } from 'dayjs';
 import {motion} from 'framer-motion'
-
+import { OpenAlertContext } from '../Layouts/Snackbar';
 type IPasswordForm = {
     oldPassword: string;
     newPassword: string;
@@ -177,6 +175,7 @@ const General = () => {
                                 inputFormat='DD.MM.YYYY'
                                 value={formik.values.dateOfBirth}
                                 maxDate={dayjs().subtract(18, 'year')}
+                                disabled={true}
                                 disableFuture={true}
                                 onChange={value => {
                                     formik.setFieldValue('dateOfBirth', value);
@@ -237,6 +236,7 @@ const General = () => {
                                 name='email'
                                 placeholder={t('email') as string}
                                 variant='outlined'
+                                disabled={true}
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
                                 error={formik.errors.email !== undefined}

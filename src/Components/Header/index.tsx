@@ -1,5 +1,8 @@
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import SearchIcon from '@mui/icons-material/Search';
 import { Avatar, Button, Link as MUILink } from '@mui/material';
 import cn from 'classnames';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
@@ -15,7 +18,6 @@ import { SocketIoContext } from '../Layouts/SocketIo';
 import NotificationsMenu from '../Notifications/NotificationsMenu';
 import HeaderAvatar from './Avatar';
 import MobileMenu from './MobileMenu';
-import {motion} from 'framer-motion';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -81,6 +83,7 @@ const Header: React.FC<IProps> = ({
 
                 {!isAuthorized && (
                     <div className={cn(styles.leftMenuLinks)}>
+                        <SearchIcon className={styles.headerIcon} />
                         <MUILink
                             href={navigateTo.ORDER_SEARCH}
                             className={styles.link}
@@ -99,15 +102,16 @@ const Header: React.FC<IProps> = ({
                             component={LinkBehaviour}
                             underline='none'
                         >
+                            <DashboardIcon className={styles.headerIcon} />
                             {t('dashboard')}
                         </MUILink>
-
                         <MUILink
                             href={navigateTo.ORDER_SEARCH}
                             className={styles.link}
                             component={LinkBehaviour}
                             underline='none'
                         >
+                            <SearchIcon className={styles.headerIcon} />
                             {t('orderSearch')}
                         </MUILink>
                     </div>
@@ -149,9 +153,9 @@ const Header: React.FC<IProps> = ({
                 {isAuthorized && (
                     <div className={styles.authoridedIcons}>
                         <NotificationsMenu
-                                    notifications={notifications}
-                                    setNotifications={setNotifications}
-                                />
+                            notifications={notifications}
+                            setNotifications={setNotifications}
+                        />
                         <HeaderAvatar
                             setIsSettingsPopupOpen={setIsSettingsPopupOpen}
                             isSettingsPopupOpen={isSettingsPopupOpen}
