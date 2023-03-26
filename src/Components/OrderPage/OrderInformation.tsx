@@ -355,6 +355,7 @@ const OrderInformation: React.FC<IProps> = ({
                     OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation &&
                     viewType === ViewType.receiver && (
                         <OrderReceiverPhotoConfirmation
+                            orderId={order.id}
                             fileLinks={order.purchaseItemFiles}
                         />
                     )}
@@ -610,12 +611,16 @@ const OrderInformation: React.FC<IProps> = ({
                                                                     styles.comission
                                                                 }
                                                             >
+                                                                {' '}
                                                                 (
                                                                 {order.totalPaymentAmount &&
-                                                                    calculateComission(
-                                                                        order.totalPaymentAmount,
-                                                                        order.productAmount,
-                                                                        order.rewardAmount
+                                                                    formatAmount(
+                                                                        calculateComission(
+                                                                            order.totalPaymentAmount,
+                                                                            order.productAmount,
+                                                                            order.rewardAmount
+                                                                        ),
+                                                                        Currency.RUB
                                                                     )}{' '}
                                                                 {t('RUB')}{' '}
                                                                 {t('comission')}

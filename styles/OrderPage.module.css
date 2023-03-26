@@ -223,6 +223,7 @@
 
 .comission {
     font-size: 14px;
+    white-space: nowrap;
     color: var(--cTextLow);
 }
 
@@ -725,6 +726,39 @@
 
 .payoutImage {
     border-radius: 15px;
+}
+
+.purchasePhotoWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.purchasePhotoInner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 80%;
+}
+
+.purchaseIcon {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    color: var(--cTextPrimary);
+    font-size: 40px;
+}
+
+.purchasePhotoOpened {
+    height: 100%;
 }
 
 @media screen and (max-width: 1283px) {

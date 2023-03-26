@@ -443,3 +443,24 @@ export const sendPurchaseData = (requestData: {
             };
         });
 };
+
+export const acceptReceiverPurchaseData = (requestData: {
+    orderId: string;
+}): Promise<ISuggestChanges> =>
+    mainInstance
+        .post('/order/approve-purchase', JSON.stringify(requestData), {
+            params: { language: getLanguage() },
+        })
+        .then(() => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ??
+                    'Error with accepting receiver purchase data',
+            };
+        });

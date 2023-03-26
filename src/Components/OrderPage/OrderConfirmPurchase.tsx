@@ -15,6 +15,7 @@ const OrderConfirmPurchase: React.FC<IProps> = ({ orderId }) => {
     const { triggerOpen } = useContext(OpenAlertContext);
 
     const [paymentOpened, setPaymentOpened] = useState<boolean>(false);
+    const [isDataSent, setIsDataSent] = useState<boolean>(false);
 
     const handleChange = () => setPaymentOpened(prev => !prev);
 
@@ -29,6 +30,7 @@ const OrderConfirmPurchase: React.FC<IProps> = ({ orderId }) => {
                 severity: 'success',
                 text: t('dataUploadedSuccessfully'),
             });
+            setIsDataSent(true);
         } else {
             triggerOpen({
                 severity: 'error',
@@ -39,35 +41,39 @@ const OrderConfirmPurchase: React.FC<IProps> = ({ orderId }) => {
 
     return (
         <>
-            <div className={styles.purchaseTitle}>
-                {t('purchaseReceiptOfGoods')}
-            </div>
-            <div className={styles.orderPurchaseWrapper}>
-                <Button
-                    variant='outlined'
-                    className={styles.orderPaymentWrapperButton}
-                    color='primary'
-                    onClick={handleChange}
-                >
-                    {t('confirmPurchaseOrGetting')}
-                </Button>
-                <Collapse in={paymentOpened}>
-                    <div className={styles.collapsedPayment}>
-                        <Typography
-                            variant='h6'
-                            component='h4'
-                            className={styles.detailsBlock}
-                        >
-                            {t('addTheFilesNeededConfirmYourPurchase')}
-                        </Typography>
-
-                        <DropFileInput
-                            confirmPurchaseData={confirmPurchaseData}
-                            buttonText='confirm'
-                        />
+            {!isDataSent && (
+                <>
+                    <div className={styles.purchaseTitle}>
+                        {t('purchaseReceiptOfGoods')}
                     </div>
-                </Collapse>
-            </div>
+                    <div className={styles.orderPurchaseWrapper}>
+                        <Button
+                            variant='outlined'
+                            className={styles.orderPaymentWrapperButton}
+                            color='primary'
+                            onClick={handleChange}
+                        >
+                            {t('confirmPurchaseOrGetting')}
+                        </Button>
+                        <Collapse in={paymentOpened}>
+                            <div className={styles.collapsedPayment}>
+                                <Typography
+                                    variant='h6'
+                                    component='h4'
+                                    className={styles.detailsBlock}
+                                >
+                                    {t('addTheFilesNeededConfirmYourPurchase')}
+                                </Typography>
+
+                                <DropFileInput
+                                    confirmPurchaseData={confirmPurchaseData}
+                                    buttonText='confirm'
+                                />
+                            </div>
+                        </Collapse>
+                    </div>
+                </>
+            )}
         </>
     );
 };

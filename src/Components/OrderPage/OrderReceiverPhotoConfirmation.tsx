@@ -1,35 +1,61 @@
 import { Button, Collapse, Typography } from '@mui/material';
 import cn from 'classnames';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { acceptReceiverPurchaseData } from 'src/api/order';
 import { LoaderColors } from 'src/interfaces/loader';
+import { OrderStatus } from 'src/interfaces/profile';
 import purchaseStyles from '../../../styles/drop-file-input.module.css';
 import styles from '../../../styles/OrderPage.module.css';
 import { ImageConfig } from '../drop-file-input/ImageConfig';
+import { OpenAlertContext } from '../Layouts/Snackbar';
 import CircleLoader from '../Loaders/CircleLoader';
 import PurshasePhoto from './PurshasePhoto';
 
 type IProps = {
     fileLinks?: string[];
+    orderId: string;
 };
 
-const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({ fileLinks }) => {
+const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
+    fileLinks,
+    orderId,
+}) => {
     const { t } = useTranslation();
+    const { triggerOpen } = useContext(OpenAlertContext);
 
     const [isReceiverDataBlockDisabled, setIsReceiverDataBlockDisabled] =
         useState<boolean>(false);
     const [paymentOpened, setPaymentOpened] = useState<boolean>(false);
-    const [changedView, setChangedView] = useState<boolean>(false);
+    const [openedPhoto, setOpenedPhoto] = useState<string | undefined>(
+        undefined
+    );
 
     const handleChange = () => setPaymentOpened(prev => !prev);
 
-    const acceptData = () => {
+    const acceptData = async () => {
         setIsReceiverDataBlockDisabled(true);
+
+        const data = await acceptReceiverPurchaseData({ orderId });
+
+        if (data.ok) {
+            triggerOpen({
+                severity: 'success',
+                text: t('dataConfirmed'),
+            });
+            setIsReceiverDataBlockDisabled(false);
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: t('dataConfirmedError'),
+            });
+            setIsReceiverDataBlockDisabled(false);
+        }
     };
 
-    const changeView = () => {
-        setChangedView(true);
+    const changeView = (link: string) => {
+        setOpenedPhoto(link);
     };
 
     return (
@@ -47,7 +73,7 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({ fileLinks }) => {
                     {t('purchaseInformation')}
                 </Button>
                 <Collapse in={paymentOpened}>
-                    <div className={styles.collapsxedPayment}>
+                    <div className={styles.collapsedPayment}>
                         <div>
                             <Typography
                                 variant='h6'
@@ -72,20 +98,27 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({ fileLinks }) => {
                                                         className={
                                                             styles.purchasePhotoBlock
                                                         }
+                                                        onClick={() =>
+                                                            changeView(link)
+                                                        }
                                                     >
                                                         <img
-                                                            onClick={changeView}
-                                                            className={cn(
-                                                                styles.purchasePhoto,
-                                                                {
-                                                                    [styles.purchaseZoomPhoto]:
-                                                                        changedView,
-                                                                }
-                                                            )}
+                                                            className={
+                                                                styles.purchasePhoto
+                                                            }
                                                             src={link}
                                                         />
                                                     </div>
-                                                    {/* <PurshasePhoto /> */}
+                                                    {openedPhoto && (
+                                                        <PurshasePhoto
+                                                            setOpenedPhoto={
+                                                                setOpenedPhoto
+                                                            }
+                                                            openedPhoto={
+                                                                openedPhoto
+                                                            }
+                                                        />
+                                                    )}
                                                 </>
                                             );
                                         }
@@ -96,7 +129,7 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({ fileLinks }) => {
 
                             {fileLinks &&
                                 fileLinks.map(link => {
-                                    const linkFormat = link.split('.');
+                                    const linkFormat = link.split('.')[1];
 
                                     if (
                                         linkFormat[linkFormat.length - 1] ===
@@ -137,7 +170,7 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({ fileLinks }) => {
                                 <CircleLoader color={LoaderColors.PRIMARY} />
                             </div>
                         )}
-
+                        (
                         <Button
                             variant='contained'
                             onClick={acceptData}
@@ -147,6 +180,7 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({ fileLinks }) => {
                         >
                             {t('approve')}
                         </Button>
+                        )
                     </div>
                 </Collapse>
             </div>
