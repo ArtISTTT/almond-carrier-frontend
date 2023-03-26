@@ -75,6 +75,10 @@
 .dropFilePreviewItemInfo {
     display: flex;
     align-items: center;
+    color: var(--cTextPrimary);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
     justify-content: space-between;
 }
 

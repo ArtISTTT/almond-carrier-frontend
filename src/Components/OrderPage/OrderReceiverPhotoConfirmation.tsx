@@ -3,9 +3,12 @@ import cn from 'classnames';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { LoaderColors } from 'src/interfaces/loader';
 import purchaseStyles from '../../../styles/drop-file-input.module.css';
 import styles from '../../../styles/OrderPage.module.css';
 import { ImageConfig } from '../drop-file-input/ImageConfig';
+import CircleLoader from '../Loaders/CircleLoader';
+import PurshasePhoto from './PurshasePhoto';
 
 type IProps = {
     fileLinks?: string[];
@@ -14,12 +17,16 @@ type IProps = {
 const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({ fileLinks }) => {
     const { t } = useTranslation();
 
+    const [isReceiverDataBlockDisabled, setIsReceiverDataBlockDisabled] =
+        useState<boolean>(false);
     const [paymentOpened, setPaymentOpened] = useState<boolean>(false);
     const [changedView, setChangedView] = useState<boolean>(false);
 
     const handleChange = () => setPaymentOpened(prev => !prev);
 
-    const acceptData = () => {};
+    const acceptData = () => {
+        setIsReceiverDataBlockDisabled(true);
+    };
 
     const changeView = () => {
         setChangedView(true);
@@ -40,42 +47,53 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({ fileLinks }) => {
                     {t('purchaseInformation')}
                 </Button>
                 <Collapse in={paymentOpened}>
-                    <div className={styles.collapsedPayment}>
-                        <Typography
-                            variant='h6'
-                            component='h4'
-                            className={styles.detailsBlock}
-                        >
-                            {t('checkTheReceiptAndTheProduct')}
-                        </Typography>
-                        <div className={styles.purchaseDataBlock}>
-                            {fileLinks &&
-                                fileLinks.map(link => {
-                                    const linkFormat = link.split('.');
+                    <div className={styles.collapsxedPayment}>
+                        <div>
+                            <Typography
+                                variant='h6'
+                                component='h4'
+                                className={styles.detailsBlock}
+                            >
+                                {t('checkTheReceiptAndTheProduct')}
+                            </Typography>
+                            <div className={styles.purchaseDataBlock}>
+                                {fileLinks &&
+                                    fileLinks.map(link => {
+                                        const linkFormat = link.split('.');
 
-                                    if (
-                                        linkFormat[linkFormat.length - 1] !==
-                                        'pdf'
-                                    ) {
-                                        return (
-                                            <div>
-                                                <img
-                                                    onClick={changeView}
-                                                    className={cn(
-                                                        styles.purchasePhoto,
-                                                        {
-                                                            [styles.purchaseZoomPhoto]:
-                                                                changedView,
+                                        if (
+                                            linkFormat[
+                                                linkFormat.length - 1
+                                            ] !== 'pdf'
+                                        ) {
+                                            return (
+                                                <>
+                                                    <div
+                                                        className={
+                                                            styles.purchasePhotoBlock
                                                         }
-                                                    )}
-                                                    src={link}
-                                                />
-                                            </div>
-                                        );
-                                    }
+                                                    >
+                                                        <img
+                                                            onClick={changeView}
+                                                            className={cn(
+                                                                styles.purchasePhoto,
+                                                                {
+                                                                    [styles.purchaseZoomPhoto]:
+                                                                        changedView,
+                                                                }
+                                                            )}
+                                                            src={link}
+                                                        />
+                                                    </div>
+                                                    {/* <PurshasePhoto /> */}
+                                                </>
+                                            );
+                                        }
 
-                                    return '';
-                                })}
+                                        return '';
+                                    })}
+                            </div>
+
                             {fileLinks &&
                                 fileLinks.map(link => {
                                     const linkFormat = link.split('.');
@@ -104,7 +122,7 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({ fileLinks }) => {
                                                             purchaseStyles.dropFilePreviewItemInfo
                                                         }
                                                     >
-                                                        <p>File</p>
+                                                        <p>{t('file')}</p>
                                                     </div>
                                                 </div>
                                             </Link>
@@ -114,13 +132,20 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({ fileLinks }) => {
                                     return '';
                                 })}
                         </div>
+                        {isReceiverDataBlockDisabled && (
+                            <div className={styles.purchaseLoaderWrapper}>
+                                <CircleLoader color={LoaderColors.PRIMARY} />
+                            </div>
+                        )}
+
                         <Button
                             variant='contained'
                             onClick={acceptData}
+                            disabled={isReceiverDataBlockDisabled}
                             className={styles.acceptPurchaseButton}
                             color='primary'
                         >
-                            {t('confirmPurchase')}
+                            {t('approve')}
                         </Button>
                     </div>
                 </Collapse>

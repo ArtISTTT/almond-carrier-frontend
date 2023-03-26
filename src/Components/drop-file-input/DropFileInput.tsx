@@ -30,7 +30,7 @@ const DropFileInput: React.FC<IProps> = ({
 
     const onFileDrop = (e: any) => {
         const newFile = e.target.files[0];
-        if (newFile && fileList.length <= 2) {
+        if (newFile && fileList.length <= 4) {
             const updatedList = [...fileList, newFile];
             setFileList(updatedList);
         }
