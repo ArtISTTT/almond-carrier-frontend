@@ -8,9 +8,13 @@ import { ImageConfig } from './ImageConfig';
 
 interface IProps {
     confirmPurchaseData: (fileList: File[]) => void;
+    buttonText: string;
 }
 
-const DropFileInput: React.FC<IProps> = ({ confirmPurchaseData }) => {
+const DropFileInput: React.FC<IProps> = ({
+    confirmPurchaseData,
+    buttonText,
+}) => {
     const wrapperRef = useRef<any>(null);
     const { t } = useTranslation();
 
@@ -95,7 +99,7 @@ const DropFileInput: React.FC<IProps> = ({ confirmPurchaseData }) => {
                         className={styles.confirmPurchaseButton}
                         color='primary'
                     >
-                        {t('send')}
+                        {t(buttonText)}
                     </Button>
                 </div>
             ) : null}

@@ -9,6 +9,8 @@
     justify-content: center;
 
     background-color: transparent;
+
+    transition: opacity 0.2s linear;
 }
 
 .dropFileInput input {
@@ -36,8 +38,6 @@
 .confirmPurchaseButton {
     margin-top: 15px;
     display: flex;
-    max-width: 100px;
-    width: 100%;
     border-radius: 16px;
     margin-left: auto;
 }

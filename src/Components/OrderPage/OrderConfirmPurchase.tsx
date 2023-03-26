@@ -49,7 +49,7 @@ const OrderConfirmPurchase: React.FC<IProps> = ({ orderId }) => {
                     color='primary'
                     onClick={handleChange}
                 >
-                    {t('uploadTheFiles')}
+                    {t('confirmPurchaseOrGetting')}
                 </Button>
                 <Collapse in={paymentOpened}>
                     <div className={styles.collapsedPayment}>
@@ -63,6 +63,7 @@ const OrderConfirmPurchase: React.FC<IProps> = ({ orderId }) => {
 
                         <DropFileInput
                             confirmPurchaseData={confirmPurchaseData}
+                            buttonText='confirm'
                         />
                     </div>
                 </Collapse>
