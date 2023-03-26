@@ -1,16 +1,17 @@
 import { Button, Collapse, Typography } from '@mui/material';
 import cn from 'classnames';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import purchaseStyles from '../../../styles/drop-file-input.module.css';
 import styles from '../../../styles/OrderPage.module.css';
+import { ImageConfig } from '../drop-file-input/ImageConfig';
 
-const links = [
-    '/static/images/main-page/receiving.png',
-    '/static/images/main-page/receiving.png',
-    '/static/images/main-page/receiving.png',
-];
+type IProps = {
+    fileLinks?: string[];
+};
 
-const OrderReceiverPhotoConfirmation = () => {
+const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({ fileLinks }) => {
     const { t } = useTranslation();
 
     const [paymentOpened, setPaymentOpened] = useState<boolean>(false);
@@ -48,18 +49,70 @@ const OrderReceiverPhotoConfirmation = () => {
                             {t('checkTheReceiptAndTheProduct')}
                         </Typography>
                         <div className={styles.purchaseDataBlock}>
-                            {links.map(link => (
-                                <div>
-                                    <img
-                                        onClick={changeView}
-                                        className={cn(styles.purchasePhoto, {
-                                            [styles.purchaseZoomPhoto]:
-                                                changedView,
-                                        })}
-                                        src={link}
-                                    />
-                                </div>
-                            ))}
+                            {fileLinks &&
+                                fileLinks.map(link => {
+                                    const linkFormat = link.split('.');
+
+                                    if (
+                                        linkFormat[linkFormat.length - 1] !==
+                                        'pdf'
+                                    ) {
+                                        return (
+                                            <div>
+                                                <img
+                                                    onClick={changeView}
+                                                    className={cn(
+                                                        styles.purchasePhoto,
+                                                        {
+                                                            [styles.purchaseZoomPhoto]:
+                                                                changedView,
+                                                        }
+                                                    )}
+                                                    src={link}
+                                                />
+                                            </div>
+                                        );
+                                    }
+
+                                    return '';
+                                })}
+                            {fileLinks &&
+                                fileLinks.map(link => {
+                                    const linkFormat = link.split('.');
+
+                                    if (
+                                        linkFormat[linkFormat.length - 1] ===
+                                        'pdf'
+                                    ) {
+                                        return (
+                                            <Link target='_blank' href={link}>
+                                                <div
+                                                    key={link}
+                                                    className={
+                                                        purchaseStyles.dropFilePreviewItem
+                                                    }
+                                                >
+                                                    <img
+                                                        src={
+                                                            ImageConfig['pdf']
+                                                                .src
+                                                        }
+                                                        alt=''
+                                                    />
+                                                    <div
+                                                        className={
+                                                            purchaseStyles.dropFilePreviewItemInfo
+                                                        }
+                                                    >
+                                                        <p>File</p>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        );
+                                    }
+
+                                    return '';
+                                })}
                         </div>
                         <Button
                             variant='contained'

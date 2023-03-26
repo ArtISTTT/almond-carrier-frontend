@@ -354,7 +354,9 @@ const OrderInformation: React.FC<IProps> = ({
                 {order.status ===
                     OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation &&
                     viewType === ViewType.receiver && (
-                        <OrderReceiverPhotoConfirmation />
+                        <OrderReceiverPhotoConfirmation
+                            fileLinks={order.purchaseItemFiles}
+                        />
                     )}
                 {!order.myReview &&
                 isReviewBlockOpen &&
