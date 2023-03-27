@@ -743,6 +743,7 @@
 }
 
 .purchasePhotoInner {
+    border: 1px solid;
     position: relative;
     display: flex;
     align-items: center;
@@ -786,6 +787,9 @@
     .orderInformationTitle {
         margin-bottom: 20px;
     }
+    .purchasePhotoInner {
+        height: 65%;
+    }
 }
 
 @media screen and (max-width: 930px) {
@@ -803,24 +807,24 @@
     .partnerFeedBack {
         padding-left: 0;
     }
+    .purchasePhotoInner {
+        height: 55%;
+    }
 }
 
 @media screen and (max-width: 840px) {
-    /* .inputItem .inputPhone {
-        margin-top: 1px;
-    } */
     .orderConent {
         flex-direction: column;
     }
     .valuesByColumns {
         gap: 20px;
     }
+    .purchasePhotoInner {
+        height: 50%;
+    }
 }
 
 @media screen and (max-width: 817px) {
-    /* .inputItem .inputPhone {
-        margin-top: 2px;
-    } */
     .orderDetailsTitle {
         font-size: 30px;
     }
@@ -929,6 +933,9 @@
     .infoRight {
         gap: 8px;
     }
+    .purchasePhotoInner {
+        height: 40%;
+    }
 }
 
 @media screen and (max-width: 560px) {
@@ -957,6 +964,9 @@
     }
     .buttons {
         margin-top: 20px;
+    }
+    .purchasePhotoInner {
+        height: 35%;
     }
 }
 
@@ -1000,13 +1010,6 @@
     .orderInputValueWrapper {
         width: 400px;
     }
-    /* .inputItem .input {
-        height: 32px;
-    } */
-    /* .inputItem .input :global .MuiInputBase-root {
-        height: 33px;
-        margin-top: -1px;
-    } */
     .orderInformationTitle {
         margin-bottom: 30px;
     }
@@ -1027,13 +1030,9 @@
         display: flex;
         justify-content: center;
     }
-}
-
-@media screen and (max-width: 460px) {
-    /* .inputItem .input {
-        height: 32px;
-        margin-top: 2px;
-    } */
+    .purchasePhotoInner {
+        height: 30%;
+    }
 }
 
 @media screen and (max-width: 430px) {
@@ -1069,5 +1068,8 @@
     }
     .orderInputValue {
         max-width: 250px;
+    }
+    .purchasePhotoInner {
+        height: 29%;
     }
 }
