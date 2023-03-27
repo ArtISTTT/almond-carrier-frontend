@@ -16,10 +16,12 @@ import PurshasePhoto from './PurshasePhoto';
 type IProps = {
     fileLinks?: string[];
     orderId: string;
+    orderStatus: OrderStatus;
 };
 
 const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
     fileLinks,
+    orderStatus,
     orderId,
 }) => {
     const { t } = useTranslation();
@@ -60,9 +62,12 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
 
     return (
         <>
-            <div className={styles.purchaseTitle}>
-                {t('purchaseReceiptOfGoods')}
-            </div>
+            {orderStatus ===
+                OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation && (
+                <div className={styles.purchaseTitle}>
+                    {t('purchaseReceiptOfGoods')}
+                </div>
+            )}
             <div className={styles.orderPurchaseWrapper}>
                 <Button
                     variant='outlined'
@@ -75,13 +80,24 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
                 <Collapse in={paymentOpened}>
                     <div className={styles.collapsedPayment}>
                         <div>
-                            <Typography
-                                variant='h6'
-                                component='h4'
-                                className={styles.detailsBlock}
-                            >
-                                {t('checkTheReceiptAndTheProduct')}
-                            </Typography>
+                            {orderStatus ===
+                            OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation ? (
+                                <Typography
+                                    variant='h6'
+                                    component='h4'
+                                    className={styles.detailsBlock}
+                                >
+                                    {t('checkTheReceiptAndTheProduct')}
+                                </Typography>
+                            ) : (
+                                <Typography
+                                    variant='h6'
+                                    component='h4'
+                                    className={styles.detailsBlock}
+                                >
+                                    {t('purchaseInformation')}
+                                </Typography>
+                            )}
                             <div className={styles.purchaseDataBlock}>
                                 {fileLinks &&
                                     fileLinks.map(link => {
@@ -170,17 +186,19 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
                                 <CircleLoader color={LoaderColors.PRIMARY} />
                             </div>
                         )}
-                        (
-                        <Button
-                            variant='contained'
-                            onClick={acceptData}
-                            disabled={isReceiverDataBlockDisabled}
-                            className={styles.acceptPurchaseButton}
-                            color='primary'
-                        >
-                            {t('approve')}
-                        </Button>
-                        )
+
+                        {orderStatus ===
+                            OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation && (
+                            <Button
+                                variant='contained'
+                                onClick={acceptData}
+                                disabled={isReceiverDataBlockDisabled}
+                                className={styles.acceptPurchaseButton}
+                                color='primary'
+                            >
+                                {t('approve')}
+                            </Button>
+                        )}
                     </div>
                 </Collapse>
             </div>

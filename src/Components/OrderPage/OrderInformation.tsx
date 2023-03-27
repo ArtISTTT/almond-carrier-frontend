@@ -321,6 +321,8 @@ const OrderInformation: React.FC<IProps> = ({
         ({ settings }) => settings.generalSettings.currency
     );
 
+    console.log(order.status);
+
     return (
         <>
             {order.myReview &&
@@ -351,14 +353,17 @@ const OrderInformation: React.FC<IProps> = ({
                     viewType === ViewType.carrier && (
                         <OrderConfirmPurchase orderId={order.id} />
                     )}{' '}
-                {order.status ===
+                {((order.status ===
                     OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation &&
-                    viewType === ViewType.receiver && (
-                        <OrderReceiverPhotoConfirmation
-                            orderId={order.id}
-                            fileLinks={order.purchaseItemFiles}
-                        />
-                    )}
+                    viewType === ViewType.receiver) ||
+                    (order.purchaseItemFiles &&
+                        order.purchaseItemFiles[0])) && (
+                    <OrderReceiverPhotoConfirmation
+                        orderId={order.id}
+                        orderStatus={order.status}
+                        fileLinks={order.purchaseItemFiles}
+                    />
+                )}
                 {!order.myReview &&
                 isReviewBlockOpen &&
                 [
