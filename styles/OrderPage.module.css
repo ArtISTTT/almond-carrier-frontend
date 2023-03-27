@@ -379,6 +379,7 @@
 
 .loaderWrapper {
     display: flex;
+    background-color: var(--cBgSecondary);
     height: 400px;
     align-items: center;
 }
