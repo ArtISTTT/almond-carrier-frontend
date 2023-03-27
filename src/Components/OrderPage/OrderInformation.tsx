@@ -52,6 +52,20 @@ type IProps = {
     updateOrder: (withoutLoading?: true) => Promise<void>;
 };
 
+const allowedStatusesForPurchase = [
+    OrderStatus.itemRecieved,
+    OrderStatus.awaitingDelivery,
+    OrderStatus.awaitingPayout,
+    OrderStatus.success,
+    OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation,
+];
+
+const allowedStatusesForReview = [
+    OrderStatus.itemRecieved,
+    OrderStatus.awaitingPayout,
+    OrderStatus.success,
+];
+
 const OrderInformation: React.FC<IProps> = ({
     order,
     viewType,
@@ -73,7 +87,7 @@ const OrderInformation: React.FC<IProps> = ({
     const { t } = useTranslation();
     const { triggerOpen } = useContext(OpenAlertContext);
     const formatAmount = useFormatAmount();
-    const { banksArray, userBank } = useGetBanks({
+    const { userBank } = useGetBanks({
         bank: order?.payoutInfo?.bank || Banks.SBER,
     });
 
@@ -321,8 +335,6 @@ const OrderInformation: React.FC<IProps> = ({
         ({ settings }) => settings.generalSettings.currency
     );
 
-    console.log(order.status);
-
     return (
         <>
             {order.myReview &&
@@ -352,25 +364,18 @@ const OrderInformation: React.FC<IProps> = ({
                 {order.status === OrderStatus.awaitingPurchase &&
                     viewType === ViewType.carrier && (
                         <OrderConfirmPurchase orderId={order.id} />
-                    )}{' '}
-                {((order.status ===
-                    OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation &&
-                    viewType === ViewType.receiver) ||
-                    (order.purchaseItemFiles &&
-                        order.purchaseItemFiles[0])) && (
+                    )}
+                {allowedStatusesForPurchase.includes(order.status) && (
                     <OrderReceiverPhotoConfirmation
                         orderId={order.id}
+                        viewType={viewType}
                         orderStatus={order.status}
                         fileLinks={order.purchaseItemFiles}
                     />
                 )}
                 {!order.myReview &&
                 isReviewBlockOpen &&
-                [
-                    OrderStatus.itemRecieved,
-                    OrderStatus.awaitingPayout,
-                    OrderStatus.success,
-                ].includes(order.status) ? (
+                allowedStatusesForReview.includes(order.status) ? (
                     <OrderReview
                         setIsReviewBlockOpen={setIsReviewBlockOpen}
                         orderId={order.id}

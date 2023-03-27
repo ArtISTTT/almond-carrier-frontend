@@ -1,5 +1,4 @@
 import { Button, Collapse, Typography } from '@mui/material';
-import cn from 'classnames';
 import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,16 +10,26 @@ import styles from '../../../styles/OrderPage.module.css';
 import { ImageConfig } from '../drop-file-input/ImageConfig';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import CircleLoader from '../Loaders/CircleLoader';
+import { ViewType } from './OrderInputItem';
 import PurshasePhoto from './PurshasePhoto';
 
 type IProps = {
     fileLinks?: string[];
     orderId: string;
+    viewType: ViewType;
     orderStatus: OrderStatus;
 };
 
+const allowedStatusesForPurchaseButtons = [
+    OrderStatus.itemRecieved,
+    OrderStatus.awaitingDelivery,
+    OrderStatus.awaitingPayout,
+    OrderStatus.success,
+];
+
 const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
     fileLinks,
+    viewType,
     orderStatus,
     orderId,
 }) => {
@@ -62,12 +71,13 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
 
     return (
         <>
-            {orderStatus ===
-                OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation && (
-                <div className={styles.purchaseTitle}>
-                    {t('purchaseReceiptOfGoods')}
-                </div>
-            )}
+            {viewType === ViewType.receiver &&
+                orderStatus ===
+                    OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation && (
+                    <div className={styles.purchaseTitle}>
+                        {t('purchaseReceiptOfGoods')}
+                    </div>
+                )}
             <div className={styles.orderPurchaseWrapper}>
                 <Button
                     variant='outlined'
@@ -80,8 +90,10 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
                 <Collapse in={paymentOpened}>
                     <div className={styles.collapsedPayment}>
                         <div>
-                            {orderStatus ===
-                            OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation ? (
+                            {viewType === ViewType.receiver &&
+                            !allowedStatusesForPurchaseButtons.includes(
+                                orderStatus
+                            ) ? (
                                 <Typography
                                     variant='h6'
                                     component='h4'
@@ -145,7 +157,7 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
 
                             {fileLinks &&
                                 fileLinks.map(link => {
-                                    const linkFormat = link.split('.')[1];
+                                    const linkFormat = link.split('.');
 
                                     if (
                                         linkFormat[linkFormat.length - 1] ===
@@ -187,18 +199,20 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
                             </div>
                         )}
 
-                        {orderStatus ===
-                            OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation && (
-                            <Button
-                                variant='contained'
-                                onClick={acceptData}
-                                disabled={isReceiverDataBlockDisabled}
-                                className={styles.acceptPurchaseButton}
-                                color='primary'
-                            >
-                                {t('approve')}
-                            </Button>
-                        )}
+                        {viewType === ViewType.receiver &&
+                            !allowedStatusesForPurchaseButtons.includes(
+                                orderStatus
+                            ) && (
+                                <Button
+                                    variant='contained'
+                                    onClick={acceptData}
+                                    disabled={isReceiverDataBlockDisabled}
+                                    className={styles.acceptPurchaseButton}
+                                    color='primary'
+                                >
+                                    {t('approve')}
+                                </Button>
+                            )}
                     </div>
                 </Collapse>
             </div>
