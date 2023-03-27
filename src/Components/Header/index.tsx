@@ -122,22 +122,26 @@ const Header: React.FC<IProps> = ({
                 </div>
                 {!isAuthorized && showSignInOutIfUnauthorized && (
                     <div className={styles.rightMenuButtons}>
-                        <Button className={styles.button} variant='outlined'>
-                            <MUILink
-                                component={LinkBehaviour}
-                                href={navigateTo.SIGNIN}
-                            >
-                                {t('signIn')}
-                            </MUILink>
-                        </Button>
-                        <Button className={styles.button} variant='outlined'>
-                            <MUILink
-                                component={LinkBehaviour}
-                                href={navigateTo.SIGNUP}
-                            >
-                                {t('signUp')}
-                            </MUILink>
-                        </Button>
+                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                            <Button className={styles.button} variant='outlined'>
+                                <MUILink
+                                    component={LinkBehaviour}
+                                    href={navigateTo.SIGNIN}
+                                >
+                                    {t('signIn')}
+                                </MUILink>
+                            </Button>
+                        </motion.div>
+                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                            <Button className={styles.button} variant='outlined'>
+                                <MUILink
+                                    component={LinkBehaviour}
+                                    href={navigateTo.SIGNUP}
+                                >
+                                    {t('signUp')}
+                                </MUILink>
+                            </Button>
+                        </motion.div>
                     </div>
                 )}
                 {isAuthorized && (

@@ -74,6 +74,10 @@
     margin-right: 24px;
 }
 
+.rightMenuButtons {
+    display: flex;
+}
+
 .leftMenuLinks {
     display: flex;
     align-items: center;
