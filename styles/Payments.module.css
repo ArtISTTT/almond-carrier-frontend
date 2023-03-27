@@ -6,6 +6,10 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.225);
 }
 
+.emptyPayoutsWrapper {
+    height: 570px;
+}
+
 .loaderWrapper {
     display: flex;
     flex: 1;

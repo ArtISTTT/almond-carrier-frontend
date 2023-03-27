@@ -12,7 +12,7 @@ import styles from '../../../styles/Dashboard.module.css';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 import { selectMyLiveOrders } from '../../redux/selectors/orders';
-import EmptyOrdersBlock from '../EmptyComponents/Empty';
+import EmptyBlock from '../EmptyComponents/EmptyOrderBlock';
 import UserLayout from '../Layouts/User';
 import CircleLoader from '../Loaders/CircleLoader';
 import CarrierAddingPopup from '../OrderComponents/CarrierAddingPopup';
@@ -122,9 +122,7 @@ const Dashboard: React.FC = () => {
                                             order={order}
                                         />
                                     ))}
-                                    {orders.length === 0 && (
-                                        <EmptyOrdersBlock />
-                                    )}
+                                    {orders.length === 0 && <EmptyBlock />}
                                 </div>
                                 <div className={styles.newOrderButtonsWrapper}>
                                     {totalCountPages > 1 && (

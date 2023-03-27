@@ -11,7 +11,7 @@ import {
     Theme,
 } from '../../interfaces/settings';
 
-export const DEFAULT_THEME = Theme.DARK;
+export const DEFAULT_THEME = Theme.LIGHT;
 
 interface IInitialState {
     generalSettings: IGeneralSettings;

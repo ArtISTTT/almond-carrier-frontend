@@ -136,13 +136,13 @@ const Footer = () => {
                         >
                             {t('about')}
                         </MUILink> */}
-                        <MUILink
+                        {/* <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
                             href={navigateTo.FOUNDERS}
                         >
                             {t('founders')}
-                        </MUILink>
+                        </MUILink> */}
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
