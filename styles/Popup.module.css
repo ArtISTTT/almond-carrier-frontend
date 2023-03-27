@@ -103,6 +103,10 @@
     height: 6px;
 }
 
+.input > div > input::placeholder {
+    color: var(--cTextThird);
+}
+
 .descriptionInput :global .MuiInputBase-root {
     width: 100%;
     border-radius: 15px;

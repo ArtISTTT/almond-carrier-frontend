@@ -1,7 +1,7 @@
-import { Typography } from '@mui/material';
-import styles from '../../../styles/Popup.module.css';
-import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import { Typography } from '@mui/material';
+import React from 'react';
+import styles from '../../../styles/Popup.module.css';
 
 const valutes = ['Rubles', 'Euro', 'Dollar'];
 
@@ -20,7 +20,6 @@ const Popup: React.FC<IProps> = ({ title, closePopup, children }) => {
 
             <div onClick={closePopup} className={styles.icon}>
                 <CloseIcon />
-
             </div>
             <Typography
                 className={styles.popupTitle}
