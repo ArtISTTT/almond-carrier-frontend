@@ -91,25 +91,18 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
                     <div className={styles.collapsedPayment}>
                         <div>
                             {viewType === ViewType.receiver &&
-                            !allowedStatusesForPurchaseButtons.includes(
-                                orderStatus
-                            ) ? (
-                                <Typography
-                                    variant='h6'
-                                    component='h4'
-                                    className={styles.detailsBlock}
-                                >
-                                    {t('checkTheReceiptAndTheProduct')}
-                                </Typography>
-                            ) : (
-                                <Typography
-                                    variant='h6'
-                                    component='h4'
-                                    className={styles.detailsBlock}
-                                >
-                                    {t('purchaseInformation')}
-                                </Typography>
-                            )}
+                                !allowedStatusesForPurchaseButtons.includes(
+                                    orderStatus
+                                ) && (
+                                    <Typography
+                                        variant='h6'
+                                        component='h4'
+                                        className={styles.detailsBlock}
+                                    >
+                                        {t('checkTheReceiptAndTheProduct')}
+                                    </Typography>
+                                )}
+
                             <div className={styles.purchaseDataBlock}>
                                 {fileLinks &&
                                     fileLinks.map(link => {

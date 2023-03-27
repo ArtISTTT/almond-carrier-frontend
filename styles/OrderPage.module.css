@@ -836,13 +836,12 @@
 }
 
 @media screen and (max-width: 720px) {
-    /* .inputItem .input :global .MuiInputBase-root {
-        height: 32px;
-    } */
-    /* .inputItem .input {
-        /* margin-top: 2px; */
-    /* height: 32px;
-    } */
+    .purchasePhotoBlock {
+        height: 184px;
+    }
+    .purchasePhoto {
+        max-width: 200px;
+    }
     .inputItem .input > div > input {
         height: 0;
         padding-top: 20px;
@@ -969,10 +968,12 @@
     .confirmPhoneButton {
         margin-top: 30px;
     }
-    /* .inputItem .input {
-        height: 32px;
-        margin-top: 2px;
-    } */
+    .purchasePhotoBlock {
+        height: 154px;
+    }
+    .purchasePhoto {
+        max-width: 170px;
+    }
 }
 
 @media screen and (max-width: 600px) {
