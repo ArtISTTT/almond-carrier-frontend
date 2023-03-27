@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { sendReview } from 'src/api/review';
 import { ViewType } from './OrderInputItem';
 import { OpenAlertContext } from '../Layouts/Snackbar';
+import { motion } from 'framer-motion';
 
 interface IProps {
     setIsReviewBlockOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -130,15 +131,18 @@ const OrderReview: React.FC<IProps> = ({
                             }
                         />
                     </div>
-                    <Button
-                        type='submit'
-                        color='primary'
-                        className={styles.submitButton}
-                        variant='contained'
-                        disabled={isSendButtonDisabled}
-                    >
-                        {t('sendReview')}
-                    </Button>
+                    <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                        <Button
+                            type='submit'
+                            color='primary'
+                            className={styles.submitButton}
+                            variant='contained'
+                            disabled={isSendButtonDisabled}
+                        >
+                            {t('sendReview')}
+                        </Button>
+                    </motion.div>
+
                 </form>
             </div>
         </div>

@@ -69,6 +69,11 @@
     max-width: 624px;
 }
 
+.changeToRight {
+    margin-left: auto !important;
+    margin-top: 0px !important;  
+}
+
 .formGeneral {
     margin-bottom: 24px;
 }

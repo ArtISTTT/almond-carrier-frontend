@@ -85,7 +85,7 @@ const ProfileConent: React.FC<IProps> = ({ user, setApplyedOrder }) => {
                     {reviews.length > 0 &&
                         content === profileContent.REVIEWS &&
                         reviews.map(review => (
-                            <ReviewItem key={review._id} {...review} />
+                                <ReviewItem key={review._id} {...review} />
                         ))}
                     {reviews.length === 0 &&
                         content === profileContent.REVIEWS && (

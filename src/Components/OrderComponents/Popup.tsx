@@ -20,6 +20,7 @@ const Popup: React.FC<IProps> = ({ title, closePopup, children }) => {
 
             <div onClick={closePopup} className={styles.icon}>
                 <CloseIcon />
+
             </div>
             <Typography
                 className={styles.popupTitle}

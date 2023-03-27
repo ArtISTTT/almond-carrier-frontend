@@ -14,6 +14,7 @@ import { useFormik } from 'formik';
 import Popup from './Popup';
 import cn from 'classnames';
 import { IBounds } from 'src/interfaces/geometry';
+import {motion} from 'framer-motion'
 
 interface IProps {
     togglePopup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -292,14 +293,18 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             )}
                         />
                     </div>
-                    <Button
-                        variant='contained'
-                        className={styles.confirmButton}
-                        type='submit'
-                        disabled={formik.isSubmitting}
-                    >
-                        {t('orderItem')}
-                    </Button>
+                    <div className={styles.alignCenter}>
+                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                            <Button
+                                variant='contained'
+                                className={styles.confirmButton}
+                                type='submit'
+                                disabled={formik.isSubmitting}
+                            >
+                                {t('orderItem')}
+                            </Button>
+                        </motion.div>
+                    </div>
                 </Stack>
             </form>
         </Popup>

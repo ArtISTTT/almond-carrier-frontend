@@ -8,6 +8,10 @@
     flex: 1;
 }
 
+.displayFlex {
+    display: flex;
+}
+
 .header {
     display: flex;
     height: 80px;
@@ -70,6 +74,10 @@
     margin-right: 24px;
 }
 
+.rightMenuButtons {
+    display: flex;
+}
+
 .leftMenuLinks {
     display: flex;
     align-items: center;
@@ -112,12 +120,18 @@
 }
 
 .link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 80px;
+    padding: 0 14px;
+    transition-duration: 0.3s;
     font-size: 19px;
     line-height: 20px;
     white-space: nowrap;
 }
 
-.linkBlock:hover {
+.link:hover {
     background: var(--cBgThird);
 }
 

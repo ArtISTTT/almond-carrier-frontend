@@ -19,8 +19,8 @@ import {
     ChangePasswordSchema,
     ChangeUserSchema,
 } from '../../schemas/ChangeUserSchema';
+import {motion} from 'framer-motion'
 import { OpenAlertContext } from '../Layouts/Snackbar';
-
 type IPasswordForm = {
     oldPassword: string;
     newPassword: string;
@@ -270,14 +270,18 @@ const General = () => {
                             />
                         </div>
                     </Stack>
-                    <Button
-                        variant='contained'
-                        className={styles.confirmButton}
-                        type='submit'
-                        disabled={formik.isSubmitting}
-                    >
-                        {t('change')}
-                    </Button>
+                    <div className={styles.changeToRight}>
+                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                            <Button
+                                variant='contained'
+                                className={styles.confirmButton}
+                                type='submit'
+                                disabled={formik.isSubmitting}
+                            >
+                                {t('change')}
+                            </Button>
+                        </motion.div>
+                    </div>
                 </Stack>
             </form>
             <form
@@ -335,14 +339,19 @@ const General = () => {
                             />
                         </div>
                     </Stack>
-                    <Button
-                        variant='contained'
-                        className={styles.confirmButton}
-                        type='submit'
-                        disabled={formikChangePassword.isSubmitting}
-                    >
-                        {t('updatePassword')}
-                    </Button>
+                    <div className={styles.changeToRight}>
+                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                            <Button
+                            variant='contained'
+                            className={styles.confirmButton}
+                            type='submit'
+                            disabled={formikChangePassword.isSubmitting}
+                            >
+                                {t('updatePassword')}
+                            </Button>
+                        </motion.div>
+                    </div>
+
                 </Stack>
             </form>
         </div>

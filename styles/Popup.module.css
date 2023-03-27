@@ -53,6 +53,10 @@
     text-align: center;
 }
 
+.alignCenter {
+    text-align: center;
+}
+
 .inputItem {
     display: flex;
     flex-direction: column;
