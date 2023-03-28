@@ -1,9 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { OrderStatus } from 'src/interfaces/profile';
 import styles from '../../../styles/OrderPage.module.css';
 import { IOrder, IOrderFull } from '../../interfaces/order';
-import { OrderStatus } from 'src/interfaces/profile';
 import { ViewType } from './OrderInputItem';
-import { useTranslation } from 'react-i18next';
 
 type IProps = {
     viewType: ViewType;
@@ -19,8 +19,6 @@ const OrderLabels: React.FC<IProps> = ({
     order,
 }) => {
     const { t } = useTranslation();
-
-    
 
     return (
         <>
@@ -78,14 +76,6 @@ const OrderLabels: React.FC<IProps> = ({
                     {t('paymentConfirmed')} {order.arrivalDate?.format('LL')}
                 </div>
             )}
-            {order.status === OrderStatus.awaitingPayout &&
-                viewType === ViewType.carrier && (
-                    <div className={styles.byOther}>{t('awaitingPayout')}</div>
-                )}
-            {order.status === OrderStatus.success &&
-                viewType === ViewType.carrier && (
-                    <div className={styles.byOther}>{t('success')}</div>
-                )}
         </>
     );
 };

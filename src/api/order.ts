@@ -409,3 +409,58 @@ export const getPayouts = (): Promise<IGetPayouts> =>
                 error: data.response?.data?.message ?? 'Error get payouts',
             };
         });
+
+export const sendPurchaseData = (requestData: {
+    files: File[];
+    orderId: string;
+}): Promise<ISuggestChanges> => {
+    const formData = new FormData();
+
+    for (const file of requestData.files) {
+        formData.append('file', file);
+    }
+
+    formData.append('orderId', requestData.orderId);
+
+    return mainInstance
+        .post('/order/confirm-purchase', formData, {
+            params: { language: getLanguage() },
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+        .then(() => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ??
+                    'Error with sending purchase data',
+            };
+        });
+};
+
+export const acceptReceiverPurchaseData = (requestData: {
+    orderId: string;
+}): Promise<ISuggestChanges> =>
+    mainInstance
+        .post('/order/approve-purchase', JSON.stringify(requestData), {
+            params: { language: getLanguage() },
+        })
+        .then(() => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ??
+                    'Error with accepting receiver purchase data',
+            };
+        });

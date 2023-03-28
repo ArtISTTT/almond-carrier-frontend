@@ -160,7 +160,7 @@
     padding: 4px 32px;
     font-size: 16px;
     color: var(--cTextSecondary);
-    background-color: var(--cBg);
+    background-color: var(--cStatusInProgress);
 }
 
 .productName {
@@ -223,6 +223,7 @@
 
 .comission {
     font-size: 14px;
+    white-space: nowrap;
     color: var(--cTextLow);
 }
 
@@ -378,6 +379,7 @@
 
 .loaderWrapper {
     display: flex;
+    background-color: var(--cBgSecondary);
     height: 400px;
     align-items: center;
 }
@@ -405,8 +407,7 @@
 }
 
 .orderPaymentWrapperButton {
-    max-width: 200px;
-    width: 100%;
+    white-space: nowrap;
     border-radius: 15px;
 }
 
@@ -415,8 +416,22 @@
     margin-left: 32px;
     margin-right: 32px;
     max-width: 1000px;
-    /* width: 100%; */
     border-top: 1px solid var(--cBorderLow);
+}
+
+.purchaseTitle {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 600;
+}
+
+.orderPurchaseWrapper {
+    padding-bottom: 24px;
+    margin-top: 20px;
+    max-width: 1200px;
+    margin-bottom: 20px;
+    width: 100%;
+    border-bottom: 1px solid var(--cBorderLow);
 }
 
 .orderPaymentWrapperTotalSum {
@@ -436,9 +451,11 @@
         rgba(102, 144, 253, 0.7) 36%,
         rgba(145, 197, 255, 1) 100%
     );
+    /* max-height: 475px; */
     padding: 16px;
     border-radius: 15px;
-    max-width: 450px;
+    position: relative;
+    max-width: 650px;
     width: 100%;
     color: var(--cTextSecondary);
 }
@@ -593,9 +610,79 @@
 
 .detailsBlock {
     margin-bottom: 16px;
+    margin-left: 7px;
     line-height: 22px;
     letter-spacing: 0.25px;
     font-size: 16px;
+}
+
+.purchaseLoaderWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.623);
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.purchaseDataBlock {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    gap: 10px;
+    min-width: 100%;
+    margin-bottom: 10px;
+}
+
+.purchaseDataBlock::-webkit-scrollbar {
+    height: 8px;
+}
+
+.purchaseDataBlock::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 16px;
+}
+
+.purchaseDataBlock::-webkit-scrollbar-thumb {
+    background-color: var(--cTextPrimary);
+    border-radius: 16px;
+    border: 1px solid var(--cTextSecondary);
+}
+
+.purchasePhotoBlock {
+    height: 214px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    overflow-y: auto;
+    background-color: var(--cBgThird);
+}
+
+.purchasePhoto {
+    max-width: 230px;
+    cursor: pointer;
+}
+
+.purchaseZoomPhoto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+}
+
+.acceptPurchaseButton {
+    margin-left: auto;
+    white-space: nowrap;
+    margin-top: 10px;
+    max-width: 170px;
+    width: 100%;
+    border-radius: 15px;
+    display: flex;
 }
 
 .payoutWrapper {
@@ -642,6 +729,40 @@
     border-radius: 15px;
 }
 
+.purchasePhotoWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.purchasePhotoInner {
+    border: 1px solid;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 80%;
+}
+
+.purchaseIcon {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    color: var(--cTextPrimary);
+    font-size: 40px;
+}
+
+.purchasePhotoOpened {
+    height: 100%;
+}
+
 @media screen and (max-width: 1283px) {
     .inputItem .input :global .MuiInputBase-root {
         height: 34px;
@@ -666,6 +787,9 @@
     .orderInformationTitle {
         margin-bottom: 20px;
     }
+    .purchasePhotoInner {
+        height: 65%;
+    }
 }
 
 @media screen and (max-width: 930px) {
@@ -683,24 +807,24 @@
     .partnerFeedBack {
         padding-left: 0;
     }
+    .purchasePhotoInner {
+        height: 55%;
+    }
 }
 
 @media screen and (max-width: 840px) {
-    /* .inputItem .inputPhone {
-        margin-top: 1px;
-    } */
     .orderConent {
         flex-direction: column;
     }
     .valuesByColumns {
         gap: 20px;
     }
+    .purchasePhotoInner {
+        height: 50%;
+    }
 }
 
 @media screen and (max-width: 817px) {
-    /* .inputItem .inputPhone {
-        margin-top: 2px;
-    } */
     .orderDetailsTitle {
         font-size: 30px;
     }
@@ -716,13 +840,12 @@
 }
 
 @media screen and (max-width: 720px) {
-    /* .inputItem .input :global .MuiInputBase-root {
-        height: 32px;
-    } */
-    /* .inputItem .input {
-        /* margin-top: 2px; */
-    /* height: 32px;
-    } */
+    .purchasePhotoBlock {
+        height: 184px;
+    }
+    .purchasePhoto {
+        max-width: 200px;
+    }
     .inputItem .input > div > input {
         height: 0;
         padding-top: 20px;
@@ -810,6 +933,9 @@
     .infoRight {
         gap: 8px;
     }
+    .purchasePhotoInner {
+        height: 40%;
+    }
 }
 
 @media screen and (max-width: 560px) {
@@ -839,6 +965,9 @@
     .buttons {
         margin-top: 20px;
     }
+    .purchasePhotoInner {
+        height: 35%;
+    }
 }
 
 @media screen and (max-width: 530px) {
@@ -849,10 +978,12 @@
     .confirmPhoneButton {
         margin-top: 30px;
     }
-    /* .inputItem .input {
-        height: 32px;
-        margin-top: 2px;
-    } */
+    .purchasePhotoBlock {
+        height: 154px;
+    }
+    .purchasePhoto {
+        max-width: 170px;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -879,13 +1010,6 @@
     .orderInputValueWrapper {
         width: 400px;
     }
-    /* .inputItem .input {
-        height: 32px;
-    } */
-    /* .inputItem .input :global .MuiInputBase-root {
-        height: 33px;
-        margin-top: -1px;
-    } */
     .orderInformationTitle {
         margin-bottom: 30px;
     }
@@ -906,13 +1030,9 @@
         display: flex;
         justify-content: center;
     }
-}
-
-@media screen and (max-width: 460px) {
-    /* .inputItem .input {
-        height: 32px;
-        margin-top: 2px;
-    } */
+    .purchasePhotoInner {
+        height: 30%;
+    }
 }
 
 @media screen and (max-width: 430px) {
@@ -948,5 +1068,8 @@
     }
     .orderInputValue {
         max-width: 250px;
+    }
+    .purchasePhotoInner {
+        height: 29%;
     }
 }

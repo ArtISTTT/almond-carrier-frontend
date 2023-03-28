@@ -90,7 +90,6 @@ const OrderChat: React.FC<IProps> = ({
             socket.on(
                 'new-message',
                 ({ message }: { message: IMessageServer }) => {
-                    console.log(message);
                     setMessages(prev =>
                         prev.concat(parseMessages(user.id, [message]))
                     );

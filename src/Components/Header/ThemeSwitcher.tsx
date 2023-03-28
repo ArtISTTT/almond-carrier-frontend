@@ -1,7 +1,6 @@
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-import React from 'react';
-import { toggleTheme } from 'src/helpers/changeTheme';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import React, { useEffect } from 'react';
 import { Theme } from 'src/interfaces/settings';
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks';
 import { selectTheme } from 'src/redux/selectors/user';
@@ -10,7 +9,19 @@ import styles from '../../../styles/mainLayout.module.css';
 
 const ThemeSwitcher = () => {
     const dispatch = useAppDispatch();
+    const localTheme = localStorage.getItem('theme');
     const currentTheme = useAppSelector(selectTheme);
+
+    useEffect(() => {
+        if (localTheme !== currentTheme) {
+            dispatch(
+                changeTheme({
+                    theme: localTheme as Theme,
+                    updateLocalStorage: true,
+                })
+            );
+        }
+    }, []);
 
     const toggleThemeClick = () => {
         const changedTheme =
@@ -19,18 +30,17 @@ const ThemeSwitcher = () => {
         dispatch(
             changeTheme({
                 theme: changedTheme,
+                updateLocalStorage: true,
             })
         );
-        localStorage.setItem('theme', changedTheme);
-        toggleTheme(changedTheme);
     };
 
     return (
         <span onClick={toggleThemeClick} className={styles.themeBlock}>
             {currentTheme === Theme.DARK ? (
-                <Brightness7Icon className={styles.themeIcon} />
+                <LightModeIcon className={styles.themeIcon} />
             ) : (
-                <Brightness4Icon className={styles.themeIcon} />
+                <DarkModeIcon className={styles.themeIcon} />
             )}
         </span>
     );

@@ -46,7 +46,7 @@
     overflow: visible;
 }
 
-.frindlyAvatar::before {
+/* .frindlyAvatar::before {
     position: absolute;
     content: 'Beta';
     font-size: 14px;
@@ -54,7 +54,7 @@
     bottom: -6px;
     right: -14px;
     color: var(--cTextPrimary);
-}
+} */
 
 .themeBlock {
     display: flex;
