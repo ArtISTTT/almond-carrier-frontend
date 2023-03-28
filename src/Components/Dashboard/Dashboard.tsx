@@ -12,7 +12,6 @@ import styles from '../../../styles/Dashboard.module.css';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 import { selectMyLiveOrders } from '../../redux/selectors/orders';
-import DropFileInput from '../drop-file-input/DropFileInput';
 import EmptyBlock from '../EmptyComponents/EmptyOrderBlock';
 import UserLayout from '../Layouts/User';
 import CircleLoader from '../Loaders/CircleLoader';

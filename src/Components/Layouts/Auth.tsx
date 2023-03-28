@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { toggleTheme } from 'src/helpers/changeTheme';
-import { boolean } from 'yup';
 import { getCurrentUser } from '../../api/auth';
 import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
 import { IGetCurrentUserReturn } from '../../interfaces/api/auth';

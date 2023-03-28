@@ -1,9 +1,7 @@
 import { Button } from '@mui/material';
-import React, { useContext, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { sendPurchaseData } from 'src/api/order';
 import styles from '../../../styles/drop-file-input.module.css';
-import { OpenAlertContext } from '../Layouts/Snackbar';
 import { ImageConfig } from './ImageConfig';
 
 interface IProps {
