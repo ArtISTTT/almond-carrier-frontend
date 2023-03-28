@@ -7,11 +7,13 @@ export const ReceiverPopupSchema = Yup.object().shape({
     productUri: Yup.string().url('mustBeLink'),
     rewardAmount: Yup.number()
         .nullable()
-        .min(1, 'correctProductPrice')
+        .min(500, 'theMinimumValue')
+        .max(30000, 'theMaximumValue')
         .required('required'),
     productAmount: Yup.number()
         .nullable()
         .min(0, 'correctProductPrice')
+        .max(150000, 'theMaximumValueProductAmount')
         .required('required'),
     productWeight: Yup.number()
         .nullable()
@@ -26,9 +28,9 @@ export const CarrierPopupSchema = Yup.object().shape({
     fromLocation: Yup.string().min(1).required('required'),
     rewardAmount: Yup.number()
         .nullable()
-        .min(1, 'correctProductPrice')
+        .min(500, 'theMinimumValue')
+        .max(30000, 'theMaximumValue')
         .required('required'),
-
     carrierMaxWeight: Yup.number()
         .nullable()
         .min(0.1, 'greaterWeight')
