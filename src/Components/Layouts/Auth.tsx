@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { toggleTheme } from 'src/helpers/changeTheme';
+import { boolean } from 'yup';
 import { getCurrentUser } from '../../api/auth';
 import { parseUserDataFromApi } from '../../helpers/parseUserDataFromApi';
 import { IGetCurrentUserReturn } from '../../interfaces/api/auth';
@@ -62,7 +63,7 @@ const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
         const savedTheme = localStorage.getItem('theme') as Theme | undefined;
 
         if (savedTheme) {
-            changeTheme({ theme: savedTheme });
+            changeTheme({ theme: savedTheme, updateLocalStorage: true });
         }
 
         toggleTheme(savedTheme ?? DEFAULT_THEME);

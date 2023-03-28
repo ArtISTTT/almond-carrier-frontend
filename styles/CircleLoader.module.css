@@ -56,10 +56,10 @@
     position: absolute;
     width: 56px;
     height: 56px;
-    border: 8px solid var(--cBg);
+    border: 8px solid var(--cBorderPrimary);
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: var(--cBg) transparent transparent transparent;
+    border-color: var(--cBorderPrimary) transparent transparent transparent;
 }
 
 .ldsRingReview div:nth-child(1) {

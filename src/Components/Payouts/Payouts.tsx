@@ -89,10 +89,10 @@ const Payouts = () => {
                 </div>
             ) : (
                 <>
-                    {currentPagePayouts.length === 0 && (
+                    {currentPagePayouts.length > 0 && (
                         <PaymentsTable payouts={currentPagePayouts} />
                     )}
-                    {currentPagePayouts.length > 0 && (
+                    {currentPagePayouts.length === 0 && (
                         <div className={styles.emptyPayoutsWrapper}>
                             <EmptyBlock
                                 text={'youHaventMadeAnyDealsYet'}
