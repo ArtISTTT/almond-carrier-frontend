@@ -8,7 +8,6 @@ import React, { useContext, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     agreeWithChanges,
-    completeOrder,
     confirmDeal,
     disagreeWithChanges,
     suggestChangesByCarrier,
@@ -33,6 +32,7 @@ import OrderInputItem, {
     ViewType,
 } from './OrderInputItem';
 import OrderPayoutInfoBlock from './OrderPayoutInfoBlock';
+import OrderProductDeliver from './OrderProductDeliver';
 import OrderReceiverPhotoConfirmation from './OrderReceiverPhotoConfirmation';
 import OrderReview from './OrderReview';
 import ReviewPopup from './ReviewPopup';
@@ -243,27 +243,6 @@ const OrderInformation: React.FC<IProps> = ({
         }
 
         formik.setSubmitting(false);
-    };
-
-    const completeOrderClick = async () => {
-        const data = await completeOrder({
-            orderId: order.id,
-        });
-
-        if (data.ok) {
-            triggerOpen({
-                severity: 'success',
-                text: t('successfullyConfirmed'),
-            });
-        } else {
-            triggerOpen({
-                severity: 'error',
-                text: data.error as string,
-            });
-        }
-
-        formik.setSubmitting(false);
-        await updateOrder(true);
     };
 
     const confirmDealClick = async () => {
@@ -816,42 +795,36 @@ const OrderInformation: React.FC<IProps> = ({
                                     )}
                                 </>
                             )}
-
-                        {suggestedChanged && (
-                            <div className={styles.buttons}>
-                                <Button
-                                    className={styles.buttonItem}
-                                    variant='contained'
-                                    color='success'
-                                    onClick={agreeWithChangesClick}
-                                >
-                                    {t('agreeWithChanges')}
-                                </Button>
-                                <Button
-                                    className={styles.buttonItem}
-                                    variant='contained'
-                                    color='error'
-                                    onClick={disagreeWithChangesClick}
-                                >
-                                    {t('rejectChanges')}
-                                </Button>
-                            </div>
-                        )}
-                        {order.status === OrderStatus.awaitingDelivery &&
-                            viewType === ViewType.receiver && (
-                                <div className={styles.buttons}>
-                                    <Button
-                                        className={styles.buttonItem}
-                                        variant='contained'
-                                        color='success'
-                                        onClick={completeOrderClick}
-                                    >
-                                        {t('productDelivered')}
-                                    </Button>
-                                </div>
-                            )}
                     </form>
                 )}
+                {suggestedChanged && (
+                    <div className={styles.buttons}>
+                        <Button
+                            className={styles.buttonItem}
+                            variant='contained'
+                            color='success'
+                            onClick={agreeWithChangesClick}
+                        >
+                            {t('agreeWithChanges')}
+                        </Button>
+                        <Button
+                            className={styles.buttonItem}
+                            variant='contained'
+                            color='error'
+                            onClick={disagreeWithChangesClick}
+                        >
+                            {t('rejectChanges')}
+                        </Button>
+                    </div>
+                )}
+                {order.status === OrderStatus.awaitingDelivery &&
+                    viewType === ViewType.receiver && (
+                        <OrderProductDeliver
+                            formik={formik}
+                            updateOrder={updateOrder}
+                            orderId={order.id}
+                        />
+                    )}
             </div>
         </>
     );

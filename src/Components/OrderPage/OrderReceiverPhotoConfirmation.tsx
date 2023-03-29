@@ -114,7 +114,7 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
                                             ] !== 'pdf'
                                         ) {
                                             return (
-                                                <>
+                                                <div key={link}>
                                                     <div
                                                         className={
                                                             styles.purchasePhotoBlock
@@ -140,7 +140,7 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
                                                             }
                                                         />
                                                     )}
-                                                </>
+                                                </div>
                                             );
                                         }
 
@@ -157,9 +157,12 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
                                         'pdf'
                                     ) {
                                         return (
-                                            <Link target='_blank' href={link}>
+                                            <Link
+                                                key={link}
+                                                target='_blank'
+                                                href={link}
+                                            >
                                                 <div
-                                                    key={link}
                                                     className={
                                                         purchaseStyles.dropFilePreviewItem
                                                     }

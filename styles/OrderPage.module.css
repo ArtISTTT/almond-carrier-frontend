@@ -503,9 +503,84 @@
     border-radius: 15px;
 }
 
+.productDeliveredBlock {
+    margin-top: 16px;
+    max-width: 340px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 9px;
+    background-color: var(--cBgThird);
+    box-shadow: 0px 5px 10px 2px var(--cBoxShadowSecondary);
+}
+
+.productDeliveredBlockTextSuccess {
+    color: var(--cTextSuccess);
+}
+
+.productDeliveredBlockTextError {
+    color: var(--cTextError);
+}
+
+.productDeliveredBlockSuccess {
+    border: 1px solid var(--cTextSuccess);
+}
+
+.productDeliveredBlockError {
+    border: 1px solid var(--cTextError);
+}
+
+.productDeliveredOpenButton {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 15px;
+}
+
+.productDeliveredInput {
+    margin-top: 15px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.productDeliveredInput > span {
+    font-size: 12px;
+    cursor: pointer;
+    color: var(--cTextPrimary);
+}
+
+.productDeliveredInput > span:hover {
+    text-decoration: underline;
+}
+
+.productDeliveredInput > div > div {
+    height: 35px;
+    font-size: 16px;
+}
+
+.peoductDeliveredTitle {
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.acceptButtons {
+    display: flex;
+    justify-content: center;
+    margin: 8px;
+    margin-top: 16px;
+}
+
 .buttons {
     display: flex;
-    margin-top: 32px;
+    justify-content: flex-start;
+    margin-top: 16px;
+    max-width: 350px;
+    width: 100%;
     gap: 24px;
 }
 
@@ -761,6 +836,28 @@
 
 .purchasePhotoOpened {
     height: 100%;
+}
+
+.productDeliveredContentFirst {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.productDeliveredContentSecond {
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.productDeliveredHelperText {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.productDeliveredIcon {
+    font-size: 32px;
+    color: yellow;
 }
 
 @media screen and (max-width: 1283px) {
