@@ -144,7 +144,7 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
                                             );
                                         }
 
-                                        return '';
+                                        return null;
                                     })}
                             </div>
 
@@ -157,7 +157,11 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
                                         'pdf'
                                     ) {
                                         return (
-                                            <Link target='_blank' href={link}>
+                                            <Link
+                                                target='_blank'
+                                                href={link}
+                                                key={link}
+                                            >
                                                 <div
                                                     key={link}
                                                     className={
@@ -183,7 +187,7 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
                                         );
                                     }
 
-                                    return '';
+                                    return null;
                                 })}
                         </div>
                         {isReceiverDataBlockDisabled && (
