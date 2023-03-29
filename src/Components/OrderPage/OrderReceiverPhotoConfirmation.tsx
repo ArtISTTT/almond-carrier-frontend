@@ -144,7 +144,7 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
                                             );
                                         }
 
-                                        return '';
+                                        return null;
                                     })}
                             </div>
 
@@ -186,7 +186,7 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
                                         );
                                     }
 
-                                    return '';
+                                    return null;
                                 })}
                         </div>
                         {isReceiverDataBlockDisabled && (
