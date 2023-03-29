@@ -12,6 +12,7 @@ import dayjs from 'dayjs';
 import CircleLoader from '../Loaders/CircleLoader';
 import { LoaderColors } from 'src/interfaces/loader';
 import { OrderStatus } from 'src/interfaces/profile';
+import {motion} from 'framer-motion'
 
 const keys = {
     ENTER: 13,
@@ -174,14 +175,16 @@ const MessagesPanel: React.FC<IProps> = ({
                         multiline
                         maxRows={3}
                     />
-                    <Button type='submit'>
-                        <SendIcon
-                            type='submit'
-                            color='primary'
-                            className={styles.sendIcon}
-                            sx={{ fontSize: 40 }}
-                        />
-                    </Button>
+                    <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                        <Button type='submit'>
+                            <SendIcon
+                                type='submit'
+                                color='primary'
+                                className={styles.sendIcon}
+                                sx={{ fontSize: 40 }}
+                            />
+                        </Button>
+                    </motion.div>
                 </form>
             )}
         </div>

@@ -2,6 +2,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import SearchIcon from '@mui/icons-material/Search';
 import { Avatar, Button, Link as MUILink } from '@mui/material';
 import cn from 'classnames';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
@@ -17,6 +18,7 @@ import { SocketIoContext } from '../Layouts/SocketIo';
 import NotificationsMenu from '../Notifications/NotificationsMenu';
 import HeaderAvatar from './Avatar';
 import MobileMenu from './MobileMenu';
+import ThemeSwitcher from './ThemeSwitcher';
 
 type IProps = {
     showContinueIfAuthorized: boolean;
@@ -80,54 +82,41 @@ const Header: React.FC<IProps> = ({
                     />
                 </div>
 
-                {!isAuthorized && (
-                    <div className={cn(styles.leftMenuLinks)}>
-                        <SearchIcon className={styles.headerIcon} />
+                <div className={cn(styles.leftMenuLinksAuth)}>
+                    {isAuthorized && (
                         <MUILink
-                            href={navigateTo.ORDER_SEARCH}
-                            className={styles.link}
+                            href={navigateTo.DASHBOARD}
+                            className={styles.linkBlock}
                             component={LinkBehaviour}
                             underline='none'
                         >
-                            {t('orderSearch')}
-                        </MUILink>
-                    </div>
-                )}
-                {isAuthorized && (
-                    <div className={cn(styles.leftMenuLinksAuth)}>
-                        <div className={styles.linkBlock}>
                             <DashboardIcon className={styles.headerIcon} />
-                            <MUILink
-                                href={navigateTo.DASHBOARD}
-                                className={styles.link}
-                                component={LinkBehaviour}
-                                underline='none'
-                            >
+                            <span className={styles.link}>
                                 {t('dashboard')}
-                            </MUILink>
-                        </div>
-                        <div className={styles.linkBlock}>
-                            <SearchIcon className={styles.headerIcon} />
-                            <MUILink
-                                href={navigateTo.ORDER_SEARCH}
-                                className={styles.link}
-                                component={LinkBehaviour}
-                                underline='none'
-                            >
-                                {t('orderSearch')}
-                            </MUILink>
-                        </div>
-                    </div>
-                )}
+                            </span>
+                        </MUILink>
+                    )}
+                    <MUILink
+                        underline='none'
+                        href={navigateTo.ORDER_SEARCH}
+                        component={LinkBehaviour}
+                        className={styles.linkBlock}
+                    >
+                        <span className={styles.headerIconNoAuthorized}>
+                            <SearchIcon />
+                        </span>
+                        <span className={styles.link}>{t('orderSearch')}</span>
+                    </MUILink>
+                </div>
             </div>
             <div className={styles.rightMenu}>
-                <div className={styles.rightMenuButtons}>
-                    {!isAuthorized && showSignInOutIfUnauthorized && (
-                        <>
-                            <Button
-                                className={styles.button}
-                                variant='outlined'
-                            >
+                <div className={styles.themeSwitcher}>
+                    <ThemeSwitcher />
+                </div>
+                {!isAuthorized && showSignInOutIfUnauthorized && (
+                    <div className={styles.rightMenuButtons}>
+                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                            <Button className={styles.button} variant='outlined'>
                                 <MUILink
                                     component={LinkBehaviour}
                                     href={navigateTo.SIGNIN}
@@ -135,10 +124,9 @@ const Header: React.FC<IProps> = ({
                                     {t('signIn')}
                                 </MUILink>
                             </Button>
-                            <Button
-                                className={styles.button}
-                                variant='outlined'
-                            >
+                        </motion.div>
+                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                            <Button className={styles.button} variant='outlined'>
                                 <MUILink
                                     component={LinkBehaviour}
                                     href={navigateTo.SIGNUP}
@@ -146,9 +134,9 @@ const Header: React.FC<IProps> = ({
                                     {t('signUp')}
                                 </MUILink>
                             </Button>
-                        </>
-                    )}
-                </div>
+                        </motion.div>
+                    </div>
+                )}
                 {isAuthorized && (
                     <div className={styles.authoridedIcons}>
                         <NotificationsMenu

@@ -18,6 +18,7 @@ import { IUserNotification } from 'src/interfaces/notifications';
 import { deleteAllNotifications } from 'src/api/notifications';
 import { useAppSelector } from 'src/redux/hooks';
 import { selectUser } from 'src/redux/selectors/user';
+import {motion} from 'framer-motion'
 
 interface IProps {
     notifications: IUserNotification[];
@@ -46,22 +47,29 @@ const NotificationsMenu: React.FC<IProps> = ({
     const handleClose = () => setOpen(false);
     const handleToggle = () => setOpen(prevOpen => !prevOpen);
 
+    const [move, setMove] = React.useState(false);
+
     return (
         <>
-            <Badge
-                className={styles.notificationsBadge}
-                color='primary'
-                badgeContent={notifications.length}
-            >
-                <NotificationsNoneIcon
-                    ref={anchorRef}
-                    onClick={handleToggle}
-                    aria-haspopup='true'
-                    aria-controls={open ? 'menu-list-grow' : undefined}
-                    className={styles.notificationsIconHeader}
-                    sx={{ width: 30, height: 30, cursor: 'pointer' }}
-                />
-            </Badge>
+            <motion.div animate={{x: move ? [0, 3, -3, 0] : 0}}
+            onClick={() => setMove(!move)}
+            transition={{duration: 0.25}}>
+                <Badge
+                    className={styles.notificationsBadge}
+                    color='primary'
+                    badgeContent={notifications.length}
+                >
+                    <NotificationsNoneIcon
+                        ref={anchorRef}
+                        onClick={handleToggle}
+                        aria-haspopup='true'
+                        aria-controls={open ? 'menu-list-grow' : undefined}
+                        className={styles.notificationsIconHeader}
+                        sx={{ width: 30, height: 30, cursor: 'pointer' }}
+                    />
+                </Badge>
+            </motion.div>
+
 
             <Popper
                 open={open}

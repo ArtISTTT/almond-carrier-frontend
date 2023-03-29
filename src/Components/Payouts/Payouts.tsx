@@ -10,6 +10,7 @@ import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { useGetBanks } from 'src/redux/hooks/useGetBanks';
 import { useGetCurrentPagePayouts } from 'src/redux/hooks/useGetCurrentPage';
 import styles from '../../../styles/Payments.module.css';
+import EmptyBlock from '../EmptyComponents/EmptyOrderBlock';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import CircleLoader from '../Loaders/CircleLoader';
 import PaymentsTable from './PayoutsTable';
@@ -91,7 +92,14 @@ const Payouts = () => {
                     {currentPagePayouts.length > 0 && (
                         <PaymentsTable payouts={currentPagePayouts} />
                     )}
-                    {currentPagePayouts.length === 0 && <div>qwe</div>}
+                    {currentPagePayouts.length === 0 && (
+                        <div className={styles.emptyPayoutsWrapper}>
+                            <EmptyBlock
+                                text={'youHaventMadeAnyDealsYet'}
+                                helperText={'itsGoodTimeToStart'}
+                            />
+                        </div>
+                    )}
                 </>
             )}
             {totalCountPages > 1 && (

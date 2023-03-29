@@ -1,9 +1,17 @@
-import React from 'react';
-import styles from '../../../styles/EmptyOrders.module.css';
 import { Typography } from '@mui/material';
 import { useTranslation } from 'next-i18next';
+import React from 'react';
+import styles from '../../../styles/EmptyOrders.module.css';
 
-const EmptyOrdersBlock = () => {
+type IProps = {
+    text?: string;
+    helperText?: string;
+};
+
+const EmptyBlock: React.FC<IProps> = ({
+    text = 'youHaveNoOrdersYet',
+    helperText = 'toCreateAnOrderYouCanClick',
+}) => {
     const { t } = useTranslation();
 
     return (
@@ -13,17 +21,17 @@ const EmptyOrdersBlock = () => {
                 variant='h4'
                 component='h4'
             >
-                {t('youHaveNoOrdersYet')}
+                {t(text)}
             </Typography>
             <Typography
                 className={styles.secondText}
                 variant='h5'
                 component='h5'
             >
-                {t('toCreateAnOrderYouCanClick')}
+                {t(helperText)}
             </Typography>
         </div>
     );
 };
 
-export default EmptyOrdersBlock;
+export default EmptyBlock;

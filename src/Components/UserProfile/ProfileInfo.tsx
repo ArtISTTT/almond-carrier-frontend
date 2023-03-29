@@ -9,6 +9,7 @@ import { IGetUser } from 'src/interfaces/api/user';
 import { Genders } from 'src/interfaces/settings';
 import usePlural from 'src/redux/hooks/usePlural';
 import styles from '../../../styles/ProfileForNewUser.module.css';
+import {motion} from "framer-motion"
 
 interface IProps {
     user: IGetUser;
@@ -20,6 +21,7 @@ const genders = {
     [Genders.OTHER]: 'other',
     [Genders.NONE]: 'none',
 };
+
 
 const ProfileInfo: React.FC<IProps> = ({ user }) => {
     const { t } = useTranslation();
@@ -128,36 +130,38 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                     </Typography> */}
                 </div>
                 <div className={styles.infoBlock}>
-                    <div className={styles.infoItem}>
-                        <Typography
-                            variant='h4'
-                            component='h4'
-                            className={styles.infoTitle}
-                        >
-                            {t('allOrders')}
-                        </Typography>
-                        <Typography
-                            variant='h4'
-                            component='h4'
-                            className={styles.infoParam}
-                        >
-                            {plural(user?.completedOrders, [
-                                t('oneOrder'),
-                                t('twoFourOrders'),
-                                t('elevenOrders'),
-                            ])}
-                        </Typography>
-                        <Typography
-                            variant='h6'
-                            component='h6'
-                            className={styles.secondInfoParam}
-                        >
-                            <span>{t('carrier')}</span>:{' '}
-                            {user?.completedOrdersAsCarrier} /{' '}
-                            <span>{t('receiver')}</span>:{' '}
-                            {user?.completedOrdersAsReceiver}
-                        </Typography>
-                    </div>
+                        <div className={styles.infoItem}>
+                            <motion.div whileHover={{scale: 1.05}}>
+                                <Typography
+                                    variant='h4'
+                                    component='h4'
+                                    className={styles.infoTitle}
+                                >
+                                    {t('allOrders')}
+                                </Typography>
+                                <Typography
+                                    variant='h4'
+                                    component='h4'
+                                    className={styles.infoParam}
+                                >
+                                    {plural(user?.completedOrders, [
+                                        t('oneOrder'),
+                                        t('twoFourOrders'),
+                                        t('elevenOrders'),
+                                    ])}
+                                </Typography>
+                                <Typography
+                                    variant='h6'
+                                    component='h6'
+                                    className={styles.secondInfoParam}
+                                >
+                                    <span>{t('carrier')}</span>:{' '}
+                                    {user?.completedOrdersAsCarrier} /{' '}
+                                    <span>{t('receiver')}</span>:{' '}
+                                    {user?.completedOrdersAsReceiver}
+                                </Typography>
+                            </motion.div>
+                        </div>
                     {/* <div className={styles.infoItem}>
                         <Typography
                             variant='h4'
@@ -175,26 +179,28 @@ const ProfileInfo: React.FC<IProps> = ({ user }) => {
                         </Typography>
                     </div> */}
                     <div className={styles.infoItem}>
-                        <Typography
-                            variant='h4'
-                            component='h4'
-                            className={styles.infoTitle}
-                        >
-                            {t('activityInLastDays')}
-                        </Typography>
-                        <Typography
-                            variant='h4'
-                            component='h4'
-                            className={styles.infoParam}
-                        >
-                            <>
-                                {plural(user?.ordersInLastMonth, [
-                                    t('oneOrder'),
-                                    t('twoFourOrders'),
-                                    t('elevenOrders'),
-                                ])}
-                            </>
-                        </Typography>
+                        <motion.div whileHover={{scale: 1.05}}>
+                            <Typography
+                                variant='h4'
+                                component='h4'
+                                className={styles.infoTitle}
+                            >
+                                {t('activityInLastDays')}
+                            </Typography>
+                            <Typography
+                                variant='h4'
+                                component='h4'
+                                className={styles.infoParam}
+                            >
+                                <>
+                                    {plural(user?.ordersInLastMonth, [
+                                        t('oneOrder'),
+                                        t('twoFourOrders'),
+                                        t('elevenOrders'),
+                                    ])}
+                                </>
+                            </Typography>
+                        </motion.div>
                     </div>
                     {/* <div className={styles.infoItem}>
                         <Typography

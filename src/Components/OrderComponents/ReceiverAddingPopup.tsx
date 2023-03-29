@@ -1,19 +1,20 @@
-import styles from '../../../styles/Popup.module.css';
-import React, { useContext } from 'react';
 import { Button, InputAdornment, TextField } from '@mui/material';
-import { ReceiverPopupSchema } from '../../schemas/PopupSchema';
-import { ICreateOrderReciever } from '../../interfaces/order';
-import RegionAutocomplete from '../Common/RegionAutocomplete';
-import { OpenAlertContext } from '../Layouts/Snackbar';
-import { addOrderAsAReceiver } from '../../api/order';
+import { Stack } from '@mui/system';
+import cn from 'classnames';
+import { useFormik } from 'formik';
+import { motion } from 'framer-motion';
+import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { IBounds } from 'src/interfaces/geometry';
 import { Currency } from 'src/interfaces/settings';
 import { useAppSelector } from 'src/redux/hooks';
-import { useTranslation } from 'react-i18next';
-import { Stack } from '@mui/system';
-import { useFormik } from 'formik';
+import styles from '../../../styles/Popup.module.css';
+import { addOrderAsAReceiver } from '../../api/order';
+import { ICreateOrderReciever } from '../../interfaces/order';
+import { ReceiverPopupSchema } from '../../schemas/PopupSchema';
+import RegionAutocomplete from '../Common/RegionAutocomplete';
+import { OpenAlertContext } from '../Layouts/Snackbar';
 import Popup from './Popup';
-import cn from 'classnames';
-import { IBounds } from 'src/interfaces/geometry';
 
 interface IProps {
     togglePopup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -83,7 +84,6 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
     const formik = useFormik({
         initialValues: defaultValues,
         onSubmit: addOrderFunc,
-
         validationSchema: ReceiverPopupSchema,
         validateOnBlur: false,
         validateOnChange: false,
@@ -292,14 +292,21 @@ const ReceiverAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                             )}
                         />
                     </div>
-                    <Button
-                        variant='contained'
-                        className={styles.confirmButton}
-                        type='submit'
-                        disabled={formik.isSubmitting}
-                    >
-                        {t('orderItem')}
-                    </Button>
+                    <div className={styles.alignCenter}>
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <Button
+                                variant='contained'
+                                className={styles.confirmButton}
+                                type='submit'
+                                disabled={formik.isSubmitting}
+                            >
+                                {t('orderItem')}
+                            </Button>
+                        </motion.div>
+                    </div>
                 </Stack>
             </form>
         </Popup>

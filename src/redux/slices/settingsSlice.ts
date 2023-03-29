@@ -73,13 +73,21 @@ export const settingsSlice = createSlice({
                 localStorage.setItem('language', action.payload.language);
             }
         },
+
         changeTheme: (
             state,
             action: PayloadAction<{
                 theme: Theme;
+                updateLocalStorage: boolean;
             }>
         ) => {
             state.generalSettings.theme = action.payload.theme;
+
+            toggleTheme(action.payload.theme);
+
+            if (action.payload.updateLocalStorage) {
+                localStorage.setItem('theme', action.payload.theme);
+            }
         },
     },
 });

@@ -10,6 +10,10 @@ export const useConvertStatusToText = () => {
                 return t('cancelled');
             case OrderStatus.itemRecieved:
                 return t('itemReceived');
+            case OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation:
+                return t('awaitingRecieverItemPurchasePhotosConfirmation');
+            case OrderStatus.awaitingPurchase:
+                return t('awaitingPurchase');
             case OrderStatus.awaitingPayout:
                 return t('awaitingPayout');
             case OrderStatus.awaitingDelivery:

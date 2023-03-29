@@ -53,6 +53,10 @@
     text-align: center;
 }
 
+.alignCenter {
+    text-align: center;
+}
+
 .inputItem {
     display: flex;
     flex-direction: column;
@@ -97,6 +101,10 @@
 
 .input > div > input {
     height: 6px;
+}
+
+.input > div > input::placeholder {
+    color: var(--cTextThird);
 }
 
 .descriptionInput :global .MuiInputBase-root {

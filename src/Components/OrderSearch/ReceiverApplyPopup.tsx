@@ -14,6 +14,7 @@ import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IBounds } from 'src/interfaces/geometry';
+import {motion} from 'framer-motion'
 import { navigateTo } from 'src/interfaces/navigate';
 import { Currency } from 'src/interfaces/settings';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
@@ -298,13 +299,15 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         />
                     </div>
                 </Stack>
-                <Button
-                    type='submit'
-                    className={styles.carrierApplyButton}
-                    variant='contained'
-                >
-                    {t('applyToOrder')}
-                </Button>
+                <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                    <Button
+                        type='submit'
+                        className={styles.carrierApplyButton}
+                        variant='contained'
+                    >
+                        {t('applyToOrder')}
+                    </Button>
+                </motion.div>
             </form>
         </ApplyPopup>
     );

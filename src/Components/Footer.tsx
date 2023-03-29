@@ -20,6 +20,7 @@ import { Language } from '../interfaces/settings';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { changeLanguage } from '../redux/slices/settingsSlice';
 import { LinkBehaviour } from './Common/LinkBehaviour';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
     const dispatch = useAppDispatch();
@@ -135,13 +136,13 @@ const Footer = () => {
                         >
                             {t('about')}
                         </MUILink> */}
-                        <MUILink
+                        {/* <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
                             href={navigateTo.FOUNDERS}
                         >
                             {t('founders')}
-                        </MUILink>
+                        </MUILink> */}
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
@@ -215,22 +216,31 @@ const Footer = () => {
                     <div className={styles.rightsText}>{t('copyright')}</div>
                 </div>
                 <div className={styles.icons}>
-                    <MUILink
-                        className={styles.footerIcon}
-                        component={LinkBehaviour}
-                        target='_blank'
-                        href='mailto:support@friendlycarrier.com'
-                    >
-                        <EmailIcon sx={{ fontSize: 30 }} />
-                    </MUILink>
-                    <MUILink
-                        className={styles.footerIcon}
-                        component={LinkBehaviour}
-                        target='_blank'
-                        href='https://t.me/friendlycarrier'
-                    >
-                        <TelegramIcon sx={{ fontSize: 30 }} />
-                    </MUILink>
+                 
+                    <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                        <MUILink
+                            className={styles.footerIcon}
+                            component={LinkBehaviour}
+                            target='_blank'
+                            href='mailto:support@friendlycarrier.com'
+                        >
+                            <EmailIcon sx={{ fontSize: 30 }} />
+                        </MUILink> 
+                    </motion.div>
+
+                    <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                        <MUILink
+                            className={styles.footerIcon}
+                            component={LinkBehaviour}
+                            target='_blank'
+                            href='https://t.me/friendlycarrier'
+                        >
+                            <TelegramIcon sx={{ fontSize: 30 }} />
+                        </MUILink>
+                    </motion.div>
+
+
+
                     {/* <MUILink
                         className={styles.footerIcon}
                         component={LinkBehaviour}

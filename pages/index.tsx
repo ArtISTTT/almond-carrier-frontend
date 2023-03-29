@@ -233,7 +233,7 @@ export default function Welcome() {
                         <motion.div
                             initial={{ opacity: 0, x: -100 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.5, duration: 1 }}
+                            transition={{ duration: 1 }}
                             viewport={{ once: true }}
                         >
                             <div className={styles.stepBlock}>
@@ -299,7 +299,7 @@ export default function Welcome() {
                         <motion.div
                             initial={{ opacity: 0, x: 100 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.5, duration: 1 }}
+                            transition={{ duration: 1 }}
                             viewport={{ once: true }}
                         >
                             <div
@@ -358,7 +358,7 @@ export default function Welcome() {
                         <motion.div
                             initial={{ opacity: 0, x: -100 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.5, duration: 1 }}
+                            transition={{ duration: 1 }}
                             viewport={{ once: true }}
                         >
                             <div
@@ -411,7 +411,7 @@ export default function Welcome() {
                         <motion.div
                             initial={{ opacity: 0, x: 100 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.5, duration: 1 }}
+                            transition={{ duration: 1 }}
                             viewport={{ once: true }}
                         >
                             <div

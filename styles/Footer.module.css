@@ -43,6 +43,10 @@
     display: none;
 }
 
+.icons {
+    display: flex;
+}
+
 .rightsText {
     display: flex;
     justify-content: center;

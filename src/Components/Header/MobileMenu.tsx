@@ -31,6 +31,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { IUserNotification } from 'src/interfaces/notifications';
 import NotificationsMenu from '../Notifications/NotificationsMenu';
+import ThemeSwitcher from './ThemeSwitcher';
 
 interface IProps {
     notifications: IUserNotification[];
@@ -104,6 +105,9 @@ const MobileMenu: React.FC<IProps> = ({
             <div className={styles.mobileMenuWrapper}>
                 {isAuthorized && (
                     <div className={cn(styles.mobileMenuContent)}>
+                        <div className={styles.mobileThemeSwitcher}>
+                            <ThemeSwitcher />
+                        </div>
                         <NotificationsMenu
                             notifications={notifications}
                             setNotifications={setNotifications}
@@ -121,6 +125,9 @@ const MobileMenu: React.FC<IProps> = ({
                 )}
                 {!isAuthorized && showSignInOutIfUnauthorized && (
                     <>
+                        <div className={styles.mobileThemeSwitcher}>
+                            <ThemeSwitcher />
+                        </div>
                         <Button className={styles.button} variant='outlined'>
                             <MUILink
                                 component={LinkBehaviour}

@@ -11,6 +11,7 @@ import { selectIsAuthorized } from 'src/redux/selectors/user';
 import styles from '../../../styles/OrderSearch.module.css';
 import { IOrder } from '../../interfaces/order';
 import FastLoginPopup from './FastLoginPopup';
+import { motion } from 'framer-motion'
 
 type IProps = {
     isFastLoginPopupOpen: boolean;
@@ -173,6 +174,19 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({
                         {order.productWeight} {t('kg')}
                     </div>
                     <div className={cn(styles.part, styles.button)}>
+                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                            <Button
+                                onClick={openPopupFunc}
+                                variant='contained'
+                                className={styles.applyBtn}
+                            >
+                                {t('apply')}
+                            </Button>
+                        </motion.div>
+                    </div>
+                </div>
+                <div className={styles.hidingButton}>
+                    <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
                         <Button
                             onClick={openPopupFunc}
                             variant='contained'
@@ -180,16 +194,7 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({
                         >
                             {t('apply')}
                         </Button>
-                    </div>
-                </div>
-                <div className={styles.hidingButton}>
-                    <Button
-                        onClick={openPopupFunc}
-                        variant='contained'
-                        className={styles.applyBtn}
-                    >
-                        {t('apply')}
-                    </Button>
+                    </motion.div>
                 </div>
             </div>
         </>

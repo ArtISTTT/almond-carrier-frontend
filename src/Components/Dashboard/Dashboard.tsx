@@ -12,10 +12,11 @@ import styles from '../../../styles/Dashboard.module.css';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
 import { useLoadOwnOrders } from '../../redux/hooks/useLoadOwnOrders';
 import { selectMyLiveOrders } from '../../redux/selectors/orders';
-import EmptyOrdersBlock from '../EmptyComponents/Empty';
+import EmptyBlock from '../EmptyComponents/EmptyOrderBlock';
 import UserLayout from '../Layouts/User';
 import CircleLoader from '../Loaders/CircleLoader';
 import CarrierAddingPopup from '../OrderComponents/CarrierAddingPopup';
+import {motion} from "framer-motion"
 
 enum PopupType {
     none,
@@ -104,6 +105,7 @@ const Dashboard: React.FC = () => {
                     >
                         {t('liveOrders')}
                     </Typography>
+
                     <div className={styles.receiverContent}>
                         {isLoading ? (
                             <CircleLoader color={LoaderColors.PRIMARY} />
@@ -121,9 +123,7 @@ const Dashboard: React.FC = () => {
                                             order={order}
                                         />
                                     ))}
-                                    {orders.length === 0 && (
-                                        <EmptyOrdersBlock />
-                                    )}
+                                    {orders.length === 0 && <EmptyBlock />}
                                 </div>
                                 <div className={styles.newOrderButtonsWrapper}>
                                     {totalCountPages > 1 && (
@@ -136,25 +136,29 @@ const Dashboard: React.FC = () => {
                                         />
                                     )}
                                     <div className={styles.newOrderButtons}>
-                                        <Button
-                                            onClick={toggleReceiverPopup}
-                                            className={styles.newOrderButton}
-                                            variant='contained'
-                                        >
-                                            <AddIcon sx={{ fontSize: 22 }} />
-                                            {t('orderItem')}
-                                        </Button>
-                                        <Button
-                                            onClick={toggleCarrierPopup}
-                                            className={cn(
-                                                styles.newOrderButton,
-                                                styles.sending
-                                            )}
-                                            variant='contained'
-                                        >
-                                            <AddIcon sx={{ fontSize: 22 }} />
-                                            {t('sendItem')}
-                                        </Button>
+                                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                                            <Button
+                                                onClick={toggleReceiverPopup}
+                                                className={styles.newOrderButton}
+                                                variant='contained'
+                                            >
+                                                <AddIcon sx={{ fontSize: 22 }} />
+                                                {t('orderItem')}
+                                            </Button>
+                                        </motion.div>
+                                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                                            <Button
+                                                onClick={toggleCarrierPopup}
+                                                className={cn(
+                                                    styles.newOrderButton,
+                                                    styles.sending
+                                                )}
+                                                variant='contained'
+                                            >
+                                                <AddIcon sx={{ fontSize: 22 }} />
+                                                {t('sendItem')}
+                                            </Button>
+                                        </motion.div>
                                     </div>
                                 </div>
                             </div>

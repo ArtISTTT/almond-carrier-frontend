@@ -1,25 +1,26 @@
 import {
     Avatar,
     Button,
-    Typography,
-    TextField,
-    Stack,
     InputAdornment,
+    Stack,
+    TextField,
+    Typography,
 } from '@mui/material';
 import { useFormik } from 'formik';
-import React, { useContext } from 'react';
-import styles from '../../../styles/ApplyPopup.module.css';
-import { IOrder } from '../../interfaces/order';
-import ApplyPopup from './ApplyPopup';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { OpenAlertContext } from '../Layouts/Snackbar';
-import { applyOrderAsReceiver } from '../../api/order';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CarrierApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
-import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { navigateTo } from 'src/interfaces/navigate';
 import { Currency } from 'src/interfaces/settings';
 import { useAppSelector } from 'src/redux/hooks';
-import { navigateTo } from 'src/interfaces/navigate';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
+import { CarrierApplyPopupSchema } from 'src/schemas/ApplyPopupSchemas';
+import styles from '../../../styles/ApplyPopup.module.css';
+import { applyOrderAsReceiver } from '../../api/order';
+import { IOrder } from '../../interfaces/order';
+import { OpenAlertContext } from '../Layouts/Snackbar';
+import ApplyPopup from './ApplyPopup';
 
 interface IProps {
     closePopup: () => void;
@@ -286,13 +287,18 @@ const CarrierApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         }
                     />
                 </div>
-                <Button
-                    type='submit'
-                    className={styles.carrierApplyButton}
-                    variant='contained'
+                <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                 >
-                    {t('applyForOrder')}
-                </Button>
+                    <Button
+                        type='submit'
+                        className={styles.carrierApplyButton}
+                        variant='contained'
+                    >
+                        {t('applyForOrder')}
+                    </Button>
+                </motion.div>
             </form>
         </ApplyPopup>
     );

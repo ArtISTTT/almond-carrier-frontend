@@ -62,7 +62,7 @@ const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
         const savedTheme = localStorage.getItem('theme') as Theme | undefined;
 
         if (savedTheme) {
-            changeTheme({ theme: savedTheme });
+            changeTheme({ theme: savedTheme, updateLocalStorage: true });
         }
 
         toggleTheme(savedTheme ?? DEFAULT_THEME);
