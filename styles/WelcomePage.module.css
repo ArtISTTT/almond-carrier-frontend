@@ -15,6 +15,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
     color: var(--cTextPrimary);
 }
 
@@ -32,6 +33,20 @@
 
 .bannerTitle > span {
     color: var(--cTextPrimary);
+}
+
+.bannerTopLine {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    width: 250px;
+}
+
+.bannerBottomLine {
+    position: absolute;
+    bottom: -90px;
+    right: 0;
+    width: 320px;
 }
 
 .bannerContent {
@@ -297,6 +312,16 @@
     z-index: 3;
     top: 10px;
     right: 30px;
+}
+
+.formWrapper {
+    background-color: var(--cBgLandingMain);
+    padding: 40px 0;
+}
+
+.formBlcok {
+    max-width: 420px;
+    margin: 0 auto;
 }
 
 /* .title {

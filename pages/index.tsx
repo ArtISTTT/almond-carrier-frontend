@@ -70,6 +70,14 @@ export default function Welcome() {
                             src='static/images/main-page/new-landing-plane.png'
                         />
                     </div>
+                    <img
+                        className={styles.bannerTopLine}
+                        src='static/images/main-page/banner-top-line.png'
+                    />
+                    <img
+                        className={styles.bannerBottomLine}
+                        src='static/images/main-page/banner-bottom-line.png'
+                    />
                     {!isAuthorized && (
                         <div className={styles.fastSignUp}>
                             <Button
@@ -261,6 +269,20 @@ export default function Welcome() {
                         className={styles.stepsIcon}
                         src='static/images/main-page/white-landing-plane.png'
                     />
+                </div>
+                <div className={styles.formWrapper}>
+                    <div className={styles.formBlcok}>
+                        <div>Get started now!</div>
+                        <div>
+                            <div>first</div>
+                            <div>second</div>
+                        </div>
+                        <div>email</div>
+                        <div>date</div>
+                        <div>pass</div>
+                        <div>confirm</div>
+                        <Button>reg</Button>
+                    </div>
                 </div>
                 {/* <div className={styles.advantagesBlock}>
                     <Typography
