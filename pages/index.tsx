@@ -1,46 +1,20 @@
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import cn from 'classnames';
-import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { navigateTo } from 'src/interfaces/navigate';
 import { selectIsAuthorized } from 'src/redux/selectors/user';
 import MainLayout from '../src/Components/Layouts/MainLayout';
 import PrivateLayout from '../src/Components/Layouts/Private';
 import { privateTypes } from '../src/interfaces/private';
-import { EmailSchema } from '../src/schemas/EmailSchema';
 import styles from '../styles/WelcomePage.module.css';
 
-type IForm = {
-    email: string;
-};
-
 export default function Welcome() {
-    const router = useRouter();
     const { t } = useTranslation();
     const isAuthorized = useSelector(selectIsAuthorized);
-
-    const handleSubmit = (form: IForm) => {
-        router.push({
-            pathname: navigateTo.SIGNUP,
-            query: { email: form.email },
-        });
-    };
-
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-        },
-        onSubmit: handleSubmit,
-        validationSchema: EmailSchema,
-        validateOnBlur: false,
-        validateOnChange: false,
-    });
 
     return (
         <PrivateLayout privateType={privateTypes.all}>
@@ -81,61 +55,30 @@ export default function Welcome() {
                     />
                 </Head>
                 <div className={styles.banner}>
-                    <Typography
-                        variant='h1'
-                        component='h1'
-                        className={styles.title}
-                    >
-                        {t('friendlyCarrier')}
-                    </Typography>
-                    <Typography
-                        variant='h3'
-                        component='h2'
-                        className={cn(styles.description)}
-                    >
-                        {t('companyThatUnitesPeople')}
-                    </Typography>
-                    <Typography
-                        variant='h3'
-                        component='h2'
-                        className={cn(styles.descriptionSecond, {
-                            [styles.descriptionWithoutFastSignUp]: isAuthorized,
-                        })}
-                    >
-                        {t('ifYouNeedAnythingWhatYouDontHaveETC')}
-                    </Typography>
+                    <div className={styles.bannerContent}>
+                        <Typography
+                            variant='h1'
+                            component='h1'
+                            className={styles.bannerTitle}
+                        >
+                            find a person who can <span>deliver</span> you what
+                            you <span>need</span> or a person who needs
+                            something from <span>your country</span>
+                        </Typography>
+                        <img
+                            className={styles.bannerLogo}
+                            src='static/images/main-page/new-landing-plane.png'
+                        />
+                    </div>
                     {!isAuthorized && (
                         <div className={styles.fastSignUp}>
-                            <form
-                                className={styles.form}
-                                onSubmit={formik.handleSubmit}
-                                action='submit'
+                            <Button
+                                color='primary'
+                                className={styles.submitButton}
+                                variant='contained'
                             >
-                                <TextField
-                                    id='email'
-                                    name='email'
-                                    variant='outlined'
-                                    color='primary'
-                                    placeholder={t('email') as string}
-                                    className={styles.emailInput}
-                                    value={formik.values.email}
-                                    onChange={formik.handleChange}
-                                    error={formik.errors.email !== undefined}
-                                    helperText={
-                                        formik.errors.email &&
-                                        (t(formik.errors.email) as string)
-                                    }
-                                />
-                                <Button
-                                    type='submit'
-                                    color='primary'
-                                    disabled={formik.isSubmitting}
-                                    className={styles.submitButton}
-                                    variant='contained'
-                                >
-                                    {t('registerNow')}
-                                </Button>
-                            </form>
+                                {t('registerNow')}
+                            </Button>
                         </div>
                     )}
                 </div>
@@ -212,6 +155,10 @@ export default function Welcome() {
                                 </div>
                             </motion.div>
                         </div>
+                        <img
+                            className={styles.rolesLogo}
+                            src='static/images/main-page/blue-landing-plane.png'
+                        />
                     </div>
                 </div>
                 <div className={styles.stepsWrapper}>
@@ -229,248 +176,93 @@ export default function Welcome() {
                     >
                         {t('youCanCreateOwnOrdersOrRespondExistingOnes')}
                     </Typography>
-                    <div className={styles.stepsBlock}>
-                        <motion.div
-                            initial={{ opacity: 0, x: -100 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 1 }}
-                            viewport={{ once: true }}
-                        >
-                            <div className={styles.stepBlock}>
-                                <div
-                                    className={cn(
-                                        styles.leftPart,
-                                        styles.stepPart
-                                    )}
-                                >
-                                    <div className={styles.leftPartContent}>
-                                        <img
-                                            className={styles.firstStepImage}
-                                            src='/static/images/main-page/choose.png'
-                                            alt='choose'
-                                        />
-                                    </div>
-                                </div>
-                                <div
-                                    className={cn(
-                                        styles.rightPart,
-                                        styles.stepPart
-                                    )}
-                                >
-                                    <div className={styles.stepsText}>
-                                        <Typography
-                                            className={styles.stepTitle}
-                                            variant='body1'
-                                            component='p'
-                                        >
-                                            {t('creating')}
-                                        </Typography>
-                                        <Typography
-                                            className={cn(
-                                                styles.stepText,
-                                                styles.firstStepText
-                                            )}
-                                            variant='body1'
-                                            component='p'
-                                        >
-                                            {t('oneIfYouReceiver')}
-                                        </Typography>
-                                        <Typography
-                                            className={styles.stepTitle}
-                                            variant='body1'
-                                            component='p'
-                                        >
-                                            {t('response')}
-                                        </Typography>
-                                        <Typography
-                                            className={cn(
-                                                styles.stepText,
-                                                styles.firstStepText
-                                            )}
-                                            variant='body1'
-                                            component='p'
-                                        >
-                                            {t('oneIfYouCarrier')}
-                                        </Typography>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, x: 100 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 1 }}
-                            viewport={{ once: true }}
-                        >
+                    <div className={styles.steps}>
+                        <div className={styles.leftSteps}>
                             <div
                                 className={cn(
                                     styles.stepBlock,
-                                    styles.stepBlockReverse,
-                                    styles.secondStepBlockMargin
+                                    styles.firstStep
                                 )}
                             >
-                                <div
-                                    className={cn(
-                                        styles.leftPart,
-                                        styles.stepPart
-                                    )}
-                                >
-                                    <div className={styles.leftPartContent}>
-                                        <img
-                                            className={styles.secondStepImage}
-                                            src='/static/images/main-page/purchase.png'
-                                            alt='purchase'
-                                        />
-                                    </div>
+                                <div className={styles.stepTitle}>
+                                    {t('oneChoose')}
                                 </div>
-                                <div
-                                    className={cn(
-                                        styles.rightPart,
-                                        styles.stepPart,
-                                        styles.stepPartReverse
-                                    )}
-                                >
-                                    <Typography
-                                        variant='h3'
-                                        component='h3'
-                                        className={cn(
-                                            styles.stepTitle,
-                                            styles.stepTitleRight
-                                        )}
-                                    >
-                                        {t('details')}
-                                    </Typography>
-                                    <div className={styles.stepsText}>
-                                        <Typography
-                                            className={cn(
-                                                styles.stepText,
-                                                styles.stepTextRight
-                                            )}
-                                            variant='body1'
-                                            component='p'
-                                        >
-                                            {t('priceSum')}
-                                        </Typography>
+                                <div className={styles.firstStepText}>
+                                    <div className={styles.stepText}>
+                                        {t('oneIfYouReceiver')}
+                                    </div>
+                                    <div className={styles.stepText}>
+                                        {t('oneIfYouCarrier')}
                                     </div>
                                 </div>
                             </div>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, x: -100 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 1 }}
-                            viewport={{ once: true }}
-                        >
                             <div
                                 className={cn(
                                     styles.stepBlock,
-                                    styles.secondStepBlockMargin
+                                    styles.thirdStep
                                 )}
                             >
-                                <div
-                                    className={cn(
-                                        styles.leftPart,
-                                        styles.stepPart
-                                    )}
-                                >
-                                    <div className={styles.leftPartContent}>
-                                        <img
-                                            className={styles.stepImage}
-                                            src='/static/images/main-page/receiving.png'
-                                            alt='choose'
-                                        />
-                                    </div>
+                                <div className={styles.stepTitle}>
+                                    {t('details')}
                                 </div>
-                                <div
-                                    className={cn(
-                                        styles.rightPart,
-                                        styles.stepPart
-                                    )}
-                                >
-                                    <Typography
-                                        variant='h3'
-                                        component='h3'
-                                        className={styles.stepTitle}
-                                    >
-                                        {t('paymentDelivery')}
-                                    </Typography>
-                                    <div className={styles.stepsText}>
-                                        <Typography
-                                            className={styles.stepText}
-                                            variant='body1'
-                                            component='p'
-                                        >
-                                            {t(
-                                                'recipientPaysForTheGoodsAndThenTheCarrierDelivers'
-                                            )}
-                                        </Typography>
-                                    </div>
+                                <div className={styles.stepText}>
+                                    {t('priceSum')}
                                 </div>
                             </div>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, x: 100 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 1 }}
-                            viewport={{ once: true }}
-                        >
+                        </div>
+                        <div className={styles.stepsPlanes}>
+                            <img
+                                className={styles.stepsPlane}
+                                src='static/images/main-page/new-landing-plane.png'
+                            />
+                            <img
+                                className={styles.stepsPlane}
+                                src='static/images/main-page/new-landing-plane.png'
+                            />
+                            <img
+                                className={styles.stepsPlane}
+                                src='static/images/main-page/new-landing-plane.png'
+                            />
+                        </div>
+                        <div className={styles.rightSteps}>
                             <div
                                 className={cn(
                                     styles.stepBlock,
-                                    styles.stepBlockReverse
+                                    styles.secondStep
                                 )}
                             >
-                                <div
-                                    className={cn(
-                                        styles.leftPart,
-                                        styles.stepPart
-                                    )}
-                                >
-                                    <div className={styles.leftPartContent}>
-                                        <img
-                                            className={styles.fourStepImage}
-                                            src='/static/images/main-page/result.png'
-                                            alt='purchase'
-                                        />
-                                    </div>
+                                <div className={styles.stepTitle}>
+                                    {t('paymentDelivery')}
                                 </div>
-                                <div
-                                    className={cn(
-                                        styles.rightPart,
-                                        styles.stepPart,
-                                        styles.stepPartReverse
+                                <div className={styles.stepText}>
+                                    {t(
+                                        'recipientPaysForTheGoodsAndThenTheCarrierDelivers'
                                     )}
-                                >
-                                    <Typography
-                                        variant='h3'
-                                        component='h3'
-                                        className={cn(
-                                            styles.stepTitle,
-                                            styles.stepTitleRight
-                                        )}
-                                    >
-                                        {t('result')}
-                                    </Typography>
-                                    <div className={styles.stepsText}>
-                                        <Typography
-                                            className={cn(
-                                                styles.stepText,
-                                                styles.stepTextRight
-                                            )}
-                                            variant='body1'
-                                            component='p'
-                                        >
-                                            {t(
-                                                'recipientConfirmsReceiptAndTheCarrierGetsReward'
-                                            )}
-                                        </Typography>
-                                    </div>
                                 </div>
                             </div>
-                        </motion.div>
+                            <div
+                                className={cn(
+                                    styles.stepBlock,
+                                    styles.fourStep
+                                )}
+                            >
+                                <div className={styles.stepTitle}>
+                                    {t('result')}
+                                </div>
+                                <div className={styles.stepText}>
+                                    {t(
+                                        'recipientConfirmsReceiptAndTheCarrierGetsReward'
+                                    )}
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <img
+                        className={styles.stepsIcon}
+                        src='static/images/main-page/white-landing-plane.png'
+                    />
                 </div>
-                <div className={styles.advantagesBlock}>
+                {/* <div className={styles.advantagesBlock}>
                     <Typography
                         variant='h2'
                         component='h2'
@@ -553,7 +345,7 @@ export default function Welcome() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </MainLayout>
         </PrivateLayout>
     );

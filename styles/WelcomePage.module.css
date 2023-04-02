@@ -1,7 +1,11 @@
 .banner {
     width: 100%;
-    height: 700px;
-    background: url(/static/images/main-page/background2.png) no-repeat;
+    height: 710px;
+    background: linear-gradient(
+        50deg,
+        var(--cBgSecondary) 0.71%,
+        var(--cBgLandingMain) 99.64%
+    );
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -14,7 +18,288 @@
     color: var(--cTextPrimary);
 }
 
-.title {
+.bannerTitle {
+    font-style: italic;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 50px;
+    letter-spacing: 0.4px;
+    color: var(--cTextThird);
+    margin-bottom: 70px;
+    max-width: 800px;
+    text-transform: uppercase;
+}
+
+.bannerTitle > span {
+    color: var(--cTextPrimary);
+}
+
+.bannerContent {
+    display: flex;
+    max-width: 100%;
+    height: 340px;
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 180px;
+    align-items: flex-end;
+}
+
+.bannerLogo {
+    max-width: 190px;
+    height: 190px;
+}
+
+.submitButton {
+    padding: 23px 23px;
+    height: 48px;
+    border-radius: 16px;
+}
+
+.fastSignUp {
+    margin-top: 120px;
+}
+
+.rolesWrapper {
+    background: linear-gradient(
+        135deg,
+        var(--cBgSecondary) 0.71%,
+        var(--cBgLandingMain) 99.64%
+    );
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    position: relative;
+    padding-top: 50px;
+    color: var(--cTextThird);
+}
+
+.roleBlock {
+    text-align: center;
+}
+
+.rolesTitle {
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 50px;
+    letter-spacing: 0.4px;
+    color: var(--cTextPrimary);
+}
+
+.possibleRoles {
+    display: flex;
+    margin-top: 90px;
+    justify-content: center;
+}
+
+.role {
+    text-align: center;
+    width: 500px;
+}
+
+.role > img {
+    height: 450px;
+}
+
+.roleInfo {
+    color: var(--cTextSecondary);
+}
+
+.roleTitle {
+    color: var(--cTextPrimary);
+    font-style: italic;
+    margin-top: 25px;
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 50px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.roleDescription {
+    margin: 0 10px;
+    margin-top: 15px;
+    margin-bottom: 50px;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 28px;
+    text-align: center;
+    letter-spacing: 0.4px;
+    border-radius: 15px;
+    color: var(--cTextThird);
+
+    white-space: normal;
+}
+
+.roleLeft {
+    margin-left: 80px;
+}
+
+.roleRight {
+    margin-right: 40px;
+}
+
+.rolesLogo {
+    position: absolute;
+    width: 100px;
+    z-index: 3;
+    top: 30px;
+    left: 30px;
+}
+
+.stepsWrapper {
+    background: linear-gradient(
+        230deg,
+        var(--cBgLandingMain) 1.56%,
+        var(--cBgSecondary) 91.74%
+    );
+    padding: 40px 0;
+    position: relative;
+}
+
+.stepsTitle {
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 50px;
+    text-align: center;
+    letter-spacing: 0.6px;
+    color: var(--cTextPrimary);
+    position: relative;
+    z-index: 2;
+}
+
+.stepsSubTitle {
+    padding-top: 30px;
+    font-weight: 700;
+    font-size: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    letter-spacing: 0.6px;
+    color: var(--cTextThird);
+    position: relative;
+    z-index: 2;
+}
+
+.steps {
+    display: flex;
+    gap: 20px;
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+
+.stepTitle {
+    font-style: italic;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 45px;
+    color: var(--cTextThird);
+    text-align: center;
+    letter-spacing: 0.4px;
+}
+
+.firstStepText {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 15px;
+}
+
+.stepText {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    margin-top: 10px;
+    line-height: 30px;
+    color: var(--cTextThird);
+    letter-spacing: 0.4px;
+}
+
+.stepBlock {
+    max-width: 450px;
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.leftSteps {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 800px;
+}
+
+.rightSteps {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 800px;
+    margin-top: 280px;
+}
+
+.stepsPlanes {
+    display: flex;
+    flex-direction: column;
+    margin: 230px 0;
+    justify-content: space-between;
+}
+
+.stepsPlane {
+    width: 100px;
+    transform: rotate(180deg);
+}
+
+.stepsPlane:first-child {
+    transform: rotate(90deg);
+}
+
+.stepsPlane:last-child {
+    transform: rotate(90deg);
+}
+
+.firstStep {
+    background: url('/static/images/main-page/01.png');
+    background-size: 400px 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.secondStep {
+    background: url('/static/images/main-page/02.png');
+    background-size: 400px 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.thirdStep {
+    background: url('/static/images/main-page/03.png');
+    background-size: 400px 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.fourStep {
+    background: url('/static/images/main-page/04.png');
+    background-size: 400px 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.stepsIcon {
+    position: absolute;
+    width: 100px;
+    z-index: 3;
+    top: 10px;
+    right: 30px;
+}
+
+/* .title {
     font-weight: 700;
     font-size: 60px;
     line-height: 80px;
@@ -22,7 +307,7 @@
     margin-top: 85px;
     letter-spacing: 0.4px;
     text-transform: uppercase;
-}
+} */
 
 .description {
     font-weight: 500;
@@ -46,20 +331,9 @@
     letter-spacing: 0.4px;
 }
 
-.fastSignUp {
-    margin-top: 140px;
-}
-
 .emailInput {
     color: var(--cTextPrimary);
     background-color: var(--cBgSecondary);
-    border-radius: 15px;
-}
-
-.submitButton {
-    margin-left: 40px;
-    padding: 23px 23px;
-    height: 48px;
     border-radius: 15px;
 }
 
@@ -84,209 +358,6 @@
 }
 z .emailInput > div > fieldset {
     border-color: var(--cBorderPrimary);
-}
-
-.rolesWrapper {
-    background: linear-gradient(
-        180deg,
-        var(--cBgSecondary) 0%,
-        var(--cBgLandingMain) 100%
-    );
-    width: 100%;
-
-    color: var(--cTextThird);
-}
-
-.roleBlock {
-    text-align: center;
-}
-
-.rolesTitle {
-    padding-top: 120px;
-    font-weight: 600;
-    font-size: 45px;
-    line-height: 50px;
-    letter-spacing: 0.4px;
-    color: var(--cTextPrimary);
-}
-
-.possibleRoles {
-    display: flex;
-    margin-top: 60px;
-    justify-content: center;
-}
-
-.role {
-    text-align: center;
-    width: 500px;
-}
-
-.role > img {
-    height: 450px;
-}
-
-.roleInfo {
-    color: var(--cTextSecondary);
-}
-
-.roleTitle {
-    margin-top: 25px;
-    font-weight: 600;
-    font-size: 42px;
-    line-height: 50px;
-    text-align: center;
-    letter-spacing: 0.5px;
-}
-
-.roleDescription {
-    padding: 0 35px;
-    margin-top: 17px;
-    margin-bottom: 60px;
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 28px;
-    text-align: center;
-    letter-spacing: 0.4px;
-    white-space: normal;
-}
-
-.roleLeft {
-    margin-left: 80px;
-}
-
-.roleRight {
-    margin-right: 40px;
-}
-
-.stepsWrapper {
-    background: var(--cBgLandingMain);
-}
-
-.stepsTitle {
-    padding-top: 40px;
-    font-weight: 600;
-    font-size: 45px;
-    line-height: 50px;
-    text-align: center;
-    letter-spacing: 0.6px;
-    color: var(--cTextSecondary);
-    position: relative;
-    z-index: 2;
-}
-
-.stepsSubTitle {
-    padding-top: 30px;
-    font-weight: 700;
-    font-size: 25px;
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-    letter-spacing: 0.6px;
-    color: var(--cTextSecondary);
-    position: relative;
-    z-index: 2;
-}
-
-.stepText {
-    color: var(--cTextSecondary);
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 30px;
-    text-align: left;
-    margin-bottom: 15px;
-}
-
-.stepTextRight {
-    text-align: end;
-}
-
-.stepTextTitle {
-    font-size: 36px;
-    font-weight: 800;
-    color: var(--cTextSecondary);
-    /* text-decoration: underline; */
-}
-
-.leftPartContent {
-    text-align: center;
-}
-
-.stepImage {
-    width: auto;
-    height: 320px;
-}
-
-.firstStepImage {
-    height: 430px;
-}
-
-.secondStepImage {
-    height: 410px;
-}
-
-.fourStepImage {
-    height: 350px;
-    width: 700px;
-}
-
-.stepsBlock {
-    max-width: 1150px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 10px;
-    display: flex;
-    padding-bottom: 40px;
-    flex-direction: column;
-}
-
-.stepBlock {
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
-.stepBlockReverse {
-    flex-direction: row-reverse;
-}
-
-.secondStepBlockMargin {
-    margin-top: 40px;
-}
-
-.stepPart {
-    flex: 1 1;
-    margin-top: 30px;
-}
-
-.rightPart {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    padding-left: 40px;
-}
-
-.leftPart {
-    width: 100%;
-    max-width: 800px;
-    height: 330px;
-    align-items: flex-end;
-}
-
-.stepPartReverse {
-    align-items: flex-end;
-    padding-right: 50px;
-}
-
-.stepTitle {
-    text-align: left;
-    color: var(--cTextSecondary);
-    font-size: 36px;
-    margin-bottom: 15px;
-    font-weight: 800;
-}
-
-.stepTitleRight {
-    text-align: right;
 }
 
 .advantagesBlock {
