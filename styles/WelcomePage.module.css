@@ -164,12 +164,25 @@
     left: 30px;
 }
 
+.advantagesLogo {
+    position: absolute;
+    width: 100px;
+    z-index: 3;
+    top: 0px;
+    left: 30px;
+}
+
 .stepsWrapper {
     background: linear-gradient(
         230deg,
         var(--cBgLandingMain) 1.56%,
         var(--cBgSecondary) 91.74%
     );
+    /* background: linear-gradient(
+        230.48deg,
+        rgba(102, 144, 253, 0.4) 14.56%,
+        #ffffff 70.74%
+    ); */
     padding: 40px 0;
     position: relative;
 }
@@ -211,7 +224,7 @@
     font-weight: 600;
     font-size: 38px;
     line-height: 45px;
-    color: var(--cTextThird);
+    color: var(--cTextPrimary);
     text-align: center;
     letter-spacing: 0.4px;
 }
@@ -220,18 +233,27 @@
     display: flex;
     flex-direction: column;
     margin-top: 10px;
-    gap: 15px;
+    /* gap: 15px; */
 }
 
 .stepText {
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 22px;
     margin-top: 10px;
+    padding-bottom: 10px;
     line-height: 30px;
     color: var(--cTextThird);
     letter-spacing: 0.4px;
+    /* border-bottom: 2px solid var(--cBorderPrimary); */
 }
+
+.stepText > span {
+    font-weight: 900;
+    color: var(--cTextPrimary);
+}
+
+
 
 .stepBlock {
     max-width: 450px;
@@ -317,11 +339,51 @@
 .formWrapper {
     background-color: var(--cBgLandingMain);
     padding: 40px 0;
+    /* border-radius: 30% 30% 0 0; */
 }
 
 .formBlcok {
     max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
     margin: 0 auto;
+}
+
+.formTitle {
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 45px;
+    text-align: center;
+    color: var(--cTextSecondary);
+    letter-spacing: 0.6px;
+}
+
+.formEmailInput {
+    width: 100%;
+    background-color: var(--cBgSecondary);
+    padding: 10px 15px;
+    border-radius: 16px;
+}
+
+.formInput {
+    background-color: var(--cBgSecondary);
+    padding: 10px 15px;
+    border-radius: 16px;
+}
+
+.formFirstLastName {
+    display: flex;
+    gap: 20px;
+}
+
+.formConfirmButton {
+    max-width: 200px;
+    border-radius: 16px;
+    padding: 8px 0;
+    font-weight: 600;
+    width: 100%;
 }
 
 /* .title {
@@ -388,28 +450,29 @@ z .emailInput > div > fieldset {
 .advantagesBlock {
     padding-bottom: 100px;
     background: linear-gradient(
-        180deg,
-        var(--cBgLandingMain) 0%,
-        var(--cBgSecondary) 100%
+        205.59deg,
+        var(--cBgLandingMain) -26.7%,
+        var(--cBgSecondary) 37.97%
     );
+    position: relative;
 }
 
 .advantagesTitle {
-    padding-top: 40px;
+    padding: 40px 0;
     font-weight: 600;
     font-size: 45px;
     line-height: 50px;
     text-align: center;
     letter-spacing: 0.6px;
-    color: var(--cTextSecondary);
+    color: var(--cTextPrimary);
 }
 
 .advantage {
-    width: 33%;
+    text-align: center;
 }
 
 .advantage > img {
-    width: 100%;
+    width: 77%;
 }
 
 .advantages {
@@ -435,11 +498,13 @@ z .emailInput > div > fieldset {
 }
 
 .advantageDescription {
-    font-weight: 400;
-    font-size: 26px;
-    line-height: 30px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 21px;
     text-align: center;
     letter-spacing: 0.4px;
+    color: var(--cTextThird);
+    margin-bottom: 20px;
 }
 
 .advantageDescriptionSecond {

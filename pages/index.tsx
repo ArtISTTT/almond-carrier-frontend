@@ -1,5 +1,6 @@
-import { Button, Typography } from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
 import cn from 'classnames';
+import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -15,6 +16,17 @@ import styles from '../styles/WelcomePage.module.css';
 export default function Welcome() {
     const { t } = useTranslation();
     const isAuthorized = useSelector(selectIsAuthorized);
+
+    const fastSignUpNavigate = () => {};
+
+    const formik = useFormik({
+        initialValues: {
+            firstName: '',
+            lastName: '',
+            email: '',
+        },
+        onSubmit: fastSignUpNavigate,
+    });
 
     return (
         <PrivateLayout privateType={privateTypes.all}>
@@ -192,16 +204,30 @@ export default function Welcome() {
                                     styles.firstStep
                                 )}
                             >
-                                <div className={styles.stepTitle}>
+                                <Typography
+                                    variant='h5'
+                                    component='h5'
+                                    className={styles.stepTitle}
+                                >
                                     {t('oneChoose')}
-                                </div>
+                                </Typography>
                                 <div className={styles.firstStepText}>
-                                    <div className={styles.stepText}>
+                                    <Typography
+                                        variant='body1'
+                                        component='p'
+                                        className={styles.stepText}
+                                    >
+                                        <span>{t('respond')}</span>:{' '}
                                         {t('oneIfYouReceiver')}
-                                    </div>
-                                    <div className={styles.stepText}>
+                                    </Typography>
+                                    <Typography
+                                        variant='body1'
+                                        component='p'
+                                        className={styles.stepText}
+                                    >
+                                        <span>{t('create')}</span>:{' '}
                                         {t('oneIfYouCarrier')}
-                                    </div>
+                                    </Typography>
                                 </div>
                             </div>
                             <div
@@ -210,12 +236,20 @@ export default function Welcome() {
                                     styles.thirdStep
                                 )}
                             >
-                                <div className={styles.stepTitle}>
+                                <Typography
+                                    variant='h5'
+                                    component='h5'
+                                    className={styles.stepTitle}
+                                >
                                     {t('details')}
-                                </div>
-                                <div className={styles.stepText}>
+                                </Typography>
+                                <Typography
+                                    variant='body1'
+                                    component='p'
+                                    className={styles.stepText}
+                                >
                                     {t('priceSum')}
-                                </div>
+                                </Typography>
                             </div>
                         </div>
                         <div className={styles.stepsPlanes}>
@@ -239,14 +273,22 @@ export default function Welcome() {
                                     styles.secondStep
                                 )}
                             >
-                                <div className={styles.stepTitle}>
+                                <Typography
+                                    variant='h5'
+                                    component='h5'
+                                    className={styles.stepTitle}
+                                >
                                     {t('paymentDelivery')}
-                                </div>
-                                <div className={styles.stepText}>
+                                </Typography>
+                                <Typography
+                                    variant='body1'
+                                    component='p'
+                                    className={styles.stepText}
+                                >
                                     {t(
                                         'recipientPaysForTheGoodsAndThenTheCarrierDelivers'
                                     )}
-                                </div>
+                                </Typography>
                             </div>
                             <div
                                 className={cn(
@@ -254,14 +296,22 @@ export default function Welcome() {
                                     styles.fourStep
                                 )}
                             >
-                                <div className={styles.stepTitle}>
+                                <Typography
+                                    variant='h5'
+                                    component='h5'
+                                    className={styles.stepTitle}
+                                >
                                     {t('result')}
-                                </div>
-                                <div className={styles.stepText}>
+                                </Typography>
+                                <Typography
+                                    variant='body1'
+                                    component='p'
+                                    className={styles.stepText}
+                                >
                                     {t(
                                         'recipientConfirmsReceiptAndTheCarrierGetsReward'
                                     )}
-                                </div>
+                                </Typography>
                             </div>
                         </div>
                     </div>
@@ -270,21 +320,7 @@ export default function Welcome() {
                         src='static/images/main-page/white-landing-plane.png'
                     />
                 </div>
-                <div className={styles.formWrapper}>
-                    <div className={styles.formBlcok}>
-                        <div>Get started now!</div>
-                        <div>
-                            <div>first</div>
-                            <div>second</div>
-                        </div>
-                        <div>email</div>
-                        <div>date</div>
-                        <div>pass</div>
-                        <div>confirm</div>
-                        <Button>reg</Button>
-                    </div>
-                </div>
-                {/* <div className={styles.advantagesBlock}>
+                <div className={styles.advantagesBlock}>
                     <Typography
                         variant='h2'
                         component='h2'
@@ -367,7 +403,86 @@ export default function Welcome() {
                             </div>
                         </div>
                     </div>
-                </div> */}
+                    <img
+                        className={styles.advantagesLogo}
+                        src='static/images/main-page/blue-landing-plane.png'
+                    />
+                </div>
+                <div className={styles.formWrapper}>
+                    <div className={styles.formBlcok}>
+                        <Typography
+                            variant='h4'
+                            component='h4'
+                            className={styles.formTitle}
+                        >
+                            {t('getStartedNow')}
+                        </Typography>
+                        <div className={styles.formFirstLastName}>
+                            <TextField
+                                id='firstName'
+                                name='firstName'
+                                type='text'
+                                placeholder={t('firstName') as string}
+                                variant='standard'
+                                value={formik.values.firstName}
+                                onChange={formik.handleChange}
+                                error={formik.errors.firstName !== undefined}
+                                helperText={
+                                    formik.errors.firstName &&
+                                    (t(formik.errors.firstName) as string)
+                                }
+                                InputProps={{
+                                    disableUnderline: true,
+                                }}
+                                className={styles.formInput}
+                            />
+                            <TextField
+                                id='lastName'
+                                name='lastName'
+                                type='text'
+                                placeholder={t('lastName') as string}
+                                variant='standard'
+                                value={formik.values.lastName}
+                                onChange={formik.handleChange}
+                                error={formik.errors.lastName !== undefined}
+                                helperText={
+                                    formik.errors.lastName &&
+                                    (t(formik.errors.lastName) as string)
+                                }
+                                InputProps={{
+                                    disableUnderline: true,
+                                }}
+                                className={styles.formInput}
+                            />
+                        </div>
+                        <TextField
+                            id='email'
+                            name='email'
+                            type='text'
+                            placeholder={t('email') as string}
+                            variant='standard'
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
+                            error={formik.errors.email !== undefined}
+                            helperText={
+                                formik.errors.email &&
+                                (t(formik.errors.email) as string)
+                            }
+                            className={styles.formEmailInput}
+                            InputProps={{
+                                disableUnderline: true,
+                            }}
+                        />
+                        <Button
+                            variant='contained'
+                            className={styles.formConfirmButton}
+                            type='submit'
+                            disabled={formik.isSubmitting}
+                        >
+                            {t('signUp')}
+                        </Button>
+                    </div>
+                </div>
             </MainLayout>
         </PrivateLayout>
     );
