@@ -816,7 +816,6 @@ const OrderInformation: React.FC<IProps> = ({
                                     )}
                                 </>
                             )}
-
                         {suggestedChanged && (
                             <div className={styles.buttons}>
                                 <Button

@@ -11,8 +11,8 @@ const ContactDetails: React.FC = () => {
             <h1 className={styles.title}>{t('contactDetails')}</h1>
             <p className={styles.text}>
                 <p className={styles.bold}>Friendly Carrier</p>
-                <p>{t('altayskayaStreetB30A')}</p>
-                <p>{t('barnaulAltaiKrai656048')}</p>
+                <p>{t('tipanovaStreet')}</p>
+                <p>{t('petersburg')}</p>
                 <p>{t('russia')}</p>
             </p>
             <p className={cn(styles.textInfo, styles.textInfoBlock)}>
