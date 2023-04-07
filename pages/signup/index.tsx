@@ -1,21 +1,21 @@
-import { Button, TextField, Link as MUILink, Typography } from '@mui/material';
+import { Button, Link as MUILink, TextField, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
-import React, { useContext, useState } from 'react';
+import { DesktopDatePicker } from '@mui/x-date-pickers';
 import cn from 'classnames';
-import { useRouter } from 'next/router';
+import dayjs, { Dayjs } from 'dayjs';
 import { useFormik } from 'formik';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useRouter } from 'next/router';
+import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import ConfirmEmail from 'src/Components/Verification/ConfirmEmail';
+import { navigateTo } from 'src/interfaces/navigate';
+import { signUp } from '../../src/api/auth';
 import { LinkBehaviour } from '../../src/Components/Common/LinkBehaviour';
 import LoginLayout from '../../src/Components/Layouts/Login';
+import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
 import { SignupSchema } from '../../src/schemas/SignupSchema';
 import style from '../../styles/SignIn.module.css';
-import { signUp } from '../../src/api/auth';
-import { OpenAlertContext } from '../../src/Components/Layouts/Snackbar';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'react-i18next';
-import { DesktopDatePicker } from '@mui/x-date-pickers';
-import dayjs, { Dayjs } from 'dayjs';
-import { navigateTo } from 'src/interfaces/navigate';
-import ConfirmEmail from 'src/Components/Verification/ConfirmEmail';
 
 type IForm = {
     email: string;
@@ -36,8 +36,20 @@ const SignIn: React.FC = () => {
     React.useEffect(() => {
         if (!router.isReady) return;
 
-        if (typeof router.query.email === 'string') {
+        if (
+            typeof router.query.email === 'string' &&
+            typeof router.query.lastName === 'string' &&
+            typeof router.query.firstName === 'string'
+        ) {
             formik.setValues({ ...formik.values, email: router.query.email });
+            formik.setValues({
+                ...formik.values,
+                lastName: router.query.lastName,
+            });
+            formik.setValues({
+                ...formik.values,
+                firstName: router.query.firstName,
+            });
         }
     }, [router.isReady]);
 

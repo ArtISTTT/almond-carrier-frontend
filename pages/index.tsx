@@ -5,19 +5,37 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { navigateTo } from 'src/interfaces/navigate';
 import { selectIsAuthorized } from 'src/redux/selectors/user';
 import MainLayout from '../src/Components/Layouts/MainLayout';
 import PrivateLayout from '../src/Components/Layouts/Private';
 import { privateTypes } from '../src/interfaces/private';
 import styles from '../styles/WelcomePage.module.css';
 
+type IForm = {
+    firstName: string;
+    lastName: string;
+    email: string;
+};
+
 export default function Welcome() {
     const { t } = useTranslation();
+    const router = useRouter();
     const isAuthorized = useSelector(selectIsAuthorized);
 
-    const fastSignUpNavigate = () => {};
+    const fastSignUpNavigate = (form: IForm) => {
+        router.push({
+            pathname: navigateTo.SIGNUP,
+            query: {
+                email: form.email,
+                lastName: form.firstName,
+                firstName: form.firstName,
+            },
+        });
+    };
 
     const formik = useFormik({
         initialValues: {
@@ -417,70 +435,77 @@ export default function Welcome() {
                         >
                             {t('getStartedNow')}
                         </Typography>
-                        <div className={styles.formFirstLastName}>
-                            <TextField
-                                id='firstName'
-                                name='firstName'
-                                type='text'
-                                placeholder={t('firstName') as string}
-                                variant='standard'
-                                value={formik.values.firstName}
-                                onChange={formik.handleChange}
-                                error={formik.errors.firstName !== undefined}
-                                helperText={
-                                    formik.errors.firstName &&
-                                    (t(formik.errors.firstName) as string)
-                                }
-                                InputProps={{
-                                    disableUnderline: true,
-                                }}
-                                className={styles.formInput}
-                            />
-                            <TextField
-                                id='lastName'
-                                name='lastName'
-                                type='text'
-                                placeholder={t('lastName') as string}
-                                variant='standard'
-                                value={formik.values.lastName}
-                                onChange={formik.handleChange}
-                                error={formik.errors.lastName !== undefined}
-                                helperText={
-                                    formik.errors.lastName &&
-                                    (t(formik.errors.lastName) as string)
-                                }
-                                InputProps={{
-                                    disableUnderline: true,
-                                }}
-                                className={styles.formInput}
-                            />
-                        </div>
-                        <TextField
-                            id='email'
-                            name='email'
-                            type='text'
-                            placeholder={t('email') as string}
-                            variant='standard'
-                            value={formik.values.email}
-                            onChange={formik.handleChange}
-                            error={formik.errors.email !== undefined}
-                            helperText={
-                                formik.errors.email &&
-                                (t(formik.errors.email) as string)
-                            }
-                            className={styles.formEmailInput}
-                            InputProps={{
-                                disableUnderline: true,
-                            }}
-                        />
-                        <Button
-                            variant='contained'
-                            className={styles.formConfirmButton}
-                            type='submit'
-                            disabled={formik.isSubmitting}
+                        <form
+                            className={styles.form}
+                            onSubmit={formik.handleSubmit}
                         >
-                            {t('signUp')}
-                        </Button>
+                            <div className={styles.formFirstLastName}>
+                                <TextField
+                                    id='firstName'
+                                    name='firstName'
+                                    type='text'
+                                    placeholder={t('firstName') as string}
+                                    variant='standard'
+                                    value={formik.values.firstName}
+                                    onChange={formik.handleChange}
+                                    error={
+                                        formik.errors.firstName !== undefined
+                                    }
+                                    helperText={
+                                        formik.errors.firstName &&
+                                        (t(formik.errors.firstName) as string)
+                                    }
+                                    InputProps={{
+                                        disableUnderline: true,
+                                    }}
+                                    className={styles.formInput}
+                                />
+                                <TextField
+                                    id='lastName'
+                                    name='lastName'
+                                    type='text'
+                                    placeholder={t('lastName') as string}
+                                    variant='standard'
+                                    value={formik.values.lastName}
+                                    onChange={formik.handleChange}
+                                    error={formik.errors.lastName !== undefined}
+                                    helperText={
+                                        formik.errors.lastName &&
+                                        (t(formik.errors.lastName) as string)
+                                    }
+                                    InputProps={{
+                                        disableUnderline: true,
+                                    }}
+                                    className={styles.formInput}
+                                />
+                            </div>
+                            <TextField
+                                id='email'
+                                name='email'
+                                type='text'
+                                placeholder={t('email') as string}
+                                variant='standard'
+                                value={formik.values.email}
+                                onChange={formik.handleChange}
+                                error={formik.errors.email !== undefined}
+                                helperText={
+                                    formik.errors.email &&
+                                    (t(formik.errors.email) as string)
+                                }
+                                className={styles.formEmailInput}
+                                InputProps={{
+                                    disableUnderline: true,
+                                }}
+                            />
+                            <Button
+                                variant='contained'
+                                className={styles.formConfirmButton}
+                                type='submit'
+                                disabled={formik.isSubmitting}
+                            >
+                                {t('signUp')}
+                            </Button>
+                        </form>
                     </div>
                 </div>
             </MainLayout>
