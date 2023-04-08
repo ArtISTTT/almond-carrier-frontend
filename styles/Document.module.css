@@ -16,6 +16,27 @@
     margin-bottom: 50px;
 }
 
+@media screen and (max-width: 800px) {
+    .headTitle,
+    .headTitleSpace {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .headTitle,
+    .headTitleSpace {
+        font-size: 1.35em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .headTitle,
+    .headTitleSpace {
+        font-size: 1em;
+    }
+}
+
 .data {
     margin-top: 30px;
     margin-bottom: 50px;
@@ -183,6 +204,7 @@
     padding-top: 32px;
     gap: 16px;
     margin-bottom: 32px;
+    flex-wrap: wrap;
 }
 
 .partnerItem {
