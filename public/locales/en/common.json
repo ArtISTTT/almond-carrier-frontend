@@ -103,6 +103,7 @@
     "change": "Change",
     "changesHasBeenReviewed": "Changes has been reviewed",
     "checkingYourMail": "Verifing your mail",
+    "checkItemBeforeVerify": "By clicking «Confirm» you agree with the correctness of the purchased goods and have no claims. Be sure to check all photos and receipts!",
     "checkTheProductYouReceived": "Check the product you received",
     "checkTheReceiptAndTheProduct": "Check the receipt and the product carefully! If you are not satisfied, discuss it with the carrier or contact support!",
     "chelindBank": "CHELINDBANK",
@@ -593,6 +594,5 @@
     "yourPayoutDetails": "Your payout details",
     "yourPayouts": "Your Payouts",
     "zemskiyBank": "Zemsky bank",
-    "zolotayaKorona": "Zolotaya Korona (RNKO Payment Center)",
-    "checkItemBeforeVerify": "By clicking «Confirm» you agree with the correctness of the purchased goods and have no claims. Be sure to check all photos and receipts!"
+    "zolotayaKorona": "Zolotaya Korona (RNKO Payment Center)"
 }
