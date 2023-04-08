@@ -593,5 +593,6 @@
     "yourPayoutDetails": "Your payout details",
     "yourPayouts": "Your Payouts",
     "zemskiyBank": "Zemsky bank",
-    "zolotayaKorona": "Zolotaya Korona (RNKO Payment Center)"
+    "zolotayaKorona": "Zolotaya Korona (RNKO Payment Center)",
+    "checkItemBeforeVerify": "By clicking «Confirm» you agree with the correctness of the purchased goods and have no claims. Be sure to check all photos and receipts!"
 }

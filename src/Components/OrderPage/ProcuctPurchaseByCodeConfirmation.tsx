@@ -19,7 +19,7 @@ enum ErrorEnum {
     OK = 'ok',
 }
 
-const OrderProductDeliver: React.FC<IProps> = ({
+const ProcuctPurchaseByCodeConfirmation: React.FC<IProps> = ({
     orderId,
     updateOrder,
     formik,
@@ -85,7 +85,6 @@ const OrderProductDeliver: React.FC<IProps> = ({
     return (
         <>
             <div className={styles.productDeliveredOpenButton}>
-                <PriorityHighIcon className={styles.productDeliveredIcon} />
                 <Button
                     variant='outlined'
                     className={styles.orderPaymentWrapperButton}
@@ -94,7 +93,6 @@ const OrderProductDeliver: React.FC<IProps> = ({
                 >
                     {t('checkTheProductYouReceived')}
                 </Button>
-                <PriorityHighIcon className={styles.productDeliveredIcon} />
             </div>
             <Collapse in={isOpen}>
                 <div
@@ -105,6 +103,9 @@ const OrderProductDeliver: React.FC<IProps> = ({
                             error === ErrorEnum.ERROR,
                     })}
                 >
+                    <div className={styles.checkItemBeforeVerify}>
+                        {t('checkItemBeforeVerify')}
+                    </div>
                     <div className={styles.productDeliveredContentSecond}>
                         {t('ifYoureSatisfiedEnterCodeSentToEmail')}
                     </div>
@@ -176,4 +177,4 @@ const OrderProductDeliver: React.FC<IProps> = ({
     );
 };
 
-export default OrderProductDeliver;
+export default ProcuctPurchaseByCodeConfirmation;

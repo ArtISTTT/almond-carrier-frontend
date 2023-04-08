@@ -32,9 +32,9 @@ import OrderInputItem, {
     ViewType,
 } from './OrderInputItem';
 import OrderPayoutInfoBlock from './OrderPayoutInfoBlock';
-import OrderProductDeliver from './OrderProductDeliver';
 import OrderReceiverPhotoConfirmation from './OrderReceiverPhotoConfirmation';
 import OrderReview from './OrderReview';
+import ProcuctPurchaseByCodeConfirmation from './ProcuctPurchaseByCodeConfirmation';
 import ReviewPopup from './ReviewPopup';
 
 type IProps = {
@@ -819,7 +819,7 @@ const OrderInformation: React.FC<IProps> = ({
                 )}
                 {order.status === OrderStatus.awaitingDelivery &&
                     viewType === ViewType.receiver && (
-                        <OrderProductDeliver
+                        <ProcuctPurchaseByCodeConfirmation
                             formik={formik}
                             updateOrder={updateOrder}
                             orderId={order.id}
