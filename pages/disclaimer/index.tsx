@@ -1,11 +1,11 @@
-import React from 'react';
-import PrivateLayout from '../../src/Components/Layouts/Private';
-import { privateTypes } from '../../src/interfaces/private';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import React from 'react';
 import Disclaimer from 'src/Components/documents/Disclaimer';
 import UserLayout from 'src/Components/Layouts/User';
+import PrivateLayout from '../../src/Components/Layouts/Private';
+import { privateTypes } from '../../src/interfaces/private';
 
-const ReceiverPage: React.FC = () => (
+const DisclaimerComponent: React.FC = () => (
     <PrivateLayout privateType={privateTypes.all}>
         <UserLayout>
             <Disclaimer />
@@ -21,4 +21,4 @@ export async function getStaticProps({ locale }: { locale: string }) {
     };
 }
 
-export default ReceiverPage;
+export default DisclaimerComponent;

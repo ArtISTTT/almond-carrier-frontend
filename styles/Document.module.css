@@ -1,15 +1,12 @@
-
-
 .document {
     width: 80%;
     margin: 50px auto;
 }
 
-
 .headTitle {
     font-size: 2em;
     text-transform: uppercase;
-    color: var(--cTextThird)
+    color: var(--cTextThird);
 }
 
 .headTitleSpace {
@@ -150,7 +147,7 @@
     margin-bottom: 30px;
 }
 
-.border{
+.border {
     border: 1px solid var(--cTextThird);
     padding: 3px;
     height: 90px;
@@ -179,4 +176,21 @@
 
 .left {
     margin-left: 5px;
+}
+
+.partners {
+    display: flex;
+    padding-top: 32px;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.partnerItem {
+    width: 180px;
+    object-fit: contain;
+}
+
+.textHighMargin {
+    font-size: 1.2em;
+    margin-bottom: 32px;
 }

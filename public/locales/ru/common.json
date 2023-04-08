@@ -596,5 +596,6 @@
     "yourPayoutDetails": "Ваши реквизиты для выплаты",
     "yourPayouts": "Ваши выплаты",
     "zemskiyBank": "Земский банк",
-    "zolotayaKorona": "Золотая Корона (РНКО Платежный центр)"
+    "zolotayaKorona": "Золотая Корона (РНКО Платежный центр)",
+    "paymentsSecurityPolicy": "Политика безопасности платежей"
 }

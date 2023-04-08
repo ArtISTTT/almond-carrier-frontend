@@ -180,6 +180,13 @@ const Footer = () => {
                         >
                             {t('disclaimer')}
                         </MUILink>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href={navigateTo.SECURITY_POLICIES}
+                        >
+                            {t('paymentsSecurityPolicy')}
+                        </MUILink>
                     </div>
 
                     {/* <div className={styles.centerColumn}>
