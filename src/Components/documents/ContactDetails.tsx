@@ -11,9 +11,8 @@ const ContactDetails: React.FC = () => {
             <h1 className={styles.title}>{t('contactDetails')}</h1>
             <p className={styles.text}>
                 <p className={styles.bold}>Friendly Carrier</p>
-                <p>{t('tipanovaStreet')}</p>
-                <p>{t('petersburg')}</p>
-                <p>{t('russia')}</p>
+                <p>Фактический адрес: {t('stPetersburgTipanovaStreet')}</p>
+                <p>Юридический адрес: {t('barnaulAltayskayaSteet')}</p>
             </p>
             <p className={cn(styles.textInfo, styles.textInfoBlock)}>
                 ИП Газукин Артём Юрьевич

@@ -41,13 +41,10 @@ const SignIn: React.FC = () => {
             typeof router.query.lastName === 'string' &&
             typeof router.query.firstName === 'string'
         ) {
-            formik.setValues({ ...formik.values, email: router.query.email });
             formik.setValues({
                 ...formik.values,
+                email: router.query.email,
                 lastName: router.query.lastName,
-            });
-            formik.setValues({
-                ...formik.values,
                 firstName: router.query.firstName,
             });
         }

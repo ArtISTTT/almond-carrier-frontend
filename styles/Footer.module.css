@@ -14,6 +14,18 @@
     z-index: 1;
 }
 
+.authorizedFooter {
+    display: flex;
+    width: 100%;
+    height: 358px;
+    justify-content: space-between;
+    color: var(--cTextThird);
+    padding: 30px;
+    position: relative;
+    z-index: 1;
+    background-color: var(--cBgSecondary);
+}
+
 .formControl {
     border-radius: 16px !important;
     height: 45px;

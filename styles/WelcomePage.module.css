@@ -337,12 +337,21 @@
 .formWrapper {
     background-color: var(--cBgLandingMain);
     padding: 40px 0;
+    position: relative;
     /* border-radius: 30% 30% 0 0; */
 }
 
+.formStepsIcon {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+}
+
 .formBlcok {
-    max-width: 420px;
+    max-width: 920px;
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     gap: 30px;
@@ -387,7 +396,7 @@
 .formConfirmButton {
     max-width: 200px;
     border-radius: 16px;
-   
+
     padding: 8px 0;
     font-weight: 600;
     width: 100%;
