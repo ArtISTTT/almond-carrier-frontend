@@ -135,7 +135,7 @@
     white-space: nowrap;
 }
 
-.link:hover {
+.linkBlock:hover {
     background: var(--cBgThird);
 }
 

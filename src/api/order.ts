@@ -236,10 +236,11 @@ export const agreeWithChanges = (requestData: {
 
 export const completeOrder = (requestData: {
     orderId: string;
+    completionCode: string;
 }): Promise<ISuggestChanges> =>
     mainInstance
         .post('/order/complete-order', JSON.stringify(requestData))
-        .then(data => {
+        .then(() => {
             return {
                 ok: true,
             };
@@ -247,9 +248,7 @@ export const completeOrder = (requestData: {
         .catch(data => {
             return {
                 ok: false,
-                error:
-                    data.response?.data?.message ??
-                    'Error with agreement with the changes ',
+                error: data.response?.data?.message ?? 'Complete order error',
             };
         });
 
@@ -462,5 +461,26 @@ export const acceptReceiverPurchaseData = (requestData: {
                 error:
                     data.response?.data?.message ??
                     'Error with accepting receiver purchase data',
+            };
+        });
+
+export const sendProductCode = (requestData: {
+    orderId: string;
+}): Promise<ISuggestChanges> =>
+    mainInstance
+        .post('/order/send-completion-code', JSON.stringify(requestData), {
+            params: { language: getLanguage() },
+        })
+        .then(() => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ??
+                    'Error with sending the product code',
             };
         });
