@@ -26,6 +26,7 @@ export default function Welcome() {
     const { t } = useTranslation();
     const router = useRouter();
     const isAuthorized = useSelector(selectIsAuthorized);
+    const payoutRef = React.useRef<null | HTMLDivElement>(null);
 
     const fastSignUpNavigate = (form: IForm) => {
         router.push({
@@ -36,6 +37,10 @@ export default function Welcome() {
                 firstName: form.firstName,
             },
         });
+    };
+
+    const scrollToFastSignUp = () => {
+        payoutRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
     const formik = useFormik({
@@ -114,6 +119,7 @@ export default function Welcome() {
                         <div className={styles.fastSignUp}>
                             <Button
                                 color='primary'
+                                onClick={scrollToFastSignUp}
                                 className={styles.submitButton}
                                 variant='contained'
                             >
@@ -209,13 +215,13 @@ export default function Welcome() {
                     >
                         {t('howDoesItWork')}
                     </Typography>
-                    <Typography
+                    {/* <Typography
                         variant='h2'
                         component='h2'
                         className={styles.stepsSubTitle}
                     >
                         {t('youCanCreateOwnOrdersOrRespondExistingOnes')}
-                    </Typography>
+                    </Typography> */}
                     <div className={styles.steps}>
                         <div className={styles.leftSteps}>
                             <div
@@ -429,7 +435,7 @@ export default function Welcome() {
                     />
                 </div>
                 {!isAuthorized && (
-                    <div className={styles.formWrapper}>
+                    <div ref={payoutRef} className={styles.formWrapper}>
                         <div className={styles.formBlcok}>
                             <Typography
                                 variant='h4'

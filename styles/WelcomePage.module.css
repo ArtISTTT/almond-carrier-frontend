@@ -55,8 +55,8 @@
     height: 340px;
     width: 100%;
     justify-content: space-between;
-    padding-left: 30px;
-    padding-right: 180px;
+    padding-left: 20px;
+    padding-right: 140px;
     align-items: flex-end;
 }
 
@@ -195,6 +195,7 @@
     line-height: 50px;
     text-align: center;
     letter-spacing: 0.6px;
+    margin-bottom: 40px;
     color: var(--cTextPrimary);
     position: relative;
     z-index: 2;
@@ -458,7 +459,7 @@
 .advantagesBlock {
     padding-bottom: 100px;
     background: linear-gradient(
-        205.59deg,
+        202.59deg,
         var(--cBgLandingMain) -26.7%,
         var(--cBgSecondary) 37.97%
     );
@@ -536,6 +537,13 @@
         height: 140px;
         position: absolute;
     }
+    .advantagesBlock {
+        background: linear-gradient(
+            212.59deg,
+            var(--cBgLandingMain) -32.7%,
+            var(--cBgSecondary) 37.97%
+        );
+    }
 }
 
 @media screen and (max-width: 1000px) {
@@ -599,6 +607,7 @@
     }
     .stepsTitle {
         font-size: 40px;
+        margin-bottom: 0px;
     }
     .stepsSubTitle {
         font-size: 18px;
@@ -640,8 +649,7 @@
         height: 300px;
     }
     .possibleRoles {
-        margin: 0 20px;
-        margin-top: 16px;
+        margin-top: 40px;
     }
     .roleDescription {
         font-size: 18px;
@@ -721,7 +729,7 @@
     .formStepsIcon {
         /* top: 0; */
         bottom: 0;
-        left: 20px;
+        left: 30px;
         width: 40px;
     }
     .rolesLogo {
@@ -741,6 +749,15 @@
     .rolesWrapper {
         padding-top: 20px;
         padding-bottom: 20px;
+    }
+    .bannerTopLine {
+        top: -120px;
+    }
+    .bannerBottomLine {
+        bottom: -180px;
+    }
+    .bannerLogo {
+        top: 200px;
     }
     .stepsWrapper {
         padding-top: 20px;
@@ -782,16 +799,15 @@
     .bannerTopLine {
         top: -120px;
     }
+    .bannerBottomLine {
+        bottom: -180px;
+    }
     .banner {
         gap: 120px;
         padding-top: 70px;
     }
     .fastSignUp {
         margin-top: 0;
-    }
-
-    .bannerBottomLine {
-        bottom: -180px;
     }
     .roleTitle {
         font-size: 22px;
@@ -817,6 +833,13 @@
     .formFirstLastName {
         flex-direction: column;
     }
+    .formInput {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .formEmailInput {
+        width: 90%;
+    }
     .stepsIcon {
         top: 20px;
         right: 5px;
@@ -825,7 +848,7 @@
         width: 100%;
     }
     .form {
-        width: 95%;
+        width: 100%;
     }
     .advantagesBlock {
         background: linear-gradient(
@@ -837,10 +860,9 @@
     .bannerTitle {
         margin-bottom: 0;
         font-size: 20px;
-        margin-top: 80px;
     }
     .bannerLogo {
-        top: 70px;
+        top: 190px;
     }
 }
 
@@ -854,6 +876,9 @@
     }
     .banner {
         padding-top: 120px;
+    }
+    .bannerLogo {
+        top: 170px;
     }
     .bannerTitle {
         font-size: 17px;
@@ -892,14 +917,13 @@
 }
 
 @media screen and (max-width: 400px) {
-    .banner {
-        padding-top: 210px;
-        gap: 45px;
-    }
     .stepsIcon {
         width: 40px;
         top: 24px;
         right: 5px;
+    }
+    .banner {
+        justify-content: start;
     }
     .advantagesBlock {
         background: linear-gradient(
@@ -916,17 +940,18 @@
         gap: 160px;
     }
     .bannerLogo {
-        top: 135px;
+        top: 200px;
+        right: 10px;
     }
 }
 
 @media screen and (max-width: 381px) {
     .banner {
-        height: 585px;
+        /* height: 585px; */
         gap: 45px;
         padding-top: 120px;
     }
-    .bannerLogo {
+    /* .bannerLogo {
         top: 130px;
-    }
+    } */
 }
