@@ -597,5 +597,6 @@
     "yourPayouts": "Ваши выплаты",
     "zemskiyBank": "Земский банк",
     "zolotayaKorona": "Золотая Корона (РНКО Платежный центр)",
-    "paymentsSecurityPolicy": "Политика безопасности платежей"
+    "paymentsSecurityPolicy": "Политика безопасности платежей",
+    "findAPersonWhoCan": "Найди человека, который может <span>доставить</span> то что вам <span>нужно</span>, или того кому нужно что-то из <span>вашей страны</span>"
 }

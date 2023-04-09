@@ -53,6 +53,8 @@ export default function Welcome() {
         validationSchema: FastSignupSchema,
     });
 
+    console.log(t('findAPersonWhoCan'));
+
     return (
         <PrivateLayout privateType={privateTypes.all}>
             <MainLayout
@@ -97,11 +99,10 @@ export default function Welcome() {
                             variant='h1'
                             component='h1'
                             className={styles.bannerTitle}
-                        >
-                            find a person who can <span>deliver</span> you what
-                            you <span>need</span> or a person who needs
-                            something from <span>your country</span>
-                        </Typography>
+                            dangerouslySetInnerHTML={{
+                                __html: t('findAPersonWhoCan'),
+                            }}
+                        ></Typography>
                         <img
                             className={styles.bannerLogo}
                             src='static/images/main-page/new-landing-plane.png'
