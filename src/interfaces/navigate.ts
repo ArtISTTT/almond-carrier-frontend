@@ -17,4 +17,5 @@ export enum navigateTo {
     PAYOUTS = '/payouts',
     CONTACT_DETAILS = '/contact-details',
     DISCLAIMER = '/disclaimer',
+    SECURITY_POLICIES = '/security-policies',
 }

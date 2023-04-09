@@ -16,7 +16,11 @@
     display: flex;
     height: 80px;
     justify-content: space-between;
-    background-color: var(--cBgSecondary);
+    background: linear-gradient(
+        130deg,
+        var(--cBgSecondary) 0.71%,
+        var(--cBgLandingMain) 99.64%
+    );
     position: relative;
     z-index: 2;
     width: 100%;
@@ -131,7 +135,7 @@
     white-space: nowrap;
 }
 
-.link:hover {
+.linkBlock:hover {
     background: var(--cBgThird);
 }
 
