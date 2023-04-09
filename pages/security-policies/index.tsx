@@ -4,7 +4,6 @@ import { SecurityPolicies } from 'src/Components/documents/SecurityPolicies';
 import PrivateLayout from 'src/Components/Layouts/Private';
 import UserLayout from 'src/Components/Layouts/User';
 import { privateTypes } from 'src/interfaces/private';
-import LoginLayout from '../../src/Components/Layouts/Login';
 
 const SignIn: React.FC = () => {
     return (
