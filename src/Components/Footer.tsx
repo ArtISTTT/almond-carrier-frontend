@@ -10,17 +10,19 @@ import {
     SelectChangeEvent,
     Typography,
 } from '@mui/material';
+import cn from 'classnames';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { navigateTo } from 'src/interfaces/navigate';
 import { useCreateQueryParams } from 'src/redux/hooks/useCreateQueryParams';
+import { selectIsAuthorized } from 'src/redux/selectors/user';
 import styles from '../../styles/Footer.module.css';
 import { Language } from '../interfaces/settings';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { changeLanguage } from '../redux/slices/settingsSlice';
 import { LinkBehaviour } from './Common/LinkBehaviour';
-import { motion } from 'framer-motion';
 
 const Footer = () => {
     const dispatch = useAppDispatch();
@@ -52,8 +54,15 @@ const Footer = () => {
         );
     };
 
+    const isAuthorized = useAppSelector(selectIsAuthorized);
+
     return (
-        <footer className={styles.footer}>
+        <footer
+            className={cn({
+                [styles.footer]: !isAuthorized && router.route === '/',
+                [styles.authorizedFooter]: isAuthorized || router.route !== '/',
+            })}
+        >
             <div className={styles.leftBlock}>
                 <FormControl sx={{ width: 250 }} className={styles.input}>
                     <InputLabel id='language-label'>{t('language')}</InputLabel>
@@ -171,6 +180,13 @@ const Footer = () => {
                         >
                             {t('disclaimer')}
                         </MUILink>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href={navigateTo.SECURITY_POLICIES}
+                        >
+                            {t('paymentsSecurityPolicy')}
+                        </MUILink>
                     </div>
 
                     {/* <div className={styles.centerColumn}>
@@ -216,8 +232,10 @@ const Footer = () => {
                     <div className={styles.rightsText}>{t('copyright')}</div>
                 </div>
                 <div className={styles.icons}>
-                 
-                    <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                    <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                    >
                         <MUILink
                             className={styles.footerIcon}
                             component={LinkBehaviour}
@@ -225,10 +243,13 @@ const Footer = () => {
                             href='mailto:support@friendlycarrier.com'
                         >
                             <EmailIcon sx={{ fontSize: 30 }} />
-                        </MUILink> 
+                        </MUILink>
                     </motion.div>
 
-                    <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                    <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                    >
                         <MUILink
                             className={styles.footerIcon}
                             component={LinkBehaviour}
@@ -238,8 +259,6 @@ const Footer = () => {
                             <TelegramIcon sx={{ fontSize: 30 }} />
                         </MUILink>
                     </motion.div>
-
-
 
                     {/* <MUILink
                         className={styles.footerIcon}

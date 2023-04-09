@@ -1,5 +1,9 @@
 .footer {
-    background-color: var(--cBgSecondary);
+    background: linear-gradient(
+        180deg,
+        var(--cBgLandingMain) 60%,
+        var(--cBgSecondary) 100%
+    );
     display: flex;
     width: 100%;
     height: 358px;
@@ -8,6 +12,18 @@
     padding: 30px;
     position: relative;
     z-index: 1;
+}
+
+.authorizedFooter {
+    display: flex;
+    width: 100%;
+    height: 358px;
+    justify-content: space-between;
+    color: var(--cTextThird);
+    padding: 30px;
+    position: relative;
+    z-index: 1;
+    background-color: var(--cBgSecondary);
 }
 
 .formControl {
