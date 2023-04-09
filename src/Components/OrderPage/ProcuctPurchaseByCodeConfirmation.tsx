@@ -1,7 +1,8 @@
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import { Button, Collapse } from '@mui/material';
 import cn from 'classnames';
+import dynamic from 'next/dynamic';
 import React, { useContext, useEffect, useState } from 'react';
-import ReactCodeInput from 'react-code-input';
 import { useTranslation } from 'react-i18next';
 import { completeOrder, sendProductCode } from 'src/api/order';
 import styles from '../../../styles/OrderPage.module.css';
@@ -17,6 +18,8 @@ enum ErrorEnum {
     ERROR = 'error',
     OK = 'ok',
 }
+
+const ReactCodeInput = dynamic(import('react-code-input'));
 
 const ProcuctPurchaseByCodeConfirmation: React.FC<IProps> = ({
     orderId,
@@ -82,7 +85,7 @@ const ProcuctPurchaseByCodeConfirmation: React.FC<IProps> = ({
     }, [secondsAfterSend, isCodeSent]);
 
     return (
-        <>
+        <div>
             <div className={styles.productDeliveredOpenButton}>
                 <Button
                     variant='outlined'
@@ -103,6 +106,7 @@ const ProcuctPurchaseByCodeConfirmation: React.FC<IProps> = ({
                     })}
                 >
                     <div className={styles.checkItemBeforeVerify}>
+                        <PriorityHighIcon sx={{ width: 20, height: 20 }} />
                         {t('checkItemBeforeVerify')}
                     </div>
                     <div className={styles.productDeliveredContentSecond}>
@@ -172,7 +176,7 @@ const ProcuctPurchaseByCodeConfirmation: React.FC<IProps> = ({
                     </span>
                 )}
             </div>
-        </>
+        </div>
     );
 };
 
