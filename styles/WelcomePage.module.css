@@ -480,6 +480,7 @@
 
 .advantage {
     text-align: center;
+    flex: 1;
 }
 
 .advantage > img {
