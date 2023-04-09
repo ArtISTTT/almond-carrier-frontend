@@ -53,8 +53,6 @@ export default function Welcome() {
         validationSchema: FastSignupSchema,
     });
 
-    console.log(t('findAPersonWhoCan'));
-
     return (
         <PrivateLayout privateType={privateTypes.all}>
             <MainLayout
