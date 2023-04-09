@@ -1,6 +1,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import { Button, Container, Pagination, Typography } from '@mui/material';
 import cn from 'classnames';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -16,7 +17,6 @@ import EmptyBlock from '../EmptyComponents/EmptyOrderBlock';
 import UserLayout from '../Layouts/User';
 import CircleLoader from '../Loaders/CircleLoader';
 import CarrierAddingPopup from '../OrderComponents/CarrierAddingPopup';
-import {motion} from "framer-motion"
 
 enum PopupType {
     none,
@@ -32,7 +32,7 @@ const Dashboard: React.FC = () => {
         PopupType.none
     );
 
-    const { reload, isLoading, error } = useLoadOwnOrders();
+    const { reload, isLoading } = useLoadOwnOrders();
     const thisPageOrders = useGetCurrentPageOrders({ orders, page });
 
     useEffect(() => {
@@ -136,17 +136,27 @@ const Dashboard: React.FC = () => {
                                         />
                                     )}
                                     <div className={styles.newOrderButtons}>
-                                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                                        <motion.div
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
                                             <Button
                                                 onClick={toggleReceiverPopup}
-                                                className={styles.newOrderButton}
+                                                className={
+                                                    styles.newOrderButton
+                                                }
                                                 variant='contained'
                                             >
-                                                <AddIcon sx={{ fontSize: 22 }} />
+                                                <AddIcon
+                                                    sx={{ fontSize: 22 }}
+                                                />
                                                 {t('orderItem')}
                                             </Button>
                                         </motion.div>
-                                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                                        <motion.div
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
                                             <Button
                                                 onClick={toggleCarrierPopup}
                                                 className={cn(
@@ -155,7 +165,9 @@ const Dashboard: React.FC = () => {
                                                 )}
                                                 variant='contained'
                                             >
-                                                <AddIcon sx={{ fontSize: 22 }} />
+                                                <AddIcon
+                                                    sx={{ fontSize: 22 }}
+                                                />
                                                 {t('sendItem')}
                                             </Button>
                                         </motion.div>

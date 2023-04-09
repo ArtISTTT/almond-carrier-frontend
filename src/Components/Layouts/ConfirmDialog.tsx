@@ -1,11 +1,11 @@
-import React, { createContext } from 'react';
 import {
     Button,
     Dialog,
-    DialogTitle,
-    DialogContent,
     DialogActions,
+    DialogContent,
+    DialogTitle,
 } from '@mui/material';
+import React, { createContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
 type ITriggerOpen = {
@@ -17,7 +17,7 @@ interface IProps {
 }
 
 export const OpenDialogContext = createContext({
-    triggerDialogOpen: (props: ITriggerOpen) => {},
+    triggerDialogOpen: (_: ITriggerOpen) => {},
 });
 
 const ConfirmDialogLayout: React.FC<IProps> = ({ children }) => {

@@ -14,7 +14,6 @@ import { SocketIoContext } from '../Layouts/SocketIo';
 import { ViewType } from '../OrderPage/OrderInputItem';
 import MessagesPanel from './MessagesPanel';
 
-const SERVER = process.env.NEXT_PUBLIC_SERVER_URI as string;
 interface IProps {
     user: IUser;
     order: IOrderFull;
