@@ -10,7 +10,7 @@ export enum navigateTo {
     FORGOT_PASSWORD = '/forgot-password',
     ORDER = '/order/[orderId]',
     USER = '/user/[userId]',
-    PRIVACY_POLICITY = '/privacy-policy',
+    PRIVACY_POLICY = '/privacy-policy',
     USER_AGREEMENT = '/user-agreement',
     VERIFICATION = '/verification',
     FOUNDERS = '/founders',
@@ -18,4 +18,6 @@ export enum navigateTo {
     CONTACT_DETAILS = '/contact-details',
     DISCLAIMER = '/disclaimer',
     SECURITY_POLICIES = '/security-policies',
+    RETURN_POLICY = '/return-policy',
+    SERVICE_RULES = '/service-rules'
 }
