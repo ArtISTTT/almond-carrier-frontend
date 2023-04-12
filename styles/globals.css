@@ -53,6 +53,7 @@
     --cBgSuccess: #1c9e11;
     --cBgAwaiting: #df821e;
     --cBgCancelled: #c43219;
+    --cBgHover: #e5e5e5;
 
     --cBorderPrimary: #6690fd;
 
@@ -100,6 +101,7 @@ body.dark {
     --cBgThird: #444444;
 
     --cBgLandingMain: #444444;
+    --cBgHover: #4a4949;
 
     --cBorderLow: #6d6d6d57;
     --cBorderSecondary: #3b3b3b;
