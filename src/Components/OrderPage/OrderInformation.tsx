@@ -24,7 +24,8 @@ import { IOrder, IOrderFull } from '../../interfaces/order';
 import { OrderStatus } from '../../interfaces/profile';
 import { Currency } from '../../interfaces/settings';
 import { OpenAlertContext } from '../Layouts/Snackbar';
-import OrderConfirmPurchase from './OrderConfirmPurchase';
+import OrderConfirmationCarrier from './OrderConfirmationCarrier';
+import OrderConfirmationReceiver from './OrderConfirmationReceiver';
 import OrderInputItem, {
     ChangedType,
     getChangedType,
@@ -32,7 +33,6 @@ import OrderInputItem, {
     ViewType,
 } from './OrderInputItem';
 import OrderPayoutInfoBlock from './OrderPayoutInfoBlock';
-import OrderReceiverPhotoConfirmation from './OrderReceiverPhotoConfirmation';
 import OrderReview from './OrderReview';
 import ProcuctPurchaseByCodeConfirmation from './ProcuctPurchaseByCodeConfirmation';
 import ReviewPopup from './ReviewPopup';
@@ -52,10 +52,19 @@ type IProps = {
     updateOrder: (withoutLoading?: true) => Promise<void>;
 };
 
-const allowedStatusesForPurchase = [
+const allowedStatusesForPurchaseReceiver = [
     OrderStatus.itemRecieved,
     OrderStatus.awaitingDelivery,
     OrderStatus.awaitingPayout,
+    OrderStatus.success,
+    OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation,
+];
+
+const allowedStatusesForPurchaseCarrier = [
+    OrderStatus.itemRecieved,
+    OrderStatus.awaitingDelivery,
+    OrderStatus.awaitingPayout,
+    OrderStatus.awaitingPurchase,
     OrderStatus.success,
     OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation,
 ];
@@ -340,18 +349,29 @@ const OrderInformation: React.FC<IProps> = ({
                 )}
 
             <div className={styles.orderInformation}>
-                {order.status === OrderStatus.awaitingPurchase &&
-                    viewType === ViewType.carrier && (
-                        <OrderConfirmPurchase orderId={order.id} />
+                <div className={styles.orderInformationTitle}>
+                    {t('orderInformation')}
+                </div>
+                {allowedStatusesForPurchaseReceiver.includes(order.status) &&
+                    viewType === ViewType.receiver && (
+                        <OrderConfirmationReceiver
+                            orderId={order.id}
+                            viewType={viewType}
+                            orderStatus={order.status}
+                            fileLinks={order.purchaseItemFiles}
+                        />
                     )}
-                {allowedStatusesForPurchase.includes(order.status) && (
-                    <OrderReceiverPhotoConfirmation
-                        orderId={order.id}
-                        viewType={viewType}
-                        orderStatus={order.status}
-                        fileLinks={order.purchaseItemFiles}
-                    />
-                )}
+
+                {allowedStatusesForPurchaseCarrier.includes(order.status) &&
+                    viewType === ViewType.carrier && (
+                        <OrderConfirmationCarrier
+                            orderId={order.id}
+                            viewType={viewType}
+                            orderStatus={order.status}
+                            fileLinks={order.purchaseItemFiles}
+                        />
+                    )}
+
                 {!order.myReview &&
                 isReviewBlockOpen &&
                 allowedStatusesForReview.includes(order.status) ? (
@@ -371,9 +391,6 @@ const OrderInformation: React.FC<IProps> = ({
                         className={styles.form}
                         onSubmit={formik.handleSubmit}
                     >
-                        <div className={styles.orderInformationTitle}>
-                            {t('orderInformation')}
-                        </div>
                         <OrderPayoutInfoBlock
                             bank={userBank}
                             status={order.status}
@@ -797,6 +814,7 @@ const OrderInformation: React.FC<IProps> = ({
                             )}
                     </form>
                 )}
+
                 {suggestedChanged && (
                     <div className={styles.buttons}>
                         <Button
