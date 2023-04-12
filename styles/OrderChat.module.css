@@ -183,7 +183,7 @@
     font-weight: 600;
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 930px) {
     .chatWrapper {
         margin-top: 0;
         margin-left: 32px;

@@ -129,6 +129,11 @@ const OrderReceiverPhotoConfirmation: React.FC<IProps> = ({
                                                             }
                                                             src={link}
                                                         />
+                                                        <div
+                                                            className={
+                                                                styles.purchasePhotoHover
+                                                            }
+                                                        />
                                                     </div>
                                                     {openedPhoto && (
                                                         <PurshasePhoto
