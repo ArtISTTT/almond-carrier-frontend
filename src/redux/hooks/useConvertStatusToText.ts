@@ -22,6 +22,8 @@ export const useConvertStatusToText = () => {
                 return t('inDiscussion');
             case OrderStatus.waitingForPayment:
                 return t('waitingForPayment');
+            case OrderStatus.awaitingBeforePurchaseItemsFiles:
+                return t('awaitingBeforePurchaseItemsFiles');
             case OrderStatus.waitingForPaymentVerification:
                 return t('waitingForPaymentVerification');
             case OrderStatus.waitingCarrier:

@@ -340,6 +340,10 @@ const OrderInformation: React.FC<IProps> = ({
                 )}
 
             <div className={styles.orderInformation}>
+
+
+
+                
                 {order.status === OrderStatus.awaitingPurchase &&
                     viewType === ViewType.carrier && (
                         <OrderConfirmPurchase orderId={order.id} />
@@ -352,6 +356,14 @@ const OrderInformation: React.FC<IProps> = ({
                         fileLinks={order.purchaseItemFiles}
                     />
                 )}
+
+
+
+
+
+
+
+
                 {!order.myReview &&
                 isReviewBlockOpen &&
                 allowedStatusesForReview.includes(order.status) ? (
