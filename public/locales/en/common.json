@@ -468,6 +468,7 @@
     "response": "Response",
     "restorePass": "Restore password",
     "result": "Result",
+    "returnPolicy": "Return Policy",
     "returnToSingIn": "← Return to Sign in",
     "review": "Review",
     "reviews": "Reviews",
@@ -511,6 +512,7 @@
     "signOutError": "Sign out error",
     "signUp": "Sign up",
     "sinkoBank": "SINCO-BANK",
+    "serviceRules": "Service Rules",
     "sitemap": "Sitemap",
     "sityBank": "Citibank",
     "smpBank": "SMP Bank",
@@ -602,5 +604,7 @@
     "yourPayoutDetails": "Your payout details",
     "yourPayouts": "Your Payouts",
     "zemskiyBank": "Zemsky bank",
-    "zolotayaKorona": "Zolotaya Korona (RNKO Payment Center)"
+    "zolotayaKorona": "Zolotaya Korona (RNKO Payment Center)",
+    "paymentsSecurityPolicy": "Payment Security Policy",
+    "documents": "Documents"
 }

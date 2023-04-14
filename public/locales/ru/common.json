@@ -466,6 +466,7 @@
     "response": "Отклик",
     "restorePass": "Восстановить пароль",
     "result": "Результат",
+    "returnPolicy": "Политика Возврата",
     "returnToSingIn": "← Войти в аккаунт",
     "review": "Отзыв",
     "reviews": "Отзывы",
@@ -500,6 +501,7 @@
     "sendNewItem": "Отправить новый товар",
     "sendReview": "Отправить отзыв",
     "serviceTerms": "Пользовательское соглашение",
+    "serviceRules": "Правила Сервиса",
     "settings": "Настройки",
     "setupNewPassword": "Установить новый пароль",
     "severniyNarodniyBank": "Северный Народный Банк",
@@ -601,5 +603,6 @@
     "yourPayoutDetails": "Ваши реквизиты для выплаты",
     "yourPayouts": "Ваши выплаты",
     "zemskiyBank": "Земский банк",
-    "zolotayaKorona": "Золотая Корона (РНКО Платежный центр)"
+    "zolotayaKorona": "Золотая Корона (РНКО Платежный центр)",
+    "documents": "Документы"
 }
