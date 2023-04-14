@@ -1,6 +1,5 @@
-import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
-import styles from '../../../styles/OrderPage.module.css';
+import styles from '../../../../styles/OrderPage.module.css';
 
 type IProps = {
     openedPhoto: string;
@@ -20,10 +19,6 @@ const PurshasePhoto: React.FC<IProps> = ({ openedPhoto, setOpenedPhoto }) => {
                 onClick={stopPropagation}
                 className={styles.purchasePhotoInner}
             >
-                <CloseIcon
-                    onClick={closePhoto}
-                    className={styles.purchaseIcon}
-                />
                 <img className={styles.purchasePhotoOpened} src={openedPhoto} />
             </div>
         </div>
