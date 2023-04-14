@@ -6,6 +6,7 @@ import OrderReceiverPhotoConfirmation from '../OrderReceiverPhotoConfirmation';
 const allowedStatusesForPurchaseReceiver = [
     OrderStatus.itemRecieved,
     OrderStatus.awaitingDelivery,
+    OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation,
     OrderStatus.awaitingPayout,
     OrderStatus.awaitingPurchase,
     OrderStatus.success,
