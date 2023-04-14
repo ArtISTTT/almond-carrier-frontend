@@ -12,6 +12,7 @@ export interface IReview {
 }
 
 export enum OrderStatus {
+    awaitingRecieverItemBeforePurchasePhotosConfirmation = 'awaitingRecieverItemBeforePurchasePhotosConfirmation',
     awaitingBeforePurchaseItemsFiles = 'awaitingBeforePurchaseItemsFiles',
     awaitingPurchase = 'awaitingPurchase',
     awaitingRecieverItemPurchasePhotosConfirmation = 'awaitingRecieverItemPurchasePhotosConfirmation',

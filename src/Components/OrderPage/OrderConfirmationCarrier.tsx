@@ -1,3 +1,6 @@
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
+import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import { Button, Collapse, Tab, Tabs } from '@mui/material';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -6,11 +9,13 @@ import { OrderStatus } from 'src/interfaces/profile';
 import styles from '../../../styles/OrderPage.module.css';
 import CircleLoader from '../Loaders/CircleLoader';
 import OrderDataAfterPurchaseCarrier from './OrderConfirmation/carrier/OrderDataAfterPurchaseCarrier';
+import OrderDataBeforePurchaseCarrier from './OrderConfirmation/carrier/OrderDataBeforePurchaseCarrier';
 import { ViewType } from './OrderInputItem';
 
 type IProps = {
     fileLinks?: string[];
     orderId: string;
+    beforePurchasingItemFiles?: string[];
     viewType: ViewType;
     orderStatus: OrderStatus;
 };
@@ -18,6 +23,7 @@ type IProps = {
 const OrderConfirmationCarrier: React.FC<IProps> = ({
     orderId,
     orderStatus,
+    beforePurchasingItemFiles,
     fileLinks,
 }) => {
     const { t } = useTranslation();
@@ -63,25 +69,36 @@ const OrderConfirmationCarrier: React.FC<IProps> = ({
                             >
                                 <Tab
                                     className={styles.tab}
-                                    // icon={<MenuIcon />}
+                                    icon={<AddShoppingCartIcon />}
                                     iconPosition='start'
                                     label={t('beforePurchase')}
                                 />
                                 <Tab
                                     className={styles.tab}
-                                    // icon={<RestoreIcon />}
+                                    icon={<PriceCheckIcon />}
                                     iconPosition='start'
                                     label={t('afterPurchase')}
                                 />
                                 <Tab
                                     className={styles.tab}
-                                    // icon={<StarIcon />}
+                                    icon={<DoneAllIcon />}
                                     iconPosition='start'
                                     label={t('goodsReceipt')}
                                 />
                             </Tabs>
                         </div>
                         <div className={styles.collapseContent}>
+                            {value === 0 && (
+                                <OrderDataBeforePurchaseCarrier
+                                    orderId={orderId}
+                                    setIsDataSending={setIsDataSending}
+                                    fileLinks={fileLinks}
+                                    beforePurchasingItemFiles={
+                                        beforePurchasingItemFiles
+                                    }
+                                    orderStatus={orderStatus}
+                                />
+                            )}
                             {value === 1 && (
                                 <OrderDataAfterPurchaseCarrier
                                     orderId={orderId}
