@@ -1,11 +1,12 @@
-import { Tab, Tabs } from '@mui/material';
-import React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import StarIcon from '@mui/icons-material/Star';
 import RestoreIcon from '@mui/icons-material/Restore';
+import StarIcon from '@mui/icons-material/Star';
+import VerifiedIcon from '@mui/icons-material/Verified';
+import { Tab, Tabs } from '@mui/material';
 import { useRouter } from 'next/router';
-import styles from '../../../styles/Profile.module.css';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
+import styles from '../../../styles/Profile.module.css';
 
 const selectTab = (link: string) => {
     switch (link) {
@@ -15,6 +16,8 @@ const selectTab = (link: string) => {
             return 1;
         case '/profile/reviews':
             return 2;
+        case '/profile/verification':
+            return 3;
         default:
             return 0;
     }
@@ -28,6 +31,8 @@ const selectTabHref = (index: number) => {
             return '/profile/orders';
         case 2:
             return '/profile/reviews';
+        case 3:
+            return '/profile/verification';
         default:
             return '/profile/general';
     }
@@ -55,7 +60,11 @@ const ProfileNavbar: React.FC = () => {
                     orientation='vertical'
                     aria-label='profile tabs'
                 >
-                    <Tab icon={<MenuIcon />} iconPosition='start' label={t('myInfo')} />
+                    <Tab
+                        icon={<MenuIcon />}
+                        iconPosition='start'
+                        label={t('myInfo')}
+                    />
                     <Tab
                         icon={<RestoreIcon />}
                         iconPosition='start'
@@ -65,6 +74,12 @@ const ProfileNavbar: React.FC = () => {
                         icon={<StarIcon />}
                         iconPosition='start'
                         label={t('reviews')}
+                    />
+                    <Tab
+                        icon={<VerifiedIcon />}
+                        iconPosition='start'
+                        label={'Верификация'}
+                        className={styles.verificationTab}
                     />
                 </Tabs>
             </div>
@@ -76,27 +91,26 @@ const ProfileNavbar: React.FC = () => {
                     orientation='horizontal'
                     aria-label='profile tabs'
                 >
-                    <Tab 
-                    icon={<MenuIcon style={{fontSize: 20}} />} 
-                    iconPosition='start' 
-                    label={t('myInfo')}
-                    className={styles.tab}
-                     />
                     <Tab
-                        icon={<RestoreIcon style={{fontSize: 20}} />}
+                        icon={<MenuIcon style={{ fontSize: 20 }} />}
+                        iconPosition='start'
+                        label={t('myInfo')}
+                        className={styles.tab}
+                    />
+                    <Tab
+                        icon={<RestoreIcon style={{ fontSize: 20 }} />}
                         iconPosition='start'
                         label={t('myOrders')}
                         className={styles.tab}
                     />
                     <Tab
-                        icon={<StarIcon style={{fontSize: 20}} />}
+                        icon={<StarIcon style={{ fontSize: 20 }} />}
                         iconPosition='start'
                         label={t('reviews')}
                         className={styles.tab}
                     />
                 </Tabs>
             </div>
-
         </div>
     );
 };

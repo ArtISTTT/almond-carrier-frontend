@@ -130,6 +130,11 @@
     justify-content: flex-start;
 }
 
+.verificationTab {
+    border: 2px solid var(--cTextSuccess);
+    color: var(--cTextSuccess) !important;
+}
+
 .layoutWrapper {
     background-color: var(--cBgSecondary);
 }
