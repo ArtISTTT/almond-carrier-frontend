@@ -18,7 +18,7 @@ export const startVerification = async (
         //what kind of proofs will be provided to Shufti Pro for verification?
         verification_mode: 'any',
         //allow end-user to upload verification proofs if the webcam is not accessible
-        allow_offline: '1',
+        allow_offline: '0',
         //allow end-user to upload real-time or already catured proofs
         allow_online: '1',
         //privacy policy screen will be shown to end-user
