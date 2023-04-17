@@ -214,7 +214,7 @@ const SignIn: React.FC = () => {
                                 {t('clickingRegisterIAccept')}
                                 <MUILink
                                     className={style.allowLink}
-                                    href={navigateTo.PRIVACY_POLICITY}
+                                    href={navigateTo.PRIVACY_POLICY}
                                     component={LinkBehaviour}
                                 >
                                     {t('privacyPolicity')}
