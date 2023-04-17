@@ -3,7 +3,6 @@ import React from 'react';
 import PrivateLayout from 'src/Components/Layouts/Private';
 import ProfileLayout from 'src/Components/Layouts/ProfileLayout';
 import UserLayout from 'src/Components/Layouts/User';
-import General from 'src/Components/MyProfile/General';
 import { Verification } from 'src/Components/MyProfile/Verification';
 import { privateTypes } from 'src/interfaces/private';
 

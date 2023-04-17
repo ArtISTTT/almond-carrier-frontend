@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { sha256 } from 'js-sha256';
 
 const validateSignature = (
@@ -11,7 +10,7 @@ const validateSignature = (
     data = `${data}${SK}`;
 
     sha256(data);
-    var hash = sha256.create();
+    const hash = sha256.create();
     hash.update(data);
 
     if (hash.hex() == signature) {
@@ -22,7 +21,7 @@ const validateSignature = (
 };
 
 const createIframe = (src: string) => {
-    let iframe = document.createElement('iframe');
+    const iframe = document.createElement('iframe');
     iframe.style.position = 'fixed';
     iframe.id = 'shuftipro-iframe';
     iframe.name = 'shuftipro-iframe';
