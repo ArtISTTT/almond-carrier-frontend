@@ -4,7 +4,7 @@ export const startVerification = async (
 ) => {
     const payload = {
         //your unique request reference
-        reference: `SP_REQUEST_${Math.random()}`,,
+        reference: `SP_REQUEST_${Math.random()}`,
         //URL where you will receive the webhooks from Shufti Pro
         callback_url: process.env.NEXT_PUBLIC_SP_CALLBACK_URI,
         //end-user email
@@ -41,18 +41,15 @@ export const startVerification = async (
         `${process.env.NEXT_PUBLIC_SP_CLIENT_ID}:${process.env.NEXT_PUBLIC_SP_SECRET}`
     );
 
-    fetch(
-        `https://api.shuftipro.com/`,
-        {
-            method: 'post',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: 'Basic ' + token,
-            },
-            body: JSON.stringify(payload),
-        }
-    )
+    fetch(`https://api.shuftipro.com/`, {
+        method: 'post',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: 'Basic ' + token,
+        },
+        body: JSON.stringify(payload),
+    })
         .then(function (response) {
             return response.json();
         })
