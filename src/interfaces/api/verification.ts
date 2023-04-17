@@ -1,12 +1,10 @@
 export const startVerification = async (
     email: string,
-    userId: string,
-    verificationStarted: true | undefined,
     showIframe: (src: string) => void
 ) => {
     const payload = {
         //your unique request reference
-        reference: userId,
+        reference: `SP_REQUEST_${Math.random()}`,,
         //URL where you will receive the webhooks from Shufti Pro
         callback_url: process.env.NEXT_PUBLIC_SP_CALLBACK_URI,
         //end-user email
@@ -44,9 +42,7 @@ export const startVerification = async (
     );
 
     fetch(
-        `https://api.shuftipro.com/${
-            verificationStarted ? 'verification/v1/retry' : ''
-        }`,
+        `https://api.shuftipro.com/`,
         {
             method: 'post',
             headers: {

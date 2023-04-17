@@ -17,12 +17,7 @@ export const Verification = () => {
     };
 
     const startVerificationClick = async () => {
-        await startVerification(
-            user.email,
-            user.id,
-            user.idVerification.verificationStarted,
-            showIframe
-        );
+        await startVerification(user.email, showIframe);
     };
 
     return (
