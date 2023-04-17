@@ -51,7 +51,7 @@ export const startVerification = async (
         //your unique request reference
         reference: userId,
         //URL where you will receive the webhooks from Shufti Pro
-        // "callback_url"				 : "https://yourdomain.com/profile/sp-notify-callback",
+        callback_url: process.env.NEXT_PUBLIC_SP_CALLBACK_URI,
         //end-user email
         email: email,
         //end-user country
