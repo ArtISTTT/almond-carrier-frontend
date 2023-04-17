@@ -16,7 +16,7 @@ export const startVerification = async (
         //URL where end-user will be redirected after verification completed
         redirect_url: 'https://friendlycarrier.com/profile/verification',
         //what kind of proofs will be provided to Shufti Pro for verification?
-        verification_mode: 'image_only',
+        verification_mode: 'any',
         //allow end-user to upload verification proofs if the webcam is not accessible
         allow_offline: '1',
         //allow end-user to upload real-time or already catured proofs
