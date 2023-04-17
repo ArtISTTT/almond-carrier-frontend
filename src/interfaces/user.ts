@@ -11,6 +11,7 @@ export type IUser = {
     avatar?: string;
     completedOrders: number;
     rating?: number;
+    idVerification: any;
     id: string;
 };
 
