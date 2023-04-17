@@ -16,7 +16,7 @@ export const startVerification = async (
         //select ISO2 code for your desired language on verification screen
         language: 'RU',
         //URL where end-user will be redirected after verification completed
-        redirect_url: 'https://friendlycarrier.com',
+        redirect_url: 'https://friendlycarrier.com/profile/verification',
         //what kind of proofs will be provided to Shufti Pro for verification?
         verification_mode: 'image_only',
         //allow end-user to upload verification proofs if the webcam is not accessible
