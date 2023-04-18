@@ -1,19 +1,22 @@
 import { Avatar, Button, Tooltip } from '@mui/material';
 import cn from 'classnames';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { navigateTo } from 'src/interfaces/navigate';
 import { Currency } from 'src/interfaces/settings';
+import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { selectIsAuthorized } from 'src/redux/selectors/user';
 import styles from '../../../styles/OrderSearch.module.css';
 import { IOrder } from '../../interfaces/order';
 import FastLoginPopup from './FastLoginPopup';
-import { motion } from 'framer-motion'
 
 type IProps = {
+    isRedirectPopupOpen: boolean;
+    setIsRedirectPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
     isFastLoginPopupOpen: boolean;
     setIsFastLoginPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
     order: IOrder;
@@ -22,6 +25,8 @@ type IProps = {
 
 const SearchTableOrderReceiver: React.FC<IProps> = ({
     isFastLoginPopupOpen,
+    isRedirectPopupOpen,
+    setIsRedirectPopupOpen,
     setIsFastLoginPopupOpen,
     order,
     setApplyedOrder,
@@ -30,10 +35,15 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({
     const formatAmount = useFormatAmount();
     const isAuthorized = useSelector(selectIsAuthorized);
     const router = useRouter();
+    const isUserVerified = useAppSelector(
+        state => state.user.data?.idVerificationCompleted
+    );
 
     const openPopupFunc = () => {
-        if (isAuthorized) {
+        if (isAuthorized && isUserVerified) {
             setApplyedOrder(order);
+        } else if (isAuthorized && !isUserVerified) {
+            setIsRedirectPopupOpen(true);
         } else {
             setIsFastLoginPopupOpen(true);
         }
@@ -46,10 +56,23 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({
         });
     };
 
+    const navigateToLogin = () => router.push(navigateTo.SIGNIN);
+    const navigateToVerification = () =>
+        router.push(navigateTo.PROFILE_VERIFICATION);
+
     return (
         <>
+            {isRedirectPopupOpen && (
+                <FastLoginPopup
+                    completeFunction={navigateToVerification}
+                    textButton={'verify'}
+                    setIsFastLoginPopupOpen={setIsRedirectPopupOpen}
+                />
+            )}
             {isFastLoginPopupOpen && (
                 <FastLoginPopup
+                    completeFunction={navigateToLogin}
+                    textButton={'signIn'}
                     setIsFastLoginPopupOpen={setIsFastLoginPopupOpen}
                 />
             )}
@@ -174,7 +197,10 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({
                         {order.productWeight} {t('kg')}
                     </div>
                     <div className={cn(styles.part, styles.button)}>
-                        <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
                             <Button
                                 onClick={openPopupFunc}
                                 variant='contained'
@@ -186,7 +212,10 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({
                     </div>
                 </div>
                 <div className={styles.hidingButton}>
-                    <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
                         <Button
                             onClick={openPopupFunc}
                             variant='contained'

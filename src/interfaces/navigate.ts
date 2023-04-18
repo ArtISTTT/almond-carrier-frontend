@@ -4,6 +4,7 @@ export enum navigateTo {
     SIGNIN = '/signin',
     PROFILE_ORDERS = '/profile/orders',
     PROFILE_GENERAL = '/profile/general',
+    PROFILE_VERIFICATION = '/profile/verification',
     SIGNUP = '/signup',
     LANDING = '/',
     ORDER_SEARCH = '/order-search',
@@ -19,5 +20,5 @@ export enum navigateTo {
     DISCLAIMER = '/disclaimer',
     SECURITY_POLICIES = '/security-policies',
     RETURN_POLICY = '/return-policy',
-    SERVICE_RULES = '/service-rules'
+    SERVICE_RULES = '/service-rules',
 }

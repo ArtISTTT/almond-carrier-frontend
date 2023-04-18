@@ -1,21 +1,22 @@
-import React from 'react';
-import style from '../../../styles/SignIn.module.css';
-import { ClickAwayListener, Avatar, Button, Typography } from '@mui/material';
-import { useTranslation } from 'react-i18next';
-import { useRouter } from 'next/router';
-import { navigateTo } from 'src/interfaces/navigate';
 import CloseIcon from '@mui/icons-material/Close';
+import { Avatar, Button, ClickAwayListener, Typography } from '@mui/material';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import style from '../../../styles/SignIn.module.css';
 
 interface IProps {
+    completeFunction: () => void;
+    textButton: string;
     setIsFastLoginPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const FastLoginPopup: React.FC<IProps> = ({ setIsFastLoginPopupOpen }) => {
+const FastLoginPopup: React.FC<IProps> = ({
+    setIsFastLoginPopupOpen,
+    textButton,
+    completeFunction,
+}) => {
     const { t } = useTranslation();
-    const router = useRouter();
     const handleClose = () => setIsFastLoginPopupOpen(false);
-
-    const navigateToLogin = () => router.push(navigateTo.SIGNIN);
 
     return (
         <div className={style.fastLoginPopupWrapper}>
@@ -41,9 +42,9 @@ const FastLoginPopup: React.FC<IProps> = ({ setIsFastLoginPopupOpen }) => {
                     <Button
                         variant='contained'
                         className={style.confirmButton}
-                        onClick={navigateToLogin}
+                        onClick={completeFunction}
                     >
-                        {t('signIn')}
+                        {t(textButton)}
                     </Button>
                 </div>
             </ClickAwayListener>
