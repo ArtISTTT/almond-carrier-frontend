@@ -32,6 +32,8 @@ import OrderInputItem, {
     ILabels,
     ViewType,
 } from './OrderInputItem';
+import OrderPayment from './OrderPayment';
+import OrderPaymentSuccess from './OrderPaymentSuccess';
 import OrderPayoutInfoBlock from './OrderPayoutInfoBlock';
 import OrderReview from './OrderReview';
 import ProcuctPurchaseByCodeConfirmation from './ProcuctPurchaseByCodeConfirmation';
@@ -39,6 +41,7 @@ import ReviewPopup from './ReviewPopup';
 
 type IProps = {
     order: IOrderFull;
+    payoutRef: React.MutableRefObject<HTMLDivElement | null>;
     viewType: ViewType;
     suggestedChanged: Partial<IOrder> | undefined;
     hasByYouSuggestedChanged: boolean;
@@ -80,6 +83,7 @@ const OrderInformation: React.FC<IProps> = ({
     viewType,
     user,
     updateOrder,
+    payoutRef,
     suggestedChanged,
     hasByYouSuggestedChanged,
     isReviewBlockOpen,
@@ -352,6 +356,16 @@ const OrderInformation: React.FC<IProps> = ({
                 <div className={styles.orderInformationTitle}>
                     {t('orderInformation')}
                 </div>
+
+                {order.status === OrderStatus.itemRecieved &&
+                    viewType === ViewType.carrier && (
+                        <OrderPaymentSuccess order={order} />
+                    )}
+                    
+                <div ref={payoutRef}>
+                    <OrderPayment order={order} updateOrder={updateOrder} />
+                </div>
+
                 {allowedStatusesForPurchaseReceiver.includes(order.status) &&
                     viewType === ViewType.receiver && (
                         <OrderConfirmationReceiver

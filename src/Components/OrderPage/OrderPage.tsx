@@ -167,6 +167,7 @@ const OrderPage = () => {
                     setIsMySentReviewBlockOpen={setIsMySentReviewBlockOpen}
                     setIsPersonReviewBlockOpen={setIsPersonReviewBlockOpen}
                     order={order}
+                    payoutRef={payoutRef}
                     updateOrder={updateOrder}
                     user={user}
                     viewType={viewType}
