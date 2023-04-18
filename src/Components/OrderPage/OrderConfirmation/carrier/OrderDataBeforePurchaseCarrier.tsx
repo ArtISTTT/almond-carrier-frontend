@@ -1,30 +1,35 @@
 import { Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { sendPurchaseData } from 'src/api/order';
+import { sendDataBeforePurchase } from 'src/api/order';
+import DropFileInput from 'src/Components/drop-file-input/DropFileInput';
+import { OpenAlertContext } from 'src/Components/Layouts/Snackbar';
 import { OrderStatus } from 'src/interfaces/profile';
 import styles from '../../../../../styles/OrderPage.module.css';
-import DropFileInput from '../../../drop-file-input/DropFileInput';
-import { OpenAlertContext } from '../../../Layouts/Snackbar';
 import OrderPurchaseData from '../OrderPurchaseData';
 
-type IProps = {
-    orderStatus: OrderStatus;
-    fileLinks?: string[];
-    orderId: string;
-    setIsDataSending: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const allowedStatusesForPurchaseCarrier = [
+const allowedStatusesForBeforePurchaseCarrier = [
     OrderStatus.itemRecieved,
     OrderStatus.awaitingDelivery,
     OrderStatus.awaitingPayout,
+    OrderStatus.awaitingPurchase,
+    OrderStatus.awaitingBeforePurchaseItemsFiles,
+    OrderStatus.awaitingRecieverItemBeforePurchasePhotosConfirmation,
     OrderStatus.success,
     OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation,
 ];
 
-const OrderDataAfterPurchaseCarrier: React.FC<IProps> = ({
+type IProps = {
+    orderStatus: OrderStatus;
+    fileLinks?: string[];
+    beforePurchasingItemFiles?: string[];
+    orderId: string;
+    setIsDataSending: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const OrderDataBeforePurchaseCarrier: React.FC<IProps> = ({
     orderStatus,
+    beforePurchasingItemFiles,
     fileLinks,
     orderId,
     setIsDataSending,
@@ -34,7 +39,7 @@ const OrderDataAfterPurchaseCarrier: React.FC<IProps> = ({
 
     const confirmPurchaseData = async (fileList: File[]) => {
         setIsDataSending(true);
-        const data = await sendPurchaseData({
+        const data = await sendDataBeforePurchase({
             files: fileList,
             orderId,
         });
@@ -56,8 +61,8 @@ const OrderDataAfterPurchaseCarrier: React.FC<IProps> = ({
 
     return (
         <>
-            {orderStatus === OrderStatus.awaitingPurchase && (
-                <div className={styles.afterPurchseCarrierBlock}>
+            {orderStatus === OrderStatus.awaitingBeforePurchaseItemsFiles && (
+                <>
                     <Typography
                         variant='h6'
                         component='h4'
@@ -70,13 +75,13 @@ const OrderDataAfterPurchaseCarrier: React.FC<IProps> = ({
                         confirmPurchaseData={confirmPurchaseData}
                         buttonText='confirm'
                     />
-                </div>
+                </>
             )}
-            {allowedStatusesForPurchaseCarrier.includes(orderStatus) && (
-                <OrderPurchaseData fileLinks={fileLinks} />
+            {allowedStatusesForBeforePurchaseCarrier.includes(orderStatus) && (
+                <OrderPurchaseData fileLinks={beforePurchasingItemFiles} />
             )}
         </>
     );
 };
 
-export default OrderDataAfterPurchaseCarrier;
+export default OrderDataBeforePurchaseCarrier;

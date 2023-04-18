@@ -9,12 +9,13 @@ import {
 } from '@mui/material';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
 import cn from 'classnames';
+import dayjs from 'dayjs';
 import { useFormik } from 'formik';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IBounds } from 'src/interfaces/geometry';
-import {motion} from 'framer-motion'
 import { navigateTo } from 'src/interfaces/navigate';
 import { Currency } from 'src/interfaces/settings';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
@@ -275,6 +276,7 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                             inputFormat='DD.MM.YYYY'
                             value={formik.values.arrivalDate}
                             disablePast={true}
+                            maxDate={dayjs().month(dayjs().month() + 1)}
                             onChange={value => {
                                 formik.setFieldValue('arrivalDate', value);
                             }}
@@ -299,7 +301,10 @@ const ReceiverApplyPopup: React.FC<IProps> = ({ closePopup, order }) => {
                         />
                     </div>
                 </Stack>
-                <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
                     <Button
                         type='submit'
                         className={styles.carrierApplyButton}

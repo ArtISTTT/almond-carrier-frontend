@@ -4,18 +4,23 @@ import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import { Button, Collapse, Tab, Tabs } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { acceptReceiverPurchaseData } from 'src/api/order';
+import {
+    acceptReceiverAfterPurchaseData,
+    acceptReceiverBeforePurchaseData,
+} from 'src/api/order';
 import { LoaderColors } from 'src/interfaces/loader';
 import { OrderStatus } from 'src/interfaces/profile';
 import styles from '../../../styles/OrderPage.module.css';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import CircleLoader from '../Loaders/CircleLoader';
 import OrderDataAfterPurchaseReceiver from './OrderConfirmation/receiver/OrderDataAfterPurchaseReceiver';
+import OrderDataBeforePurshaceReceiver from './OrderConfirmation/receiver/OrderDataBeforePurshaceReceiver';
 import { ViewType } from './OrderInputItem';
 
 type IProps = {
     fileLinks?: string[];
     orderId: string;
+    beforePurchasingItemFiles?: string[];
     viewType: ViewType;
     orderStatus: OrderStatus;
 };
@@ -23,6 +28,7 @@ type IProps = {
 const OrderConfirmationReceiver: React.FC<IProps> = ({
     orderId,
     viewType,
+    beforePurchasingItemFiles,
     orderStatus,
     fileLinks,
 }) => {
@@ -36,10 +42,13 @@ const OrderConfirmationReceiver: React.FC<IProps> = ({
 
     const handleChange = () => setPaymentOpened(prev => !prev);
 
+    const handlePhotoChange = (_: React.SyntheticEvent, newValue: number) =>
+        setValue(newValue);
+
     const acceptAfterPurchaseData = async () => {
         setIsReceiverDataBlockDisabled(true);
 
-        const data = await acceptReceiverPurchaseData({ orderId });
+        const data = await acceptReceiverAfterPurchaseData({ orderId });
 
         if (data.ok) {
             triggerOpen({
@@ -56,8 +65,24 @@ const OrderConfirmationReceiver: React.FC<IProps> = ({
         }
     };
 
-    const handlePhotoChange = (_: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
+    const acceptBeforePurchaseData = async () => {
+        setIsReceiverDataBlockDisabled(true);
+
+        const data = await acceptReceiverBeforePurchaseData({ orderId });
+
+        if (data.ok) {
+            triggerOpen({
+                severity: 'success',
+                text: t('dataConfirmed'),
+            });
+            setIsReceiverDataBlockDisabled(false);
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: t('dataConfirmedError'),
+            });
+            setIsReceiverDataBlockDisabled(false);
+        }
     };
 
     return (
@@ -110,6 +135,21 @@ const OrderConfirmationReceiver: React.FC<IProps> = ({
                                 </div>
 
                                 <div className={styles.collapseContent}>
+                                    {value === 0 && (
+                                        <OrderDataBeforePurshaceReceiver
+                                            acceptAfterPurchaseData={
+                                                acceptBeforePurchaseData
+                                            }
+                                            orderId={orderId}
+                                            orderStatus={orderStatus}
+                                            fileLinks={
+                                                beforePurchasingItemFiles
+                                            }
+                                            isReceiverDataBlockDisabled={
+                                                isReceiverDataBlockDisabled
+                                            }
+                                        />
+                                    )}
                                     {value === 1 && (
                                         <OrderDataAfterPurchaseReceiver
                                             acceptAfterPurchaseData={
