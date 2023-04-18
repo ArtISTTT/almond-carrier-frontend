@@ -328,9 +328,6 @@ const OrderInformation: React.FC<IProps> = ({
         ({ settings }) => settings.generalSettings.currency
     );
 
-    console.log('status - ', order.status);
-    console.log('order - ', order);
-
     return (
         <>
             {order.myReview &&
