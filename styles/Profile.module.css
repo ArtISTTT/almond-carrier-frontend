@@ -208,7 +208,7 @@
     }
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 650px) {
     .tabs button {
         padding: 5px 10px;
         font-size: 10px;

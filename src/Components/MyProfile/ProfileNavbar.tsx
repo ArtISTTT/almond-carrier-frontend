@@ -3,9 +3,11 @@ import RestoreIcon from '@mui/icons-material/Restore';
 import StarIcon from '@mui/icons-material/Star';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { Tab, Tabs } from '@mui/material';
+import cn from 'classnames';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useAppSelector } from 'src/redux/hooks';
 import styles from '../../../styles/Profile.module.css';
 
 const selectTab = (link: string) => {
@@ -45,6 +47,10 @@ const ProfileNavbar: React.FC = () => {
     );
     const { t } = useTranslation();
 
+    const isUserVerified = useAppSelector(
+        state => state.user.data?.idVerificationCompleted
+    );
+
     const handleChange = (_: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
         setTimeout(() => router.push(selectTabHref(newValue)), 200);
@@ -79,7 +85,9 @@ const ProfileNavbar: React.FC = () => {
                         icon={<VerifiedIcon />}
                         iconPosition='start'
                         label={t('verification')}
-                        className={styles.verificationTab}
+                        className={cn({
+                            [styles.verificationTab]: !isUserVerified,
+                        })}
                     />
                 </Tabs>
             </div>
@@ -113,7 +121,9 @@ const ProfileNavbar: React.FC = () => {
                         icon={<VerifiedIcon />}
                         iconPosition='start'
                         label={t('verification')}
-                        className={styles.verificationTab}
+                        className={cn({
+                            [styles.verificationTab]: !isUserVerified,
+                        })}
                     />
                 </Tabs>
             </div>

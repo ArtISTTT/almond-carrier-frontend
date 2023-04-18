@@ -10,7 +10,7 @@ interface IProps {
     setIsFastLoginPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const FastLoginPopup: React.FC<IProps> = ({
+const RedirectPopup: React.FC<IProps> = ({
     setIsFastLoginPopupOpen,
     textButton,
     completeFunction,
@@ -52,4 +52,4 @@ const FastLoginPopup: React.FC<IProps> = ({
     );
 };
 
-export default FastLoginPopup;
+export default RedirectPopup;

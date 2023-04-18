@@ -21,7 +21,7 @@ import { OpenDialogContext } from '../Layouts/ConfirmDialog';
 import UserLayout from '../Layouts/User';
 import CircleLoader from '../Loaders/CircleLoader';
 import CarrierAddingPopup from '../OrderComponents/CarrierAddingPopup';
-import FastLoginPopup from '../OrderSearch/FastLoginPopup';
+import RedirectPopup from '../OrderSearch/RedirectPopup';
 
 enum PopupType {
     none,
@@ -98,7 +98,7 @@ const Dashboard: React.FC = () => {
     return (
         <>
             {isRedirectPopupOpen && (
-                <FastLoginPopup
+                <RedirectPopup
                     completeFunction={navigateToVerification}
                     textButton={'verify'}
                     setIsFastLoginPopupOpen={setIsRedirectPopupOpen}

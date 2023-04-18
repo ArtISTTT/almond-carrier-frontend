@@ -12,7 +12,7 @@ import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { selectIsAuthorized } from 'src/redux/selectors/user';
 import styles from '../../../styles/OrderSearch.module.css';
 import { IOrder } from '../../interfaces/order';
-import FastLoginPopup from './FastLoginPopup';
+import RedirectPopup from './RedirectPopup';
 
 type IProps = {
     isRedirectPopupOpen: boolean;
@@ -63,14 +63,14 @@ const SearchTableOrderReceiver: React.FC<IProps> = ({
     return (
         <>
             {isRedirectPopupOpen && (
-                <FastLoginPopup
+                <RedirectPopup
                     completeFunction={navigateToVerification}
                     textButton={'verify'}
                     setIsFastLoginPopupOpen={setIsRedirectPopupOpen}
                 />
             )}
             {isFastLoginPopupOpen && (
-                <FastLoginPopup
+                <RedirectPopup
                     completeFunction={navigateToLogin}
                     textButton={'signIn'}
                     setIsFastLoginPopupOpen={setIsFastLoginPopupOpen}

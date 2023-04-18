@@ -19,6 +19,21 @@
     height: 100%;
 }
 
+.verificationComplete {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: var(--cTextSuccess);
+}
+
+.verificationComplete svg {
+    font-size: 120px;
+}
+
+.verificationCompleteText {
+    font-size: 40px;
+}
+
 @media screen and (max-width: 823px) {
     .Iframe {
         position: absolute;
@@ -26,6 +41,13 @@
         right: 0;
         left: 0;
         bottom: 0;
+    }
+    .verificationComplete svg {
+        font-size: 100px;
+    }
+
+    .verificationCompleteText {
+        font-size: 32px;
     }
 }
 
@@ -117,6 +139,24 @@
     }
 }
 
+@media screen and (max-width: 660px) {
+    .verificationComplete svg {
+        font-size: 70px;
+    }
+    .verificationCompleteText {
+        font-size: 24px;
+        white-space: nowrap;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .verificationComplete {
+        flex-direction: column;
+        gap: 10px;
+        margin: 0 10px;
+    }
+}
+
 @media screen and (max-width: 500px) {
     .title {
         font-size: 24px;
@@ -137,5 +177,15 @@
     .confirmButton {
         width: 170px;
         font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .verificationComplete svg {
+        font-size: 70px;
+    }
+    .verificationCompleteText {
+        font-size: 20px;
+        white-space: nowrap;
     }
 }
