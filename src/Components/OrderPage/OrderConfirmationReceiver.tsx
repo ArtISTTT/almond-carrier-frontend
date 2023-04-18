@@ -21,13 +21,11 @@ type IProps = {
     fileLinks?: string[];
     orderId: string;
     beforePurchasingItemFiles?: string[];
-    viewType: ViewType;
     orderStatus: OrderStatus;
 };
 
 const OrderConfirmationReceiver: React.FC<IProps> = ({
     orderId,
-    viewType,
     beforePurchasingItemFiles,
     orderStatus,
     fileLinks,
@@ -99,7 +97,7 @@ const OrderConfirmationReceiver: React.FC<IProps> = ({
                             {t('stateOfTheProduct')}
                         </Button>
                         <Collapse in={paymentOpened}>
-                            <div className={styles.collapsedPayment}>
+                            <div className={styles.collapsedPaymentReceiver}>
                                 <div className={styles.collapseTabs}>
                                     <Tabs
                                         className={styles.tabs}
@@ -112,6 +110,39 @@ const OrderConfirmationReceiver: React.FC<IProps> = ({
                                         onChange={handlePhotoChange}
                                         orientation='vertical'
                                         aria-label='order tabs'
+                                    >
+                                        <Tab
+                                            className={styles.tab}
+                                            icon={<AddShoppingCartIcon />}
+                                            iconPosition='start'
+                                            label={t('beforePurchase')}
+                                        />
+                                        <Tab
+                                            className={styles.tab}
+                                            icon={<PriceCheckIcon />}
+                                            iconPosition='start'
+                                            label={t('afterPurchase')}
+                                        />
+                                        <Tab
+                                            className={styles.tab}
+                                            icon={<DoneAllIcon />}
+                                            iconPosition='start'
+                                            label={t('goodsReceipt')}
+                                        />
+                                    </Tabs>
+                                </div>
+                                <div className={styles.collapseTabsHorisontal}>
+                                    <Tabs
+                                        className={styles.tabs}
+                                        value={value}
+                                        TabIndicatorProps={{
+                                            style: {
+                                                background: 'white',
+                                            },
+                                        }}
+                                        onChange={handlePhotoChange}
+                                        orientation='horizontal'
+                                        aria-label='profile tabs'
                                     >
                                         <Tab
                                             className={styles.tab}

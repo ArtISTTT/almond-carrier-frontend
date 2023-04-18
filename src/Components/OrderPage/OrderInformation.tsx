@@ -332,9 +332,6 @@ const OrderInformation: React.FC<IProps> = ({
         ({ settings }) => settings.generalSettings.currency
     );
 
-    console.log('status - ', order.status);
-    console.log('order - ', order);
-
     return (
         <>
             {order.myReview &&
@@ -369,7 +366,7 @@ const OrderInformation: React.FC<IProps> = ({
                     viewType === ViewType.carrier && (
                         <OrderPaymentSuccess order={order} />
                     )}
-                    
+
                 <div ref={payoutRef}>
                     <OrderPayment order={order} updateOrder={updateOrder} />
                 </div>
@@ -378,7 +375,6 @@ const OrderInformation: React.FC<IProps> = ({
                     viewType === ViewType.receiver && (
                         <OrderConfirmationReceiver
                             orderId={order.id}
-                            viewType={viewType}
                             orderStatus={order.status}
                             fileLinks={order.purchaseItemFiles}
                             beforePurchasingItemFiles={
@@ -391,7 +387,6 @@ const OrderInformation: React.FC<IProps> = ({
                     viewType === ViewType.carrier && (
                         <OrderConfirmationCarrier
                             orderId={order.id}
-                            viewType={viewType}
                             orderStatus={order.status}
                             fileLinks={order.purchaseItemFiles}
                             beforePurchasingItemFiles={
@@ -399,6 +394,22 @@ const OrderInformation: React.FC<IProps> = ({
                             }
                         />
                     )}
+
+                {order.status === OrderStatus.awaitingDelivery &&
+                    viewType === ViewType.receiver && (
+                        <ProcuctPurchaseByCodeConfirmation
+                            formik={formik}
+                            updateOrder={updateOrder}
+                            orderId={order.id}
+                        />
+                    )}
+
+                <OrderPayoutInfoBlock
+                    bank={userBank}
+                    status={order.status}
+                    viewType={viewType}
+                    phoneNumer={order?.payoutInfo?.phoneNumber || ''}
+                />
 
                 {!order.myReview &&
                 isReviewBlockOpen &&
@@ -419,12 +430,6 @@ const OrderInformation: React.FC<IProps> = ({
                         className={styles.form}
                         onSubmit={formik.handleSubmit}
                     >
-                        <OrderPayoutInfoBlock
-                            bank={userBank}
-                            status={order.status}
-                            viewType={viewType}
-                            phoneNumer={order?.payoutInfo?.phoneNumber || ''}
-                        />
                         {((viewType === ViewType.carrier && order.receiver) ||
                             (viewType === ViewType.receiver &&
                                 order.carrier)) && (
@@ -863,14 +868,6 @@ const OrderInformation: React.FC<IProps> = ({
                         </Button>
                     </div>
                 )}
-                {order.status === OrderStatus.awaitingDelivery &&
-                    viewType === ViewType.receiver && (
-                        <ProcuctPurchaseByCodeConfirmation
-                            formik={formik}
-                            updateOrder={updateOrder}
-                            orderId={order.id}
-                        />
-                    )}
             </div>
         </>
     );

@@ -153,13 +153,6 @@ const OrderChat: React.FC<IProps> = ({
                         >
                             {dialogPesron.person}
                         </Typography>
-                        {/* <Typography
-                            className={styles.chatMemberOnline}
-                            variant='subtitle2'
-                            component='h6'
-                        >
-                            {t('lastSeenOnline')} 15m {t('ago')}
-                        </Typography> */}
                     </div>
                 </div>
             </div>

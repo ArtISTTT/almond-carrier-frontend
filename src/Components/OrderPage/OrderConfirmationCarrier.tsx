@@ -10,13 +10,11 @@ import styles from '../../../styles/OrderPage.module.css';
 import CircleLoader from '../Loaders/CircleLoader';
 import OrderDataAfterPurchaseCarrier from './OrderConfirmation/carrier/OrderDataAfterPurchaseCarrier';
 import OrderDataBeforePurchaseCarrier from './OrderConfirmation/carrier/OrderDataBeforePurchaseCarrier';
-import { ViewType } from './OrderInputItem';
 
 type IProps = {
     fileLinks?: string[];
     orderId: string;
     beforePurchasingItemFiles?: string[];
-    viewType: ViewType;
     orderStatus: OrderStatus;
 };
 
@@ -40,9 +38,6 @@ const OrderConfirmationCarrier: React.FC<IProps> = ({
 
     return (
         <>
-            {/* <div className={styles.purchaseTitle}>
-                {t('purchaseReceiptOfGoods')}
-            </div> */}
             <div className={styles.orderPurchaseWrapper}>
                 <Button
                     variant='outlined'
@@ -53,7 +48,7 @@ const OrderConfirmationCarrier: React.FC<IProps> = ({
                     {t('stateOfTheProduct')}
                 </Button>
                 <Collapse in={paymentOpened}>
-                    <div className={styles.collapsedPayment}>
+                    <div className={styles.collapsedPaymentCarrier}>
                         <div className={styles.collapseTabs}>
                             <Tabs
                                 className={styles.tabs}
@@ -65,6 +60,39 @@ const OrderConfirmationCarrier: React.FC<IProps> = ({
                                 }}
                                 onChange={handlePhotoChange}
                                 orientation='vertical'
+                                aria-label='profile tabs'
+                            >
+                                <Tab
+                                    className={styles.tab}
+                                    icon={<AddShoppingCartIcon />}
+                                    iconPosition='start'
+                                    label={t('beforePurchase')}
+                                />
+                                <Tab
+                                    className={styles.tab}
+                                    icon={<PriceCheckIcon />}
+                                    iconPosition='start'
+                                    label={t('afterPurchase')}
+                                />
+                                <Tab
+                                    className={styles.tab}
+                                    icon={<DoneAllIcon />}
+                                    iconPosition='start'
+                                    label={t('goodsReceipt')}
+                                />
+                            </Tabs>
+                        </div>
+                        <div className={styles.collapseTabsHorisontal}>
+                            <Tabs
+                                className={styles.tabs}
+                                value={value}
+                                TabIndicatorProps={{
+                                    style: {
+                                        background: 'white',
+                                    },
+                                }}
+                                onChange={handlePhotoChange}
+                                orientation='horizontal'
                                 aria-label='profile tabs'
                             >
                                 <Tab
