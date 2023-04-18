@@ -56,14 +56,7 @@ type IProps = {
 };
 
 const allowedStatusesForPurchaseReceiver = [
-    OrderStatus.itemRecieved,
-    OrderStatus.awaitingDelivery,
-    OrderStatus.awaitingPayout,
-    OrderStatus.success,
-    OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation,
-];
-
-const allowedStatusesForPurchaseCarrier = [
+    OrderStatus.awaitingRecieverItemBeforePurchasePhotosConfirmation,
     OrderStatus.itemRecieved,
     OrderStatus.awaitingDelivery,
     OrderStatus.awaitingPayout,
@@ -72,9 +65,21 @@ const allowedStatusesForPurchaseCarrier = [
     OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation,
 ];
 
+const allowedStatusesForPurchaseCarrier = [
+    OrderStatus.itemRecieved,
+    OrderStatus.awaitingDelivery,
+    OrderStatus.awaitingRecieverItemBeforePurchasePhotosConfirmation,
+    OrderStatus.awaitingPayout,
+    OrderStatus.awaitingPurchase,
+    OrderStatus.awaitingBeforePurchaseItemsFiles,
+    OrderStatus.success,
+    OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation,
+];
+
 const allowedStatusesForReview = [
     OrderStatus.itemRecieved,
     OrderStatus.awaitingPayout,
+    OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation,
     OrderStatus.success,
 ];
 
@@ -327,6 +332,9 @@ const OrderInformation: React.FC<IProps> = ({
         ({ settings }) => settings.generalSettings.currency
     );
 
+    console.log('status - ', order.status);
+    console.log('order - ', order);
+
     return (
         <>
             {order.myReview &&
@@ -373,6 +381,9 @@ const OrderInformation: React.FC<IProps> = ({
                             viewType={viewType}
                             orderStatus={order.status}
                             fileLinks={order.purchaseItemFiles}
+                            beforePurchasingItemFiles={
+                                order.beforePurchaseItemFiles
+                            }
                         />
                     )}
 
@@ -383,6 +394,9 @@ const OrderInformation: React.FC<IProps> = ({
                             viewType={viewType}
                             orderStatus={order.status}
                             fileLinks={order.purchaseItemFiles}
+                            beforePurchasingItemFiles={
+                                order.beforePurchaseItemFiles
+                            }
                         />
                     )}
 

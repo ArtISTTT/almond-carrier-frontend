@@ -443,11 +443,66 @@ export const sendPurchaseData = (requestData: {
         });
 };
 
-export const acceptReceiverPurchaseData = (requestData: {
+export const sendDataBeforePurchase = (requestData: {
+    files: File[];
+    orderId: string;
+}): Promise<ISuggestChanges> => {
+    const formData = new FormData();
+
+    for (const file of requestData.files) {
+        formData.append('file', file);
+    }
+
+    formData.append('orderId', requestData.orderId);
+
+    return mainInstance
+        .post('/order/before-purchase', formData, {
+            params: { language: getLanguage() },
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+        .then(() => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ??
+                    'Error with sending data before purchase',
+            };
+        });
+};
+
+export const acceptReceiverAfterPurchaseData = (requestData: {
     orderId: string;
 }): Promise<ISuggestChanges> =>
     mainInstance
         .post('/order/approve-purchase', JSON.stringify(requestData), {
+            params: { language: getLanguage() },
+        })
+        .then(() => {
+            return {
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error:
+                    data.response?.data?.message ??
+                    'Error with accepting receiver purchase data',
+            };
+        });
+
+export const acceptReceiverBeforePurchaseData = (requestData: {
+    orderId: string;
+}): Promise<ISuggestChanges> =>
+    mainInstance
+        .post('/order/approve-before-purchase', JSON.stringify(requestData), {
             params: { language: getLanguage() },
         })
         .then(() => {
