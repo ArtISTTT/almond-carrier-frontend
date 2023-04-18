@@ -78,7 +78,7 @@ const ProfileNavbar: React.FC = () => {
                     <Tab
                         icon={<VerifiedIcon />}
                         iconPosition='start'
-                        label={'Верификация'}
+                        label={t('verification')}
                         className={styles.verificationTab}
                     />
                 </Tabs>
@@ -92,22 +92,28 @@ const ProfileNavbar: React.FC = () => {
                     aria-label='profile tabs'
                 >
                     <Tab
-                        icon={<MenuIcon style={{ fontSize: 20 }} />}
+                        icon={<MenuIcon />}
                         iconPosition='start'
                         label={t('myInfo')}
                         className={styles.tab}
                     />
                     <Tab
-                        icon={<RestoreIcon style={{ fontSize: 20 }} />}
+                        icon={<RestoreIcon />}
                         iconPosition='start'
                         label={t('myOrders')}
                         className={styles.tab}
                     />
                     <Tab
-                        icon={<StarIcon style={{ fontSize: 20 }} />}
+                        icon={<StarIcon />}
                         iconPosition='start'
                         label={t('reviews')}
                         className={styles.tab}
+                    />
+                    <Tab
+                        icon={<VerifiedIcon />}
+                        iconPosition='start'
+                        label={t('verification')}
+                        className={styles.verificationTab}
                     />
                 </Tabs>
             </div>
