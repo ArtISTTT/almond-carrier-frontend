@@ -62,6 +62,7 @@ export interface IOrderFull extends IOrder {
     myReview?: IPureReview;
     totalPaymentAmount?: number;
     purchaseItemFiles?: string[];
+    paymentOrderId?: string;
     partnerReview?: IPureReview;
 }
 
