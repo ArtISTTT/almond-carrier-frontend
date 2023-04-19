@@ -5,7 +5,7 @@ import { Button } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { startPayment } from 'src/interfaces/api/payment';
+import { startPayment } from 'src/api/payment';
 import { OrderStatus } from 'src/interfaces/profile';
 import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';

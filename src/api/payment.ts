@@ -11,14 +11,14 @@ export const startPayment = async (id: string, url: string) => {
 
     try {
         await axios.post(
-            process.env.PAYGINE_URI + 'webapi/b2puser/sd-services/SDPayInDebit',
+            process.env.NEXT_PUBLIC_PAYGINE_URI +
+                'webapi/b2puser/sd-services/SDPayInDebit',
             undefined,
             {
                 params: {
                     signature,
                     sector,
                     id,
-                    url,
                 },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
