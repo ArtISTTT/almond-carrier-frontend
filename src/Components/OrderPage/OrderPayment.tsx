@@ -38,6 +38,8 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
     const startPaymentClick = async () => {
         console.log(order.paymentOrderId, window.location.origin + asPath);
 
+        // await startPayment('4574483', window.location.origin + asPath);
+
         if (order.paymentOrderId) {
             await startPayment(
                 order.paymentOrderId,

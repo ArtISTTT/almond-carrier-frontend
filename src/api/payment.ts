@@ -3,7 +3,8 @@ import md5 from 'md5';
 
 export const startPayment = async (id: string, url: string) => {
     const sector = process.env.NEXT_PUBLIC_PAYGINE_SECTOR_ID as string;
-    const signatureString = sector + id;
+    const password = process.env.NEXT_PUBLIC_PAYGINE_PASSWORD;
+    const signatureString = sector + id + password;
     const md5String = md5(signatureString, {
         encoding: 'UTF-8',
     });
@@ -23,6 +24,7 @@ export const startPayment = async (id: string, url: string) => {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
+                maxRedirects: 5,
             }
         );
     } catch (e) {
