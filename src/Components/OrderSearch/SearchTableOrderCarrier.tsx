@@ -1,19 +1,22 @@
-import React from 'react';
-import styles from '../../../styles/OrderSearch.module.css';
 import { Avatar, Button, Tooltip } from '@mui/material';
 import cn from 'classnames';
-import { IOrder } from '../../interfaces/order';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
-import useFormatAmount from 'src/redux/hooks/useFormatAmount';
-import { Currency } from 'src/interfaces/settings';
 import { useRouter } from 'next/router';
-import { navigateTo } from 'src/interfaces/navigate';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import { navigateTo } from 'src/interfaces/navigate';
+import { Currency } from 'src/interfaces/settings';
+import { useAppSelector } from 'src/redux/hooks';
+import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { selectIsAuthorized } from 'src/redux/selectors/user';
-import FastLoginPopup from './FastLoginPopup';
-import {motion} from "framer-motion"
+import styles from '../../../styles/OrderSearch.module.css';
+import { IOrder } from '../../interfaces/order';
+import RedirectPopup from './RedirectPopup';
 
 type IProps = {
+    isRedirectPopupOpen: boolean;
+    setIsRedirectPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
     isFastLoginPopupOpen: boolean;
     setIsFastLoginPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
     order: IOrder;
@@ -21,6 +24,8 @@ type IProps = {
 };
 
 const SearchTableOrderCarrier: React.FC<IProps> = ({
+    isRedirectPopupOpen,
+    setIsRedirectPopupOpen,
     isFastLoginPopupOpen,
     setIsFastLoginPopupOpen,
     order,
@@ -30,14 +35,9 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({
     const formatAmount = useFormatAmount();
     const isAuthorized = useSelector(selectIsAuthorized);
     const router = useRouter();
-
-    const openPopupFunc = () => {
-        if (isAuthorized) {
-            setApplyedOrder(order);
-        } else {
-            setIsFastLoginPopupOpen(true);
-        }
-    };
+    const isUserVerified = useAppSelector(
+        state => state.user.data?.idVerificationCompleted
+    );
 
     const navigateToUserPage = (): void => {
         router.push({
@@ -45,11 +45,33 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({
             query: { userId: order.carrier?.id },
         });
     };
+    const navigateToLogin = () => router.push(navigateTo.SIGNIN);
+    const navigateToVerification = () =>
+        router.push(navigateTo.PROFILE_VERIFICATION);
+
+    const openPopupFunc = () => {
+        if (isAuthorized && isUserVerified) {
+            setApplyedOrder(order);
+        } else if (isAuthorized && !isUserVerified) {
+            setIsRedirectPopupOpen(true);
+        } else {
+            setIsFastLoginPopupOpen(true);
+        }
+    };
 
     return (
         <>
+            {isRedirectPopupOpen && (
+                <RedirectPopup
+                    completeFunction={navigateToVerification}
+                    textButton={'verify'}
+                    setIsFastLoginPopupOpen={setIsRedirectPopupOpen}
+                />
+            )}
             {isFastLoginPopupOpen && (
-                <FastLoginPopup
+                <RedirectPopup
+                    completeFunction={navigateToLogin}
+                    textButton={'signIn'}
                     setIsFastLoginPopupOpen={setIsFastLoginPopupOpen}
                 />
             )}
@@ -146,21 +168,26 @@ const SearchTableOrderCarrier: React.FC<IProps> = ({
                     <div className={cn(styles.part, styles.maxWeight)}>
                         {order.carrierMaxWeight} {t('kg')}
                     </div>
-                        <div className={cn(styles.part, styles.button)}>
-                            <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
-                                <Button
-                                    onClick={openPopupFunc}
-                                    variant='contained'
-                                    className={styles.applyBtn}
-                                >
-                                    {t('apply')}
-                                </Button>
-                            </motion.div>    
-                        </div>
-
+                    <div className={cn(styles.part, styles.button)}>
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <Button
+                                onClick={openPopupFunc}
+                                variant='contained'
+                                className={styles.applyBtn}
+                            >
+                                {t('apply')}
+                            </Button>
+                        </motion.div>
+                    </div>
                 </div>
                 <div className={styles.hidingButton}>
-                    <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
                         <Button
                             onClick={openPopupFunc}
                             variant='contained'

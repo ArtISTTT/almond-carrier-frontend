@@ -3,6 +3,7 @@ import styles from '../../../styles/OrderPage.module.css';
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { Button, Collapse } from '@mui/material';
+import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { confirmPayment } from 'src/api/order';
@@ -94,7 +95,12 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
                     {t('pay')}
                 </Button>
                 <Collapse in={paymentOpened}>
-                    <div className={styles.collapsedPayment}>
+                    <div
+                        className={cn(
+                            styles.collapsedPayment,
+                            styles.collapsedPaymentColumn
+                        )}
+                    >
                         <div className={styles.collapsedPaymentTitle}>
                             {t('transferTheAmountByPhoneNumberTo')}
                             &nbsp;

@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
-import cn from 'classnames';
-import { useConvertStatusToText } from '../../redux/hooks/useConvertStatusToText';
-import styles from '../../../styles/OrderPage.module.css';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import ReceiptIcon from '@mui/icons-material/Receipt';
-import { useTranslation } from 'react-i18next';
-import { IOrderFull } from '../../interfaces/order';
-import { OrderStatus } from 'src/interfaces/profile';
 import AddCommentIcon from '@mui/icons-material/AddComment';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import PersonIcon from '@mui/icons-material/Person';
-import { ViewType } from './OrderInputItem';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import cn from 'classnames';
+import { motion } from 'framer-motion';
+import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { OrderStatus } from 'src/interfaces/profile';
+import styles from '../../../styles/OrderPage.module.css';
+import { IOrderFull } from '../../interfaces/order';
+import { useConvertStatusToText } from '../../redux/hooks/useConvertStatusToText';
 import { OpenAlertContext } from '../Layouts/Snackbar';
-import {motion} from 'framer-motion';
+import { ViewType } from './OrderInputItem';
 
 type IProps = {
     payoutRef: React.MutableRefObject<HTMLDivElement | null>;
@@ -50,10 +50,6 @@ const OrderDetails: React.FC<IProps> = ({
             severity: 'info',
             text: t('copied'),
         });
-    };
-
-    const paymentScroll = () => {
-        payoutRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
     const displayOrderStatus = React.useMemo(() => {
@@ -136,10 +132,7 @@ const OrderDetails: React.FC<IProps> = ({
                 </div>
                 {displayOrderStatus === OrderStatus.itemRecieved &&
                     viewType === ViewType.carrier && (
-                        <div
-                            onClick={paymentScroll}
-                            className={styles.reminerBlock}
-                        >
+                        <div className={styles.reminerBlock}>
                             <ReceiptIcon />
                             <span>
                                 {t('toReceivePaymentProvideYourDetails')}
@@ -155,7 +148,10 @@ const OrderDetails: React.FC<IProps> = ({
                 <div className={styles.infoRight}>
                     <div className={styles.infoRightId}>
                         <span>{order.id}</span>
-                        <motion.div whileHover={{scale: 1.2}} whileTap={{scale: 0.8}}>
+                        <motion.div
+                            whileHover={{ scale: 1.2 }}
+                            whileTap={{ scale: 0.8 }}
+                        >
                             <ContentCopyIcon
                                 onClick={copyId}
                                 fontSize='small'

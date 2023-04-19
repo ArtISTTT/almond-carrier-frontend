@@ -167,6 +167,7 @@ const OrderPage = () => {
                     setIsMySentReviewBlockOpen={setIsMySentReviewBlockOpen}
                     setIsPersonReviewBlockOpen={setIsPersonReviewBlockOpen}
                     order={order}
+                    payoutRef={payoutRef}
                     updateOrder={updateOrder}
                     user={user}
                     viewType={viewType}
@@ -183,15 +184,6 @@ const OrderPage = () => {
                     />
                 )}
             </div>
-
-            <div ref={payoutRef}>
-                <OrderPayment order={order} updateOrder={updateOrder} />
-            </div>
-
-            {order.status === OrderStatus.itemRecieved &&
-                viewType === ViewType.carrier && (
-                    <OrderPaymentSuccess order={order} />
-                )}
 
             <div className={styles.haveSomeProblems}>
                 <SupportAgentIcon />

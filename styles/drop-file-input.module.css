@@ -61,7 +61,7 @@
 .dropFilePreviewItem {
     position: relative;
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     background-color: var(--cBgSecondary);
     padding: 15px;
     border-radius: 20px;

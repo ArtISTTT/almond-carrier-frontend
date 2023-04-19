@@ -91,7 +91,12 @@ const OrderPaymentSuccess: React.FC<IProps> = ({ order }) => {
                 {t('enterDetails')}
             </Button>
             <Collapse in={paymentOpened}>
-                <div className={styles.collapsedPayment}>
+                <div
+                    className={cn(
+                        styles.collapsedPayment,
+                        styles.collapsedPaymentColumn
+                    )}
+                >
                     <Typography
                         variant='h6'
                         component='h4'
