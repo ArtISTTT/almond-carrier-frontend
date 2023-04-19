@@ -15,7 +15,6 @@ import { OpenAlertContext } from '../Layouts/Snackbar';
 import CircleLoader from '../Loaders/CircleLoader';
 import OrderDataAfterPurchaseReceiver from './OrderConfirmation/receiver/OrderDataAfterPurchaseReceiver';
 import OrderDataBeforePurshaceReceiver from './OrderConfirmation/receiver/OrderDataBeforePurshaceReceiver';
-import { ViewType } from './OrderInputItem';
 
 type IProps = {
     fileLinks?: string[];

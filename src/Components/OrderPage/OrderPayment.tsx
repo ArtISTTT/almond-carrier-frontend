@@ -1,12 +1,10 @@
 import React, { useContext } from 'react';
 import styles from '../../../styles/OrderPage.module.css';
 
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { Button, Collapse } from '@mui/material';
+import { Button } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { confirmPayment } from 'src/api/order';
 import { startPayment } from 'src/interfaces/api/payment';
 import { OrderStatus } from 'src/interfaces/profile';
 import { useAppSelector } from 'src/redux/hooks';

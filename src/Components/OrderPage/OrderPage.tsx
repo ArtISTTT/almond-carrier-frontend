@@ -21,8 +21,6 @@ import OrderDetails from './OrderDetails';
 import OrderInformation from './OrderInformation';
 import { ViewType } from './OrderInputItem';
 import OrderLabels from './OrderLabels';
-import OrderPayment from './OrderPayment';
-import OrderPaymentSuccess from './OrderPaymentSuccess';
 
 const useGetOrder = (orderId: string) => {
     const { triggerOpen } = useContext(OpenAlertContext);

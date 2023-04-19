@@ -2,7 +2,7 @@ import { Button, InputAdornment, TextField } from '@mui/material';
 import { Stack } from '@mui/system';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import cn from 'classnames';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 import React, { useContext } from 'react';
