@@ -36,8 +36,8 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
     );
 
     const startPaymentClick = async () => {
-        if (order.paymentOrderId) {
-            await startPayment(order.paymentOrderId);
+        if (order.paymentOrderId && order.sdRef) {
+            await startPayment(order.paymentOrderId, order.sdRef);
         }
     };
 

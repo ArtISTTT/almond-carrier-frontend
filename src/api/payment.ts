@@ -1,10 +1,10 @@
 import axios from 'axios';
 import md5 from 'md5';
 
-export const startPayment = async (id: string) => {
+export const startPayment = async (id: string, sdRef: string) => {
     const sector = process.env.NEXT_PUBLIC_PAYGINE_SECTOR_ID as string;
     const password = process.env.NEXT_PUBLIC_PAYGINE_PASSWORD;
-    const signatureString = sector + id + password;
+    const signatureString = sector + id + sdRef + password;
     const md5String = md5(signatureString, {
         encoding: 'UTF-8',
     });
@@ -14,6 +14,7 @@ export const startPayment = async (id: string) => {
         signature,
         sector,
         id,
+        sd_ref: sdRef,
     });
 
     const url = `${

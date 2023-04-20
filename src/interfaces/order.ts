@@ -64,6 +64,7 @@ export interface IOrderFull extends IOrder {
     purchaseItemFiles?: string[];
     paymentOrderId?: string;
     partnerReview?: IPureReview;
+    sdRef?: string;
 }
 
 export interface ICreateOrderReciever {
