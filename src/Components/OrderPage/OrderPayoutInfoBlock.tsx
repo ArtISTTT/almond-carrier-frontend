@@ -1,11 +1,9 @@
 import { Button } from '@mui/material';
-import Image, { StaticImageData } from 'next/image';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { startPayout } from 'src/api/payment';
 import { IOrderFull } from 'src/interfaces/order';
 import { OrderStatus } from 'src/interfaces/profile';
-import { Banks } from 'src/interfaces/user';
 import styles from '../../../styles/OrderPage.module.css';
 import { ViewType } from './OrderInputItem';
 

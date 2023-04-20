@@ -1,4 +1,3 @@
-import axios from 'axios';
 import md5 from 'md5';
 
 export const startPayment = async (id: string, sdRef: string) => {
