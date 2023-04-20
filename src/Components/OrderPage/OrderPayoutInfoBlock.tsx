@@ -1,25 +1,32 @@
+import { Button } from '@mui/material';
 import Image, { StaticImageData } from 'next/image';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { startPayout } from 'src/api/payment';
+import { IOrderFull } from 'src/interfaces/order';
 import { OrderStatus } from 'src/interfaces/profile';
 import { Banks } from 'src/interfaces/user';
 import styles from '../../../styles/OrderPage.module.css';
 import { ViewType } from './OrderInputItem';
 
 interface IProps {
-    bank?: { value: Banks; text: string; image: StaticImageData };
-    status: OrderStatus;
+    order: IOrderFull;
     viewType: ViewType;
-    phoneNumer: string;
+    status: OrderStatus;
 }
 
 const OrderPayoutInfoBlock: React.FC<IProps> = ({
-    bank,
-    phoneNumer,
-    status,
+    order,
     viewType,
+    status,
 }) => {
     const { t } = useTranslation();
+
+    const onStartPayoutClick = async () => {
+        if (order.payoutOrderId && order.sdRef) {
+            await startPayout(order.payoutOrderId, order.sdRef);
+        }
+    };
 
     if (
         viewType === ViewType.carrier &&
@@ -30,7 +37,14 @@ const OrderPayoutInfoBlock: React.FC<IProps> = ({
                 <div className={styles.payoutTitle}>
                     {t('yourPayoutDetails')}
                 </div>
-                <div className={styles.payoutItems}>
+                <Button
+                    variant='contained'
+                    type='submit'
+                    onClick={onStartPayoutClick}
+                >
+                    Начать выплату
+                </Button>
+                {/* <div className={styles.payoutItems}>
                     <div className={styles.payoutItem}>
                         {' '}
                         {bank?.image && (
@@ -43,7 +57,7 @@ const OrderPayoutInfoBlock: React.FC<IProps> = ({
                         {bank?.text}
                     </div>
                     <div className={styles.payoutItem}>{phoneNumer}</div>
-                </div>
+                </div> */}
             </div>
         );
     }

@@ -405,10 +405,9 @@ const OrderInformation: React.FC<IProps> = ({
                     )}
 
                 <OrderPayoutInfoBlock
-                    bank={userBank}
                     status={order.status}
                     viewType={viewType}
-                    phoneNumer={order?.payoutInfo?.phoneNumber || ''}
+                    order={order}
                 />
 
                 {!order.myReview &&
