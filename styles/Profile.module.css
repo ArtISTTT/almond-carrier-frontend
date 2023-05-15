@@ -126,6 +126,10 @@
     margin-top: 0;
 }
 
+.tabs button {
+    justify-content: flex-start;
+}
+
 .verificationTab {
     color: var(--cTextSuccess) !important;
 }
