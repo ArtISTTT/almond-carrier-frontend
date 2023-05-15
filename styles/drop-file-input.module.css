@@ -61,7 +61,7 @@
 .dropFilePreviewItem {
     position: relative;
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     background-color: var(--cBgSecondary);
     padding: 15px;
     border-radius: 20px;
@@ -91,6 +91,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
+    color: var(--cTextPrimary);
     right: 10px;
     top: 50%;
     transform: translateY(-50%);

@@ -3,11 +3,14 @@ import { Button, Container, Pagination, Typography } from '@mui/material';
 import cn from 'classnames';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import OrderItem from 'src/Components/OrderComponents/OrderItem';
 import ReceiverAddingPopup from 'src/Components/OrderComponents/ReceiverAddingPopup';
 import { LoaderColors } from 'src/interfaces/loader';
+import { navigateTo } from 'src/interfaces/navigate';
+import { useAppSelector } from 'src/redux/hooks';
 import { useGetCurrentPageOrders } from 'src/redux/hooks/useGetCurrentPage';
 import styles from '../../../styles/Dashboard.module.css';
 import { toggleHtmlScroll } from '../../helpers/toggleHtmlScroll';
@@ -17,6 +20,7 @@ import EmptyBlock from '../EmptyComponents/EmptyOrderBlock';
 import UserLayout from '../Layouts/User';
 import CircleLoader from '../Loaders/CircleLoader';
 import CarrierAddingPopup from '../OrderComponents/CarrierAddingPopup';
+import RedirectPopup from '../OrderSearch/RedirectPopup';
 
 enum PopupType {
     none,
@@ -27,13 +31,18 @@ enum PopupType {
 const Dashboard: React.FC = () => {
     const orders = useSelector(selectMyLiveOrders);
     const { t } = useTranslation();
+    const router = useRouter();
     const [page, setPage] = React.useState<number>(1);
     const [openedPopup, setOpenedPopup] = React.useState<PopupType>(
         PopupType.none
     );
-
     const { reload, isLoading } = useLoadOwnOrders();
     const thisPageOrders = useGetCurrentPageOrders({ orders, page });
+    const isUserVerified = useAppSelector(
+        ({ user }) => user.data?.idVerificationCompleted
+    );
+    const [isRedirectPopupOpen, setIsRedirectPopupOpen] =
+        React.useState<boolean>(false);
 
     useEffect(() => {
         reload();
@@ -43,27 +52,37 @@ const Dashboard: React.FC = () => {
         return Math.ceil(orders.length / 4);
     }, [orders]);
 
-    const toggleCarrierPopup = () =>
-        setOpenedPopup(prev => {
-            if (prev === PopupType.none) {
-                toggleHtmlScroll(true);
-                return PopupType.carrier;
-            }
+    const toggleCarrierPopup = () => {
+        if (isUserVerified) {
+            setOpenedPopup(prev => {
+                if (prev === PopupType.none) {
+                    toggleHtmlScroll(true);
+                    return PopupType.carrier;
+                }
 
-            toggleHtmlScroll(false);
-            return PopupType.none;
-        });
+                toggleHtmlScroll(false);
+                return PopupType.none;
+            });
+        } else {
+            setIsRedirectPopupOpen(true);
+        }
+    };
 
-    const toggleReceiverPopup = () =>
-        setOpenedPopup(prev => {
-            if (prev === PopupType.none) {
-                toggleHtmlScroll(true);
-                return PopupType.reciever;
-            }
+    const toggleReceiverPopup = () => {
+        if (isUserVerified) {
+            setOpenedPopup(prev => {
+                if (prev === PopupType.none) {
+                    toggleHtmlScroll(true);
+                    return PopupType.reciever;
+                }
 
-            toggleHtmlScroll(false);
-            return PopupType.none;
-        });
+                toggleHtmlScroll(false);
+                return PopupType.none;
+            });
+        } else {
+            setIsRedirectPopupOpen(true);
+        }
+    };
 
     const handleChangePagination = async (
         _: React.ChangeEvent<unknown>,
@@ -72,8 +91,18 @@ const Dashboard: React.FC = () => {
         setPage(value);
     };
 
+    const navigateToVerification = () =>
+        router.push(navigateTo.PROFILE_VERIFICATION);
+
     return (
         <>
+            {isRedirectPopupOpen && (
+                <RedirectPopup
+                    completeFunction={navigateToVerification}
+                    textButton={'verify'}
+                    setIsFastLoginPopupOpen={setIsRedirectPopupOpen}
+                />
+            )}
             <div
                 className={cn({
                     [styles.popupIsOpen]: openedPopup !== PopupType.none,

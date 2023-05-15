@@ -8,7 +8,8 @@
 }
 
 .personInfo {
-    margin: 20px 0;
+    margin-top: 24px;
+    margin-bottom: 32px;
 }
 
 .personRole {
@@ -170,6 +171,7 @@
 
 .orderInformation {
     flex: 1;
+    position: relative;
     padding: 32px 0;
     margin: 0 32px;
 }
@@ -179,7 +181,6 @@
     font-size: 24px;
     line-height: 30px;
     font-weight: 600;
-    margin-bottom: 48px;
 }
 
 .orderInputValueWrapper {
@@ -417,8 +418,8 @@
 }
 
 .orderPaymentWrapper {
-    padding: 20px 0;
-    margin-left: 32px;
+    padding: 32px 0;
+    padding-bottom: 16px;
     margin-right: 32px;
     max-width: 1000px;
 }
@@ -430,8 +431,7 @@
 }
 
 .orderPurchaseWrapper {
-    padding-top: 16px;
-    padding-bottom: 28px;
+    padding-top: 12px;
     max-width: 1200px;
     width: 100%;
 }
@@ -453,13 +453,78 @@
         rgba(102, 144, 253, 0.7) 36%,
         rgba(145, 197, 255, 1) 100%
     );
-    /* max-height: 475px; */
-    padding: 16px;
+    display: flex;
+    gap: 20px;
     border-radius: 15px;
     position: relative;
-    max-width: 650px;
+    max-width: 680px;
     width: 100%;
     color: var(--cTextSecondary);
+}
+
+.collapsedPaymentReceiver {
+    margin-top: 16px;
+    background: linear-gradient(
+        90deg,
+        rgba(91, 137, 255, 0.9) 0%,
+        rgba(102, 144, 253, 0.7) 36%,
+        rgba(145, 197, 255, 1) 100%
+    );
+    display: flex;
+    gap: 20px;
+    border-radius: 15px;
+    position: relative;
+    max-width: 680px;
+    width: 100%;
+    color: var(--cTextSecondary);
+}
+
+.collapsedPaymentCarrier {
+    margin-top: 16px;
+    background: linear-gradient(
+        90deg,
+        rgba(91, 137, 255, 0.9) 0%,
+        rgba(102, 144, 253, 0.7) 36%,
+        rgba(145, 197, 255, 1) 100%
+    );
+    display: flex;
+    gap: 20px;
+    border-radius: 15px;
+    position: relative;
+    max-width: 680px;
+    width: 100%;
+    color: var(--cTextSecondary);
+}
+
+.collapsedPaymentColumn {
+    flex-direction: column;
+    width: fit-content;
+    gap: 10px;
+    padding: 20px;
+}
+
+.collapseTabs {
+    padding: 30px 0;
+    min-height: 292px;
+    border-right: 2px solid var(--cBorderSecondary);
+}
+
+.collapseContent {
+    /* padding: 20px; */
+    margin-right: 20px;
+    padding-top: 30px;
+    max-width: 420px;
+    padding-left: 0px;
+    width: 100%;
+}
+
+.tab {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    font-weight: 700;
+    white-space: nowrap;
+    color: var(--cTextSecondary) !important;
 }
 
 .collapsedPaymentTitle {
@@ -549,7 +614,7 @@
 }
 
 .productDeliveredOpenButton {
-    margin-top: 36px;
+    margin-top: 16px;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -642,9 +707,6 @@
     transition-duration: 200ms;
 }
 
-.reminerBlock:hover {
-    color: var(--cTextPrimary);
-}
 .reviewsButtons {
     display: flex;
     align-items: center;
@@ -709,6 +771,10 @@
     font-size: 16px;
 }
 
+.afterPurchseCarrierBlock {
+    margin-bottom: 20px;
+}
+
 .purchaseLoaderWrapper {
     position: absolute;
     top: 0;
@@ -753,7 +819,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    overflow-y: hidden;
+    overflow: hidden;
     background-color: var(--cBgThird);
 }
 
@@ -788,6 +854,7 @@
 .acceptPurchaseButton {
     margin-left: auto;
     white-space: nowrap;
+    margin-bottom: 20px;
     margin-top: 10px;
     max-width: 170px;
     width: 100%;
@@ -799,7 +866,7 @@
     position: absolute;
     right: 0;
     z-index: 2;
-    top: 0;
+    top: 32px;
     background: linear-gradient(
         90deg,
         rgba(91, 137, 255, 0.9) 0%,
@@ -853,7 +920,6 @@
 }
 
 .purchasePhotoInner {
-    border: 1px solid;
     position: relative;
     display: flex;
     align-items: center;
@@ -898,6 +964,10 @@
     color: yellow;
 }
 
+.collapseTabsHorisontal {
+    display: none;
+}
+
 @media screen and (max-width: 1283px) {
     .inputItem .input :global .MuiInputBase-root {
         height: 34px;
@@ -918,15 +988,19 @@
 @media screen and (max-width: 1100px) {
     .payoutWrapper {
         position: relative;
+        top: 16px;
     }
-    .orderInformationTitle {
-        margin-bottom: 20px;
+    .form {
+        top: 10px;
     }
     .purchasePhotoInner {
         height: 65%;
     }
     .orderPanel {
         flex-wrap: wrap;
+    }
+    .orderConent {
+        flex-direction: column;
     }
 }
 
@@ -951,9 +1025,6 @@
 }
 
 @media screen and (max-width: 840px) {
-    .orderConent {
-        flex-direction: column;
-    }
     .valuesByColumns {
         gap: 20px;
     }
@@ -974,6 +1045,33 @@
     }
     .infoRightId > span {
         font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .collapsedPaymentCarrier {
+        flex-direction: column;
+    }
+    .collapseTabs {
+        display: none;
+    }
+    .tab {
+        width: fit-content;
+        justify-content: center;
+        font-size: 12px;
+    }
+    .collapseTabsHorisontal {
+        display: block;
+        margin: 0 auto;
+    }
+    .collapsedPaymentReceiver {
+        flex-direction: column;
+    }
+    .collapseContent {
+        padding-top: 0;
+        width: 95%;
+        margin: 0 auto;
+        max-width: none;
     }
 }
 
@@ -1148,14 +1246,18 @@
     .valuesByColumns {
         flex-direction: column;
     }
+    .tab {
+        font-size: 11px;
+        padding: 2px 10px;
+    }
+    .tab svg {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 484px) {
     .orderInputValueWrapper {
         width: 400px;
-    }
-    .orderInformationTitle {
-        margin-bottom: 30px;
     }
     .orderInputValue {
         max-width: 400px;
@@ -1182,6 +1284,9 @@
 @media screen and (max-width: 430px) {
     .orderInputValue {
         max-width: 350px;
+    }
+    .tab {
+        font-size: 10px;
     }
 }
 

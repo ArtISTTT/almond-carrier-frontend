@@ -1,13 +1,11 @@
+import cn from 'classnames';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import styles from '../../../styles/OrderSearch.module.css';
-import {
-    OrderSeachType,
-} from '../../interfaces/order-search';
+import { IOrder } from '../../interfaces/order';
+import { OrderSeachType } from '../../interfaces/order-search';
 import SearchTableOrderCarrier from './SearchTableOrderCarrier';
 import SearchTableOrderReceiver from './SearchTableOrderReceiver';
-import cn from 'classnames';
-import { IOrder } from '../../interfaces/order';
-import { useTranslation } from 'next-i18next';
 
 type IProps = {
     type: OrderSeachType;
@@ -16,6 +14,8 @@ type IProps = {
 };
 const SearchTable: React.FC<IProps> = ({ type, orders, setApplyedOrder }) => {
     const [isFastLoginPopupOpen, setIsFastLoginPopupOpen] =
+        React.useState<boolean>(false);
+    const [isRedirectPopupOpen, setIsRedirectPopupOpen] =
         React.useState<boolean>(false);
 
     const { t } = useTranslation();
@@ -70,6 +70,8 @@ const SearchTable: React.FC<IProps> = ({ type, orders, setApplyedOrder }) => {
                             setIsFastLoginPopupOpen={setIsFastLoginPopupOpen}
                             setApplyedOrder={setApplyedOrder}
                             order={order}
+                            setIsRedirectPopupOpen={setIsRedirectPopupOpen}
+                            isRedirectPopupOpen={isRedirectPopupOpen}
                             key={order.id}
                         />
                     ) : (
@@ -78,6 +80,8 @@ const SearchTable: React.FC<IProps> = ({ type, orders, setApplyedOrder }) => {
                             setIsFastLoginPopupOpen={setIsFastLoginPopupOpen}
                             setApplyedOrder={setApplyedOrder}
                             order={order}
+                            setIsRedirectPopupOpen={setIsRedirectPopupOpen}
+                            isRedirectPopupOpen={isRedirectPopupOpen}
                             key={order.id}
                         />
                     )

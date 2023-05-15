@@ -56,12 +56,16 @@ export type IPureReview = {
 export interface IOrderFull extends IOrder {
     byCarrierSuggestedChanges?: Partial<IOrder>;
     byReceiverSuggestedChanges?: Partial<IOrder>;
+    beforePurchaseItemFiles?: string[];
     dealConfirmedByCarrier?: boolean;
     dealConfirmedByReceiver?: boolean;
     myReview?: IPureReview;
     totalPaymentAmount?: number;
     purchaseItemFiles?: string[];
+    paymentOrderId?: string;
+    payoutOrderId?: string;
     partnerReview?: IPureReview;
+    sdRef?: string;
 }
 
 export interface ICreateOrderReciever {

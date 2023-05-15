@@ -2,6 +2,7 @@ import { Button, InputAdornment, TextField } from '@mui/material';
 import { Stack } from '@mui/system';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import cn from 'classnames';
+import dayjs from 'dayjs';
 import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 import React, { useContext } from 'react';
@@ -182,6 +183,7 @@ const CarrierAddingPopup: React.FC<IProps> = ({ togglePopup, reload }) => {
                         <DesktopDatePicker
                             inputFormat='DD.MM.YYYY'
                             value={formik.values.arrivalDate}
+                            maxDate={dayjs().month(dayjs().month() + 1)}
                             disablePast={true}
                             onChange={value => {
                                 formik.setFieldValue('arrivalDate', value);

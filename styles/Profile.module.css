@@ -126,8 +126,8 @@
     margin-top: 0;
 }
 
-.tabs button {
-    justify-content: flex-start;
+.verificationTab {
+    color: var(--cTextSuccess) !important;
 }
 
 .layoutWrapper {
@@ -208,6 +208,13 @@
     }
 }
 
+@media screen and (max-width: 650px) {
+    .tabs button {
+        padding: 5px 10px;
+        font-size: 10px;
+    }
+}
+
 @media screen and (max-width: 500px) {
     .card {
         padding: 0;
@@ -215,6 +222,13 @@
     }
     .tab {
         font-size: 10px;
+    }
+    .tabs button svg {
+        font-size: 14px;
+    }
+    .tabs button {
+        min-width: 82px;
+        min-height: 48px;
     }
     .avatar {
         width: 100px;
@@ -242,9 +256,23 @@
     }
 }
 
+@media screen and (max-width: 450px) {
+    .tabs button {
+        padding: 3px 10px;
+        font-size: 8px;
+    }
+    .tabs button svg {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 410px) {
     .cardName {
         white-space: nowrap;
         width: 120px;
+    }
+    .tabs button {
+        padding: 0px;
+        font-size: 8px;
     }
 }

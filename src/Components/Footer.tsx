@@ -136,26 +136,12 @@ const Footer = () => {
                             component='h3'
                             className={styles.columnTitle}
                         >
-                            {t('generalS')}
+                            {t('documents')}
                         </Typography>
-                        {/* <MUILink
-                            component={LinkBehaviour}
-                            className={styles.centerLink}
-                            href={navigateTo.LANDING}
-                        >
-                            {t('about')}
-                        </MUILink> */}
-                        {/* <MUILink
-                            component={LinkBehaviour}
-                            className={styles.centerLink}
-                            href={navigateTo.FOUNDERS}
-                        >
-                            {t('founders')}
-                        </MUILink> */}
                         <MUILink
                             component={LinkBehaviour}
                             className={styles.centerLink}
-                            href={navigateTo.PRIVACY_POLICITY}
+                            href={navigateTo.PRIVACY_POLICY}
                         >
                             {t('privacy')}
                         </MUILink>
@@ -165,13 +151,6 @@ const Footer = () => {
                             href={navigateTo.USER_AGREEMENT}
                         >
                             {t('serviceTerms')}
-                        </MUILink>
-                        <MUILink
-                            component={LinkBehaviour}
-                            className={styles.centerLink}
-                            href={navigateTo.CONTACT_DETAILS}
-                        >
-                            {t('contactDetails')}
                         </MUILink>
                         <MUILink
                             component={LinkBehaviour}
@@ -186,6 +165,36 @@ const Footer = () => {
                             href={navigateTo.SECURITY_POLICIES}
                         >
                             {t('paymentsSecurityPolicy')}
+                        </MUILink>
+                    </div>
+                    <div className={styles.centerColumn}>
+                        <Typography
+                            variant='h3'
+                            component='h3'
+                            className={styles.columnTitle}
+                        >
+                            {t('about')}
+                        </Typography>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href={navigateTo.CONTACT_DETAILS}
+                        >
+                            {t('contactDetails')}
+                        </MUILink>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href={navigateTo.RETURN_POLICY}
+                        >
+                            {t('returnPolicy')}
+                        </MUILink>
+                        <MUILink
+                            component={LinkBehaviour}
+                            className={styles.centerLink}
+                            href={navigateTo.SERVICE_RULES}
+                        >
+                            {t('serviceRules')}
                         </MUILink>
                     </div>
 

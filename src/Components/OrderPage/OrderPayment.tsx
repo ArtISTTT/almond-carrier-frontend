@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import styles from '../../../styles/OrderPage.module.css';
 
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { Button, Collapse } from '@mui/material';
+import { Button } from '@mui/material';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { confirmPayment } from 'src/api/order';
+import { startPayment } from 'src/api/payment';
 import { OrderStatus } from 'src/interfaces/profile';
 import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
@@ -24,10 +24,10 @@ const PAYMENT_CREDENTIALS = {
 };
 
 const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
-    const [paymentOpened, setPaymentOpened] = React.useState(false);
     const formatAmount = useFormatAmount();
     const { id } = useSelector(selectUser);
     const { triggerOpen } = useContext(OpenAlertContext);
+    const { asPath } = useRouter();
 
     const { t } = useTranslation();
 
@@ -35,36 +35,10 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
         ({ settings }) => settings.generalSettings.currency
     );
 
-    const handleChange = () => {
-        setPaymentOpened(prev => !prev);
-    };
-
-    const copy = () => {
-        navigator.clipboard.writeText(PAYMENT_CREDENTIALS.PHONE);
-        triggerOpen({
-            severity: 'info',
-            text: t('copied'),
-        });
-    };
-
-    const confirmPaymentClick = async () => {
-        const data = await confirmPayment({
-            orderId: order.id,
-        });
-
-        if (data.ok) {
-            triggerOpen({
-                severity: 'success',
-                text: t('paymentConfirmedAlert'),
-            });
-        } else {
-            triggerOpen({
-                severity: 'error',
-                text: data.error as string,
-            });
+    const startPaymentClick = async () => {
+        if (order.paymentOrderId && order.sdRef) {
+            await startPayment(order.paymentOrderId, order.sdRef);
         }
-
-        await updateOrder(true);
     };
 
     if (
@@ -88,12 +62,12 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
                 <Button
                     variant='outlined'
                     className={styles.orderPaymentWrapperButton}
-                    color='primary'
-                    onClick={handleChange}
+                    color='success'
+                    onClick={startPaymentClick}
                 >
                     {t('pay')}
                 </Button>
-                <Collapse in={paymentOpened}>
+                {/* <Collapse in={paymentOpened}>
                     <div className={styles.collapsedPayment}>
                         <div className={styles.collapsedPaymentTitle}>
                             {t('transferTheAmountByPhoneNumberTo')}
@@ -118,7 +92,7 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
                             {t('confirmPay')}
                         </Button>
                     </div>
-                </Collapse>
+                </Collapse> */}
             </div>
         );
     }

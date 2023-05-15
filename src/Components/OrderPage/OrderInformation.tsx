@@ -24,21 +24,24 @@ import { IOrder, IOrderFull } from '../../interfaces/order';
 import { OrderStatus } from '../../interfaces/profile';
 import { Currency } from '../../interfaces/settings';
 import { OpenAlertContext } from '../Layouts/Snackbar';
-import OrderConfirmPurchase from './OrderConfirmPurchase';
+import OrderConfirmationCarrier from './OrderConfirmationCarrier';
+import OrderConfirmationReceiver from './OrderConfirmationReceiver';
 import OrderInputItem, {
     ChangedType,
     getChangedType,
     ILabels,
     ViewType,
 } from './OrderInputItem';
+import OrderPayment from './OrderPayment';
+import OrderPaymentSuccess from './OrderPaymentSuccess';
 import OrderPayoutInfoBlock from './OrderPayoutInfoBlock';
-import OrderReceiverPhotoConfirmation from './OrderReceiverPhotoConfirmation';
 import OrderReview from './OrderReview';
 import ProcuctPurchaseByCodeConfirmation from './ProcuctPurchaseByCodeConfirmation';
 import ReviewPopup from './ReviewPopup';
 
 type IProps = {
     order: IOrderFull;
+    payoutRef: React.MutableRefObject<HTMLDivElement | null>;
     viewType: ViewType;
     suggestedChanged: Partial<IOrder> | undefined;
     hasByYouSuggestedChanged: boolean;
@@ -52,10 +55,23 @@ type IProps = {
     updateOrder: (withoutLoading?: true) => Promise<void>;
 };
 
-const allowedStatusesForPurchase = [
+const allowedStatusesForPurchaseReceiver = [
+    OrderStatus.awaitingRecieverItemBeforePurchasePhotosConfirmation,
     OrderStatus.itemRecieved,
     OrderStatus.awaitingDelivery,
     OrderStatus.awaitingPayout,
+    OrderStatus.awaitingPurchase,
+    OrderStatus.success,
+    OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation,
+];
+
+const allowedStatusesForPurchaseCarrier = [
+    OrderStatus.itemRecieved,
+    OrderStatus.awaitingDelivery,
+    OrderStatus.awaitingRecieverItemBeforePurchasePhotosConfirmation,
+    OrderStatus.awaitingPayout,
+    OrderStatus.awaitingPurchase,
+    OrderStatus.awaitingBeforePurchaseItemsFiles,
     OrderStatus.success,
     OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation,
 ];
@@ -63,6 +79,7 @@ const allowedStatusesForPurchase = [
 const allowedStatusesForReview = [
     OrderStatus.itemRecieved,
     OrderStatus.awaitingPayout,
+    OrderStatus.awaitingRecieverItemPurchasePhotosConfirmation,
     OrderStatus.success,
 ];
 
@@ -71,6 +88,7 @@ const OrderInformation: React.FC<IProps> = ({
     viewType,
     user,
     updateOrder,
+    payoutRef,
     suggestedChanged,
     hasByYouSuggestedChanged,
     isReviewBlockOpen,
@@ -340,18 +358,58 @@ const OrderInformation: React.FC<IProps> = ({
                 )}
 
             <div className={styles.orderInformation}>
-                {order.status === OrderStatus.awaitingPurchase &&
+                <div className={styles.orderInformationTitle}>
+                    {t('orderInformation')}
+                </div>
+
+                {order.status === OrderStatus.itemRecieved &&
                     viewType === ViewType.carrier && (
-                        <OrderConfirmPurchase orderId={order.id} />
+                        <OrderPaymentSuccess order={order} />
                     )}
-                {allowedStatusesForPurchase.includes(order.status) && (
-                    <OrderReceiverPhotoConfirmation
-                        orderId={order.id}
-                        viewType={viewType}
-                        orderStatus={order.status}
-                        fileLinks={order.purchaseItemFiles}
-                    />
-                )}
+
+                <div ref={payoutRef}>
+                    <OrderPayment order={order} updateOrder={updateOrder} />
+                </div>
+
+                {allowedStatusesForPurchaseReceiver.includes(order.status) &&
+                    viewType === ViewType.receiver && (
+                        <OrderConfirmationReceiver
+                            orderId={order.id}
+                            orderStatus={order.status}
+                            fileLinks={order.purchaseItemFiles}
+                            beforePurchasingItemFiles={
+                                order.beforePurchaseItemFiles
+                            }
+                        />
+                    )}
+
+                {allowedStatusesForPurchaseCarrier.includes(order.status) &&
+                    viewType === ViewType.carrier && (
+                        <OrderConfirmationCarrier
+                            orderId={order.id}
+                            orderStatus={order.status}
+                            fileLinks={order.purchaseItemFiles}
+                            beforePurchasingItemFiles={
+                                order.beforePurchaseItemFiles
+                            }
+                        />
+                    )}
+
+                {order.status === OrderStatus.awaitingDelivery &&
+                    viewType === ViewType.receiver && (
+                        <ProcuctPurchaseByCodeConfirmation
+                            formik={formik}
+                            updateOrder={updateOrder}
+                            orderId={order.id}
+                        />
+                    )}
+
+                <OrderPayoutInfoBlock
+                    status={order.status}
+                    viewType={viewType}
+                    order={order}
+                />
+
                 {!order.myReview &&
                 isReviewBlockOpen &&
                 allowedStatusesForReview.includes(order.status) ? (
@@ -371,15 +429,6 @@ const OrderInformation: React.FC<IProps> = ({
                         className={styles.form}
                         onSubmit={formik.handleSubmit}
                     >
-                        <div className={styles.orderInformationTitle}>
-                            {t('orderInformation')}
-                        </div>
-                        <OrderPayoutInfoBlock
-                            bank={userBank}
-                            status={order.status}
-                            viewType={viewType}
-                            phoneNumer={order?.payoutInfo?.phoneNumber || ''}
-                        />
                         {((viewType === ViewType.carrier && order.receiver) ||
                             (viewType === ViewType.receiver &&
                                 order.carrier)) && (
@@ -797,6 +846,7 @@ const OrderInformation: React.FC<IProps> = ({
                             )}
                     </form>
                 )}
+
                 {suggestedChanged && (
                     <div className={styles.buttons}>
                         <Button
@@ -817,14 +867,6 @@ const OrderInformation: React.FC<IProps> = ({
                         </Button>
                     </div>
                 )}
-                {order.status === OrderStatus.awaitingDelivery &&
-                    viewType === ViewType.receiver && (
-                        <ProcuctPurchaseByCodeConfirmation
-                            formik={formik}
-                            updateOrder={updateOrder}
-                            orderId={order.id}
-                        />
-                    )}
             </div>
         </>
     );

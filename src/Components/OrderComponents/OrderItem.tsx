@@ -2,6 +2,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { Button, Typography } from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
 import cn from 'classnames';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -19,7 +20,6 @@ import { useConvertStatusToText } from '../../redux/hooks/useConvertStatusToText
 import CircleLoader from '../Loaders/CircleLoader';
 import { ViewType } from '../OrderPage/OrderInputItem';
 import OrderPeopleCard from './OrderPeopleCard';
-import {motion} from 'framer-motion';
 
 type IProps = {
     order: IOrder;
@@ -268,7 +268,10 @@ const OrderItem: React.FC<IProps> = ({
                         {isOrderFromUserPage &&
                         ((order.receiver && !order.carrier) ||
                             (order.carrier && !order.receiver)) ? (
-                            <motion.div whileHover={{scale: 1.07}} whileTap={{scale: 0.93}}>
+                            <motion.div
+                                whileHover={{ scale: 1.07 }}
+                                whileTap={{ scale: 0.93 }}
+                            >
                                 <Button
                                     className={styles.detailsButton}
                                     variant='contained'
@@ -282,18 +285,22 @@ const OrderItem: React.FC<IProps> = ({
                                             color={LoaderColors.SECONDARY}
                                         />
                                     ) : (
-                                        <span className={styles.detailsButtonLink}>
+                                        <span
+                                            className={styles.detailsButtonLink}
+                                        >
                                             {t('apply')}
                                         </span>
                                     )}
                                 </Button>
                             </motion.div>
-
                         ) : (
                             (ourId === order.carrier?.id ||
                                 ourId === order.receiver?.id) && (
                                 <Link prefetch href={`/order/${order.id}`}>
-                                    <motion.div whileHover={{scale: 1.07}} whileTap={{scale: 0.93}}>
+                                    <motion.div
+                                        whileHover={{ scale: 1.07 }}
+                                        whileTap={{ scale: 0.93 }}
+                                    >
                                         <Button
                                             className={styles.detailsButton}
                                             variant='contained'
@@ -305,7 +312,9 @@ const OrderItem: React.FC<IProps> = ({
                                             }
                                         >
                                             <span
-                                                className={styles.detailsButtonLink}
+                                                className={
+                                                    styles.detailsButtonLink
+                                                }
                                             >
                                                 {t('detailsButton')}
                                             </span>
