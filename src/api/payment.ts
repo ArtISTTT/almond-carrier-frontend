@@ -3,10 +3,22 @@ import md5 from 'md5';
 import { IOrderFull } from 'src/interfaces/order';
 import { IUser } from 'src/interfaces/user';
 
+type Params = {
+    amount: string;
+    cf2: string;
+    currency: string;
+    email: string;
+    merchant_site: string;
+    opcode: string;
+    order_id: string;
+    success_url: string;
+    product_name: string;
+};
+
 /**
  * Генерирует HMAC SHA256 подпись для данных.
  */
-function generateHMACSignature(params: Object, secretKey: string) {
+function generateHMACSignature(params: Params, secretKey: string) {
     const sortedValues = Object.entries(params)
         .sort(([keyA], [keyB]) => keyA.localeCompare(keyB)) // Сортируем по ключам
         .filter(
