@@ -13,7 +13,6 @@ import {
     suggestChangesByCarrier,
     suggestChangesByReceiver,
 } from 'src/api/order';
-import { calculateComission } from 'src/helpers/calculateComission';
 import { Banks, IUser } from 'src/interfaces/user';
 import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
@@ -652,12 +651,9 @@ const OrderInformation: React.FC<IProps> = ({
                                                                 {' '}
                                                                 (
                                                                 {order.totalPaymentAmount &&
+                                                                    order.totalPaymentFee &&
                                                                     formatAmount(
-                                                                        calculateComission(
-                                                                            order.totalPaymentAmount,
-                                                                            order.productAmount,
-                                                                            order.rewardAmount
-                                                                        ),
+                                                                        order.totalPaymentFee,
                                                                         Currency.RUB
                                                                     )}{' '}
                                                                 {t('RUB')}{' '}

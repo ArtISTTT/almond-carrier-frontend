@@ -28,6 +28,7 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
     const { id } = useSelector(selectUser);
     const { triggerOpen } = useContext(OpenAlertContext);
     const { asPath } = useRouter();
+    const user = useSelector(selectUser);
 
     const { t } = useTranslation();
 
@@ -37,7 +38,7 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
 
     const startPaymentClick = async () => {
         if (order.paymentOrderId && order.sdRef) {
-            await startPayment(order.paymentOrderId, order.sdRef);
+            await startPayment(order, user);
         }
     };
 
@@ -67,32 +68,6 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
                 >
                     {t('pay')}
                 </Button>
-                {/* <Collapse in={paymentOpened}>
-                    <div className={styles.collapsedPayment}>
-                        <div className={styles.collapsedPaymentTitle}>
-                            {t('transferTheAmountByPhoneNumberTo')}
-                            &nbsp;
-                            <b>{t('SBP')}</b> <br />
-                            {t('banks')}: <b>{t('tinkoff')}</b>,{' '}
-                            <b>{t('sberbank')}</b>
-                        </div>
-                        <div className={styles.name}>
-                            {t('name')}: <b>{PAYMENT_CREDENTIALS.NAME}</b>
-                        </div>
-                        <div className={styles.phone} onClick={copy}>
-                            {PAYMENT_CREDENTIALS.PHONE}
-                            <ContentCopyIcon fontSize='small' />
-                        </div>
-                        <Button
-                            variant='contained'
-                            className={styles.orderConfirmPaymentButton}
-                            color='primary'
-                            onClick={confirmPaymentClick}
-                        >
-                            {t('confirmPay')}
-                        </Button>
-                    </div>
-                </Collapse> */}
             </div>
         );
     }

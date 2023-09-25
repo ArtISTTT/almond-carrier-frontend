@@ -61,6 +61,7 @@ export interface IOrderFull extends IOrder {
     dealConfirmedByReceiver?: boolean;
     myReview?: IPureReview;
     totalPaymentAmount?: number;
+    totalPaymentFee?: number;
     purchaseItemFiles?: string[];
     paymentOrderId?: string;
     payoutOrderId?: string;
