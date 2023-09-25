@@ -60,7 +60,7 @@ export const startPayment = async (order: IOrderFull, user: IUser) => {
         opcode: '3',
         order_id: order.id,
         success_url:
-            (process.env.NEXT_PUBLICK_CALLBACK_URI as string) +
+            (process.env.NEXT_PUBLIC_CALLBACK_URI as string) +
             'payment-callback',
         product_name: order.productName,
     };
