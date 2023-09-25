@@ -1,4 +1,4 @@
-import { BinaryLike, createHmac } from 'crypto';
+import { createHmac } from 'crypto';
 import md5 from 'md5';
 import { IOrderFull } from 'src/interfaces/order';
 import { IUser } from 'src/interfaces/user';
