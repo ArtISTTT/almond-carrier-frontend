@@ -68,6 +68,7 @@ export interface IOrderFull extends IOrder {
     partnerReview?: IPureReview;
     sdRef?: string;
     paymentUrl?: string;
+    paymentExpire?: Date;
 }
 
 export interface ICreateOrderReciever {
