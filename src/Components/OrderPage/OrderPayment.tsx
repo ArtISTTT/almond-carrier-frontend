@@ -5,7 +5,6 @@ import { Button } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { startPayment } from 'src/api/payment';
 import { OrderStatus } from 'src/interfaces/profile';
 import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
@@ -37,8 +36,8 @@ const OrderPayment: React.FC<IProps> = ({ order, updateOrder }) => {
     );
 
     const startPaymentClick = async () => {
-        if (order.paymentOrderId && order.sdRef) {
-            await startPayment(order, user);
+        if (order.paymentUrl) {
+            window.open(order.paymentUrl, '_blank')?.focus();
         }
     };
 
