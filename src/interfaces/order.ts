@@ -74,6 +74,8 @@ export interface IOrderFull extends IOrder {
     payoutOrderId?: string;
     partnerReview?: IPureReview;
     sdRef?: string;
+    paymentUrl?: string;
+    paymentExpire?: Date;
 }
 
 export interface ICreateOrderReciever {

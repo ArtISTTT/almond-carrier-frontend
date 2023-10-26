@@ -1,7 +1,6 @@
 import { Button } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { startPayout } from 'src/api/payment';
 import { IOrderFull } from 'src/interfaces/order';
 import { OrderStatus } from 'src/interfaces/profile';
 import styles from '../../../styles/OrderPage.module.css';
@@ -19,10 +18,10 @@ const OrderPayoutInfoBlock: React.FC<IProps> = ({
     status,
 }) => {
     const { t } = useTranslation();
-
+    console.log(order.paymentUrl);
     const onStartPayoutClick = async () => {
-        if (order.payoutOrderId && order.sdRef) {
-            await startPayout(order.payoutOrderId, order.sdRef);
+        if (order.paymentUrl) {
+            window.open(order.paymentUrl, '_blank')?.focus();
         }
     };
 
@@ -39,6 +38,7 @@ const OrderPayoutInfoBlock: React.FC<IProps> = ({
                     variant='contained'
                     type='submit'
                     onClick={onStartPayoutClick}
+                    href={order.paymentUrl}
                 >
                     Начать выплату
                 </Button>

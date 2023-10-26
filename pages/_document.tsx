@@ -10,6 +10,11 @@ export default function Document() {
                     name='viewport'
                     content='initial-scale=1.0, width=device-width'
                 />
+
+                <script
+                    async
+                    src={`http://localhost:4173/widget.js?position=Right&type=Circle`}
+                ></script>
                 <script
                     async
                     src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
