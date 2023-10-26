@@ -53,6 +53,13 @@ export type IPureReview = {
     userReviewerId: string;
 };
 
+export type ICard = {
+    id: string;
+    name: string;
+    number: string;
+    bankName: string;
+};
+
 export interface IOrderFull extends IOrder {
     byCarrierSuggestedChanges?: Partial<IOrder>;
     byReceiverSuggestedChanges?: Partial<IOrder>;

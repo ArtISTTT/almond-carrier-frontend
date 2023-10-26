@@ -1,4 +1,4 @@
-import { IOrder, IOrderFull, IPayout } from '../order';
+import { ICard, IOrder, IOrderFull, IPayout } from '../order';
 
 export type IAddAsACarrierReturn = {
     error?: string | undefined;
@@ -27,6 +27,18 @@ export type IGetOrderByIdReturn = {
 
 export type ISuggestChanges = {
     error?: string | undefined;
+    ok: boolean;
+};
+
+export type IGetUserCardsReturn = {
+    error?: string | undefined;
+    cards?: ICard[];
+    ok: boolean;
+};
+
+export type IGetCardUrlReturn = {
+    error?: string | undefined;
+    url?: string;
     ok: boolean;
 };
 

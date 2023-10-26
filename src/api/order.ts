@@ -2,9 +2,11 @@ import { Banks } from 'src/interfaces/user';
 import {
     IAddAsACarrierReturn,
     IApplyOrderReturn,
+    IGetCardUrlReturn,
     IGetMyOrdersReturn,
     IGetOrderByIdReturn,
     IGetPayouts,
+    IGetUserCardsReturn,
     ISuggestChanges,
 } from '../interfaces/api/order';
 import {
@@ -537,5 +539,37 @@ export const sendProductCode = (requestData: {
                 error:
                     data.response?.data?.message ??
                     'Error with sending the product code',
+            };
+        });
+
+export const getSavedCardUrl = (): Promise<IGetCardUrlReturn> =>
+    mainInstance
+        .get('/get-save-card-url')
+        .then(data => {
+            return {
+                url: data.data.url,
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error: data.response?.data?.message ?? 'error',
+            };
+        });
+
+export const getUserCards = (): Promise<IGetUserCardsReturn> =>
+    mainInstance
+        .get('/get-saved-cards')
+        .then(data => {
+            return {
+                cards: data.data.cards,
+                ok: true,
+            };
+        })
+        .catch(data => {
+            return {
+                ok: false,
+                error: data.response?.data?.message ?? 'error',
             };
         });

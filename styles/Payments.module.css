@@ -8,6 +8,7 @@
 
 .emptyPayoutsWrapper {
     height: 570px;
+    margin-bottom: 30px;
 }
 
 .loaderWrapper {
@@ -89,6 +90,100 @@
     justify-content: flex-end;
 }
 
+.cardsWrapper {
+    display: flex;
+    gap: 40px;
+    padding: 10px;
+    padding-left: 0;
+    overflow-x: auto;
+    align-items: center;
+}
+
+.cardsWrapper::-webkit-scrollbar {
+    height: 10px;
+}
+
+.cardsWrapper::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 16px;
+}
+
+.cardsWrapper::-webkit-scrollbar-thumb {
+    background-color: var(--cTextPrimary);
+    border-radius: 16px;
+    border: 1px solid var(--cTextSecondary);
+}
+
+.cardItemWrapper {
+    position: relative;
+    cursor: pointer;
+    border-radius: 16px;
+    padding: 20px;
+    min-width: 360px;
+    height: 100px;
+    box-shadow: 3px 0px 10px 1px rgba(102, 144, 253, 0.25);
+}
+
+.centerCardItemWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.selectedCard {
+    background: var(
+        --gradient,
+        linear-gradient(
+            97deg,
+            var(--cBg) 7.87%,
+            rgba(102, 144, 253, 0.4) 99.05%
+        )
+    );
+}
+
+.cardItemNumber {
+    color: var(--cTextThird);
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 25px;
+    letter-spacing: 0.4px;
+}
+
+.cardItemName {
+    margin-top: 24px;
+    color: var(--cTextThird);
+    font-size: 20px;
+    user-select: none;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+}
+
+.cardItemBank {
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    color: var(--cTextLow);
+    text-align: right;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 0.4px;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.emptyCardItemTitle {
+    text-align: center;
+    color: var(--cTextThird);
+    font-size: 20px;
+    font-weight: 800;
+    margin-top: 4px;
+    user-select: none;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+}
+
 @media screen and (max-width: 990px) {
     .paymentHeader {
         text-align: center;
@@ -124,6 +219,9 @@
         padding: 0 10px;
         padding-top: 20px;
     }
+}
+
+@media screen and (max-width: 740px) {
 }
 
 @media screen and (max-width: 660px) {
@@ -173,6 +271,11 @@
     .pagination {
         margin-top: 10px;
     }
+    .cardsWrapper {
+        overflow: hidden;
+        flex-wrap: wrap;
+    }
+
     .payoutStatus {
         align-items: center;
         padding-left: 5px;
@@ -187,6 +290,12 @@
 @media screen and (max-width: 400px) {
     .paymentTotalAmount {
         font-size: 15px;
+    }
+    .cardsWrapper {
+        justify-content: center;
+    }
+    .cardItemWrapper {
+        min-width: 320px;
     }
 }
 

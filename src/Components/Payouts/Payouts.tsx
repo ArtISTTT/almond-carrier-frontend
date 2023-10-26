@@ -1,10 +1,12 @@
+import AddIcon from '@mui/icons-material/Add';
 import { Pagination } from '@mui/material';
+import cn from 'classnames';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getPayouts } from 'src/api/order';
+import { getPayouts, getSavedCardUrl, getUserCards } from 'src/api/order';
 import { parsePayoutsFromApi } from 'src/helpers/parsePayoutsFromApi';
 import { LoaderColors } from 'src/interfaces/loader';
-import { IPayout } from 'src/interfaces/order';
+import { ICard, IPayout } from 'src/interfaces/order';
 import { Currency } from 'src/interfaces/settings';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
 import { useGetBanks } from 'src/redux/hooks/useGetBanks';
@@ -13,6 +15,7 @@ import styles from '../../../styles/Payments.module.css';
 import EmptyBlock from '../EmptyComponents/EmptyOrderBlock';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import CircleLoader from '../Loaders/CircleLoader';
+import CardItem from './CardItem';
 import PaymentsTable from './PayoutsTable';
 
 const useGetUserPayouts = () => {
@@ -46,14 +49,47 @@ const useGetUserPayouts = () => {
     return { payouts, userPayouts, isLoading };
 };
 
+const useGetUserCards = () => {
+    const { t } = useTranslation();
+    const { triggerOpen } = useContext(OpenAlertContext);
+    const [isCardLoading, setIsLoading] = useState(false);
+    const [cards, setCards] = useState<ICard[]>([]);
+
+    const userCards = async () => {
+        setIsLoading(true);
+
+        const data = await getUserCards();
+
+        if (data.ok && data.cards) {
+            setCards(data.cards);
+        } else {
+            triggerOpen({
+                severity: 'error',
+                text: data.error || 'Cards loading error',
+            });
+            setCards([]);
+        }
+        setIsLoading(false);
+    };
+
+    return { isCardLoading, cards, userCards };
+};
+
 const Payouts = () => {
     const [page, setPage] = useState<number>(1);
     const { t } = useTranslation();
     const formatAmount = useFormatAmount();
     const { payouts, userPayouts, isLoading } = useGetUserPayouts();
 
+    const { cards, isCardLoading, userCards } = useGetUserCards();
+
+    const [selectedCard, setSelectedCard] = useState('');
+
+    const [savedUrl, setSavedUrl] = useState('');
+
     useEffect(() => {
         userPayouts();
+        userCards();
     }, []);
 
     const currentPagePayouts = useGetCurrentPagePayouts({ payouts, page });
@@ -63,6 +99,18 @@ const Payouts = () => {
         value: number
     ) => {
         setPage(value);
+    };
+
+    const onSetSelectedCard = (value: string) => setSelectedCard(value);
+
+    const onAddNewCard = async () => {
+        const data = await getSavedCardUrl();
+
+        if (data.ok && data.url) {
+            setSavedUrl(data.url);
+        } else {
+            setSavedUrl('');
+        }
     };
 
     const totalCountPages = useMemo(() => {
@@ -76,7 +124,38 @@ const Payouts = () => {
     return (
         <div className={styles.paymentWrapper}>
             <div className={styles.payoutHeader}>
-                <div className={styles.paymentTitle}>{t('yourPayouts')}</div>
+                <div className={styles.paymentTitle}>
+                    {t('withdrawMethods')}
+                </div>
+            </div>
+            <div className={styles.cardsWrapper}>
+                {cards &&
+                    cards.map((item, key) => {
+                        return (
+                            <CardItem
+                                key={key}
+                                {...item}
+                                selectedCard={selectedCard}
+                                onSetSelectedCard={onSetSelectedCard}
+                            />
+                        );
+                    })}
+                <div
+                    className={cn(styles.cardItemWrapper, {
+                        [styles.centerCardItemWrapper]: true,
+                    })}
+                    onClick={onAddNewCard}
+                >
+                    <div className={styles.emptyCardItemTitle}>
+                        {t('addPaymentMethod')}
+                    </div>
+                    <AddIcon />
+                </div>
+            </div>
+            <div className={styles.payoutHeader}>
+                <div className={styles.paymentTitle}>
+                    {t('withdrawHistory')}
+                </div>
                 <div className={styles.paymentTotalAmount}>
                     {t('total')}
                     {': '}
