@@ -108,6 +108,7 @@ const Payouts = () => {
 
         if (data.ok && data.url) {
             setSavedUrl(data.url);
+            window.open(data.url, '_blank');
         } else {
             setSavedUrl('');
         }
