@@ -1,11 +1,10 @@
 import AddIcon from '@mui/icons-material/Add';
-import { Pagination } from '@mui/material';
+import { Pagination, Skeleton } from '@mui/material';
 import cn from 'classnames';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getPayouts, getSavedCardUrl, getUserCards } from 'src/api/order';
 import { parsePayoutsFromApi } from 'src/helpers/parsePayoutsFromApi';
-import { LoaderColors } from 'src/interfaces/loader';
 import { ICard, IPayout } from 'src/interfaces/order';
 import { Currency } from 'src/interfaces/settings';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
@@ -14,7 +13,6 @@ import { useGetCurrentPagePayouts } from 'src/redux/hooks/useGetCurrentPage';
 import styles from '../../../styles/Payments.module.css';
 import EmptyBlock from '../EmptyComponents/EmptyOrderBlock';
 import { OpenAlertContext } from '../Layouts/Snackbar';
-import CircleLoader from '../Loaders/CircleLoader';
 import CardItem from './CardItem';
 import PaymentsTable from './PayoutsTable';
 
@@ -104,6 +102,10 @@ const Payouts = () => {
     const onSetSelectedCard = (value: string) => setSelectedCard(value);
 
     const onAddNewCard = async () => {
+        if (savedUrl) return;
+
+        setSavedUrl('*');
+
         const data = await getSavedCardUrl();
 
         if (data.ok && data.url) {
@@ -130,7 +132,7 @@ const Payouts = () => {
                 </div>
             </div>
             <div className={styles.cardsWrapper}>
-                {cards &&
+                {cards && !isCardLoading ? (
                     cards.map((item, key) => {
                         return (
                             <CardItem
@@ -140,10 +142,33 @@ const Payouts = () => {
                                 onSetSelectedCard={onSetSelectedCard}
                             />
                         );
-                    })}
+                    })
+                ) : (
+                    <>
+                        <Skeleton
+                            variant='rounded'
+                            width={360}
+                            height={100}
+                            animation='wave'
+                        />
+                        <Skeleton
+                            variant='rounded'
+                            width={360}
+                            height={100}
+                            animation='wave'
+                        />
+                        <Skeleton
+                            variant='rounded'
+                            width={360}
+                            height={100}
+                            animation='wave'
+                        />
+                    </>
+                )}
                 <div
                     className={cn(styles.cardItemWrapper, {
                         [styles.centerCardItemWrapper]: true,
+                        [styles.disabledAddNewCard]: Boolean(savedUrl),
                     })}
                     onClick={onAddNewCard}
                 >
@@ -165,7 +190,12 @@ const Payouts = () => {
             </div>
             {isLoading ? (
                 <div className={styles.loaderWrapper}>
-                    <CircleLoader color={LoaderColors.PRIMARY} />
+                    <Skeleton
+                        variant='rounded'
+                        width='100%'
+                        height={600}
+                        animation='wave'
+                    />
                 </div>
             ) : (
                 <>
