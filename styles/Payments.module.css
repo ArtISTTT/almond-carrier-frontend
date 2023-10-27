@@ -123,7 +123,13 @@
     min-width: 360px;
     height: 100px;
     margin-left: 3px;
+    transition-duration: 0.15s;
     box-shadow: 3px 0px 10px 1px rgba(102, 144, 253, 0.25);
+}
+
+.noSelectedCard:hover {
+    background-color: rgba(102, 144, 253, 0.05);
+    box-shadow: 3px 0px 10px 1px var(--cBgHover);
 }
 
 .centerCardItemWrapper {

@@ -13,16 +13,16 @@ import {
     suggestChangesByCarrier,
     suggestChangesByReceiver,
 } from 'src/api/order';
-import { Banks, IUser } from 'src/interfaces/user';
+import { IUser } from 'src/interfaces/user';
 import { useAppSelector } from 'src/redux/hooks';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
-import { useGetBanks } from 'src/redux/hooks/useGetBanks';
 import { ReceiverPopupSchema } from 'src/schemas/PopupSchema';
 import styles from '../../../styles/OrderPage.module.css';
 import { IOrder, IOrderFull } from '../../interfaces/order';
 import { OrderStatus } from '../../interfaces/profile';
 import { Currency } from '../../interfaces/settings';
 import { OpenAlertContext } from '../Layouts/Snackbar';
+import OrderChoosePaymentMethod from './OrderChoosePaymentMethod';
 import OrderConfirmationCarrier from './OrderConfirmationCarrier';
 import OrderConfirmationReceiver from './OrderConfirmationReceiver';
 import OrderInputItem, {
@@ -32,7 +32,6 @@ import OrderInputItem, {
     ViewType,
 } from './OrderInputItem';
 import OrderPayment from './OrderPayment';
-import OrderPaymentSuccess from './OrderPaymentSuccess';
 import OrderPayoutInfoBlock from './OrderPayoutInfoBlock';
 import OrderReview from './OrderReview';
 import ProcuctPurchaseByCodeConfirmation from './ProcuctPurchaseByCodeConfirmation';
@@ -104,9 +103,6 @@ const OrderInformation: React.FC<IProps> = ({
     const { t } = useTranslation();
     const { triggerOpen } = useContext(OpenAlertContext);
     const formatAmount = useFormatAmount();
-    const { userBank } = useGetBanks({
-        bank: order?.payoutInfo?.bank || Banks.SBER,
-    });
 
     const addToEditingFields = (name: keyof IOrderFull) => {
         setEditingFields(editingFields.concat([name]));
@@ -357,14 +353,24 @@ const OrderInformation: React.FC<IProps> = ({
                 )}
 
             <div className={styles.orderInformation}>
-                <div className={styles.orderInformationTitle}>
-                    {t('orderInformation')}
+                <div className={styles.withdrawTitle}>
+                    {t('successYouCanWithdrawToYouBankCard', {
+                        sum:
+                            order.productAmount &&
+                            formatAmount(
+                                order.productAmount + order.rewardAmount
+                            ),
+                    })}
                 </div>
 
                 {order.status === OrderStatus.itemRecieved &&
                     viewType === ViewType.carrier && (
-                        <OrderPaymentSuccess order={order} />
+                        <OrderChoosePaymentMethod order={order} />
                     )}
+
+                <div className={styles.orderInformationTitle}>
+                    {t('orderInformation')}
+                </div>
 
                 <div ref={payoutRef}>
                     <OrderPayment order={order} updateOrder={updateOrder} />

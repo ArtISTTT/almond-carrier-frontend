@@ -1,5 +1,6 @@
 import cn from 'classnames';
 import React from 'react';
+import { ICard } from 'src/interfaces/order';
 import styles from '../../../styles/Payments.module.css';
 
 type IProps = {
@@ -7,8 +8,8 @@ type IProps = {
     name: string;
     number: string;
     bankName: string;
-    selectedCard: string;
-    onSetSelectedCard: (value: string) => void;
+    selectedCard?: ICard;
+    onSetSelectedCard: (value: ICard) => void;
 };
 
 const CardItem: React.FC<IProps> = ({
@@ -19,13 +20,15 @@ const CardItem: React.FC<IProps> = ({
     id,
     selectedCard,
 }) => {
-    const onSelect = () => onSetSelectedCard(id);
+    const onSelect = () =>
+        onSetSelectedCard({ id, name, number, bankName } as ICard);
 
     return (
         <div
             onClick={onSelect}
             className={cn(styles.cardItemWrapper, {
-                [styles.selectedCard]: selectedCard === id,
+                [styles.selectedCard]: selectedCard?.id === id,
+                [styles.noSelectedCard]: selectedCard?.id !== id,
             })}
         >
             <div className={styles.cardItemBank}>{bankName}</div>

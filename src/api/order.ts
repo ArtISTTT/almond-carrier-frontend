@@ -1,4 +1,3 @@
-import { Banks } from 'src/interfaces/user';
 import {
     IAddAsACarrierReturn,
     IApplyOrderReturn,
@@ -357,8 +356,7 @@ export const declineOrder = (requestData: {
 
 export const startPayout = (requestData: {
     orderId: string;
-    phoneNumber: string;
-    bank: Banks;
+    cardId: string;
 }): Promise<ISuggestChanges> =>
     mainInstance
         .post('/order/start-payout', JSON.stringify(requestData), {

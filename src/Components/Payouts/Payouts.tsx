@@ -3,85 +3,32 @@ import { Pagination, Skeleton } from '@mui/material';
 import cn from 'classnames';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getPayouts, getSavedCardUrl, getUserCards } from 'src/api/order';
-import { parsePayoutsFromApi } from 'src/helpers/parsePayoutsFromApi';
-import { ICard, IPayout } from 'src/interfaces/order';
+import { getSavedCardUrl } from 'src/api/order';
+import { ICard } from 'src/interfaces/order';
 import { Currency } from 'src/interfaces/settings';
 import useFormatAmount from 'src/redux/hooks/useFormatAmount';
-import { useGetBanks } from 'src/redux/hooks/useGetBanks';
 import { useGetCurrentPagePayouts } from 'src/redux/hooks/useGetCurrentPage';
+import { useGetUserCards } from 'src/redux/hooks/useGetUserCards';
+import { useGetUserPayouts } from 'src/redux/hooks/useGetUserPayouts';
 import styles from '../../../styles/Payments.module.css';
 import EmptyBlock from '../EmptyComponents/EmptyOrderBlock';
 import { OpenAlertContext } from '../Layouts/Snackbar';
 import CardItem from './CardItem';
 import PaymentsTable from './PayoutsTable';
 
-const useGetUserPayouts = () => {
-    const { t } = useTranslation();
-    const { triggerOpen } = useContext(OpenAlertContext);
-    const [isLoading, setIsLoading] = useState(false);
-    const [payouts, setPayouts] = useState<IPayout[]>([]);
-    const { banksArray } = useGetBanks({});
-
-    const userPayouts = async () => {
-        setIsLoading(true);
-        const data = await getPayouts();
-
-        if (data.ok && data.payouts) {
-            setPayouts(
-                await parsePayoutsFromApi({
-                    payouts: data.payouts,
-                    banks: banksArray,
-                })
-            );
-        } else {
-            triggerOpen({
-                severity: 'error',
-                text: data.error || t('errorLoadingPayouts'),
-            });
-            setPayouts([]);
-        }
-        setIsLoading(false);
-    };
-
-    return { payouts, userPayouts, isLoading };
-};
-
-const useGetUserCards = () => {
-    const { t } = useTranslation();
-    const { triggerOpen } = useContext(OpenAlertContext);
-    const [isCardLoading, setIsLoading] = useState(false);
-    const [cards, setCards] = useState<ICard[]>([]);
-
-    const userCards = async () => {
-        setIsLoading(true);
-
-        const data = await getUserCards();
-
-        if (data.ok && data.cards) {
-            setCards(data.cards);
-        } else {
-            triggerOpen({
-                severity: 'error',
-                text: data.error || 'Cards loading error',
-            });
-            setCards([]);
-        }
-        setIsLoading(false);
-    };
-
-    return { isCardLoading, cards, userCards };
-};
-
 const Payouts = () => {
-    const [page, setPage] = useState<number>(1);
     const { t } = useTranslation();
+    const { triggerOpen } = useContext(OpenAlertContext);
+
     const formatAmount = useFormatAmount();
+
     const { payouts, userPayouts, isLoading } = useGetUserPayouts();
 
     const { cards, isCardLoading, userCards } = useGetUserCards();
 
-    const [selectedCard, setSelectedCard] = useState('');
+    const [page, setPage] = useState<number>(1);
+
+    const [selectedCard, setSelectedCard] = useState<ICard | undefined>();
 
     const [savedUrl, setSavedUrl] = useState('');
 
@@ -99,7 +46,7 @@ const Payouts = () => {
         setPage(value);
     };
 
-    const onSetSelectedCard = (value: string) => setSelectedCard(value);
+    const onSetSelectedCard = (value: ICard) => setSelectedCard(value);
 
     const onAddNewCard = async () => {
         if (savedUrl) return;
@@ -112,6 +59,10 @@ const Payouts = () => {
             setSavedUrl(data.url);
             window.open(data.url, '_blank');
         } else {
+            triggerOpen({
+                severity: 'error',
+                text: t('errorAddingNewMethod'),
+            });
             setSavedUrl('');
         }
     };

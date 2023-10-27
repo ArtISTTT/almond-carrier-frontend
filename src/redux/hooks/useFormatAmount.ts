@@ -6,7 +6,7 @@ const useFormatAmount = () => {
 
     return (
         sum: string | number,
-        customCurrency: Currency,
+        customCurrency?: Currency,
         addCurrency?: boolean
     ) => {
         const reversedSum = sum.toString().split('').reverse();
@@ -20,7 +20,7 @@ const useFormatAmount = () => {
 
         const finalSum = reversedSum.join('');
 
-        if (addCurrency) {
+        if (addCurrency && customCurrency) {
             return finalSum.concat(` ${t(customCurrency)}`);
         }
 
