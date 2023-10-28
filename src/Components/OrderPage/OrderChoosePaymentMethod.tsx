@@ -78,27 +78,6 @@ const OrderChoosePaymentMethod: React.FC<IProps> = ({ order }) => {
         userCards();
     }, []);
 
-    const testCards = [
-        {
-            id: '1',
-            name: 'ARTIK VKSHKIN',
-            number: '1234123412341234',
-            bankName: 'SBERBANK',
-        },
-        {
-            id: '2',
-            name: 'ARTIK VKSHKIN',
-            number: '1234123412341234',
-            bankName: 'SBERBANK',
-        },
-        {
-            id: '3',
-            name: 'ARTIK VKSHKIN',
-            number: '1234123412341234',
-            bankName: 'SBERBANK',
-        },
-    ] as ICard[];
-
     return (
         <>
             {isPaymentWindowOpened && (
@@ -136,7 +115,7 @@ const OrderChoosePaymentMethod: React.FC<IProps> = ({ order }) => {
                                 </>
                             ) : (
                                 <>
-                                    {testCards.map((item, key) => (
+                                    {cards.map((item, key) => (
                                         <CardItem
                                             selectedCard={selectedCard}
                                             onSetSelectedCard={
