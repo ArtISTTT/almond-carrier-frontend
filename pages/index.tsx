@@ -214,13 +214,6 @@ export default function Welcome() {
                     >
                         {t('howDoesItWork')}
                     </Typography>
-                    {/* <Typography
-                        variant='h2'
-                        component='h2'
-                        className={styles.stepsSubTitle}
-                    >
-                        {t('youCanCreateOwnOrdersOrRespondExistingOnes')}
-                    </Typography> */}
                     <div className={styles.steps}>
                         <div className={styles.leftSteps}>
                             <div
@@ -432,6 +425,38 @@ export default function Welcome() {
                         className={styles.advantagesLogo}
                         src='static/images/main-page/blue-landing-plane.png'
                     />
+                </div>
+                <div className={styles.partnersBlock}>
+                    <div className={styles.partnersWrapper}>
+                        <div className={styles.partnersTitle}>
+                            {t('ourPartners')}
+                        </div>
+                        <div className={styles.partnersLine} />
+                        <div className={styles.partnersDescription}>
+                            {t(
+                                'weWorkWithTheBestMakeYourShoppingEasierAndSafer'
+                            )}
+                        </div>
+                        <div className={styles.partnersCube} />
+                    </div>
+                    <div className={styles.partners}>
+                        <img
+                            className={styles.partner}
+                            src='static/images/main-page/partner1.png'
+                        />
+                        <img
+                            className={styles.partner}
+                            src='static/images/main-page/partner3.png'
+                        />
+                        <img
+                            className={styles.partner}
+                            src='static/images/main-page/partner2.png'
+                        />
+                        <img
+                            className={styles.partner}
+                            src='static/images/main-page/partner4.png'
+                        />
+                    </div>
                 </div>
                 {!isAuthorized && (
                     <div ref={payoutRef} className={styles.formWrapper}>

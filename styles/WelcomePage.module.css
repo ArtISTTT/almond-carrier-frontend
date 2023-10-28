@@ -409,16 +409,6 @@
     width: 100%;
 }
 
-/* .title {
-    font-weight: 700;
-    font-size: 60px;
-    line-height: 80px;
-    text-align: center;
-    margin-top: 85px;
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-} */
-
 .description {
     font-weight: 500;
     font-size: 42px;
@@ -527,6 +517,94 @@
     line-height: 30px;
     text-align: center;
     letter-spacing: 0.4px;
+}
+
+.partnersBlock {
+    background: rgb(191, 208, 251);
+    background: linear-gradient(
+        0deg,
+        rgba(191, 208, 251, 1) 12%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    padding: 100px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.partnersWrapper {
+    position: relative;
+    margin-left: 20px;
+}
+
+.partnersTitle {
+    color: var(--cTextPrimary);
+    position: relative;
+    z-index: 3;
+    white-space: nowrap;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 70px;
+    font-weight: 700;
+    line-height: 90px;
+    max-width: 700px;
+    text-align: right;
+}
+
+.partnersLine {
+    width: 400px;
+    position: absolute;
+    right: 0;
+    z-index: 3;
+    height: 10px;
+    border-radius: 5px;
+    background: var(--secondColor, #6690fd);
+}
+
+.partnersCube {
+    background: #c1d3ff;
+    width: 260px;
+    height: 240px;
+    position: absolute;
+    z-index: 2;
+    top: -80px;
+    right: -50px;
+}
+
+.partnersDescription {
+    color: var(--cTextThird);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 30px;
+    font-weight: 500;
+    max-width: 580px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 3;
+    text-align: right;
+    line-height: 55px; /* 150% */
+}
+
+.partners {
+    display: flex;
+    gap: 80px;
+    flex-wrap: wrap;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    max-width: 850px;
+}
+
+.partner {
+    width: 290px;
+    height: 140px;
+}
+
+@media screen and (max-width: 1300px) {
+    .partnersBlock {
+        padding: 100px 0;
+        flex-direction: column;
+        gap: 50px;
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -675,6 +753,10 @@
     .advantage > img {
         width: 400px;
     }
+    .partner {
+        width: 230px;
+        height: 100px;
+    }
     .advantagesLogo {
         top: 12px;
     }
@@ -733,7 +815,6 @@
         );
     }
     .formStepsIcon {
-        /* top: 0; */
         bottom: 0;
         left: 30px;
         width: 40px;
@@ -742,6 +823,33 @@
         top: 50px;
         left: 10px;
         width: 50px;
+    }
+    .partners {
+        gap: 50px;
+        flex-direction: column;
+    }
+    .partnersBlock {
+        padding-top: 30px;
+    }
+    .partnersTitle {
+        font-size: 40px;
+        text-align: center;
+    }
+    .partnersLine {
+        display: none;
+    }
+    .partnersDescription {
+        margin-top: 0;
+        text-align: center;
+        line-height: 30px;
+        margin: 0 20px;
+        font-size: 18px;
+    }
+    .partnersWrapper {
+        margin-left: 0px;
+    }
+    .partnersCube {
+        display: none;
     }
 }
 
@@ -834,6 +942,10 @@
         height: 180px;
         margin: 0 auto;
     }
+    .partner {
+        width: 200px;
+        height: 100px;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -870,6 +982,9 @@
     }
     .bannerLogo {
         top: 190px;
+    }
+    .partnersDescription {
+        margin: 0 auto;
     }
 }
 

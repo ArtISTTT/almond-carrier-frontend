@@ -422,6 +422,12 @@
     border-radius: 15px;
 }
 
+.paymentTimerWrapper {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--cTextLow);
+}
+
 .orderPayoutWrapper {
     max-width: 1000px;
 }
@@ -718,8 +724,8 @@
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
-    padding: 10px 0;
-    max-height: 500px;
+    padding: 40px 0;
+    max-height: 540px;
     gap: 20px;
 }
 
@@ -741,7 +747,9 @@
 
 .confirmButtonWrapper {
     display: flex;
-    padding-top: 10px;
+    padding-top: 20px;
+    position: relative;
+    z-index: 2;
     justify-content: center;
 }
 
@@ -762,6 +770,7 @@
     min-height: 100px;
     display: flex;
     flex-direction: column;
+    position: relative;
     gap: 10px;
     align-items: center;
     justify-content: center;
@@ -774,6 +783,22 @@
     box-shadow: 3px 0px 10px 1px var(--cBgHover);
 }
 
+.testPeymentNotification {
+    position: absolute;
+    z-index: 3;
+    bottom: -35px;
+    text-align: center;
+    line-height: 14px;
+    letter-spacing: 0.1px;
+    opacity: 0;
+    transition-duration: 0.15s;
+    font-size: 12px;
+}
+
+.addNewMethodWrapper:hover .testPeymentNotification {
+    opacity: 1;
+}
+
 .addNewMethodWrapper > span {
     color: var(--cTextThird);
     font-size: 20px;
@@ -784,6 +809,11 @@
 
 .buttonItem {
     border-radius: 15px;
+}
+
+.sixHoursNotification {
+    margin-top: 10px;
+    font-size: 12px;
 }
 
 .openReviewPopupButton {

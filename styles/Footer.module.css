@@ -23,7 +23,12 @@
     padding: 30px;
     position: relative;
     z-index: 1;
-    background-color: var(--cBgSecondary);
+    background: linear-gradient(
+        180deg,
+        var(--cBgLandingMain) 75%,
+        var(--cBgSecondary) 100%
+    );
+    /* background-color: var(--cBgSecondary); */
 }
 
 .formControl {

@@ -89,6 +89,7 @@ const Payouts = () => {
                             <CardItem
                                 key={key}
                                 {...item}
+                                watchOnly
                                 selectedCard={selectedCard}
                                 onSetSelectedCard={onSetSelectedCard}
                             />
@@ -127,6 +128,11 @@ const Payouts = () => {
                         {t('addPaymentMethod')}
                     </div>
                     <AddIcon />
+                    <div className={styles.testPeymentNotification}>
+                        {t(
+                            'transactionWillBeRequiredAddPaymentMethodTheMoneyWillReturnedAFewMinutes'
+                        )}
+                    </div>
                 </div>
             </div>
             <div className={styles.payoutHeader}>

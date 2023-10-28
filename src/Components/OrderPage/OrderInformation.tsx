@@ -353,15 +353,18 @@ const OrderInformation: React.FC<IProps> = ({
                 )}
 
             <div className={styles.orderInformation}>
-                <div className={styles.withdrawTitle}>
-                    {t('successYouCanWithdrawToYouBankCard', {
-                        sum:
-                            order.productAmount &&
-                            formatAmount(
-                                order.productAmount + order.rewardAmount
-                            ),
-                    })}
-                </div>
+                {order.status === OrderStatus.itemRecieved &&
+                    viewType === ViewType.carrier && (
+                        <div className={styles.withdrawTitle}>
+                            {t('successYouCanWithdrawToYouBankCard', {
+                                sum:
+                                    order.productAmount &&
+                                    formatAmount(
+                                        order.productAmount + order.rewardAmount
+                                    ),
+                            })}
+                        </div>
+                    )}
 
                 {order.status === OrderStatus.itemRecieved &&
                     viewType === ViewType.carrier && (
@@ -373,7 +376,11 @@ const OrderInformation: React.FC<IProps> = ({
                 </div>
 
                 <div ref={payoutRef}>
-                    <OrderPayment order={order} updateOrder={updateOrder} />
+                    <OrderPayment
+                        viewType={viewType}
+                        order={order}
+                        updateOrder={updateOrder}
+                    />
                 </div>
 
                 {allowedStatusesForPurchaseReceiver.includes(order.status) &&
@@ -844,6 +851,19 @@ const OrderInformation: React.FC<IProps> = ({
                                             </Button>
                                         </div>
                                     )}
+                                    {viewType === ViewType.receiver &&
+                                        order.status ===
+                                            OrderStatus.inDiscussion && (
+                                            <div
+                                                className={
+                                                    styles.sixHoursNotification
+                                                }
+                                            >
+                                                {t(
+                                                    'afterhHoursFromStartTheTransactionTheOrderWillCanceled'
+                                                )}
+                                            </div>
+                                        )}
                                 </>
                             )}
                     </form>

@@ -10,6 +10,7 @@ type IProps = {
     bankName: string;
     selectedCard?: ICard;
     onSetSelectedCard: (value: ICard) => void;
+    watchOnly?: boolean;
 };
 
 const CardItem: React.FC<IProps> = ({
@@ -19,16 +20,20 @@ const CardItem: React.FC<IProps> = ({
     onSetSelectedCard,
     id,
     selectedCard,
+    watchOnly,
 }) => {
-    const onSelect = () =>
+    const onSelect = () => {
+        if (watchOnly) return;
+
         onSetSelectedCard({ id, name, number, bankName } as ICard);
+    };
 
     return (
         <div
             onClick={onSelect}
             className={cn(styles.cardItemWrapper, {
                 [styles.selectedCard]: selectedCard?.id === id,
-                [styles.noSelectedCard]: selectedCard?.id !== id,
+                [styles.noSelectedCard]: selectedCard?.id !== id && !watchOnly,
             })}
         >
             <div className={styles.cardItemBank}>{bankName}</div>
